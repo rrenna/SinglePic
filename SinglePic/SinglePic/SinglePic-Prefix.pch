@@ -1,0 +1,43 @@
+//
+// Prefix header for all source files of the 'SinglePic' target in the 'SinglePic' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "SPGlobal.h"
+    //Helpers
+    #import "ImageHelper.h"
+    #import "TimeHelper.h"
+    //
+    #import "SPErrors.h"
+    #import "SPRequests.h"
+    #import "SPMessages.h"
+    #import "SPBucket.h"
+    #import "SPProfiles.h"
+    #import "CJSONDeserializer.h"
+    #import "CJSONSerializer.h"
+    #import "UIView+SizesAndEdges.h"
+    #import "UIDevice+IdentifierAddition.h"
+    #import "NSString+NSString_UUIDAddition.h"
+    #import "UIImageView+Curled.h"
+    #import "SPAppDelegate.h"
+    #import "SPProfileManager.h"
+    #import "SPBucketManager.h"
+    #import "SPRequestManager.h"
+    #import "SPMessageThread+Sorting.h"
+    #import "SPBaseController.h"
+
+#define YES_NSNUMBER [NSNumber numberWithBool:YES]
+#define NO_NSNUMBER [NSNumber numberWithBool:NO]
+
+    #if defined (TESTING)
+    #import "TestFlight.h"  
+    #endif
+#endif
