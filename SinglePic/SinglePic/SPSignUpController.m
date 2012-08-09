@@ -67,7 +67,23 @@
     [super viewDidUnload];
 }
 #pragma mark - IBActions
-//Transition to step 2
+-(IBAction)back:(id)sender
+{
+    if(step == 3)
+    {
+        step = 2;
+        [self transitionToStep:2];
+    }
+    else if(step == 2)
+    {
+        step = 1;
+        [self transitionToStep:1];
+    }
+    else
+    {
+        [self close];
+    }
+}
 - (IBAction)next:(id)sender
 {
     if(step == 1)
@@ -75,6 +91,7 @@
         step = 2;
         [self transitionToStep:step];
     }
+    //Transition to step 2
     else if(step == 2)
     {
         //Save chosen values

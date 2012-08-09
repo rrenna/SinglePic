@@ -13,6 +13,7 @@
 @interface SPSignUpController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     IBOutlet UIView *contentView;
+    IBOutlet SPStyledButton *backButton;
     IBOutlet SPStyledButton *nextButton;
     IBOutlet SPStyledView* signupHeaderView;
     
@@ -37,5 +38,6 @@
 }
 //IBActions
 -(IBAction)start:(id)sender;
-- (IBAction)next:(id)sender;
+-(IBAction)back:(id)sender;
+-(IBAction)next:(id)sender;
 @end
