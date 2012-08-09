@@ -191,7 +191,7 @@
     //Step 2 initialization steps
     if(!orientationChooser)
     {
-        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.05, stepTwoView.height * 0.25, stepTwoView.width * 0.9, stepTwoView.height * 0.45)];
+        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.05, stepTwoView.height * 0.25, stepTwoView.width * 0.9, stepTwoView.height * 0.6)];
     }
 
     [stepTwoView addSubview:orientationChooser];

@@ -28,6 +28,9 @@
     if (self) 
     {
         // Initialization code
+        chosenGender = DEFAULT_GENDER; //default
+        chosenPreference = DEFAULT_PREFERENCE; //default
+        
         self.autoresizesSubviews = NO;
         self.selectionIndicators = [NSMutableArray array];
         self.buttonTitles = [NSMutableArray array];
@@ -49,11 +52,7 @@
     [self addSubview: [self buttonForGender:GENDER_MALE andPreference:  GENDER_FEMALE] ];
     [self addSubview: [self buttonForGender:GENDER_MALE andPreference:  GENDER_MALE] ];
     [self addSubview: [self buttonForGender:GENDER_FEMALE andPreference:GENDER_FEMALE] ];
-    
-    //Initial selection
-    chosenGender = DEFAULT_GENDER; //default
-    chosenPreference = DEFAULT_PREFERENCE; //default
-    
+        
     //Attempts to retrieve the last selected values from a previous annonymous session
     if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
     {
@@ -77,13 +76,16 @@
     [self selectOrientationAtIndex:index];
 }
 #pragma mark - Private methods
+#define ICON_DIMENSION 20
 -(UIView*)buttonForGender:(GENDER)gender andPreference:(GENDER)preference
 {
     int index = [self indexForGender:gender andPreference:preference];
-    int y = self.frame.size.height/4 * index;
-    int height = (self.frame.size.height/4 ) - 5;
-    CGRect frame = CGRectMake(0, floor(y), floor(self.frame.size.width),floor(height));
-    CGRect iconFrame = CGRectMake(8,6, 20, 20);
+    int buttonY = self.frame.size.height/4 * index;
+    int buttonHeight = (self.frame.size.height/4 ) - 5;
+    int iconY = (buttonHeight - ICON_DIMENSION) / 2;
+    CGRect frame = CGRectMake(0, floor(buttonY), floor(self.frame.size.width),floor(buttonHeight));
+    CGRect iconFrame = CGRectMake(8,iconY, ICON_DIMENSION, ICON_DIMENSION);
+    
     NSString* genderName = GENDER_NAMES[gender];
     NSString* genderPreference = GENDER_NAMES[preference];
     NSString* genderInitial = [genderName substringToIndex:1];
