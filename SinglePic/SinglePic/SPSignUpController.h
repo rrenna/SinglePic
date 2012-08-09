@@ -14,6 +14,8 @@
 {
     IBOutlet UIView *contentView;
     IBOutlet SPStyledButton *nextButton;
+    IBOutlet SPStyledView* signupHeaderView;
+    
     //Step 1
     IBOutlet UIView* stepOneView;
     IBOutlet UITableView* bucketTable;

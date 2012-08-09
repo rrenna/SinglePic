@@ -45,7 +45,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [nextButton setStyle:STYLE_TAB];
+    [signupHeaderView setStyle:STYLE_TAB];
     
     [self transitionToStep:step];
     [self stepOneInitialization];
@@ -129,7 +131,7 @@
 }
 #pragma mark - Private methods
 //Transition to the next step
--(void)transitionToStep:(int)step
+-(void)transitionToStep:(int)_step
 {
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -172,7 +174,7 @@
     //Step 2 initialization steps
     if(!orientationChooser)
     {
-        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.05, stepTwoView.height * 0.35, stepTwoView.width * 0.9, stepTwoView.height * 0.35)];
+        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.05, stepTwoView.height * 0.25, stepTwoView.width * 0.9, stepTwoView.height * 0.45)];
     }
 
     [stepTwoView addSubview:orientationChooser];
@@ -198,7 +200,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell* cell;
     //Bucket Listing Table
     if(tableView == bucketTable)
