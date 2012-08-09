@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class NAMapView;
+
 @interface SPLocationChooser : UIView
+{
+    NAMapView* mapView;
+}
 
 @end
