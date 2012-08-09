@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     [loginButton setStyle:STYLE_CONFIRM_BUTTON];
+    [headerStyledView setStyle:STYLE_TAB];
 }
 - (void)dealloc {
     [passwordTextField release];

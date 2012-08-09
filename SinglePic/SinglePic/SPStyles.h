@@ -43,7 +43,7 @@ typedef enum
 #define CONTROL_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithWhite:1 alpha:0.1]//View vs Control diff
 #define CONTROL_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.1 alpha:0.2]
 //Tints for Styles
-#define INSET_TINT_DEFAULT [UIColor colorWithWhite:0.85 alpha:1.0]
+#define INSET_TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
 #define INSET_TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
 #define INSET_TINT_TAB [UIColor colorWithRed:0.96 green:0.94 blue:0.92 alpha:0.85]
 #define INSET_TINT_BASE [UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0]

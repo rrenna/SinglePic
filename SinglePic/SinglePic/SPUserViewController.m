@@ -48,7 +48,6 @@
     [self updateIcebreaker];
     [self updateExpiry];
     
-    [progressView setProgressColour:[UIColor colorWithRed:0.905 green:0.662 blue:0.0 alpha:1.0]];
     [progressView setStyle:STYLE_BASE];
     [insetView setStyle:STYLE_BASE];
     [retakePhotoButton setStyle:STYLE_WHITE];
