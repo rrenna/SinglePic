@@ -17,11 +17,10 @@
 -(void)transitionToStep:(int)step;
 -(void)stepOneInitialization;
 -(void)stepTwoInitialization;
-@property (retain) NSArray* buckets;
 @end
 
 @implementation SPSignUpController
-@synthesize buckets;
+
 #pragma mark - View lifecycle
 -(id)init
 {
@@ -34,7 +33,6 @@
 }
 -(void)dealloc
 {
-    [buckets release];
     [orientationChooser release];
     [firstNameTableViewCell release];
     [emailTableViewCell release];
@@ -174,17 +172,7 @@
 }
 -(void)stepOneInitialization
 {
-    //Step 1 initialization steps
-    
-    [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets) 
-    {
-        self.buckets = buckets;
-        [bucketTable reloadData];
-        
-    } andErrorHandler:^
-    {
-        
-    }];
+        //
 }
 -(void)stepTwoInitialization
 {
@@ -203,33 +191,13 @@
 #pragma mark - UITableView datasource and delegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //Bucket Listing Table
-    if(tableView == bucketTable)
-    {
-        if(!buckets) return 0;
-        return [buckets count];
-    }
     //Registration Form Table
-    else
-    {
-        return 3;
-    }
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell;
-    //Bucket Listing Table
-    if(tableView == bucketTable)
-    {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-        SPBucket* bucket = [buckets objectAtIndex:indexPath.row];
-        
-        //cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
-        cell.textLabel.text = bucket.name;
-    }
-    //Registration Form Table
-    else
-    {
+
         if(indexPath.row == 0)
         {
             cell = firstNameTableViewCell;
@@ -242,36 +210,14 @@
         {
             cell = passwordTableViewCell;
         }
-    }
-        
+
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //Bucket Listing Table
-    if(tableView == bucketTable)
-    {
-        SPBucket* bucket = [buckets objectAtIndex:indexPath.row];
-        [[SPProfileManager sharedInstance] setMyAnnonymousBucket:bucket synchronize:YES];
-        //Cannot proceed until a bucket is selected
-        nextButton.enabled = YES;
-    }
-    //Registration Form Table
-    else
-    {
-        //
-    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(tableView != bucketTable)
-    {
-        if(indexPath.row == 2)
-        {
-            //Return 88 point height for the password row in the registration form
-            return 80;
-        }
-    }
     //return the default 40 point height
     return 40;
 }

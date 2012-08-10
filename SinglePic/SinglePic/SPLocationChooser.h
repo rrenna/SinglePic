@@ -10,9 +10,10 @@
 
 @class NAMapView;
 
-@interface SPLocationChooser : UIView
+@interface SPLocationChooser : UIView <UITableViewDataSource,UITableViewDelegate>
 {
     NAMapView* mapView;
+    UITableView* tableView;
 }
 
 @end
