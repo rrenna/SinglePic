@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class NAMapView;
+
+@class SPLocationChooser,NAMapView,SPBucket;
+
+@protocol SPLocationChooserDelegate <NSObject>
+-(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser;
+@end
 
 @interface SPLocationChooser : UIView <UITableViewDataSource,UITableViewDelegate>
 {
     NAMapView* mapView;
     UITableView* tableView;
 }
+@property (assign) IBOutlet id<SPLocationChooserDelegate> delegate;
+@property (assign,readonly) SPBucket* selected;
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import "SPTabContentViewController.h"
+#import "SPLocationChooser.h"
+#import "SPOrientationChooser.h"
 
 @class SPStyledButton,SSCheckBoxView,SPOrientationChooser;
 
-@interface SPSignUpController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface SPSignUpController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SPLocationChooserDelegate>
 {
     IBOutlet UIView *contentView;
     IBOutlet SPStyledButton *backButton;

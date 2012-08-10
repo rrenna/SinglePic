@@ -187,8 +187,9 @@
         chosenPreference = GENDER_FEMALE;
     }
     
-    
-    [self.delegate orientationChooserSelectionChanged:self];
-
+    if(self.delegate)
+    {
+        [self.delegate orientationChooserSelectionChanged:self];
+    }
 }
 @end

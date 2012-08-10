@@ -218,6 +218,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row == 2)
+    {
+        //Return 80 point height for the password row in the registration form
+        return 80;
+    }
     //return the default 40 point height
     return 40;
 }
@@ -257,5 +262,14 @@
     
     return NO;
 }*/
-
+#pragma mark - SPLocationChooserDelegate methods
+-(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser
+{
+    SPBucket* bucket = chooser.selected;
+    
+    [[SPProfileManager sharedInstance] setMyAnnonymousBucket:bucket synchronize:YES];
+    
+    //Cannot proceed until a bucket is selected
+    nextButton.enabled = YES;
+}
 @end

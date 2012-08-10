@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class SPOrientationChooser;
+
 @protocol SPOrientationChooserDelegate <NSObject>
 -(void)orientationChooserSelectionChanged:(SPOrientationChooser*)chooser;
 @end

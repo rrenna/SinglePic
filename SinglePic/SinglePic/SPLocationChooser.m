@@ -7,6 +7,7 @@
 //
 
 #import "SPLocationChooser.h"
+#import "SPBucket.h"
 #import "NAMapView.h"
 
 @interface SPLocationChooser()
@@ -14,7 +15,8 @@
 @end
 
 @implementation SPLocationChooser
-@synthesize buckets;
+@synthesize buckets = _buckets;
+@synthesize delegate = _delegate,selected = _selected;
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -42,7 +44,7 @@
 {
     [mapView release];
     [tableView release];
-    [buckets release];
+    [_buckets release];
     [super dealloc];
 }
 #define MINIMAL_TABLE_HEIGHT 150
@@ -55,7 +57,10 @@
     int mapWidth = frame.size.width;
     mapView.frame = CGRectMake(0, 0, mapWidth, MINIMAL_TABLE_HEIGHT);
     mapView.backgroundColor = [UIColor whiteColor];
-    mapView.userInteractionEnabled = NO;
+    //mapView.userInteractionEnabled = NO;
+    mapView.showsHorizontalScrollIndicator = NO;
+    mapView.showsVerticalScrollIndicator = NO;
+    
     UIImage* mapImage = [UIImage imageNamed:@"Globe"];
     [mapView displayMap:mapImage];
     
@@ -95,8 +100,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
         //Bucket Listing Table
-        if(!buckets) return 0;
-        return [buckets count];
+        if(!self.buckets) return 0;
+        return [self.buckets count];
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +109,7 @@
     UITableViewCell* cell;
 
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-        SPBucket* bucket = [buckets objectAtIndex:indexPath.row];
+        SPBucket* bucket = [self.buckets objectAtIndex:indexPath.row];
         
             //cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
         cell.textLabel.text = bucket.name;
@@ -114,23 +119,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        SPBucket* bucket = [buckets objectAtIndex:indexPath.row];
-        [[SPProfileManager sharedInstance] setMyAnnonymousBucket:bucket synchronize:YES];
-            //Cannot proceed until a bucket is selected
-        
-        //TODO: Perform selector on delegate 
-        //nextButton.enabled = YES;
-
+        SPBucket* bucket = [self.buckets objectAtIndex:indexPath.row];
+        _selected = bucket;
+    
+        //TODO: Perform selector on delegate
+        if(self.delegate)
+        {
+            [self.delegate locationChooserSelectionChanged:self];
+        }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-        if(indexPath.row == 2)
-        {
-                //Return 88 point height for the password row in the registration form
-            return 80;
-        }
-    
+{    
     return 40;
 }
 @end
