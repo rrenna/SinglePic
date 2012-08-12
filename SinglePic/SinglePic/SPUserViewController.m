@@ -32,6 +32,7 @@
     if (self) 
     {
         orientationController = [SPSwitchOrientationCardController new];
+        locationController = [SPSwitchLocationCardController new];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImage) name:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateIcebreaker) name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
@@ -55,7 +56,7 @@
     
     [userStackPanel addStackedView:userProfileView];
     [userStackPanel addStackedView:orientationController.view];
-    [userStackPanel addStackedView:userLocationView];
+    [userStackPanel addStackedView:locationController.view];
     [userStackPanel addStackedView:userSubscriptionView];
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -68,6 +69,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
     [orientationController release];
+    [locationController release];
     [cameraController release];
     [super dealloc];
 }

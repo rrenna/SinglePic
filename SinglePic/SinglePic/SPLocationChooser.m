@@ -12,10 +12,15 @@
 
 @interface SPLocationChooser()
 @property (retain) NSArray* buckets;
+@property (retain) NSMutableArray* selectionIndicators;
+@property (retain) NSMutableArray* buttonTitles;
+@property (retain) NSMutableArray* buttonIcons;
+-(UIView*)buttonForLocation:(SPBucket*)bucket atIndex:(int)index;
+-(void)selectLocationAtIndex:(int)index;
 @end
 
 @implementation SPLocationChooser
-@synthesize buckets = _buckets;
+@synthesize buckets = _buckets, selectionIndicators = _selectionIndicators, buttonTitles = _buttonTitles, buttonIcons = _buttonIcons; //Private
 @synthesize delegate = _delegate,selected = _selected;
 
 -(id)initWithFrame:(CGRect)frame
@@ -25,7 +30,11 @@
     {
         // Initialization code
         mapView = [[NAMapView alloc] initWithFrame:CGRectZero];
-        tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        
+        self.autoresizesSubviews = NO;
+        self.selectionIndicators = [NSMutableArray array];
+        self.buttonTitles = [NSMutableArray array];
+        self.buttonIcons = [NSMutableArray array];
     }
     return self;
 }
@@ -36,26 +45,33 @@
     {
         // Initialization code
         mapView = [[NAMapView alloc] initWithFrame:CGRectZero];
-        tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    
+        self.autoresizesSubviews = NO;
+        self.selectionIndicators = [NSMutableArray array];
+        self.buttonTitles = [NSMutableArray array];
+        self.buttonIcons = [NSMutableArray array];
     }
     return self;
 }
 -(void)dealloc
 {
     [mapView release];
-    [tableView release];
     [_buckets release];
+    [_selectionIndicators release];
+    [_buttonTitles release];
+    [_buttonIcons release];
     [super dealloc];
 }
-#define MINIMAL_TABLE_HEIGHT 150
+#define MAP_HEIGHT 120
 -(void)layoutSubviews
 {
     //Control frame
     CGRect frame = self.frame;
-    //Lay out map and listing based on avaliable width/height
+    self.backgroundColor = [UIColor clearColor];
     
+    //Lay out map and listing based on avaliable width/height
     int mapWidth = frame.size.width;
-    mapView.frame = CGRectMake(0, 0, mapWidth, MINIMAL_TABLE_HEIGHT);
+    mapView.frame = CGRectMake(0, 0, mapWidth, MAP_HEIGHT);
     mapView.backgroundColor = [UIColor whiteColor];
     //mapView.userInteractionEnabled = NO;
     mapView.showsHorizontalScrollIndicator = NO;
@@ -64,17 +80,19 @@
     UIImage* mapImage = [UIImage imageNamed:@"Globe"];
     [mapView displayMap:mapImage];
     
-    tableView.frame = CGRectMake(0, MINIMAL_TABLE_HEIGHT, mapWidth, frame.size.height - MINIMAL_TABLE_HEIGHT);
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    
-    tableView.layer.borderWidth = 1.0;
-    tableView.layer.borderColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0].CGColor;
-    
-
     [self addSubview:mapView];
-    [self addSubview:tableView];
-
+    
+    //Adds buttons representing the 4 closest buckets
+    for(int i=0;i< self.buckets.count; i++) {
+        
+        //Only display the first 4
+        if(i >= 5) break;
+        
+        SPBucket* bucket = [self.buckets objectAtIndex:i];
+        //Must be added in this order
+        [self addSubview: [self buttonForLocation:bucket atIndex:i]];
+    }
+    
     
     //Retrieve buckets
     [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
@@ -88,48 +106,93 @@
      }];
     
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+#pragma mark - IBActions
+-(IBAction)locationSelected:(id)sender
 {
-    // Drawing code
+    int index = [sender tag];
+    [self selectLocationAtIndex:index];
 }
-*/
-#pragma mark - UITableView datasource and delegate methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark - Private methods
+#define ICON_DIMENSION 20
+-(UIView*)buttonForLocation:(SPBucket*)bucket atIndex:(int)index
 {
-        //Bucket Listing Table
-        if(!self.buckets) return 0;
-        return [self.buckets count];
+    int buttonY = MAP_HEIGHT + (self.frame.size.height/4 * index);
+    int avaliableHeight = self.frame.size.height - MAP_HEIGHT;
+    int buttonHeight = (avaliableHeight /4 ) - 5;
+    int iconY = (buttonHeight - ICON_DIMENSION) / 2;
+    CGRect frame = CGRectMake(0, floor(buttonY), floor(self.frame.size.width),floor(buttonHeight));
+    CGRect iconFrame = CGRectMake(8,iconY, ICON_DIMENSION, ICON_DIMENSION);
+    
+    NSString* locationName = bucket.name;
 
+    UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
+        //Button - will contain a tag storing the index
+    UIButton* button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
+    button.tag = index;
+    button.alpha = 0.35;
+    [button setImage:[UIImage imageNamed:@"Card-yellow.png"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"Card-white.png"] forState:UIControlStateHighlighted];
+    NSString* buttonTitle = [NSString stringWithFormat:@"I live in %@",locationName];
+    [button setTitle:buttonTitle forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(locationSelected:) forControlEvents:UIControlEventTouchUpInside];
+        //Left Icon
+    NSString* iconFileName = @"location-pin.png";
+    NSString* iconSelectedFileName = @"location-pin.png";
+    
+    UIButton* iconView = [[[UIButton alloc] initWithFrame:iconFrame] autorelease];
+    [iconView setImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];
+    [iconView setImage:[UIImage imageNamed:iconSelectedFileName] forState:UIControlStateSelected];
+    [self.buttonIcons addObject:iconView];
+        //Label
+    UILabel* buttonLabel = [[[UILabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width),floor(iconView.height))] autorelease];
+    buttonLabel.backgroundColor = [UIColor clearColor];
+    buttonLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:11];
+    buttonLabel.textAlignment = UITextAlignmentCenter;
+    
+    buttonLabel.text = [NSString stringWithFormat:@"I live in %@",locationName];
+    
+    [self.buttonTitles addObject:buttonLabel];
+        //Right Checkmark (selection indicator)
+    UIImageView* selectionIndicatorView = [[[UIImageView alloc] initWithFrame:CGRectMake(buttonLabel.left + buttonLabel.width, 0, 10,button.height)] autorelease];
+    selectionIndicatorView.hidden = YES;
+    selectionIndicatorView.contentMode = UIViewContentModeScaleAspectFit;
+    selectionIndicatorView.image = [UIImage imageNamed:@"Checkmark.png"];
+    [self.selectionIndicators addObject:selectionIndicatorView];
+    
+    [view addSubview:button];
+    [view addSubview:iconView];
+    [view addSubview:buttonLabel];
+    [view addSubview:selectionIndicatorView];
+    
+    return view;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)selectLocationAtIndex:(int)index
 {
-    UITableViewCell* cell;
-
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-        SPBucket* bucket = [self.buckets objectAtIndex:indexPath.row];
+    for(int i = 0; i < [self.selectionIndicators count]; i++)
+    {
+        UIImageView* selectionIndicator = [self.selectionIndicators objectAtIndex:i];
+        UILabel* buttonLabel = [self.buttonTitles objectAtIndex:i];
+        UIButton* iconView = [self.buttonIcons objectAtIndex:i];
         
-            //cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
-        cell.textLabel.text = bucket.name;
-
-    
-    return cell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-        SPBucket* bucket = [self.buckets objectAtIndex:indexPath.row];
-        _selected = bucket;
-    
-        //TODO: Perform selector on delegate
-        if(self.delegate)
+        if(i == index)
         {
-            [self.delegate locationChooserSelectionChanged:self];
+            selectionIndicator.hidden = NO;
+            iconView.selected = YES;
+            buttonLabel.alpha = 1.0;
         }
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    return 40;
+        else
+        {
+            selectionIndicator.hidden = YES;
+            iconView.selected = NO;
+            buttonLabel.alpha = 0.5;
+        }
+    }
+    
+    _selected = [self.buckets objectAtIndex:index];
+    
+    if(self.delegate)
+    {
+        [self.delegate locationChooserSelectionChanged:self];
+    }
 }
 @end

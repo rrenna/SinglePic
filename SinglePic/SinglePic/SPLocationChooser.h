@@ -23,4 +23,5 @@
 @property (assign) IBOutlet id<SPLocationChooserDelegate> delegate;
 @property (assign,readonly) SPBucket* selected;
 
+-(IBAction)locationSelected:(id)sender;
 @end

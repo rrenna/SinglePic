@@ -8,6 +8,7 @@
 
 #import "SPStyledProgressView.h"
 #import "SPSwitchOrientationCardController.h"
+#import "SPSwitchLocationCardController.h"
 #import "SPStyledView.h"
 #import "SPStyledButton.h"
 #import "SPStackPanel.h"
@@ -26,7 +27,7 @@
     //User Orientation
     SPSwitchOrientationCardController* orientationController;
     //User Location
-    IBOutlet UIView* userLocationView;
+    SPSwitchLocationCardController* locationController;
     //User Subscription
     IBOutlet UIView* userSubscriptionView;
 }

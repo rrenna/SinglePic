@@ -220,6 +220,8 @@
 		F03CD12E14BA443100E1340D /* Orientation-FsM-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12614BA443100E1340D /* Orientation-FsM-selected.png */; };
 		F03CD12F14BA443100E1340D /* Orientation-FsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12714BA443100E1340D /* Orientation-FsM-default.png */; };
 		F03F15DF14F931C300EAF11D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03F15DE14F931C200EAF11D /* AudioToolbox.framework */; };
+		F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = F041881815D73890000E958E /* SPSwitchLocationCardController.m */; };
+		F041881B15D73890000E958E /* SPSwitchLocationCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F041881915D73890000E958E /* SPSwitchLocationCardController.xib */; };
 		F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F054E29415730ED300ECCDE7 /* SPLoginController.m */; };
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
 		F054FAFE14C7EA9600D556A3 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F054FAFD14C7EA9600D556A3 /* SPMessageThread.m */; };
@@ -650,6 +652,9 @@
 		F03CD12614BA443100E1340D /* Orientation-FsM-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-FsM-selected.png"; path = "../../Resources/Orientation-FsM-selected.png"; sourceTree = "<group>"; };
 		F03CD12714BA443100E1340D /* Orientation-FsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-FsM-default.png"; path = "../../Resources/Orientation-FsM-default.png"; sourceTree = "<group>"; };
 		F03F15DE14F931C200EAF11D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F041881715D73890000E958E /* SPSwitchLocationCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSwitchLocationCardController.h; sourceTree = "<group>"; };
+		F041881815D73890000E958E /* SPSwitchLocationCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSwitchLocationCardController.m; sourceTree = "<group>"; };
+		F041881915D73890000E958E /* SPSwitchLocationCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSwitchLocationCardController.xib; sourceTree = "<group>"; };
 		F054E29315730ED300ECCDE7 /* SPLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLoginController.h; sourceTree = "<group>"; };
 		F054E29415730ED300ECCDE7 /* SPLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLoginController.m; sourceTree = "<group>"; };
 		F054E29515730ED300ECCDE7 /* SPLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLoginController.xib; sourceTree = "<group>"; };
@@ -1607,6 +1612,7 @@
 		F01B800314CCF2B1009FA39D /* User Screen */ = {
 			isa = PBXGroup;
 			children = (
+				F041881515D7386D000E958E /* Switch Location Controller */,
 				F0C6460614E87A5000B6A0ED /* Switch Orientation Controller */,
 				F02642A414DFA93800E8D649 /* Camera Screen */,
 				F026429C14DF9F0300E8D649 /* Icebreaker Screen */,
@@ -1686,6 +1692,7 @@
 		F02642A314DFA6B300E8D649 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				F041881915D73890000E958E /* SPSwitchLocationCardController.xib */,
 				F02642A714DFA94E00E8D649 /* SPCameraController.xib */,
 				F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */,
 				F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */,
@@ -1701,6 +1708,15 @@
 				F02642A614DFA94E00E8D649 /* SPCameraController.m */,
 			);
 			name = "Camera Screen";
+			sourceTree = "<group>";
+		};
+		F041881515D7386D000E958E /* Switch Location Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F041881715D73890000E958E /* SPSwitchLocationCardController.h */,
+				F041881815D73890000E958E /* SPSwitchLocationCardController.m */,
+			);
+			name = "Switch Location Controller";
 			sourceTree = "<group>";
 		};
 		F050FEEC14EDE0030069EB74 /* Subscriptions */ = {
@@ -2486,6 +2502,7 @@
 				75B4AA6515D44F8700745137 /* pinRedFloating.png in Resources */,
 				75B4AA6615D44F8700745137 /* pinRedFloating@2x.png in Resources */,
 				7516D82915D4529E003CD732 /* Globe.png in Resources */,
+				F041881B15D73890000E958E /* SPSwitchLocationCardController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2650,6 +2667,7 @@
 				75B4AA5815D44F8700745137 /* NACallOutView.m in Sources */,
 				75B4AA5915D44F8700745137 /* NAMapView.m in Sources */,
 				75B4AA5A15D44F8700745137 /* NAPinAnnotationView.m in Sources */,
+				F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
