@@ -62,7 +62,7 @@
         
         [contentView addSubview:registrationController.view];
         
-        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red"];
+        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend"];
         navigationView.hidden = YES;
         registrationNavigationView.hidden = NO;
         
@@ -108,7 +108,7 @@
         
         [self profile:profileButton];
         
-        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red"];
+        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend"];
         navigationView.hidden = NO;
         registrationNavigationView.hidden = YES;
     }
