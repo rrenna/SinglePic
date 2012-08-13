@@ -48,6 +48,8 @@
 #import "MDACIconCredit.h"
 #import "MDACWebViewController.h"
 #import "MDACStyle.h"
+#import "SPAppDelegate.h"
+#import "SPBaseController.h"
 
 #pragma mark Constants
 
@@ -428,9 +430,23 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             
             textLabel = [[UILabel alloc] init];
             textLabel.font = [self.style listCellFont];
-            textLabel.backgroundColor = [self.style listCellBackgroundColor];
-            textLabel.textColor = [self.style listCellTextColor];
-            textLabel.shadowColor = [self.style listCellShadowColor];
+            
+            
+            if(cellID == MDACSingleListCellID)
+            {
+                textLabel.backgroundColor = [self.style listCellBackgroundColorSingle];
+                textLabel.textColor = [self.style listCellTextColorSingle];
+                textLabel.shadowColor = [self.style listCellShadowColorSingle];
+            }
+            else
+            {
+                textLabel.backgroundColor = [self.style listCellBackgroundColor];
+                textLabel.textColor = [self.style listCellTextColor];
+                textLabel.shadowColor = [self.style listCellShadowColor];
+            }
+            
+ 
+          
             textLabel.shadowOffset = [self.style listCellShadowOffset];
             textLabel.tag = 1;
             [cell.contentView addSubview:textLabel];
@@ -438,9 +454,21 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             
             detailTextLabel = [[UILabel alloc] init];
             detailTextLabel.font = [self.style listCellDetailFont];
-            detailTextLabel.backgroundColor = [self.style listCellBackgroundColor];
-            detailTextLabel.textColor = [self.style listCellDetailTextColor];
-            detailTextLabel.shadowColor = [self.style listCellShadowColor];
+            
+            if(cellID == MDACSingleListCellID)
+            {
+                detailTextLabel.backgroundColor = [self.style listCellBackgroundColorSingle];
+                detailTextLabel.textColor = [self.style listCellTextColorSingle];
+                detailTextLabel.shadowColor = [self.style listCellShadowColorSingle];
+            }
+            else
+            {
+                detailTextLabel.backgroundColor = [self.style listCellBackgroundColor];
+                detailTextLabel.textColor = [self.style listCellDetailTextColor];
+                detailTextLabel.shadowColor = [self.style listCellShadowColor];
+            }
+            
+       
             detailTextLabel.shadowOffset = [self.style listCellShadowOffset];
             detailTextLabel.textAlignment = UITextAlignmentRight;
             detailTextLabel.tag = 2;
@@ -555,6 +583,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             textLabel = (UILabel *)[cell.contentView viewWithTag:1];
             detailTextLabel = (UILabel *)[cell.contentView viewWithTag:2];
             linkAvailableImageView = (UIImageView *)[cell.contentView viewWithTag:3];
+            
         } else if (cellID == MDACIconCellID) {
             textLabel = (UILabel *)[cell.contentView viewWithTag:1];
             detailTextLabel = (UILabel *)[cell.contentView viewWithTag:2];
@@ -627,7 +656,16 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
     [mailer performSelector:@selector(setMailComposeDelegate:) withObject:self];
     [mailer performSelector:@selector(setToRecipients:) withObject:[NSArray arrayWithObject:recipient]];
     [mailer performSelector:@selector(setSubject:) withObject:subject];
-    [self presentModalViewController:mailer animated:YES];
+    
+        // dear compiler warning... shut up
+        // the following should be fully backwards compatible.
+    if ([self respondsToSelector:@selector(presentViewController:animated:completion:)]) {
+        objc_msgSend(self, @selector(presentViewController:animated:completion:), mailer, YES, NULL);
+            //        [self presentViewController:mailer animated:YES completion:NULL];
+    } else {
+        objc_msgSend(self, @selector(presentModalViewController:animated:), mailer, YES);
+            //        [self presentModalViewController:mailer animated:YES];
+    }
 }
 
 - (void)mailComposeController:(id)controller didFinishWithResult:(int)result error:(NSError *)error
@@ -638,6 +676,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     
     MDACCredit *credit = nil;
     id cellID = nil;
@@ -666,7 +705,14 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
                         [viewController release];
                     }
                 }
-            } else if ([url.scheme isEqualToString:@"mailto"]) {
+            }
+            else if ([url.scheme isEqualToString:@"selector"]) {
+            
+                SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+                SPBaseController* baseController = [delegate baseController];
+                [baseController performSelector:NSSelectorFromString([url resourceSpecifier])];
+            }
+            else if ([url.scheme isEqualToString:@"mailto"]) {
                 if (NSClassFromString(@"MFMailComposeViewController")) {
                     NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
                     NSString *versionString = nil;

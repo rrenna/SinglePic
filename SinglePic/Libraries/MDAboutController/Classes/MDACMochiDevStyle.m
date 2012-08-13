@@ -94,9 +94,19 @@
     return [UIColor colorWithWhite:94./255. alpha:1];
 }
 
+- (UIColor *)listCellBackgroundColorSingle
+{
+    return [UIColor colorWithRed:0.968 green:0.968 blue:0.968 alpha:1.0];
+}
+
 - (UIColor *)listCellTextColor
 {
     return [UIColor whiteColor];
+}
+
+- (UIColor *)listCellTextColorSingle
+{
+    return [UIColor colorWithRed:0.368 green:0.368 blue:0.368 alpha:1.0];
 }
 
 - (UIColor *)listCellDetailTextColor
@@ -107,6 +117,11 @@
 - (UIColor *)listCellShadowColor
 {
     return [UIColor colorWithWhite:0 alpha:0.6];
+}
+
+- (UIColor *)listCellShadowColorSingle
+{
+    return [UIColor colorWithWhite:253./255. alpha:0.6];
 }
 
 - (CGSize)listCellShadowOffset

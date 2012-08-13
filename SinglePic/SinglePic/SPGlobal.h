@@ -21,7 +21,7 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define SECONDS_PER_MINUTE 60
 //Beta Testing
 #define BETA_EXPIRY_YEAR 2012
-#define BETA_EXPIRY_MONTH 6
+#define BETA_EXPIRY_MONTH 10
 #define BETA_EXPIRY_DAY 28
 
 //Information

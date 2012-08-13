@@ -56,7 +56,8 @@
     
     [userStackPanel addStackedView:userProfileView];
     [userStackPanel addStackedView:orientationController.view];
-    [userStackPanel addStackedView:locationController.view];
+    //TEMP: Removed bucket selection
+    //[userStackPanel addStackedView:locationController.view];
     [userStackPanel addStackedView:userSubscriptionView];
 }
 -(void)viewWillAppear:(BOOL)animated

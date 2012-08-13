@@ -57,6 +57,8 @@ typedef enum
 -(IBAction)registration:(id)sender;
 -(IBAction)info:(id)sender;
 //
+-(void)logout;
+//
 -(void)pushModalController:(UIViewController*)viewController isFullscreen:(BOOL)fullscreen;
 -(void)pushModalContent:(UIView*)view;
 //

@@ -43,8 +43,6 @@
 		7532118B14CDF63F00B7EFDA /* MDACTitleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7532114914CDF63F00B7EFDA /* MDACTitleBar.m */; };
 		7532118C14CDF63F00B7EFDA /* MDACWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7532114B14CDF63F00B7EFDA /* MDACWebViewController.m */; };
 		7532118D14CDF63F00B7EFDA /* UIImage+DBMaskedImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7532114D14CDF63F00B7EFDA /* UIImage+DBMaskedImageAdditions.m */; };
-		7532118E14CDF63F00B7EFDA /* MDACBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532114F14CDF63F00B7EFDA /* MDACBackground.png */; };
-		7532118F14CDF63F00B7EFDA /* MDACBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532115014CDF63F00B7EFDA /* MDACBackground@2x.png */; };
 		7532119014CDF63F00B7EFDA /* MDACCellBackgroundBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532115114CDF63F00B7EFDA /* MDACCellBackgroundBottom.png */; };
 		7532119114CDF63F00B7EFDA /* MDACCellBackgroundBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532115214CDF63F00B7EFDA /* MDACCellBackgroundBottom@2x.png */; };
 		7532119214CDF63F00B7EFDA /* MDACCellBackgroundMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532115314CDF63F00B7EFDA /* MDACCellBackgroundMiddle.png */; };
@@ -79,10 +77,6 @@
 		753211AF14CDF63F00B7EFDA /* MDACDarkCellBackgroundTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117014CDF63F00B7EFDA /* MDACDarkCellBackgroundTop@2x.png */; };
 		753211B014CDF63F00B7EFDA /* MDACDarkLinkArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117114CDF63F00B7EFDA /* MDACDarkLinkArrow.png */; };
 		753211B114CDF63F00B7EFDA /* MDACDarkLinkArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117214CDF63F00B7EFDA /* MDACDarkLinkArrow@2x.png */; };
-		753211B214CDF63F00B7EFDA /* MDACDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117314CDF63F00B7EFDA /* MDACDoneButton.png */; };
-		753211B314CDF63F00B7EFDA /* MDACDoneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117414CDF63F00B7EFDA /* MDACDoneButton@2x.png */; };
-		753211B414CDF63F00B7EFDA /* MDACDoneButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117514CDF63F00B7EFDA /* MDACDoneButtonPressed.png */; };
-		753211B514CDF63F00B7EFDA /* MDACDoneButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117614CDF63F00B7EFDA /* MDACDoneButtonPressed@2x.png */; };
 		753211B614CDF63F00B7EFDA /* MDACIconMask.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117714CDF63F00B7EFDA /* MDACIconMask.png */; };
 		753211B714CDF63F00B7EFDA /* MDACIconMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117814CDF63F00B7EFDA /* MDACIconMask@2x.png */; };
 		753211B814CDF63F00B7EFDA /* MDACIconMask~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117914CDF63F00B7EFDA /* MDACIconMask~ipad.png */; };
@@ -323,8 +317,6 @@
 		F0C178A71491C00E00F72809 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178531491C00E00F72809 /* SVSegmentedControl.m */; };
 		F0C178A81491C00E00F72809 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178551491C00E00F72809 /* SVSegmentedThumb.m */; };
 		F0C178A91491C00E00F72809 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178571491C00E00F72809 /* libTestFlight.a */; };
-		F0C178AA1491C00E00F72809 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = F0C178581491C00E00F72809 /* README.txt */; };
-		F0C178AB1491C00E00F72809 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = F0C178591491C00E00F72809 /* release_notes.txt */; };
 		F0C178AD1491C04900F72809 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178AC1491C04800F72809 /* SystemConfiguration.framework */; };
 		F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178AF1491C0BE00F72809 /* SPSingleton.m */; };
 		F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
@@ -341,7 +333,6 @@
 		F0C645F614E76B8600B6A0ED /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */; };
 		F0C6460B14E8892100B6A0ED /* SPSwitchOrientationCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C6460914E8892100B6A0ED /* SPSwitchOrientationCardController.m */; };
 		F0C6460C14E8892100B6A0ED /* SPSwitchOrientationCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */; };
-		F0C7851A1522E8DB00512232 /* SPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C785181522E8DB00512232 /* SPSettingsViewController.m */; };
 		F0C7851B1522E8DB00512232 /* SPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C785191522E8DB00512232 /* SPSettingsViewController.xib */; };
 		F0C988A314E0B0C000264228 /* BTN-EditIceBreaker.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */; };
 		F0C988A614E0B0C500264228 /* icebreaker.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A514E0B0C500264228 /* icebreaker.png */; };
@@ -835,8 +826,6 @@
 		F0C178541491C00E00F72809 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
 		F0C178551491C00E00F72809 /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
 		F0C178571491C00E00F72809 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		F0C178581491C00E00F72809 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		F0C178591491C00E00F72809 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		F0C1785A1491C00E00F72809 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		F0C178AC1491C04800F72809 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F0C178AF1491C0BE00F72809 /* SPSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSingleton.m; sourceTree = "<group>"; };
@@ -867,8 +856,6 @@
 		F0C6460814E8892100B6A0ED /* SPSwitchOrientationCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSwitchOrientationCardController.h; sourceTree = "<group>"; };
 		F0C6460914E8892100B6A0ED /* SPSwitchOrientationCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSwitchOrientationCardController.m; sourceTree = "<group>"; };
 		F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSwitchOrientationCardController.xib; sourceTree = "<group>"; };
-		F0C785171522E8DB00512232 /* SPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingsViewController.h; sourceTree = "<group>"; };
-		F0C785181522E8DB00512232 /* SPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingsViewController.m; sourceTree = "<group>"; };
 		F0C785191522E8DB00512232 /* SPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSettingsViewController.xib; sourceTree = "<group>"; };
 		F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-EditIceBreaker.png"; path = "../../Resources/BTN-EditIceBreaker.png"; sourceTree = "<group>"; };
 		F0C988A514E0B0C500264228 /* icebreaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icebreaker.png; path = ../../Resources/icebreaker.png; sourceTree = "<group>"; };
@@ -1533,7 +1520,6 @@
 				F0620D081524B99C008D334C /* Subscription Page */,
 				750E482314C60EC000F7CCFC /* Reachability Popup Controller */,
 				75E7E02014B3C22F005C70B4 /* Tabs & Pages */,
-				F0C785161522E89800512232 /* Settings Screen */,
 				751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
 				75CA53CA14CF5F8200C36F35 /* Compose Screen */,
@@ -2101,8 +2087,6 @@
 			isa = PBXGroup;
 			children = (
 				F0C178571491C00E00F72809 /* libTestFlight.a */,
-				F0C178581491C00E00F72809 /* README.txt */,
-				F0C178591491C00E00F72809 /* release_notes.txt */,
 				F0C1785A1491C00E00F72809 /* TestFlight.h */,
 			);
 			name = TestFlight;
@@ -2218,15 +2202,6 @@
 			name = "Switch Orientation Controller";
 			sourceTree = "<group>";
 		};
-		F0C785161522E89800512232 /* Settings Screen */ = {
-			isa = PBXGroup;
-			children = (
-				F0C785171522E8DB00512232 /* SPSettingsViewController.h */,
-				F0C785181522E8DB00512232 /* SPSettingsViewController.m */,
-			);
-			name = "Settings Screen";
-			sourceTree = "<group>";
-		};
 		F0D1511E14EA3272006C1978 /* Orientation Chooser */ = {
 			isa = PBXGroup;
 			children = (
@@ -2333,8 +2308,6 @@
 				F0C178691491C00E00F72809 /* CMakeLists.txt in Resources */,
 				F0C178A41491C00E00F72809 /* SVProgressHUD.bundle in Resources */,
 				F0C178A61491C00E00F72809 /* SVSegmentedControl.bundle in Resources */,
-				F0C178AA1491C00E00F72809 /* README.txt in Resources */,
-				F0C178AB1491C00E00F72809 /* release_notes.txt in Resources */,
 				F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */,
 				F0C178D81491C9C200F72809 /* SPProfileViewController.xib in Resources */,
 				75A24A8914928ED800DC8D50 /* SPRegistrationViewController.xib in Resources */,
@@ -2382,8 +2355,6 @@
 				750E482D14C62FAA00F7CCFC /* SPMessagesViewController.xib in Resources */,
 				75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */,
 				F0ECCB8914CA8A4B00739ADB /* SPProfileIconController.xib in Resources */,
-				7532118E14CDF63F00B7EFDA /* MDACBackground.png in Resources */,
-				7532118F14CDF63F00B7EFDA /* MDACBackground@2x.png in Resources */,
 				7532119014CDF63F00B7EFDA /* MDACCellBackgroundBottom.png in Resources */,
 				7532119114CDF63F00B7EFDA /* MDACCellBackgroundBottom@2x.png in Resources */,
 				7532119214CDF63F00B7EFDA /* MDACCellBackgroundMiddle.png in Resources */,
@@ -2418,10 +2389,6 @@
 				753211AF14CDF63F00B7EFDA /* MDACDarkCellBackgroundTop@2x.png in Resources */,
 				753211B014CDF63F00B7EFDA /* MDACDarkLinkArrow.png in Resources */,
 				753211B114CDF63F00B7EFDA /* MDACDarkLinkArrow@2x.png in Resources */,
-				753211B214CDF63F00B7EFDA /* MDACDoneButton.png in Resources */,
-				753211B314CDF63F00B7EFDA /* MDACDoneButton@2x.png in Resources */,
-				753211B414CDF63F00B7EFDA /* MDACDoneButtonPressed.png in Resources */,
-				753211B514CDF63F00B7EFDA /* MDACDoneButtonPressed@2x.png in Resources */,
 				753211B614CDF63F00B7EFDA /* MDACIconMask.png in Resources */,
 				753211B714CDF63F00B7EFDA /* MDACIconMask@2x.png in Resources */,
 				753211B814CDF63F00B7EFDA /* MDACIconMask~ipad.png in Resources */,
@@ -2659,7 +2626,6 @@
 				F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */,
 				750B93671510F03100C354F2 /* SPCircleView.m in Sources */,
 				750B936A1510F62A00C354F2 /* TimeHelper.m in Sources */,
-				F0C7851A1522E8DB00512232 /* SPSettingsViewController.m in Sources */,
 				F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */,
 				F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */,
 				75B4AA3115D44E5700745137 /* SPLocationChooser.m in Sources */,
@@ -2783,7 +2749,7 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Dmytro Yashkir";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dmytro Yashkir";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2799,7 +2765,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -13,4 +13,8 @@
 {
     return [UIColor colorWithPatternImage:[UIImage imageNamed:@"BG-linen-black.png"]];
 }
+- (UIImage *)listCellBackgroundSingle
+{
+    return [[UIImage imageNamed:@"MDACCellBackgroundSingle.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:10];
+}
 @end

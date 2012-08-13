@@ -74,8 +74,10 @@
     }
     else if(step == 2)
     {
-        step = 1;
-        [self transitionToStep:1];
+        [self close]; //TEMP: Removed step 1
+        
+        //step = 1;
+        //[self transitionToStep:1];
     }
     else
     {
@@ -150,19 +152,26 @@
 {
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    if(step == 1)
+    if(_step == 1)
     {
+        //TEMP: Removed step 1
+        
+        /*
         nextButton.enabled = NO;
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
         [contentView addSubview:stepOneView];
+         */
+        
+        step = 2;
+        [self transitionToStep:2];
     }
-    else if(step == 2)
+    else if(_step == 2)
     {
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
         [contentView addSubview:stepTwoView];
         
     }
-    else if(step == 3)
+    else if(_step == 3)
     {
         [nextButton setStyle:STYLE_CONFIRM_BUTTON];
         [contentView addSubview:stepThreeView];

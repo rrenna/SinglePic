@@ -67,7 +67,7 @@
         
         doneButton = [[SPStyledButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
         [doneButton setDepth:DEPTH_OUTSET];
-        [doneButton setStyle:STYLE_CONFIRM_BUTTON];
+        [doneButton setStyle:STYLE_NEUTRAL];
         
         /*doneButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
         doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;

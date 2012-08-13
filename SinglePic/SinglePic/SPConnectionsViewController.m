@@ -48,6 +48,9 @@
     [insetView setStyle:STYLE_BASE];
     [editButton setStyle:STYLE_BASE];
     [likeTypeSegmentedControl setStyle:STYLE_BASE];
+    
+    //Manually set's the height of the styled segmented control, as it cannot be set in Interface Builder
+    likeTypeSegmentedControl.height = 34.0f;
 }
 -(void)dealloc
 {
@@ -67,13 +70,17 @@
     if([likeTypeSegmentedControl selectedSegmentIndex] == 0)
     {
         //Likes
+        
+        //Re-enable the edit button
         editButton.enabled = YES;
     }
     else 
     {
         //Liked By
-        //Disable EDIT mode - if active, and disable EDIT button
+        //Disable EDIT mode of TableView - if active, and hide EDIT button
         [tableView setEditing:NO animated:YES];
+        
+        //Disable edit button
         editButton.enabled = NO;
     }
     

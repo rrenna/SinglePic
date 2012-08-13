@@ -14,7 +14,10 @@
 #import "SPReachabilityPopupController.h"
 #import "SPSubscriptionsManager.h"
 #import "SPProfileViewController.h"
-#import "SPSettingsViewController.h"
+#import "MDAboutController.h"
+#import "MDACListCredit.h"
+#import "MDACCreditItem.h"
+#import "SPAboutStyle.h"
 #import "SPStyledButton.h"
 
 @interface SPBaseController()
@@ -193,8 +196,28 @@
 }
 -(IBAction)info:(id)sender
 {
-    SPSettingsViewController* settingsController = [[[SPSettingsViewController alloc] initWithNibName:@"SPSettingsViewController" bundle:nil] autorelease];
-    [self presentModalViewController:settingsController animated:YES];
+    MDAboutController* aboutController = [[[MDAboutController alloc] initWithStyle: [SPAboutStyle style]] autorelease];
+    //Remove MDAboutController credit (We cite them in our own way)
+    [aboutController removeLastCredit];
+    
+    
+    //Add App setting specific credits (interactive)
+    //If logged-in - display a logout button
+    if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
+    {
+        MDACListCredit* appOptionsListCredit = [MDACListCredit listCreditWithTitle:@""];
+        MDACCreditItem* logoutCreditItem = [MDACCreditItem itemWithName:@"Logout" role:@"" linkString:@"selector:logout"];
+        [appOptionsListCredit addItem:logoutCreditItem];
+        [aboutController insertCredit:appOptionsListCredit  atIndex:1];
+    }
+    
+    [self presentModalViewController:aboutController animated:YES];
+}
+#pragma mark
+-(void)logout
+{
+    [[SPProfileManager sharedInstance] logout];
+    [self dismissModalViewControllerAnimated:YES];
 }
 #pragma mark
 -(void)pushModalController:(UIViewController*)viewController isFullscreen:(BOOL)fullscreen
