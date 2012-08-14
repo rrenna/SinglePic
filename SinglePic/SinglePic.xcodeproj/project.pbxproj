@@ -97,6 +97,8 @@
 		754D1EEC14DB395100F90C19 /* Tab-Messages_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EE814DB395000F90C19 /* Tab-Messages_Default.png */; };
 		754D1EED14DB395100F90C19 /* Tab-Profile_Select.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EE914DB395100F90C19 /* Tab-Profile_Select.png */; };
 		754D1EEE14DB395100F90C19 /* Tab-Profile_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */; };
+		7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */; };
+		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
 		759008DD14FD73EA00009E86 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 759008DC14FD73EA00009E86 /* arrow.png */; };
 		7599399514B7BADC004D1A46 /* BG-linen-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7599399414B7BADA004D1A46 /* BG-linen-black.png */; };
 		7599A93F148E980100A48435 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A93E148E980100A48435 /* UIKit.framework */; };
@@ -475,6 +477,9 @@
 		754D1EE814DB395000F90C19 /* Tab-Messages_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Messages_Default.png"; path = "../../Resources/Tab-Messages_Default.png"; sourceTree = "<group>"; };
 		754D1EE914DB395100F90C19 /* Tab-Profile_Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Profile_Select.png"; path = "../../Resources/Tab-Profile_Select.png"; sourceTree = "<group>"; };
 		754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Profile_Default.png"; path = "../../Resources/Tab-Profile_Default.png"; sourceTree = "<group>"; };
+		7575EB1F15DABDB000D5707B /* SPHelpOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHelpOverlayViewController.h; sourceTree = "<group>"; };
+		7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHelpOverlayViewController.m; sourceTree = "<group>"; };
+		7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHelpOverlayViewController.xib; sourceTree = "<group>"; };
 		759008DC14FD73EA00009E86 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = ../../Resources/arrow.png; sourceTree = "<group>"; };
 		7599399414B7BADA004D1A46 /* BG-linen-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-linen-black.png"; path = "../../Resources/BG-linen-black.png"; sourceTree = "<group>"; };
 		7599A93A148E980100A48435 /* SinglePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinglePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1243,6 +1248,23 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		7575EB1815DABCFB00D5707B /* Help Overlay Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7575EB1F15DABDB000D5707B /* SPHelpOverlayViewController.h */,
+				7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */,
+			);
+			name = "Help Overlay Controller";
+			sourceTree = "<group>";
+		};
+		7575EB2915DAC1F300D5707B /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
 		7577AD8C1523792100B30CB3 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1493,6 +1515,7 @@
 		75F56321148FC74800E6A8F9 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				7575EB2915DAC1F300D5707B /* Help */,
 				F0620D071524B964008D334C /* Subscription */,
 				7577AD8C1523792100B30CB3 /* Settings */,
 				751EDDBB14EEDD43007FBEC7 /* Registration / Login */,
@@ -1512,8 +1535,9 @@
 		75F5632B148FE92000E6A8F9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F0620D081524B99C008D334C /* Subscription Page */,
 				750E482314C60EC000F7CCFC /* Reachability Popup Controller */,
+				7575EB1815DABCFB00D5707B /* Help Overlay Controller */,
+				F0620D081524B99C008D334C /* Subscription Page */,
 				75E7E02014B3C22F005C70B4 /* Tabs & Pages */,
 				751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
@@ -2466,6 +2490,7 @@
 				F041881B15D73890000E958E /* SPSwitchLocationCardController.xib in Resources */,
 				F0A6A3E515D9681000F2253D /* Overlay_OOB_LOGIN.png in Resources */,
 				F0A6A41D15D9722600F2253D /* BG-Linen-Red-Blend.png in Resources */,
+				7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2630,6 +2655,7 @@
 				75B4AA5915D44F8700745137 /* NAMapView.m in Sources */,
 				75B4AA5A15D44F8700745137 /* NAPinAnnotationView.m in Sources */,
 				F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */,
+				7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

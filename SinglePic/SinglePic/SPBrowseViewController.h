@@ -8,6 +8,8 @@
 
 #import "SPTabContentViewController.h"
 
+#define NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED @"NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED"
+
 @protocol SPBlockViewDelegate;
 
 @interface SPBrowseViewController : SPTabContentViewController <SPBlockViewDelegate,UIScrollViewDelegate>

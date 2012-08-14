@@ -19,10 +19,19 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define SECONDS_PER_DAY  (60 * 60 * 24)
 #define SECONDS_PER_HOUR (60 * 60)
 #define SECONDS_PER_MINUTE 60
+
 //Beta Testing
+//Beta expiry
 #define BETA_EXPIRY_YEAR 2012
 #define BETA_EXPIRY_MONTH 10
 #define BETA_EXPIRY_DAY 28
+
+//Help
+typedef enum
+{
+    HELP_OVERLAY_LOGIN_OR_REGISTER
+    
+} HELP_OVERLAY_TYPE;
 
 //Information
 #define CONTACT_SUPPORT_EMAIL @"support@singlepicdating.com"

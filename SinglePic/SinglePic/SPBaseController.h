@@ -12,6 +12,7 @@
 #import "SPMessagesViewController.h"
 #import "SPConnectionsViewController.h"
 #import "SPReachabilityPopupController.h"
+#import "SPHelpOverlayViewController.h"
 
 @protocol SPReachabilityPopupDelegate;
 @class SPStyledButton;
@@ -45,6 +46,7 @@ typedef enum
 @private
     NSMutableArray* tabs;
     SPReachabilityPopupController* reachabilityController;
+    SPHelpOverlayViewController* helpOverlayController;
     BASE_MODE baseMode_;
 }
 
@@ -56,14 +58,16 @@ typedef enum
 -(IBAction)inbox:(id)sender;
 -(IBAction)registration:(id)sender;
 -(IBAction)info:(id)sender;
-//
+// Session
 -(void)logout;
-//
+// Content
 -(void)pushModalController:(UIViewController*)viewController isFullscreen:(BOOL)fullscreen;
 -(void)pushModalContent:(UIView*)view;
-//
+// Profiles
 -(void)pushProfile:(SPProfile*)profile;
 -(void)pushProfileWithID:(NSString*)profileID;
 -(void)pushProfile:(SPProfile*)profile profileMode:(BOOL)isProfileMode;
 -(void)pushProfileWithID:(NSString*)profileID profileMode:(BOOL)isProfileMode;
+// Help
+-(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type;
 @end

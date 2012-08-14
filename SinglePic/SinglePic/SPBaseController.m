@@ -23,6 +23,7 @@
 @interface SPBaseController()
 -(SPTabController*)createTab;
 -(SPTabController*)createTabIsMoveable:(BOOL)moveable;
+-(void)browseScreenProfileSelected;
 -(void)validateReachability;
 -(void)locationServicesValidated;
 -(void)navigationMode;
@@ -126,6 +127,7 @@
         tabs = [NSMutableArray new];
         reachabilityController = [[SPReachabilityPopupController alloc] initWithDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userTypeChangedWithNotification:) name:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
     }
     return self;
 }
@@ -200,7 +202,6 @@
     //Remove MDAboutController credit (We cite them in our own way)
     [aboutController removeLastCredit];
     
-    
     //Add App setting specific credits (interactive)
     //If logged-in - display a logout button
     if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
@@ -213,13 +214,13 @@
     
     [self presentModalViewController:aboutController animated:YES];
 }
-#pragma mark
+#pragma mark - Session
 -(void)logout
 {
     [[SPProfileManager sharedInstance] logout];
     [self dismissModalViewControllerAnimated:YES];
 }
-#pragma mark
+#pragma mark - Content
 -(void)pushModalController:(UIViewController*)viewController isFullscreen:(BOOL)fullscreen
 {
     SPTabController* tab = [self createTabIsFullscreen:fullscreen];
@@ -230,7 +231,7 @@
     SPTabController* tab = [self createTab];
     [tab setContent:view];
 }
-#pragma mark
+#pragma mark - Profile
 -(void)pushProfileWithID:(NSString*)profileID
 {
     [self pushProfileWithID:profileID profileMode:YES];
@@ -265,6 +266,16 @@
     
     if(!isProfileMode) [profileController expandChat:nil];
 }
+#pragma mark - Help
+-(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type
+{
+    if(type == HELP_OVERLAY_LOGIN_OR_REGISTER)
+    {
+        //TODO: Replace, temp logic
+        helpOverlayController = [SPHelpOverlayViewController new];
+        [self.view addSubview:helpOverlayController.view];
+    }
+}
 #pragma mark - Private methods
 -(SPTabController*)createTab
 {
@@ -281,6 +292,17 @@
     [activityView stopAnimating];
     self.baseMode = REGISTRATION_BASE_MODE;
     [self pushModalController: [[SPBrowseViewController new] autorelease] isFullscreen:NO];
+}
+-(void)browseScreenProfileSelected
+{
+    if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
+    {
+        //Selecting any profile while annonymous should:
+        // 1) minimize the tab (and reveal the register/login screen)
+        // 2) display the help overlay explaining that you must login/register
+        [self minimizeAllTabs];
+        [self displayHelpOverlay:HELP_OVERLAY_LOGIN_OR_REGISTER];
+    }
 }
 -(void)userTypeChangedWithNotification:(NSNotification*)notification
 {

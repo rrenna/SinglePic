@@ -58,6 +58,8 @@ static int profileIndex = 0;
         if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
         {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_GENDER_CHANGED object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_PREFERENCE_CHANGED object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_BUCKET_CHANGED object:nil];
         }
     }
     return self;
@@ -179,12 +181,7 @@ static int profileIndex = 0;
 #pragma mark - SPBlockViewDelegate methods
 -(void)blockViewWasSelected : (SPBlockView*) blockView
 {
-    if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
-    {
-        //Selecting any profile while annonymous should minimize the tab (and reveal the register/login screen)
-        [self minimize];
-    }
-    else
+    if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
     {
         #if defined (TESTING)
         [TestFlight passCheckpoint:@"Viewed a profile"];
@@ -193,6 +190,8 @@ static int profileIndex = 0;
         SPProfileViewController* profileController = [[[SPProfileViewController alloc] initWithProfile:blockView.data] autorelease];
         [self pushModalController:profileController];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:self];
 }
 #pragma mark - Overriden methods
 -(void)willClose
