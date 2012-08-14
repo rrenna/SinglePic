@@ -6,39 +6,31 @@
 //
 //
 
-#import "HelpOverlayViewController.h"
+#import "SPHelpOverlayViewController.h"
 
-@interface HelpOverlayViewController ()
+@interface SPHelpOverlayViewController ()
 
 @end
 
-@implementation HelpOverlayViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@implementation SPHelpOverlayViewController
+- (id) init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [self initWithNibName:@"SPHelpOverlayViewController" bundle:nil];
+    if(self)
+    {
+        
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidUnload
+#pragma mark - IBActions
+-(IBAction)dismiss:(id)sender
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    //
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 @end

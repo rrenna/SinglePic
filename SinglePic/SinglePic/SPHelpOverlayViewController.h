@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HelpOverlayViewController : UIViewController
+@interface SPHelpOverlayViewController : UIViewController
 
+-(IBAction)dismiss:(id)sender;
 @end
