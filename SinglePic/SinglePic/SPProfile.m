@@ -31,7 +31,7 @@
 -(void)dealloc
 {
     [_data release];
-    [self._thumbnail release];
+    [_thumbnail release];
     [super dealloc];
 }
 -(NSString*)identifier

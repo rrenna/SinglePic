@@ -33,6 +33,8 @@
     NSTimer *dropTimer;
     int stackCount[3];
     NSMutableArray* destroyBlockQueue;
+    NSMutableArray* queuedSelectorCalls;
+
 }
 -(void)setup;
 -(void)visible;

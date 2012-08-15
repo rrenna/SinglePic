@@ -22,7 +22,7 @@ static b2Body* groundBody;
 static int profileIndex = 0;
 
 @interface SPBrowseViewController()
-@property (retain) NSArray* profileControllers;
+@property (retain) NSMutableArray* profileControllers;
 
 -(void)createPhysicsWorld;
 -(void)createPhysicalBarriers;
@@ -40,6 +40,7 @@ static int profileIndex = 0;
 -(void)remove:(id)sender;
 -(void)tick:(NSTimer *)timer;
 -(void)drop:(NSTimer *)timer;
+-(void)performSelector:(SEL)aSelector afterTicks:(NSNumber*)ticks;
 @end
 
 @implementation SPBrowseViewController
@@ -52,6 +53,7 @@ static int profileIndex = 0;
     {
         self.profileControllers = [NSMutableArray array];
         destroyBlockQueue = [NSMutableArray new];
+        queuedSelectorCalls = [NSMutableArray new];
         paused = YES;
         
         //We don't have to listen for this notification if this is an annonyous user
@@ -81,6 +83,7 @@ static int profileIndex = 0;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [profileControllers release];
     [destroyBlockQueue release];
+    [queuedSelectorCalls release];
     [super dealloc];
 }
 -(void)setup
@@ -290,8 +293,7 @@ static int profileIndex = 0;
 {    
     [profileControllers removeAllObjects];
     
-    const float barrierDelay = 0.8;
-    [self performSelector:@selector(createPhysicalBarriers) withObject:nil afterDelay:barrierDelay];
+    [self performSelector:@selector(createPhysicalBarriers) afterTicks:@48];
     
     [self resume];
 }
@@ -300,10 +302,12 @@ static int profileIndex = 0;
     if([[SPProfileManager sharedInstance] remainingProfiles] > 0)
     {
         [self resetStackCounters];
+        //Destroys the Box2D Body of these three views, which represent three shapes keeping the profile blocks from falling
         [self destroyBottomViewBody:leftBottomView];
         [self destroyBottomViewBody:centerBottomView];
         [self destroyBottomViewBody:rightBottomView];
         
+        //Add all SPBlockViews inside the canvasView to the destroyBlockQueue array
         for(UIView* subView in canvasView.subviews)
         {
             if([subView isKindOfClass:[SPBlockView class]])
@@ -314,10 +318,9 @@ static int profileIndex = 0;
         
         //Pause the block dropping
         [self pause];
-
-        [self performSelector:@selector(beginDropSchedule) withObject:nil afterDelay:1.25];
-        [self performSelector:@selector(destroyOffscreen) withObject:nil afterDelay:5.0];
         
+        [self performSelector:@selector(beginDropSchedule) afterTicks:@75];
+        [self performSelector:@selector(destroyOffscreen) afterTicks:@300];
     }
 }
 -(void)pause
@@ -383,9 +386,9 @@ static int profileIndex = 0;
 	// Define the dynamic body fixture.
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 0.1f;
+	fixtureDef.density = 0.05f;
 	fixtureDef.friction = 0.5f;
-	fixtureDef.restitution = 0.0f; // 0 is a lead ball, 1 is a super bouncy ball
+	fixtureDef.restitution = 0.1; // 0 is a lead ball, 1 is a super bouncy ball
 	body->CreateFixture(&fixtureDef);
     
 	// a dynamic body reacts to forces right away
@@ -432,8 +435,41 @@ static int profileIndex = 0;
 	physicalView.tag = (int)body;
     
 }
+#define KEY_TICKS @"ticks"
+#define KEY_SELECTOR_NAME @"selectorName"
 -(void)tick:(NSTimer *)timer
 {
+
+    NSMutableArray* selectorsToPerform = nil;
+    //Flag actions to be performed, or reduce their tick count
+    for(NSDictionary* queuedSelectorCall in queuedSelectorCalls) {
+        
+        NSNumber* tickNumber = [queuedSelectorCall objectForKey:KEY_TICKS];
+        int tick = [tickNumber intValue];
+        if(tick <= 0) {
+            
+            //Add entry to deletion array
+            if(!selectorsToPerform) { selectorsToPerform = [NSMutableArray arrayWithObject:queuedSelectorCall]; }
+            else { [selectorsToPerform addObject:queuedSelectorCall]; }
+        }
+        else
+        {
+            [queuedSelectorCall setValue:[NSNumber numberWithInt:tick - 1] forKey:KEY_TICKS];
+        }
+    }
+    //Perform actions
+    for(NSDictionary* queuedSelectorCall in selectorsToPerform)
+    {
+        NSString* selectorName = [queuedSelectorCall objectForKey:KEY_SELECTOR_NAME];
+        SEL selector = NSSelectorFromString(selectorName);
+        [self performSelector:selector];
+    }
+    //Delete performed actions
+    if(selectorsToPerform)
+    {
+        [queuedSelectorCalls removeObjectsInArray:selectorsToPerform];
+    }
+    
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
 	//You need to make an informed choice, the following URL is useful
@@ -521,6 +557,12 @@ static int column = 0;
     
     column++;
     if(column == 3) { column = 0; }
+}
+-(void)performSelector:(SEL)aSelector afterTicks:(NSNumber*)ticks
+{
+    NSString* selectorName = NSStringFromSelector(aSelector);
+    NSMutableDictionary* queuedSelectorCall = [NSMutableDictionary dictionaryWithObjectsAndKeys:selectorName,KEY_SELECTOR_NAME,ticks,KEY_TICKS,nil];
+    [queuedSelectorCalls addObject:queuedSelectorCall];
 }
 - (void)startLoading 
 {
