@@ -273,6 +273,8 @@
     {
         //TODO: Replace, temp logic
         helpOverlayController = [SPHelpOverlayViewController new];
+        helpOverlayController.delegate = self;
+        
         [self.view addSubview:helpOverlayController.view];
     }
 }
@@ -423,5 +425,11 @@
         //If location services have been requested previously, proceed to the next step
         [self locationServicesValidated];
     }
+}
+#pragma mark - SPHelpOverlayViewControllerDelegate methods
+-(void)helpOverlayDidDismiss:(SPHelpOverlayViewController*)overlayController
+{
+    [helpOverlayController release];
+    helpOverlayController = nil;
 }
 @end

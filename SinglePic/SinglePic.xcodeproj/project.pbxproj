@@ -187,6 +187,7 @@
 		F003DB9A14ECB2F300BD6309 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB8E14ECB2F300BD6309 /* CJSONScanner.m */; };
 		F003DB9B14ECB2F300BD6309 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB9014ECB2F300BD6309 /* CJSONSerializer.m */; };
 		F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F003DB9C14ECBD2300BD6309 /* StoreKit.framework */; };
+		F013D89415DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */; };
 		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
 		F01C41F214C7CB6E0079EB18 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
@@ -616,6 +617,7 @@
 		F003DB9014ECB2F300BD6309 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F003DB9114ECB2F300BD6309 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		F003DB9C14ECBD2300BD6309 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend@2x.png"; path = "../../Resources/BG-Linen-Red-Blend@2x.png"; sourceTree = "<group>"; };
 		F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageManager.h; sourceTree = "<group>"; };
 		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
 		F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = messageStorage.xcdatamodel; sourceTree = "<group>"; };
@@ -1230,6 +1232,7 @@
 		754D1EE114DB36EE00F90C19 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */,
 				F0A6A41C15D9722500F2253D /* BG-Linen-Red-Blend.png */,
 				7599399414B7BADA004D1A46 /* BG-linen-black.png */,
 				751D263A14916D2B00617DD8 /* BG-Linen-Red.png */,
@@ -2299,7 +2302,7 @@
 		7599A931148E980100A48435 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = 7599A934148E980100A48435 /* Build configuration list for PBXProject "SinglePic" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2491,6 +2494,7 @@
 				F0A6A3E515D9681000F2253D /* Overlay_OOB_LOGIN.png in Resources */,
 				F0A6A41D15D9722600F2253D /* BG-Linen-Red-Blend.png in Resources */,
 				7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */,
+				F013D89415DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2745,6 +2749,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmytro Yashkir (N8CM3H5LVU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/**",
 					"/usr/include/libxml2/**",
@@ -2774,6 +2779,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dmytro Yashkir";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/**",
 					"/usr/include/libxml2/**",
@@ -2832,6 +2838,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dmytro Yashkir";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/**",
 					"/usr/include/libxml2/**",
@@ -2844,8 +2851,8 @@
 					"\"$(SRCROOT)/Libraries/TestFlight\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
+				PROVISIONING_PROFILE = "60C8EBBD-176C-45B1-AB6A-90D1D2998FAB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "60C8EBBD-176C-45B1-AB6A-90D1D2998FAB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Beta;

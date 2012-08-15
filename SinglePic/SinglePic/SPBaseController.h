@@ -24,7 +24,7 @@ typedef enum
     NAVIGATION_BASE_MODE
 } BASE_MODE;
 
-@interface SPBaseController : UIViewController <SPTabContainerDelegate,SPReachabilityPopupDelegate,UITextFieldDelegate>
+@interface SPBaseController : UIViewController <SPTabContainerDelegate,SPReachabilityPopupDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate>
 {
     IBOutlet UIActivityIndicatorView* activityView;
     IBOutlet UIView* contentView;
