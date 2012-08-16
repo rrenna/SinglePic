@@ -222,8 +222,9 @@
 		F09B3ADB15DC77FB009EF693 /* MDACDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117314CDF63F00B7EFDA /* MDACDoneButton.png */; };
 		F09B3ADC15DC77FE009EF693 /* MDACDoneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117414CDF63F00B7EFDA /* MDACDoneButton@2x.png */; };
 		F09B3ADE15DC7AC1009EF693 /* TopFade.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3ADD15DC7AC1009EF693 /* TopFade.png */; };
-		F09B3AE015DC8FA3009EF693 /* BTN-question.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3ADF15DC8FA3009EF693 /* BTN-question.png */; };
 		F09B3AE215DC942F009EF693 /* Overlay_OOB_EXPIRY.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AE115DC942F009EF693 /* Overlay_OOB_EXPIRY.png */; };
+		F09B3AE515DCB441009EF693 /* BTN-question.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AE315DCB43F009EF693 /* BTN-question.png */; };
+		F09B3AE615DCB441009EF693 /* BTN-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AE415DCB440009EF693 /* BTN-question@2x.png */; };
 		F09DA06E14E21B56004E0646 /* SPConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F09DA06C14E21B56004E0646 /* SPConnectionsViewController.m */; };
 		F09DA06F14E21B56004E0646 /* SPConnectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */; };
 		F09DA07214E22026004E0646 /* Tab-Faves_Select.png in Resources */ = {isa = PBXBuildFile; fileRef = F09DA07014E22025004E0646 /* Tab-Faves_Select.png */; };
@@ -666,8 +667,9 @@
 		F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_BROWSE.png; path = ../../Resources/Overlay_OOB_BROWSE.png; sourceTree = "<group>"; };
 		F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_NAVIGATION.png; path = ../../Resources/Overlay_OOB_NAVIGATION.png; sourceTree = "<group>"; };
 		F09B3ADD15DC7AC1009EF693 /* TopFade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TopFade.png; path = ../../Resources/TopFade.png; sourceTree = "<group>"; };
-		F09B3ADF15DC8FA3009EF693 /* BTN-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-question.png"; path = "../../../../../Dropbox/Development/SinglePic/RENDERED/_ARCHIVE/RENDERED ASSETS/MY PROFILE/BTN-question.png"; sourceTree = "<group>"; };
 		F09B3AE115DC942F009EF693 /* Overlay_OOB_EXPIRY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_EXPIRY.png; path = ../../Resources/Overlay_OOB_EXPIRY.png; sourceTree = "<group>"; };
+		F09B3AE315DCB43F009EF693 /* BTN-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-question.png"; path = "../../Resources/BTN-question.png"; sourceTree = "<group>"; };
+		F09B3AE415DCB440009EF693 /* BTN-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-question@2x.png"; path = "../../Resources/BTN-question@2x.png"; sourceTree = "<group>"; };
 		F09DA06B14E21B56004E0646 /* SPConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPConnectionsViewController.h; sourceTree = "<group>"; };
 		F09DA06C14E21B56004E0646 /* SPConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConnectionsViewController.m; sourceTree = "<group>"; };
 		F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPConnectionsViewController.xib; sourceTree = "<group>"; };
@@ -997,7 +999,6 @@
 				F0207AAA14C66A0200330FF0 /* Cards */,
 				F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */,
 				759008DC14FD73EA00009E86 /* arrow.png */,
-				F09B3ADF15DC8FA3009EF693 /* BTN-question.png */,
 				75A38B9B14E9B004000F00DF /* noImage-Block.png */,
 				F0A8EBAE14FC7A7A003785AF /* icon-clock-white.png */,
 				75A38B9C14E9B004000F00DF /* noImage-Block@2x.png */,
@@ -1007,6 +1008,8 @@
 				75A38B9814E9A1AD000F00DF /* Pic-Frame-Blocks.png */,
 				F0C988A914E0BA6100264228 /* BTN-EditPhoto@2x.png */,
 				F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */,
+				F09B3AE315DCB43F009EF693 /* BTN-question.png */,
+				F09B3AE415DCB440009EF693 /* BTN-question@2x.png */,
 				F0C988A714E0B17900264228 /* BTN-EditPhoto.png */,
 				F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */,
 				75115C8A14DAE93F00544A23 /* newMessage.png */,
@@ -2517,8 +2520,9 @@
 				F09B3ADB15DC77FB009EF693 /* MDACDoneButton.png in Resources */,
 				F09B3ADC15DC77FE009EF693 /* MDACDoneButton@2x.png in Resources */,
 				F09B3ADE15DC7AC1009EF693 /* TopFade.png in Resources */,
-				F09B3AE015DC8FA3009EF693 /* BTN-question.png in Resources */,
 				F09B3AE215DC942F009EF693 /* Overlay_OOB_EXPIRY.png in Resources */,
+				F09B3AE515DCB441009EF693 /* BTN-question.png in Resources */,
+				F09B3AE615DCB441009EF693 /* BTN-question@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

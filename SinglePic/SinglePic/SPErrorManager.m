@@ -20,15 +20,29 @@
     self = [super init];
     if(self)
     {
+        
         //We setup profiles of errors which are understood and can be displayed with static information and special functionality (if required)
+        
+        SPWebServiceErrorProfile* bucketInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users" andServerError:@"no such bucket" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        {
+            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration couldn't be completed" Description:@"There was a problem when we tried to create your account. If this problem persists please contact us."];
+        }];
+        
         SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email is already taken, or you've entered a invalid login and passord. Please try again."];
         }];
+        
+        
+        
+        /*SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        {
+            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email is already taken, or you've entered a invalid login and passord. Please try again."];
+        }];*/
       
     
         errors = [NSMutableArray new];
-        knownErrors = [[NSArray alloc] initWithObjects:emailTakenProfile,nil];
+        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,nil];
     }
     return self;
 }
