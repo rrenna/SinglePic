@@ -8,6 +8,41 @@
 
 #import "SPStyles.h"
 
+UIColor* primaryColorForStyle(STYLE style)
+{
+    if(style == STYLE_BASE)
+    {
+        return TINT_BASE;
+    }
+    else if(style == STYLE_WHITE)
+    {
+        return TINT_WHITE;
+    }
+    else if(style == STYLE_PAGE)
+    {
+        return TINT_PAGE;
+    }
+    else if(style == STYLE_TAB)
+    {
+        return TINT_TAB;
+    }
+    else if(style == STYLE_CONFIRM_BUTTON)
+    {
+        return TINT_CONFIRM_BUTTON;
+    }
+    else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
+    {
+        return TINT_ALTERNATIVE_ACTION_1_BUTTON;
+    }
+    else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
+    {
+        return TINT_ALTERNATIVE_ACTION_2_BUTTON;
+    }
+    
+    //STYLE_NEUTRAL or default
+    return TINT_DEFAULT;
+}
+#pragma mark
 CAGradientLayer* setupBevelLayerForView(UIView* view)
 {
     CAGradientLayer* bevelLayer = [CAGradientLayer layer];
@@ -39,7 +74,7 @@ CALayer* setupColorLayerForView(UIView* view)
 {
     CALayer* colorLayer = [CALayer layer];	
     colorLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
-    colorLayer.backgroundColor = INSET_TINT_DEFAULT.CGColor;
+    colorLayer.backgroundColor = TINT_DEFAULT.CGColor;
     colorLayer.borderWidth = 1.0;	
     colorLayer.cornerRadius = INSET_CORNER_RADIUS;
     colorLayer.needsDisplayOnBoundsChange = YES;

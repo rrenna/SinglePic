@@ -56,6 +56,9 @@
 {
     [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     
+    [tint release];
+    tint = [primaryColorForStyle(style) retain];
+    
     if(style == STYLE_DEFAULT)
     {
         [self setTitleColor:[UIColor colorWithWhite:0.95 alpha:1] forState:UIControlStateNormal];
@@ -66,9 +69,6 @@
         
         [self setTitleColor:[UIColor colorWithWhite:0.6 alpha:1] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateDisabled];
-        
-        [tint release];
-        tint = [INSET_TINT_DEFAULT retain];	
     }
     else if(style == STYLE_WHITE)
     {
@@ -80,9 +80,6 @@
         
         [self setTitleColor:[UIColor colorWithWhite:0.95 alpha:1] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:1.0 alpha:1] forState:UIControlStateDisabled];
-        
-        [tint release];
-        tint = [INSET_TINT_WHITE retain];
     }
     else if(style == STYLE_TAB)
     {
@@ -94,10 +91,6 @@
         
         [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:0.9 alpha:1] forState:UIControlStateDisabled];
-
-        
-        [tint release];
-        tint = [INSET_TINT_TAB retain];
     }
     else if(style == STYLE_PAGE)
     {
@@ -106,9 +99,6 @@
         
         [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateHighlighted];
         [self setTitleShadowColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateHighlighted];
-        
-        [tint release];
-        tint = [INSET_TINT_PAGE retain];
     }
     else if(style == STYLE_BASE)
     {
@@ -120,9 +110,6 @@
         
         [self setTitleColor:[UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithRed:0.65 green:0.25 blue:0.25 alpha:1.0] forState:UIControlStateDisabled];
-        
-        [tint release];
-        tint = [INSET_TINT_BASE retain];
     }
     else if(style == STYLE_CONFIRM_BUTTON)
     {
@@ -134,9 +121,6 @@
         
         [self setTitleColor:[UIColor colorWithRed:0.0 green:0.58 blue:0.7 alpha:1.0] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:0.8 alpha:1] forState:UIControlStateDisabled];
-        
-        [tint release];
-        tint = [INSET_TINT_CONFIRM_BUTTON retain];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
     {
@@ -148,9 +132,6 @@
         
         [self setTitleColor:[UIColor colorWithRed:0.8 green:0.55 blue:0.0 alpha:1.0] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:0.8 alpha:1] forState:UIControlStateDisabled];
-        
-        [tint release];
-        tint = [INSET_TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
     {
@@ -159,9 +140,6 @@
         
         [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateHighlighted];
         [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.9] forState:UIControlStateHighlighted];
-        
-        [tint release];
-        tint = [INSET_TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
     }
     
     self.titleLabel.textAlignment = UITextAlignmentCenter;

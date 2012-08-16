@@ -113,6 +113,8 @@
         navigationView.hidden = NO;
         registrationNavigationView.hidden = YES;
         
+        miniProgressView.progress = 0.5;
+        
         #define HELP_OVERLAY_BROWSE_DISPLAYED_KEY @"HELP_OVERLAY_BROWSE_DISPLAYED_KEY"
         if(![[NSUserDefaults standardUserDefaults] boolForKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY])
         {
@@ -142,7 +144,10 @@
 }
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    
+    [miniProgressView setStyle:STYLE_BASE];
+    
     self.baseMode = BLANK_BASE_MODE;
     [self validateReachability];
 }
@@ -152,7 +157,9 @@
     [tabs release];
     [registrationController release];
     [userController release];
-    [reachabilityController release];
+    [reachabilityController release]; 
+    [navigationBar release];
+    [miniProgressView release];
     [super dealloc];
 }
 #pragma mark - IBActions
@@ -281,6 +288,11 @@
     SPHelpOverlayViewController* helpOverlayController = [[SPHelpOverlayViewController alloc] initWithType:type];
     helpOverlayController.delegate = self;
     [self.view.superview addSubview:helpOverlayController.view];
+}
+#pragma mark - Status bar customization
+-(void)setStatusBarStyle:(STYLE)style
+{
+    navigationBar.tintColor = primaryColorForStyle(style);
 }
 #pragma mark - Private methods
 -(SPTabController*)createTab
@@ -435,5 +447,10 @@
 {
     [overlayController.view removeFromSuperview];
     [overlayController release];
+}
+- (void)viewDidUnload {
+    [miniProgressView release];
+    miniProgressView = nil;
+    [super viewDidUnload];
 }
 @end

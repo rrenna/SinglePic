@@ -63,42 +63,42 @@
     if(style == STYLE_DEFAULT)
     {
         [tint release];
-        tint = [INSET_TINT_DEFAULT retain];	
+        tint = [TINT_DEFAULT retain];	
     }
     else if(style == STYLE_WHITE)
     {
         [tint release];
-        tint = [INSET_TINT_WHITE retain];
+        tint = [TINT_WHITE retain];
     }
     else if(style == STYLE_TAB)
     {
         [tint release];
-        tint = [INSET_TINT_TAB retain];
+        tint = [TINT_TAB retain];
     }
     else if(style == STYLE_PAGE)
     {
         [tint release];
-        tint = [INSET_TINT_PAGE retain];
+        tint = [TINT_PAGE retain];
     }
     else if(style == STYLE_BASE)
     {
         [tint release];
-        tint = [INSET_TINT_BASE retain];
+        tint = [TINT_BASE retain];
     }
     else if(style == STYLE_CONFIRM_BUTTON)
     {
         [tint release];
-        tint = [INSET_TINT_CONFIRM_BUTTON retain];
+        tint = [TINT_CONFIRM_BUTTON retain];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
     {
         [tint release];
-        tint = [INSET_TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
+        tint = [TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
     {
         [tint release];
-        tint = [INSET_TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
+        tint = [TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
     }
     
     colorLayer.backgroundColor = tint.CGColor;

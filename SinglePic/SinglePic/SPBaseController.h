@@ -30,6 +30,8 @@ typedef enum
     IBOutlet UIView* contentView;
     IBOutlet UIView* navigationView;
     IBOutlet UIImageView* backgroundImageView;
+    IBOutlet UINavigationBar *navigationBar;
+    IBOutlet SPStyledProgressView *miniProgressView;
     //Navigation
     IBOutlet UIButton* connectionButton;
     IBOutlet UIButton* profileButton;
@@ -69,4 +71,6 @@ typedef enum
 -(void)pushProfileWithID:(NSString*)profileID profileMode:(BOOL)isProfileMode;
 // Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type;
+//Status bar customization
+-(void)setStatusBarStyle:(STYLE)style;
 @end

@@ -43,20 +43,22 @@ typedef enum
 #define CONTROL_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithWhite:1 alpha:0.1]//View vs Control diff
 #define CONTROL_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.1 alpha:0.2]
 //Tints for Styles
-#define INSET_TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
-#define INSET_TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
-#define INSET_TINT_TAB [UIColor colorWithRed:0.96 green:0.94 blue:0.92 alpha:0.85]
-#define INSET_TINT_BASE [UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0]
-#define INSET_TINT_PAGE [UIColor colorWithRed:0.97 green:0.95 blue:0.9 alpha:1.0]
-#define INSET_TINT_CONFIRM_BUTTON [UIColor colorWithRed:0.0 green:0.74 blue:0.86 alpha:1.0]
-#define INSET_TINT_ALTERNATIVE_ACTION_1_BUTTON [UIColor colorWithRed:0.905 green:0.662 blue:0.0 alpha:1.0]
-#define INSET_TINT_ALTERNATIVE_ACTION_2_BUTTON [UIColor colorWithRed:0.47 green:0.85 blue:0.12 alpha:1.0]
+#define TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
+#define TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
+#define TINT_TAB [UIColor colorWithRed:0.96 green:0.94 blue:0.92 alpha:0.85]
+#define TINT_BASE [UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0]
+#define TINT_PAGE [UIColor colorWithRed:0.97 green:0.95 blue:0.9 alpha:1.0]
+#define TINT_CONFIRM_BUTTON [UIColor colorWithRed:0.0 green:0.74 blue:0.86 alpha:1.0]
+#define TINT_ALTERNATIVE_ACTION_1_BUTTON [UIColor colorWithRed:0.905 green:0.662 blue:0.0 alpha:1.0]
+#define TINT_ALTERNATIVE_ACTION_2_BUTTON [UIColor colorWithRed:0.47 green:0.85 blue:0.12 alpha:1.0]
 
 @protocol SPStyle <NSObject>
 -(void)setStyle:(STYLE)style;
 -(void)setDepth:(DEPTH)depth;
 @end
 
+//Helper function to retrieve the primary colors from a specific style
+UIColor* primaryColorForStyle(STYLE style);
 //Helper functions used to construct CALayers for SPStyledView & SPStyledButton subclasses
 CAGradientLayer* setupBevelLayerForView(UIView* view);
 CAGradientLayer* setupColorGradientLayerForControl(UIControl* control);

@@ -110,7 +110,7 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
         
         [tint release];
-        tint = [INSET_TINT_DEFAULT retain];	
+        tint = [TINT_DEFAULT retain];	
     }
     else if(style == STYLE_WHITE)
     {
@@ -118,7 +118,7 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.8 alpha:1];
         
         [tint release];
-        tint = [INSET_TINT_WHITE retain];
+        tint = [TINT_WHITE retain];
     }
     else if(style == STYLE_TAB)
     {
@@ -126,7 +126,7 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
         
         [tint release];
-        tint = [INSET_TINT_TAB retain];
+        tint = [TINT_TAB retain];
     }
     else if(style == STYLE_PAGE)
     {
@@ -134,7 +134,7 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
              
         [tint release];
-        tint = [INSET_TINT_PAGE retain];
+        tint = [TINT_PAGE retain];
     }
     else if(style == STYLE_BASE)
     {
@@ -144,8 +144,8 @@
 
         [tint release];
         //Nice and dark
-        tint = [[INSET_TINT_BASE colorByMultiplyingByRed:0.78 green:0.95 blue:0.95 alpha:1.0] retain];
-        unselectedTint = [[INSET_TINT_BASE colorByMultiplyingByRed:0.9 green:0.9 blue:0.9 alpha:1.0] retain];
+        tint = [[TINT_BASE colorByMultiplyingByRed:0.78 green:0.95 blue:0.95 alpha:1.0] retain];
+        unselectedTint = [[TINT_BASE colorByMultiplyingByRed:0.9 green:0.9 blue:0.9 alpha:1.0] retain];
     }
     else if(style == STYLE_CONFIRM_BUTTON)
     {
@@ -154,7 +154,7 @@
         
         [tint release];
         //Nice and dark //tint = [[INSET_TINT_CONFIRM_BUTTON colorByMultiplyingByRed:0.63 green:0.81 blue:0.81 alpha:1.0] retain];
-        tint = [[INSET_TINT_CONFIRM_BUTTON colorByMultiplyingByRed:0.63 green:0.81 blue:0.81 alpha:1.0] retain];
+        tint = [[TINT_CONFIRM_BUTTON colorByMultiplyingByRed:0.63 green:0.81 blue:0.81 alpha:1.0] retain];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
     {
@@ -162,7 +162,7 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.95 alpha:1];
  
         [tint release];
-        tint = [INSET_TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
+        tint = [TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
     {
@@ -170,7 +170,7 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.95 alpha:1];
         
         [tint release];
-        tint = [INSET_TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
+        tint = [TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
     }
     
     colorLayer.backgroundColor = tint.CGColor;

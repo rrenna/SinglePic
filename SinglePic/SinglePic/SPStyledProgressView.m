@@ -125,19 +125,19 @@
     if(style == STYLE_DEFAULT)
     {
         [tint release];
-        tint = [INSET_TINT_DEFAULT retain];	
+        tint = [TINT_DEFAULT retain];	
     }
     else if(style == STYLE_TAB)
     {
         
         [tint release];
-        tint = [INSET_TINT_TAB retain];
+        tint = [TINT_TAB retain];
     }
     else if(style == STYLE_BASE)
     {
         
         [tint release];
-        tint = [INSET_TINT_BASE retain];
+        tint = [TINT_BASE retain];
     }
     
     colorLayer.backgroundColor = tint.CGColor;
