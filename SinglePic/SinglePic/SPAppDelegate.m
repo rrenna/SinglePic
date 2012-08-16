@@ -95,7 +95,7 @@
 -(void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     //Informs app of push notification being recieved
-    [[NSNotificationCenter sharedInstance] postNotificationName:NOTIFICATION_PUSH_NOTIFICATION_RECIEVED object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PUSH_NOTIFICATION_RECIEVED object:nil];
     
     //Recieved a push notification from Apple's servers
     if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_PROFILE)
