@@ -30,12 +30,9 @@
 {
     [super viewDidLoad];
     //Look and Feel
-    [topBarView setStyle:STYLE_TAB];
-    [cancelButton setStyle:STYLE_TAB];
-    
-    [switchCamerasButton setDepth:DEPTH_INSET];
-    [switchCamerasButton setStyle:STYLE_TAB];
-    [takePictureButton setStyle:STYLE_CONFIRM_BUTTON];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"carbon_fibre.png"]];
+
+    [takePictureButton setStyle:STYLE_NEUTRAL];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -55,7 +52,8 @@
        
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
         {
-            switchCamerasButton.enabled = YES;
+            //TODO: Replace logic with her controls
+            //switchCamerasButton.enabled = YES;
         }
 
         [cameraContainerView addSubview:imagePicker.view];
@@ -151,8 +149,8 @@
     {
         //The ImagePicker will remove the status bar, this restores it
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
-    
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+        
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
         {
             imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;

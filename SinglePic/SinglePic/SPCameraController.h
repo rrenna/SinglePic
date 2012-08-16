@@ -12,9 +12,6 @@
 {
     IBOutlet UIView* cameraContainerView;
     IBOutlet UIImageView* cameraPreviewImageView;
-    IBOutlet SPStyledView* topBarView;
-    IBOutlet SPStyledButton* cancelButton;
-    IBOutlet SPStyledButton* switchCamerasButton;
     IBOutlet SPStyledButton* takePictureButton;
 }
 -(IBAction)cancel:(id)sender;
