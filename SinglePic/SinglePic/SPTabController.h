@@ -18,6 +18,11 @@
 #define TAB_POS_LEFT_MAXIMIZED -56
 #define TAB_POS_LEFT_FULLSCREEN -14
 
+#define TAB_CONTENT_POS_LEFT 25
+#define TAB_CONTENT_POS_LEFT_FULLSCREEN 5
+#define TAB_CONTENT_WIDTH 305
+#define TAB_CONTENT_WIDTH_FULLSCREEN 325
+
 @interface SPTabController : SPPageController <SPPageContainerDelegate>
 {
     IBOutlet UIView* handleView;

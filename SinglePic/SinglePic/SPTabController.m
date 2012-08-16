@@ -32,20 +32,28 @@
 {
     fullscreen = fullscreen_;
     
+    int tabViewLeft,contentViewLeft,contentViewWidth;
+    
+    if(fullscreen)
+    {
+        tabViewLeft = TAB_POS_LEFT_FULLSCREEN;
+        contentViewLeft = TAB_CONTENT_POS_LEFT_FULLSCREEN;
+        contentViewWidth = TAB_CONTENT_WIDTH_FULLSCREEN;
+    }
+    else
+    {
+        tabViewLeft = TAB_POS_LEFT_MAXIMIZED;
+        contentViewLeft = TAB_CONTENT_POS_LEFT;
+        contentViewWidth = TAB_CONTENT_WIDTH;
+    }
+    
+    contentView.left = contentViewLeft;
+    contentView.width = contentViewWidth;
+    
     //Animate tab on-screen
     [UIView animateWithDuration:0.5 animations:^
      {
-         if(fullscreen)
-         {
-             self.view.left = TAB_POS_LEFT_FULLSCREEN;
-         }
-         else
-         {
-             self.view.left = TAB_POS_LEFT_MAXIMIZED;
-         }
-     } 
-     completion:^(BOOL finished) 
-     {
+         self.view.left = tabViewLeft;
      }];
 }
 -(BOOL)fullscreen

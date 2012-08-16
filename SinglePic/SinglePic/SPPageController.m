@@ -77,6 +77,8 @@
 {
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [contentView addSubview:controller_.view];
+    
+    view.center = CGPointMake(CGRectGetMidX(contentView.bounds), view.center.y);
 }
 - (void) removeObservationFromContentController
 {
