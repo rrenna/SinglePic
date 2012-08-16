@@ -28,7 +28,10 @@
         {
             if([payload isKindOfClass:[NSString class]])
             {
+                //NOTE: Below line removed on Dima's request, not sure if it'll ever been needed
+                // again but keeping reference for historical reasons
                 [self addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                
                 NSData* stringData = [payload dataUsingEncoding:NSUTF8StringEncoding];
                 [self setHTTPBody:stringData];
             }

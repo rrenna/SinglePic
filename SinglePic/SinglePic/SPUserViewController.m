@@ -151,6 +151,12 @@
     [baseController pushModalController:icebreakerComposeController isFullscreen:YES];
     [icebreakerComposeController release];
 }
+
+-(IBAction)viewImageExpiryHelp:(id)sender
+{
+    SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
+    [baseController displayHelpOverlay:HELP_OVERLAY_IMAGE_EXPIRY];
+}
 #pragma mark - Private methods
 -(void)updateImage
 {

@@ -44,3 +44,9 @@
 -(IBAction)next:(id)sender;
 -(IBAction)reportToggle:(id)sender;
 @end
+
+
+@interface _SPBrowseViewQueuedSelectorCall : NSObject
+@property (assign) int ticks;
+@property (assign) SEL selector;
+@end

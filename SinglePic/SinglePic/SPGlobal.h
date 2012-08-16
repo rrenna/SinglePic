@@ -29,7 +29,9 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 //Help
 typedef enum
 {
-    HELP_OVERLAY_LOGIN_OR_REGISTER
+    HELP_OVERLAY_LOGIN_OR_REGISTER,
+    HELP_OVERLAY_BROWSE,
+    HELP_OVERLAY_IMAGE_EXPIRY
     
 } HELP_OVERLAY_TYPE;
 

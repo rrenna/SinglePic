@@ -35,4 +35,5 @@
 -(IBAction)editPic:(id)sender;
 -(IBAction)revertPic:(id)sender;
 -(IBAction)editIcebreaker:(id)sender;
+-(IBAction)viewImageExpiryHelp:(id)sender;
 @end

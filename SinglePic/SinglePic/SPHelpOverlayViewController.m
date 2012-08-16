@@ -20,15 +20,41 @@
     self = [self initWithNibName:@"SPHelpOverlayViewController" bundle:nil];
     if(self)
     {
-        
+        _type = HELP_OVERLAY_LOGIN_OR_REGISTER; //Default type
+    }
+    return self;
+}
+-(id)initWithType:(HELP_OVERLAY_TYPE)type
+{
+    self = [self init];
+    if(self)
+    {
+        _type = type;
     }
     return self;
 }
 #define FADE_DURATION 0.25
 - (void)viewDidLoad
-{
+{    
     [super viewDidLoad];
 
+    if(_type == HELP_OVERLAY_LOGIN_OR_REGISTER)
+    {
+        overlayImageView.image = [UIImage imageNamed:@"Overlay_OOB_LOGIN.png"];
+    }
+    else if(_type == HELP_OVERLAY_BROWSE)
+    {
+        overlayImageView.image = [UIImage imageNamed:@"Overlay_OOB_BROWSE.png"];
+    }
+    else if(_type == HELP_OVERLAY_IMAGE_EXPIRY)
+    {
+        overlayImageView.image = [UIImage imageNamed:@"Overlay_OOB_EXPIRY.png"];
+    }
+    else
+    {
+        overlayImageView.image = [UIImage imageNamed:@"Overlay_OOB_NAVIGATION.png"];
+    }
+    
     [UIView animateWithDuration:FADE_DURATION animations:^{
         self.view.alpha = 1.0;
     }];
@@ -42,8 +68,6 @@
     }
     completion:^(BOOL finished) {
         
-        [self.view removeFromSuperview];
-        
         if(delegate)
         {
             [delegate helpOverlayDidDismiss:self];
@@ -52,5 +76,14 @@
     }];
     
     
+}
+- (void)dealloc {
+    [overlayImageView release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [overlayImageView release];
+    overlayImageView = nil;
+    [super viewDidUnload];
 }
 @end

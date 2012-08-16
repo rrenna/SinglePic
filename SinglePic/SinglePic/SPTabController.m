@@ -260,6 +260,7 @@
 #pragma mark - SPPageContainerDelegate methods
 -(SPPageController*)createPage
 {
+
     SPPageController* page = [[[SPPageController alloc] initWithNibName:@"SPPageController" bundle:nil] autorelease];
     page.containerDelegate = self;
     page.view.left = PAGE_POS_LEFT_OFFSCREEN;
@@ -269,6 +270,12 @@
      //Animate tab on-screen
      [UIView animateWithDuration:0.5 animations:^
      {
+         //Push all current pages 5px to the right
+         for(SPPageController* currentPage in pages)
+         {
+             currentPage.view.left += 5;
+         }
+         
          page.view.left = PAGE_POS_LEFT_MAXIMIZED;
      } 
      completion:^(BOOL finished) 
@@ -294,6 +301,16 @@
 {
     [page.view removeFromSuperview];
     [pages removeObject:page];
+    
+    //Animate remaining pages
+    [UIView animateWithDuration:0.5 animations:^
+     {
+         //Push all current pages 5px to the left
+         for(SPPageController* currentPage in pages)
+         {
+             currentPage.view.left -= 5;
+         }
+    }];
 }
 -(void)closeAllPages
 {

@@ -112,6 +112,15 @@
         backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend"];
         navigationView.hidden = NO;
         registrationNavigationView.hidden = YES;
+        
+        #define HELP_OVERLAY_BROWSE_DISPLAYED_KEY @"HELP_OVERLAY_BROWSE_DISPLAYED_KEY"
+        if(![[NSUserDefaults standardUserDefaults] boolForKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY])
+        {
+            //Display First-Login Help
+            [self displayHelpOverlay:HELP_OVERLAY_BROWSE];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
     }
 }
 -(BASE_MODE)baseMode
@@ -269,14 +278,9 @@
 #pragma mark - Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type
 {
-    if(type == HELP_OVERLAY_LOGIN_OR_REGISTER)
-    {
-        //TODO: Replace, temp logic
-        helpOverlayController = [SPHelpOverlayViewController new];
-        helpOverlayController.delegate = self;
-        
-        [self.view addSubview:helpOverlayController.view];
-    }
+    SPHelpOverlayViewController* helpOverlayController = [[SPHelpOverlayViewController alloc] initWithType:type];
+    helpOverlayController.delegate = self;
+    [self.view.superview addSubview:helpOverlayController.view];
 }
 #pragma mark - Private methods
 -(SPTabController*)createTab
@@ -429,7 +433,7 @@
 #pragma mark - SPHelpOverlayViewControllerDelegate methods
 -(void)helpOverlayDidDismiss:(SPHelpOverlayViewController*)overlayController
 {
-    [helpOverlayController release];
-    helpOverlayController = nil;
+    [overlayController.view removeFromSuperview];
+    [overlayController release];
 }
 @end

@@ -40,7 +40,7 @@ static int profileIndex = 0;
 -(void)remove:(id)sender;
 -(void)tick:(NSTimer *)timer;
 -(void)drop:(NSTimer *)timer;
--(void)performSelector:(SEL)aSelector afterTicks:(NSNumber*)ticks;
+-(void)performSelector:(SEL)aSelector afterTicks:(int)ticks;
 @end
 
 @implementation SPBrowseViewController
@@ -293,7 +293,7 @@ static int profileIndex = 0;
 {    
     [profileControllers removeAllObjects];
     
-    [self performSelector:@selector(createPhysicalBarriers) afterTicks:@48];
+    [self performSelector:@selector(createPhysicalBarriers) afterTicks:48];
     
     [self resume];
 }
@@ -319,8 +319,8 @@ static int profileIndex = 0;
         //Pause the block dropping
         [self pause];
         
-        [self performSelector:@selector(beginDropSchedule) afterTicks:@75];
-        [self performSelector:@selector(destroyOffscreen) afterTicks:@300];
+        [self performSelector:@selector(beginDropSchedule) afterTicks:75];
+        [self performSelector:@selector(destroyOffscreen) afterTicks:300];
     }
 }
 -(void)pause
@@ -435,17 +435,14 @@ static int profileIndex = 0;
 	physicalView.tag = (int)body;
     
 }
-#define KEY_TICKS @"ticks"
-#define KEY_SELECTOR_NAME @"selectorName"
 -(void)tick:(NSTimer *)timer
 {
 
     NSMutableArray* selectorsToPerform = nil;
     //Flag actions to be performed, or reduce their tick count
-    for(NSDictionary* queuedSelectorCall in queuedSelectorCalls) {
+    for(_SPBrowseViewQueuedSelectorCall* queuedSelectorCall in queuedSelectorCalls) {
         
-        NSNumber* tickNumber = [queuedSelectorCall objectForKey:KEY_TICKS];
-        int tick = [tickNumber intValue];
+        int tick = queuedSelectorCall.ticks;
         if(tick <= 0) {
             
             //Add entry to deletion array
@@ -454,15 +451,13 @@ static int profileIndex = 0;
         }
         else
         {
-            [queuedSelectorCall setValue:[NSNumber numberWithInt:tick - 1] forKey:KEY_TICKS];
+            queuedSelectorCall.ticks--;
         }
     }
     //Perform actions
-    for(NSDictionary* queuedSelectorCall in selectorsToPerform)
+    for(_SPBrowseViewQueuedSelectorCall* queuedSelectorCall in selectorsToPerform)
     {
-        NSString* selectorName = [queuedSelectorCall objectForKey:KEY_SELECTOR_NAME];
-        SEL selector = NSSelectorFromString(selectorName);
-        [self performSelector:selector];
+        [self performSelector: queuedSelectorCall.selector];
     }
     //Delete performed actions
     if(selectorsToPerform)
@@ -558,10 +553,12 @@ static int column = 0;
     column++;
     if(column == 3) { column = 0; }
 }
--(void)performSelector:(SEL)aSelector afterTicks:(NSNumber*)ticks
+-(void)performSelector:(SEL)aSelector afterTicks:(int)ticks
 {
-    NSString* selectorName = NSStringFromSelector(aSelector);
-    NSMutableDictionary* queuedSelectorCall = [NSMutableDictionary dictionaryWithObjectsAndKeys:selectorName,KEY_SELECTOR_NAME,ticks,KEY_TICKS,nil];
+    _SPBrowseViewQueuedSelectorCall* queuedSelectorCall = [[_SPBrowseViewQueuedSelectorCall new] autorelease];
+    queuedSelectorCall.selector = aSelector;
+    queuedSelectorCall.ticks = ticks;
+    
     [queuedSelectorCalls addObject:queuedSelectorCall];
 }
 - (void)startLoading 
@@ -641,4 +638,8 @@ static int column = 0;
         [self startLoading];
     }
 }
+@end
+
+@implementation _SPBrowseViewQueuedSelectorCall
+@synthesize ticks,selector;
 @end

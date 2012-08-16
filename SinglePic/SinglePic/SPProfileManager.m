@@ -378,7 +378,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 -(void)saveMyBucket:(SPBucket*)_bucket withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@",[_bucket identifier]];
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter andPayload:@"" requiringToken:YES withCompletionHandler:^(id responseObject) 
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
      {         
          [self setMyBucket:_bucket synchronize:YES];
          onCompletion(responseObject);
@@ -400,7 +400,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
     {
         //Confirm with the server that the images have been uploaded. This tells the server to set the current time as your upload time.
         NSString* parameter = [NSString stringWithFormat:@"%@/imageupdated",USER_ID_ME];
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@"" requiringToken:YES withCompletionHandler:^(id responseObject) 
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
         {
             //If there has been an image set, store it in an historic state (for an undo operation)
             if(self.image)
@@ -751,7 +751,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         NSString* escapedDeviceToken = [deviceToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString* registrationParameter = [NSString stringWithFormat:@"%@/pushToken/%@",USER_ID_ME,escapedDeviceToken];
         
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:registrationParameter andPayload:@"" requiringToken:YES withCompletionHandler:^(id responseObject) 
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:registrationParameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
          {
              #if defined (TESTING)
              [TestFlight passCheckpoint:@"Registered Device Push Token"];
@@ -1037,7 +1037,7 @@ static int profileCounter = 0;
     }
     
     NSString* parameter = [NSString stringWithFormat:@"%@/likes/%@",USER_ID_ME,[profile identifier]];
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@"" requiringToken:YES withCompletionHandler:^(id responseObject) 
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
      {
         [_likes addObject:profile];
          

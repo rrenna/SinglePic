@@ -46,7 +46,6 @@ typedef enum
 @private
     NSMutableArray* tabs;
     SPReachabilityPopupController* reachabilityController;
-    SPHelpOverlayViewController* helpOverlayController;
     BASE_MODE baseMode_;
 }
 

@@ -64,21 +64,22 @@
         [self addSubview:title];
         [title release];
         
-        
+        /*
         doneButton = [[SPStyledButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
         [doneButton setDepth:DEPTH_OUTSET];
         [doneButton setStyle:STYLE_NEUTRAL];
+        */
         
-        /*doneButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
+        doneButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
         doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [doneButton setBackgroundImage:[UIImage imageNamed:@"MDACDoneButton.png"] forState:UIControlStateNormal];
-        [doneButton setBackgroundImage:[UIImage imageNamed:@"MDACDoneButtonPressed.png"] forState:UIControlStateHighlighted];
+            //[doneButton setBackgroundImage:[UIImage imageNamed:@"MDACDoneButtonPressed.png"] forState:UIControlStateHighlighted];
         [doneButton setTitle:@"Done" forState:UIControlStateNormal];
         [doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [doneButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.6] forState:UIControlStateNormal];
         doneButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
         doneButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
-         */
+         
         
         [doneButton setTitle:@"Done" forState:UIControlStateNormal];
         [doneButton addTarget:controller action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
