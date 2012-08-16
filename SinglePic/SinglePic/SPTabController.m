@@ -46,15 +46,13 @@
         contentViewLeft = TAB_CONTENT_POS_LEFT;
         contentViewWidth = TAB_CONTENT_WIDTH;
     }
-    
-    contentView.left = contentViewLeft;
+
     contentView.width = contentViewWidth;
+    contentView.left = contentViewLeft;
     
-    //Animate tab on-screen
-    [UIView animateWithDuration:0.5 animations:^
-     {
-         self.view.left = tabViewLeft;
-     }];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.left = tabViewLeft;
+    }];
 }
 -(BOOL)fullscreen
 {
@@ -68,7 +66,7 @@
     {
         fullscreen = fullscreen_;
         pages = [NSMutableArray new];
-        self.fullscreen = fullscreen_;
+        fullscreen = fullscreen_;
     }
     return self;
 }
