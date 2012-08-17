@@ -36,7 +36,6 @@ static int profileIndex = 0;
 -(void)destroyBottomViewBody:(UIView*)bottomView;
 -(void)addBodyForBoxView:(SPBlockView *)boxView;
 -(void)addPhysicalBodyForStaticView:(UIView *)physicalView;
--(void)destroyOffscreen;
 -(void)remove:(id)sender;
 -(void)tick:(NSTimer *)timer;
 -(void)drop:(NSTimer *)timer;
@@ -52,7 +51,6 @@ static int profileIndex = 0;
     if(self)
     {
         self.profileControllers = [NSMutableArray array];
-        destroyBlockQueue = [NSMutableArray new];
         queuedSelectorCalls = [NSMutableArray new];
         paused = YES;
         
@@ -82,7 +80,6 @@ static int profileIndex = 0;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [profileControllers release];
-    [destroyBlockQueue release];
     [queuedSelectorCalls release];
     [super dealloc];
 }
@@ -213,7 +210,7 @@ static int profileIndex = 0;
     
 	// Define the gravity vector.
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -25.0f);
+	gravity.Set(0.0f, -30.0f);
     
 	// Do we want to let bodies sleep?
 	// This will speed up the physics simulation
@@ -307,12 +304,20 @@ static int profileIndex = 0;
         [self destroyBottomViewBody:centerBottomView];
         [self destroyBottomViewBody:rightBottomView];
         
-        //Add all SPBlockViews inside the canvasView to the destroyBlockQueue array
+        //Fade out & destroy all blocks
+        float extraTime = 0;
         for(UIView* subView in canvasView.subviews)
         {
             if([subView isKindOfClass:[SPBlockView class]])
             {
-                [destroyBlockQueue addObject:subView];
+                [UIView animateWithDuration:(2.0 + extraTime) animations:^{
+                    subView.alpha = 0.0;
+                } completion:^(BOOL finished) {
+                    
+                    [self destroyBlockView:subView];
+                }];
+                
+                extraTime += 0.1; //TODO: tweak
             }
         }
         
@@ -320,7 +325,7 @@ static int profileIndex = 0;
         [self pause];
         
         [self performSelector:@selector(beginDropSchedule) afterTicks:75];
-        [self performSelector:@selector(destroyOffscreen) afterTicks:300];
+        [self performSelector:@selector(stopLoading) afterTicks:340];
     }
 }
 -(void)pause
@@ -331,26 +336,10 @@ static int profileIndex = 0;
 -(void)resume
 {
     paused = NO;
-    const float delay = 0.4; 
+    const float delay = 0.3;
     
     [dropTimer invalidate], dropTimer = nil;
     dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
-}
--(void)destroyOffscreen
-{
-    for(SPBlockView* blockView in destroyBlockQueue)
-    {
-        [self destroyBlockView:blockView];
-    }
-    [destroyBlockQueue removeAllObjects];
-    
-    //Re-display helper text
-    [UIView animateWithDuration:0.5 animations:^
-     {
-         browseInstructionsLabel.alpha = 1.0;
-     }];
-    
-    [self stopLoading];
 }
 -(void)destroyBlockView:(SPBlockView*)blockView
 {
@@ -579,6 +568,12 @@ static int column = 0;
 }
 - (void)stopLoading {
     isLoading = NO;
+    
+    //Re-display helper text
+    [UIView animateWithDuration:0.5 animations:^
+     {
+         browseInstructionsLabel.alpha = 1.0;
+     }];
     
     // Hide the header
     [UIView beginAnimations:nil context:NULL];
