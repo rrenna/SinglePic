@@ -7,6 +7,7 @@
 //
 
 #import "SPTabController.h"
+#import "SPCameraController.h"
 
 @interface SPTabController()
 @property(nonatomic, assign) NSInteger firstVisibleIndex;
@@ -79,6 +80,7 @@
 -(void)dealloc
 {
     [pages release];
+    [handleImageView release];
     [super dealloc];
 }
 -(void)maximize
@@ -114,6 +116,16 @@
      {
          [self.containerDelegate removeTab:self];
      }];
+}
+-(void)setController:(UIViewController *)controller
+{
+    [super setController:controller];
+    
+    //Camera controller has a unique handle image
+    if([controller isKindOfClass:[SPCameraController class]])
+    {
+        handleImageView.image = [UIImage imageNamed:@"Parchment-Right-Camera"];
+    }
 }
 -(void)pushModalController:(UIViewController*)viewController
 {

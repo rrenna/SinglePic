@@ -12,6 +12,7 @@
 @property (retain) UIImagePickerController* imagePicker;
 -(void)setMyPicture:(UIImage*)image;
 -(void)makeCameraVisible;
+-(void)makeCameraInvisible;
 @end
 
 @implementation SPCameraController
@@ -31,8 +32,6 @@
     [super viewDidLoad];
     //Look and Feel
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"carbon_fibre.png"]];
-
-    [takePictureButton setStyle:STYLE_NEUTRAL];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -52,14 +51,11 @@
        
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
         {
-            //TODO: Replace logic with her controls
-            //switchCamerasButton.enabled = YES;
+            switchCameraBarButton.enabled = YES;
         }
 
         [cameraContainerView addSubview:imagePicker.view];
     }
-    
-    imagePicker.view.alpha = 0.0;
     
     //Pre-Request upload urls
     [[SPProfileManager sharedInstance] requestURLsToSaveMyPictureWithCompletionHandler:^
@@ -74,6 +70,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     cameraPreviewImageView.image = nil;
+    [self makeCameraInvisible];
 }
 -(void)dealloc
 {
@@ -83,6 +80,7 @@
 #pragma mark - Overriden methods
 -(void)close
 {
+    [imagePicker.view removeFromSuperview];
     self.imagePicker = nil;
     [super close];
 }
@@ -129,11 +127,14 @@
 }
 -(void)makeCameraVisible
 {
-    [UIView animateWithDuration:1.0 animations:^
+    [UIView animateWithDuration:0.75 animations:^
     {
-        imagePicker.view.alpha = 1.0;
+        cameraContainerView.alpha = 1.0;
     }];
-    
+}
+-(void)makeCameraInvisible
+{
+    cameraContainerView.alpha = 0.0;
 }
 #pragma mark - UIImagePickerControllerDelegate methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -151,12 +152,14 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
         
+        /*
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
         {
             imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         }
+         */
     }
     
-    [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.5];
+        [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
 }
 @end

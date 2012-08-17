@@ -12,7 +12,7 @@
 {
     IBOutlet UIView* cameraContainerView;
     IBOutlet UIImageView* cameraPreviewImageView;
-    IBOutlet SPStyledButton* takePictureButton;
+    IBOutlet UIBarButtonItem* switchCameraBarButton;
 }
 -(IBAction)cancel:(id)sender;
 -(IBAction)switchCameras:(id)sender;
