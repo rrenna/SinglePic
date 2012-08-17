@@ -44,7 +44,7 @@
 
 //Helper methods
 -(void) clearProfile;
-
+-(void) wipeProfiles;
 @end
 
 //--NSUserDefault Keys--
@@ -563,7 +563,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
             //If not, we attempt to sync the device's push token with the user's profile
             [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) {} andErrorHandler:^{}];
         }
-
+        
+        //After validation set this user as the active message account
+        [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
+        
         onCompletion(responseObject);
     } 
     andErrorHandler:^(SPWebServiceError* error)
@@ -633,6 +636,9 @@ static NSURL* _thumbnailUploadURLCache = nil;
                  self.userType = USER_TYPE_PROFILE;
                  [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
                  [[NSUserDefaults standardUserDefaults] synchronize];
+                 
+                 //After login set this user as the active message account
+                 [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
                  
                  //Registers for Push notifications
                  [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) 
@@ -1094,6 +1100,7 @@ static int profileCounter = 0;
     
     return jsonString;
 }
+//Wipes app of current profile information (excluding stored messages)
 -(void)clearProfile
 {
     [[SPRequestManager sharedInstance] removeUserToken];
@@ -1120,6 +1127,11 @@ static int profileCounter = 0;
     NSFileManager * fileManager = [NSFileManager new];
     [fileManager removeItemAtPath:path error:nil];
     [fileManager release];
+}
+//Wipes app of all profile information (including stored messages of all accounts)
+-(void)wipeProfiles
+{
+    [self clearProfile];
     //Clear Database of all cached messages & profiles
     [[SPMessageManager sharedInstance] clearDatabase];
 }

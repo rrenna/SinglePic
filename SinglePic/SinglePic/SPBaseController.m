@@ -355,13 +355,15 @@
         [activityView startAnimating];
         [[SPProfileManager sharedInstance] validateUserWithCompletionHandler:^(id responseObject) 
          {
+             //TODO: Re-Implement transaction retrieval. Removed to reduce (useless) load on server
+             /*
              //Recieves iTunes store products
              [[SPSubscriptionsManager sharedInstance] retrieveITunesProducts];
              
-             
              //Retrieve Valid Transactions
              [[SPSubscriptionsManager sharedInstance] getTransactionsWithCompletionHandler: nil andErrorHandler:nil];
-             
+             */
+              
              //Retrieve messages from the user
              [[SPMessageManager sharedInstance] forceRefresh];
              [self navigationMode];

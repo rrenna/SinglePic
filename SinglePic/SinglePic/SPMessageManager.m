@@ -11,10 +11,12 @@
 #import "CJSONSerializer.h"
 #import "SPMessageManager.h"
 #import "SPRequestManager.h"
+#import "SPMessageAccount.h"
 #import "SPMessageThread.h"
 #import "SPMessage.h"
 
 @interface SPMessageManager()
+@property (retain) SPMessageAccount* activeAccount;
 - (NSManagedObjectContext *) managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
@@ -23,6 +25,8 @@
 @end
 
 @implementation SPMessageManager
+@synthesize activeAccount;
+
 -(id)init
 {
     self = [super init];
@@ -31,7 +35,31 @@
     }
     return self;
 }
-#pragma mark
+#pragma mark - Accounts
+-(void)setActiveMessageAccount:(NSString*)accountID
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SPMessageAccount"];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@",accountID]];
+    
+    //Asks core data to prefetch the Threads messages relationship
+    NSArray* fetchedRelationshipArray = [NSArray arrayWithObject:@"threads"];
+    [fetchRequest setRelationshipKeyPathsForPrefetching:fetchedRelationshipArray];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    
+    if([fetchedObjects count] == 1)
+    {
+        self.activeAccount =  [fetchedObjects objectAtIndex:0];
+    }
+    else
+    {
+        //Create a Message Account object for this accountID
+        self.activeAccount = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageAccount" inManagedObjectContext:[self managedObjectContext]];
+        self.activeAccount.identifier = accountID;
+    }
+}
+#pragma mark - Messages
 -(void)forceRefresh
 {
     //Force the refresh of messages
@@ -39,50 +67,21 @@
 }
 -(NSArray*)activeMessageThreads
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
-    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    
-    //Asks core data to prefetch the Stations relationship
-    //NSArray * fetchedRelationshipArray = [[NSArray alloc] initWithObjects:@"Messages",nil];
-    //[fetchRequest setRelationshipKeyPathsForPrefetching:fetchedRelationshipArray];
-    
-    //Will always sort alphabetically
-    /*NSMutableArray* sortDescriptors = [NSMutableArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"Name" ascending:YES]];
-    
-    if(self.sortName)
-    {
-        NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:self.sortName ascending:YES];
-        //Insert any selected sort order, place sort description infront of "Name" descriptor
-        [sortDescriptors insertObject:sortDescriptor atIndex:0];
-    }
-    [fetchRequest setSortDescriptors:sortDescriptors];
-     */
-    
-    [fetchRequest setEntity:entity];
-    NSError *error = nil;
-    NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-    return fetchedObjects;
+    return self.activeAccount.threads.allObjects;
 }
 -(SPMessageThread*)getMessageThreadByUserID:(NSString*)userID
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
-    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    [fetchRequest setEntity:entity];
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"userID == %@",userID]];
-    
-    //Asks core data to prefetch the Threads messages relationship
-    NSArray* fetchedRelationshipArray = [NSArray arrayWithObject:@"messages"];
-    [fetchRequest setRelationshipKeyPathsForPrefetching:fetchedRelationshipArray];
-
-    NSError *error = nil;
-    NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-    
-    if([fetchedObjects count] == 1)
+    SPMessageThread* thread = nil;
+    for(SPMessageThread* thread_ in [self activeMessageThreads])
     {
-        return [fetchedObjects objectAtIndex:0];
+        if([thread_.userID isEqualToString:userID])
+        {
+            thread = thread_;
+            break;
+        }
     }
-    return nil;
+    
+    return thread;
 }
 -(void)deleteMessageThread:(SPMessageThread*)thread
 {
@@ -100,20 +99,14 @@
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:jsonString requiringToken:YES withCompletionHandler:^(id responseObject) 
     {
         //Find the User Thread if active
-        SPMessageThread* thread = nil;
-        for(SPMessageThread* thread_ in [self activeMessageThreads])
-        {
-            if([thread_.userID isEqualToString:userID])
-            {
-                thread = thread_;
-                break;
-            }
-        }
+        SPMessageThread* thread = [self getMessageThreadByUserID:userID];
+        
         //Create User Thread if inactive
         if(!thread)
         {
             thread = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
             thread.userID = userID;
+            thread.account = self.activeAccount;
         }
 
         //Create SPMessage
@@ -170,7 +163,6 @@
             NSString* unixTimeWithoutMillisecondsString = [unixTimeWithMillisecondsString substringToIndex:10];
             int unixTimeWithoutMilliseconds = [unixTimeWithoutMillisecondsString intValue];
 
-            
             //Find the User Thread if active
             SPMessageThread* thread = nil;
             for(SPMessageThread* thread_ in [self activeMessageThreads])

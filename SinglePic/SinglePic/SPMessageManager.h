@@ -22,7 +22,9 @@ extern NSString* NOTIFICATION_NO_MESSAGES_RECIEVED;
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
 
-//Retrieval of messages
+//Account manipulation
+-(void)setActiveMessageAccount:(NSString*)accountID;
+//Messages manipulation
 -(void)forceRefresh;
 -(NSArray*)activeMessageThreads;
 -(SPMessageThread*)getMessageThreadByUserID:(NSString*)userID;
