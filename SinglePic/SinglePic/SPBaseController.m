@@ -421,13 +421,6 @@
 #pragma mark - SPReachabilityView delegate methods
 -(void)reachabilityConfirmedForHostName:(NSString*)hostName
 {
-    /* Refresh Content on Wake */
-    if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_PROFILE)
-    {
-        //Ask the Message Manager to check for new messages
-        [[SPMessageManager sharedInstance] forceRefresh];
-    }
-    
     //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
     if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
     {

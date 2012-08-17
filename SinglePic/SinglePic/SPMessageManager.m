@@ -207,7 +207,9 @@
             [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:unixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-            [managedObjectContext save:nil];
+            
+            NSError* error = nil;
+            [managedObjectContext save:&error];
             
             //Inform the user that we've recieved the messages successfully
             [self sendSyncronizationReceiptWithCompletionHandler:^
@@ -287,7 +289,7 @@
     
     return persistentStoreCoordinator;
 }
-#pragma mark - Reset
+#pragma mark - Complete Wipe
 -(void)clearDatabase
 {
     NSArray *thePathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -303,6 +305,8 @@
         #endif
     }
     
+    [managedObjectContext release];
+    managedObjectContext = nil;
     [persistentStoreCoordinator release];
     persistentStoreCoordinator = nil;
 }

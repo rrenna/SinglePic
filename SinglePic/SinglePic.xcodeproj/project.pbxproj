@@ -99,6 +99,9 @@
 		754D1EEE14DB395100F90C19 /* Tab-Profile_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */; };
 		7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */; };
 		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
+		7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */; };
+		757616A315DE989A00706519 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A215DE989A00706519 /* SPMessageAccount.m */; };
+		757616A615DE98BD00706519 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A515DE98BD00706519 /* SPMessageThread.m */; };
 		7577B1AF15DD927000B15B15 /* icon_CameraGrid-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */; };
 		7577B1B015DD927000B15B15 /* icon_Close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1A215DD927000B15B15 /* icon_Close.png */; };
 		7577B1B115DD927000B15B15 /* icon_Flash-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1A315DD927000B15B15 /* icon_Flash-off.png */; };
@@ -230,7 +233,6 @@
 		F04A0E7E15DE009A0043FADC /* Parchment-Right-Camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F04A0E7D15DE009A0043FADC /* Parchment-Right-Camera.png */; };
 		F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F054E29415730ED300ECCDE7 /* SPLoginController.m */; };
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
-		F054FAFE14C7EA9600D556A3 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F054FAFD14C7EA9600D556A3 /* SPMessageThread.m */; };
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; };
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; };
@@ -507,6 +509,11 @@
 		7575EB1F15DABDB000D5707B /* SPHelpOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHelpOverlayViewController.h; sourceTree = "<group>"; };
 		7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHelpOverlayViewController.m; sourceTree = "<group>"; };
 		7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHelpOverlayViewController.xib; sourceTree = "<group>"; };
+		7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white@2x.png"; path = "../../Resources/Logo-SinglePic-white@2x.png"; sourceTree = "<group>"; };
+		757616A115DE989A00706519 /* SPMessageAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageAccount.h; sourceTree = "<group>"; };
+		757616A215DE989A00706519 /* SPMessageAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageAccount.m; sourceTree = "<group>"; };
+		757616A415DE98BD00706519 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
+		757616A515DE98BD00706519 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
 		7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_CameraGrid-off.png"; path = "../../Resources/icon_CameraGrid-off.png"; sourceTree = "<group>"; };
 		7577B1A215DD927000B15B15 /* icon_Close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_Close.png; path = ../../Resources/icon_Close.png; sourceTree = "<group>"; };
 		7577B1A315DD927000B15B15 /* icon_Flash-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_Flash-off.png"; path = "../../Resources/icon_Flash-off.png"; sourceTree = "<group>"; };
@@ -692,8 +699,6 @@
 		F054E29315730ED300ECCDE7 /* SPLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLoginController.h; sourceTree = "<group>"; };
 		F054E29415730ED300ECCDE7 /* SPLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLoginController.m; sourceTree = "<group>"; };
 		F054E29515730ED300ECCDE7 /* SPLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLoginController.xib; sourceTree = "<group>"; };
-		F054FAFC14C7EA9600D556A3 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
-		F054FAFD14C7EA9600D556A3 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
 		F0620D091524B9B8008D334C /* SPSubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionViewController.h; sourceTree = "<group>"; };
 		F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionViewController.m; sourceTree = "<group>"; };
 		F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSubscriptionViewController.xib; sourceTree = "<group>"; };
@@ -1702,12 +1707,14 @@
 		F01C41EA14C7C8980079EB18 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				757616A415DE98BD00706519 /* SPMessageThread.h */,
+				757616A515DE98BD00706519 /* SPMessageThread.m */,
+				757616A115DE989A00706519 /* SPMessageAccount.h */,
+				757616A215DE989A00706519 /* SPMessageAccount.m */,
 				75F5099214DC4CF000458357 /* SPMessages.h */,
 				F01C41EF14C7CB2F0079EB18 /* Storage */,
 				F02ABE5A14D04EB8000FE283 /* SPMessage.h */,
 				F02ABE5B14D04EB8000FE283 /* SPMessage.m */,
-				F054FAFC14C7EA9600D556A3 /* SPMessageThread.h */,
-				F054FAFD14C7EA9600D556A3 /* SPMessageThread.m */,
 				75CA53B214CF4FBD00C36F35 /* SPMessageThread+Sorting.h */,
 				75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */,
 				F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */,
@@ -1743,6 +1750,7 @@
 				75CEB1CE14B644F300936001 /* Logo-SinglePic-red.png */,
 				75CEB1CF14B644F300936001 /* Logo-SinglePic-white-vertical.png */,
 				75CEB1D014B644F300936001 /* Logo-SinglePic-white.png */,
+				7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */,
 			);
 			name = Logos;
 			sourceTree = "<group>";
@@ -2595,6 +2603,7 @@
 				F04A0E7A15DDF1E90043FADC /* Camera-bottombar.png in Resources */,
 				F04A0E7B15DDF1E90043FADC /* Camera-SnapButton.png in Resources */,
 				F04A0E7E15DE009A0043FADC /* Parchment-Right-Camera.png in Resources */,
+				7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2700,7 +2709,6 @@
 				750E482C14C62FAA00F7CCFC /* SPMessagesViewController.m in Sources */,
 				F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */,
 				F01C41F214C7CB6E0079EB18 /* messageStorage.xcdatamodeld in Sources */,
-				F054FAFE14C7EA9600D556A3 /* SPMessageThread.m in Sources */,
 				75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */,
 				F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */,
 				F0ECCB8D14CA8D1E00739ADB /* SPBlockView.mm in Sources */,
@@ -2760,6 +2768,8 @@
 				75B4AA5A15D44F8700745137 /* NAPinAnnotationView.m in Sources */,
 				F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */,
 				7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */,
+				757616A315DE989A00706519 /* SPMessageAccount.m in Sources */,
+				757616A615DE98BD00706519 /* SPMessageThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

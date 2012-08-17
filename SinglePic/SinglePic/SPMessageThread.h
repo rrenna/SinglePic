@@ -2,18 +2,20 @@
 //  SPMessageThread.h
 //  SinglePic
 //
-//  Created by Ryan Renna on 12-01-19.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Ryan Renna on 2012-08-17.
+//
 //
 
+#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class SPMessage;
+@class SPMessage, SPMessageAccount;
 
 @interface SPMessageThread : NSManagedObject
 
 @property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) SPMessageAccount *account;
 @end
 
 @interface SPMessageThread (CoreDataGeneratedAccessors)
