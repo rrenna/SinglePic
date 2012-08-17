@@ -29,6 +29,7 @@
     BOOL paused;
     BOOL isDragging;
     BOOL isLoading;
+    BOOL isRestarting;
 	NSTimer *tickTimer;
     NSTimer *dropTimer;
     int stackCount[3];

@@ -41,12 +41,51 @@
 {
     if(image.size.width>image.size.height)
     {
-        size1=CGSizeMake((image.size.width/image.size.height)*size1.height,size1.height);
+        size1 = CGSizeMake((image.size.width/image.size.height)*size1.height,size1.height);
     }
     else
     {
-        size1=CGSizeMake(size1.width,(image.size.height/image.size.width)*size1.width);
+        size1 = CGSizeMake(size1.width,(image.size.height/image.size.width)*size1.width);
     }
     return [self scaleImage:image toSize:size1];
+}
+
++ (UIImage *) scaleAndCropImage:(UIImage*) image toFitInDimension:(int)dimension
+{
+    CGSize proportionalSize;
+    if(image.size.width>image.size.height)
+    {
+        proportionalSize = CGSizeMake((image.size.width/image.size.height)*dimension,dimension);
+    }
+    else
+    {
+        proportionalSize = CGSizeMake(dimension,(image.size.height/image.size.width)*dimension);
+    }
+    
+    float minDimension = MIN(proportionalSize.width,proportionalSize.height);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(NULL, minDimension, minDimension, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
+    CGContextClearRect(context, CGRectMake(0, 0, minDimension, minDimension));
+
+    if(image.imageOrientation == UIImageOrientationRight)
+    {
+        CGContextRotateCTM(context, -M_PI_2);
+        CGContextTranslateCTM(context, -700, 0.0f);
+        CGContextDrawImage(context, CGRectMake(0, 0, proportionalSize.height, proportionalSize.width), image.CGImage);
+    }
+    else
+        CGContextDrawImage(context, CGRectMake(0, 0, proportionalSize.width, proportionalSize.height), image.CGImage);
+    
+    
+    CGImageRef scaledImage=CGBitmapContextCreateImage(context);
+    
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    
+    UIImage *output = [UIImage imageWithCGImage: scaledImage];
+    CGImageRelease(scaledImage);
+    
+    return output;
 }
 @end

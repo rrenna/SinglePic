@@ -140,9 +140,17 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    cameraPreviewImageView.image = [UIImage imageWithCGImage:originalImage.CGImage 
-                                                       scale:1.0 orientation: UIImageOrientationLeftMirrored];
-    [self setMyPicture:originalImage];
+    UIImageOrientation originalOrientation = (picker.cameraDevice == UIImagePickerControllerCameraDeviceRear) ? UIImageOrientationRight : UIImageOrientationDownMirrored;
+    
+    float minDimension = MIN(originalImage.size.width, originalImage.size.height);
+    
+    UIImage *croppedImage = [originalImage croppedImage:CGRectMake(0,0,minDimension,minDimension) ];
+    UIImage* resizedImage = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0 orientation: originalOrientation];
+    
+    cameraPreviewImageView.image = resizedImage;
+    imagePicker.view.alpha = 0.0;
+    
+    [self setMyPicture:resizedImage];
 }
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

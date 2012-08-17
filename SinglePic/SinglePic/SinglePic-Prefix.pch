@@ -15,6 +15,12 @@
     //Helpers
     #import "ImageHelper.h"
     #import "TimeHelper.h"
+    //Extensions
+    #import "UIView+SizesAndEdges.h"
+    #import "UIDevice+IdentifierAddition.h"
+    #import "NSString+NSString_UUIDAddition.h"
+    #import "UIImageView+Curled.h"
+    #import "UIImage+Resize.h"
     //
     #import "SPErrors.h"
     #import "SPRequests.h"
@@ -23,10 +29,6 @@
     #import "SPProfiles.h"
     #import "CJSONDeserializer.h"
     #import "CJSONSerializer.h"
-    #import "UIView+SizesAndEdges.h"
-    #import "UIDevice+IdentifierAddition.h"
-    #import "NSString+NSString_UUIDAddition.h"
-    #import "UIImageView+Curled.h"
     #import "SPAppDelegate.h"
     #import "SPProfileManager.h"
     #import "SPBucketManager.h"

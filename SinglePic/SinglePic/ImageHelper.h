@@ -12,5 +12,6 @@
 
 + (UIImage *) scaleImage:(UIImage*)image toSize: (CGSize)size;
 + (UIImage *) scaleImage:(UIImage*)image proportionalToSize: (CGSize)size;
++ (UIImage *) scaleAndCropImage:(UIImage*) image toFitInDimension:(int)dimension;
 
 @end

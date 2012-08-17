@@ -111,26 +111,33 @@ static int profileIndex = 0;
 #pragma mark - IBActions
 -(IBAction)restart:(id)sender
 {
-        [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles) 
+    if(!isRestarting)
+    {
+        isRestarting = YES;
+        
+        [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
-            //Currently used to stop infinite restart loops
-            if([profiles count] > 0)
-            {
-                [[SPProfileManager sharedInstance] restartProfiles];
-                profileIndex = 0;
-                [self next:nil];
-            }
-            else 
-            {
-                [self dropAllOnscreenBlocks];
-            }
-           
-            [SVProgressHUD dismiss];
-         } 
+             //Currently used to stop infinite restart loops
+             if([profiles count] > 0)
+             {
+                 [[SPProfileManager sharedInstance] restartProfiles];
+                 profileIndex = 0;
+                 [self next:nil];
+             }
+             else
+             {
+                 [self dropAllOnscreenBlocks];
+             }
+             
+             [SVProgressHUD dismiss];
+             isRestarting = NO;
+         }
          andErrorHandler:^
          {
              [SVProgressHUD dismiss];
+             isRestarting = NO;
          }];
+    }
 }
 
 -(IBAction)next:(id)sender
@@ -305,19 +312,22 @@ static int profileIndex = 0;
         [self destroyBottomViewBody:rightBottomView];
         
         //Fade out & destroy all blocks
-        float extraTime = 0;
+        float delay = 1.25;
         for(UIView* subView in canvasView.subviews)
         {
             if([subView isKindOfClass:[SPBlockView class]])
             {
-                [UIView animateWithDuration:(2.0 + extraTime) animations:^{
+                [UIView animateWithDuration:1.0 delay:delay options:nil animations:^{
+                    
                     subView.alpha = 0.0;
+                    
                 } completion:^(BOOL finished) {
                     
                     [self destroyBlockView:subView];
+                    
                 }];
                 
-                extraTime += 0.1; //TODO: tweak
+                delay -= 0.1;
             }
         }
         
@@ -377,7 +387,7 @@ static int profileIndex = 0;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 0.05f;
 	fixtureDef.friction = 0.5f;
-	fixtureDef.restitution = 0.1; // 0 is a lead ball, 1 is a super bouncy ball
+	fixtureDef.restitution = 0.125; // 0 is a lead ball, 1 is a super bouncy ball
 	body->CreateFixture(&fixtureDef);
     
 	// a dynamic body reacts to forces right away
