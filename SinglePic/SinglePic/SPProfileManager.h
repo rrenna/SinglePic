@@ -12,6 +12,7 @@
 
 //Notifications
 #define NOTIFICATION_MY_USER_ID_CHANGED @"NOTIFICATION_MY_USER_ID_CHANGED"
+#define NOTIFICATION_MY_USER_NAME_CHANGED @"NOTIFICATION_MY_USER_NAME_CHANGED"
 #define NOTIFICATION_MY_USER_TYPE_CHANGED @"NOTIFICATION_MY_USER_TYPE_CHANGED"
 #define NOTIFICATION_MY_BUCKET_CHANGED @"NOTIFICATION_MY_BUCKET_CHANGED"
 #define NOTIFICATION_MY_IMAGE_CHANGED @"NOTIFICATION_MY_IMAGE_CHANGED"
@@ -67,6 +68,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(USER_TYPE)myUserType;
 -(SPBucket*)myBucket;
 -(NSString*)myUserID;
+-(NSString*)myUserName;
 -(NSDate*)myExpiry;
 -(UIImage*)myImage;
 -(NSString*)myIcebreaker;
@@ -82,7 +84,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 
 //Annonymous Set Methods
 /*---can be called publicly as they do not need to be synced with the server---*/
--(void)setMyAnnonymousBucket:(SPBucket*)_bucket synchronize:(BOOL)synchronous;
+-(void)setMyAnnonymousBucket:(SPBucket*)_bucket synchronize:(BOOL)synchronize;
 -(void)setMyAnnonymousGender:(GENDER)_gender;
 -(void)setMyAnnonymousPreference:(GENDER)_preference;
 
@@ -102,7 +104,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Validates that the stored credentials are valid
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Registers the current device's push Token, enabling the server to push this device notifications while offline
 //----Registration
--(void)registerWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ andBucket:(SPBucket*)bucket_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Registers the current annonymous user
+-(void)registerWithEmail:(NSString*)email_ andUserName:(NSString*)userName_ andPassword:(NSString*)password_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ andBucket:(SPBucket*)bucket_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Registers the current annonymous user
 //----Login
 -(void)loginWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Log in with an existing user
 -(void)logout;//Log out of current user account

@@ -26,7 +26,7 @@
     IBOutlet UIView* stepTwoView;
     //Step 3
     IBOutlet UIView* stepThreeView;
-    IBOutlet UITextField* firstNameField;
+    IBOutlet UITextField* userNameField;
     IBOutlet UITextField* emailField;
     IBOutlet UITextField* passwordField;
     IBOutlet UITextField* confirmPasswordField;

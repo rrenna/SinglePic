@@ -2819,7 +2819,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Yashkir (N8CM3H5LVU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmytro Yashkir (N8CM3H5LVU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ryan Renna";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2841,7 +2841,7 @@
 					"-all_load",
 				);
 				PROVISIONING_PROFILE = "AE6881A6-1BED-4B08-B9C9-ED4FD0165D2B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AE6881A6-1BED-4B08-B9C9-ED4FD0165D2B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2882,7 +2882,7 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Yashkir (N8CM3H5LVU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmytro Yashkir (N8CM3H5LVU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ryan Renna";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -2899,7 +2899,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D51F252B-6939-464A-B1C9-519E721ED534";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D51F252B-6939-464A-B1C9-519E721ED534";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

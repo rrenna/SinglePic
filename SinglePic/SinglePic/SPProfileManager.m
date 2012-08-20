@@ -13,20 +13,19 @@
 #import "SPProfile.h"
 
 @interface SPProfileManager()
-@property (assign) USER_TYPE userType;
 @property (retain) NSMutableArray* profiles;
+@property (assign) USER_TYPE userType;
 @property (retain) SPBucket* bucket;
 @property (retain) UIImage* image;
 @property (retain) UIImage* lastImage;
 @property (retain) NSString* userID;
+@property (retain) NSString* userName;
 @property (retain) NSDate* expiry;
 @property (retain) NSString* icebreaker;
 @property (retain) NSString* email;
 @property (assign) GENDER gender;
 @property (assign) GENDER preference;
 
-//Get Methods
--(NSMutableArray*)myLikes;
 
 //Set Methods - sets the value(s) locally, optionally callinging syncronize when completed - should only be called from within the SPProfileManager
 -(void)setMyImage:(UIImage*)_image;
@@ -34,10 +33,11 @@
 -(void)setMyEmail:(NSString*)_email synchronize:(BOOL)synchronize;
 -(void)setMyGender:(GENDER)_gender synchronize:(BOOL)synchronize;
 -(void)setMyPreference:(GENDER)_preference synchronize:(BOOL)synchronize;
--(void)setMyBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronous;
--(void) setMyUserID:(NSString*)userID synchronize:(BOOL)synchronous;
--(void)setMyExpiry:(NSDate*)expiry_ synchronize:(BOOL)synchronous;
--(void)setMyPushTokenSynced:(BOOL)synced synchronize:(BOOL)synchronous;
+-(void)setMyBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronize;
+-(void)setMyUserID:(NSString*)userID synchronize:(BOOL)synchronize;
+-(void) setMyUserName:(NSString*)userID synchronize:(BOOL)synchronize;
+-(void)setMyExpiry:(NSDate*)expiry_ synchronize:(BOOL)synchronize;
+-(void)setMyPushTokenSynced:(BOOL)synced synchronize:(BOOL)synchronize;
 
 //Used for generating a JSON string to set a new profile
 -(NSString*)generateProfileJSONWithIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference;
@@ -53,6 +53,7 @@
 //Profile Keys
 #define USER_DEFAULT_KEY_USER_TYPE @"USER_DEFAULT_KEY_USER_TYPE"
 #define USER_DEFAULT_KEY_USER_ID @"USER_DEFAULT_KEY_USER_ID"
+#define USER_DEFAULT_KEY_USER_NAME @"USER_DEFAULT_KEY_USER_NAME"
 #define USER_DEFAULT_KEY_EXPIRY @"USER_DEFAULT_KEY_EXPIRY"
 #define USER_DEFAULT_KEY_USER_BUCKET @"USER_DEFAULT_KEY_USER_BUCKET"
 #define USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION @"USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION"
@@ -69,7 +70,7 @@
 #define AVATAR_FILENAME @"avatar.png"
 
 @implementation SPProfileManager
-@synthesize profiles,userType,userID,expiry,bucket,image,lastImage,icebreaker,email,gender,preference;
+@synthesize profiles = _profiles, userType = _userType, userID = _userID, userName = _userName, expiry = _expiry, bucket = _bucket, image = _image, lastImage = _lastImage, icebreaker = _icebreaker,email = _email, gender = _gender, preference = _preference;
 #pragma mark
 -(id)init
 {
@@ -104,11 +105,19 @@
 }
 -(NSString*)myUserID
 {
-    if(!userID)
+    if(!self.userID)
     {
         self.userID = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULT_KEY_USER_ID];
     }
     return self.userID;
+}
+-(NSString*)myUserName
+{
+    if(!self.userName)
+    {
+        self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULT_KEY_USER_NAME];
+    }
+    return self.userName;
 }
 -(NSDate*)myExpiry
 {
@@ -287,26 +296,36 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_PREFERENCE_CHANGED object:nil];
     }
 }
--(void)setMyBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronous
+-(void)setMyBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronize
 {
     self.bucket = bucket_;
     NSData *encodedBucket = [NSKeyedArchiver archivedDataWithRootObject:bucket_];
     [[NSUserDefaults standardUserDefaults] setObject:encodedBucket forKey:USER_DEFAULT_KEY_USER_BUCKET];
     
-    if(synchronous) [[NSUserDefaults standardUserDefaults] synchronize];
+    if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_BUCKET_CHANGED object:nil];
 }
--(void)setMyUserID:(NSString*)userID_ synchronize:(BOOL)synchronous
+-(void)setMyUserID:(NSString*)userID_ synchronize:(BOOL)synchronize
 {
     self.userID = userID_;
     [[NSUserDefaults standardUserDefaults] setObject:userID_ forKey:USER_DEFAULT_KEY_USER_ID];
     
-    if(synchronous) [[NSUserDefaults standardUserDefaults] synchronize];
+    if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_ID_CHANGED object:nil];
 }
--(void)setMyExpiry:(NSDate*)expiry_ synchronize:(BOOL)synchronous
+-(void)setMyUserName:(NSString*)userName_ synchronize:(BOOL)synchronize
+{
+    self.userName = userName_;
+    [[NSUserDefaults standardUserDefaults] setObject:userName_ forKey:USER_DEFAULT_KEY_USER_NAME];
+    
+    if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_NAME_CHANGED object:nil];
+}
+
+-(void)setMyExpiry:(NSDate*)expiry_ synchronize:(BOOL)synchronize
 {
     self.expiry = expiry_;
     
@@ -319,11 +338,11 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     
     [[NSUserDefaults standardUserDefaults] setObject:self.expiry forKey:USER_DEFAULT_KEY_EXPIRY];
     
-    if(synchronous) [[NSUserDefaults standardUserDefaults] synchronize];  
+    if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];  
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
 }
--(void)setMyPushTokenSynced:(BOOL)synced synchronize:(BOOL)synchronous
+-(void)setMyPushTokenSynced:(BOOL)synced synchronize:(BOOL)synchronize
 {
     if(synced)
     {
@@ -334,7 +353,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN_SYNCED];
     }
     
-    if(synchronous) [[NSUserDefaults standardUserDefaults] synchronize];
+    if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
 }
 //
 -(void)setMyAnnonymousBucket:(SPBucket*)_bucket synchronize:(BOOL)synchronize
@@ -681,14 +700,15 @@ static NSURL* _thumbnailUploadURLCache = nil;
     //Notify application that the user type has changed
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
 }
--(void)registerWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ andBucket:(SPBucket*)bucket_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+#pragma mark - Registration
+-(void)registerWithEmail:(NSString*)email_ andUserName:(NSString*)userName_ andPassword:(NSString*)password_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ andBucket:(SPBucket*)bucket_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     if(self.myUserType != USER_TYPE_ANNONYMOUS)
     {
         return; //Already registered
     }
     
-    NSMutableDictionary* registrationDataDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",GENDER_NAMES[gender_],@"gender",GENDER_NAMES[preference_],@"lookingForGender",[bucket_ identifier],@"bucket",nil];
+    NSMutableDictionary* registrationDataDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:userName_,@"userName",email_,@"email",password_,@"password",GENDER_NAMES[gender_],@"gender",GENDER_NAMES[preference_],@"lookingForGender",[bucket_ identifier],@"bucket",nil];
     
     //If we have an approximate location for this user, pass it into the registration process
     CLLocation* location = [[SPLocationManager sharedInstance] location];

@@ -140,7 +140,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImageOrientation originalOrientation = (picker.cameraDevice == UIImagePickerControllerCameraDeviceRear) ? UIImageOrientationRight : UIImageOrientationDownMirrored;
+    UIImageOrientation originalOrientation = (picker.cameraDevice == UIImagePickerControllerCameraDeviceRear) ? UIImageOrientationRight : UIImageOrientationLeftMirrored;
     
     float minDimension = MIN(originalImage.size.width, originalImage.size.height);
     

@@ -111,6 +111,7 @@
 {
     if([passwordField.text isEqualToString:confirmPasswordField.text])
     {
+        NSString* chosenUsername = userNameField.text;
         NSString* chosenEmail = emailField.text;
         NSString* chosenPassword = passwordField.text;
         
@@ -122,7 +123,7 @@
         //Disable to prevent multiple clicks
         nextButton.enabled = NO;
         
-        [[SPProfileManager sharedInstance] registerWithEmail:chosenEmail andPassword:chosenPassword andGender:annonymousGender andPreference:annonymousPreference andBucket:annonymousBucket andCompletionHandler:^(id responseObject) 
+        [[SPProfileManager sharedInstance] registerWithEmail:chosenEmail andUserName:chosenUsername andPassword:chosenPassword andGender:annonymousGender andPreference:annonymousPreference andBucket:annonymousBucket andCompletionHandler:^(id responseObject)
          {              
              //When registration is completed - restart the profile stream
              [[SPProfileManager sharedInstance] restartProfiles];
@@ -176,7 +177,7 @@
         [nextButton setStyle:STYLE_CONFIRM_BUTTON];
         [contentView addSubview:stepThreeView];
         
-        [firstNameField becomeFirstResponder]; //Launch keyboard, edit first name field
+        [userNameField becomeFirstResponder]; //Launch keyboard, edit user name field
     }
 }
 -(void)stepOneInitialization

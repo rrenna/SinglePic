@@ -312,12 +312,12 @@ static int profileIndex = 0;
         [self destroyBottomViewBody:rightBottomView];
         
         //Fade out & destroy all blocks
-        float delay = 1.25;
+        float delay = 1.5;
         for(UIView* subView in canvasView.subviews)
         {
             if([subView isKindOfClass:[SPBlockView class]])
             {
-                [UIView animateWithDuration:1.0 delay:delay options:nil animations:^{
+                [UIView animateWithDuration:0.70 delay:delay options:nil animations:^{
                     
                     subView.alpha = 0.0;
                     
@@ -327,7 +327,7 @@ static int profileIndex = 0;
                     
                 }];
                 
-                delay -= 0.1;
+                delay -= 0.05;
             }
         }
         

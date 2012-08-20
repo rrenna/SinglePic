@@ -24,6 +24,7 @@
 -(SPTabController*)createTab;
 -(SPTabController*)createTabIsMoveable:(BOOL)moveable;
 -(void)browseScreenProfileSelected;
+-(void)updateExpiry;
 -(void)validateReachability;
 -(void)locationServicesValidated;
 -(void)navigationMode;
@@ -113,7 +114,8 @@
         navigationView.hidden = NO;
         registrationNavigationView.hidden = YES;
         
-        miniProgressView.progress = 0.5;
+        //Set the image expiry "mini" progress view in the navigation bar
+        [self updateExpiry];
         
         #define HELP_OVERLAY_BROWSE_DISPLAYED_KEY @"HELP_OVERLAY_BROWSE_DISPLAYED_KEY"
         if(![[NSUserDefaults standardUserDefaults] boolForKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY])
@@ -139,6 +141,7 @@
         reachabilityController = [[SPReachabilityPopupController alloc] initWithDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userTypeChangedWithNotification:) name:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
     }
     return self;
 }
@@ -320,6 +323,21 @@
         // 2) display the help overlay explaining that you must login/register
         [self minimizeAllTabs];
         [self displayHelpOverlay:HELP_OVERLAY_LOGIN_OR_REGISTER];
+    }
+}
+-(void)updateExpiry
+{
+    //SECONDS_PER_DAY
+    NSDate* expiryDate = [[SPProfileManager sharedInstance] myExpiry];
+    float progress = [TimeHelper progressOfDate:expiryDate toTimeInterval:(SECONDS_PER_DAY * EXPIRY_DAYS)];
+    
+    if(!expiryDate)
+    {
+        miniProgressView.progress = 0.0;
+    }
+    else
+    {
+        miniProgressView.progress = progress;
     }
 }
 -(void)userTypeChangedWithNotification:(NSNotification*)notification
