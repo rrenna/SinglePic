@@ -169,12 +169,14 @@
     else if(_step == 2)
     {
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
+        [nextButton setEnabled:YES];
         [contentView addSubview:stepTwoView];
         
     }
     else if(_step == 3)
     {
         [nextButton setStyle:STYLE_CONFIRM_BUTTON];
+        [nextButton setEnabled:NO];
         [contentView addSubview:stepThreeView];
         
         [userNameField becomeFirstResponder]; //Launch keyboard, edit user name field
@@ -233,26 +235,140 @@
         //Return 80 point height for the password row in the registration form
         return 80;
     }
-    //return the default 40 point height
-    return 40;
+
+    return 45;
 }
 #pragma mark - UITextField delegate methods
-/*- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+
+}
+
+BOOL validateUserName(NSString* userName,NSString **hint) {
     
-    if(textField.frame.origin.y < 100)
+    BOOL length = ([userName length] >= MINIMUM_USERNAME_LENGTH);
+    //Return a human readable hint
+    if(length) { *hint = nil; }
+    else { *hint = [NSString stringWithFormat:@"%i characters left",(MINIMUM_USERNAME_LENGTH - [userName length])]; }
+    
+    return length;
+}
+BOOL validateEmail(NSString* email, NSString **hint) {
+    
+    BOOL emailLength = ([email length] > 4); //Shortest email possible
+    BOOL containsAmpersand = ( [email rangeOfString:@"@"].location != NSNotFound );
+    BOOL endsWithAmpersand = ( [email rangeOfString:@"@"].location != [email length] - 1 );
+    BOOL containsPeriod = ( [email rangeOfString:@"."].location != NSNotFound );
+    BOOL endsWithPeriod = ( [email rangeOfString:@"."].location != [email length] - 1 );
+    
+    //Return a human readable hint
+    if(emailLength && containsAmpersand && endsWithAmpersand && containsPeriod && endsWithPeriod)
     {
-        [scrollView setContentOffset: CGPointMake(0,0) animated:YES];
+        *hint = nil; return YES;
+    }
+    else if(!emailLength)
+    {
+        *hint = [NSString stringWithFormat:@"%i characters left",(MINIMUM_EMAIL_LENGTH - [email length])];
+    }
+    else if(!containsAmpersand)
+    {
+        *hint = @"Should contain an ampersand";
+    }
+    else if(!endsWithAmpersand)
+    {
+        *hint = @"Should not end with a ampersand";
+    }
+    else if(!containsPeriod)
+    {
+        *hint = @"Should contain a period";
+    }
+    else if(!endsWithPeriod)
+    {
+        *hint = @"Should not end with a period";
     }
     else
     {
-        [scrollView setContentOffset: CGPointMake(0, 75) animated:YES];
+        *hint = @"Does not appear to be a valid email address";
     }
+
+    return NO;
+}
+BOOL validatePasswords(NSString* password, NSString* confirm, NSString **hint) {
+    
+    BOOL passwordLength = ([password length] >= MINIMUM_PASSWORD_LENGTH) && ([confirm length] >= MINIMUM_PASSWORD_LENGTH);
+    BOOL passwordMatch = [password isEqualToString:confirm];
+    
+    //Return a human readable hint
+    if(passwordLength && passwordMatch)
+    {
+        *hint = nil; return YES;
+    }
+    else if(!passwordMatch)
+    {
+        *hint = @"Passwords should match";
+    }
+    else if(!passwordLength)
+    {
+        *hint = [NSString stringWithFormat:@"%i characters left",(MINIMUM_PASSWORD_LENGTH - [password length])];
+    }
+    
+    return NO;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    //New textfield value
+    NSString* newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    //Hint text
+    NSString* userNameHint;
+    NSString* emailHint;
+    NSString* passwordHint;
+    
+    BOOL userNameFieldValid = (textField == userNameField) ? validateUserName(newValue,&userNameHint) : validateUserName(userNameField.text,&userNameHint);
+    BOOL emailFieldValid = (textField == emailField) ? validateEmail(newValue,&emailHint) : validateEmail(emailField.text,&emailHint);
+    BOOL passwordsValid = NO;
+    
+    if(textField == passwordField || textField == confirmPasswordField)
+    {
+        if(textField == passwordField)
+        {
+            passwordsValid = validatePasswords(newValue, confirmPasswordField.text, &passwordHint);
+        }
+        else
+        {
+             passwordsValid = validatePasswords(passwordField.text, newValue, &passwordHint);
+        }
+    }
+    else
+    {
+        passwordsValid = validatePasswords(passwordField.text, confirmPasswordField.text, &passwordHint);
+    }
+    
+    //Set hint text
+    userNameHintLabel.text = userNameHint;
+    emailHintLabel.text = emailHint;
+    passwordHintLabel.text = passwordHint;
+    
+    //Set text colours
+    userNameField.textColor = (userNameFieldValid) ? [UIColor blackColor] : [UIColor redColor];
+    emailField.textColor = (emailFieldValid) ? [UIColor blackColor] : [UIColor redColor];
+    passwordField.textColor = (passwordsValid) ? [UIColor blackColor] : [UIColor redColor];
+    confirmPasswordField.textColor = passwordField.textColor;
+    
+    if(userNameFieldValid && emailFieldValid && passwordsValid)
+    {
+        [nextButton setEnabled:YES];
+    }
+    else
+    {
+        [nextButton setEnabled:NO];
+    }
+    
+    return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 {
     //Tapping the return key on the password or email field will bring you to the next field, on the confirm password field it dismisses the keyboard
-    if(textField == firstNameField)
+    if(textField == userNameField)
     {
         [emailField becomeFirstResponder];
     }
@@ -267,11 +383,10 @@
     else 
     {
         [confirmPasswordField resignFirstResponder];
-        [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
     }
     
     return NO;
-}*/
+}
 #pragma mark - SPLocationChooserDelegate methods
 -(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser
 {

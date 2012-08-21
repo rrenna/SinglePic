@@ -30,6 +30,9 @@
     IBOutlet UITextField* emailField;
     IBOutlet UITextField* passwordField;
     IBOutlet UITextField* confirmPasswordField;
+    IBOutlet UILabel* userNameHintLabel;
+    IBOutlet UILabel* emailHintLabel;
+    IBOutlet UILabel* passwordHintLabel;
     IBOutlet UITableViewCell *firstNameTableViewCell;
     
     IBOutlet UITableViewCell *emailTableViewCell;

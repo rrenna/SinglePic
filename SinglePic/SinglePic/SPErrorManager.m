@@ -23,26 +23,31 @@
         
         //We setup profiles of errors which are understood and can be displayed with static information and special functionality (if required)
         
+        //Registration Errors
+        //-- Problem assigning bucket
         SPWebServiceErrorProfile* bucketInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users" andServerError:@"no such bucket" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Registration couldn't be completed" Description:@"There was a problem when we tried to create your account. If this problem persists please contact us."];
         }];
-        
-        SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        //-- Email already exists
+        SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users"  andServerError:@"email exists" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
         {
-            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email is already taken, or you've entered a invalid login and passord. Please try again."];
+            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email is already taken. Please try again."];
+        }];
+        //-- Email is invalid
+        SPWebServiceErrorProfile* emailInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users"  andServerError:@"email invalid" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+       {
+           [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email appears to be invalid. Please try again."];
+       }];
+       //-- Username already exists
+        SPWebServiceErrorProfile* usernameTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users"  andServerError:@"username exists" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        {
+            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This username is already taken. Please try again."];
         }];
         
-        
-        
-        /*SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"https://singlepicdating.herokuapp.com/users" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
-        {
-            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email is already taken, or you've entered a invalid login and passord. Please try again."];
-        }];*/
-      
     
         errors = [NSMutableArray new];
-        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,nil];
+        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,nil];
     }
     return self;
 }
