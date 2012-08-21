@@ -117,7 +117,6 @@
 						<string key="NSFrame">{{172, 297}, {66, 33}}</string>
 						<reference key="NSSuperview" ref="767959569"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -849,6 +848,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SPLocationChooser</string>
 					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">locationSelected:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">locationSelected:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">locationSelected:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">delegate</string>
 						<string key="NS.object.0">id</string>

@@ -767,6 +767,17 @@ static NSURL* _thumbnailUploadURLCache = nil;
         onError();
     }];
 }
+-(void)checkUserName:(NSString*)userName_ forRegistrationWithCompletionHandler:(void (^)(bool taken))onCompletion
+{
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERNAMES withParameter:userName_ requiringToken:NO withCompletionHandler:^(id responseObject)
+    {
+        onCompletion(YES);
+    }
+    andErrorHandler:^(SPWebServiceError *error)
+    {
+        onCompletion(NO);
+    }];
+}
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     //Register profile for future requests
