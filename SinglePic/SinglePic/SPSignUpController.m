@@ -247,6 +247,7 @@
 BOOL validateUserName(NSString* userName,NSString **hint) {
     
     BOOL length = ([userName length] >= MINIMUM_USERNAME_LENGTH);
+    
     //Return a human readable hint
     if(length) { *hint = nil; }
     else { *hint = [NSString stringWithFormat:@"%i characters left",(MINIMUM_USERNAME_LENGTH - [userName length])]; }
@@ -316,51 +317,75 @@ BOOL validatePasswords(NSString* password, NSString* confirm, NSString **hint) {
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    //New textfield value
-    NSString* newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    //Hint text
-    NSString* userNameHint;
-    NSString* emailHint;
-    NSString* passwordHint;
-    
-    BOOL userNameFieldValid = (textField == userNameField) ? validateUserName(newValue,&userNameHint) : validateUserName(userNameField.text,&userNameHint);
-    BOOL emailFieldValid = (textField == emailField) ? validateEmail(newValue,&emailHint) : validateEmail(emailField.text,&emailHint);
-    BOOL passwordsValid = NO;
-    
-    if(textField == passwordField || textField == confirmPasswordField)
+    //Step 1 - Filter out invalid characters
+    if(textField == userNameField)
     {
-        if(textField == passwordField)
+        //Only allow alpha-numeric usernames
+        NSCharacterSet* alphaNumericSet = [NSCharacterSet alphanumericCharacterSet];
+        NSCharacterSet* invalidCharacterSet = [alphaNumericSet invertedSet];
+        
+        if([string rangeOfCharacterFromSet:invalidCharacterSet].location != NSNotFound)
         {
-            passwordsValid = validatePasswords(newValue, confirmPasswordField.text, &passwordHint);
+             return NO;
+        }
+    }
+    else if(textField == emailField)
+    {
+        //Shouldn't include a space
+        if([string rangeOfString:@" "].location != NSNotFound)
+        {
+            return NO;
+        }
+    }
+    
+    //Step 2 - Re-calculate valid, update hint text
+    {
+        //New textfield value
+        NSString* newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        //Hint text
+        NSString* userNameHint;
+        NSString* emailHint;
+        NSString* passwordHint;
+        
+        BOOL userNameFieldValid = (textField == userNameField) ? validateUserName(newValue,&userNameHint) : validateUserName(userNameField.text,&userNameHint);
+        BOOL emailFieldValid = (textField == emailField) ? validateEmail(newValue,&emailHint) : validateEmail(emailField.text,&emailHint);
+        BOOL passwordsValid = NO;
+        
+        if(textField == passwordField || textField == confirmPasswordField)
+        {
+            if(textField == passwordField)
+            {
+                passwordsValid = validatePasswords(newValue, confirmPasswordField.text, &passwordHint);
+            }
+            else
+            {
+                 passwordsValid = validatePasswords(passwordField.text, newValue, &passwordHint);
+            }
         }
         else
         {
-             passwordsValid = validatePasswords(passwordField.text, newValue, &passwordHint);
+            passwordsValid = validatePasswords(passwordField.text, confirmPasswordField.text, &passwordHint);
         }
-    }
-    else
-    {
-        passwordsValid = validatePasswords(passwordField.text, confirmPasswordField.text, &passwordHint);
-    }
-    
-    //Set hint text
-    userNameHintLabel.text = userNameHint;
-    emailHintLabel.text = emailHint;
-    passwordHintLabel.text = passwordHint;
-    
-    //Set text colours
-    userNameField.textColor = (userNameFieldValid) ? [UIColor blackColor] : [UIColor redColor];
-    emailField.textColor = (emailFieldValid) ? [UIColor blackColor] : [UIColor redColor];
-    passwordField.textColor = (passwordsValid) ? [UIColor blackColor] : [UIColor redColor];
-    confirmPasswordField.textColor = passwordField.textColor;
-    
-    if(userNameFieldValid && emailFieldValid && passwordsValid)
-    {
-        [nextButton setEnabled:YES];
-    }
-    else
-    {
-        [nextButton setEnabled:NO];
+        
+        //Set hint text
+        userNameHintLabel.text = userNameHint;
+        emailHintLabel.text = emailHint;
+        passwordHintLabel.text = passwordHint;
+        
+        //Set text colours
+        userNameField.textColor = (userNameFieldValid) ? [UIColor blackColor] : [UIColor redColor];
+        emailField.textColor = (emailFieldValid) ? [UIColor blackColor] : [UIColor redColor];
+        passwordField.textColor = (passwordsValid) ? [UIColor blackColor] : [UIColor redColor];
+        confirmPasswordField.textColor = passwordField.textColor;
+        
+        if(userNameFieldValid && emailFieldValid && passwordsValid)
+        {
+            [nextButton setEnabled:YES];
+        }
+        else
+        {
+            [nextButton setEnabled:NO];
+        }
     }
     
     return YES;

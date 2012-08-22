@@ -835,6 +835,7 @@ static int profileCounter = 0;
     {
         id profile = [self.profiles objectAtIndex:profileCounter];
         profileCounter++;
+        
         return profile;
     }
     else
@@ -922,6 +923,7 @@ static int profileCounter = 0;
              {
                  SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
                  [self.profiles addObject:profile];
+
              }
              [pool drain];
              

@@ -19,6 +19,8 @@ static b2Body* groundBody;
 
 #define REFRESH_HEADER_HEIGHT 52.0f
 #define PTM_RATIO 16
+#define TICK (0.01428571428571)//(1.0f/70.0f)
+
 static int profileIndex = 0;
 
 @interface SPBrowseViewController()
@@ -37,6 +39,9 @@ static int profileIndex = 0;
 -(void)addBodyForBoxView:(SPBlockView *)boxView;
 -(void)addPhysicalBodyForStaticView:(UIView *)physicalView;
 -(void)remove:(id)sender;
+-(int)currentTickCount;
+-(int)tickCountWithOffset:(int)offset;
+-(void)increaseCurrentTickCount;
 -(void)tick:(NSTimer *)timer;
 -(void)drop:(NSTimer *)timer;
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks;
@@ -87,13 +92,14 @@ static int profileIndex = 0;
 {
     [self createPhysicsWorld];
     [self createPhysicalBarriers];
-    tickTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(tick:) userInfo:nil repeats:YES];
+    
+    tickTimer = [NSTimer scheduledTimerWithTimeInterval:TICK target:self selector:@selector(tick:) userInfo:nil repeats:YES];
     [self resetStackCounters];
     
     if(![dropTimer isValid])
     {
         //Start the browsing experience
-        [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles) 
+        [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
          } 
          andErrorHandler:^
@@ -217,7 +223,7 @@ static int profileIndex = 0;
     
 	// Define the gravity vector.
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -30.0f);
+	gravity.Set(0.0f, -25.0f);//-30.0f);
     
 	// Do we want to let bodies sleep?
 	// This will speed up the physics simulation
@@ -296,9 +302,6 @@ static int profileIndex = 0;
 -(void)beginDropSchedule
 {    
     [profileControllers removeAllObjects];
-    
-    [self performSelector:@selector(createPhysicalBarriers) afterTicks:48];
-    
     [self resume];
 }
 -(void)dropAllOnscreenBlocks
@@ -334,8 +337,9 @@ static int profileIndex = 0;
         //Pause the block dropping
         [self pause];
         
-        [self performSelector:@selector(beginDropSchedule) afterTicks:75];
-        [self performSelector:@selector(stopLoading) afterTicks:340];
+        [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
+        [self performSelector:@selector(stopLoading) afterTicks:5333 * TICK];
+        [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
     }
 }
 -(void)pause
@@ -346,7 +350,7 @@ static int profileIndex = 0;
 -(void)resume
 {
     paused = NO;
-    const float delay = 0.3;
+    const float delay = 0.1;
     
     [dropTimer invalidate], dropTimer = nil;
     dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
@@ -434,23 +438,44 @@ static int profileIndex = 0;
 	physicalView.tag = (int)body;
     
 }
+int currentTick = 0;
+-(int)currentTickCount
+{
+    return currentTick;
+}
+-(int)tickCountWithOffset:(int)offset
+{
+    if((INT_MAX - currentTick) < offset)
+    {
+        return offset - (INT_MAX - currentTick);
+    }
+    else
+    {
+        return currentTick + offset;
+    }
+}
+-(void)increaseCurrentTickCount
+{
+    if(currentTick == INT_MAX)
+    {
+        currentTick = 0;
+    }
+    else
+    {
+        currentTick++;
+    }
+}
 -(void)tick:(NSTimer *)timer
 {
-
     NSMutableArray* selectorsToPerform = nil;
     //Flag actions to be performed, or reduce their tick count
     for(_SPBrowseViewQueuedSelectorCall* queuedSelectorCall in queuedSelectorCalls) {
         
-        int tick = queuedSelectorCall.ticks;
-        if(tick <= 0) {
+        if([self currentTickCount] == queuedSelectorCall.ticks) {
             
             //Add entry to deletion array
             if(!selectorsToPerform) { selectorsToPerform = [NSMutableArray arrayWithObject:queuedSelectorCall]; }
             else { [selectorsToPerform addObject:queuedSelectorCall]; }
-        }
-        else
-        {
-            queuedSelectorCall.ticks--;
         }
     }
     //Perform actions
@@ -464,6 +489,8 @@ static int profileIndex = 0;
         [queuedSelectorCalls removeObjectsInArray:selectorsToPerform];
     }
     
+    [self increaseCurrentTickCount];
+    
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
 	//You need to make an informed choice, the following URL is useful
@@ -474,7 +501,7 @@ static int profileIndex = 0;
     
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	world->Step(1.0f/60.0f, velocityIterations, positionIterations);
+	world->Step(TICK, velocityIterations, positionIterations);
     
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
@@ -488,9 +515,8 @@ static int profileIndex = 0;
                                             canvasView.bounds.size.height - b->GetPosition().y * PTM_RATIO);
 			oneView.center = newCenter;
             
-			CGAffineTransform transform = CGAffineTransformMakeRotation(- b->GetAngle());
-            
-			oneView.transform = transform;
+            //CGAffineTransform transform = CGAffineTransformMakeRotation(- b->GetAngle());
+            //oneView.transform = transform;
 		}
 	}
 }
@@ -514,7 +540,7 @@ static int profileIndex = 0;
      */
 }
 
-#define BROWSE_ROW_LIMIT 4
+#define BROWSE_ROW_LIMIT 5
 static int column = 0;
 -(void)drop:(NSTimer *)timer
 {
@@ -534,13 +560,20 @@ static int column = 0;
             SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
             
             blockView.data = profile;
-            [blockView setController:profileIcon]; 
-            
+            [blockView setController:profileIcon];
             [self.profileControllers addObject:profileIcon];
             
-            [self addBodyForBoxView:blockView];
-            [canvasView addSubview:blockView];
-            [canvasView sendSubviewToBack:blockView];
+            [self pause];
+            
+            id block_proceed = ^(UIImage *thumbnail)
+            {
+                [self addBodyForBoxView:blockView];
+                [canvasView addSubview:blockView];
+                [canvasView sendSubviewToBack:blockView];
+                [self resume];
+            };
+            
+            [profile retrieveThumbnailWithCompletionHandler:block_proceed andErrorHandler:block_proceed];
             stackCount[column]++;
         }
         else
@@ -554,9 +587,11 @@ static int column = 0;
 }
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks
 {
+    int scheduledTick = [self tickCountWithOffset:ticks];
+    
     _SPBrowseViewQueuedSelectorCall* queuedSelectorCall = [[_SPBrowseViewQueuedSelectorCall new] autorelease];
     queuedSelectorCall.selector = aSelector;
-    queuedSelectorCall.ticks = ticks;
+    queuedSelectorCall.ticks = scheduledTick;
     
     [queuedSelectorCalls addObject:queuedSelectorCall];
 }

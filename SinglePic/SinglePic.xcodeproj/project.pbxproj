@@ -2970,8 +2970,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dmytro Yashkir";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dmytro Yashkir";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Renna";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ryan Renna";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -2987,8 +2987,8 @@
 					"\"$(SRCROOT)/Libraries/TestFlight\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "60C8EBBD-176C-45B1-AB6A-90D1D2998FAB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "60C8EBBD-176C-45B1-AB6A-90D1D2998FAB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Beta;
