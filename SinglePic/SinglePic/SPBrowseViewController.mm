@@ -35,6 +35,7 @@ static int profileIndex = 0;
 -(void)dropAllOnscreenBlocks;
 -(void)pauseAllStacks;
 -(void)pauseStack:(int)stackIndex;
+-(BOOL)isStackPaused:(int)stackIndex;
 -(void)isAnyStackPaused;
 -(void)resumeAllStacks;
 -(void)resumeStack:(int)stackIndex;
@@ -103,7 +104,7 @@ static int profileIndex = 0;
     
     if(![dropTimer isValid])
     {
-        const float delay = 0.1;
+        const float delay = 0.5;
         //Start the browsing experience
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
@@ -364,6 +365,10 @@ static int profileIndex = 0;
 {
     stackPaused[stackIndex] = YES;
 }
+-(BOOL)isStackPaused:(int)stackIndex
+{
+    return stackPaused[stackIndex];
+}
 -(BOOL)isAnyStackPaused
 {
     return (stackPaused[0] || stackPaused[1] || stackPaused[2]);
@@ -573,47 +578,48 @@ int currentTick = 0;
     //Interate over each column
     for(int columnIndex = 0; columnIndex < BROWSE_COLUMN_AMOUNT; columnIndex++)
     {
-        const int padding = 1;
-        if(stackCount[columnIndex] < BROWSE_ROW_LIMIT)
+        if(![self isStackPaused:columnIndex])
         {
-            SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
-            if(profile)
+            //Drop a profile box if this stack isn't paused
+            const int padding = 1;
+            if(stackCount[columnIndex] < BROWSE_ROW_LIMIT)
             {
-                int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
-                CGRect frame = CGRectMake(boxDimension * columnIndex + (padding * columnIndex), - 150, boxDimension, boxDimension);
-                
-                SPBlockView* blockView = [[[SPBlockView alloc] initWithFrame:frame] autorelease];
-                blockView.delegate = self;
-                blockView.column = columnIndex;
-                
-                SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
-                
-                blockView.data = profile;
-                [blockView setController:profileIcon];
-                [self.profileControllers addObject:profileIcon];
-                
-                [self pauseStack:columnIndex];
-                
-                id block_proceed = ^(UIImage *thumbnail)
+                SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
+                if(profile)
                 {
-                    [self addBodyForBoxView:blockView];
-                    [canvasView addSubview:blockView];
-                    [canvasView sendSubviewToBack:blockView];
-                    [self resumeStack:columnIndex];
-                };
-                
-                [profile retrieveThumbnailWithCompletionHandler:block_proceed andErrorHandler:block_proceed];
-                stackCount[columnIndex]++;
-            }
-            else
-            {
-                //No more contacts
+                    int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
+                    CGRect frame = CGRectMake(boxDimension * columnIndex + (padding * columnIndex), - 150, boxDimension, boxDimension);
+                    
+                    SPBlockView* blockView = [[[SPBlockView alloc] initWithFrame:frame] autorelease];
+                    blockView.delegate = self;
+                    blockView.column = columnIndex;
+                    
+                    SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
+                    
+                    blockView.data = profile;
+                    [blockView setController:profileIcon];
+                    [self.profileControllers addObject:profileIcon];
+                    
+                    [self pauseStack:columnIndex];
+                    
+                    id block_proceed = ^(UIImage *thumbnail)
+                    {
+                        [self addBodyForBoxView:blockView];
+                        [canvasView addSubview:blockView];
+                        [canvasView sendSubviewToBack:blockView];
+                        [self resumeStack:columnIndex];
+                    };
+                    
+                    [profile retrieveThumbnailWithCompletionHandler:block_proceed andErrorHandler:block_proceed];
+                    stackCount[columnIndex]++;
+                }
+                else
+                {
+                    //No more contacts
+                }
             }
         }
     }
-    
-
-
 }
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks
 {
