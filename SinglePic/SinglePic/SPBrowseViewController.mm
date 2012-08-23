@@ -234,7 +234,7 @@ static int profileIndex = 0;
     
 	// Define the gravity vector.
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -25.0f);//-30.0f);
+	gravity.Set(0.0f, -20.0f);//-30.0f);
     
 	// Do we want to let bodies sleep?
 	// This will speed up the physics simulation
@@ -538,18 +538,30 @@ int currentTick = 0;
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
-		if (b->GetUserData() != NULL)
-		{
-			UIView *oneView = (UIView *)b->GetUserData();
-            
-			// y Position subtracted because of flipped coordinate system
-			CGPoint newCenter = CGPointMake(b->GetPosition().x * PTM_RATIO,
-                                            canvasView.bounds.size.height - b->GetPosition().y * PTM_RATIO);
-			oneView.center = newCenter;
-            
-            //CGAffineTransform transform = CGAffineTransformMakeRotation(- b->GetAngle());
-            //oneView.transform = transform;
-		}
+        b2Vec2 linearVelocity = b->GetLinearVelocity();
+        
+        //Prevent view modification if no vertical change will be made - UIView optmization (I hope)
+        if(linearVelocity.y == 0) {
+            //Do nothing
+        }
+        else
+        {
+            void* userData = b->GetUserData();
+            if (userData != NULL)
+            {
+                b2Vec2 position = b->GetPosition();
+                
+                UIView *oneView = (UIView *)userData;
+                
+                // y Position subtracted because of flipped coordinate system
+                CGPoint newCenter = CGPointMake(position.x * PTM_RATIO,
+                                                canvasView.bounds.size.height - position.y * PTM_RATIO);
+                oneView.center = newCenter;
+                
+                //CGAffineTransform transform = CGAffineTransformMakeRotation(- b->GetAngle());
+                //oneView.transform = transform;
+            }
+        }
 	}
 }
 -(void)remove:(id)sender
