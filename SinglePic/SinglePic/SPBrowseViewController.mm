@@ -18,6 +18,8 @@ static b2PrismaticJointDef shaftJoint;
 static b2Body* groundBody;
 
 #define REFRESH_HEADER_HEIGHT 52.0f
+#define BROWSE_ROW_LIMIT 5
+#define BROWSE_COLUMN_AMOUNT 3
 #define PTM_RATIO 16
 #define TICK (0.01428571428571)//(1.0f/70.0f)
 
@@ -31,8 +33,11 @@ static int profileIndex = 0;
 -(void)addPullToNextHeader;
 -(void)beginDropSchedule;
 -(void)dropAllOnscreenBlocks;
--(void)pause;
--(void)resume;
+-(void)pauseAllStacks;
+-(void)pauseStack:(int)stackIndex;
+-(void)isAnyStackPaused;
+-(void)resumeAllStacks;
+-(void)resumeStack:(int)stackIndex;
 -(void)resetStackCounters;
 -(void)destroyBlockView:(SPBlockView*)blockView;
 -(void)destroyBottomViewBody:(UIView*)bottomView;
@@ -57,7 +62,7 @@ static int profileIndex = 0;
     {
         self.profileControllers = [NSMutableArray array];
         queuedSelectorCalls = [NSMutableArray new];
-        paused = YES;
+        stackPaused[0] = YES; stackPaused[1] = YES; stackPaused[2] = YES;
         
         //We don't have to listen for this notification if this is an annonyous user
         if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
@@ -98,21 +103,26 @@ static int profileIndex = 0;
     
     if(![dropTimer isValid])
     {
+        const float delay = 0.1;
         //Start the browsing experience
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
+             dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
          } 
          andErrorHandler:^
          {
+             dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
+             
          }];
     }
 }
 -(void)visible
 {
-    if(paused)
+    //TODO: Improve resume functionality
+    /*if([self isAnyStackPaused])
     {
         [self resume];
-    }
+    }*/
 }
 #pragma mark - IBActions
 -(IBAction)restart:(id)sender
@@ -302,7 +312,7 @@ static int profileIndex = 0;
 -(void)beginDropSchedule
 {    
     [profileControllers removeAllObjects];
-    [self resume];
+    [self resumeAllStacks];
 }
 -(void)dropAllOnscreenBlocks
 {
@@ -335,25 +345,42 @@ static int profileIndex = 0;
         }
         
         //Pause the block dropping
-        [self pause];
+        [self pauseAllStacks];
         
         [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
         [self performSelector:@selector(stopLoading) afterTicks:5333 * TICK];
         [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
     }
 }
--(void)pause
+-(void)pauseAllStacks
 {
-    paused = YES;
-    [dropTimer invalidate]; dropTimer = nil;
-}
--(void)resume
-{
-    paused = NO;
-    const float delay = 0.1;
+    stackPaused[0] = YES;
+    stackPaused[1] = YES;
+    stackPaused[2] = YES;
     
-    [dropTimer invalidate], dropTimer = nil;
-    dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
+    //[dropTimer invalidate]; dropTimer = nil;
+}
+-(void)pauseStack:(int)stackIndex
+{
+    stackPaused[stackIndex] = YES;
+}
+-(BOOL)isAnyStackPaused
+{
+    return (stackPaused[0] || stackPaused[1] || stackPaused[2]);
+}
+-(void)resumeStack:(int)stackIndex
+{
+    stackPaused[stackIndex] = NO;
+}
+-(void)resumeAllStacks
+{
+    stackPaused[0] = NO;
+    stackPaused[1] = NO;
+    stackPaused[2] = NO;
+    
+    //const float delay = 0.1;
+    //[dropTimer invalidate], dropTimer = nil;
+    //dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
 }
 -(void)destroyBlockView:(SPBlockView*)blockView
 {
@@ -540,50 +567,53 @@ int currentTick = 0;
      */
 }
 
-#define BROWSE_ROW_LIMIT 5
-static int column = 0;
 -(void)drop:(NSTimer *)timer
 {
-    const int padding = 1;
-    if(stackCount[column] < BROWSE_ROW_LIMIT)
+
+    //Interate over each column
+    for(int columnIndex = 0; columnIndex < BROWSE_COLUMN_AMOUNT; columnIndex++)
     {
-        SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
-        if(profile)
+        const int padding = 1;
+        if(stackCount[columnIndex] < BROWSE_ROW_LIMIT)
         {
-            int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
-            CGRect frame = CGRectMake(boxDimension * column + (padding * column), - 150, boxDimension, boxDimension);
-            
-            SPBlockView* blockView = [[[SPBlockView alloc] initWithFrame:frame] autorelease];
-            blockView.delegate = self;
-            blockView.column = column;
-            
-            SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
-            
-            blockView.data = profile;
-            [blockView setController:profileIcon];
-            [self.profileControllers addObject:profileIcon];
-            
-            [self pause];
-            
-            id block_proceed = ^(UIImage *thumbnail)
+            SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
+            if(profile)
             {
-                [self addBodyForBoxView:blockView];
-                [canvasView addSubview:blockView];
-                [canvasView sendSubviewToBack:blockView];
-                [self resume];
-            };
-            
-            [profile retrieveThumbnailWithCompletionHandler:block_proceed andErrorHandler:block_proceed];
-            stackCount[column]++;
-        }
-        else
-        {
-            //No more contacts
+                int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
+                CGRect frame = CGRectMake(boxDimension * columnIndex + (padding * columnIndex), - 150, boxDimension, boxDimension);
+                
+                SPBlockView* blockView = [[[SPBlockView alloc] initWithFrame:frame] autorelease];
+                blockView.delegate = self;
+                blockView.column = columnIndex;
+                
+                SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
+                
+                blockView.data = profile;
+                [blockView setController:profileIcon];
+                [self.profileControllers addObject:profileIcon];
+                
+                [self pauseStack:columnIndex];
+                
+                id block_proceed = ^(UIImage *thumbnail)
+                {
+                    [self addBodyForBoxView:blockView];
+                    [canvasView addSubview:blockView];
+                    [canvasView sendSubviewToBack:blockView];
+                    [self resumeStack:columnIndex];
+                };
+                
+                [profile retrieveThumbnailWithCompletionHandler:block_proceed andErrorHandler:block_proceed];
+                stackCount[columnIndex]++;
+            }
+            else
+            {
+                //No more contacts
+            }
         }
     }
     
-    column++;
-    if(column == 3) { column = 0; }
+
+
 }
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks
 {

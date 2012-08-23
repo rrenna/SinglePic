@@ -26,14 +26,15 @@
     UIActivityIndicatorView* nextSpinner;
     
     @private
-    BOOL paused;
     BOOL isDragging;
     BOOL isLoading;
     BOOL isRestarting;
 	NSTimer *tickTimer;
     NSTimer *dropTimer;
-    int stackCount[3];
     NSMutableArray* queuedSelectorCalls;
+    //Stack Management
+    int stackCount[3];
+    BOOL stackPaused[3];
 }
 -(void)setup;
 -(void)visible;
