@@ -21,7 +21,7 @@ static b2Body* groundBody;
 #define BROWSE_ROW_LIMIT 5
 #define BROWSE_COLUMN_AMOUNT 3
 #define PTM_RATIO 16
-#define TICK (0.016666666)//(0.01428571428571)//(1.0f/70.0f)
+#define TICK (0.016666666)// same as (1.0f/60.0f)
 
 static int profileIndex = 0;
 
@@ -111,7 +111,7 @@ static int profileIndex = 0;
     
     if(![dropTimer isValid])
     {
-        const float delay = 0.7;
+        const float delay = 0.75;
         //Start the browsing experience
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
@@ -240,17 +240,15 @@ static int profileIndex = 0;
     
 	// Define the gravity vector.
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -20.0f);//-30.0f);
+	gravity.Set(0.0f, -15.0f);//-30.0f);
     
-	// Do we want to let bodies sleep?
-	// This will speed up the physics simulation
-	bool doSleep = true;
     
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	world = new b2World(gravity);
-    world->SetAllowSleeping(doSleep);
-    
-	world->SetContinuousPhysics(true);
+    // This will speed up the physics simulation
+    world->SetAllowSleeping(true);
+	world->SetContinuousPhysics(false);
+    world->SetWarmStarting(true);
     
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
@@ -282,7 +280,7 @@ static int profileIndex = 0;
 }
 -(void)createPhysicalBarriers
 {
-    [self addPhysicalBodyForStaticView:centerBottomView];
+   [self addPhysicalBodyForStaticView:centerBottomView];
 }
 -(void)addPullToNextHeader
 {
@@ -351,7 +349,7 @@ static int profileIndex = 0;
         [self pauseAllStacks];
         
         [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
-        [self performSelector:@selector(stopLoading) afterTicks:5333 * TICK];
+        [self performSelector:@selector(stopLoading) afterTicks:5500 * TICK];
         [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
     }
 }
@@ -382,10 +380,6 @@ static int profileIndex = 0;
     stackPaused[0] = NO;
     stackPaused[1] = NO;
     stackPaused[2] = NO;
-    
-    //const float delay = 0.1;
-    //[dropTimer invalidate], dropTimer = nil;
-    //dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
 }
 -(void)destroyBlockView:(SPBlockView*)blockView
 {
@@ -528,7 +522,7 @@ int currentTick = 0;
 	//You need to make an informed choice, the following URL is useful
 	//http://gafferongames.com/game-physics/fix-your-timestep/
     
-	int32 velocityIterations = 4;
+	int32 velocityIterations = 6;
 	int32 positionIterations = 1;
     
 	// Instruct the world to perform a single step of simulation. It is
@@ -593,7 +587,7 @@ int currentTick = 0;
         if(![self isStackPaused:columnIndex])
         {
             //Drop a profile box if this stack isn't paused
-            const int padding = 1;
+            const int padding = 5;
             if(stackCount[columnIndex] < BROWSE_ROW_LIMIT)
             {
                 SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
@@ -607,10 +601,8 @@ int currentTick = 0;
                     blockView.column = columnIndex;
                     
                     SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
-                    
-              
                     [self.profileControllers addObject:profileIcon];
-                    
+                    //Pauses the stack until the next profile's thumbnail has downloaded (or failed)
                     [self pauseStack:columnIndex];
                     
                     id block_proceed = ^(UIImage *thumbnail)
