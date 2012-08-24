@@ -13,9 +13,9 @@
 #import "SPBlockView.h"
 #import <Box2D/Box2D.h>//Must be included AFTER MKMapKit or anything that includes MKMapKit
 
-static b2World *world;
+//Box2D
 static b2PrismaticJointDef shaftJoint;
-static b2Body* groundBody;
+
 
 #define REFRESH_HEADER_HEIGHT 52.0f
 #define BROWSE_ROW_LIMIT 5
@@ -98,6 +98,8 @@ static int profileIndex = 0;
     
     [tickTimer release];
     [dropTimer release];
+    
+    delete world;
     
     [super dealloc];
 }
@@ -422,7 +424,7 @@ static int profileIndex = 0;
     
 	// a dynamic body reacts to forces right away
 	body->SetType(b2_dynamicBody);
-    
+
     shaftJoint.Initialize(groundBody, body, b2Vec2(0.0f, 17.0f), b2Vec2(0.0f, 1.0f));
     boxView.joint = (b2PrismaticJoint*)world->CreateJoint(&shaftJoint);
     

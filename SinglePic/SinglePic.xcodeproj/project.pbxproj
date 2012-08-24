@@ -2816,7 +2816,7 @@
 		7599A956148E980100A48435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Yashkir (N8CM3H5LVU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ryan Renna";
@@ -2836,10 +2836,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "AE6881A6-1BED-4B08-B9C9-ED4FD0165D2B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2849,7 +2846,7 @@
 		7599A957148E980100A48435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -2863,10 +2860,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2887,7 +2881,7 @@
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/**",
+					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
@@ -2900,6 +2894,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D51F252B-6939-464A-B1C9-519E721ED534";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2917,7 +2912,7 @@
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/**",
+					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
@@ -2930,6 +2925,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2937,7 +2933,7 @@
 		F00CBD3814D904860032C1AA /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -2952,10 +2948,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2976,7 +2969,7 @@
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/**",
+					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
@@ -2989,6 +2982,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Beta;

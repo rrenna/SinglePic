@@ -12,10 +12,13 @@
 
 @protocol SPBlockViewDelegate;
 
+struct b2World;
+struct b2Body;
+
 @interface SPBrowseViewController : SPTabContentViewController <SPBlockViewDelegate,UIScrollViewDelegate>
 {
     IBOutlet UIScrollView* scrollView;
-    IBOutlet UIView* canvasView;    
+    IBOutlet UIView* canvasView; 
     IBOutlet UIView* centerBottomView;
     IBOutlet UILabel* browseInstructionsLabel;
     UIView*  nextHeaderView;
@@ -24,6 +27,10 @@
     UIActivityIndicatorView* nextSpinner;
     
     @private
+    //Box2D
+    struct b2World* world;
+    struct b2Body* groundBody;
+    //
     BOOL isDragging;
     BOOL isLoading;
     BOOL isRestarting;
