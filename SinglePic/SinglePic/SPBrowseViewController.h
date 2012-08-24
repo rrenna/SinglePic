@@ -16,9 +16,7 @@
 {
     IBOutlet UIScrollView* scrollView;
     IBOutlet UIView* canvasView;    
-    IBOutlet UIView* leftBottomView;
     IBOutlet UIView* centerBottomView;
-    IBOutlet UIView* rightBottomView;
     IBOutlet UILabel* browseInstructionsLabel;
     UIView*  nextHeaderView;
     UILabel* nextLabel;

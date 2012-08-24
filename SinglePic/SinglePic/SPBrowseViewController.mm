@@ -276,9 +276,7 @@ static int profileIndex = 0;
 }
 -(void)createPhysicalBarriers
 {
-    [self addPhysicalBodyForStaticView:leftBottomView];
     [self addPhysicalBodyForStaticView:centerBottomView];
-    [self addPhysicalBodyForStaticView:rightBottomView];
 }
 -(void)addPullToNextHeader
 {
@@ -321,9 +319,7 @@ static int profileIndex = 0;
     {
         [self resetStackCounters];
         //Destroys the Box2D Body of these three views, which represent three shapes keeping the profile blocks from falling
-        [self destroyBottomViewBody:leftBottomView];
         [self destroyBottomViewBody:centerBottomView];
-        [self destroyBottomViewBody:rightBottomView];
         
         //Fade out & destroy all blocks
         float delay = 1.5;
