@@ -21,7 +21,7 @@ static b2Body* groundBody;
 #define BROWSE_ROW_LIMIT 5
 #define BROWSE_COLUMN_AMOUNT 3
 #define PTM_RATIO 16
-#define TICK (0.01428571428571)//(1.0f/70.0f)
+#define TICK (0.016666666)//(0.01428571428571)//(1.0f/70.0f)
 
 static int profileIndex = 0;
 
@@ -63,7 +63,7 @@ static int profileIndex = 0;
     {
         self.profileControllers = [NSMutableArray array];
         queuedSelectorCalls = [NSMutableArray new];
-        stackPaused[0] = YES; stackPaused[1] = YES; stackPaused[2] = YES;
+        stackPaused[0] = NO; stackPaused[1] = NO; stackPaused[2] = NO;
         
         //We don't have to listen for this notification if this is an annonyous user
         if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
@@ -92,6 +92,13 @@ static int profileIndex = 0;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [profileControllers release];
     [queuedSelectorCalls release];
+    
+    [tickTimer invalidate];
+    [dropTimer invalidate];
+    
+    [tickTimer release];
+    [dropTimer release];
+    
     [super dealloc];
 }
 -(void)setup
@@ -104,7 +111,7 @@ static int profileIndex = 0;
     
     if(![dropTimer isValid])
     {
-        const float delay = 0.5;
+        const float delay = 0.7;
         //Start the browsing experience
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
@@ -113,7 +120,6 @@ static int profileIndex = 0;
          andErrorHandler:^
          {
              dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
-             
          }];
     }
 }
@@ -221,9 +227,9 @@ static int profileIndex = 0;
 -(void)willClose
 {
     //Suspends the main timer
-    [tickTimer invalidate];
+    [tickTimer invalidate]; tickTimer = nil;
     //Suspends the drop timer
-    [self pause];
+    [dropTimer invalidate]; dropTimer = nil;
     
     [super willClose];
 }
@@ -354,8 +360,6 @@ static int profileIndex = 0;
     stackPaused[0] = YES;
     stackPaused[1] = YES;
     stackPaused[2] = YES;
-    
-    //[dropTimer invalidate]; dropTimer = nil;
 }
 -(void)pauseStack:(int)stackIndex
 {
@@ -524,7 +528,7 @@ int currentTick = 0;
 	//You need to make an informed choice, the following URL is useful
 	//http://gafferongames.com/game-physics/fix-your-timestep/
     
-	int32 velocityIterations = 8;
+	int32 velocityIterations = 4;
 	int32 positionIterations = 1;
     
 	// Instruct the world to perform a single step of simulation. It is
@@ -604,14 +608,16 @@ int currentTick = 0;
                     
                     SPProfileIconController* profileIcon = [[[SPProfileIconController alloc] initWithProfile:profile] autorelease];
                     
-                    blockView.data = profile;
-                    [blockView setController:profileIcon];
+              
                     [self.profileControllers addObject:profileIcon];
                     
                     [self pauseStack:columnIndex];
                     
                     id block_proceed = ^(UIImage *thumbnail)
                     {
+                        blockView.data = profile;
+                        [blockView setController:profileIcon];
+                        
                         [self addBodyForBoxView:blockView];
                         [canvasView addSubview:blockView];
                         [canvasView sendSubviewToBack:blockView];
