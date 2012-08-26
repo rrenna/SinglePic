@@ -76,15 +76,15 @@
     [self selectOrientationAtIndex:index];
 }
 #pragma mark - Private methods
-#define ICON_DIMENSION 20
 -(UIView*)buttonForGender:(GENDER)gender andPreference:(GENDER)preference
 {
     int index = [self indexForGender:gender andPreference:preference];
     int buttonY = self.frame.size.height/4 * index;
     int buttonHeight = (self.frame.size.height/4 ) - 5;
-    int iconY = (buttonHeight - ICON_DIMENSION) / 2;
+    int iconDimension = (self.frame.size.height/4 ) * 0.4;
+    int iconY = (buttonHeight - iconDimension) / 2;
     CGRect frame = CGRectMake(0, floor(buttonY), floor(self.frame.size.width),floor(buttonHeight));
-    CGRect iconFrame = CGRectMake(8,iconY, ICON_DIMENSION, ICON_DIMENSION);
+    CGRect iconFrame = CGRectMake(iconDimension / 2,iconY, iconDimension, iconDimension);
     
     NSString* genderName = GENDER_NAMES[gender];
     NSString* genderPreference = GENDER_NAMES[preference];

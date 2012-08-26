@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.SystemVersion">12B19</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2829</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
@@ -149,7 +149,7 @@
 					<object class="IBUIImageView" id="703108743">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{1, 85}, {296, 152}}</string>
+						<string key="NSFrame">{{1, 55}, {296, 152}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="380366272"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
@@ -164,7 +164,7 @@
 					<object class="IBUITextView" id="380366272">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{11, 95}, {276, 127}}</string>
+						<string key="NSFrame">{{11, 65}, {276, 127}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="636609561"/>
 						<string key="NSReuseIdentifierKey">_NS:639</string>
@@ -187,7 +187,7 @@
 					<object class="IBUIImageView" id="596679877">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{99, 247}, {100, 100}}</string>
+						<string key="NSFrame">{{99, 217}, {100, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -198,7 +198,7 @@
 					<object class="IBUIImageView" id="403610634">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{96.5, 243}, {106, 110}}</string>
+						<string key="NSFrame">{{96.5, 213}, {106, 110}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="596679877"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>

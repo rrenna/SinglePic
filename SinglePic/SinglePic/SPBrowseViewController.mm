@@ -582,7 +582,6 @@ int currentTick = 0;
 
 -(void)drop:(NSTimer *)timer
 {
-
     //Interate over each column
     for(int columnIndex = 0; columnIndex < BROWSE_COLUMN_AMOUNT; columnIndex++)
     {

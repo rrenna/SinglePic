@@ -38,6 +38,7 @@
     [emailTableViewCell release];
     [passwordTableViewCell release];
     [contentView release];
+    [signupFormTable release];
     [super dealloc];
 }
 - (void)viewDidLoad
@@ -62,6 +63,8 @@
     passwordTableViewCell = nil;
     [contentView release];
     contentView = nil;
+    [signupFormTable release];
+    signupFormTable = nil;
     [super viewDidUnload];
 }
 #pragma mark - IBActions
@@ -191,7 +194,7 @@
     //Step 2 initialization steps
     if(!orientationChooser)
     {
-        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.05, stepTwoView.height * 0.25, stepTwoView.width * 0.9, stepTwoView.height * 0.6)];
+        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.02, stepTwoView.height * 0.23, stepTwoView.width * 0.96, stepTwoView.height * 0.7)];
     }
 
     [stepTwoView addSubview:orientationChooser];
@@ -233,10 +236,10 @@
     if(indexPath.row == 2)
     {
         //Return 80 point height for the password row in the registration form
-        return 80;
+        return 70;
     }
 
-    return 45;
+    return 40;
 }
 #pragma mark - UITextField delegate methods
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -342,41 +345,65 @@ BOOL validatePasswords(NSString* password, NSString* confirm, NSString **hint) {
     {
         //New textfield value
         NSString* newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        //Hint text
-        NSString* userNameHint;
-        NSString* emailHint;
-        NSString* passwordHint;
         
-        BOOL userNameFieldValid = (textField == userNameField) ? validateUserName(newValue,&userNameHint) : validateUserName(userNameField.text,&userNameHint);
-        BOOL emailFieldValid = (textField == emailField) ? validateEmail(newValue,&emailHint) : validateEmail(emailField.text,&emailHint);
-        BOOL passwordsValid = NO;
-        
-        if(textField == passwordField || textField == confirmPasswordField)
+        if(textField == userNameField)
         {
-            if(textField == passwordField)
-            {
-                passwordsValid = validatePasswords(newValue, confirmPasswordField.text, &passwordHint);
-            }
-            else
-            {
-                 passwordsValid = validatePasswords(passwordField.text, newValue, &passwordHint);
-            }
+            //Hint text
+            NSString* userNameHint;
+            
+            userNameFieldValid = (textField == userNameField) ? validateUserName(newValue,&userNameHint) : validateUserName(userNameField.text,&userNameHint);
+            
+            //Set hint text
+            userNameHintLabel.text = userNameHint;
+            
+            
+            //Set text colours
+            userNameField.textColor = (userNameFieldValid) ? [UIColor blackColor] : [UIColor redColor];
+        }
+        else if(textField == emailField)
+        {
+            
+            //Hint text
+            NSString* emailHint;
+            
+            emailFieldValid = (textField == emailField) ? validateEmail(newValue,&emailHint) : validateEmail(emailField.text,&emailHint);
+            
+            //Set hint text
+            emailHintLabel.text = emailHint;
+            
+            //Set text colours
+            emailField.textColor = (emailFieldValid) ? [UIColor blackColor] : [UIColor redColor];
         }
         else
         {
-            passwordsValid = validatePasswords(passwordField.text, confirmPasswordField.text, &passwordHint);
+            //Hint text
+            NSString* passwordHint;
+            
+            passwordsValid = NO;
+            
+            if(textField == passwordField || textField == confirmPasswordField)
+            {
+                if(textField == passwordField)
+                {
+                    passwordsValid = validatePasswords(newValue, confirmPasswordField.text, &passwordHint);
+                }
+                else
+                {
+                    passwordsValid = validatePasswords(passwordField.text, newValue, &passwordHint);
+                }
+            }
+            else
+            {
+                passwordsValid = validatePasswords(passwordField.text, confirmPasswordField.text, &passwordHint);
+            }
+            
+            //Set hint text
+            passwordHintLabel.text = passwordHint;
+            
+            //Set text colours
+            passwordField.textColor = (passwordsValid) ? [UIColor blackColor] : [UIColor redColor];
+            confirmPasswordField.textColor = passwordField.textColor;
         }
-        
-        //Set hint text
-        userNameHintLabel.text = userNameHint;
-        emailHintLabel.text = emailHint;
-        passwordHintLabel.text = passwordHint;
-        
-        //Set text colours
-        userNameField.textColor = (userNameFieldValid) ? [UIColor blackColor] : [UIColor redColor];
-        emailField.textColor = (emailFieldValid) ? [UIColor blackColor] : [UIColor redColor];
-        passwordField.textColor = (passwordsValid) ? [UIColor blackColor] : [UIColor redColor];
-        confirmPasswordField.textColor = passwordField.textColor;
         
         if(userNameFieldValid && emailFieldValid && passwordsValid)
         {
