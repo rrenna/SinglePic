@@ -89,6 +89,7 @@
 		753211BF14CDF63F00B7EFDA /* MDACTitleBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532118014CDF63F00B7EFDA /* MDACTitleBar@2x.png */; };
 		753211C714CDFA1800B7EFDA /* SPAboutStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753211C614CDFA1800B7EFDA /* SPAboutStyle.m */; };
 		753211D214CE151000B7EFDA /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 753211D114CE150F00B7EFDA /* Credits.plist */; };
+		753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */; };
 		754D1EDF14DB36EC00F90C19 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EDD14DB36EC00F90C19 /* default.png */; };
 		754D1EE014DB36EC00F90C19 /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EDE14DB36EC00F90C19 /* default@2x.png */; };
 		754D1EE514DB385200F90C19 /* Tab-Info_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EE314DB385200F90C19 /* Tab-Info_Default.png */; };
@@ -370,7 +371,6 @@
 		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; };
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; };
 		F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */; };
-		F0DF78F215EB1BE300EE492D /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F115EB1BE300EE492D /* DAKeyboardControl.m */; };
 		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
 		F0E04CE714BFF348007F9B9B /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E04CE614BFF348007F9B9B /* noImage.png */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
@@ -504,6 +504,8 @@
 		753211C514CDFA1800B7EFDA /* SPAboutStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAboutStyle.h; sourceTree = "<group>"; };
 		753211C614CDFA1800B7EFDA /* SPAboutStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAboutStyle.m; sourceTree = "<group>"; };
 		753211D114CE150F00B7EFDA /* Credits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Credits.plist; sourceTree = "<group>"; };
+		753ED26D15EE8E37000F64F1 /* SPKeyboardDragTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPKeyboardDragTableView.h; sourceTree = "<group>"; };
+		753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPKeyboardDragTableView.m; sourceTree = "<group>"; };
 		754D1EDD14DB36EC00F90C19 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = ../../Resources/default.png; sourceTree = "<group>"; };
 		754D1EDE14DB36EC00F90C19 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x.png"; path = "../../Resources/default@2x.png"; sourceTree = "<group>"; };
 		754D1EE314DB385200F90C19 /* Tab-Info_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Info_Default.png"; path = "../../Resources/Tab-Info_Default.png"; sourceTree = "<group>"; };
@@ -1028,6 +1030,7 @@
 		751D26351491463E00617DD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				753ED26C15EE8DC7000F64F1 /* Keyboard Drag TableView */,
 				75B4AA2D15D44E3100745137 /* Location Chooser */,
 				750B93631510EBCE00C354F2 /* Circle View */,
 				F0DB12CD14FA95EE008F81A0 /* Styled Segmented Control */,
@@ -1320,6 +1323,15 @@
 				753211C614CDFA1800B7EFDA /* SPAboutStyle.m */,
 			);
 			name = "Custom Styling";
+			sourceTree = "<group>";
+		};
+		753ED26C15EE8DC7000F64F1 /* Keyboard Drag TableView */ = {
+			isa = PBXGroup;
+			children = (
+				753ED26D15EE8E37000F64F1 /* SPKeyboardDragTableView.h */,
+				753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */,
+			);
+			name = "Keyboard Drag TableView";
 			sourceTree = "<group>";
 		};
 		754D1EE114DB36EE00F90C19 /* Backgrounds */ = {
@@ -2830,8 +2842,8 @@
 				757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */,
 				757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */,
 				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
-				F0DF78F215EB1BE300EE492D /* DAKeyboardControl.m in Sources */,
 				F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */,
+				753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
