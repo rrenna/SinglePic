@@ -30,13 +30,14 @@
     IBOutlet UIView* secretEdgeView;
 @private
     NSMutableArray* pages;
-    BOOL fullscreen;
+    BOOL _fullscreen;
 }
 @property (assign) id <SPTabContainerDelegate> containerDelegate;
 @property (assign) BOOL fullscreen;
 
 -(id)initIsFullscreen:(BOOL)fullscreen;
 -(void)maximize;
+-(void)maximizeIsFullscreen:(BOOL)fullscreen;
 -(void)minimize;
 //Push Sub-Content
 -(void)pushModalController:(UIViewController*)viewController;

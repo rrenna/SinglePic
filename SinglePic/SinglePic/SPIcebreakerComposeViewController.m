@@ -29,6 +29,9 @@
     imageView.image = [[SPProfileManager sharedInstance] myImage];
     textView.text = [[SPProfileManager sharedInstance] myIcebreaker];
     [self textViewDidChange:textView];
+    
+    //On load set focus to the textview
+    [textView becomeFirstResponder];
 }
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender

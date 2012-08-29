@@ -15,6 +15,7 @@
 @interface SPUserViewController()
 @property (retain) SPCameraController* cameraController;
 -(void)updateImage;
+-(void)updateUsername;
 -(void)updateIcebreaker;
 -(void)updateExpiry;
 @end
@@ -35,6 +36,7 @@
         locationController = [SPSwitchLocationCardController new];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImage) name:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUsername) name:NOTIFICATION_MY_USER_NAME_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateIcebreaker) name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
 
@@ -46,6 +48,7 @@
     [super viewDidLoad];
     
     [self updateImage];
+    [self updateUsername];
     [self updateIcebreaker];
     [self updateExpiry];
     
@@ -66,11 +69,13 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_USER_NAME_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
     [orientationController release];
     [locationController release];
     [cameraController release];
+    [usernameLabel release];
     [super dealloc];
 }
 -(void)didReceiveMemoryWarning
@@ -161,6 +166,10 @@
 {
     UIImage* avatar = [[SPProfileManager sharedInstance] myImage];
     avatarImageView.image = avatar;
+}
+-(void)updateUsername
+{
+    usernameLabel.text = [[SPProfileManager sharedInstance] myUserName];
 }
 -(void)updateIcebreaker
 {

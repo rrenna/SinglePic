@@ -624,6 +624,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
          NSString* userToken_ = [Response objectForKey:@"token"];
          NSDictionary* user_ = [Response objectForKey:@"user"];//Retrieve the user profile
          NSString* userID_ = [user_ objectForKey:@"id"];
+         NSString* userName_ = [user_ objectForKey:@"userName"];
          NSString* userBucketID_ = [user_ objectForKey:@"bucket"];
          NSString* userIcebreaker_ = [user_ objectForKey:@"icebreaker"];
          NSString* userGender_ = [user_ objectForKey:@"gender"];
@@ -645,6 +646,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
              {
                  [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO]; //Tells the request manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
                  [[SPProfileManager sharedInstance] setMyUserID:userID_ synchronize:NO];
+                 [[SPProfileManager sharedInstance] setMyUserName:userName_ synchronize:NO];
                  [[SPProfileManager sharedInstance] setMyEmail:email_ synchronize:NO]; //Tells the profile manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
                  //NOTE : Should not cache the password
                  [[SPProfileManager sharedInstance] setMyBucket:userBucket_ synchronize:NO];
@@ -737,6 +739,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         //'synchronize:NO' tells the profile manager to not synchronize the specific setting, as the NSUserDefaults will be synchronized at the end of this block
         [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO];
         [[SPProfileManager sharedInstance] setMyUserID:userID_ synchronize:NO];
+        [[SPProfileManager sharedInstance] setMyUserName:userName_ synchronize:NO];
         [[SPProfileManager sharedInstance] setMyEmail:email_ synchronize:NO]; 
         [[SPProfileManager sharedInstance] setMyGender:gender_ synchronize:NO];
         [[SPProfileManager sharedInstance] setMyPreference:preference_ synchronize:NO];

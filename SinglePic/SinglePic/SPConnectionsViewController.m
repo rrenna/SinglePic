@@ -50,7 +50,7 @@
     [likeTypeSegmentedControl setStyle:STYLE_BASE];
     
     //Manually set's the height of the styled segmented control, as it cannot be set in Interface Builder
-    likeTypeSegmentedControl.height = 34.0f;
+    likeTypeSegmentedControl.height = 30.0f;
 }
 -(void)dealloc
 {
@@ -197,7 +197,7 @@
     }
     
     SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
-    [baseController pushProfile:profile profileMode:YES];
+    [baseController pushProfile:profile];
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     

@@ -14,6 +14,7 @@
 #import "SPReachabilityPopupController.h"
 #import "SPSubscriptionsManager.h"
 #import "SPProfileViewController.h"
+#import "SPComposeViewController.h"
 #import "MDAboutController.h"
 #import "MDACListCredit.h"
 #import "MDACCreditItem.h"
@@ -251,15 +252,7 @@
     [tab setContent:view];
 }
 #pragma mark - Profile
--(void)pushProfileWithID:(NSString*)profileID
-{
-    [self pushProfileWithID:profileID profileMode:YES];
-}
 -(void)pushProfile:(SPProfile*)profile
-{
-    [self pushProfile:profile profileMode:YES];
-}
--(void)pushProfile:(SPProfile*)profile profileMode:(BOOL)isProfileMode
 {
     SPTabController* tab = [tabs objectAtIndex:0];
     //Ensure the tab is maximized
@@ -269,10 +262,8 @@
     //Present a page containing the profile controller
     SPProfileViewController* profileController = [[[SPProfileViewController alloc] initWithProfile:profile] autorelease];
     [tab pushModalController:profileController];
-    
-    if(!isProfileMode) [profileController expandChat:nil];
 }
--(void)pushProfileWithID:(NSString*)profileID profileMode:(BOOL)isProfileMode
+-(void)pushProfileWithID:(NSString*)profileID
 {
     SPTabController* tab = [tabs objectAtIndex:0];
     //Ensure the tab is maximized
@@ -282,8 +273,29 @@
     //Present a page containing the profile controller
     SPProfileViewController* profileController = [[[SPProfileViewController alloc] initWithIdentifier:profileID] autorelease];
     [tab pushModalController:profileController];
-    
-    if(!isProfileMode) [profileController expandChat:nil];
+}
+-(void)pushChatWithProfile:(SPProfile*)profile
+{
+    SPTabController* tab = [tabs objectAtIndex:0];
+        //Ensure the tab is maximized
+    [tab maximizeIsFullscreen:YES];
+        //Close all existing page
+    [tab closeAllPages];
+        //Present a page containing the chat controller
+    SPComposeViewController* profileController = [[[SPComposeViewController alloc] initWithProfile:profile] autorelease];
+    [tab pushModalController:profileController];
+}
+-(void)pushChatWithID:(NSString*)profileID
+{
+    SPTabController* tab = [tabs objectAtIndex:0];
+    //Ensure the tab is maximized
+    [tab maximizeIsFullscreen:YES];
+        //Close all existing page
+    [tab closeAllPages];
+    //Present a page containing the chat controller
+    SPComposeViewController* profileController = [[[SPComposeViewController alloc] initWithIdentifier:profileID] autorelease];
+    [tab pushModalController:profileController];
+    [tab setFullscreen:YES];
 }
 #pragma mark - Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type

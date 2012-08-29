@@ -30,8 +30,6 @@
     IBOutlet SPStyledButton* likeButton;
     IBOutlet SPStyledButton* communicateButton;
     IBOutlet SPStyledButton* modeButton;
-@private
-    BOOL profileMode;
 }
 @property (assign) id<SPProfileViewDelegate> delegate;
 

@@ -369,6 +369,8 @@
 		F0C988AE14E0CD6800264228 /* icebreaker-MyProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */; };
 		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; };
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; };
+		F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */; };
+		F0DF78F215EB1BE300EE492D /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F115EB1BE300EE492D /* DAKeyboardControl.m */; };
 		F0E04CE714BFF348007F9B9B /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E04CE614BFF348007F9B9B /* noImage.png */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
@@ -932,6 +934,9 @@
 		F0D1512014EA329F006C1978 /* SPOrientationChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOrientationChooser.m; sourceTree = "<group>"; };
 		F0DB12CF14FA9603008F81A0 /* SPStyledSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledSegmentedControl.h; sourceTree = "<group>"; };
 		F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyledSegmentedControl.m; sourceTree = "<group>"; };
+		F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icebreaker-MyProfileTall.png"; path = "../../Resources/icebreaker-MyProfileTall.png"; sourceTree = "<group>"; };
+		F0DF78F015EB1BE300EE492D /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
+		F0DF78F115EB1BE300EE492D /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		F0E04CE614BFF348007F9B9B /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noImage.png; path = ../../Resources/noImage.png; sourceTree = "<group>"; };
 		F0E4521614BC082000CDC3D2 /* SPUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserViewController.h; sourceTree = "<group>"; };
 		F0E4521714BC082000CDC3D2 /* SPUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserViewController.m; sourceTree = "<group>"; };
@@ -1049,6 +1054,7 @@
 				F0207AAA14C66A0200330FF0 /* Cards */,
 				F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */,
 				759008DC14FD73EA00009E86 /* arrow.png */,
+				F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */,
 				75A38B9B14E9B004000F00DF /* noImage-Block.png */,
 				7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */,
 				7577B1A215DD927000B15B15 /* icon_Close.png */,
@@ -1567,13 +1573,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		75CA53CA14CF5F8200C36F35 /* Compose Screen */ = {
+		75CA53CA14CF5F8200C36F35 /* Chat Screen */ = {
 			isa = PBXGroup;
 			children = (
 				75CA53CB14CF5FB900C36F35 /* SPComposeViewController.h */,
 				75CA53CC14CF5FB900C36F35 /* SPComposeViewController.m */,
 			);
-			name = "Compose Screen";
+			name = "Chat Screen";
 			sourceTree = "<group>";
 		};
 		75CEB1C914B6448700936001 /* Locations */ = {
@@ -1641,7 +1647,7 @@
 				75E7E02014B3C22F005C70B4 /* Tabs & Pages */,
 				751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
-				75CA53CA14CF5F8200C36F35 /* Compose Screen */,
+				75CA53CA14CF5F8200C36F35 /* Chat Screen */,
 				F01B800314CCF2B1009FA39D /* User Screen */,
 				750E482814C62F7300F7CCFC /* Mesages Screen */,
 				F0C178D11491C27600F72809 /* Profile Screen */,
@@ -1922,6 +1928,7 @@
 		F0C176861491B80000F72809 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F0DF78EF15EB1BE300EE492D /* DAKeyboardControl */,
 				75B4AA3215D44F8700745137 /* NAMapKit */,
 				F0C0B35C14F74013007BEB13 /* CurledView */,
 				F003DB7914ECB2F300BD6309 /* TouchJSON */,
@@ -2355,6 +2362,16 @@
 			name = "Styled Segmented Control";
 			sourceTree = "<group>";
 		};
+		F0DF78EF15EB1BE300EE492D /* DAKeyboardControl */ = {
+			isa = PBXGroup;
+			children = (
+				F0DF78F015EB1BE300EE492D /* DAKeyboardControl.h */,
+				F0DF78F115EB1BE300EE492D /* DAKeyboardControl.m */,
+			);
+			name = DAKeyboardControl;
+			path = Libraries/DAKeyboardControl;
+			sourceTree = SOURCE_ROOT;
+		};
 		F0F7CEA514C92567009C7DF8 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2627,6 +2644,7 @@
 				F04A0E7B15DDF1E90043FADC /* Camera-SnapButton.png in Resources */,
 				F04A0E7E15DE009A0043FADC /* Parchment-Right-Camera.png in Resources */,
 				7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */,
+				F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2796,6 +2814,7 @@
 				757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */,
 				757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */,
 				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
+				F0DF78F215EB1BE300EE492D /* DAKeyboardControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

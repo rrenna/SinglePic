@@ -148,10 +148,10 @@
 #pragma mark - Private methods
 -(void)setLabel
 {
-    CGRect progressStatusRect = CGRectMake(0, 0, CGRectGetWidth(self.frame) - 30, CGRectGetHeight(self.frame));
+    CGRect progressStatusRect = CGRectMake(0, 1, CGRectGetWidth(self.frame) - 35, CGRectGetHeight(self.frame));
     progressLabel = [[UILabel alloc] initWithFrame:progressStatusRect];
     progressLabel.backgroundColor = [UIColor clearColor];
-    progressLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:12];
+    progressLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:11];
     progressLabel.textAlignment = UITextAlignmentRight;
     progressLabel.textColor = [UIColor whiteColor];
     progressLabel.shadowColor = [UIColor blackColor];

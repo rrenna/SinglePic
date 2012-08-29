@@ -21,6 +21,7 @@
 -(void)pushModalContentWithNotification:(NSNotification*)notification;
 -(void)pushModalControllerWithNotification:(NSNotification*)notification;
 -(void)setFullScreenWithNotification:(NSNotification*)notification;
+-(void)transformTabToFullscreenStatus:(BOOL)isFullscreen shouldAnimate:(BOOL)shouldAnimate;
 @end
 
 @implementation SPTabController
@@ -31,33 +32,12 @@
 #pragma mark - Dynamic Properties
 -(void)setFullscreen:(BOOL)fullscreen_
 {
-    fullscreen = fullscreen_;
-    
-    int tabViewLeft,contentViewLeft,contentViewWidth;
-    
-    if(fullscreen)
-    {
-        tabViewLeft = TAB_POS_LEFT_FULLSCREEN;
-        contentViewLeft = TAB_CONTENT_POS_LEFT_FULLSCREEN;
-        contentViewWidth = TAB_CONTENT_WIDTH_FULLSCREEN;
-    }
-    else
-    {
-        tabViewLeft = TAB_POS_LEFT_MAXIMIZED;
-        contentViewLeft = TAB_CONTENT_POS_LEFT;
-        contentViewWidth = TAB_CONTENT_WIDTH;
-    }
-
-    contentView.width = contentViewWidth;
-    contentView.left = contentViewLeft;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        self.view.left = tabViewLeft;
-    }];
+    _fullscreen = fullscreen_;
+    [self transformTabToFullscreenStatus:fullscreen_ shouldAnimate:YES];
 }
 -(BOOL)fullscreen
 {
-    return fullscreen;
+    return _fullscreen;
 }
 #pragma mark - View lifecycle
 -(id)initIsFullscreen:(BOOL)fullscreen_
@@ -65,9 +45,8 @@
     self = [self initWithNibName:@"SPTabController" bundle:nil];
     if(self)
     {
-        fullscreen = fullscreen_;
         pages = [NSMutableArray new];
-        fullscreen = fullscreen_;
+        _fullscreen = fullscreen_;
     }
     return self;
 }
@@ -75,7 +54,7 @@
 {
     [super viewDidLoad];
     self.view.left = TAB_POS_LEFT_OFFSCREEN;
-    self.fullscreen = fullscreen;
+    self.fullscreen = _fullscreen;
 }
 -(void)dealloc
 {
@@ -85,8 +64,18 @@
 }
 -(void)maximize
 {
-    int originOffset = -self.view.left + TAB_POS_LEFT_MAXIMIZED;    
-    [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished) 
+    [self maximizeIsFullscreen:NO];
+}
+-(void)maximizeIsFullscreen:(BOOL)fullscreen
+{
+    int offset = (fullscreen) ? TAB_POS_LEFT_FULLSCREEN : TAB_POS_LEFT_MAXIMIZED;
+    _fullscreen = fullscreen;
+    
+    //Since this helper function will be setting the FULLSCREEN property, it does the 'right' things using this private method
+    [self transformTabToFullscreenStatus:fullscreen shouldAnimate:NO];
+    
+    int originOffset = -self.view.left + offset;
+    [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished)
      {
      }];
 }
@@ -179,6 +168,33 @@
 {
     id replacement = [notification.userInfo objectForKey:KEY_CONTENT];
     [self pushModalController:replacement];
+}
+-(void)transformTabToFullscreenStatus:(BOOL)isFullscreen shouldAnimate:(BOOL)shouldAnimate
+{
+    int tabViewLeft,contentViewLeft,contentViewWidth;
+    
+    if(isFullscreen)
+    {
+        tabViewLeft = TAB_POS_LEFT_FULLSCREEN;
+        contentViewLeft = TAB_CONTENT_POS_LEFT_FULLSCREEN;
+        contentViewWidth = TAB_CONTENT_WIDTH_FULLSCREEN;
+    }
+    else
+    {
+        tabViewLeft = TAB_POS_LEFT_MAXIMIZED;
+        contentViewLeft = TAB_CONTENT_POS_LEFT;
+        contentViewWidth = TAB_CONTENT_WIDTH;
+    }
+    
+    contentView.width = contentViewWidth;
+    contentView.left = contentViewLeft;
+    
+    if(shouldAnimate)
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.left = tabViewLeft;
+        }];
+    }
 }
 #pragma mark - Touch Handling
 -(int)snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition

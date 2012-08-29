@@ -109,7 +109,7 @@
     [iconView setImage:[UIImage imageNamed:iconSelectedFileName] forState:UIControlStateSelected];
     [buttonIcons addObject:iconView];
     //Label
-    UILabel* buttonLabel = [[[UILabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width),floor(iconView.height))] autorelease];
+    UILabel* buttonLabel = [[[UILabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))] autorelease];
     buttonLabel.backgroundColor = [UIColor clearColor];
     buttonLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:11];
     buttonLabel.textAlignment = UITextAlignmentCenter;

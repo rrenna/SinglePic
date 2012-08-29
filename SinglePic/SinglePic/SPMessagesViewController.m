@@ -115,7 +115,7 @@
     SPMessageThread* messageThread = [messageThreads objectAtIndex:indexPath.row];
     
     SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
-    [baseController pushProfileWithID:messageThread.userID profileMode:NO];
+    [baseController pushChatWithID:messageThread.userID];
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {

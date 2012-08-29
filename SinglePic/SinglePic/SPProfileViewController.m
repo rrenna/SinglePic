@@ -20,15 +20,13 @@
 
 @interface SPProfileViewController()
 @property (retain) SPProfile* profile;
-@property (retain) SPMessageThread* thread;
 @property (retain) UIImage* avatar;
 -(void)profileLoaded;
--(void)reload;
 @end
 
 @implementation SPProfileViewController
 @synthesize delegate;
-@synthesize profile,thread,avatar;//Private
+@synthesize profile,avatar;//Private
 
 #pragma mark - View lifecycle
 -(id)initWithProfile:(SPProfile*)profile_
@@ -37,11 +35,6 @@
     if(self)
     {
         self.profile = profile_;
-        
-        if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_PROFILE)
-        {
-            self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:profile_.identifier];
-        }
     }
     return self;
 }
@@ -50,10 +43,6 @@
     self = [self init];
     if(self)
     {
-        if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_PROFILE)
-        {
-            self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:identifier];
-        }
         
         [[SPProfileManager sharedInstance] retrieveProfile:identifier withCompletionHandler:^
         (SPProfile *profile) 
@@ -73,10 +62,7 @@
     self = [self initWithNibName:@"SPProfileViewController" bundle:nil];
     if(self)
     {
-        profileMode = YES;
-        //Signup for notification on message sent/recieved
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:NOTIFICATION_MESSAGE_SENT object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
+
     }
     return self;
 }
@@ -103,10 +89,7 @@
 }
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MESSAGE_SENT object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     [profile release];
-    [thread release];
     [avatar release];
     [super dealloc];
 }
@@ -160,47 +143,23 @@
     UIEdgeInsets inset = historyTable.scrollIndicatorInsets;
     CGPoint offfset = historyTable.contentOffset;
     
-    if(profileMode)
-    {
-        inset.top = SCROLLVIEW_MIN_INSET;
-        
-        imageView.frame = imageMinimizedRect;
-        imageBackgroundStyledView.hidden = YES;
-        profileContentView.frame = cardMinimizedRect;
-        
-        historyTable.contentInset = inset;
-        historyTable.scrollIndicatorInsets = inset;
-        historyTable.alpha = 1.0;
-        icebreakerLabel.alpha = 0.0;
-        bubbleImage.alpha = 0.0;
-        messageTipLabel.alpha = 1.0;
-        profileContentView.alpha = 1.0;
-        
-        [modeButton setTitle:@"Profile" forState:UIControlStateNormal];
-    }
-    else
-    {
-        inset.top = SCROLLVIEW_MAX_INSET;
-
-        imageView.frame = imageMaximizedRect;
-        imageBackgroundStyledView.hidden = NO;
-        profileContentView.frame = cardMaximizedRect;
-        
-        //historyTable.contentInset = inset;
-        //historyTable.scrollIndicatorInsets = inset;
-        
-        offfset.y -= SCROLLVIEW_MAX_INSET;
-        //historyTable.contentOffset = offfset;
-        historyTable.alpha = 0.0;
-        icebreakerLabel.alpha = 1.0;
-        bubbleImage.alpha = 1.0;
-        messageTipLabel.alpha = 0.0;
-        profileContentView.alpha = 0.0;
-        
-        [modeButton setTitle:@"Messages" forState:UIControlStateNormal];
-    }
+ 
+    inset.top = SCROLLVIEW_MIN_INSET;
     
-    profileMode = !profileMode;
+    imageView.frame = imageMinimizedRect;
+    imageBackgroundStyledView.hidden = YES;
+    profileContentView.frame = cardMinimizedRect;
+    
+    historyTable.contentInset = inset;
+    historyTable.scrollIndicatorInsets = inset;
+    historyTable.alpha = 1.0;
+    icebreakerLabel.alpha = 0.0;
+    bubbleImage.alpha = 0.0;
+    messageTipLabel.alpha = 1.0;
+    profileContentView.alpha = 1.0;
+    
+    [modeButton setTitle:@"Profile" forState:UIControlStateNormal];
+ 
     [UIView commitAnimations];
 }
 #pragma mark - Private methods
@@ -241,16 +200,6 @@
          
      }];
 }
--(void)reload
-{
-    //If there was no open thread with this user, and we've messaged them for the first time, we need to retrieve the thread object created fist
-    if(!self.thread)
-    {
-        self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
-    }
-    
-    [historyTable reloadData];
-}
 #pragma mark - ComposeViewDelegate methods
 -(NSString*)targetUserIDForComposeView:(SPComposeViewController*)composeView
 {
@@ -263,74 +212,5 @@
 -(BOOL)composeView:(SPComposeViewController*)composeView shouldSendMessage:(NSString*)message toUserID:(NSString*)userID
 {
     return YES;
-}
-#pragma mark - UITableViewDatasource and UITableViewDelegate methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    int count;
-    if(self.thread)
-    {
-        count = [thread.messages count];
-    }
-    else 
-    {
-        count = 0;
-    }
-
-    messageTipLabel.hidden = (count != 0);
-    return count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray* sortedMessagesForThread = [thread sortedMessages];
-    SPMessage* message = [sortedMessagesForThread objectAtIndex:indexPath.row];
-    
-    CGSize size = [SPMessageView heightForMessageBody:message.content withWidth:tableView.frame.size.width - 28 - 20];
-    return size.height + 50;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-    NSArray* sortedMessagesForThread = [thread sortedMessages];
-    SPMessage* message = [sortedMessagesForThread objectAtIndex:indexPath.row];
-    
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
-    cell.width = tableView.width;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    //The lates message is used to represent the object
-    if(message)
-    {
-        UILabel* timestampLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, 25)] autorelease];
-        timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:message.date] ];
-        timestampLabel.font = [UIFont systemFontOfSize:8];
-        timestampLabel.backgroundColor = [UIColor clearColor];
-        timestampLabel.textColor = [UIColor lightGrayColor];
-        timestampLabel.shadowColor = [UIColor whiteColor];
-        timestampLabel.textAlignment = UITextAlignmentCenter;
-        timestampLabel.shadowOffset = CGSizeMake(1, 1);
-        
-        CGRect messageFrame;
-        if([message.incoming boolValue])
-        {
-            //If incoming message
-            messageFrame = CGRectMake(15, 20, cell.contentView.frame.size.width - 28, cell.contentView.frame.size.height - 25);
-        }
-        else 
-        {
-            //If outgoing message
-            messageFrame = CGRectMake(0, 20, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
-
-        }
-        
-        
-        SPMessageView* messageView = [[[SPMessageView alloc] initWithFrame:messageFrame] autorelease];
-        [messageView setContent:message.content];
-        
-        [cell.contentView addSubview:timestampLabel];
-        [cell.contentView addSubview:messageView];
-    }
-    
-    return cell;
 }
 @end

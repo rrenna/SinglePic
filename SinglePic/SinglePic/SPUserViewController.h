@@ -21,6 +21,7 @@
     //User Profile
     IBOutlet UIView* userProfileView;
     IBOutlet UIImageView* avatarImageView;
+    IBOutlet UILabel *usernameLabel;
     IBOutlet UILabel* icebreakerLabel;
     IBOutlet SPStyledButton* retakePhotoButton;
     IBOutlet SPStyledButton* editIcebreakerButton;

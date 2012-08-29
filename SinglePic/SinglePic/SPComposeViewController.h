@@ -23,12 +23,17 @@
     IBOutlet SPStyledView* topBarView;
     IBOutlet UIImageView* imageView;
     IBOutlet SPStyledView* writingPadView;
+    IBOutlet UITableView *tableView;
+    IBOutlet UITextField *textField;
     IBOutlet UITextView* textView;
     IBOutlet SPStyledButton* cancelButton;
     IBOutlet SPStyledButton* sendButton;
+    IBOutlet UIToolbar *toolbar;
 }
 @property (assign) id<ComposeViewDelegate> delegate;
 
+-(id)initWithIdentifier:(NSString*)identifier;
+-(id)initWithProfile:(SPProfile*)profile;
 -(id)initWithDelegate:(id<ComposeViewDelegate>)delegate;
 //IBActions
 -(IBAction)cancel:(id)sender;

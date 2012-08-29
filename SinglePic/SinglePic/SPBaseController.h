@@ -67,8 +67,8 @@ typedef enum
 // Profiles
 -(void)pushProfile:(SPProfile*)profile;
 -(void)pushProfileWithID:(NSString*)profileID;
--(void)pushProfile:(SPProfile*)profile profileMode:(BOOL)isProfileMode;
--(void)pushProfileWithID:(NSString*)profileID profileMode:(BOOL)isProfileMode;
+-(void)pushChatWithProfile:(SPProfile*)profile;
+-(void)pushChatWithID:(NSString*)profileID;
 // Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type;
 //Status bar customization
