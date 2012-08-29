@@ -7,7 +7,7 @@
 //
 
 #import "SPComposeViewController.h"
-#import "DAKeyboardControl.h"
+//#import "DAKeyboardControl.h"
 #import "SPMessageManager.h"
 #import "SPMessage.h"
 #import "SPStyledButton.h"
@@ -18,6 +18,8 @@
 @property (retain) SPProfile* profile;
 -(void) profileLoaded;
 @end
+
+static float FingerGrabHandleSize = 20.0f;
 
 @implementation SPComposeViewController
 @synthesize delegate;
@@ -106,14 +108,16 @@
     UIImage* avatar = [delegate targetUserImageForComposeView:self];
     imageView.image = avatar;
     
+    /*
     self.view.keyboardTriggerOffset = toolbar.bounds.size.height;
     
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-     
-        //Try not to call "self" inside this block (retain cycle).
-        //But if you do, make sure to remove DAKeyboardControl
-        //when you are done with the view controller by calling:
-        //[self.view removeKeyboardControl];
+        
+         //Try not to call "self" inside this block (retain cycle).
+         //But if you do, make sure to remove DAKeyboardControl
+         //when you are done with the view controller by calling:
+         //[self.view removeKeyboardControl];
+        
         
         CGRect toolBarFrame = toolbar.frame;
         toolBarFrame.origin.y = keyboardFrameInView.origin.y - toolBarFrame.size.height;
@@ -124,6 +128,17 @@
         tableView.frame = tableViewFrame;
 
     }];
+     */
+    
+    //[tableView setCanCancelContentTouches:NO];
+    //[tableView setExclusiveTouch:NO];
+    
+    // always know which keyboard is selected
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textfieldWasSelected:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    
+    // register for when a keyboard pops up
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
 }
@@ -160,6 +175,126 @@
 {
     self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
     [tableView reloadData];
+}
+- (void)textfieldWasSelected:(NSNotification *)notification {
+    textField = notification.object;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    // To remove the animation for the keyboard dropping showing
+    // we have to hide the keyboard, and on will show we set it back.
+    keyboard.hidden = NO;
+    
+    CGRect keyboardEndFrameWindow;
+    [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardEndFrameWindow];
+    
+    double keyboardTransitionDuration;
+    [[notification.userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&keyboardTransitionDuration];
+    
+    UIViewAnimationCurve keyboardTransitionAnimationCurve;
+    [[notification.userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&keyboardTransitionAnimationCurve];
+
+    CGRect keyboardEndFrameView = [self.view convertRect:keyboardEndFrameWindow fromView:nil];
+    
+    [UIView animateWithDuration:keyboardTransitionDuration
+        delay:0.0f
+        options:keyboardTransitionAnimationCurve
+        animations:^{                        
+             CGRect toolBarFrame = toolbar.frame;
+             toolBarFrame.origin.y = keyboardEndFrameView.origin.y - toolBarFrame.size.height;
+             toolbar.frame = toolBarFrame;
+             
+             CGRect tableViewFrame = tableView.frame;
+             tableViewFrame.size.height = toolBarFrame.origin.y;
+             tableView.frame = tableViewFrame;  
+        }
+        completion:^(BOOL finished){}
+     ];
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notification {
+    if(keyboard) return;
+    
+    //Because we cant get access to the UIKeyboard throught the SDK we will just use UIView.
+    //UIKeyboard is a subclass of UIView anyways
+    //see discussion http://www.iphonedevsdk.com/forum/iphone-sdk-development/6573-howto-customize-uikeyboard.html
+    
+    UIWindow* tempWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:1];
+    for(int i = 0; i < [tempWindow.subviews count]; i++) {
+        UIView *possibleKeyboard = [tempWindow.subviews objectAtIndex:i];
+        if([[possibleKeyboard description] hasPrefix:@"<UIPeripheralHostView"] == YES){
+            keyboard = possibleKeyboard;
+            return;
+        }
+    }
+}
+
+-(void)panGesture:(UIPanGestureRecognizer *)gestureRecognizer {
+    CGPoint location = [gestureRecognizer locationInView:[self view]];
+    CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+    
+    if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        originalKeyboardY = keyboard.frame.origin.y;
+    }
+    
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded){
+        if (velocity.y > 0) {
+            [self animateKeyboardOffscreen];
+        }else{
+            [self animateKeyboardReturnToOriginalPosition];
+        }
+        return;
+    }
+    
+   CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + toolbar.frame.size.height) + FingerGrabHandleSize;
+    //NSLog(@"%f",spaceAboveKeyboard);
+    
+     if (location.y < spaceAboveKeyboard) {
+         
+         NSLog(@"invalid!");
+         
+        return;
+    }
+    
+    CGRect newFrame = keyboard.frame;
+    CGFloat newY = originalKeyboardY + (location.y - spaceAboveKeyboard);
+    newY = MAX(newY, originalKeyboardY);
+    newFrame.origin.y = newY;
+    
+    [keyboard setFrame: newFrame];
+    
+    CGRect toolBarFrame = toolbar.frame;
+    toolBarFrame.origin.y = keyboard.frame.origin.y - FingerGrabHandleSize;
+    
+    [UIView animateWithDuration:0.0 animations:^{
+            [toolbar setFrame: toolBarFrame];
+    }];
+
+}
+
+- (void)animateKeyboardOffscreen {
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         CGRect newFrame = keyboard.frame;
+                         newFrame.origin.y = keyboard.window.frame.size.height;
+                         [keyboard setFrame: newFrame];
+                     }
+     
+                     completion:^(BOOL finished){
+                         keyboard.hidden = YES;
+                         [textField resignFirstResponder];
+                     }];
+}
+
+- (void)animateKeyboardReturnToOriginalPosition {
+    [UIView beginAnimations:nil context:NULL];
+    CGRect newFrame = keyboard.frame;
+    newFrame.origin.y = originalKeyboardY;
+    [keyboard setFrame: newFrame];
+    [UIView commitAnimations];
 }
 #pragma mark - UITableViewDatasource and UITableViewDelegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

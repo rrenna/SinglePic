@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "SPPageContentViewController.h"
+#import "SPKeyboardDragTableView.h"
 #import "SPStyledView.h"
 
 @class SPComposeViewController,SPStyledButton;
 
-@protocol ComposeViewDelegate <NSObject>
+@protocol ComposeViewDelegate <NSObject> 
 -(NSString*)targetUserIDForComposeView:(SPComposeViewController*)composeView;
 -(UIImage*)targetUserImageForComposeView:(SPComposeViewController*)composeView;
 -(BOOL)composeView:(SPComposeViewController*)composeView shouldSendMessage:(NSString*)message toUserID:(NSString*)userID;
 @end
 
-@interface SPComposeViewController : SPPageContentViewController
+@interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource>
 {
     IBOutlet SPStyledView* topBarView;
     IBOutlet UIImageView* imageView;
@@ -29,6 +30,10 @@
     IBOutlet SPStyledButton* cancelButton;
     IBOutlet SPStyledButton* sendButton;
     IBOutlet UIToolbar *toolbar;
+    @private
+    UIView* keyboard;
+    int originalKeyboardY;
+    int originalLocation;
 }
 @property (assign) id<ComposeViewDelegate> delegate;
 
