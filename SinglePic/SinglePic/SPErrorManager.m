@@ -8,6 +8,7 @@
 
 #import "SPErrorManager.h"
 #import "SPWebServiceErrorProfile.h"
+#import "LoggerClient.h"
 
 @interface SPErrorManager()
 -(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting;
@@ -20,7 +21,6 @@
     self = [super init];
     if(self)
     {
-        
         //We setup profiles of errors which are understood and can be displayed with static information and special functionality (if required)
         
         //Registration Errors
@@ -71,13 +71,28 @@
 }
 -(void)logError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
 {   
+    #if defined (DEBUG)
+    //Log the error using NSLogger - if debugging
+    NSString* errorInfo = nil;
+    
+    if([error userInfo]) {
+        errorInfo = [[error userInfo] objectForKey:@"error"];
+    }
+    if(!errorInfo)
+    {
+        errorInfo = @"";
+    }
+    
+    LogMessage([error domain], 0, errorInfo);
+    #endif
+    
     BOOL handled = NO;
     for(SPWebServiceErrorProfile* errorProfile in knownErrors)
     {
         if([errorProfile evaluateError:error])
         {
             [errorProfile handle];
-            //Set flag 
+                //Set flag
             handled = YES;
             break;
         }

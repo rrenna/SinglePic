@@ -371,6 +371,7 @@
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; };
 		F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */; };
 		F0DF78F215EB1BE300EE492D /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F115EB1BE300EE492D /* DAKeyboardControl.m */; };
+		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
 		F0E04CE714BFF348007F9B9B /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E04CE614BFF348007F9B9B /* noImage.png */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
@@ -937,6 +938,9 @@
 		F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icebreaker-MyProfileTall.png"; path = "../../Resources/icebreaker-MyProfileTall.png"; sourceTree = "<group>"; };
 		F0DF78F015EB1BE300EE492D /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
 		F0DF78F115EB1BE300EE492D /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
+		F0DF78F415EDA35800EE492D /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
+		F0DF78F515EDA35800EE492D /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
+		F0DF78F715EDA39400EE492D /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
 		F0E04CE614BFF348007F9B9B /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noImage.png; path = ../../Resources/noImage.png; sourceTree = "<group>"; };
 		F0E4521614BC082000CDC3D2 /* SPUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserViewController.h; sourceTree = "<group>"; };
 		F0E4521714BC082000CDC3D2 /* SPUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserViewController.m; sourceTree = "<group>"; };
@@ -1928,6 +1932,7 @@
 		F0C176861491B80000F72809 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F0DF78F315EDA35800EE492D /* NSLogger */,
 				F0DF78EF15EB1BE300EE492D /* DAKeyboardControl */,
 				75B4AA3215D44F8700745137 /* NAMapKit */,
 				F0C0B35C14F74013007BEB13 /* CurledView */,
@@ -2370,6 +2375,17 @@
 			);
 			name = DAKeyboardControl;
 			path = Libraries/DAKeyboardControl;
+			sourceTree = SOURCE_ROOT;
+		};
+		F0DF78F315EDA35800EE492D /* NSLogger */ = {
+			isa = PBXGroup;
+			children = (
+				F0DF78F715EDA39400EE492D /* LoggerCommon.h */,
+				F0DF78F415EDA35800EE492D /* LoggerClient.h */,
+				F0DF78F515EDA35800EE492D /* LoggerClient.m */,
+			);
+			name = NSLogger;
+			path = Libraries/NSLogger;
 			sourceTree = SOURCE_ROOT;
 		};
 		F0F7CEA514C92567009C7DF8 /* Tabs */ = {
@@ -2815,6 +2831,7 @@
 				757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */,
 				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
 				F0DF78F215EB1BE300EE492D /* DAKeyboardControl.m in Sources */,
+				F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
