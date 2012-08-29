@@ -405,14 +405,7 @@ BOOL validatePasswords(NSString* password, NSString* confirm, NSString **hint) {
             confirmPasswordField.textColor = passwordField.textColor;
         }
         
-        if(userNameFieldValid && emailFieldValid && passwordsValid)
-        {
-            [nextButton setEnabled:YES];
-        }
-        else
-        {
-            [nextButton setEnabled:NO];
-        }
+        nextButton.enabled = (userNameFieldValid && emailFieldValid && passwordsValid);
     }
     
     return YES;

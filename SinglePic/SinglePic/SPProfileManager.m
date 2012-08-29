@@ -565,6 +565,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                                                                                       (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                       kCFStringEncodingUTF8 );
     
+    
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject) 
     {
         #if defined (TESTING)
