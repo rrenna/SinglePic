@@ -56,12 +56,13 @@
     [errors release];
     [super dealloc];
 }
-
 #pragma mark
 -(void)alertWithTitle:(NSString*)title Description:(NSString*)description
 {
-    NSDictionary* infoDictionary = [NSDictionary dictionaryWithObjectsAndKeys:title,NSLocalizedFailureReasonErrorKey,description,NSLocalizedDescriptionKey,nil];
-    NSError* alertError = [NSError errorWithDomain:@"" code:0 userInfo:infoDictionary];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+
+    [alert show];
+    [alert release];
 }
 -(void)logError:(NSError*)error alertUser:(BOOL)alertUser
 {

@@ -21,7 +21,6 @@
     
     //Step 1
     IBOutlet UIView* stepOneView;
-    IBOutlet UITableView* bucketTable;
     //Step 2
     IBOutlet UIView* stepTwoView;
     //Step 3

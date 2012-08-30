@@ -81,8 +81,6 @@ static float minimizedToolbarY = 410.0f;
     
     [topBarView setStyle:STYLE_PAGE];
     [topBarView setDepth:DEPTH_OUTSET];
-    [cancelButton setStyle:STYLE_TAB];
-    
     [sendButton setStyle:STYLE_CONFIRM_BUTTON];
     
     //Signup for notification on message recieved (reload will be called directly by the send button handler)
@@ -109,7 +107,6 @@ static float minimizedToolbarY = 410.0f;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events
     
-    [textView resignFirstResponder];
     [self setFullscreen:NO];
     [self close];
 }

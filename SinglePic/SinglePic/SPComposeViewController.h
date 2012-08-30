@@ -20,14 +20,11 @@
     IBOutlet UILabel *usernameLabel;
     IBOutlet UITableView *tableView;
     IBOutlet UITextField *textField;
-    IBOutlet UITextView* textView;
-    IBOutlet SPStyledButton* cancelButton;
     IBOutlet SPStyledButton* sendButton;
     IBOutlet UIToolbar *toolbar;
     @private
     UIView* keyboard;
     int originalKeyboardY;
-    int originalLocation;
 }
 -(id)initWithIdentifier:(NSString*)identifier;
 -(id)initWithProfile:(SPProfile*)profile;

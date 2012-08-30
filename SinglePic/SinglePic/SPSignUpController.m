@@ -72,15 +72,15 @@
 {
     if(step == 3)
     {
-        step = 2;
         [self transitionToStep:2];
+        step = 2;
     }
     else if(step == 2)
     {
         [self close]; //TEMP: Removed step 1
         
-        //step = 1;
         //[self transitionToStep:1];
+        //step = 1;
     }
     else
     {
@@ -91,8 +91,8 @@
 {
     if(step == 1)
     {
+        [self transitionToStep:2];
         step = 2;
-        [self transitionToStep:step];
     }
     //Transition to step 2
     else if(step == 2)
@@ -101,8 +101,8 @@
         [[SPProfileManager sharedInstance] setMyAnnonymousGender:orientationChooser.chosenGender];
         [[SPProfileManager sharedInstance] setMyAnnonymousPreference:orientationChooser.chosenPreference];
         
+        [self transitionToStep:3];
         step = 3;
-        [self transitionToStep:step];
     }
     else
     {
@@ -154,7 +154,22 @@
 //Transition to the next step
 -(void)transitionToStep:(int)_step
 {
-    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    //Going backwards, move content left to right
+    CGFloat offset = (_step > step) ? -400 : 400;
+    UIView* newView = nil;
+    
+    for(UIView* subview in contentView.subviews)
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            subview.left += offset;
+            
+        } completion:^(BOOL finished) {
+            
+            [subview removeFromSuperview];
+            subview.left -= offset;
+        }];
+    }
     
     if(_step == 1)
     {
@@ -163,7 +178,7 @@
         /*
         nextButton.enabled = NO;
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
-        [contentView addSubview:stepOneView];
+        newView = stepOneView;
          */
         
         step = 2;
@@ -173,21 +188,34 @@
     {
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
         [nextButton setEnabled:YES];
-        [contentView addSubview:stepTwoView];
+        newView = stepTwoView;
         
     }
     else if(_step == 3)
     {
         [nextButton setStyle:STYLE_CONFIRM_BUTTON];
         [nextButton setEnabled:NO];
-        [contentView addSubview:stepThreeView];
+        newView = stepThreeView;
         
         [userNameField becomeFirstResponder]; //Launch keyboard, edit user name field
     }
+    
+    //Slide out old content
+    if(newView)
+    {
+        [contentView addSubview:newView];
+        
+        newView.left -= offset;
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            newView.left += offset;
+            
+        }];
+    }
+
 }
 -(void)stepOneInitialization
 {
-        //
 }
 -(void)stepTwoInitialization
 {
