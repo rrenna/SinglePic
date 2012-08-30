@@ -9,10 +9,11 @@
 #import "SPProfile.h"
 
 #define PROFILE_IDENTIFIER_KEY @"id"
+#define PROFILE_USERNAME_KEY @"username"
 
 @interface SPProfile() 
 @property (retain) UIImage* _thumbnail;
--(BOOL)_checkIsValid;
+-(BOOL)_checkIsValid:(NSDictionary*) data;
 @end
 
 @implementation SPProfile
@@ -37,12 +38,17 @@
 -(NSString*)identifier
 {
     NSString* idObject = [_data objectForKey:PROFILE_IDENTIFIER_KEY];
-    if([idObject isMemberOfClass:[NSNull class]])
-    {
-        //Prevents a crash when no icebreaker is set
-        idObject = @"";
-    }
     return idObject;
+}
+-(NSString*)username
+{
+    NSString* usernameObject = [_data objectForKey:PROFILE_USERNAME_KEY];
+    if([usernameObject isMemberOfClass:[NSNull class]])
+    {
+        //Prevents a crash when no username is set
+        usernameObject = @"";
+    }
+    return usernameObject;
 }
 -(GENDER)gender
 {

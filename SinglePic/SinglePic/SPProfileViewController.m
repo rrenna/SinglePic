@@ -70,9 +70,6 @@
 {
     [super viewDidLoad];
     //Set Look and Feel
-    [profileContentView setStyle:STYLE_WHITE];
-    [profileContentView setDepth:DEPTH_OUTSET];
-    
     [communicateButton setStyle:STYLE_CONFIRM_BUTTON];
     [likeButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
     [bottomBarView setStyle:STYLE_PAGE];
@@ -91,6 +88,7 @@
 {
     [profile release];
     [avatar release];
+    [usernameLabel release];
     [super dealloc];
 }
 #pragma mark - IBActions
@@ -126,42 +124,6 @@
          }];
     }
 }
--(IBAction)expandChat:(id)sender
-{
-    #define SCROLLVIEW_MAX_INSET 215
-    #define SCROLLVIEW_MIN_INSET 0
-    static CGRect cardMaximizedRect = {54,6,245,260};
-    static CGRect cardMinimizedRect = {53,5,244,84};
-    static CGRect imageMaximizedRect = {59, 39, 235, 222};
-    static CGRect imageMinimizedRect = {62, 14, 68, 68};
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.4];
-    [UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-
-    UIEdgeInsets inset = historyTable.scrollIndicatorInsets;
-    CGPoint offfset = historyTable.contentOffset;
-    
- 
-    inset.top = SCROLLVIEW_MIN_INSET;
-    
-    imageView.frame = imageMinimizedRect;
-    imageBackgroundStyledView.hidden = YES;
-    profileContentView.frame = cardMinimizedRect;
-    
-    historyTable.contentInset = inset;
-    historyTable.scrollIndicatorInsets = inset;
-    historyTable.alpha = 1.0;
-    icebreakerLabel.alpha = 0.0;
-    bubbleImage.alpha = 0.0;
-    messageTipLabel.alpha = 1.0;
-    profileContentView.alpha = 1.0;
-    
-    [modeButton setTitle:@"Profile" forState:UIControlStateNormal];
- 
-    [UIView commitAnimations];
-}
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
@@ -172,6 +134,7 @@
     communicateButton.enabled = YES;
     
     //Fill in profile details
+    usernameLabel.text = [profile username];
     icebreakerLabel.text = [profile icebreaker];
     
     //Set image age
@@ -199,5 +162,10 @@
      {
          
      }];
+}
+- (void)viewDidUnload {
+    [usernameLabel release];
+    usernameLabel = nil;
+    [super viewDidUnload];
 }
 @end

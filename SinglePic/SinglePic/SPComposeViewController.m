@@ -23,7 +23,7 @@
 @end
 
 static float FingerGrabHandleSize = 20.0f;
-static float minimizedToolbarY = 406.0f;
+static float minimizedToolbarY = 410.0f;
 
 @implementation SPComposeViewController
 @synthesize thread = _thread, profile = _profile; //private
@@ -67,6 +67,7 @@ static float minimizedToolbarY = 406.0f;
     [toolbar release];
     [textField release];
     [tableView release];
+    [usernameLabel release];
     [super dealloc];
 }
 - (void)viewDidLoad
@@ -81,9 +82,6 @@ static float minimizedToolbarY = 406.0f;
     [topBarView setStyle:STYLE_PAGE];
     [topBarView setDepth:DEPTH_OUTSET];
     [cancelButton setStyle:STYLE_TAB];
-    
-    [writingPadView setStyle:STYLE_WHITE];
-    [writingPadView setDepth:DEPTH_OUTSET];
     
     [sendButton setStyle:STYLE_CONFIRM_BUTTON];
     
@@ -141,6 +139,8 @@ static float minimizedToolbarY = 406.0f;
     self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
     [tableView reloadData];
     
+    
+    usernameLabel.text = self.profile.username;
     [self.profile retrieveThumbnailWithCompletionHandler:^(UIImage *thumbnail) {
         
         imageView.image = thumbnail;
@@ -395,5 +395,10 @@ static float minimizedToolbarY = 406.0f;
 {
     [self send:sendButton];
     return YES;
+}
+- (void)viewDidUnload {
+    [usernameLabel release];
+    usernameLabel = nil;
+    [super viewDidUnload];
 }
 @end

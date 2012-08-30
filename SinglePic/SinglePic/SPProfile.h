@@ -16,6 +16,7 @@
 }
 -(id)initWithData:(NSDictionary*)data;
 -(NSString*)identifier;
+-(NSString*)username;
 -(NSString*)icebreaker;
 -(NSDate*)timestamp;
 

@@ -16,14 +16,11 @@
 
 @interface SPProfileViewController : SPPageContentViewController <UITableViewDataSource,UITableViewDelegate>
 {
-    //Display
-    IBOutlet SPStyledView* profileContentView;
     IBOutlet UILabel* ageLabel;
     IBOutlet UIView* imageBackgroundStyledView;
     IBOutlet UIImageView* imageView; 
-    IBOutlet UILabel* messageTipLabel;
-    IBOutlet UITableView* historyTable;
     IBOutlet UIImageView* bubbleImage;
+    IBOutlet UILabel *usernameLabel;
     IBOutlet UILabel* icebreakerLabel;
     IBOutlet SPStyledView* bottomBarView;
     IBOutlet SPStyledButton* likeButton;
@@ -37,6 +34,5 @@
 
 -(IBAction)message:(id)sender;
 -(IBAction)like:(id)sender;
--(IBAction)expandChat:(id)sender;
 @end
 

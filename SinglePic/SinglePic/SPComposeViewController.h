@@ -17,7 +17,7 @@
 {
     IBOutlet SPStyledView* topBarView;
     IBOutlet UIImageView* imageView;
-    IBOutlet SPStyledView* writingPadView;
+    IBOutlet UILabel *usernameLabel;
     IBOutlet UITableView *tableView;
     IBOutlet UITextField *textField;
     IBOutlet UITextView* textView;

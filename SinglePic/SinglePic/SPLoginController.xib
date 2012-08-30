@@ -42,7 +42,8 @@
 					<object class="IBUIView" id="168326379">
 						<reference key="NSNextResponder" ref="512538306"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 14}, {310, 46}}</string>
+						<array class="NSMutableArray" key="NSSubviews"/>
+						<string key="NSFrame">{{5, 5}, {310, 46}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="173125152"/>
@@ -59,10 +60,10 @@
 					<object class="IBUIButton" id="567815949">
 						<reference key="NSNextResponder" ref="512538306"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{231, 21}, {76, 31}}</string>
+						<string key="NSFrame">{{231, 12}, {76, 31}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="787148548"/>
+						<reference key="NSNextKeyView" ref="278110410"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -99,7 +100,7 @@
 					<object class="IBUIButton" id="173125152">
 						<reference key="NSNextResponder" ref="512538306"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 21}, {76, 31}}</string>
+						<string key="NSFrame">{{13, 12}, {76, 31}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="567815949"/>
@@ -129,7 +130,6 @@
 						<string key="NSFrame">{{0, 178}, {305, 44}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="278110410"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -161,10 +161,10 @@
 						<reference key="NSNextResponder" ref="512538306"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{5, 64}, {310, 117}}</string>
+						<string key="NSFrame">{{-4, 59}, {328, 117}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="787148548"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -530,11 +530,6 @@
 						<string key="objectName">view</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="567815949"/>
-						<reference key="parent" ref="512538306"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">38</int>
 						<reference key="object" ref="278110410"/>
 						<array class="NSMutableArray" key="children"/>
@@ -591,6 +586,12 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">59</int>
 						<reference key="object" ref="168326379"/>
+						<array class="NSMutableArray" key="children"/>
+						<reference key="parent" ref="512538306"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="567815949"/>
 						<reference key="parent" ref="512538306"/>
 					</object>
 				</array>
@@ -616,13 +617,13 @@
 					<object class="NSMutableString" key="NSString">
 						<characters key="NS.bytes">test</characters>
 					</object>
-					<dictionary key="NSAttributes" id="1045792375">
+					<dictionary key="NSAttributes" id="154259774">
 						<object class="NSFont" key="NSFont">
 							<string key="NSName">LucidaGrande</string>
 							<double key="NSSize">11</double>
-							<int key="NSfFlags">3100</int>
+							<int key="NSfFlags">2329</int>
 						</object>
-						<object class="NSParagraphStyle" key="NSParagraphStyle">
+						<object class="NSMutableParagraphStyle" key="NSParagraphStyle">
 							<int key="NSAlignment">4</int>
 							<nil key="NSTabStops"/>
 						</object>
@@ -639,7 +640,7 @@
 					<object class="NSMutableString" key="NSString">
 						<characters key="NS.bytes">test</characters>
 					</object>
-					<reference key="NSAttributes" ref="1045792375"/>
+					<reference key="NSAttributes" ref="154259774"/>
 				</object>
 				<string key="6.object.labelIdentifier">IBBuiltInLabel-Yellow</string>
 				<boolean value="YES" key="6.showNotes"/>
