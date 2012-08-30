@@ -898,6 +898,8 @@ static int profileCounter = 0;
 }
 -(void)retrieveProfilesWithCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError
 {
+    [self restartProfiles];
+    
     double time = [[NSDate date] timeIntervalSince1970];
     //Rounded to nearest 100 seconds
     double roundedTime = round( time / 100.0 ) * 100.0;

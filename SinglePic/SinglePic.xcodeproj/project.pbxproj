@@ -198,6 +198,7 @@
 		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
 		F01C41F214C7CB6E0079EB18 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
+		F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F02505BC15F02407000D4546 /* libicucore.dylib */; };
 		F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */; };
 		F02642A214DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */; };
 		F02642A814DFA94E00E8D649 /* SPCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02642A614DFA94E00E8D649 /* SPCameraController.m */; };
@@ -640,6 +641,7 @@
 		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
 		F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = messageStorage.xcdatamodel; sourceTree = "<group>"; };
 		F01C41F614C7CEFE0079EB18 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F026429E14DF9F2100E8D649 /* SPIcebreakerComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPIcebreakerComposeViewController.h; sourceTree = "<group>"; };
 		F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPIcebreakerComposeViewController.m; sourceTree = "<group>"; };
 		F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPIcebreakerComposeViewController.xib; sourceTree = "<group>"; };
@@ -916,6 +918,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */,
 				F03F15DF14F931C300EAF11D /* AudioToolbox.framework in Frameworks */,
 				75D196F514ED910000A23654 /* MessageUI.framework in Frameworks */,
 				F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */,
@@ -1359,6 +1362,7 @@
 				F01C41F614C7CEFE0079EB18 /* CoreData.framework */,
 				F0C178AC1491C04800F72809 /* SystemConfiguration.framework */,
 				F0C177A91491BCD000F72809 /* libxml2.dylib */,
+				F02505BC15F02407000D4546 /* libicucore.dylib */,
 				F0C177A71491BCC900F72809 /* libz.dylib */,
 				F0C177A51491BC3600F72809 /* CFNetwork.framework */,
 				F0C177A31491BC3000F72809 /* MobileCoreServices.framework */,
@@ -2730,7 +2734,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "AE6881A6-1BED-4B08-B9C9-ED4FD0165D2B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2754,7 +2758,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2777,6 +2781,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2808,6 +2813,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -2842,7 +2848,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				MOMC_NO_INVERSE_RELATIONSHIP_WARNINGS = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2865,6 +2871,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;

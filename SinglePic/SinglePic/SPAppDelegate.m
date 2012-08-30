@@ -13,6 +13,7 @@
 #import "SPProfileManager.h"
 #import "SPSubscriptionsManager.h"
 
+
 //--NSUserDefault Keys--
 //Device Keys
 #define USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN @"USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN"
@@ -43,6 +44,7 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     #if defined (TESTING)
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     
