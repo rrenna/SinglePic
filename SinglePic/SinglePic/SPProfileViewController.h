@@ -10,12 +10,11 @@
 #import "SPStyledView.h"
 
 @class SPProfileViewController,SPCardView,SPStyledButton,SPProfile;
-@protocol ComposeViewDelegate;
 
 @protocol SPProfileViewDelegate <NSObject>
 @end
 
-@interface SPProfileViewController : SPPageContentViewController <ComposeViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface SPProfileViewController : SPPageContentViewController <UITableViewDataSource,UITableViewDelegate>
 {
     //Display
     IBOutlet SPStyledView* profileContentView;

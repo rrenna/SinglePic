@@ -81,6 +81,14 @@
         }
     }
     
+    //Create User Thread if inactive
+    if(!thread)
+    {
+        thread = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
+        thread.userID = userID;
+        thread.account = self.activeAccount;
+    }
+    
     return thread;
 }
 -(void)deleteMessageThread:(SPMessageThread*)thread
@@ -100,14 +108,6 @@
     {
         //Find the User Thread if active
         SPMessageThread* thread = [self getMessageThreadByUserID:userID];
-        
-        //Create User Thread if inactive
-        if(!thread)
-        {
-            thread = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
-            thread.userID = userID;
-            thread.account = self.activeAccount;
-        }
 
         //Create SPMessage
         SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];

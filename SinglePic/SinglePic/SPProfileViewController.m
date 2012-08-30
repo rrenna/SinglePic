@@ -96,7 +96,7 @@
 #pragma mark - IBActions
 -(IBAction)message:(id)sender
 {
-    SPComposeViewController* composeController = [[[SPComposeViewController alloc] initWithDelegate:self] autorelease];
+    SPComposeViewController* composeController = [[[SPComposeViewController alloc] initWithProfile:self.profile] autorelease];
     
     [self setFullscreen:YES];
     [self pushModalController:composeController];
@@ -199,18 +199,5 @@
      {
          
      }];
-}
-#pragma mark - ComposeViewDelegate methods
--(NSString*)targetUserIDForComposeView:(SPComposeViewController*)composeView
-{
-    return [self.profile identifier];
-}
--(UIImage*)targetUserImageForComposeView:(SPComposeViewController*)composeView
-{
-    return imageView.image;
-}
--(BOOL)composeView:(SPComposeViewController*)composeView shouldSendMessage:(NSString*)message toUserID:(NSString*)userID
-{
-    return YES;
 }
 @end

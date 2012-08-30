@@ -10,7 +10,6 @@
 #import "SPSignUpController.h"
 #import "SPLoginController.h"
 #import "SPErrorManager.h"
-#import "DDAlertPrompt.h"
 
 @interface SPRegistrationViewController()
 -(void)spawnRegistrationPrompt;

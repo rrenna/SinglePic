@@ -13,12 +13,6 @@
 
 @class SPComposeViewController,SPStyledButton;
 
-@protocol ComposeViewDelegate <NSObject> 
--(NSString*)targetUserIDForComposeView:(SPComposeViewController*)composeView;
--(UIImage*)targetUserImageForComposeView:(SPComposeViewController*)composeView;
--(BOOL)composeView:(SPComposeViewController*)composeView shouldSendMessage:(NSString*)message toUserID:(NSString*)userID;
-@end
-
 @interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource>
 {
     IBOutlet SPStyledView* topBarView;
@@ -35,11 +29,8 @@
     int originalKeyboardY;
     int originalLocation;
 }
-@property (assign) id<ComposeViewDelegate> delegate;
-
 -(id)initWithIdentifier:(NSString*)identifier;
 -(id)initWithProfile:(SPProfile*)profile;
--(id)initWithDelegate:(id<ComposeViewDelegate>)delegate;
 //IBActions
 -(IBAction)cancel:(id)sender;
 -(IBAction)send:(id)sender;

@@ -62,8 +62,6 @@
 {
     NSDictionary* infoDictionary = [NSDictionary dictionaryWithObjectsAndKeys:title,NSLocalizedFailureReasonErrorKey,description,NSLocalizedDescriptionKey,nil];
     NSError* alertError = [NSError errorWithDomain:@"" code:0 userInfo:infoDictionary];
-    
-    [self logError:alertError alertUser:YES allowReporting:NO];
 }
 -(void)logError:(NSError*)error alertUser:(BOOL)alertUser
 {
@@ -73,17 +71,15 @@
 {   
     #if defined (DEBUG)
     //Log the error using NSLogger - if debugging
+    NSString* errorType = nil;
     NSString* errorInfo = nil;
     
     if([error userInfo]) {
+        errorType = [[error userInfo] objectForKey:@"type"];
         errorInfo = [[error userInfo] objectForKey:@"error"];
     }
-    if(!errorInfo)
-    {
-        errorInfo = @"";
-    }
     
-    LogMessage([error domain], 0, errorInfo);
+    LogMessage([error domain], 0, @"type:%@ error:%@",errorType,errorInfo);
     #endif
     
     BOOL handled = NO;

@@ -17,13 +17,15 @@
 @property (retain) SPMessageThread* thread;
 @property (retain) SPProfile* profile;
 -(void) profileLoaded;
+-(void) reload;
+-(void) messageSent;
+-(void) scrollToBottom;
 @end
 
 static float FingerGrabHandleSize = 20.0f;
 static float minimizedToolbarY = 406.0f;
 
 @implementation SPComposeViewController
-@synthesize delegate;
 @synthesize thread = _thread, profile = _profile; //private
 
 #pragma mark - View lifecycle
@@ -53,36 +55,12 @@ static float minimizedToolbarY = 406.0f;
     if(self)
     {
         self.profile = profile_;
-        [self profileLoaded];
-    }
-    return self;
-}
--(id)initWithDelegate:(id<ComposeViewDelegate>)delegate_
-{
-    self = [self initWithNibName:@"SPComposeViewController" bundle:nil];
-    if(self)
-    {
-        self.delegate = delegate_;
-        
-        NSString* targetUserID = [delegate targetUserIDForComposeView:self];
-        self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:targetUserID];
-        
-            //TODO: Decide if RELOAD functionality is needed
-        /*
-         
-         //Signup for notification on message sent/recieved
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:NOTIFICATION_MESSAGE_SENT object:nil];
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-         [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MESSAGE_SENT object:nil];
-         [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-         
-         */
-        
     }
     return self;
 }
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self]; //Ensures we are not listening to any more events
     [[NSNotificationCenter defaultCenter] removeObserver:tableView name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     
     [_thread release];
@@ -94,6 +72,12 @@ static float minimizedToolbarY = 406.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if(self.profile)
+    {
+        [self profileLoaded];
+    }
+    
     [topBarView setStyle:STYLE_PAGE];
     [topBarView setDepth:DEPTH_OUTSET];
     [cancelButton setStyle:STYLE_TAB];
@@ -103,35 +87,9 @@ static float minimizedToolbarY = 406.0f;
     
     [sendButton setStyle:STYLE_CONFIRM_BUTTON];
     
-    //
-    //
-    UIImage* avatar = [delegate targetUserImageForComposeView:self];
-    imageView.image = avatar;
-    
-    /*
-    self.view.keyboardTriggerOffset = toolbar.bounds.size.height;
-    
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-        
-         //Try not to call "self" inside this block (retain cycle).
-         //But if you do, make sure to remove DAKeyboardControl
-         //when you are done with the view controller by calling:
-         //[self.view removeKeyboardControl];
-        
-        
-        CGRect toolBarFrame = toolbar.frame;
-        toolBarFrame.origin.y = keyboardFrameInView.origin.y - toolBarFrame.size.height;
-        toolbar.frame = toolBarFrame;
-        
-        CGRect tableViewFrame = tableView.frame;
-        tableViewFrame.size.height = toolBarFrame.origin.y;
-        tableView.frame = tableViewFrame;
-
-    }];
-     */
-    
-    //[tableView setCanCancelContentTouches:NO];
-    //[tableView setExclusiveTouch:NO];
+    //Signup for notification on message recieved (reload will be called directly by the send button handler)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageSent) name:NOTIFICATION_MESSAGE_SENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     
     // always know which keyboard is selected
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textfieldWasSelected:) name:UITextFieldTextDidBeginEditingNotification object:nil];
@@ -143,14 +101,17 @@ static float minimizedToolbarY = 406.0f;
     
     [[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
 }
-
-- (void)keyboardWillHide:(NSNotification *)notification
+- (void) viewDidDisappear:(BOOL)animated
 {
+    keyboard.hidden = NO;
+    [super viewDidDisappear:animated];
 }
-
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events
+    
+    [textView resignFirstResponder];
     [self setFullscreen:NO];
     [self close];
 }
@@ -158,15 +119,13 @@ static float minimizedToolbarY = 406.0f;
 {
     sendButton.enabled = NO;
     
-    NSString* targetUserID = [delegate targetUserIDForComposeView:self];
-    [[SPMessageManager sharedInstance] sendMessage:textField.text toUserWithID:targetUserID withCompletionHandler:^(id responseObject)
+    [[SPMessageManager sharedInstance] sendMessage:textField.text toUserWithID:self.profile.identifier withCompletionHandler:^(id responseObject)
     {
         #if defined (TESTING)
         [TestFlight passCheckpoint:@"Sent Message to User"];
         #endif
-        
-        [tableView reloadData];
         sendButton.enabled = YES;
+        [textField setText:@""];
     } 
     andErrorHandler:^
     {
@@ -181,14 +140,42 @@ static float minimizedToolbarY = 406.0f;
 {
     self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
     [tableView reloadData];
-}
-- (void)textfieldWasSelected:(NSNotification *)notification {
     
+    [self.profile retrieveThumbnailWithCompletionHandler:^(UIImage *thumbnail) {
+        
+        imageView.image = thumbnail;
+        
+    } andErrorHandler:^{
+        
+    }];
+}
+-(void)reload
+{
+    [tableView reloadData];
+}
+-(void)messageSent
+{
+    [self reload];
+    [self scrollToBottom];
+}
+-(void) scrollToBottom
+{
+    if(self.thread.messages.count > 0)
+    {
+        NSIndexPath* lastRow = [NSIndexPath indexPathForRow:self.thread.messages.count - 1 inSection:0];
+        [tableView scrollToRowAtIndexPath:lastRow atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
+- (void)textfieldWasSelected:(NSNotification *)notification
+{
     textField = notification.object;
-    
 }
-
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    keyboard.hidden = YES;
+}
 - (void)keyboardWillShow:(NSNotification *)notification {
+    
     // To remove the animation for the keyboard dropping showing
     // we have to hide the keyboard, and on will show we set it back.
     keyboard.hidden = NO;
@@ -217,13 +204,17 @@ static float minimizedToolbarY = 406.0f;
              tableViewFrame.size.height = toolBarFrame.origin.y - tableView.top;
              tableView.frame = tableViewFrame;  
         }
-        completion:^(BOOL finished){}
+        completion:^(BOOL finished){
+        
+            [self scrollToBottom];
+        
+        }
      ];
 }
 
 
 - (void)keyboardDidShow:(NSNotification *)notification
-{    
+{
     if(keyboard) return;
     
     //Because we cant get access to the UIKeyboard throught the SDK we will just use UIView.
@@ -242,19 +233,26 @@ static float minimizedToolbarY = 406.0f;
 
 -(void)panGesture:(UIPanGestureRecognizer *)gestureRecognizer {
     
-    if(!keyboard.hidden)
+    if(keyboard && !keyboard.hidden)
     {
         CGPoint location = [gestureRecognizer locationInView:[self view]];
         CGPoint velocity = [gestureRecognizer velocityInView:self.view];
         
-        if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
+        if(gestureRecognizer.state == UIGestureRecognizerStateBegan)
+        {
             originalKeyboardY = keyboard.frame.origin.y;
         }
         
         if(gestureRecognizer.state == UIGestureRecognizerStateEnded){
-            if (velocity.y > 0) {
+            
+            if (velocity.y > 0)
+            {
+                NSLog(@"y > 0");
                 [self animateKeyboardOffscreen];
-            }else{
+            }
+            else
+            {
+                NSLog(@"y <= 0");
                 [self animateKeyboardReturnToOriginalPosition];
             }
             return;
@@ -284,8 +282,8 @@ static float minimizedToolbarY = 406.0f;
     }
 }
 
-- (void)animateKeyboardOffscreen {
-    
+- (void)animateKeyboardOffscreen
+{
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -309,12 +307,20 @@ static float minimizedToolbarY = 406.0f;
                      }];
 }
 
-- (void)animateKeyboardReturnToOriginalPosition {
-    
+- (void)animateKeyboardReturnToOriginalPosition
+{
     [UIView beginAnimations:nil context:NULL];
     CGRect newFrame = keyboard.frame;
     newFrame.origin.y = originalKeyboardY;
     [keyboard setFrame: newFrame];
+    
+    CGRect toolBarFrame = toolbar.frame;
+    CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
+    toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - 68);
+    [toolbar setFrame: toolBarFrame];
+    
+    CGFloat tableHeight = toolbar.origin.y - tableView.frame.origin.y;
+    tableView.height = tableHeight;
     [UIView commitAnimations];
 }
 #pragma mark - UITableViewDatasource and UITableViewDelegate methods

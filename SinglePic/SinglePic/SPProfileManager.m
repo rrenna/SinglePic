@@ -144,8 +144,7 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString* path = [documentsDirectory stringByAppendingPathComponent: 
-                          [NSString stringWithString:AVATAR_FILENAME]];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:AVATAR_FILENAME];
         self.image = [UIImage imageWithContentsOfFile:path];
         
         if(!self.image)
