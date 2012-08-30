@@ -20,6 +20,7 @@
 @end
 
 static float FingerGrabHandleSize = 20.0f;
+static float minimizedToolbarY = 406.0f;
 
 @implementation SPComposeViewController
 @synthesize delegate;
@@ -103,7 +104,6 @@ static float FingerGrabHandleSize = 20.0f;
     [sendButton setStyle:STYLE_CONFIRM_BUTTON];
     
     //
-    [textView becomeFirstResponder];
     //
     UIImage* avatar = [delegate targetUserImageForComposeView:self];
     imageView.image = avatar;
@@ -139,9 +139,15 @@ static float FingerGrabHandleSize = 20.0f;
     // register for when a keyboard pops up
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
 }
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+}
+
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
@@ -177,14 +183,16 @@ static float FingerGrabHandleSize = 20.0f;
     [tableView reloadData];
 }
 - (void)textfieldWasSelected:(NSNotification *)notification {
+    
     textField = notification.object;
+    
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     // To remove the animation for the keyboard dropping showing
     // we have to hide the keyboard, and on will show we set it back.
     keyboard.hidden = NO;
-    
+
     CGRect keyboardEndFrameWindow;
     [[notification.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardEndFrameWindow];
     
@@ -199,13 +207,14 @@ static float FingerGrabHandleSize = 20.0f;
     [UIView animateWithDuration:keyboardTransitionDuration
         delay:0.0f
         options:keyboardTransitionAnimationCurve
-        animations:^{                        
+        animations:^{
+            
              CGRect toolBarFrame = toolbar.frame;
              toolBarFrame.origin.y = keyboardEndFrameView.origin.y - toolBarFrame.size.height;
              toolbar.frame = toolBarFrame;
              
              CGRect tableViewFrame = tableView.frame;
-             tableViewFrame.size.height = toolBarFrame.origin.y;
+             tableViewFrame.size.height = toolBarFrame.origin.y - tableView.top;
              tableView.frame = tableViewFrame;  
         }
         completion:^(BOOL finished){}
@@ -213,7 +222,8 @@ static float FingerGrabHandleSize = 20.0f;
 }
 
 
-- (void)keyboardDidShow:(NSNotification *)notification {
+- (void)keyboardDidShow:(NSNotification *)notification
+{    
     if(keyboard) return;
     
     //Because we cant get access to the UIKeyboard throught the SDK we will just use UIView.
@@ -231,49 +241,51 @@ static float FingerGrabHandleSize = 20.0f;
 }
 
 -(void)panGesture:(UIPanGestureRecognizer *)gestureRecognizer {
-    CGPoint location = [gestureRecognizer locationInView:[self view]];
-    CGPoint velocity = [gestureRecognizer velocityInView:self.view];
     
-    if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
-        originalKeyboardY = keyboard.frame.origin.y;
-    }
-    
-    if(gestureRecognizer.state == UIGestureRecognizerStateEnded){
-        if (velocity.y > 0) {
-            [self animateKeyboardOffscreen];
-        }else{
-            [self animateKeyboardReturnToOriginalPosition];
+    if(!keyboard.hidden)
+    {
+        CGPoint location = [gestureRecognizer locationInView:[self view]];
+        CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+        
+        if(gestureRecognizer.state == UIGestureRecognizerStateBegan){
+            originalKeyboardY = keyboard.frame.origin.y;
         }
-        return;
+        
+        if(gestureRecognizer.state == UIGestureRecognizerStateEnded){
+            if (velocity.y > 0) {
+                [self animateKeyboardOffscreen];
+            }else{
+                [self animateKeyboardReturnToOriginalPosition];
+            }
+            return;
+        }
+        
+       CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + toolbar.frame.size.height) + FingerGrabHandleSize;
+ 
+         if (location.y < spaceAboveKeyboard) {
+            return;
+        }
+        
+        CGRect newFrame = keyboard.frame;
+        CGFloat newY = originalKeyboardY + (location.y - spaceAboveKeyboard);
+        newY = MAX(newY, originalKeyboardY);
+        newFrame.origin.y = newY;
+        
+        [keyboard setFrame: newFrame];
+        
+        CGRect toolBarFrame = toolbar.frame;
+        CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
+        keyboardY = MIN(minimizedToolbarY,keyboardY - 68);
+        toolBarFrame.origin.y = keyboardY;
+        [toolbar setFrame: toolBarFrame];
+        
+        CGFloat tableHeight = toolbar.origin.y - tableView.frame.origin.y;
+        tableView.height = tableHeight;
     }
-    
-   CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + toolbar.frame.size.height) + FingerGrabHandleSize;
-    //NSLog(@"%f",spaceAboveKeyboard);
-    
-     if (location.y < spaceAboveKeyboard) {
-         
-         NSLog(@"invalid!");
-         
-        return;
-    }
-    
-    CGRect newFrame = keyboard.frame;
-    CGFloat newY = originalKeyboardY + (location.y - spaceAboveKeyboard);
-    newY = MAX(newY, originalKeyboardY);
-    newFrame.origin.y = newY;
-    
-    [keyboard setFrame: newFrame];
-    
-    CGRect toolBarFrame = toolbar.frame;
-    toolBarFrame.origin.y = keyboard.frame.origin.y - FingerGrabHandleSize;
-    
-    [UIView animateWithDuration:0.0 animations:^{
-            [toolbar setFrame: toolBarFrame];
-    }];
-
 }
 
 - (void)animateKeyboardOffscreen {
+    
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -281,15 +293,24 @@ static float FingerGrabHandleSize = 20.0f;
                          CGRect newFrame = keyboard.frame;
                          newFrame.origin.y = keyboard.window.frame.size.height;
                          [keyboard setFrame: newFrame];
+                         
+                         CGRect toolBarFrame = toolbar.frame;
+                         CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
+                         toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - 68);
+                         [toolbar setFrame: toolBarFrame];
+                         
+                         CGFloat tableHeight = toolbar.origin.y - tableView.frame.origin.y;
+                         tableView.height = tableHeight;
                      }
      
                      completion:^(BOOL finished){
-                         keyboard.hidden = YES;
+                             //keyboard.hidden = YES;
                          [textField resignFirstResponder];
                      }];
 }
 
 - (void)animateKeyboardReturnToOriginalPosition {
+    
     [UIView beginAnimations:nil context:NULL];
     CGRect newFrame = keyboard.frame;
     newFrame.origin.y = originalKeyboardY;
