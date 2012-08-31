@@ -555,6 +555,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 //Validates that the stored credentials are valid
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
     //We cannot provide the User Token as a parameter without making it URL safe, as it's 64bit encoding may allow a '/' character
     NSString* userToken = [[SPRequestManager sharedInstance] userToken];
     NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
@@ -563,10 +564,15 @@ static NSURL* _thumbnailUploadURLCache = nil;
                                                                                       NULL,
                                                                                       (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                       kCFStringEncodingUTF8 );
+
     
+    NSDictionary* validateDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:escapedUserToken,@"token",version,@"version",@"iOS/iPhone",@"platform",nil];
+    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:validateDataDictionary error:nil];
+    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
     
-    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject) 
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_TOKENS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
     {
+        
         #if defined (TESTING)
         [TestFlight passCheckpoint:@"User Token validated"];
         #endif
@@ -579,37 +585,48 @@ static NSURL* _thumbnailUploadURLCache = nil;
         //We now confirm this user has synced this device's push token with their user profile
         if(![self myPushTokenSynced])
         {
-            //If not, we attempt to sync the device's push token with the user's profile
+                //If not, we attempt to sync the device's push token with the user's profile
             [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) {} andErrorHandler:^{}];
         }
         
         //After validation set this user as the active message account
         [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
         
-        onCompletion(responseObject);
-    } 
-    andErrorHandler:^(SPWebServiceError* error)
+        onCompletion(responseObject);        
+    }
+    andErrorHandler:^(SPWebServiceError *error)
     {
         #if defined (TESTING)
         NSString* errorString = [NSString stringWithFormat:@"User Token invalid. Reason : %@",[error localizedFailureReason]];
         [TestFlight passCheckpoint:errorString];
         #endif
         
-        //Token is invalid - reset user type
+            //Token is invalid - reset user type
         self.userType = USER_TYPE_ANNONYMOUS;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:USER_TYPE_ANNONYMOUS] forKey:USER_DEFAULT_KEY_USER_TYPE];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        // remove token - any other stored information about this profile
+            // remove token - any other stored information about this profile
         [self clearProfile];
         onError();
     }];
+    
+    /*
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject) 
+    {
+
+    } 
+    andErrorHandler:^(SPWebServiceError* error)
+    {
+
+    }];*/
     
     [escapedUserToken release];
 
 }
 -(void)loginWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
-{        
-    NSDictionary* loginDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password", nil];
+{
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
+    NSDictionary* loginDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",version,@"version",@"iOS/iPhone",@"platform",nil];
     
     NSError *error = NULL;
     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:loginDataDictionary error:&error];
