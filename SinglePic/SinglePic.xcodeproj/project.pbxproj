@@ -367,6 +367,7 @@
 		F0EE799814E3633D00439040 /* icon-message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799714E3633D00439040 /* icon-message@2x.png */; };
 		F0EE799A14E364E700439040 /* icon-like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799914E364E700439040 /* icon-like@2x.png */; };
 		F0EE799C14E36A4F00439040 /* Tab-Faves_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799B14E36A4F00439040 /* Tab-Faves_Highlighted.png */; };
+		F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F80A0815F6A97E00201FF4 /* testingImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -911,6 +912,7 @@
 		F0EE799B14E36A4F00439040 /* Tab-Faves_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Faves_Highlighted.png"; path = "../../Resources/Tab-Faves_Highlighted.png"; sourceTree = "<group>"; };
 		F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContainerDelegate.h; sourceTree = "<group>"; };
 		F0F7CEA414C924D3009C7DF8 /* SPPageContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContentDelegate.h; sourceTree = "<group>"; };
+		F0F80A0815F6A97E00201FF4 /* testingImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testingImage.png; path = ../../Resources/testingImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1019,6 +1021,7 @@
 				7577B1A215DD927000B15B15 /* icon_Close.png */,
 				7577B1A315DD927000B15B15 /* icon_Flash-off.png */,
 				7577B1BD15DD931500B15B15 /* carbon_fibre.png */,
+				F0F80A0815F6A97E00201FF4 /* testingImage.png */,
 				7577B1A415DD927000B15B15 /* icon_Flash-auto.png */,
 				7577B1A515DD927000B15B15 /* icon_Flash-on.png */,
 				7577B1A615DD927000B15B15 /* icon_CameraGrid-on.png */,
@@ -2528,6 +2531,7 @@
 				F04A0E7E15DE009A0043FADC /* Parchment-Right-Camera.png in Resources */,
 				7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */,
 				F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */,
+				F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

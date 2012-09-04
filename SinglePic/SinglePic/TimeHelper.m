@@ -45,8 +45,9 @@
     double minuteSeconds = hourSeconds - (numberOfHours * SECONDS_PER_HOUR);
     numberOfMinutes = minuteSeconds / SECONDS_PER_MINUTE;
     
-    NSString* dayPlurality = (numberOfDays == 1) ? @"day" : @"days";
-    NSString* hourPlurality = (numberOfHours == 1) ? @"hour" : @"hours";
+    NSString* dayPlurality = (numberOfDays < 1) ? @"day" : @"days";
+    NSString* hourPlurality = (numberOfHours < 1) ? @"hour" : @"hours";
+    NSString* minutePlurality = (numberOfMinutes > 1 || numberOfMinutes == 0) ? @"minutes" : @"minute";
     
     //If there are any days left, show days and hours
     if(numberOfDays > 0)
@@ -54,10 +55,14 @@
         ageString = [NSString stringWithFormat:@"%d %@, %d %@",numberOfDays,dayPlurality,numberOfHours,hourPlurality];
     }
     //If no days, show hours and minutes
+    else if(numberOfHours > 0)
+    {
+        ageString = [NSString stringWithFormat:@"%d %@, %d %@",numberOfHours,hourPlurality,numberOfMinutes,minutePlurality];
+    }
+    //If no hours, show minutes
     else
     {
-        NSString* minutePlurality = (numberOfMinutes == 1) ? @"minute" : @"minutes";
-        ageString = [NSString stringWithFormat:@"%d %@, %d %@",numberOfHours,hourPlurality,numberOfMinutes,minutePlurality];
+        ageString = [NSString stringWithFormat:@"%d %@",numberOfMinutes,minutePlurality];
     }
     
     return ageString;

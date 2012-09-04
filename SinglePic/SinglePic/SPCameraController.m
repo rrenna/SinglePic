@@ -101,11 +101,16 @@
     }
 }
 -(IBAction)takePicture:(id)sender
-{       
+{
+    //Perform alternative logic when running on the simulator
+    #if TARGET_IPHONE_SIMULATOR
+    [self setMyPicture:[UIImage imageNamed:@"testingImage"]];
+    #else
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         [self.imagePicker takePicture];
     }
+    #endif
 }
 #pragma mark - Private methods
 -(void)setMyPicture:(UIImage*)image
@@ -168,6 +173,6 @@
          */
     }
     
-        [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
 }
 @end

@@ -248,6 +248,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     if (_image != nil)
     {
+        _hasProfileImage = YES;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
