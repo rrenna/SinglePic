@@ -44,26 +44,19 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     #if defined (TESTING)
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
+    #endif
     
-    //This is used to enforce beta client expiry
-    //Expires on 
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
-    [components setYear:BETA_EXPIRY_YEAR];
-    [components setMonth:BETA_EXPIRY_MONTH];
-    [components setDay:BETA_EXPIRY_DAY];
-    NSDate* expiryDate = [calendar dateFromComponents:components];
-    
-    if([[NSDate date] earlierDate:expiryDate] == expiryDate)
+    [[SPProfileManager sharedInstance] validateAppWithCompletionHandler:^
     {
-        UIAlertView* expiredAlert = [[UIAlertView alloc] initWithTitle:@"SinglePic Beta has expired" message:@"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        
+    } andErrorHandler:^(NSString *errorReason, NSString *errorDescription) {
+        
+        UIAlertView* expiredAlert = [[UIAlertView alloc] initWithTitle:errorReason message:errorDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
         [expiredAlert show];
         [expiredAlert release];
-    }
-    #endif
+    }];
     
     /* Device Push Notification Management */
     UIRemoteNotificationType requiredNotificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);

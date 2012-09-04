@@ -7,7 +7,7 @@
 //
 
 #import "SPComposeViewController.h"
-//#import "DAKeyboardControl.h"
+#import "SVProgressHUD.h"
 #import "SPMessageManager.h"
 #import "SPMessage.h"
 #import "SPStyledButton.h"
@@ -386,6 +386,20 @@ static float minimizedToolbarY = 410.0f;
     return cell;
 }
 #pragma mark - UITextField delegate methods
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    //Disabled messaging if user has no assigned image
+    if([[SPProfileManager sharedInstance] canSendMessages])
+    {
+        return YES;
+    }
+    else
+    {
+        [SVProgressHUD show];
+        [SVProgressHUD dismissWithError:@"You must have a Pic set to send a message" afterDelay:2.0];
+        return NO;
+    }
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 {
     [self send:sendButton];

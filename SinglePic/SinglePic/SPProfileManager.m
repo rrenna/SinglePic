@@ -25,6 +25,7 @@
 @property (retain) NSString* email;
 @property (assign) GENDER gender;
 @property (assign) GENDER preference;
+@property (assign) BOOL hasProfileImageSet;
 
 
 //Set Methods - sets the value(s) locally, optionally callinging syncronize when completed - should only be called from within the SPProfileManager
@@ -71,6 +72,13 @@
 
 @implementation SPProfileManager
 @synthesize profiles = _profiles, userType = _userType, userID = _userID, userName = _userName, expiry = _expiry, bucket = _bucket, image = _image, lastImage = _lastImage, icebreaker = _icebreaker,email = _email, gender = _gender, preference = _preference;
+@dynamic hasProfileImageSet;
+#pragma mark - Dynamic Properties
+-(BOOL)hasProfileImageSet
+{
+    [self myImage]; //Ensure's we attempt to load an image - which will record a flag telling us if the image is custom
+    return _hasProfileImage;
+}
 #pragma mark
 -(id)init
 {
@@ -140,6 +148,7 @@
 {
     if(!self.image)
     {
+        _hasProfileImage = YES;
         // Create file manager
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
                                                              NSUserDomainMask, YES);
@@ -149,6 +158,7 @@
         
         if(!self.image)
         {
+            _hasProfileImage = NO;
             self.image = [UIImage imageNamed:DEFAULT_PORTRAIT_IMAGE];
         }
     }
@@ -211,7 +221,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     }
     return YES;
 }
-//
+#pragma mark - Annonymous
 -(SPBucket*)myAnnonymousBucket
 {
     NSData* encodedBucketData = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULT_KEY_ANNONYMOUS_BUCKET];
@@ -354,7 +364,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     
     if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
 }
-//
+#pragma mark - Annonymous Set methods
 -(void)setMyAnnonymousBucket:(SPBucket*)_bucket synchronize:(BOOL)synchronize
 {
     NSData *encodedBucket = [NSKeyedArchiver archivedDataWithRootObject:_bucket];
@@ -377,6 +387,11 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_ANNONYMOUS_PREFERENCE_CHANGED object:nil];
+}
+#pragma mark - Permissions
+-(BOOL)canSendMessages
+{
+    return self.hasProfileImageSet;
 }
 #pragma mark - Undo Methods
 -(BOOL)undoMyImageWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
@@ -574,24 +589,53 @@ static NSURL* _thumbnailUploadURLCache = nil;
 }
 #pragma mark - Authentication methods
 //Validates that this version of the app is valid (non-expired)
--(void)validateAppWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+-(void)validateAppWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)(NSString* errorReason,NSString* errorDescription))onError
 {
-    //TODO: Call when app is started
+    //We perform different validation depending on if we're TESTING on TestFlight or not
+    #if defined (TESTING)
+    //This is used to enforce beta client expiry
+    //Expires on
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+    [components setYear:BETA_EXPIRY_YEAR];
+    [components setMonth:BETA_EXPIRY_MONTH];
+    [components setDay:BETA_EXPIRY_DAY];
+    NSDate* expiryDate = [calendar dateFromComponents:components];
     
-     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
-     NSDictionary* validateDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"iOS/iPhone",@"platform",nil];
-     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:validateDataDictionary error:nil];
-     NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
-
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
+    if([[NSDate date] earlierDate:expiryDate] == expiryDate)
     {
-        //retrieve server settings
-        NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
+        if(onError)
+        {
+            onError(@"SinglePic Beta has expired",@"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com.");
+        }
+    }
+    #else
+
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    //Re-enable below if we need to validate build number
+    //NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
+    
+    NSDictionary* validateDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"iOS/iPhone",@"platform",nil];
+    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:validateDataDictionary error:nil];
+    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
+    
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
+     {
+             //retrieve server settings
+         NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
+         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
          
-     } andErrorHandler:^(SPWebServiceError *error) {
+         onCompletion(responseObject);
          
+     } andErrorHandler:^(SPWebServiceError *error)
+     {
+         if(onError)
+         {
+             onError(@"SinglePic is out of date",@"This version of SinglePic is (too) old. You should download the latest version on the App Store before continuing.");
+         }
      }];
+    
+    #endif
 }
 //Validates that the stored credentials are valid
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
