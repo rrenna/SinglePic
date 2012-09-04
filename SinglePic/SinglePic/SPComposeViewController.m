@@ -119,7 +119,6 @@ static float minimizedToolbarY = 410.0f;
         #if defined (TESTING)
         [TestFlight passCheckpoint:@"Sent Message to User"];
         #endif
-        sendButton.enabled = YES;
         [textField setText:@""];
     } 
     andErrorHandler:^
@@ -135,16 +134,15 @@ static float minimizedToolbarY = 410.0f;
 {
     self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
     [tableView reloadData];
-    
-    
+
     usernameLabel.text = self.profile.username;
-    [self.profile retrieveThumbnailWithCompletionHandler:^(UIImage *thumbnail) {
-        
+    
+    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
+    {
         imageView.image = thumbnail;
-        
-    } andErrorHandler:^{
-        
-    }];
+    }
+    andErrorHandler:nil];
+    
 }
 -(void)reload
 {
@@ -393,9 +391,10 @@ static float minimizedToolbarY = 410.0f;
     [self send:sendButton];
     return YES;
 }
-- (void)viewDidUnload {
-    [usernameLabel release];
-    usernameLabel = nil;
-    [super viewDidUnload];
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString* newContent = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    sendButton.enabled  = ([newContent length] > 0);
+    return YES;
 }
 @end

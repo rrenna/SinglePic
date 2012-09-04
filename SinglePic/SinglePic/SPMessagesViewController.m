@@ -123,9 +123,9 @@
     {
         NSArray* messageThreads = [[SPMessageManager sharedInstance] activeMessageThreads];
         SPMessageThread* messageThread = [messageThreads objectAtIndex:indexPath.row];
-        
         [[SPMessageManager sharedInstance] deleteMessageThread:messageThread];
-        [tableView reloadData];
+
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];           
     }
 }
 @end

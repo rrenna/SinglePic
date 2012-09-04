@@ -31,7 +31,10 @@
      }
      andErrorHandler:^(NSError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 

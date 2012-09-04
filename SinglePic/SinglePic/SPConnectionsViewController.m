@@ -12,6 +12,7 @@
 
 @interface SPConnectionsViewController()
 -(void)addedProfileWithNotification:(NSNotification*)notification;
+-(void)removedProfileWithNotification:(NSNotification*)notification;
 @end
 
 @implementation SPConnectionsViewController
@@ -26,6 +27,7 @@
         
         //Sign up for Notification observation
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addedProfileWithNotification:) name:NOTIFICATION_LIKE_ADDED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedProfileWithNotification:) name:NOTIFICATION_LIKE_REMOVED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLikedBy) name:NOTIFICATION_PUSH_NOTIFICATION_RECIEVED object:nil];
         
         //Retrieve my Likes
@@ -105,6 +107,12 @@
     [likes_ addObject:profile];
     [tableView reloadData];
 }
+-(void)removedProfileWithNotification:(NSNotification*)notification
+{
+    SPProfile* profile = (SPProfile*)[notification object];
+    [likes_ removeObject:profile];
+    [tableView reloadData];
+}
 #pragma mark - UITableViewDelegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -166,19 +174,26 @@
     avatarImage.contentMode = UIViewContentModeScaleAspectFill;
     avatarImage.clipsToBounds = YES;
     frameImage.image = [UIImage imageNamed:@"blockBackground.jpg"];
-
+    
+    //Username label
+    CGRect userNameLabelFrame = CGRectMake([cell width] * 0.37, [cell height] * 0.1, [cell width] * 0.63, [cell height] * 0.8);
+    UILabel* usernameLabel = [[UILabel alloc] initWithFrame:userNameLabelFrame];
+    usernameLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    usernameLabel.backgroundColor = [UIColor clearColor];
+    usernameLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:12];
+    usernameLabel.text = [profile username];
+    
+    [cell.contentView addSubview:usernameLabel];
     [cell.contentView addSubview:frameImage];
     [frameImage addSubview:avatarImage];
     
     //Retrieve the thumbnail for this profile
-    [profile retrieveThumbnailWithCompletionHandler:^(UIImage* thumbnail) 
+    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
      {
-         //On retrieval set it to this cell
          avatarImage.image = thumbnail;
-     } 
-     andErrorHandler:^() 
-     {
-     }];
+     }
+     andErrorHandler:nil];
+
   
     return cell;
 }

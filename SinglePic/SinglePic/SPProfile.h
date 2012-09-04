@@ -19,9 +19,6 @@
 -(NSString*)username;
 -(NSString*)icebreaker;
 -(NSDate*)timestamp;
-
--(void)retrieveThumbnailWithCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError;
-
 -(NSURL*)thumbnailURL;
 -(NSURL*)pictureURL;
 @end

@@ -178,8 +178,10 @@ static int profileIndex = 0;
        [SVProgressHUD showWithStatus:@"Restarting, time to do it all over again." maskType:SVProgressHUDMaskTypeClear networkIndicator:YES];
        [self restart:nil];
    }
-    
-   [self dropAllOnscreenBlocks];
+   else
+   {
+       [self dropAllOnscreenBlocks];
+   }
 }
 -(IBAction)reportToggle:(id)sender
 {
@@ -392,7 +394,11 @@ static int profileIndex = 0;
 -(void)destroyBottomViewBody:(UIView*)bottomView
 {
     b2Body *viewBody = (b2Body*)[bottomView tag];
-    world->DestroyBody(viewBody);
+        //if(viewBody)
+    {
+        world->DestroyBody(viewBody);
+            //bottomView.tag = 0;//Zero out the pointer so the view can never be re-removed
+    }
 }
 -(void)addBodyForBoxView:(SPBlockView *)boxView
 {
@@ -421,10 +427,10 @@ static int profileIndex = 0;
 	fixtureDef.friction = 0.5f;
 	fixtureDef.restitution = 0.125; // 0 is a lead ball, 1 is a super bouncy ball
 	body->CreateFixture(&fixtureDef);
-    
-	// a dynamic body reacts to forces right away
-	body->SetType(b2_dynamicBody);
 
+    // a dynamic body reacts to forces right away
+	body->SetType(b2_dynamicBody);
+    
     shaftJoint.Initialize(groundBody, body, b2Vec2(0.0f, 17.0f), b2Vec2(0.0f, 1.0f));
     boxView.joint = (b2PrismaticJoint*)world->CreateJoint(&shaftJoint);
     
@@ -617,7 +623,8 @@ int currentTick = 0;
                         [self resumeStack:columnIndex];
                     };
                     
-                    [profile retrieveThumbnailWithCompletionHandler:block_proceed andErrorHandler:block_proceed];
+                    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_proceed];
+                    
                     stackCount[columnIndex]++;
                 }
                 else

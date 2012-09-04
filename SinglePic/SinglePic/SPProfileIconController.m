@@ -27,16 +27,11 @@
 {
     [super viewDidLoad];
     
-    [pictureStyledView setBorderWidth:5.0 shadowDepth:5.0 controlPointXOffset:0.0 controlPointYOffset:0.0];
-        
-    [profile retrieveThumbnailWithCompletionHandler:^(UIImage *thumbnail) 
-     {  
-         iconView.image = thumbnail;
-     } 
-     andErrorHandler:^
+    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
      {
-         
-     }];
+         iconView.image = thumbnail;
+     }
+     andErrorHandler:nil];
 }
 -(void)dealloc
 {

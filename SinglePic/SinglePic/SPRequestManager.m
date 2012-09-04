@@ -118,7 +118,11 @@
         //Display an alert
         [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
         
-        onError(SPError);
+        
+        if(onError)
+        {
+            onError(SPError);
+        }
     }];
     
     [request generateURL];
@@ -160,7 +164,11 @@
       failure:^(AFHTTPRequestOperation *operation, NSError *error) 
       {
           NSLog(@"PUT Request to URL failed : %@", operation.request.URL);
-          onError(error);
+          
+          if(onError)
+          {
+              onError(error);
+          }
       }]
      ]; 
 }
@@ -175,7 +183,11 @@
       failure:^(AFHTTPRequestOperation *operation, NSError *error) 
       {
           NSLog(@"GET Request to URL failed : %@", operation.request.URL);
-          onError(error);
+          
+          if(onError)
+          {
+              onError(error);
+          }
       }]
      ]; 
 }
@@ -192,7 +204,11 @@
     failure:^(AFHTTPRequestOperation *operation, NSError *error) 
       {
           NSLog(@"GET Image Request to URL failed : %@", operation.request.URL);
-          onError(error);
+          
+          if(onError)
+          {
+              onError(error);
+          }
       }]
      ]; 
 }

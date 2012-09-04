@@ -9,7 +9,7 @@
 #import "SPProfile.h"
 
 #define PROFILE_IDENTIFIER_KEY @"id"
-#define PROFILE_USERNAME_KEY @"username"
+#define PROFILE_USERNAME_KEY @"userName"
 
 @interface SPProfile() 
 @property (retain) UIImage* _thumbnail;
@@ -65,26 +65,6 @@
     }
     
     return [NSDate dateWithTimeIntervalSince1970:[timestampString doubleValue]];
-}
-
--(void)retrieveThumbnailWithCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError
-{
-    if(self._thumbnail)
-    {
-        onCompletion(_thumbnail);
-    }
-    else
-    {
-        [[SPRequestManager sharedInstance] getImageFromURL:[self thumbnailURL] withCompletionHandler:^(UIImage* responseObject) 
-         {
-             self._thumbnail = responseObject;
-             onCompletion(responseObject);
-         } 
-         andErrorHandler:^(NSError* error)
-         {
-             onError();
-         }];
-    }
 }
 -(NSURL*)thumbnailURL
 {

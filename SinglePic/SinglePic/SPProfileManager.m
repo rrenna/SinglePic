@@ -77,8 +77,8 @@
     self = [super init];
     if(self)
     {
-        //Ensure the user type is either set or loaded into memory from NSUserDefaults
-        self.profiles = [NSMutableArray array];
+        _thumbnails = [NSCache new];
+        _profiles = [NSMutableArray new];
         _likes = [NSMutableArray new];
     }
     return self;
@@ -403,7 +403,10 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
      } 
      andErrorHandler:^(NSError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 -(void)saveMyIcebreaker:(NSString*)_icebreaker withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
@@ -436,7 +439,10 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         }
         andErrorHandler:^(SPWebServiceError *error) 
         {
-            onError();
+            if(onError)
+            {
+                onError();
+            }
         }];
     };
 
@@ -460,7 +466,10 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
          } 
          andErrorHandler:^(NSError* error)
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
         
         //Upload the thumbnail image
@@ -476,13 +485,19 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
          } 
          andErrorHandler:^(NSError* error)
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
 
     } 
     andErrorHandler:^
     {
-        onError();
+        if(onError)
+        {
+            onError();
+        }
     }];
 }
 -(void)saveMyGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
@@ -502,7 +517,10 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
      } 
      andErrorHandler:^(SPWebServiceError *error) 
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 #pragma mark - Additonal Save Methods
@@ -547,15 +565,37 @@ static NSURL* _thumbnailUploadURLCache = nil;
          }
          andErrorHandler:^(SPWebServiceError *error) 
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
     }
 }
 #pragma mark - Authentication methods
+//Validates that this version of the app is valid (non-expired)
+-(void)validateAppWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+{
+    //TODO: Call when app is started
+    
+     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
+     NSDictionary* validateDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"iOS/iPhone",@"platform",nil];
+     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:validateDataDictionary error:nil];
+     NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
+
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
+    {
+        //retrieve server settings
+        NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
+         
+     } andErrorHandler:^(SPWebServiceError *error) {
+         
+     }];
+}
 //Validates that the stored credentials are valid
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
     //We cannot provide the User Token as a parameter without making it URL safe, as it's 64bit encoding may allow a '/' character
     NSString* userToken = [[SPRequestManager sharedInstance] userToken];
     NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
@@ -564,24 +604,15 @@ static NSURL* _thumbnailUploadURLCache = nil;
                                                                                       NULL,
                                                                                       (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                       kCFStringEncodingUTF8 );
-
-    
-    NSDictionary* validateDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:escapedUserToken,@"token",version,@"version",@"iOS/iPhone",@"platform",nil];
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:validateDataDictionary error:nil];
-    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
-    
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_TOKENS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
+        
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject)
     {
+        //User Token is valid
         
         #if defined (TESTING)
         [TestFlight passCheckpoint:@"User Token validated"];
         #endif
-        
-        //User Token is valid
-        //retrieve server settings
-        NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
-        
+    
         //We now confirm this user has synced this device's push token with their user profile
         if(![self myPushTokenSynced])
         {
@@ -607,26 +638,19 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
             // remove token - any other stored information about this profile
         [self clearProfile];
-        onError();
+        
+        if(onError)
+        {
+            onError();
+        }
     }];
-    
-    /*
-    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject) 
-    {
-
-    } 
-    andErrorHandler:^(SPWebServiceError* error)
-    {
-
-    }];*/
     
     [escapedUserToken release];
 
 }
 -(void)loginWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
-    NSDictionary* loginDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",version,@"version",@"iOS/iPhone",@"platform",nil];
+    NSDictionary* loginDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",nil];
     
     NSError *error = NULL;
     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:loginDataDictionary error:&error];
@@ -692,18 +716,28 @@ static NSURL* _thumbnailUploadURLCache = nil;
              }
              //If the bucket wasn't found, than the process cannot continue
              else {
-                 onError();
+                 
+                 if(onError)
+                 {
+                     onError();
+                 }
              }
 
          }
          andErrorHandler:^
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
      } 
     andErrorHandler:^(NSError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
     
 }
@@ -784,7 +818,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
     {
         //If for any reason registration fails. We should ensure that no User Token is cached, another registration attempt can then be retried.
         [self clearProfile];
-        onError();
+        
+        if(onError)
+        {
+            onError();
+        }
     }];
 }
 -(void)checkUserName:(NSString*)userName_ forRegistrationWithCompletionHandler:(void (^)(bool taken))onCompletion
@@ -824,7 +862,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
             #endif
              
             [self setMyPushTokenSynced:NO synchronize:YES];//If we've logged into an account on this device before, we may have the flag set to true. This absolutely ensure's the flag is set to false, so another token registration is attempted in the future
-             onError();
+             
+             if(onError)
+             {
+                 onError();
+             }
          }];
     }
     else
@@ -834,7 +876,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
         #endif
          
         [self setMyPushTokenSynced:NO synchronize:YES];//If we've logged into an account on this device before, we may have the flag set to true. This absolutely ensure's the flag is set to false, so another token registration is attempted in the future
-        onError();
+        
+        if(onError)
+        {
+            onError();
+        }
     }
 }
 #pragma mark - Profiles
@@ -874,13 +920,19 @@ static int profileCounter = 0;
         }
         else
         {
-            onError();
+            if(onError)
+            {
+                onError();
+            }
         }
 
     } 
     andErrorHandler:^
     {
-        onError();
+        if(onError)
+        {
+            onError();
+        }
     }];
 }
 -(void)retrieveProfilesWithIDs:(NSArray*)profileIDArray withCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError
@@ -905,12 +957,15 @@ static int profileCounter = 0;
          
          //Return the retrieved profiles
          onCompletion(_profiles);
-         //
+         
          [_profiles release];
      } 
      andErrorHandler:^(NSError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 -(void)retrieveProfilesWithCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError
@@ -955,7 +1010,10 @@ static int profileCounter = 0;
          } 
          andErrorHandler:^(NSError* error)
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
     }
     else if([self myUserType] == USER_TYPE_REGISTERED)
@@ -965,7 +1023,10 @@ static int profileCounter = 0;
  
         [[SPErrorManager sharedInstance] logError:incompleteProfileError alertUser:YES];
         
-        onError();
+        if(onError)
+        {
+            onError();
+        }
     }
     else if([self myUserType] == USER_TYPE_PROFILE)
     {
@@ -999,9 +1060,53 @@ static int profileCounter = 0;
          } 
          andErrorHandler:^(NSError* error)
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
     }
+}
+#pragma mark - Images
+-(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError
+{
+    UIImage* thumbnail = [_thumbnails objectForKey:profile.identifier];
+    
+    if(thumbnail)
+    {
+        onCompletion(thumbnail);
+    }
+    else
+    {
+        [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(UIImage* responseObject)
+         {
+             [_thumbnails setObject:responseObject forKey:profile.identifier];
+             onCompletion(responseObject);
+         }
+         andErrorHandler:^(NSError* error)
+         {
+             if(onError)
+             {
+                onError();
+             }
+ 
+         }];
+    }
+}
+-(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* image))onCompletion andErrorHandler:(void(^)())onError
+{
+    //Note: We do not cache full-size images
+    [[SPRequestManager sharedInstance] getImageFromURL:[profile pictureURL] withCompletionHandler:^(UIImage* responseObject)
+     {
+         onCompletion(responseObject);
+     }
+     andErrorHandler:^(NSError* error)
+     {
+         if(onError)
+         {
+             onError();
+         }
+     }];
 }
 #pragma mark - Likes
 -(BOOL)checkIsLiked:(SPProfile*)profile
@@ -1037,7 +1142,10 @@ static int profileCounter = 0;
               } 
               andErrorHandler:^
               {
-                  onError();
+                  if(onError)
+                  {
+                      onError();
+                  }
               }];
          }
          else 
@@ -1049,7 +1157,10 @@ static int profileCounter = 0;
      } 
      andErrorHandler:^(SPWebServiceError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 -(void)retrieveLikedByWithCompletionHandler:(void (^)(NSArray* likes))onCompletion andErrorHandler:(void(^)())onError
@@ -1072,7 +1183,10 @@ static int profileCounter = 0;
               } 
               andErrorHandler:^
               {
-                  onError();
+                  if(onError)
+                  {
+                      onError();
+                  }
               }];
          }
          else 
@@ -1084,7 +1198,10 @@ static int profileCounter = 0;
      } 
      andErrorHandler:^(SPWebServiceError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 
@@ -1093,7 +1210,10 @@ static int profileCounter = 0;
     if([self checkIsLiked:profile])
     {
         //We've already 'Liked' this user
-        onError();
+        if(onError)
+        {
+            onError();
+        }
         return;
     }
     
@@ -1103,11 +1223,15 @@ static int profileCounter = 0;
         [_likes addObject:profile];
          
         onCompletion();
+         
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_ADDED object:profile];
      } 
      andErrorHandler:^(SPWebServiceError* error)
      {
-         onError();
+         if(onError)
+         {
+             onError();
+         }
      }];
 }
 -(void)removeProfile:(SPProfile*)profile fromLikesWithCompletionHandler:(void(^)())onCompletion andErrorHandler:(void(^)())onError
@@ -1130,14 +1254,18 @@ static int profileCounter = 0;
         NSString* parameter = [NSString stringWithFormat:@"%@/likes/%@",USER_ID_ME,[profile identifier]];
         [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
          {
-             [_likes addObject:profileToRemove];
+             [_likes removeObject:profileToRemove];
              
              onCompletion();
+             
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_REMOVED object:profileToRemove];
          } 
          andErrorHandler:^(SPWebServiceError* error)
          {
-             onError();
+             if(onError)
+             {
+                 onError();
+             }
          }];
     }
 }

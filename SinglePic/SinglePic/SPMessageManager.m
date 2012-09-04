@@ -94,6 +94,7 @@
 -(void)deleteMessageThread:(SPMessageThread*)thread
 {
     [[self managedObjectContext] deleteObject:thread];
+    [[self managedObjectContext] save:nil];
 }
 -(void)sendMessage:(NSString*)message toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
 {
@@ -123,7 +124,14 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MESSAGE_SENT object:nil];
         
-    } andErrorHandler:onError];
+    } andErrorHandler:^(SPWebServiceError *error) {
+        
+        if(onError)
+        {
+            onError();
+        }
+        
+    }];
 }
 //Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
@@ -139,7 +147,10 @@
      } 
      andErrorHandler:^(SPWebServiceError *error) 
      {
-         onError(error);
+         if(onError)
+         {
+             onError(error);
+         }
      }];
 }
 #pragma mark - Private methods

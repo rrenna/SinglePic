@@ -110,26 +110,44 @@
     }
     else
     {
-        #if defined (TESTING)
-        [TestFlight passCheckpoint:@"Liked a User"];
-        #endif
-        
-        [[SPProfileManager sharedInstance] addProfile:profile toToLikesWithCompletionHandler:^() 
-         {
-         } 
-         andErrorHandler:^
-         {
-             //If the 'like' command didn't complete - re-enable the 'like' button
-             likeButton.enabled = YES;
-         }];
+        if([[SPProfileManager sharedInstance] checkIsLiked:profile])
+        {
+            //Liked
+            #if defined (TESTING)
+            [TestFlight passCheckpoint:@"Unliked a User"];
+            #endif
+            
+            [[SPProfileManager sharedInstance] removeProfile:profile fromLikesWithCompletionHandler:^()
+             {
+                 likeButton.enabled = YES;
+             }
+             andErrorHandler:^
+             {
+                 likeButton.enabled = YES;
+             }];
+        }
+        else
+        {
+            //Not Liked
+            #if defined (TESTING)
+            [TestFlight passCheckpoint:@"Liked a User"];
+            #endif
+            
+            [[SPProfileManager sharedInstance] addProfile:profile toToLikesWithCompletionHandler:^()
+             {
+                 likeButton.enabled = YES;
+             }
+                                          andErrorHandler:^
+             {
+                 likeButton.enabled = YES;
+             }];
+        }
     }
 }
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
 {
-    //Disable the like button if already liked
-    likeButton.enabled = ![[SPProfileManager sharedInstance] checkIsLiked:profile];
     //Enable communication
     communicateButton.enabled = YES;
     
@@ -140,32 +158,20 @@
     //Set image age
     ageLabel.text = [NSString stringWithFormat:@"%@ old",[TimeHelper ageOfDate:[profile timestamp]]];
             
-    NSURL* url = [profile pictureURL];
-    [profile retrieveThumbnailWithCompletionHandler:^(UIImage *thumbnail) 
-     {
+    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
+    {
          //The Profile object should have a cached UIImage thumbnail at this point, but if not, it'll request it. If the request takes longer than the request for the fullsize image, the thumbnail could override the fullsize image permanently. For this reason we check that the imageView has not already had it's image set.
          if(!imageView.image)
          {
              imageView.image = thumbnail;
          }
-     } 
-     andErrorHandler:^
-     {
-         
-     }];
+    }
+    andErrorHandler:nil];
     
-    [[SPRequestManager sharedInstance] getImageFromURL:url withCompletionHandler:^(UIImage* responseObject) 
+    [[SPProfileManager sharedInstance] retrieveProfileImage:profile withCompletionHandler:^(UIImage *image)
      {
-         imageView.image = responseObject;
-     } 
-     andErrorHandler:^(NSError* error)
-     {
-         
-     }];
-}
-- (void)viewDidUnload {
-    [usernameLabel release];
-    usernameLabel = nil;
-    [super viewDidUnload];
+         imageView.image = image;
+     }
+     andErrorHandler:nil];
 }
 @end

@@ -61,6 +61,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 @interface SPProfileManager : SPSingleton
 {
     @private
+    NSCache* _thumbnails;
     NSMutableArray* _likes;
     NSArray* _likedBy;
 }
@@ -101,6 +102,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(void)requestURLsToSaveMyPictureWithCompletionHandler:(void (^)(NSURL* imageUploadURL,NSURL* thumbnailUploadURL))onCompletion andErrorHandler:(void(^)())onError;
 
 //Authentication
+-(void)validateAppWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Validates that this version of the app is valid (non-expired)
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Validates that the stored credentials are valid
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Registers the current device's push Token, enabling the server to push this device notifications while offline
 //----Registration
@@ -117,6 +119,10 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(void)retrieveProfile:(NSString*)profileID withCompletionHandler:(void (^)(SPProfile* profile))onCompletion andErrorHandler:(void(^)())onError;
 -(void)retrieveProfilesWithIDs:(NSArray*)profileIDArray withCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError;
 -(void)retrieveProfilesWithCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError;
+
+//Images
+-(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError;
+-(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* image))onCompletion andErrorHandler:(void(^)())onError;
 
 //Likes
 -(BOOL)checkIsLiked:(SPProfile*)profile;
