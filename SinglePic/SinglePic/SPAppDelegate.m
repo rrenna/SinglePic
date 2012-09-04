@@ -48,15 +48,16 @@
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     #endif
     
-    [[SPProfileManager sharedInstance] validateAppWithCompletionHandler:^
-    {
-        
-    } andErrorHandler:^(NSString *errorReason, NSString *errorDescription) {
-        
-        UIAlertView* expiredAlert = [[UIAlertView alloc] initWithTitle:errorReason message:errorDescription delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-        [expiredAlert show];
-        [expiredAlert release];
+    [[SPProfileManager sharedInstance] validateAppWithCompletionHandler:^(BOOL needsUpdate, NSString *title, NSString *description) {
+       
+        if(needsUpdate)
+        {
+            UIAlertView* expiredAlert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            [expiredAlert show];
+            [expiredAlert release];
+        }
     }];
+     
     
     /* Device Push Notification Management */
     UIRemoteNotificationType requiredNotificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);

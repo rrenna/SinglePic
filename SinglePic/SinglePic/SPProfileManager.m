@@ -589,7 +589,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 }
 #pragma mark - Authentication methods
 //Validates that this version of the app is valid (non-expired)
--(void)validateAppWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)(NSString* errorReason,NSString* errorDescription))onError
+-(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion
 {
     //We perform different validation depending on if we're TESTING on TestFlight or not
     #if defined (TESTING)
@@ -602,13 +602,18 @@ static NSURL* _thumbnailUploadURLCache = nil;
     [components setDay:BETA_EXPIRY_DAY];
     NSDate* expiryDate = [calendar dateFromComponents:components];
     
+    BOOL needsUpdate = NO;
+    NSString* title = nil;
+    NSString* description = nil;
+    
     if([[NSDate date] earlierDate:expiryDate] == expiryDate)
     {
-        if(onError)
-        {
-            onError(@"SinglePic Beta has expired",@"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com.");
-        }
+        needsUpdate = YES;
+        title = @"SinglePic Beta has expired";
+        NSString* description = @"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com.";
     }
+    
+    onCompletion(needsUpdate,title,description);
     #else
 
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
@@ -621,18 +626,26 @@ static NSURL* _thumbnailUploadURLCache = nil;
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
      {
-             //retrieve server settings
+        //retrieve server settings
          NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
          
-         onCompletion(responseObject);
+         BOOL needsUpdate = NO;
+         NSString* title = nil;
+         NSString* description = nil;
+         
+         NSNumber* needsUpdateValue = [settingsDictionary objectForKey:@"needUpdate"];
+         if([needsUpdateValue boolValue])
+         {
+             needsUpdate = YES;
+             title = @"SinglePic is out of date";
+             description = @"This version of SinglePic is (too) old. You should download the latest version on the App Store before continuing.";
+         }
+         
+         onCompletion(needsUpdate,title,description);
          
      } andErrorHandler:^(SPWebServiceError *error)
      {
-         if(onError)
-         {
-             onError(@"SinglePic is out of date",@"This version of SinglePic is (too) old. You should download the latest version on the App Store before continuing.");
-         }
      }];
     
     #endif
