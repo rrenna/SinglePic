@@ -162,10 +162,6 @@
     
     return self.image;
 }
--(NSDate*)myImageExpiry
-{
-    return [NSDate date];
-}
 -(NSString*)myIcebreaker
 {
     if(!self.icebreaker)
@@ -217,6 +213,14 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         return NO;
     }
     return YES;
+}
+#pragma mark - Helper Function
+-(BOOL)isImageExpired
+{
+    NSDate* expiry = [self myExpiry];
+    NSTimeInterval interval = [expiry timeIntervalSinceNow];
+    
+    return (interval <= 0);
 }
 #pragma mark - Annonymous
 -(SPBucket*)myAnnonymousBucket
@@ -331,17 +335,20 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_NAME_CHANGED object:nil];
 }
-
 -(void)setMyExpiry:(NSDate*)expiry_ synchronize:(BOOL)synchronize
 {
     self.expiry = expiry_;
     
     //Schedule local notification on expiry (and clear any currently scheduled ones)
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    UILocalNotification* expiryNotification = [[[UILocalNotification alloc] init] autorelease];
-    expiryNotification.fireDate = expiry_;
-    expiryNotification.alertBody = NOTIFICATION_BODY_IMAGE_EXPIRY;
-    [[UIApplication sharedApplication] scheduleLocalNotification:expiryNotification];
+    
+    if(![self isImageExpired])
+    {
+        UILocalNotification* expiryNotification = [[[UILocalNotification alloc] init] autorelease];
+        expiryNotification.fireDate = expiry_;
+        expiryNotification.alertBody = NOTIFICATION_BODY_IMAGE_EXPIRY;
+        [[UIApplication sharedApplication] scheduleLocalNotification:expiryNotification];
+    }
     
     [[NSUserDefaults standardUserDefaults] setObject:self.expiry forKey:USER_DEFAULT_KEY_EXPIRY];
     
@@ -389,7 +396,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 #pragma mark - Permissions
 -(BOOL)canSendMessages
 {
-    return self.hasProfileImageSet;
+    return (self.hasProfileImageSet && (![self isImageExpired]) );
 }
 #pragma mark - Undo Methods
 -(BOOL)undoMyImageWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
@@ -663,6 +670,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
          NSString* userIcebreaker_ = [user_ objectForKey:@"icebreaker"];
          NSString* userGender_ = [user_ objectForKey:@"gender"];
          NSString* userPreference_ = [user_ objectForKey:@"lookingForGender"];
+         NSString* lastUpdatedServerTime_ = [user_ objectForKey:@"lastUpdated"];
+         
+         NSDate* lastUpdated = [TimeHelper dateWithServerTime:lastUpdatedServerTime_];
+         NSDate* expiry = [lastUpdated dateByAddingTimeInterval:SECONDS_PER_DAY * EXPIRY_DAYS];
          
          [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
          {
@@ -687,6 +698,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                  [[SPProfileManager sharedInstance] setMyIcebreaker:userIcebreaker_ synchronize:NO];
                  [[SPProfileManager sharedInstance] setMyGender:GENDER_FROM_NAME(userGender_) synchronize:NO];
                  [[SPProfileManager sharedInstance] setMyPreference:GENDER_FROM_NAME(userPreference_) synchronize:NO];
+                 [[SPProfileManager sharedInstance] setMyExpiry:expiry synchronize:NO];
                  
                  self.userType = USER_TYPE_PROFILE;
                  [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
@@ -977,7 +989,6 @@ static int profileCounter = 0;
     
     if([self myUserType] == USER_TYPE_ANNONYMOUS)
     {
-        #define DEFAULT_BUCKET @"1"
         NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",DEFAULT_BUCKET,GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],0,intTime];
         
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) 
@@ -1082,7 +1093,6 @@ static int profileCounter = 0;
              {
                 onError();
              }
- 
          }];
     }
 }
@@ -1146,8 +1156,7 @@ static int profileCounter = 0;
              //If there are no likes recorded, return an empty array
              onCompletion([NSArray array]);
          }
-
-     } 
+     }
      andErrorHandler:^(SPWebServiceError* error)
      {
          if(onError)
@@ -1280,6 +1289,8 @@ static int profileCounter = 0;
 -(void)clearProfile
 {
     [[SPRequestManager sharedInstance] removeUserToken];
+    //Cancel any queued local notifications
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
     //Clear out various NSUserDefault cached values
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
@@ -1296,9 +1307,7 @@ static int profileCounter = 0;
     
     //Reset variables
     _hasProfileImage = NO;
-    
-    [_image release];
-    _image = nil;
+    [_image release]; _image = nil;
 }
 //Wipes app of all profile information (including stored messages of all accounts)
 -(void)wipeProfiles

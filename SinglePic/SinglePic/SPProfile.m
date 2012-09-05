@@ -58,13 +58,7 @@
 -(NSDate*)timestamp
 {
     NSString* timestampString = [_data objectForKey:@"lastUpdated"];
-    
-    if([timestampString length] > 3)
-    {
-        timestampString = [timestampString substringToIndex:[timestampString length] - 3];
-    }
-    
-    return [NSDate dateWithTimeIntervalSince1970:[timestampString doubleValue]];
+    return [TimeHelper dateWithServerTime:timestampString];
 }
 -(NSURL*)thumbnailURL
 {
@@ -73,7 +67,6 @@
 }
 -(NSURL*)pictureURL
 {
-    
     NSString* pictureURLString = [_data objectForKey:@"imageURL"];
     return [NSURL URLWithString:pictureURLString];
 }

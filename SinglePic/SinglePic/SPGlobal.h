@@ -13,11 +13,11 @@ static NSString* DEFAULT_PORTRAIT_IMAGE = @"noImage";
 static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define DEFAULT_GENDER GENDER_FEMALE
 #define DEFAULT_PREFERENCE GENDER_MALE
+#define EXPIRY_DAYS 1
 #define ICEBREAKER_LENGTH_LIMIT 120
 #define MINIMUM_USERNAME_LENGTH 6
 #define MINIMUM_PASSWORD_LENGTH 6
 #define MINIMUM_EMAIL_LENGTH 4
-
 
 //General
 #define SECONDS_PER_DAY  (60 * 60 * 24)
@@ -25,6 +25,7 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define SECONDS_PER_MINUTE 60
 
 //Beta Testing
+#define DEFAULT_BUCKET @"1"
 //Beta expiry
 #define BETA_EXPIRY_YEAR 2012
 #define BETA_EXPIRY_MONTH 10

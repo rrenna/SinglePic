@@ -26,6 +26,7 @@
 -(SPTabController*)createTabIsMoveable:(BOOL)moveable;
 -(void)browseScreenProfileSelected;
 -(void)updateExpiry;
+-(void)updateAvatar;
 -(void)validateReachability;
 -(void)locationServicesValidated;
 -(void)navigationMode;
@@ -117,6 +118,7 @@
         
         //Set the image expiry "mini" progress view in the navigation bar
         [self updateExpiry];
+        [self updateAvatar];
         
         #define HELP_OVERLAY_BROWSE_DISPLAYED_KEY @"HELP_OVERLAY_BROWSE_DISPLAYED_KEY"
         if(![[NSUserDefaults standardUserDefaults] boolForKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY])
@@ -143,6 +145,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userTypeChangedWithNotification:) name:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAvatar) name:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
     }
     return self;
 }
@@ -164,6 +167,7 @@
     [reachabilityController release]; 
     [navigationBar release];
     [miniProgressView release];
+    [miniAvatarImage release];
     [super dealloc];
 }
 #pragma mark - IBActions
@@ -352,6 +356,21 @@
         miniProgressView.progress = progress;
     }
 }
+-(void)updateAvatar
+{
+    if( ![[SPProfileManager sharedInstance] isImageExpired] )
+    {
+        miniAvatarImage.image = [[SPProfileManager sharedInstance] myImage];
+        miniAvatarImage.layer.cornerRadius = 6.0f;
+        miniAvatarImage.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        miniAvatarImage.layer.borderWidth = 1.0f;
+        miniAvatarImage.layer.masksToBounds = YES;
+    }
+    else
+    {
+        miniAvatarImage.image = nil;
+    }
+}
 -(void)userTypeChangedWithNotification:(NSNotification*)notification
 {
     //Close all tabs - if going from a annonymous 'browse' to a registered 'browse' the content will be different
@@ -476,6 +495,8 @@
 - (void)viewDidUnload {
     [miniProgressView release];
     miniProgressView = nil;
+    [miniAvatarImage release];
+    miniAvatarImage = nil;
     [super viewDidUnload];
 }
 @end

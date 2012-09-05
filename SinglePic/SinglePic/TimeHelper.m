@@ -33,6 +33,20 @@
     
     return MIN( progress , 1.0f);
 }
++ (NSDate*) dateWithServerTime:(NSString*)serverTime
+{
+    if([serverTime length] > 3)
+    {
+        serverTime = [serverTime substringToIndex:[serverTime length] - 3];
+    }
+    
+    NSTimeInterval serverTimeInterval = [serverTime doubleValue];
+    return [NSDate dateWithTimeIntervalSince1970:serverTimeInterval];
+}
++ (NSString*) serverTimeWithDate:(NSDate*)date
+{
+        //TODO:
+}
 #pragma mark - Private methods
 +(NSString*)_descriptionForTimeInterval:(NSTimeInterval)interval
 {

@@ -79,6 +79,9 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(GENDER)myPreference;
 -(BOOL)myPushTokenSynced;
 
+//Helper Function
+-(BOOL)isImageExpired;
+
 //Annonymous - to be used when not in a registered state
 -(SPBucket*)myAnnonymousBucket;
 -(GENDER)myAnnonymousGender;

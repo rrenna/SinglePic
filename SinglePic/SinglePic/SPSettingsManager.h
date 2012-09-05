@@ -8,6 +8,9 @@
 
 #import "SPSingleton.h"
 
+//Notifications
+#define NOTIFICATION_APPLICATION_SETTINGS_CHANGED @"NOTIFICATION_APPLICATION_SETTINGS_CHANGED"
+
 @interface SPSettingsManager : SPSingleton
 @property (retain) NSDictionary* settings;
 

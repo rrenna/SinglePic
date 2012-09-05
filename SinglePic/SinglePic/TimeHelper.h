@@ -15,4 +15,7 @@
 + (NSString*) countdownUntilDate:(NSString*)date;
 //Returns a fraction of progress to the given time interval after the provided date (capped at 1.0). ie. If we are 1 day after date, and the interval is 2 days, 0.5 will be returned
 + (float) progressOfDate:(NSDate*)date toTimeInterval:(NSTimeInterval)interval;
+//Converts a SinglePic server time to an NSDate
++ (NSDate*) dateWithServerTime:(NSString*)serverTime;
++ (NSString*) serverTimeWithDate:(NSDate*)date;
 @end

@@ -8,9 +8,6 @@
 
 //Used to place information about SinglePic profiles that other components may need to reference
 
-//Profile expiry
-#define EXPIRY_DAYS 1
-
 //Notifications
 static NSString* NOTIFICATION_LIKED_BY_RECIEVED = @"NOTIFICATION_LIKED_BY_RECIEVED";
 static NSString* NOTIFICATION_LIKES_RECIEVED = @"NOTIFICATION_LIKES_RECIEVED";
