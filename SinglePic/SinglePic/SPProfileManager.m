@@ -67,9 +67,6 @@
 #define USER_DEFAULT_KEY_ANNONYMOUS_GENDER @"USER_DEFAULT_KEY_ANNONYMOUS_GENDER"
 #define USER_DEFAULT_KEY_ANNONYMOUS_PREFERENCE @"USER_DEFAULT_KEY_ANNONYMOUS_PREFERENCE"
 
-//File System Filenames
-#define AVATAR_FILENAME @"avatar.png"
-
 @implementation SPProfileManager
 @synthesize profiles = _profiles, userType = _userType, userID = _userID, userName = _userName, expiry = _expiry, bucket = _bucket, image = _image, lastImage = _lastImage, icebreaker = _icebreaker,email = _email, gender = _gender, preference = _preference;
 @dynamic hasProfileImageSet;
@@ -153,7 +150,7 @@
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString* path = [documentsDirectory stringByAppendingPathComponent:AVATAR_FILENAME];
+        NSString* path = [documentsDirectory stringByAppendingPathComponent:[self myUserID]];
         self.image = [UIImage imageWithContentsOfFile:path];
         
         if(!self.image)
@@ -253,7 +250,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent: 
-                          [NSString stringWithString: AVATAR_FILENAME] ];
+                          [NSString stringWithString: [self myUserID] ] ];
         NSData* data = UIImageJPEGRepresentation(_image,1.0);
         //Save image to disk
         [data writeToFile:path atomically:YES];
@@ -589,68 +586,6 @@ static NSURL* _thumbnailUploadURLCache = nil;
     }
 }
 #pragma mark - Authentication methods
-//Validates that this version of the app is valid (non-expired)
--(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion
-{
-    //We perform different validation depending on if we're TESTING on TestFlight or not
-    #if defined (TESTING)
-    //This is used to enforce beta client expiry
-    //Expires on
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
-    [components setYear:BETA_EXPIRY_YEAR];
-    [components setMonth:BETA_EXPIRY_MONTH];
-    [components setDay:BETA_EXPIRY_DAY];
-    NSDate* expiryDate = [calendar dateFromComponents:components];
-    
-    BOOL needsUpdate = NO;
-    NSString* title = nil;
-    NSString* description = nil;
-    
-    if([[NSDate date] earlierDate:expiryDate] == expiryDate)
-    {
-        needsUpdate = YES;
-        title = @"SinglePic Beta has expired";
-        NSString* description = @"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com.";
-    }
-    
-    onCompletion(needsUpdate,title,description);
-    #else
-
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    //Re-enable below if we need to validate build number
-    //NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
-    
-    NSDictionary* validateDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"iOS/iPhone",@"platform",nil];
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:validateDataDictionary error:nil];
-    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
-    
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
-     {
-        //retrieve server settings
-         NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
-         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
-         
-         BOOL needsUpdate = NO;
-         NSString* title = nil;
-         NSString* description = nil;
-         
-         NSNumber* needsUpdateValue = [settingsDictionary objectForKey:@"needUpdate"];
-         if([needsUpdateValue boolValue])
-         {
-             needsUpdate = YES;
-             title = @"SinglePic is out of date";
-             description = @"This version of SinglePic is (too) old. You should download the latest version on the App Store before continuing.";
-         }
-         
-         onCompletion(needsUpdate,title,description);
-         
-     } andErrorHandler:^(SPWebServiceError *error)
-     {
-     }];
-    
-    #endif
-}
 //Validates that the stored credentials are valid
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
@@ -1358,16 +1293,12 @@ static int profileCounter = 0;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_PREFERENCE];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN_SYNCED];
     //Cannot remove USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION as it's stored as an integer
-
-    //Clear cached avatar
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent: 
-                      [NSString stringWithString:AVATAR_FILENAME ] ];
-    NSFileManager * fileManager = [NSFileManager new];
-    [fileManager removeItemAtPath:path error:nil];
-    [fileManager release];
+    
+    //Reset variables
+    _hasProfileImage = NO;
+    
+    [_image release];
+    _image = nil;
 }
 //Wipes app of all profile information (including stored messages of all accounts)
 -(void)wipeProfiles

@@ -30,6 +30,7 @@
     #import "CJSONDeserializer.h"
     #import "CJSONSerializer.h"
     #import "SPAppDelegate.h"
+    #import "SPSettingsManager.h"
     #import "SPProfileManager.h"
     #import "SPBucketManager.h"
     #import "SPRequestManager.h"

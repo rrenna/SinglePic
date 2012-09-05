@@ -133,6 +133,7 @@ static int profileIndex = 0;
         [self resume];
     }*/
 }
+#define RESTARTING_STRING @"Restarting, time to do it all over again."
 #pragma mark - IBActions
 -(IBAction)restart:(id)sender
 {
@@ -154,7 +155,7 @@ static int profileIndex = 0;
                  [self dropAllOnscreenBlocks];
              }
              
-             [SVProgressHUD dismiss];
+             [SVProgressHUD dismissWithSuccess:RESTARTING_STRING afterDelay:1.5];
              isRestarting = NO;
          }
          andErrorHandler:^
@@ -175,7 +176,7 @@ static int profileIndex = 0;
    //No more profiles
    if([[SPProfileManager sharedInstance] remainingProfiles] == 0)
    {
-       [SVProgressHUD showWithStatus:@"Restarting, time to do it all over again." maskType:SVProgressHUDMaskTypeClear networkIndicator:YES];
+       [SVProgressHUD showWithStatus:RESTARTING_STRING maskType:SVProgressHUDMaskTypeClear networkIndicator:YES];
        [self restart:nil];
    }
    else
@@ -342,7 +343,6 @@ static int profileIndex = 0;
                 } completion:^(BOOL finished) {
                     
                     [self destroyBlockView:subView];
-                    
                 }];
                 
                 delay -= 0.05;
@@ -353,7 +353,7 @@ static int profileIndex = 0;
         [self pauseAllStacks];
         
         [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
-        [self performSelector:@selector(stopLoading) afterTicks:5500 * TICK];
+        [self performSelector:@selector(stopLoading) afterTicks:6500 * TICK];
         [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
     }
 }

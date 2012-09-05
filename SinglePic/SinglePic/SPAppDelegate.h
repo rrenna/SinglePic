@@ -20,6 +20,5 @@
 
 +(SPBaseController*)baseController;
 -(NSString*)deviceToken;
--(NSDictionary*)settings;
 
 @end

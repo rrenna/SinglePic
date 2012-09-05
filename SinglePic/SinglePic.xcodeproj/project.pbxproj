@@ -368,6 +368,7 @@
 		F0EE799A14E364E700439040 /* icon-like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799914E364E700439040 /* icon-like@2x.png */; };
 		F0EE799C14E36A4F00439040 /* Tab-Faves_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799B14E36A4F00439040 /* Tab-Faves_Highlighted.png */; };
 		F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F80A0815F6A97E00201FF4 /* testingImage.png */; };
+		F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -913,6 +914,8 @@
 		F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContainerDelegate.h; sourceTree = "<group>"; };
 		F0F7CEA414C924D3009C7DF8 /* SPPageContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContentDelegate.h; sourceTree = "<group>"; };
 		F0F80A0815F6A97E00201FF4 /* testingImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testingImage.png; path = ../../Resources/testingImage.png; sourceTree = "<group>"; };
+		F0F80A0B15F6C69300201FF4 /* SPSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingsManager.h; sourceTree = "<group>"; };
+		F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2145,6 +2148,7 @@
 		F0C178B21491C0E200F72809 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				F0F80A0A15F6B02600201FF4 /* Settings */,
 				F050FEEC14EDE0030069EB74 /* Subscriptions */,
 				F0A7923F14ED3FDC00296D7D /* Errors */,
 				F01C41EA14C7C8980079EB18 /* Messages */,
@@ -2295,6 +2299,15 @@
 				F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */,
 			);
 			name = Pages;
+			sourceTree = "<group>";
+		};
+		F0F80A0A15F6B02600201FF4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F0F80A0B15F6C69300201FF4 /* SPSettingsManager.h */,
+				F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2698,6 +2711,7 @@
 				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
 				F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */,
 				753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */,
+				F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

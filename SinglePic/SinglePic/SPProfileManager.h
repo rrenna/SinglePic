@@ -106,7 +106,6 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(void)requestURLsToSaveMyPictureWithCompletionHandler:(void (^)(NSURL* imageUploadURL,NSURL* thumbnailUploadURL))onCompletion andErrorHandler:(void(^)())onError;
 
 //Authentication
--(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion;//Validates that this version of the app is valid (non-expired)
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Validates that the stored credentials are valid
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;//Registers the current device's push Token, enabling the server to push this device notifications while offline
 //----Registration

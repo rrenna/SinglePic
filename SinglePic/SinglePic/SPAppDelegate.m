@@ -20,15 +20,13 @@
 
 @interface SPAppDelegate()
 @property (strong, nonatomic) SPBaseController *baseController;
-@property (retain) NSDictionary* settings_;
 
 -(void)setDeviceToken:(NSString*)token;
--(void)setApplicationSettingsWithNotification:(NSNotification*)notification;
 @end
 
 @implementation SPAppDelegate
 @synthesize window = _window;
-@synthesize baseController,settings_;
+@synthesize baseController;
 
 +(SPBaseController*)baseController
 {
@@ -48,7 +46,7 @@
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     #endif
     
-    [[SPProfileManager sharedInstance] validateAppWithCompletionHandler:^(BOOL needsUpdate, NSString *title, NSString *description) {
+    [[SPSettingsManager sharedInstance] validateAppWithCompletionHandler:^(BOOL needsUpdate, NSString *title, NSString *description) {
        
         if(needsUpdate)
         {
@@ -66,9 +64,6 @@
     // Let the device know we want to receive push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:requiredNotificationTypes];
     
-    // Setup notification listeners
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setApplicationSettingsWithNotification:) name:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:nil];
-    
     // Override point for customization after application launch.
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.baseController = [[[SPBaseController alloc] initWithNibName:@"SPBaseController" bundle:nil] autorelease];
@@ -76,11 +71,6 @@
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-#pragma mark - Settings
--(NSDictionary*)settings
-{
-    return self.settings_;
 }
 #pragma mark - Push Notifications
 -(NSString*)deviceToken
@@ -158,10 +148,6 @@
      */
 }
 #pragma mark - Private methods
--(void)setApplicationSettingsWithNotification:(NSNotification*)notification
-{
-    self.settings_ = notification.object;
-}
 -(void)setDeviceToken:(NSString*)token
 {
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN];
