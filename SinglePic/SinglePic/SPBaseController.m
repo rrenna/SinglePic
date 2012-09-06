@@ -192,6 +192,8 @@
     [TestFlight passCheckpoint:@"Switched to MY PROFILE screen"]; 
     #endif
     
+    [self updateExpiry];
+    
     [self minimizeAllTabs];
     
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];

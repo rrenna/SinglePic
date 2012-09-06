@@ -396,7 +396,16 @@ static float minimizedToolbarY = 410.0f;
     else
     {
         [SVProgressHUD show];
-        [SVProgressHUD dismissWithError:@"You must have a Pic set to send a message" afterDelay:2.0];
+        
+        if(![[SPProfileManager sharedInstance] isImageSet])
+        {
+            [SVProgressHUD dismissWithError:@"You must have a Pic set to send a message." afterDelay:2.0];
+        }
+        else if([[SPProfileManager sharedInstance] isImageExpired])
+        {
+            [SVProgressHUD dismissWithError:@"You must update your expired Pic to send a message." afterDelay:2.0];
+        }
+        
         return NO;
     }
 }

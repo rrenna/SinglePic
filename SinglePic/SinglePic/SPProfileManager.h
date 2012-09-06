@@ -81,6 +81,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 
 //Helper Function
 -(BOOL)isImageExpired;
+-(BOOL)isImageSet;
 
 //Annonymous - to be used when not in a registered state
 -(SPBucket*)myAnnonymousBucket;

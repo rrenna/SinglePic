@@ -222,6 +222,10 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     
     return (interval <= 0);
 }
+-(BOOL)isImageSet
+{
+    return self.hasProfileImageSet;
+}
 #pragma mark - Annonymous
 -(SPBucket*)myAnnonymousBucket
 {
