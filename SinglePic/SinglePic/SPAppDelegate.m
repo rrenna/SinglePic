@@ -92,6 +92,7 @@
 }
 -(void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    NSLog(@"");
     //Recieved local notification - queued to be displayed by this app
 }
 -(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken_
