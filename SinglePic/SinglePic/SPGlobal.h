@@ -31,6 +31,10 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define SECONDS_PER_HOUR (60 * 60)
 #define SECONDS_PER_MINUTE 60
 
+//Servers
+#define PRODUCTION_ADDRESS @"https://singlepicdating.herokuapp.com"
+#define TESTING_ADDRESS @"https://singlepicdating-staging.herokuapp.com"
+
 //Beta Testing
 #define DEFAULT_BUCKET @"1"
 //Beta expiry

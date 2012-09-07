@@ -38,8 +38,8 @@
 {
     if([self reachable])
     {
-        //If reachable, alert the delegate
-        [self.delegate reachabilityConfirmedForHostName:SERVER_ADDRESS];
+        //If reachable, alert the delegate        
+        [self.delegate reachabilityConfirmedForHostName:[[SPSettingsManager sharedInstance] serverAddress]];
     }
     else
     {
@@ -49,7 +49,7 @@
 #pragma mark - Private methods
 -(BOOL)reachable
 {
-     Reachability* reachability = [Reachability reachabilityWithHostName:SERVER_ADDRESS];
+     Reachability* reachability = [Reachability reachabilityWithHostName:[[SPSettingsManager sharedInstance] serverAddress]];
     return [reachability isReachable];
 }
 #pragma mark - Self Delegate methods
@@ -59,7 +59,7 @@
     if([self reachable])
     {
         //If reachable, alert the delegate
-        [delegate reachabilityConfirmedForHostName:SERVER_ADDRESS];
+        [delegate reachabilityConfirmedForHostName:[[SPSettingsManager sharedInstance] serverAddress]];
     }
     else
     {

@@ -97,9 +97,9 @@ static BOOL AddSingleton(id class, id instance)
                     //
                     _singletonArray.array = realloc(_singletonArray.array, _singletonArray.capacity * sizeof(Singleton));
                     
-#if DEBUG
+                    #if DEBUG
                     assert(_singletonArray.array != NULL);
-#endif
+                    #endif
                 }
             }
         }

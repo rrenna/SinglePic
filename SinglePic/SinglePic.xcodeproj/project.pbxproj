@@ -134,6 +134,7 @@
 		75A38B9914E9A1AD000F00DF /* Pic-Frame-Blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9814E9A1AD000F00DF /* Pic-Frame-Blocks.png */; };
 		75A38B9D14E9B004000F00DF /* noImage-Block.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9B14E9B004000F00DF /* noImage-Block.png */; };
 		75A38B9E14E9B004000F00DF /* noImage-Block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9C14E9B004000F00DF /* noImage-Block@2x.png */; };
+		75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B1C4D915FA6CBC001055A0 /* SPSettingsViewController.m */; };
 		75B4AA3115D44E5700745137 /* SPLocationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B4AA3015D44E5700745137 /* SPLocationChooser.m */; };
 		75B4AA4F15D44F8700745137 /* callout_anchor.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA3315D44F8700745137 /* callout_anchor.png */; };
 		75B4AA5015D44F8700745137 /* callout_anchor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA3415D44F8700745137 /* callout_anchor@2x.png */; };
@@ -546,6 +547,8 @@
 		75A38B9814E9A1AD000F00DF /* Pic-Frame-Blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame-Blocks.png"; path = "../../Resources/Pic-Frame-Blocks.png"; sourceTree = "<group>"; };
 		75A38B9B14E9B004000F00DF /* noImage-Block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage-Block.png"; path = "../../Resources/noImage-Block.png"; sourceTree = "<group>"; };
 		75A38B9C14E9B004000F00DF /* noImage-Block@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage-Block@2x.png"; path = "../../Resources/noImage-Block@2x.png"; sourceTree = "<group>"; };
+		75B1C4D815FA6CBC001055A0 /* SPSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingsViewController.h; sourceTree = "<group>"; };
+		75B1C4D915FA6CBC001055A0 /* SPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingsViewController.m; sourceTree = "<group>"; };
 		75B4AA2F15D44E5700745137 /* SPLocationChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocationChooser.h; sourceTree = "<group>"; };
 		75B4AA3015D44E5700745137 /* SPLocationChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocationChooser.m; sourceTree = "<group>"; };
 		75B4AA3315D44F8700745137 /* callout_anchor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callout_anchor.png; sourceTree = "<group>"; };
@@ -1436,6 +1439,15 @@
 			name = "Login/Signup Screen";
 			sourceTree = "<group>";
 		};
+		75B1C4D515FA6C8A001055A0 /* Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				75B1C4D815FA6CBC001055A0 /* SPSettingsViewController.h */,
+				75B1C4D915FA6CBC001055A0 /* SPSettingsViewController.m */,
+			);
+			name = "Settings Screen";
+			sourceTree = "<group>";
+		};
 		75B4AA2D15D44E3100745137 /* Location Chooser */ = {
 			isa = PBXGroup;
 			children = (
@@ -1558,6 +1570,7 @@
 		75F5632B148FE92000E6A8F9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				75B1C4D515FA6C8A001055A0 /* Settings Screen */,
 				750E482314C60EC000F7CCFC /* Reachability Popup Controller */,
 				7575EB1815DABCFB00D5707B /* Help Overlay Controller */,
 				F0620D081524B99C008D334C /* Subscription Page */,
@@ -2712,6 +2725,7 @@
 				F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */,
 				753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */,
 				F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */,
+				75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

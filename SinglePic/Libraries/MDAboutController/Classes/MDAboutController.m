@@ -48,8 +48,6 @@
 #import "MDACIconCredit.h"
 #import "MDACWebViewController.h"
 #import "MDACStyle.h"
-#import "SPAppDelegate.h"
-#import "SPBaseController.h"
 
 #pragma mark Constants
 
@@ -707,10 +705,13 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
                 }
             }
             else if ([url.scheme isEqualToString:@"selector"]) {
-            
-                SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
-                SPBaseController* baseController = [delegate baseController];
-                [baseController performSelector:NSSelectorFromString([url resourceSpecifier])];
+                //Addition - Ryan Renna
+                //Performs the requested selector on self - must be implemented
+                SEL selector = NSSelectorFromString([url resourceSpecifier]);
+                if([self respondsToSelector:selector])
+                {
+                    [self performSelector:selector];
+                }
             }
             else if ([url.scheme isEqualToString:@"mailto"]) {
                 if (NSClassFromString(@"MFMailComposeViewController")) {

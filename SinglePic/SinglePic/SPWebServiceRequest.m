@@ -54,6 +54,7 @@
 -(void)generateURL
 {
     NSURL* webServiceURL;
+    NSString* serverAddress = [[SPSettingsManager sharedInstance] serverAddress];
     
     if(self.parameter)
     {
@@ -68,13 +69,13 @@
                                                                                            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                            kCFStringEncodingUTF8 );
             
-            NSString* urlString = [NSString stringWithFormat:@"%@/%@/%@/token/%@",SERVER_ADDRESS,REQUEST_NAMESPACES[name],parameter,escapedUserToken];
+            NSString* urlString = [NSString stringWithFormat:@"%@/%@/%@/token/%@",serverAddress,REQUEST_NAMESPACES[name],parameter,escapedUserToken];
             webServiceURL = [NSURL URLWithString:urlString];
             [escapedUserToken release];
         }
         else
         {
-            webServiceURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@/%@",SERVER_ADDRESS,REQUEST_NAMESPACES[name],parameter]];
+            webServiceURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@/%@",serverAddress,REQUEST_NAMESPACES[name],parameter]];
         }
     }
     else
@@ -88,12 +89,12 @@
                                                                                               NULL,
                                                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                               kCFStringEncodingUTF8 );
-            webServiceURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@/token/%@",SERVER_ADDRESS,REQUEST_NAMESPACES[name],escapedUserToken]];
+            webServiceURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@/token/%@",serverAddress,REQUEST_NAMESPACES[name],escapedUserToken]];
             [escapedUserToken release];
         }
         else
         {
-            webServiceURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@",SERVER_ADDRESS,REQUEST_NAMESPACES[name]]];
+            webServiceURL = [NSURL URLWithString: [NSString stringWithFormat:@"%@/%@",serverAddress,REQUEST_NAMESPACES[name]]];
         }
     }
 

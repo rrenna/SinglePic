@@ -18,5 +18,4 @@ typedef enum
 } REQUEST_NAMESPACE;
 
 static NSString* REQUEST_NAMESPACES[5] = {@"tokens",@"users",@"usernames",@"buckets",@"versioncheck"};
-static NSString* SERVER_ADDRESS = @"https://singlepicdating.herokuapp.com";
 

@@ -8,9 +8,73 @@
 
 #import "SPSettingsManager.h"
 
+#define USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY @"USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY"
+
+@interface SPSettingsManager()
+{
+    ENVIRONMENT _environment;
+}
+@property (retain) NSDictionary* settings;
+@end
+
 @implementation SPSettingsManager
 @synthesize settings = _settings;
+@dynamic environment,serverAddress;
 
+#pragma mark - Dynamic Properties
+-(ENVIRONMENT)environment
+{
+    return _environment;
+}
+-(void)setEnvironment:(ENVIRONMENT)environment
+{
+    NSAssert([self canSwitchEnvironments], @"An attempt to switch environments has been made in an instance that shouldn't be able to.");
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:environment forKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    _environment = environment;
+}
+-(NSString*)serverAddress
+{
+    if(_environment == TESTING)
+    {
+        return PRODUCTION_ADDRESS;
+    }
+    else
+    {
+        return TESTING_ADDRESS;
+    }
+}
+#pragma mark
+-(id)init
+{
+    self = [super init];
+    if(self)
+    {
+        if([self canSwitchEnvironments])
+        {
+            ENVIRONMENT lastSelectedEnvironment = (ENVIRONMENT)[[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
+            _environment = lastSelectedEnvironment;
+        }
+        else
+        {
+            _environment = PRODUCTION;
+        }
+    }
+    return self;
+}
+#pragma mark - Helper Settings
+-(BOOL)canSwitchEnvironments
+{
+    #if defined (TESTING)
+    return YES;
+    #elif defined (DEBUG)
+    return YES;
+    #endif
+    return NO;
+}
+#pragma mark
 //Validates that this version of the app is valid (non-expired)
 -(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion
 {
