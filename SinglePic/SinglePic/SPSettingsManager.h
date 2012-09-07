@@ -18,10 +18,12 @@ typedef enum
 } ENVIRONMENT;
 
 @interface SPSettingsManager : SPSingleton
-@property (retain,readonly) NSString* serverAddress;
+@property (readonly) NSString* serverAddress;
 @property (assign) ENVIRONMENT environment;
+@property (readonly) CGFloat daysPicValid;
+@property (readonly) NSString* defaultBucketID;
 
-//Helper Settings
+//Setting Helper Methods
 -(BOOL)canSwitchEnvironments;
 
 //Validates that the app is up to date, retrieves the latest server settings

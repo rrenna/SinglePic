@@ -453,7 +453,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
                 self.lastImage = self.image;
             }
             
-            NSTimeInterval interval = SECONDS_PER_DAY * EXPIRY_DAYS;
+            NSTimeInterval interval = SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid];
             //Set my Expiry
             [self setMyExpiry:[NSDate dateWithTimeIntervalSinceNow:interval] synchronize:NO];
             //Set my Image
@@ -677,7 +677,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
          NSString* lastUpdatedServerTime_ = [user_ objectForKey:@"lastUpdated"];
          
          NSDate* lastUpdated = [TimeHelper dateWithServerTime:lastUpdatedServerTime_];
-         NSDate* expiry = [lastUpdated dateByAddingTimeInterval:SECONDS_PER_DAY * EXPIRY_DAYS];
+         NSDate* expiry = [lastUpdated dateByAddingTimeInterval:SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid]];
          
          [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
          {
@@ -993,7 +993,7 @@ static int profileCounter = 0;
     
     if([self myUserType] == USER_TYPE_ANNONYMOUS)
     {
-        NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",DEFAULT_BUCKET,GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],0,intTime];
+        NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",[[SPSettingsManager sharedInstance] defaultBucketID],GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],0,intTime];
         
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) 
          {

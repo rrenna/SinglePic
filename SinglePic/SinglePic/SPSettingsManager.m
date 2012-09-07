@@ -12,31 +12,42 @@
 
 @interface SPSettingsManager()
 {
+    #ifndef RELEASE
     ENVIRONMENT _environment;
+    #endif
 }
 @property (retain) NSDictionary* settings;
 @end
 
 @implementation SPSettingsManager
 @synthesize settings = _settings;
-@dynamic environment,serverAddress;
+@dynamic environment,serverAddress,defaultBucketID;
 
 #pragma mark - Dynamic Properties
 -(ENVIRONMENT)environment
 {
+    #ifdef RELEASE
+    return PRODUCTION;
+    #else
     return _environment;
+    #endif
 }
 -(void)setEnvironment:(ENVIRONMENT)environment
 {
     NSAssert([self canSwitchEnvironments], @"An attempt to switch environments has been made in an instance that shouldn't be able to.");
     
+    #ifndef RELEASE
     [[NSUserDefaults standardUserDefaults] setInteger:environment forKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     _environment = environment;
+    #endif
 }
 -(NSString*)serverAddress
 {
+    #ifdef RELEASE
+    return PRODUCTION_ADDRESS;
+    #else
     if(_environment == TESTING)
     {
         return PRODUCTION_ADDRESS;
@@ -45,6 +56,20 @@
     {
         return TESTING_ADDRESS;
     }
+    #endif
+}
+-(CGFloat)daysPicValid
+{
+    //When debugging reduce time until expiry
+    #if defined (DEBUG)
+    return 0.0013888; //2 minutes
+    #else
+    return 1;
+    #endif
+}
+-(int)defaultBucketID
+{
+    return @"1";
 }
 #pragma mark
 -(id)init
@@ -52,27 +77,21 @@
     self = [super init];
     if(self)
     {
-        if([self canSwitchEnvironments])
-        {
-            ENVIRONMENT lastSelectedEnvironment = (ENVIRONMENT)[[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
-            _environment = lastSelectedEnvironment;
-        }
-        else
-        {
-            _environment = PRODUCTION;
-        }
+        #ifndef RELEASE
+        ENVIRONMENT lastSelectedEnvironment = (ENVIRONMENT)[[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
+        _environment = lastSelectedEnvironment;
+        #endif
     }
     return self;
 }
-#pragma mark - Helper Settings
+#pragma mark - Setting Helper Methods
 -(BOOL)canSwitchEnvironments
 {
-    #if defined (TESTING)
-    return YES;
-    #elif defined (DEBUG)
+    #ifdef RELEASE
+    return NO;
+    #else
     return YES;
     #endif
-    return NO;
 }
 #pragma mark
 //Validates that this version of the app is valid (non-expired)

@@ -179,7 +179,7 @@
 {
     //SECONDS_PER_DAY
     NSDate* expiryDate = [[SPProfileManager sharedInstance] myExpiry];
-    float progress = MAX([TimeHelper progressOfDate:expiryDate toTimeInterval:(SECONDS_PER_DAY * EXPIRY_DAYS)], 0);
+    float progress = MAX([TimeHelper progressOfDate:expiryDate toTimeInterval:(SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid])], 0);
     
     if(!expiryDate)
     {

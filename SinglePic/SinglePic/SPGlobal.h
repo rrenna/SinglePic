@@ -19,13 +19,6 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define MINIMUM_PASSWORD_LENGTH 6
 #define MINIMUM_EMAIL_LENGTH 4
 
-//When debugging reduce time until expiry
-#if defined (DEBUG)
-#define EXPIRY_DAYS 0.0013888
-#else
-#define EXPIRY_DAYS 1
-#endif
-
 //General
 #define SECONDS_PER_DAY  (60 * 60 * 24)
 #define SECONDS_PER_HOUR (60 * 60)
@@ -35,8 +28,6 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define PRODUCTION_ADDRESS @"https://singlepicdating.herokuapp.com"
 #define TESTING_ADDRESS @"https://singlepicdating-staging.herokuapp.com"
 
-//Beta Testing
-#define DEFAULT_BUCKET @"1"
 //Beta expiry
 #define BETA_EXPIRY_YEAR 2012
 #define BETA_EXPIRY_MONTH 10
