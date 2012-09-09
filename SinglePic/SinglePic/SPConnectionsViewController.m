@@ -173,7 +173,7 @@
     avatarImage.backgroundColor = [UIColor whiteColor];
     avatarImage.contentMode = UIViewContentModeScaleAspectFill;
     avatarImage.clipsToBounds = YES;
-    frameImage.image = [UIImage imageNamed:@"blockBackground.jpg"];
+    frameImage.image = [UIImage imageNamed:@"blockBackground.png"];
     
     //Username label
     CGRect userNameLabelFrame = CGRectMake([cell width] * 0.37, [cell height] * 0.1, [cell width] * 0.63, [cell height] * 0.8);

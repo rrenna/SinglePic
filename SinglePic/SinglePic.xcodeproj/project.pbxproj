@@ -20,7 +20,6 @@
 		751D2633149121C800617DD8 /* SPBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751D2631149121C800617DD8 /* SPBaseController.xib */; };
 		751D2638149146B500617DD8 /* SPTouchPassThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2637149146B500617DD8 /* SPTouchPassThroughView.m */; };
 		751D263D14916D2B00617DD8 /* BG-Linen-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263A14916D2B00617DD8 /* BG-Linen-Red.png */; };
-		751D263E14916D2B00617DD8 /* Parchment-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263B14916D2B00617DD8 /* Parchment-White.png */; };
 		751D263F14916D2B00617DD8 /* Pic-Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263C14916D2B00617DD8 /* Pic-Frame.png */; };
 		751EDDBE14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */; };
 		75246C7C14C0E46A00BD24B1 /* Parchment-Right.png in Resources */ = {isa = PBXBuildFile; fileRef = 75246C7914C0E46A00BD24B1 /* Parchment-Right.png */; };
@@ -183,7 +182,6 @@
 		75F5632A148FE8CA00E6A8F9 /* SPTabController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F56328148FE8CA00E6A8F9 /* SPTabController.xib */; };
 		F003DB4D14EC8DAB00BD6309 /* Pic-Frame-Blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4C14EC8DAA00BD6309 /* Pic-Frame-Blocks@2x.png */; };
 		F003DB5014EC902100BD6309 /* blockBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4F14EC902100BD6309 /* blockBackground.png */; };
-		F003DB5214EC911A00BD6309 /* blockBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F003DB5114EC911900BD6309 /* blockBackground.jpg */; };
 		F003DB9214ECB2F300BD6309 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB7B14ECB2F300BD6309 /* CDataScanner.m */; };
 		F003DB9314ECB2F300BD6309 /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB7E14ECB2F300BD6309 /* CFilteringJSONSerializer.m */; };
 		F003DB9414ECB2F300BD6309 /* CJSONDeserializer_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB8014ECB2F300BD6309 /* CJSONDeserializer_BlocksExtensions.m */; };
@@ -276,8 +274,6 @@
 		F0C178631491C00E00F72809 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C177BF1491C00E00F72809 /* AFXMLRequestOperation.m */; };
 		F0C178641491C00E00F72809 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C177C11491C00E00F72809 /* UIImageView+AFNetworking.m */; };
 		F0C178651491C00E00F72809 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C177C61491C00E00F72809 /* libAviarySDK-universal.a */; };
-		F0C178661491C00E00F72809 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0C177C81491C00E00F72809 /* AviarySDK-Core.bundle */; };
-		F0C178671491C00E00F72809 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0C177C91491C00E00F72809 /* AviarySDK-Plugins.bundle */; };
 		F0C178681491C00E00F72809 /* Box2DConfig.cmake in Resources */ = {isa = PBXBuildFile; fileRef = F0C177CC1491C00E00F72809 /* Box2DConfig.cmake */; };
 		F0C178691491C00E00F72809 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = F0C177CD1491C00E00F72809 /* CMakeLists.txt */; };
 		F0C1786A1491C00E00F72809 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C177CF1491C00E00F72809 /* b2BroadPhase.cpp */; };
@@ -392,7 +388,6 @@
 		751D2636149146B500617DD8 /* SPTouchPassThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTouchPassThroughView.h; sourceTree = "<group>"; };
 		751D2637149146B500617DD8 /* SPTouchPassThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTouchPassThroughView.m; sourceTree = "<group>"; };
 		751D263A14916D2B00617DD8 /* BG-Linen-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red.png"; path = "../../Resources/BG-Linen-Red.png"; sourceTree = "<group>"; };
-		751D263B14916D2B00617DD8 /* Parchment-White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-White.png"; path = "../../Resources/Parchment-White.png"; sourceTree = "<group>"; };
 		751D263C14916D2B00617DD8 /* Pic-Frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame.png"; path = "../../Resources/Pic-Frame.png"; sourceTree = "<group>"; };
 		751EDDBC14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebServiceErrorProfile.h; sourceTree = "<group>"; };
 		751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebServiceErrorProfile.m; sourceTree = "<group>"; };
@@ -618,7 +613,6 @@
 		75F56328148FE8CA00E6A8F9 /* SPTabController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPTabController.xib; sourceTree = "<group>"; };
 		F003DB4C14EC8DAA00BD6309 /* Pic-Frame-Blocks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame-Blocks@2x.png"; path = "../../Resources/Pic-Frame-Blocks@2x.png"; sourceTree = "<group>"; };
 		F003DB4F14EC902100BD6309 /* blockBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blockBackground.png; path = ../../Resources/blockBackground.png; sourceTree = "<group>"; };
-		F003DB5114EC911900BD6309 /* blockBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blockBackground.jpg; path = ../../Resources/blockBackground.jpg; sourceTree = "<group>"; };
 		F003DB7A14ECB2F300BD6309 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		F003DB7B14ECB2F300BD6309 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		F003DB7D14ECB2F300BD6309 /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -1062,7 +1056,6 @@
 				754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */,
 				F03CD12114BA443100E1340D /* Orientation-MsM-default.png */,
 				F003DB4F14EC902100BD6309 /* blockBackground.png */,
-				F003DB5114EC911900BD6309 /* blockBackground.jpg */,
 				F0E04CE614BFF348007F9B9B /* noImage.png */,
 				F03CD12214BA443100E1340D /* Orientation-FsF-selected.png */,
 				F03CD12314BA443100E1340D /* Orientation-FsF-default.png */,
@@ -1076,7 +1069,6 @@
 				F0818D4F14C00DFD00649DFF /* location-pin.png */,
 				F03CD12714BA443100E1340D /* Orientation-FsM-default.png */,
 				F0265D1514BA49BF00CAE538 /* Checkmark.png */,
-				751D263B14916D2B00617DD8 /* Parchment-White.png */,
 				751D263C14916D2B00617DD8 /* Pic-Frame.png */,
 				F0EE798E14E35FB900439040 /* icon-block.png */,
 				F0EE798F14E35FB900439040 /* icon-like.png */,
@@ -2377,10 +2369,7 @@
 				75F5632A148FE8CA00E6A8F9 /* SPTabController.xib in Resources */,
 				751D2633149121C800617DD8 /* SPBaseController.xib in Resources */,
 				751D263D14916D2B00617DD8 /* BG-Linen-Red.png in Resources */,
-				751D263E14916D2B00617DD8 /* Parchment-White.png in Resources */,
 				751D263F14916D2B00617DD8 /* Pic-Frame.png in Resources */,
-				F0C178661491C00E00F72809 /* AviarySDK-Core.bundle in Resources */,
-				F0C178671491C00E00F72809 /* AviarySDK-Plugins.bundle in Resources */,
 				F0C178681491C00E00F72809 /* Box2DConfig.cmake in Resources */,
 				F0C178691491C00E00F72809 /* CMakeLists.txt in Resources */,
 				F0C178A41491C00E00F72809 /* SVProgressHUD.bundle in Resources */,
@@ -2494,7 +2483,6 @@
 				75181CB414EB0E01000FC667 /* Card-white.png in Resources */,
 				F003DB4D14EC8DAB00BD6309 /* Pic-Frame-Blocks@2x.png in Resources */,
 				F003DB5014EC902100BD6309 /* blockBackground.png in Resources */,
-				F003DB5214EC911A00BD6309 /* blockBackground.jpg in Resources */,
 				F0B3C69614F48A6100FC3A92 /* appicon114.png in Resources */,
 				F0B3C69814F48A9600FC3A92 /* appicon57.png in Resources */,
 				F0A8EBAC14FC65CC003785AF /* icon-clock.png in Resources */,
