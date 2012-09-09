@@ -13,8 +13,8 @@
 
 typedef enum
 {
-    TESTING = 0, //Default
-    PRODUCTION
+    ENVIRONMENT_TESTING, //Default
+    ENVIRONMENT_PRODUCTION
 } ENVIRONMENT;
 
 @interface SPSettingsManager : SPSingleton

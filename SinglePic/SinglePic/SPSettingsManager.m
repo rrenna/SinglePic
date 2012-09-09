@@ -48,7 +48,7 @@
     #ifdef RELEASE
     return PRODUCTION_ADDRESS;
     #else
-    if(_environment == TESTING)
+    if(_environment == ENVIRONMENT_PRODUCTION)
     {
         return PRODUCTION_ADDRESS;
     }
@@ -67,7 +67,7 @@
     return 1;
     #endif
 }
--(int)defaultBucketID
+-(NSString*)defaultBucketID
 {
     return @"1";
 }

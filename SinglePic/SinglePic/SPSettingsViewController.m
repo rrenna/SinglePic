@@ -51,13 +51,13 @@
 }
 -(void)switchEnvironment
 {
-    if([[SPSettingsManager sharedInstance] environment] == TESTING)
+    if([[SPSettingsManager sharedInstance] environment] == ENVIRONMENT_TESTING)
     {
-        [[SPSettingsManager sharedInstance] setEnvironment:PRODUCTION];
+        [[SPSettingsManager sharedInstance] setEnvironment:ENVIRONMENT_PRODUCTION];
     }
     else
     {
-        [[SPSettingsManager sharedInstance] setEnvironment:TESTING];
+        [[SPSettingsManager sharedInstance] setEnvironment:ENVIRONMENT_TESTING];
     }
     
     [[SPErrorManager sharedInstance] alertWithTitle:@"You may need to restart the application" Description:@"To fully test SinglePic in your new environment you may want to terminate and restart the app."];
@@ -78,7 +78,7 @@
     MDACListCredit* switchEnvironmentListCredit = [MDACListCredit listCreditWithTitle:@""];
     MDACCreditItem* switchEnvironmentCreditItem;
     
-    if([[SPSettingsManager sharedInstance] environment] == TESTING)
+    if([[SPSettingsManager sharedInstance] environment] == ENVIRONMENT_TESTING)
     {
              switchEnvironmentCreditItem = [MDACCreditItem itemWithName:@"Switch to Production" role:@"" linkString:@"selector:switchEnvironment"];
     }
