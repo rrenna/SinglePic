@@ -7,7 +7,6 @@
 //
 
 #import "SPConnectionsViewController.h"
-#import "SPErrorManager.h"
 #import "SPCardView.h"
 
 @interface SPConnectionsViewController()

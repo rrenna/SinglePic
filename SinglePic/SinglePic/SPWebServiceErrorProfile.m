@@ -18,7 +18,7 @@
 @end
 
 @implementation SPWebServiceErrorProfile
-@synthesize url,serverError,type,handlerBlock;
+@synthesize url = _url,serverError = _serverError,type = _type,handlerBlock = _handlerBlock;
 
 +(id)profileWithURLString:(NSString*)urlString andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler
 {
@@ -48,9 +48,9 @@
 }
 -(void)dealloc
 {
-    [url release];
-    [serverError release];
-    [handlerBlock release];
+    [_url release];
+    [_serverError release];
+    [_handlerBlock release];
     [super dealloc];
 }
 #pragma mark
@@ -60,15 +60,17 @@
     
     if([error isKindOfClass:[SPWebServiceError class]])
     {
-        if([[error domain] isEqualToString:url])
+        NSString* verboseURL = [NSString stringWithFormat:@"%@%@",[[SPSettingsManager sharedInstance] serverAddress],_url];
+        
+        if([[error domain] isEqualToString:verboseURL])
         {
-            if((WEB_SERVICE_REQUEST_TYPE)[error type] == type)
+            if((WEB_SERVICE_REQUEST_TYPE)[error type] == _type)
             {
                 //If we only want to catch specific server errors, we'll have filled in the serverError property
-                if(serverError) {
+                if(_serverError) {
                     
                     NSString* returnedServerError = [[error userInfo] objectForKey:@"error"];
-                    match = ([returnedServerError isEqualToString:serverError]);
+                    match = ([returnedServerError isEqualToString:_serverError]);
                     
                 }
                 else

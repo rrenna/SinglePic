@@ -132,6 +132,12 @@ static float minimizedToolbarY = 410.0f;
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
 {
+    if(![_profile isValid])
+    {
+        //Profile is invalid
+        [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Profile" Description:@"This user no longer exists. The account may have been deleted."];
+    }
+    
     self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
     [tableView reloadData];
 

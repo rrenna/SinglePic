@@ -7,8 +7,6 @@
 //
 
 #import "SPMessagesViewController.h"
-#import "SPMessageManager.h"
-#import "SPErrorManager.h"
 #import "SPMessageThread.h"
 #import "SPMessage.h"
 #import "SPCardView.h"
@@ -86,8 +84,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray* messageThreads = [[SPMessageManager sharedInstance] activeMessageThreads];
-    SPMessageThread* messageThread = [messageThreads objectAtIndex:indexPath.row];
+    NSArray* messageThreadsSorted = [[SPMessageManager sharedInstance] activeMessageThreadsSorted];
+    SPMessageThread* messageThread = [messageThreadsSorted objectAtIndex:indexPath.row];
     
     NSArray* sortedMessagesForThread = [messageThread sortedMessages];
     SPMessage* latestMessage = ([sortedMessagesForThread count] > 0) ? [sortedMessagesForThread objectAtIndex:[sortedMessagesForThread count] - 1] : nil;
@@ -97,6 +95,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
+    cell.tag = [[messageThread userID] integerValue];
     
     //The lates message is used to represent the object
     if(latestMessage)
@@ -111,11 +110,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray* messageThreads = [[SPMessageManager sharedInstance] activeMessageThreads];
-    SPMessageThread* messageThread = [messageThreads objectAtIndex:indexPath.row];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    NSString* userID = [NSString stringWithFormat:@"%i",cell.tag];
     SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
-    [baseController pushChatWithID:messageThread.userID];
+    [baseController pushChatWithID:userID];
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {

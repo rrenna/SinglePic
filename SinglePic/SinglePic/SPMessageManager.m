@@ -91,6 +91,19 @@
     
     return thread;
 }
+-(NSArray*)activeMessageThreadsSorted
+{
+    return [self.activeMessageThreads sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        
+        SPMessageThread* thread1 = (SPMessageThread*)obj1;
+        SPMessageThread* thread2 = (SPMessageThread*)obj2;
+        return true;
+    }];
+}
+-(int)activeMessageThreadsCount
+{
+    return [self.activeMessageThreads count];
+}
 -(void)deleteMessageThread:(SPMessageThread*)thread
 {
     [[self managedObjectContext] deleteObject:thread];

@@ -8,8 +8,6 @@
 
 #import "SPProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "SPMessageManager.h"
-#import "SPErrorManager.h"
 #import "SPComposeViewController.h"
 #import "SPProfile.h"
 #import "SPMessage.h"

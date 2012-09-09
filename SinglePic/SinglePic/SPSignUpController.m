@@ -7,7 +7,6 @@
 //
 
 #import "SPSignUpController.h"
-#import "SPErrorManager.h"
 #import "SPBrowseViewController.h"
 #import "SPStyledButton.h"
 #import "SPOrientationChooser.h"

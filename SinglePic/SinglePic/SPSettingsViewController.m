@@ -7,8 +7,6 @@
 //
 
 #import "SPSettingsViewController.h"
-#import "SPProfileManager.h"
-#import "SPErrorManager.h"
 #import "MDACListCredit.h"
 #import "MDACCreditItem.h"
 #import "SPAboutStyle.h"

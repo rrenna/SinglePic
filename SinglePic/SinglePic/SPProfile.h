@@ -9,12 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SPProfile : NSObject
-{
-    @private
-    NSDictionary* _data;
-    BOOL invalid;
-}
 -(id)initWithData:(NSDictionary*)data;
+-(BOOL)isValid;
 -(NSString*)identifier;
 -(NSString*)username;
 -(NSString*)icebreaker;

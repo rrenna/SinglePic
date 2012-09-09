@@ -7,7 +7,6 @@
 //
 
 #import "SPRequestManager.h"
-#import "SPErrorManager.h"
 #import "SPWebServiceRequest.h"
 #import "AFImageRequestOperation.h"
 

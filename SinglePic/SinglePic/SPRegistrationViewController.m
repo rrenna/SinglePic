@@ -9,7 +9,6 @@
 #import "SPRegistrationViewController.h"
 #import "SPSignUpController.h"
 #import "SPLoginController.h"
-#import "SPErrorManager.h"
 
 @interface SPRegistrationViewController()
 -(void)spawnRegistrationPrompt;

@@ -8,11 +8,6 @@
 
 #import "SPAppDelegate.h"
 #import "SPBaseController.h"
-#import "SPErrorManager.h"
-#import "SPMessageManager.h"
-#import "SPProfileManager.h"
-#import "SPSubscriptionsManager.h"
-
 
 //--NSUserDefault Keys--
 //Device Keys

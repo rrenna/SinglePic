@@ -335,11 +335,14 @@
     {
         miniProgressView.progress = progress;
     }
+    
+    [self updateAvatar];
 }
 -(void)updateAvatar
 {
     if( ![[SPProfileManager sharedInstance] isImageExpired] )
     {
+        miniAvatarImage.hidden = NO;
         miniAvatarImage.image = [[SPProfileManager sharedInstance] myImage];
         miniAvatarImage.layer.cornerRadius = 6.0f;
         miniAvatarImage.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -349,6 +352,7 @@
     else
     {
         miniAvatarImage.image = nil;
+        miniAvatarImage.hidden = YES;
     }
 }
 -(void)userTypeChangedWithNotification:(NSNotification*)notification

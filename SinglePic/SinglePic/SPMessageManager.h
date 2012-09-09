@@ -7,6 +7,7 @@
 //
 
 #import "SPSingleton.h"
+#import "SPMessageThread.h"
 #import "SPMessages.h"
 
 #define MESSAGE_AUTO_REFRESH_TIMER 120 //seconds
@@ -22,16 +23,19 @@ extern NSString* NOTIFICATION_NO_MESSAGES_RECIEVED;
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
 
-//Account manipulation
+//Account 
 -(void)setActiveMessageAccount:(NSString*)accountID;
-//Messages manipulation
+//Messages
 -(void)forceRefresh;
+//--Threads
 -(NSArray*)activeMessageThreads;
+-(NSArray*)activeMessageThreadsSorted;
+-(int)activeMessageThreadsCount;
 -(SPMessageThread*)getMessageThreadByUserID:(NSString*)userID;
 -(void)deleteMessageThread:(SPMessageThread*)thread;
-//Sending messages
+//--Sending messages
 -(void)sendMessage:(NSString*)message toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError;
-//Message Syncronization
+//--Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError;
 //Reset Procedure
 -(void)clearDatabase;

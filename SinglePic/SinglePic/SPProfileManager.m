@@ -7,9 +7,6 @@
 //
 
 #import "SPProfileManager.h"
-#import "SPErrorManager.h"
-#import "SPLocationManager.h"
-#import "SPMessageManager.h"
 #import "SPProfile.h"
 
 @interface SPProfileManager()
@@ -959,6 +956,7 @@ static int profileCounter = 0;
          NSAutoreleasePool* pool = [NSAutoreleasePool new];
          for(NSDictionary* userData in profilesData)
          {
+             
              SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
              [_profiles addObject:profile];
          }

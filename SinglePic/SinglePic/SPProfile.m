@@ -10,8 +10,12 @@
 
 #define PROFILE_IDENTIFIER_KEY @"id"
 #define PROFILE_USERNAME_KEY @"userName"
+#define PROFILE_ERROR_KEY @"error"
 
-@interface SPProfile() 
+@interface SPProfile()
+{
+    NSDictionary* _data;
+}
 @property (retain) UIImage* _thumbnail;
 -(BOOL)_checkIsValid:(NSDictionary*) data;
 @end
@@ -24,7 +28,6 @@
     self = [super init];
     if(self)
     {
-        invalid = [self _checkIsValid:data];
         _data = [data retain];
     }
     return self;
@@ -34,6 +37,10 @@
     [_data release];
     [_thumbnail release];
     [super dealloc];
+}
+-(BOOL)isValid
+{
+    return [self _checkIsValid:_data];
 }
 -(NSString*)identifier
 {
@@ -85,7 +92,16 @@
 -(BOOL)_checkIsValid:(NSDictionary*) data
 {
     //If no data is provided this is an invalid profile
-    if(!data) {return NO;}
+    if(!data)
+    {
+        return NO;
+    }
+    //Invalid (most likely deleted) profiles may simply be stored with a single "error" key
+    id error = [data objectForKey:PROFILE_ERROR_KEY];
+    if(error)
+    {
+        return NO;
+    }
     //Invalid (most likely deleted) profiles will be parsed as having a NSNull "id" value
     id identifier = [data objectForKey:PROFILE_IDENTIFIER_KEY];
     if([identifier isMemberOfClass:[NSNull class]])
