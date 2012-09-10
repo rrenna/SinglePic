@@ -201,6 +201,7 @@
 		F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F615FD122900852650 /* ColorGrid.m */; };
 		F01FC1FB15FD122900852650 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F715FD122900852650 /* Colors.plist */; };
 		F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC20015FD8C5E00852650 /* SPMessageThread.m */; };
+		F01FC20315FD976D00852650 /* BG-Linen-Bright-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = F01FC20215FD976D00852650 /* BG-Linen-Bright-Red.png */; };
 		F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F02505BC15F02407000D4546 /* libicucore.dylib */; };
 		F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */; };
 		F02642A214DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */; };
@@ -652,6 +653,7 @@
 		F01FC1FE15FD8BB700852650 /* SPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettings.h; sourceTree = "<group>"; };
 		F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
 		F01FC20015FD8C5E00852650 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
+		F01FC20215FD976D00852650 /* BG-Linen-Bright-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Bright-Red.png"; path = "../../Resources/BG-Linen-Bright-Red.png"; sourceTree = "<group>"; };
 		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F026429E14DF9F2100E8D649 /* SPIcebreakerComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPIcebreakerComposeViewController.h; sourceTree = "<group>"; };
 		F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPIcebreakerComposeViewController.m; sourceTree = "<group>"; };
@@ -1292,6 +1294,7 @@
 		754D1EE114DB36EE00F90C19 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				F01FC20215FD976D00852650 /* BG-Linen-Bright-Red.png */,
 				F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */,
 				F0A6A41C15D9722500F2253D /* BG-Linen-Red-Blend.png */,
 				7599399414B7BADA004D1A46 /* BG-linen-black.png */,
@@ -2577,6 +2580,7 @@
 				F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */,
 				F01FC1F815FD122900852650 /* arrow.png in Resources */,
 				F01FC1FB15FD122900852650 /* Colors.plist in Resources */,
+				F01FC20315FD976D00852650 /* BG-Linen-Bright-Red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

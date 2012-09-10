@@ -33,6 +33,8 @@
     [super viewDidLoad];
     [loginButton setStyle:STYLE_CONFIRM_BUTTON];
     [headerStyledView setStyle:STYLE_TAB];
+    
+    [emailTextField becomeFirstResponder]; //Launch keyboard, edit user name field
 }
 - (void)dealloc {
     [passwordTextField release];
