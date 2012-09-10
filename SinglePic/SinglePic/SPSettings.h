@@ -6,8 +6,5 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-
-@protocol SPSettings <NSObject>
-
-@end
+//Notifications
+#define NOTIFICATION_APPLICATION_SETTINGS_CHANGED @"NOTIFICATION_APPLICATION_SETTINGS_CHANGED"
