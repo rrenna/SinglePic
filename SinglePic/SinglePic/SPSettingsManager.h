@@ -7,9 +7,7 @@
 //
 
 #import "SPSingleton.h"
-
-//Notifications
-#define NOTIFICATION_APPLICATION_SETTINGS_CHANGED @"NOTIFICATION_APPLICATION_SETTINGS_CHANGED"
+#import "SPSettings.h"
 
 typedef enum
 {

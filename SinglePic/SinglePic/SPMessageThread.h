@@ -2,7 +2,7 @@
 //  SPMessageThread.h
 //  SinglePic
 //
-//  Created by Ryan Renna on 2012-08-17.
+//  Created by Ryan Renna on 2012-09-09.
 //
 //
 
@@ -14,8 +14,9 @@
 @interface SPMessageThread : NSManagedObject
 
 @property (nonatomic, retain) NSString * userID;
-@property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) NSDate * lastActivity;
 @property (nonatomic, retain) SPMessageAccount *account;
+@property (nonatomic, retain) NSSet *messages;
 @end
 
 @interface SPMessageThread (CoreDataGeneratedAccessors)

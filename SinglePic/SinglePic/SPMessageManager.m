@@ -97,7 +97,10 @@
         
         SPMessageThread* thread1 = (SPMessageThread*)obj1;
         SPMessageThread* thread2 = (SPMessageThread*)obj2;
-        return true;
+        
+        NSTimeInterval interval = [thread1.lastActivity timeIntervalSinceDate:thread2.lastActivity];
+        
+        return (interval < 0);
     }];
 }
 -(int)activeMessageThreadsCount
@@ -118,15 +121,18 @@
     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:messageJSONData error:&error];
     NSString* jsonString = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
     
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:jsonString requiringToken:YES withCompletionHandler:^(id responseObject) 
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:jsonString requiringToken:YES withCompletionHandler:^(id responseObject)
     {
+        NSDate* now = [NSDate date];
+        
         //Find the User Thread if active
         SPMessageThread* thread = [self getMessageThreadByUserID:userID];
-
+        thread.lastActivity = now;
+        
         //Create SPMessage
         SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
         newMessage.content = message;
-        newMessage.date = [NSDate date];
+        newMessage.date = now;
         newMessage.incoming = YES_NSNUMBER;
         
         [thread addMessagesObject:newMessage];
@@ -203,6 +209,8 @@
                 thread = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
                 thread.userID = userID;
             }
+            
+            thread.lastActivity = [NSDate date];
             
             //Create SPMessage
             SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];

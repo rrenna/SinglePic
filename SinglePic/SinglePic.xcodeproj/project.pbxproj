@@ -100,7 +100,6 @@
 		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
 		7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */; };
 		757616A315DE989A00706519 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A215DE989A00706519 /* SPMessageAccount.m */; };
-		757616A615DE98BD00706519 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A515DE98BD00706519 /* SPMessageThread.m */; };
 		757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616AE15DEE24C00706519 /* UIImage+Resize.m */; };
 		757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616B115DEE27C00706519 /* UIImage+RoundedCorner.m */; };
 		757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616B415DEE29B00706519 /* UIImage+Alpha.m */; };
@@ -197,6 +196,11 @@
 		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
 		F01C41F214C7CB6E0079EB18 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
+		F01FC1F815FD122900852650 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F215FD122900852650 /* arrow.png */; };
+		F01FC1F915FD122900852650 /* ColorBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F415FD122900852650 /* ColorBlock.m */; };
+		F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F615FD122900852650 /* ColorGrid.m */; };
+		F01FC1FB15FD122900852650 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F715FD122900852650 /* Colors.plist */; };
+		F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC20015FD8C5E00852650 /* SPMessageThread.m */; };
 		F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F02505BC15F02407000D4546 /* libicucore.dylib */; };
 		F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */; };
 		F02642A214DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */; };
@@ -499,8 +503,6 @@
 		7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white@2x.png"; path = "../../Resources/Logo-SinglePic-white@2x.png"; sourceTree = "<group>"; };
 		757616A115DE989A00706519 /* SPMessageAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageAccount.h; sourceTree = "<group>"; };
 		757616A215DE989A00706519 /* SPMessageAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageAccount.m; sourceTree = "<group>"; };
-		757616A415DE98BD00706519 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
-		757616A515DE98BD00706519 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
 		757616AD15DEE24C00706519 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		757616AE15DEE24C00706519 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		757616B015DEE27C00706519 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
@@ -640,6 +642,16 @@
 		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
 		F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = messageStorage.xcdatamodel; sourceTree = "<group>"; };
 		F01C41F614C7CEFE0079EB18 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F01FC1F215FD122900852650 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		F01FC1F315FD122900852650 /* ColorBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBlock.h; sourceTree = "<group>"; };
+		F01FC1F415FD122900852650 /* ColorBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorBlock.m; sourceTree = "<group>"; };
+		F01FC1F515FD122900852650 /* ColorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGrid.h; sourceTree = "<group>"; };
+		F01FC1F615FD122900852650 /* ColorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGrid.m; sourceTree = "<group>"; };
+		F01FC1F715FD122900852650 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		F01FC1FD15FD8B4E00852650 /* SPLocations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLocations.h; sourceTree = "<group>"; };
+		F01FC1FE15FD8BB700852650 /* SPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettings.h; sourceTree = "<group>"; };
+		F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
+		F01FC20015FD8C5E00852650 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
 		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F026429E14DF9F2100E8D649 /* SPIcebreakerComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPIcebreakerComposeViewController.h; sourceTree = "<group>"; };
 		F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPIcebreakerComposeViewController.m; sourceTree = "<group>"; };
@@ -1508,6 +1520,7 @@
 			children = (
 				75CEB1CB14B644A100936001 /* SPLocationManager.h */,
 				75CEB1CC14B644A100936001 /* SPLocationManager.m */,
+				F01FC1FD15FD8B4E00852650 /* SPLocations.h */,
 			);
 			name = Locations;
 			sourceTree = "<group>";
@@ -1658,8 +1671,8 @@
 		F01C41EA14C7C8980079EB18 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				757616A415DE98BD00706519 /* SPMessageThread.h */,
-				757616A515DE98BD00706519 /* SPMessageThread.m */,
+				F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */,
+				F01FC20015FD8C5E00852650 /* SPMessageThread.m */,
 				757616A115DE989A00706519 /* SPMessageAccount.h */,
 				757616A215DE989A00706519 /* SPMessageAccount.m */,
 				75F5099214DC4CF000458357 /* SPMessages.h */,
@@ -1681,6 +1694,20 @@
 			);
 			name = Storage;
 			sourceTree = "<group>";
+		};
+		F01FC1F115FD122900852650 /* Pullwalla */ = {
+			isa = PBXGroup;
+			children = (
+				F01FC1F215FD122900852650 /* arrow.png */,
+				F01FC1F315FD122900852650 /* ColorBlock.h */,
+				F01FC1F415FD122900852650 /* ColorBlock.m */,
+				F01FC1F515FD122900852650 /* ColorGrid.h */,
+				F01FC1F615FD122900852650 /* ColorGrid.m */,
+				F01FC1F715FD122900852650 /* Colors.plist */,
+			);
+			name = Pullwalla;
+			path = Libraries/Pullwalla;
+			sourceTree = SOURCE_ROOT;
 		};
 		F0207AAA14C66A0200330FF0 /* Cards */ = {
 			isa = PBXGroup;
@@ -1850,6 +1877,7 @@
 		F0C176861491B80000F72809 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F01FC1F115FD122900852650 /* Pullwalla */,
 				F0DF78F315EDA35800EE492D /* NSLogger */,
 				75B4AA3215D44F8700745137 /* NAMapKit */,
 				F0C0B35C14F74013007BEB13 /* CurledView */,
@@ -2311,6 +2339,7 @@
 			children = (
 				F0F80A0B15F6C69300201FF4 /* SPSettingsManager.h */,
 				F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */,
+				F01FC1FE15FD8BB700852650 /* SPSettings.h */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2546,6 +2575,8 @@
 				7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */,
 				F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */,
 				F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */,
+				F01FC1F815FD122900852650 /* arrow.png in Resources */,
+				F01FC1FB15FD122900852650 /* Colors.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2706,7 +2737,6 @@
 				F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */,
 				7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */,
 				757616A315DE989A00706519 /* SPMessageAccount.m in Sources */,
-				757616A615DE98BD00706519 /* SPMessageThread.m in Sources */,
 				757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */,
 				757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */,
 				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
@@ -2714,6 +2744,9 @@
 				753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */,
 				F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */,
 				75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */,
+				F01FC1F915FD122900852650 /* ColorBlock.m in Sources */,
+				F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */,
+				F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "SPBrowseViewController.h"
 #import "SVProgressHUD.h"
+#import "ColorGrid.h"
 #import "SPProfileIconController.h"
 #import "SPProfileViewController.h"
 #import "SPBlockView.h"
@@ -17,7 +18,7 @@
 static b2PrismaticJointDef shaftJoint;
 
 
-#define REFRESH_HEADER_HEIGHT 52.0f
+#define REFRESH_HEADER_HEIGHT 8.0f//52.0f
 #define BROWSE_ROW_LIMIT 5
 #define BROWSE_COLUMN_AMOUNT 3
 #define PTM_RATIO 16
@@ -26,6 +27,14 @@ static b2PrismaticJointDef shaftJoint;
 static int profileIndex = 0;
 
 @interface SPBrowseViewController()
+{
+    UIView *refreshHeaderView;
+    UIImageView *refreshArrow;
+    BOOL isDragging;
+    BOOL isLoading;
+    BOOL isRestarting;
+    ColorGrid *colorGrid;
+}
 @property (retain) NSMutableArray* profileControllers;
 
 -(void)createPhysicsWorld;
@@ -289,6 +298,7 @@ static int profileIndex = 0;
 }
 -(void)addPullToNextHeader
 {
+    /*
     nextHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
     nextHeaderView.backgroundColor = [UIColor clearColor];
     
@@ -309,7 +319,32 @@ static int profileIndex = 0;
     [nextHeaderView addSubview:nextLabel];
     [nextHeaderView addSubview:nextArrow];
     [nextHeaderView addSubview:nextSpinner];
-    [scrollView addSubview:nextHeaderView];
+    [scrollView addSubview:nextHeaderView];*/
+          
+            // Load color settings
+        NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"Colors"
+                                                                 ofType:@"plist"];
+        
+        NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:settingsPath];
+        
+            // Grab an array of predefined colors
+        NSArray *colors = [settings objectForKey:@"Colors"];
+        
+        refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
+        refreshHeaderView.backgroundColor = [UIColor clearColor];
+        
+            // Create the loading color grid
+        colorGrid = [[ColorGrid alloc] initWithFrame:CGRectMake(0, 0 - ROWS * CELL_DIMENSION, COLUMNS * CELL_DIMENSION, ROWS * CELL_DIMENSION)
+                                              colors:colors];
+        
+        refreshArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+        refreshArrow.frame = CGRectMake(floorf((COLUMNS * CELL_DIMENSION - 21.5) / 2),
+                                        floorf(REFRESH_HEADER_HEIGHT - 31),
+                                        21.5, 21);
+        
+        [refreshHeaderView addSubview:refreshArrow];
+        [scrollView addSubview:colorGrid];
+        [scrollView addSubview:refreshHeaderView];
 }
 -(void)resetStackCounters
 {
@@ -649,6 +684,22 @@ int currentTick = 0;
 {
     isLoading = YES;
     
+        // Show the header and animate the loading color grid
+    [colorGrid drawGrid];
+    [UIView beginAnimations:nil context:NULL];
+    
+    [UIView setAnimationDuration:0.3];
+    scrollView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
+    refreshArrow.hidden = YES;
+    
+    [UIView commitAnimations];
+    
+        // Refresh action!
+        //[self refresh];
+    
+    /*
+    isLoading = YES;
+    
     // Show the header
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -657,6 +708,8 @@ int currentTick = 0;
     nextArrow.hidden = YES;
     [nextSpinner startAnimating];
     [UIView commitAnimations];
+    */
+    
     
     // Next action
     [self next:nil];
@@ -699,7 +752,26 @@ int currentTick = 0;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
     if (isLoading) {
+            // Update the content inset, good for section headers
+        if (scrollView.contentOffset.y > 0)
+            scrollView.contentInset = UIEdgeInsetsZero;
+        else if (scrollView.contentOffset.y >= -REFRESH_HEADER_HEIGHT)
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    } else if (isDragging && scrollView.contentOffset.y < 0) {
+            // Update the arrow direction and label
+        [UIView beginAnimations:nil context:NULL];
+        if (scrollView.contentOffset.y < -REFRESH_HEADER_HEIGHT) {
+                // User is scrolling above the header
+            [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
+        } else { // User is scrolling somewhere within the header
+            [refreshArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
+        }
+        [UIView commitAnimations];
+    }
+    
+    /*if (isLoading) {
         // Update the content inset, good for section headers
         if (scrollView.contentOffset.y > 0)
             scrollView.contentInset = UIEdgeInsetsZero;
@@ -717,7 +789,7 @@ int currentTick = 0;
             [nextArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
         }
         [UIView commitAnimations];
-    }
+    }*/
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {

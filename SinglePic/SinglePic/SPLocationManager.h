@@ -7,9 +7,8 @@
 //
 
 #import "SPSingleton.h"
+#import "SPLocations.h"
 #import <CoreLocation/CoreLocation.h>
-
-#define NOTIFICATION_LOCATION_PERMISSION_UPDATED @"NOTIFICATION_LOCATION_PERMISSION_UPDATED"
 
 @interface SPLocationManager : SPSingleton <CLLocationManagerDelegate>
 {

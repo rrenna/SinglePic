@@ -31,9 +31,6 @@ struct b2Body;
     struct b2World* world;
     struct b2Body* groundBody;
     //
-    BOOL isDragging;
-    BOOL isLoading;
-    BOOL isRestarting;
 	NSTimer *tickTimer;
     NSTimer *dropTimer;
     NSMutableArray* queuedSelectorCalls;
