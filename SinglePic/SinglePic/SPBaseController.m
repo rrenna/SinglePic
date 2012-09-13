@@ -28,6 +28,7 @@
 -(void)locationServicesValidated;
 -(void)navigationMode;
 -(void)registrationMode;
+-(void)addContent:(UIView*)content;
 @end
 
 @implementation SPBaseController
@@ -40,7 +41,7 @@
     
     if(baseMode == BLANK_BASE_MODE)
     {
-        backgroundImageView.image = [UIImage imageNamed:@"default"];
+        backgroundImageView.image = [UIImage imageNamed:@"default-568h.png"];
         navigationView.hidden = YES;
         registrationNavigationView.hidden = YES;
     }
@@ -60,31 +61,12 @@
             [messagesController release];
             messagesController = nil;
         }
+
+        [self addContent:registrationController.view];
         
-        [contentView addSubview:registrationController.view];
-        
-        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend"];
+        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend-568h.png"];
         navigationView.hidden = YES;
         registrationNavigationView.hidden = NO;
-        
-        [registerButton setStyle:STYLE_BASE];
-        [loginButton setStyle:STYLE_BASE];
-        //Registration & Login buttons require's a transformation on it's title label, we purform this only when the app has swtiched to the registration mode
-        
-        UILabel* registrationLabel = [[UILabel alloc] initWithFrame:registerButton.bounds];
-        registrationLabel.backgroundColor = [UIColor clearColor];
-        registrationLabel.textAlignment = UITextAlignmentCenter;
-        registrationLabel.textColor = [UIColor colorWithWhite:1.0 alpha:1];
-        registrationLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.75];
-        registrationLabel.shadowOffset = CGSizeMake(-1,0);
-        
-        registrationLabel.text = @"Sign up / Login";
-        [registerButton addSubview:registrationLabel];        
-        
-        registrationLabel.transform = CGAffineTransformMakeRotation(M_PI/ 2);
-        registrationLabel.bounds = CGRectMake(0, 0, registrationLabel.bounds.size.height, registrationLabel.bounds.size.width);
-        
-        [registrationLabel release];
     }
     else
     {
@@ -109,7 +91,7 @@
         
         [self profile:profileButton];
         
-        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend"];
+        backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend-568h.png"];
         navigationView.hidden = NO;
         registrationNavigationView.hidden = YES;
         
@@ -177,7 +159,7 @@
     [self minimizeAllTabs];
     
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [contentView addSubview:connectionsController.view];
+    [self addContent:connectionsController.view];
     
     profileButton.selected = NO;
     mailButton.selected = NO;
@@ -194,7 +176,7 @@
     [self minimizeAllTabs];
     
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [contentView addSubview:userController.view];
+    [self addContent:userController.view];
     
     profileButton.selected = YES;
     mailButton.selected = NO;
@@ -209,7 +191,7 @@
     [self minimizeAllTabs];
     
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [contentView addSubview:messagesController.view];
+    [self addContent:messagesController.view];
     
     profileButton.selected = NO;
     mailButton.selected = YES;
@@ -294,6 +276,11 @@
     navigationBar.tintColor = primaryColorForStyle(style);
 }
 #pragma mark - Private methods
+-(void)addContent:(UIView*)content
+{
+    content.frame = contentView.bounds;
+    [contentView addSubview:content];
+}
 -(SPTabController*)createTab
 {
     return [self createTabIsFullscreen:NO];

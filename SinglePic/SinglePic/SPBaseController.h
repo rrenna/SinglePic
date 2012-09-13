@@ -43,8 +43,6 @@ typedef enum
     SPConnectionsViewController* connectionsController;
     //Register
     IBOutlet UIView* registrationNavigationView;
-    IBOutlet SPStyledButton* registerButton;
-    IBOutlet SPStyledButton* loginButton;
     SPRegistrationViewController* registrationController;
 @private
     NSMutableArray* tabs;
