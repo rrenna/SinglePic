@@ -9,6 +9,7 @@
 #import "SPPageController.h"
 
 @interface SPPageController()
+- (void) setHandleImage;
 - (void) moveStackWithOffset:(NSInteger)offset animated:(BOOL)animated userDragging:(BOOL)userDragging;
 - (void) moveStackWithOffset:(NSInteger)offset animated:(BOOL)animated userDragging:(BOOL)userDragging onCompletion:(void(^)(BOOL finished))onCompletion;
 - (int) snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition;
@@ -33,6 +34,17 @@
     panRecognizer_.delegate = self;
     [self.view addGestureRecognizer:panRecognizer_];
     
+    //Assign the appropriate image to represent the right handle of the page
+    [self  setHandleImage];
+}
+- (void) setHandleImage
+{
+    //Add right-side parchment 9-slice
+    UIImage* rightImage9Slice = [[UIImage imageNamed:@"Page-Right.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:50];
+    handleImageView.image = rightImage9Slice;
+}
+-(void)viewDidLayoutSubviews
+{
     [self.view setPassThroughZone: transparentInsetView.frame];
 }
 -(void)dealloc

@@ -422,6 +422,9 @@
 {
     SPTabController* tab = [[[SPTabController alloc] initIsFullscreen:fullscreen] autorelease];
     tab.containerDelegate = self;
+    
+    //Resize the tab to be the height of the baseController (should be full screen)
+    tab.view.height = self.view.height;
     [self.view addSubview:tab.view];
     [tabs addObject:tab];
     

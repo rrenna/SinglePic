@@ -26,7 +26,6 @@
 @interface SPTabController : SPPageController <SPPageContainerDelegate>
 {
     IBOutlet UIView* handleView;
-    IBOutlet UIImageView *handleImageView;
     IBOutlet UIView* secretEdgeView;
 @private
     NSMutableArray* pages;

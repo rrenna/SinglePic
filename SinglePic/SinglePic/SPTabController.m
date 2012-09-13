@@ -54,6 +54,20 @@
 {
     [super viewDidLoad];
     self.view.left = TAB_POS_LEFT_OFFSCREEN;
+}
+- (void) setHandleImage
+{
+    //Add right-side parchment 9-slice
+    UIImage* rightImage9Slice = [[UIImage imageNamed:@"Parchment-Right-9Slice.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:100];
+    handleImageView = [[UIImageView alloc] initWithImage:rightImage9Slice];
+    handleImageView.frame = CGRectMake(325, 0, 54, self.view.height);
+    handleImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [self.view insertSubview:handleImageView aboveSubview:transparentInsetView];
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    //Don't attempt any tab placement + animation until properly resized
     self.fullscreen = _fullscreen;
 }
 -(void)dealloc
@@ -113,7 +127,9 @@
     //Camera controller has a unique handle image
     if([controller isKindOfClass:[SPCameraController class]])
     {
-        handleImageView.image = [UIImage imageNamed:@"Parchment-Right-Camera"];
+        //Add right-side parchment 9-slice
+        UIImage* rightImage9Slice = [[UIImage imageNamed:@"Parchment-Right-Camera.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:115];
+        handleImageView.image = rightImage9Slice;
     }
 }
 -(void)pushModalController:(UIViewController*)viewController
@@ -294,10 +310,11 @@
 #pragma mark - SPPageContainerDelegate methods
 -(SPPageController*)createPage
 {
-
     SPPageController* page = [[[SPPageController alloc] initWithNibName:@"SPPageController" bundle:nil] autorelease];
     page.containerDelegate = self;
     page.view.left = PAGE_POS_LEFT_OFFSCREEN;
+    page.view.height = self.view.height;
+    
     [self.view addSubview:page.view];
     [pages addObject:page];
     

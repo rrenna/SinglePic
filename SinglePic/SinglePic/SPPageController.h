@@ -18,6 +18,7 @@
 @interface SPPageController : UIViewController <UIGestureRecognizerDelegate>
 {
     IBOutlet UIView* transparentInsetView;
+    IBOutlet UIImageView *handleImageView;
     IBOutlet UIView* contentView;
 @protected
     NSInteger dragStart_;

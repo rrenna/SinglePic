@@ -22,7 +22,6 @@
 		751D263D14916D2B00617DD8 /* BG-Linen-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263A14916D2B00617DD8 /* BG-Linen-Red.png */; };
 		751D263F14916D2B00617DD8 /* Pic-Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263C14916D2B00617DD8 /* Pic-Frame.png */; };
 		751EDDBE14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */; };
-		75246C7C14C0E46A00BD24B1 /* Parchment-Right.png in Resources */ = {isa = PBXBuildFile; fileRef = 75246C7914C0E46A00BD24B1 /* Parchment-Right.png */; };
 		75246C7D14C0E46A00BD24B1 /* Parchment-Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 75246C7A14C0E46A00BD24B1 /* Parchment-Left.png */; };
 		752EF17E14BCE48D00F26C50 /* SPStyledProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 752EF17D14BCE48D00F26C50 /* SPStyledProgressView.m */; };
 		7531B93714B4BE2700ECEDB3 /* UIColor+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531B93614B4BE2700ECEDB3 /* UIColor+Expanded.m */; };
@@ -96,6 +95,8 @@
 		754D1EEC14DB395100F90C19 /* Tab-Messages_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EE814DB395000F90C19 /* Tab-Messages_Default.png */; };
 		754D1EED14DB395100F90C19 /* Tab-Profile_Select.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EE914DB395100F90C19 /* Tab-Profile_Select.png */; };
 		754D1EEE14DB395100F90C19 /* Tab-Profile_Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */; };
+		755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */; };
+		755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */; };
 		7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */; };
 		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
 		7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */; };
@@ -173,6 +174,7 @@
 		75CEB1D214B644F300936001 /* Logo-SinglePic-white-vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEB1CF14B644F300936001 /* Logo-SinglePic-white-vertical.png */; };
 		75CEB1D314B644F300936001 /* Logo-SinglePic-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEB1D014B644F300936001 /* Logo-SinglePic-white.png */; };
 		75D196F514ED910000A23654 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D196F414ED910000A23654 /* MessageUI.framework */; };
+		75D726E116022792006059B8 /* Parchment-Right-9Slice.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D726E016022792006059B8 /* Parchment-Right-9Slice.png */; };
 		75DB6B1914BF96CF00338A7C /* SPCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DB6B1814BF96CF00338A7C /* SPCardView.m */; };
 		75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */; };
 		75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */; };
@@ -400,7 +402,6 @@
 		751D263C14916D2B00617DD8 /* Pic-Frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame.png"; path = "../../Resources/Pic-Frame.png"; sourceTree = "<group>"; };
 		751EDDBC14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebServiceErrorProfile.h; sourceTree = "<group>"; };
 		751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebServiceErrorProfile.m; sourceTree = "<group>"; };
-		75246C7914C0E46A00BD24B1 /* Parchment-Right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right.png"; path = "../../Resources/Parchment-Right.png"; sourceTree = "<group>"; };
 		75246C7A14C0E46A00BD24B1 /* Parchment-Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Left.png"; path = "../../Resources/Parchment-Left.png"; sourceTree = "<group>"; };
 		752EF17C14BCE48D00F26C50 /* SPStyledProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledProgressView.h; sourceTree = "<group>"; };
 		752EF17D14BCE48D00F26C50 /* SPStyledProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyledProgressView.m; sourceTree = "<group>"; };
@@ -502,6 +503,8 @@
 		754D1EE814DB395000F90C19 /* Tab-Messages_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Messages_Default.png"; path = "../../Resources/Tab-Messages_Default.png"; sourceTree = "<group>"; };
 		754D1EE914DB395100F90C19 /* Tab-Profile_Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Profile_Select.png"; path = "../../Resources/Tab-Profile_Select.png"; sourceTree = "<group>"; };
 		754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Profile_Default.png"; path = "../../Resources/Tab-Profile_Default.png"; sourceTree = "<group>"; };
+		755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice@2x.png"; path = "../../Resources/Parchment-Right-9Slice@2x.png"; sourceTree = "<group>"; };
+		755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-Camera@2x.png"; path = "../../Resources/Parchment-Right-Camera@2x.png"; sourceTree = "<group>"; };
 		7575EB1F15DABDB000D5707B /* SPHelpOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHelpOverlayViewController.h; sourceTree = "<group>"; };
 		7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHelpOverlayViewController.m; sourceTree = "<group>"; };
 		7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHelpOverlayViewController.xib; sourceTree = "<group>"; };
@@ -603,6 +606,7 @@
 		75CEB1D014B644F300936001 /* Logo-SinglePic-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white.png"; path = "../../Resources/Logo-SinglePic-white.png"; sourceTree = "<group>"; };
 		75D196F414ED910000A23654 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		75D196F714ED92E200A23654 /* SPErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrors.h; sourceTree = "<group>"; };
+		75D726E016022792006059B8 /* Parchment-Right-9Slice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice.png"; path = "../../Resources/Parchment-Right-9Slice.png"; sourceTree = "<group>"; };
 		75DB6B1714BF96CF00338A7C /* SPCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCardView.h; sourceTree = "<group>"; };
 		75DB6B1814BF96CF00338A7C /* SPCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCardView.m; sourceTree = "<group>"; };
 		75DD4B5714C8B4EA007A8FF2 /* SPPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageController.h; sourceTree = "<group>"; };
@@ -1326,6 +1330,32 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		755A94CC160265400056A03C /* Tabs & Pages */ = {
+			isa = PBXGroup;
+			children = (
+				75F56328148FE8CA00E6A8F9 /* SPTabController.xib */,
+				75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */,
+			);
+			name = "Tabs & Pages";
+			sourceTree = "<group>";
+		};
+		755A94CD1602654F0056A03C /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				750E482B14C62FAA00F7CCFC /* SPMessagesViewController.xib */,
+				75CA53CD14CF5FB900C36F35 /* SPComposeViewController.xib */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		755A94CE160265660056A03C /* Likes */ = {
+			isa = PBXGroup;
+			children = (
+				F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */,
+			);
+			name = Likes;
+			sourceTree = "<group>";
+		};
 		7575EB1815DABCFB00D5707B /* Help Overlay Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -1570,19 +1600,17 @@
 		75F56321148FC74800E6A8F9 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				755A94CE160265660056A03C /* Likes */,
+				755A94CD1602654F0056A03C /* Messages */,
+				755A94CC160265400056A03C /* Tabs & Pages */,
 				7575EB2915DAC1F300D5707B /* Help */,
 				F0620D071524B964008D334C /* Subscription */,
 				7577AD8C1523792100B30CB3 /* Settings */,
 				751EDDBB14EEDD43007FBEC7 /* Registration / Login */,
 				F02642A314DFA6B300E8D649 /* Users */,
 				F01B800114CCF2A0009FA39D /* Profiles */,
-				F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */,
-				750E482B14C62FAA00F7CCFC /* SPMessagesViewController.xib */,
-				75CA53CD14CF5FB900C36F35 /* SPComposeViewController.xib */,
 				751D2631149121C800617DD8 /* SPBaseController.xib */,
-				75F56328148FE8CA00E6A8F9 /* SPTabController.xib */,
 				F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */,
-				75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -1752,8 +1780,10 @@
 			isa = PBXGroup;
 			children = (
 				F04A0E7D15DE009A0043FADC /* Parchment-Right-Camera.png */,
+				755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */,
 				F09B3ADD15DC7AC1009EF693 /* TopFade.png */,
-				75246C7914C0E46A00BD24B1 /* Parchment-Right.png */,
+				75D726E016022792006059B8 /* Parchment-Right-9Slice.png */,
+				755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */,
 				75246C7A14C0E46A00BD24B1 /* Parchment-Left.png */,
 				F02E7B3314DD163200BD2424 /* Page-Right.png */,
 			);
@@ -2438,7 +2468,6 @@
 				F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */,
 				F0E04CE714BFF348007F9B9B /* noImage.png in Resources */,
 				F0818D5014C00DFD00649DFF /* location-pin.png in Resources */,
-				75246C7C14C0E46A00BD24B1 /* Parchment-Right.png in Resources */,
 				75246C7D14C0E46A00BD24B1 /* Parchment-Left.png in Resources */,
 				750E482D14C62FAA00F7CCFC /* SPMessagesViewController.xib in Resources */,
 				75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */,
@@ -2597,6 +2626,9 @@
 				F03869EC1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png in Resources */,
 				F03869EE1601893800D14B84 /* BG-Linen-Red-Blend-568h.png in Resources */,
 				F03869F016018A7F00D14B84 /* default-568h.png in Resources */,
+				75D726E116022792006059B8 /* Parchment-Right-9Slice.png in Resources */,
+				755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */,
+				755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
