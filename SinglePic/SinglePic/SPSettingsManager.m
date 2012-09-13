@@ -27,7 +27,7 @@
 -(ENVIRONMENT)environment
 {
     #ifdef RELEASE
-    return PRODUCTION;
+    return ENVIRONMENT_PRODUCTION;
     #else
     return _environment;
     #endif
@@ -48,7 +48,7 @@
     #ifdef RELEASE
     return PRODUCTION_ADDRESS;
     #else
-    if(_environment == ENVIRONMENT_PRODUCTION)
+    if([self environment] == ENVIRONMENT_PRODUCTION)
     {
         return PRODUCTION_ADDRESS;
     }
