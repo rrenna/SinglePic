@@ -284,7 +284,6 @@
 		F0C178621491C00E00F72809 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C177BD1491C00E00F72809 /* AFURLConnectionOperation.m */; };
 		F0C178631491C00E00F72809 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C177BF1491C00E00F72809 /* AFXMLRequestOperation.m */; };
 		F0C178641491C00E00F72809 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C177C11491C00E00F72809 /* UIImageView+AFNetworking.m */; };
-		F0C178651491C00E00F72809 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C177C61491C00E00F72809 /* libAviarySDK-universal.a */; };
 		F0C178681491C00E00F72809 /* Box2DConfig.cmake in Resources */ = {isa = PBXBuildFile; fileRef = F0C177CC1491C00E00F72809 /* Box2DConfig.cmake */; };
 		F0C178691491C00E00F72809 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = F0C177CD1491C00E00F72809 /* CMakeLists.txt */; };
 		F0C1786A1491C00E00F72809 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C177CF1491C00E00F72809 /* b2BroadPhase.cpp */; };
@@ -770,11 +769,6 @@
 		F0C177BF1491C00E00F72809 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		F0C177C01491C00E00F72809 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		F0C177C11491C00E00F72809 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		F0C177C41491C00E00F72809 /* AFFeatherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFFeatherConstants.h; sourceTree = "<group>"; };
-		F0C177C51491C00E00F72809 /* AFFeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFFeatherController.h; sourceTree = "<group>"; };
-		F0C177C61491C00E00F72809 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libAviarySDK-universal.a"; sourceTree = "<group>"; };
-		F0C177C81491C00E00F72809 /* AviarySDK-Core.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "AviarySDK-Core.bundle"; sourceTree = "<group>"; };
-		F0C177C91491C00E00F72809 /* AviarySDK-Plugins.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "AviarySDK-Plugins.bundle"; sourceTree = "<group>"; };
 		F0C177CB1491C00E00F72809 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		F0C177CC1491C00E00F72809 /* Box2DConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Box2DConfig.cmake; sourceTree = "<group>"; };
 		F0C177CD1491C00E00F72809 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -964,7 +958,6 @@
 				F0C1779A1491BC0B00F72809 /* MapKit.framework in Frameworks */,
 				7599A93F148E980100A48435 /* UIKit.framework in Frameworks */,
 				7599A941148E980100A48435 /* Foundation.framework in Frameworks */,
-				F0C178651491C00E00F72809 /* libAviarySDK-universal.a in Frameworks */,
 				F0C178A91491C00E00F72809 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1929,7 +1922,6 @@
 				F003DB7914ECB2F300BD6309 /* TouchJSON */,
 				7532113014CDF61300B7EFDA /* MDAboutController */,
 				F0C177AB1491C00E00F72809 /* AFNetworking */,
-				F0C177C21491C00E00F72809 /* Aviary */,
 				F0C177CA1491C00E00F72809 /* Box2D */,
 				F0C1782F1491C00E00F72809 /* Reachability */,
 				F0C1784C1491C00E00F72809 /* SVProgressHUD */,
@@ -1996,35 +1988,6 @@
 			name = AFNetworking;
 			path = Libraries/AFNetworking;
 			sourceTree = SOURCE_ROOT;
-		};
-		F0C177C21491C00E00F72809 /* Aviary */ = {
-			isa = PBXGroup;
-			children = (
-				F0C177C31491C00E00F72809 /* Headers */,
-				F0C177C61491C00E00F72809 /* libAviarySDK-universal.a */,
-				F0C177C71491C00E00F72809 /* Resources */,
-			);
-			name = Aviary;
-			path = Libraries/Aviary;
-			sourceTree = SOURCE_ROOT;
-		};
-		F0C177C31491C00E00F72809 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				F0C177C41491C00E00F72809 /* AFFeatherConstants.h */,
-				F0C177C51491C00E00F72809 /* AFFeatherController.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		F0C177C71491C00E00F72809 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F0C177C81491C00E00F72809 /* AviarySDK-Core.bundle */,
-				F0C177C91491C00E00F72809 /* AviarySDK-Plugins.bundle */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
 		};
 		F0C177CA1491C00E00F72809 /* Box2D */ = {
 			isa = PBXGroup;
@@ -2843,6 +2806,7 @@
 				PROVISIONING_PROFILE = "AE6881A6-1BED-4B08-B9C9-ED4FD0165D2B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};

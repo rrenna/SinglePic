@@ -49,6 +49,9 @@
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Login/Password" Description:@"This doesn't appear to be a valid email and password combination."];
         }];
+            /*SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^{
+            
+        }];*/
         
     
         errors = [NSMutableArray new];

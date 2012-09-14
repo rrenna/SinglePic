@@ -7,7 +7,6 @@
 //
 
 #import "SPUserViewController.h"
-#import "AFFeatherController.h"
 #import "SPIcebreakerComposeViewController.h"
 #import "SPCameraController.h"
 #import "SVProgressHUD.h"
@@ -120,11 +119,13 @@
 {
     UIImage* imageToEdit = avatarImageView.image;
     
+    /*
     AFFeatherController *featherController = [[[AFFeatherController alloc] initWithImage:imageToEdit] autorelease];
     featherController.topBar.tintColor = [UIColor colorWithWhite:0.75 alpha:1.0];
     featherController.bottomBar.tintColor = [UIColor darkGrayColor];
     [featherController setDelegate:self];
     [self presentModalViewController:featherController animated:YES];
+     */
 }
 -(IBAction)revertPic:(id)sender
 {
