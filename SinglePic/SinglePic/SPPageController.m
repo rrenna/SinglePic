@@ -88,9 +88,8 @@
 -(void)setContent:(UIView *)view
 {
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [contentView addSubview:controller_.view];
-    
-    view.center = CGPointMake(CGRectGetMidX(contentView.bounds), view.center.y);
+    view.frame = contentView.bounds;
+    [contentView addSubview:view];
 }
 - (void) removeObservationFromContentController
 {

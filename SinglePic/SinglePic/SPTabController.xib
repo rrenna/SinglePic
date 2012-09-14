@@ -82,7 +82,7 @@
 					</object>
 					<object class="IBUIView" id="191189717">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">272</int>
 						<string key="NSFrame">{{25, 0}, {305, 460}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -237,12 +237,17 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="contentView">UIView</string>
+						<string key="handleImageView">UIImageView</string>
 						<string key="transparentInsetView">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="contentView">
 							<string key="name">contentView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="handleImageView">
+							<string key="name">handleImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="transparentInsetView">
 							<string key="name">transparentInsetView</string>
@@ -258,15 +263,10 @@
 					<string key="className">SPTabController</string>
 					<string key="superclassName">SPPageController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="handleImageView">UIImageView</string>
 						<string key="handleView">UIView</string>
 						<string key="secretEdgeView">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="handleImageView">
-							<string key="name">handleImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="handleView">
 							<string key="name">handleView</string>
 							<string key="candidateClassName">UIView</string>

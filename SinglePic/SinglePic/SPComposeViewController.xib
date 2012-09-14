@@ -120,22 +120,21 @@
 						<string key="IBUIText">&lt;username&gt;</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+							<bytes key="NSRGB">MC4zNzY5NjkyMTMzIDAuMzYyMTMxNjU5NCAwLjMxMjExNDg5ODIAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">STHeitiSC-Light</string>
+							<string key="name">STHeitiSC-Medium</string>
 							<string key="family">Heiti SC</string>
-							<int key="traits">0</int>
-							<double key="pointSize">14</double>
+							<int key="traits">2</int>
+							<double key="pointSize">15</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">STHeitiSC-Light</string>
-							<double key="NSSize">14</double>
+							<string key="NSName">STHeitiSC-Medium</string>
+							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -217,7 +216,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{224, 7}, {76, 31}}</string>
 								<reference key="NSSuperview" ref="919102465"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

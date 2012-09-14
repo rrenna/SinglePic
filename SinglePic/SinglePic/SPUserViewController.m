@@ -54,8 +54,7 @@
     
     [progressView setStyle:STYLE_BASE];
     [insetView setStyle:STYLE_BASE];
-    [retakePhotoButton setStyle:STYLE_WHITE];
-    
+ 
     [userStackPanel addStackedView:userProfileView];
     [userStackPanel addStackedView:orientationController.view];
     //TEMP: Removed bucket selection
