@@ -120,6 +120,9 @@
 		7577B1BC15DD927000B15B15 /* icon_Flash-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1AE15DD927000B15B15 /* icon_Flash-on@2x.png */; };
 		7577B1BE15DD931500B15B15 /* carbon_fibre.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1BD15DD931500B15B15 /* carbon_fibre.png */; };
 		759008DD14FD73EA00009E86 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 759008DC14FD73EA00009E86 /* arrow.png */; };
+		759295541603D14E008FCDC1 /* SPDialogBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 759295531603D14E008FCDC1 /* SPDialogBubbleView.m */; };
+		759295581603DBAA008FCDC1 /* dialog-9slice-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 759295561603DBAA008FCDC1 /* dialog-9slice-up.png */; };
+		759295591603DBAA008FCDC1 /* dialog-9slice-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 759295571603DBAA008FCDC1 /* dialog-9slice-down.png */; };
 		7599399514B7BADC004D1A46 /* BG-linen-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7599399414B7BADA004D1A46 /* BG-linen-black.png */; };
 		7599A93F148E980100A48435 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A93E148E980100A48435 /* UIKit.framework */; };
 		7599A941148E980100A48435 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A940148E980100A48435 /* Foundation.framework */; };
@@ -532,6 +535,10 @@
 		7577B1AE15DD927000B15B15 /* icon_Flash-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_Flash-on@2x.png"; path = "../../Resources/icon_Flash-on@2x.png"; sourceTree = "<group>"; };
 		7577B1BD15DD931500B15B15 /* carbon_fibre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = carbon_fibre.png; path = ../../Resources/carbon_fibre.png; sourceTree = "<group>"; };
 		759008DC14FD73EA00009E86 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = ../../Resources/arrow.png; sourceTree = "<group>"; };
+		759295521603D14E008FCDC1 /* SPDialogBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDialogBubbleView.h; sourceTree = "<group>"; };
+		759295531603D14E008FCDC1 /* SPDialogBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDialogBubbleView.m; sourceTree = "<group>"; };
+		759295561603DBAA008FCDC1 /* dialog-9slice-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-9slice-up.png"; path = "../../Resources/dialog-9slice-up.png"; sourceTree = "<group>"; };
+		759295571603DBAA008FCDC1 /* dialog-9slice-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-9slice-down.png"; path = "../../Resources/dialog-9slice-down.png"; sourceTree = "<group>"; };
 		7599399414B7BADA004D1A46 /* BG-linen-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-linen-black.png"; path = "../../Resources/BG-linen-black.png"; sourceTree = "<group>"; };
 		7599A93A148E980100A48435 /* SinglePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinglePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7599A93E148E980100A48435 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1003,6 +1010,7 @@
 		751D26351491463E00617DD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				759295501603D12A008FCDC1 /* Dialog Bubble View */,
 				753ED26C15EE8DC7000F64F1 /* Keyboard Drag TableView */,
 				75B4AA2D15D44E3100745137 /* Location Chooser */,
 				750B93631510EBCE00C354F2 /* Circle View */,
@@ -1025,6 +1033,7 @@
 		751D263914916CB500617DD8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				759295551603DB2A008FCDC1 /* Dialogs */,
 				F0A6A3E215D9680400F2253D /* Help */,
 				7516D82615D4527F003CD732 /* Mapping */,
 				754D1EE214DB370000F90C19 /* Icons */,
@@ -1034,7 +1043,6 @@
 				F0207AAA14C66A0200330FF0 /* Cards */,
 				F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */,
 				759008DC14FD73EA00009E86 /* arrow.png */,
-				F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */,
 				75A38B9B14E9B004000F00DF /* noImage-Block.png */,
 				7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */,
 				7577B1A215DD927000B15B15 /* icon_Close.png */,
@@ -1065,12 +1073,10 @@
 				F09B3AE315DCB43F009EF693 /* BTN-question.png */,
 				F09B3AE415DCB440009EF693 /* BTN-question@2x.png */,
 				F0C988A714E0B17900264228 /* BTN-EditPhoto.png */,
-				F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */,
 				75115C8A14DAE93F00544A23 /* newMessage.png */,
 				754D1EE714DB395000F90C19 /* Tab-Messages_Select.png */,
 				F0EE799B14E36A4F00439040 /* Tab-Faves_Highlighted.png */,
 				754D1EE814DB395000F90C19 /* Tab-Messages_Default.png */,
-				F0C988A514E0B0C500264228 /* icebreaker.png */,
 				754D1EE914DB395100F90C19 /* Tab-Profile_Select.png */,
 				754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */,
 				F03CD12114BA443100E1340D /* Orientation-MsM-default.png */,
@@ -1385,6 +1391,27 @@
 				F0C785191522E8DB00512232 /* SPSettingsViewController.xib */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		759295501603D12A008FCDC1 /* Dialog Bubble View */ = {
+			isa = PBXGroup;
+			children = (
+				759295521603D14E008FCDC1 /* SPDialogBubbleView.h */,
+				759295531603D14E008FCDC1 /* SPDialogBubbleView.m */,
+			);
+			name = "Dialog Bubble View";
+			sourceTree = "<group>";
+		};
+		759295551603DB2A008FCDC1 /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				759295561603DBAA008FCDC1 /* dialog-9slice-up.png */,
+				759295571603DBAA008FCDC1 /* dialog-9slice-down.png */,
+				F0C988A514E0B0C500264228 /* icebreaker.png */,
+				F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */,
+				F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */,
+			);
+			name = Dialogs;
 			sourceTree = "<group>";
 		};
 		7599A92F148E980100A48435 = {
@@ -2592,6 +2619,8 @@
 				75D726E116022792006059B8 /* Parchment-Right-9Slice.png in Resources */,
 				755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */,
 				755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */,
+				759295581603DBAA008FCDC1 /* dialog-9slice-up.png in Resources */,
+				759295591603DBAA008FCDC1 /* dialog-9slice-down.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2762,6 +2791,7 @@
 				F01FC1F915FD122900852650 /* ColorBlock.m in Sources */,
 				F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */,
 				F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */,
+				759295541603D14E008FCDC1 /* SPDialogBubbleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
