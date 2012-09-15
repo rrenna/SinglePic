@@ -432,7 +432,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 }
 -(void)saveMyIcebreaker:(NSString*)_icebreaker withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    [self saveMyIcebreaker:_icebreaker andGender:[self myGender] andPreference:[self myPreference] withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self saveMyIcebreaker:_icebreaker andGender:nil andPreference:nil withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
@@ -521,19 +521,28 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         }
     }];
 }
--(void)saveMyGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+-(void)saveMyGender:(GENDER)gender_ andPreference:(GENDER)preference_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    [self saveMyIcebreaker:[self myIcebreaker] andGender:_gender andPreference:_preference withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self saveMyIcebreaker:nil andGender:gender_ andPreference:preference_ withCompletionHandler:onCompletion andErrorHandler:onError];
 }
--(void)saveMyIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+-(void)saveMyIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString* payload = [self generateProfileJSONWithIcebreaker:_icebreaker andGender:_gender andPreference:_preference];
+    NSString* payload = [self generateProfileJSONWithIcebreaker:icebreaker_ andGender:gender_ andPreference:preference_];
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
-         [self setMyIcebreaker:_icebreaker synchronize:NO];
-         [self setMyGender:_gender synchronize:NO];
-         [self setMyPreference:_preference synchronize:YES];
+         if(icebreaker_)
+         {
+             [self setMyIcebreaker:icebreaker_ synchronize:NO];
+         }
+         if(gender_)
+         {
+             [self setMyGender:gender_ synchronize:NO];
+         }
+         if(preference_)
+         {
+             [self setMyPreference:preference_ synchronize:YES];
+         }
          onCompletion(responseObject);
      } 
      andErrorHandler:^(SPWebServiceError *error) 
@@ -1272,12 +1281,23 @@ static int profileCounter = 0;
     }
 }
 #pragma mark - Private methods
--(NSString*)generateProfileJSONWithIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference
+-(NSString*)generateProfileJSONWithIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_
 {
     NSMutableDictionary* profileData = [NSMutableDictionary dictionary];
-    [profileData setObject:_icebreaker forKey:@"icebreaker"];
-    [profileData setObject:GENDER_NAMES[_gender] forKey:@"gender"];
-    [profileData setObject:GENDER_NAMES[_preference] forKey:@"lookingForGender"];
+                                        
+    if(icebreaker_)
+    {
+        [profileData setObject:icebreaker_ forKey:@"icebreaker"];
+    }
+    if(gender_)
+    {
+        [profileData setObject:GENDER_NAMES[gender_] forKey:@"gender"];
+    }
+    if(preference_)
+    {
+            [profileData setObject:GENDER_NAMES[preference_] forKey:@"lookingForGender"];
+    }
+
     
     NSError *error = NULL;
     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:profileData error:&error];
