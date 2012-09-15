@@ -40,7 +40,7 @@
 					<object class="IBUIView" id="802438607">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{54, 25}, {245, 245}}</string>
+						<string key="NSFrame">{{54, 23}, {248, 248}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="68736382"/>
@@ -57,7 +57,7 @@
 					<object class="IBUIImageView" id="68736382">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{58, 29}, {237, 237}}</string>
+						<string key="NSFrame">{{61, 30}, {234, 234}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="275502962"/>
@@ -296,7 +296,7 @@
 					<object class="IBUILabel" id="275502962">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{49, 275}, {254, 21}}</string>
+						<string key="NSFrame">{{52, 276}, {250, 21}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="387000587"/>
@@ -553,6 +553,7 @@
 				<string key="101.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="106.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="107.CustomClassName">SPDialogBubbleView</string>
+				<dictionary class="NSMutableDictionary" key="107.IBAttributePlaceholdersKey"/>
 				<string key="107.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

@@ -10,8 +10,8 @@
 
 typedef enum
 {
-    DIALOG_STYLE_ARROW_UP,
-    DIALOG_STYLE_ARROW_DOWN
+    DIALOG_STYLE_ARROW_UP = 0,
+    DIALOG_STYLE_ARROW_DOWN = 1
 } DIALOG_STYLE;
 
 @interface SPDialogBubbleView : UIImageView

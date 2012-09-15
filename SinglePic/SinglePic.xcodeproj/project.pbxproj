@@ -121,8 +121,6 @@
 		7577B1BE15DD931500B15B15 /* carbon_fibre.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1BD15DD931500B15B15 /* carbon_fibre.png */; };
 		759008DD14FD73EA00009E86 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 759008DC14FD73EA00009E86 /* arrow.png */; };
 		759295541603D14E008FCDC1 /* SPDialogBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 759295531603D14E008FCDC1 /* SPDialogBubbleView.m */; };
-		759295581603DBAA008FCDC1 /* dialog-9slice-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 759295561603DBAA008FCDC1 /* dialog-9slice-up.png */; };
-		759295591603DBAA008FCDC1 /* dialog-9slice-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 759295571603DBAA008FCDC1 /* dialog-9slice-down.png */; };
 		7599399514B7BADC004D1A46 /* BG-linen-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 7599399414B7BADA004D1A46 /* BG-linen-black.png */; };
 		7599A93F148E980100A48435 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A93E148E980100A48435 /* UIKit.framework */; };
 		7599A941148E980100A48435 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A940148E980100A48435 /* Foundation.framework */; };
@@ -356,15 +354,15 @@
 		F0C6460C14E8892100B6A0ED /* SPSwitchOrientationCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */; };
 		F0C7851B1522E8DB00512232 /* SPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C785191522E8DB00512232 /* SPSettingsViewController.xib */; };
 		F0C988A314E0B0C000264228 /* BTN-EditIceBreaker.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */; };
-		F0C988A614E0B0C500264228 /* icebreaker.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A514E0B0C500264228 /* icebreaker.png */; };
 		F0C988A814E0B17900264228 /* BTN-EditPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A714E0B17900264228 /* BTN-EditPhoto.png */; };
 		F0C988AB14E0BA6100264228 /* BTN-EditPhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A914E0BA6100264228 /* BTN-EditPhoto@2x.png */; };
 		F0C988AC14E0BA6100264228 /* BTN-EditIceBreaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */; };
-		F0C988AE14E0CD6800264228 /* icebreaker-MyProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */; };
 		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; };
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; };
-		F0DE63381603FBFB00785FF2 /* dialog-9slice-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63371603FBFB00785FF2 /* dialog-9slice-up@2x.png */; };
-		F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */; };
+		F0DE63421604EE4C00785FF2 /* dialog-up.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE633E1604EE4A00785FF2 /* dialog-up.png */; };
+		F0DE63431604EE4C00785FF2 /* dialog-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */; };
+		F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63401604EE4B00785FF2 /* dialog-down.png */; };
+		F0DE63451604EE4C00785FF2 /* dialog-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */; };
 		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
 		F0E04CE714BFF348007F9B9B /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E04CE614BFF348007F9B9B /* noImage.png */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
@@ -538,8 +536,6 @@
 		759008DC14FD73EA00009E86 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = ../../Resources/arrow.png; sourceTree = "<group>"; };
 		759295521603D14E008FCDC1 /* SPDialogBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDialogBubbleView.h; sourceTree = "<group>"; };
 		759295531603D14E008FCDC1 /* SPDialogBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDialogBubbleView.m; sourceTree = "<group>"; };
-		759295561603DBAA008FCDC1 /* dialog-9slice-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-9slice-up.png"; path = "../../Resources/dialog-9slice-up.png"; sourceTree = "<group>"; };
-		759295571603DBAA008FCDC1 /* dialog-9slice-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-9slice-down.png"; path = "../../Resources/dialog-9slice-down.png"; sourceTree = "<group>"; };
 		7599399414B7BADA004D1A46 /* BG-linen-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-linen-black.png"; path = "../../Resources/BG-linen-black.png"; sourceTree = "<group>"; };
 		7599A93A148E980100A48435 /* SinglePic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinglePic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7599A93E148E980100A48435 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -908,17 +904,17 @@
 		F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSwitchOrientationCardController.xib; sourceTree = "<group>"; };
 		F0C785191522E8DB00512232 /* SPSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSettingsViewController.xib; sourceTree = "<group>"; };
 		F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-EditIceBreaker.png"; path = "../../Resources/BTN-EditIceBreaker.png"; sourceTree = "<group>"; };
-		F0C988A514E0B0C500264228 /* icebreaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icebreaker.png; path = ../../Resources/icebreaker.png; sourceTree = "<group>"; };
 		F0C988A714E0B17900264228 /* BTN-EditPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-EditPhoto.png"; path = "../../Resources/BTN-EditPhoto.png"; sourceTree = "<group>"; };
 		F0C988A914E0BA6100264228 /* BTN-EditPhoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-EditPhoto@2x.png"; path = "../../Resources/BTN-EditPhoto@2x.png"; sourceTree = "<group>"; };
 		F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-EditIceBreaker@2x.png"; path = "../../Resources/BTN-EditIceBreaker@2x.png"; sourceTree = "<group>"; };
-		F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icebreaker-MyProfile.png"; path = "../../Resources/icebreaker-MyProfile.png"; sourceTree = "<group>"; };
 		F0D1511F14EA329F006C1978 /* SPOrientationChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOrientationChooser.h; sourceTree = "<group>"; };
 		F0D1512014EA329F006C1978 /* SPOrientationChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOrientationChooser.m; sourceTree = "<group>"; };
 		F0DB12CF14FA9603008F81A0 /* SPStyledSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledSegmentedControl.h; sourceTree = "<group>"; };
 		F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyledSegmentedControl.m; sourceTree = "<group>"; };
-		F0DE63371603FBFB00785FF2 /* dialog-9slice-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-9slice-up@2x.png"; path = "../../Resources/dialog-9slice-up@2x.png"; sourceTree = "<group>"; };
-		F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icebreaker-MyProfileTall.png"; path = "../../Resources/icebreaker-MyProfileTall.png"; sourceTree = "<group>"; };
+		F0DE633E1604EE4A00785FF2 /* dialog-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-up.png"; path = "../../Resources/dialog-up.png"; sourceTree = "<group>"; };
+		F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-up@2x.png"; path = "../../Resources/dialog-up@2x.png"; sourceTree = "<group>"; };
+		F0DE63401604EE4B00785FF2 /* dialog-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down.png"; path = "../../Resources/dialog-down.png"; sourceTree = "<group>"; };
+		F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down@2x.png"; path = "../../Resources/dialog-down@2x.png"; sourceTree = "<group>"; };
 		F0DF78F415EDA35800EE492D /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
 		F0DF78F515EDA35800EE492D /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
 		F0DF78F715EDA39400EE492D /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
@@ -1409,12 +1405,10 @@
 		759295551603DB2A008FCDC1 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
-				F0DE63371603FBFB00785FF2 /* dialog-9slice-up@2x.png */,
-				759295561603DBAA008FCDC1 /* dialog-9slice-up.png */,
-				759295571603DBAA008FCDC1 /* dialog-9slice-down.png */,
-				F0C988A514E0B0C500264228 /* icebreaker.png */,
-				F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */,
-				F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */,
+				F0DE633E1604EE4A00785FF2 /* dialog-up.png */,
+				F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */,
+				F0DE63401604EE4B00785FF2 /* dialog-down.png */,
+				F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */,
 			);
 			name = Dialogs;
 			sourceTree = "<group>";
@@ -2520,11 +2514,9 @@
 				F02642A214DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib in Resources */,
 				F02642A914DFA94E00E8D649 /* SPCameraController.xib in Resources */,
 				F0C988A314E0B0C000264228 /* BTN-EditIceBreaker.png in Resources */,
-				F0C988A614E0B0C500264228 /* icebreaker.png in Resources */,
 				F0C988A814E0B17900264228 /* BTN-EditPhoto.png in Resources */,
 				F0C988AB14E0BA6100264228 /* BTN-EditPhoto@2x.png in Resources */,
 				F0C988AC14E0BA6100264228 /* BTN-EditIceBreaker@2x.png in Resources */,
-				F0C988AE14E0CD6800264228 /* icebreaker-MyProfile.png in Resources */,
 				F09DA06F14E21B56004E0646 /* SPConnectionsViewController.xib in Resources */,
 				F09DA07214E22026004E0646 /* Tab-Faves_Select.png in Resources */,
 				F09DA07314E22026004E0646 /* Tab-Faves_Default.png in Resources */,
@@ -2602,7 +2594,6 @@
 				F04A0E7B15DDF1E90043FADC /* Camera-SnapButton.png in Resources */,
 				F04A0E7E15DE009A0043FADC /* Parchment-Right-Camera.png in Resources */,
 				7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */,
-				F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */,
 				F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */,
 				F01FC1F815FD122900852650 /* arrow.png in Resources */,
 				F01FC1FB15FD122900852650 /* Colors.plist in Resources */,
@@ -2614,9 +2605,10 @@
 				75D726E116022792006059B8 /* Parchment-Right-9Slice.png in Resources */,
 				755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */,
 				755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */,
-				759295581603DBAA008FCDC1 /* dialog-9slice-up.png in Resources */,
-				759295591603DBAA008FCDC1 /* dialog-9slice-down.png in Resources */,
-				F0DE63381603FBFB00785FF2 /* dialog-9slice-up@2x.png in Resources */,
+				F0DE63421604EE4C00785FF2 /* dialog-up.png in Resources */,
+				F0DE63431604EE4C00785FF2 /* dialog-up@2x.png in Resources */,
+				F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */,
+				F0DE63451604EE4C00785FF2 /* dialog-down@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
