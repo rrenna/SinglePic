@@ -117,7 +117,7 @@
 }
 -(IBAction)editPic:(id)sender
 {
-    UIImage* imageToEdit = avatarImageView.image;
+        //UIImage* imageToEdit = avatarImageView.image;
     
     /*
     AFFeatherController *featherController = [[[AFFeatherController alloc] initWithImage:imageToEdit] autorelease];

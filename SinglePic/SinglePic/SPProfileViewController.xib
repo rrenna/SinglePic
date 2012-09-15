@@ -214,7 +214,7 @@
 					</object>
 					<object class="IBUIImageView" id="387000587">
 						<reference key="NSNextResponder" ref="1035966604"/>
-						<int key="NSvFlags">256</int>
+						<int key="NSvFlags">272</int>
 						<string key="NSFrame">{{52, 299}, {250, 96}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
@@ -223,14 +223,10 @@
 						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icebreaker-MyProfileTall.png</string>
-						</object>
 					</object>
 					<object class="IBUILabel" id="88722768">
 						<reference key="NSNextResponder" ref="1035966604"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">272</int>
 						<string key="NSFrame">{{76, 307}, {200, 82}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
@@ -252,18 +248,18 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
+						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUINumberOfLines">0</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">STHeitiSC-Light</string>
 							<string key="family">Heiti SC</string>
 							<int key="traits">0</int>
-							<double key="pointSize">12</double>
+							<double key="pointSize">16</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">STHeitiSC-Light</string>
-							<double key="NSSize">12</double>
+							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<double key="preferredMaxLayoutWidth">200</double>
@@ -274,6 +270,7 @@
 						<string key="NSFrame">{{256, 410}, {35, 31}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<reference key="IBUIBackgroundColor" ref="482555628"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -555,6 +552,7 @@
 				<string key="101.CustomClassName">SPStyledButton</string>
 				<string key="101.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="106.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="107.CustomClassName">SPDialogBubbleView</string>
 				<string key="107.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -578,6 +576,14 @@
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">SPDialogBubbleView</string>
+					<string key="superclassName">UIImageView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPDialogBubbleView.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">SPPageContentViewController</string>
 					<string key="superclassName">UIViewController</string>
@@ -685,7 +691,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="icebreaker-MyProfileTall.png">{450, 175}</string>
 			<string key="icon-clock.png">{40, 40}</string>
 			<string key="icon-like.png">{40, 32}</string>
 			<string key="icon-message.png">{28, 22}</string>

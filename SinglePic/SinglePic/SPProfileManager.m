@@ -949,7 +949,7 @@ static int profileCounter = 0;
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
-         NSMutableArray* _profiles = [NSMutableArray new];
+         NSMutableArray* _profiles = [NSMutableArray array];
          NSError *theError = nil;
          NSDictionary* profilesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
 
@@ -964,8 +964,6 @@ static int profileCounter = 0;
          
          //Return the retrieved profiles
          onCompletion(_profiles);
-         
-         [_profiles release];
      } 
      andErrorHandler:^(NSError* error)
      {

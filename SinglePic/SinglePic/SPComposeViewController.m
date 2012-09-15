@@ -14,12 +14,16 @@
 #import "SPMessageView.h"
 
 @interface SPComposeViewController()
+{
+    UIView* keyboard;
+    int originalKeyboardY;
+}
 @property (retain) SPMessageThread* thread;
 @property (retain) SPProfile* profile;
 -(void) profileLoaded;
 -(void) reload;
 -(void) messageSent;
--(void) scrollToBottom;
+-(void) scrollToBottomAnimated:(BOOL)animated;
 @end
 
 static float FingerGrabHandleSize = 20.0f;
@@ -64,6 +68,7 @@ static float minimizedToolbarY = 410.0f;
     [[NSNotificationCenter defaultCenter] removeObserver:tableView name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     
     [_thread release];
+    [_profile release];
     [toolbar release];
     [textField release];
     [tableView release];
@@ -137,18 +142,17 @@ static float minimizedToolbarY = 410.0f;
         //Profile is invalid
         [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Profile" Description:@"This user no longer exists. The account may have been deleted."];
     }
-    
-    self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
-    [tableView reloadData];
-
-    usernameLabel.text = self.profile.username;
-    
     [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
     {
         imageView.image = thumbnail;
     }
     andErrorHandler:nil];
     
+    self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
+    usernameLabel.text = self.profile.username;
+    
+    [self reload];
+    [self scrollToBottomAnimated:NO];
 }
 -(void)reload
 {
@@ -157,14 +161,14 @@ static float minimizedToolbarY = 410.0f;
 -(void)messageSent
 {
     [self reload];
-    [self scrollToBottom];
+    [self scrollToBottomAnimated:YES];
 }
--(void) scrollToBottom
+-(void) scrollToBottomAnimated:(BOOL)animated
 {
     if(self.thread.messages.count > 0)
     {
         NSIndexPath* lastRow = [NSIndexPath indexPathForRow:self.thread.messages.count - 1 inSection:0];
-        [tableView scrollToRowAtIndexPath:lastRow atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [tableView scrollToRowAtIndexPath:lastRow atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
 }
 - (void)textfieldWasSelected:(NSNotification *)notification
@@ -207,7 +211,7 @@ static float minimizedToolbarY = 410.0f;
         }
         completion:^(BOOL finished){
         
-            [self scrollToBottom];
+            [self scrollToBottomAnimated:YES];
         
         }
      ];

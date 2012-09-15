@@ -22,9 +22,6 @@
     IBOutlet UITextField *textField;
     IBOutlet SPStyledButton* sendButton;
     IBOutlet UIToolbar *toolbar;
-    @private
-    UIView* keyboard;
-    int originalKeyboardY;
 }
 -(id)initWithIdentifier:(NSString*)identifier;
 -(id)initWithProfile:(SPProfile*)profile;

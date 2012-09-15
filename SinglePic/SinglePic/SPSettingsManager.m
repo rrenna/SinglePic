@@ -62,7 +62,7 @@
 {
     //When debugging reduce time until expiry
     #if defined (DEBUG)
-    return 0.0013888; //2 minutes
+    return 0.25; //6 hours
     #else
     return 1;
     #endif

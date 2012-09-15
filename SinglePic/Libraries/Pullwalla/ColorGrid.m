@@ -26,26 +26,26 @@
 - (id)initWithFrame:(CGRect)frame colors:(NSArray *)gridColors
 {
     self = [self initWithFrame:frame];
-    
-    NSScanner *scanner = nil;
-    colors = [NSMutableArray arrayWithCapacity:[gridColors count]];
-    unsigned colorHex;
-    
-    for (NSString *color in gridColors)
+    if(self)
     {
-        scanner = [NSScanner scannerWithString:color];
-
-        [scanner scanHexInt:&colorHex];         
-        UIColor *currentColor = OPAQUE_HEXCOLOR(colorHex);
+        NSScanner *scanner = nil;
+        colors = [NSMutableArray arrayWithCapacity:[gridColors count]];
+        unsigned colorHex;
         
-        [colors addObject:currentColor];
-
+        for (NSString *color in gridColors)
+        {
+            scanner = [NSScanner scannerWithString:color];
+            
+            [scanner scanHexInt:&colorHex];
+            UIColor *currentColor = OPAQUE_HEXCOLOR(colorHex);
+            
+            [colors addObject:currentColor];
+        }
+        
+        [self drawRow];
     }
-
-    [self drawRow];
     
     return self;
-    
 }
 
 // Draw a grid of animated colors (displayed during loading)
@@ -57,10 +57,10 @@
     {
         for( int column = 0; column < COLUMNS; column++)
         {
-            ColorBlock *colorBlock = [[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION) 
+            ColorBlock *colorBlock = [[[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION)
                                                                 colors:colors 
                                                          startingIndex:0
-                                                         shouldAnimate:YES];
+                                                         shouldAnimate:YES] autorelease];
             
             [self addSubview:colorBlock];
         }
@@ -74,10 +74,10 @@
     
     for( int column = 0; column < COLUMNS; column++)
     {
-        ColorBlock *colorBlock = [[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, 0, CELL_DIMENSION, CELL_DIMENSION * ROWS - 1) 
+        ColorBlock *colorBlock = [[[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, 0, CELL_DIMENSION, CELL_DIMENSION * ROWS - 1)
                                                             colors:colors 
                                                      startingIndex:column % [colors count]
-                                                     shouldAnimate:NO];
+                                                     shouldAnimate:NO] autorelease];
         
         [self addSubview:colorBlock];
     }

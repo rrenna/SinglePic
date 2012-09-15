@@ -363,6 +363,7 @@
 		F0C988AE14E0CD6800264228 /* icebreaker-MyProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988AD14E0CD6800264228 /* icebreaker-MyProfile.png */; };
 		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; };
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; };
+		F0DE63381603FBFB00785FF2 /* dialog-9slice-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63371603FBFB00785FF2 /* dialog-9slice-up@2x.png */; };
 		F0DF78E515EB0A7C00EE492D /* icebreaker-MyProfileTall.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */; };
 		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
 		F0E04CE714BFF348007F9B9B /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E04CE614BFF348007F9B9B /* noImage.png */; };
@@ -916,6 +917,7 @@
 		F0D1512014EA329F006C1978 /* SPOrientationChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOrientationChooser.m; sourceTree = "<group>"; };
 		F0DB12CF14FA9603008F81A0 /* SPStyledSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledSegmentedControl.h; sourceTree = "<group>"; };
 		F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyledSegmentedControl.m; sourceTree = "<group>"; };
+		F0DE63371603FBFB00785FF2 /* dialog-9slice-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-9slice-up@2x.png"; path = "../../Resources/dialog-9slice-up@2x.png"; sourceTree = "<group>"; };
 		F0DF78E415EB0A7C00EE492D /* icebreaker-MyProfileTall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icebreaker-MyProfileTall.png"; path = "../../Resources/icebreaker-MyProfileTall.png"; sourceTree = "<group>"; };
 		F0DF78F415EDA35800EE492D /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
 		F0DF78F515EDA35800EE492D /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
@@ -993,6 +995,8 @@
 		750E482814C62F7300F7CCFC /* Mesages Screen */ = {
 			isa = PBXGroup;
 			children = (
+				75CA53CB14CF5FB900C36F35 /* SPComposeViewController.h */,
+				75CA53CC14CF5FB900C36F35 /* SPComposeViewController.m */,
 				750E482914C62FAA00F7CCFC /* SPMessagesViewController.h */,
 				750E482A14C62FAA00F7CCFC /* SPMessagesViewController.m */,
 			);
@@ -1405,6 +1409,7 @@
 		759295551603DB2A008FCDC1 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
+				F0DE63371603FBFB00785FF2 /* dialog-9slice-up@2x.png */,
 				759295561603DBAA008FCDC1 /* dialog-9slice-up.png */,
 				759295571603DBAA008FCDC1 /* dialog-9slice-down.png */,
 				F0C988A514E0B0C500264228 /* icebreaker.png */,
@@ -1571,15 +1576,6 @@
 			name = "Signup Screen";
 			sourceTree = "<group>";
 		};
-		75CA53CA14CF5F8200C36F35 /* Chat Screen */ = {
-			isa = PBXGroup;
-			children = (
-				75CA53CB14CF5FB900C36F35 /* SPComposeViewController.h */,
-				75CA53CC14CF5FB900C36F35 /* SPComposeViewController.m */,
-			);
-			name = "Chat Screen";
-			sourceTree = "<group>";
-		};
 		75CEB1C914B6448700936001 /* Locations */ = {
 			isa = PBXGroup;
 			children = (
@@ -1645,7 +1641,6 @@
 				75E7E02014B3C22F005C70B4 /* Tabs & Pages */,
 				751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
-				75CA53CA14CF5F8200C36F35 /* Chat Screen */,
 				F01B800314CCF2B1009FA39D /* User Screen */,
 				750E482814C62F7300F7CCFC /* Mesages Screen */,
 				F0C178D11491C27600F72809 /* Profile Screen */,
@@ -2621,6 +2616,7 @@
 				755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */,
 				759295581603DBAA008FCDC1 /* dialog-9slice-up.png in Resources */,
 				759295591603DBAA008FCDC1 /* dialog-9slice-down.png in Resources */,
+				F0DE63381603FBFB00785FF2 /* dialog-9slice-up@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

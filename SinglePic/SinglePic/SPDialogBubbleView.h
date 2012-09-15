@@ -14,6 +14,6 @@ typedef enum
     DIALOG_STYLE_ARROW_DOWN
 } DIALOG_STYLE;
 
-@interface SPDialogBubbleView : UIView
+@interface SPDialogBubbleView : UIImageView
 @property (assign) DIALOG_STYLE dialogStyle;
 @end

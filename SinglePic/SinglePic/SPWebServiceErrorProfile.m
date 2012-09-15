@@ -61,8 +61,9 @@
     if([error isKindOfClass:[SPWebServiceError class]])
     {
         NSString* verboseURL = [NSString stringWithFormat:@"%@%@",[[SPSettingsManager sharedInstance] serverAddress],_url];
+        NSRange rangeOfVerboseURL = [[error domain] rangeOfString:verboseURL options:NSCaseInsensitiveSearch];
         
-        if([[error domain] isEqualToString:verboseURL])
+        if(rangeOfVerboseURL.location != NSNotFound)
         {
             if((WEB_SERVICE_REQUEST_TYPE)[error type] == _type)
             {

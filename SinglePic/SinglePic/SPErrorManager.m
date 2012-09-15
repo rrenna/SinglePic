@@ -49,13 +49,13 @@
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Login/Password" Description:@"This doesn't appear to be a valid email and password combination."];
         }];
-            /*SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^{
-            
-        }];*/
+        SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithURLString:@"/tokens" andServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^
+        {
+            [[SPErrorManager sharedInstance] alertWithTitle:@"Login Expired" Description:@"Your login session has expired. You may have logged in on another device, please log in."];
+        }];
         
-    
         errors = [NSMutableArray new];
-        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,nil];
+        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,nil];
     }
     return self;
 }

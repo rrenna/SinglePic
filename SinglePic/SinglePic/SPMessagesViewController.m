@@ -76,7 +76,7 @@
 #pragma mark - UITableView Delegate and Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[SPMessageManager sharedInstance] activeMessageThreads] count];
+    return [[SPMessageManager sharedInstance] activeMessageThreadsCount];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

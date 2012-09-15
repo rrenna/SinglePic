@@ -330,14 +330,13 @@ static int profileIndex = 0;
             // Grab an array of predefined colors
         NSArray *colors = [settings objectForKey:@"Colors"];
         
-        refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
+        refreshHeaderView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)] autorelease];
         refreshHeaderView.backgroundColor = [UIColor clearColor];
         
-            // Create the loading color grid
-        colorGrid = [[ColorGrid alloc] initWithFrame:CGRectMake(0, 0 - ROWS * CELL_DIMENSION, COLUMNS * CELL_DIMENSION, ROWS * CELL_DIMENSION)
-                                              colors:colors];
+        // Create the loading color grid
+        colorGrid = [[[ColorGrid alloc] initWithFrame:CGRectMake(0, 0 - ROWS * CELL_DIMENSION, COLUMNS * CELL_DIMENSION, ROWS * CELL_DIMENSION) colors:colors] autorelease];
         
-        refreshArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+        refreshArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]] autorelease];
         refreshArrow.frame = CGRectMake(floorf((COLUMNS * CELL_DIMENSION - 21.5) / 2),
                                         floorf(REFRESH_HEADER_HEIGHT - 31),
                                         21.5, 21);
@@ -684,7 +683,7 @@ int currentTick = 0;
 {
     isLoading = YES;
     
-        // Show the header and animate the loading color grid
+    // Show the header and animate the loading color grid
     [colorGrid drawGrid];
     [UIView beginAnimations:nil context:NULL];
     
@@ -716,6 +715,8 @@ int currentTick = 0;
 }
 - (void)stopLoading {
     isLoading = NO;
+    
+    [colorGrid drawRow];
     
     //Re-display helper text
     [UIView animateWithDuration:0.5 animations:^

@@ -9,9 +9,7 @@
 #import "SPDialogBubbleView.h"
 
 @interface SPDialogBubbleView()
-{
-    UIImageView* backgroundImageView;
-}
+-(void)_init;
 @end
 
 @implementation SPDialogBubbleView
@@ -21,17 +19,35 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        UIImage* image = (dialogStyle == DIALOG_STYLE_ARROW_UP) ? [UIImage imageNamed:@"dialog-9slice-up"] : [UIImage imageNamed:@"dialog-9slice-down"];
-        
-        image = [image stretchableImageWithLeftCapWidth:15 topCapHeight:15];
-        backgroundImageView = [[UIImageView alloc] initWithImage:image];
+        [self _init];
     }
     return self;
 }
--(void)dealloc
+- (id) initWithCoder:(NSCoder *)aDecoder
 {
-    [backgroundImageView release];
-    [super dealloc];
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        [self _init];
+    }
+    return self;
+}
+-(void)_init
+{
+    
+    UIImage* dialogImage = (dialogStyle == DIALOG_STYLE_ARROW_UP) ? [UIImage imageNamed:@"icebreaker-MyProfileTall"] : [UIImage imageNamed:@"dialog-9slice-down"];
+    
+    if([dialogImage respondsToSelector:@selector(resizableImageWithCapInsets:)])
+    {
+        dialogImage = [dialogImage resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1)];
+    }
+    /*else
+    {
+        //Shitty 9-slice for iOS 4.3
+        dialogImage = [dialogImage stretchableImageWithLeftCapWidth:50 topCapHeight:19];
+    }*/
+    
+
+    self.image = dialogImage;
+    self.contentMode = UIViewContentModeScaleToFill;
 }
 @end
