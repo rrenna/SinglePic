@@ -2,7 +2,7 @@
 //  SPMessageThread.m
 //  SinglePic
 //
-//  Created by Ryan Renna on 2012-09-09.
+//  Created by Ryan Renna on 2012-09-16.
 //
 //
 
@@ -13,8 +13,9 @@
 
 @implementation SPMessageThread
 
-@dynamic userID;
 @dynamic lastActivity;
+@dynamic userID;
+@dynamic active;
 @dynamic account;
 @dynamic messages;
 

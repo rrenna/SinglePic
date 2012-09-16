@@ -17,9 +17,11 @@
 {
     UIView* keyboard;
     int originalKeyboardY;
+    BOOL sending;
 }
 @property (retain) SPMessageThread* thread;
 @property (retain) SPProfile* profile;
+-(void) _init;
 -(void) profileLoaded;
 -(void) reload;
 -(void) messageSent;
@@ -42,6 +44,7 @@ static float minimizedToolbarY = 410.0f;
         [[SPProfileManager sharedInstance] retrieveProfile:identifier withCompletionHandler:^
          (SPProfile *profile)
          {
+             [self _init];
              self.profile = profile;
              [self profileLoaded];
              
@@ -58,9 +61,14 @@ static float minimizedToolbarY = 410.0f;
     self = [self init];
     if(self)
     {
+        [self _init];
         self.profile = profile_;
     }
     return self;
+}
+-(void)_init
+{
+    sending = NO;
 }
 -(void)dealloc
 {
@@ -118,6 +126,7 @@ static float minimizedToolbarY = 410.0f;
 -(IBAction)send:(id)sender
 {
     sendButton.enabled = NO;
+    sending = YES;
     
     [[SPMessageManager sharedInstance] sendMessage:textField.text toUserWithID:self.profile.identifier withCompletionHandler:^(id responseObject)
     {
@@ -125,12 +134,15 @@ static float minimizedToolbarY = 410.0f;
         [TestFlight passCheckpoint:@"Sent Message to User"];
         #endif
         [textField setText:@""];
+        sendButton.enabled = YES;
+        sending = NO;
     } 
     andErrorHandler:^
     {
         //Error
         //TODO: Display error
         sendButton.enabled = YES;
+        sending = NO;
     }];
 }
 #pragma mark - Private methods
@@ -398,6 +410,12 @@ static float minimizedToolbarY = 410.0f;
 #pragma mark - UITextField delegate methods
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    //Cannot edit textbox while sending a previous message
+    if(sending)
+    {
+        return NO;
+    }
+    
     //Disabled messaging if user has no assigned image
     if([[SPProfileManager sharedInstance] canSendMessages])
     {
@@ -421,8 +439,11 @@ static float minimizedToolbarY = 410.0f;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 {
-    [self send:sendButton];
-    return YES;
+    if(!sending)
+    {
+        [self send:sendButton];
+        return YES;
+    }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {

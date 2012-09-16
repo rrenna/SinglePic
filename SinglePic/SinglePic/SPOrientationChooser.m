@@ -7,11 +7,13 @@
 //
 
 #import "SPOrientationChooser.h"
+#import "SPCardView.h"
 
 @interface SPOrientationChooser()
 -(UIButton*)buttonForGender:(GENDER)gender andPreference:(GENDER)preference;
 -(int)indexForGender:(GENDER)gender andPreference:(GENDER)preference;
 -(void)selectOrientationAtIndex:(int)index;
+-(void)showSelectionAtIndex:(int)index;
 -(IBAction)orientationSelected:(id)sender;
 //Stores the orientation selection indicator images
 @property (retain) NSMutableArray* selectionIndicators;
@@ -66,7 +68,7 @@
         chosenPreference = [[SPProfileManager sharedInstance] myPreference];
     }
     
-    [self selectOrientationAtIndex:[self indexForGender:chosenGender andPreference:chosenPreference] ];
+    [self showSelectionAtIndex:[self indexForGender:chosenGender andPreference:chosenPreference] ];
 
 }
 #pragma mark - IBActions
@@ -92,12 +94,16 @@
     NSString* preferenceInitial = [genderPreference substringToIndex:1];
     
     UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
+    
+    //Card View
+    SPCardView* card = [[[SPCardView alloc] initWithFrame:view.bounds] autorelease];
+    [card setStyle:CARD_STYLE_YELLOW];
+    card.alpha = 0.15;
+    
     //Button - will contain a tag storing the index
     UIButton* button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
     button.tag = index;
-    button.alpha = 0.35;
-    [button setImage:[UIImage imageNamed:@"Card-yellow.png"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"Card-white.png"] forState:UIControlStateHighlighted];
+
     NSString* buttonTitle = [NSString stringWithFormat:@"%@ seeking %@",genderName,genderPreference];
     [button setTitle:buttonTitle forState:UIControlStateNormal];
     [button addTarget:self action:@selector(orientationSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -122,6 +128,7 @@
     selectionIndicatorView.image = [UIImage imageNamed:@"Checkmark.png"];
     [selectionIndicators addObject:selectionIndicatorView];
     
+    [view addSubview:card];
     [view addSubview:button];
     [view addSubview:iconView];
     [view addSubview:buttonLabel];
@@ -149,6 +156,15 @@
     }
 }
 -(void)selectOrientationAtIndex:(int)index
+{
+    [self showSelectionAtIndex:index];
+    
+    if(self.delegate)
+    {
+        [self.delegate orientationChooserSelectionChanged:self];
+    }
+}
+-(void)showSelectionAtIndex:(int)index
 {
     for(int i = 0; i < [self.selectionIndicators count]; i++)
     {
@@ -186,10 +202,6 @@
     {
         chosenPreference = GENDER_FEMALE;
     }
-    
-    if(self.delegate)
-    {
-        [self.delegate orientationChooserSelectionChanged:self];
-    }
+
 }
 @end

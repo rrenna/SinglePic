@@ -14,7 +14,6 @@
 
 @interface SPSwitchOrientationCardController : UIViewController <SPOrientationChooserDelegate>
 {
-    IBOutlet SPStyledButton* changeButton;
     IBOutlet UIImageView* orientationIcon;
     IBOutlet UILabel* orientationLabel;
 @private

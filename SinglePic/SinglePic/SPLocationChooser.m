@@ -130,8 +130,8 @@
     UIButton* button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
     button.tag = index;
     button.alpha = 0.35;
-    [button setImage:[UIImage imageNamed:@"Card-yellow.png"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"Card-white.png"] forState:UIControlStateHighlighted];
+        //[button setImage:[UIImage imageNamed:@"Card-yellow.png"] forState:UIControlStateNormal];
+        //[button setImage:[UIImage imageNamed:@"Card-white.png"] forState:UIControlStateHighlighted];
     NSString* buttonTitle = [NSString stringWithFormat:@"I live in %@",locationName];
     [button setTitle:buttonTitle forState:UIControlStateNormal];
     [button addTarget:self action:@selector(locationSelected:) forControlEvents:UIControlEventTouchUpInside];

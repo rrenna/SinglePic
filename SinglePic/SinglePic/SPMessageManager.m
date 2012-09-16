@@ -20,7 +20,9 @@
 - (NSManagedObjectContext *) managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+-(NSArray*)messageThreads;
 - (void)retrieveMessages;
+- (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time;
 - (int)unixTimeOfLastRetrieval;
 @end
 
@@ -42,7 +44,7 @@
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@",accountID]];
     
     //Asks core data to prefetch the Threads messages relationship
-    NSArray* fetchedRelationshipArray = [NSArray arrayWithObject:@"threads"];
+    NSArray* fetchedRelationshipArray = @[@"threads",@"activeThreads"];
     [fetchRequest setRelationshipKeyPathsForPrefetching:fetchedRelationshipArray];
     
     NSError *error = nil;
@@ -67,12 +69,14 @@
 }
 -(NSArray*)activeMessageThreads
 {
-    return self.activeAccount.threads.allObjects;
+    [[self managedObjectContext] refreshObject:self.activeAccount mergeChanges:YES];
+    NSSet* activeThreads = [self.activeAccount activeThreads];
+    return activeThreads.allObjects;
 }
 -(SPMessageThread*)getMessageThreadByUserID:(NSString*)userID
 {
     SPMessageThread* thread = nil;
-    for(SPMessageThread* thread_ in [self activeMessageThreads])
+    for(SPMessageThread* thread_ in [self messageThreads])
     {
         if([thread_.userID isEqualToString:userID])
         {
@@ -93,7 +97,7 @@
 }
 -(NSArray*)activeMessageThreadsSorted
 {
-    return [self.activeMessageThreads sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    return [[self activeMessageThreads] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         
         SPMessageThread* thread1 = (SPMessageThread*)obj1;
         SPMessageThread* thread2 = (SPMessageThread*)obj2;
@@ -105,17 +109,17 @@
 }
 -(int)activeMessageThreadsCount
 {
-    return [self.activeMessageThreads count];
+    return [[self activeMessageThreads] count];
 }
 -(void)deleteMessageThread:(SPMessageThread*)thread
 {
     [[self managedObjectContext] deleteObject:thread];
     [[self managedObjectContext] save:nil];
 }
--(void)sendMessage:(NSString*)message toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
+-(void)sendMessage:(NSString*)messageBody toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@/msg",userID];
-    NSDictionary* messageJSONData = [NSDictionary dictionaryWithObjectsAndKeys:message,@"message",nil];
+    NSDictionary* messageJSONData = [NSDictionary dictionaryWithObjectsAndKeys:messageBody,@"message",nil];
 
     NSError *error = NULL;
     NSData *jsonData = [[CJSONSerializer serializer] serializeObject:messageJSONData error:&error];
@@ -127,15 +131,8 @@
         
         //Find the User Thread if active
         SPMessageThread* thread = [self getMessageThreadByUserID:userID];
-        thread.lastActivity = now;
         
-        //Create SPMessage
-        SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
-        newMessage.content = message;
-        newMessage.date = now;
-        newMessage.incoming = YES_NSNUMBER;
-        
-        [thread addMessagesObject:newMessage];
+        SPMessage* newMessage = [self saveMessage:messageBody toThread:thread isIncoming:NO atTime:now];
 
         [managedObjectContext save:nil];
         //Run completion block
@@ -173,6 +170,10 @@
      }];
 }
 #pragma mark - Private methods
+-(NSArray*)messageThreads
+{
+    return [self.activeAccount threads];
+}
 -(void)retrieveMessages
 {
     int unixTimeSincePreviousRetrieval = [self unixTimeOfLastRetrieval];
@@ -192,33 +193,14 @@
             NSString* unixTimeWithMillisecondsString = [unixTimeWithMillisecondsNumber stringValue];
             NSString* unixTimeWithoutMillisecondsString = [unixTimeWithMillisecondsString substringToIndex:10];
             int unixTimeWithoutMilliseconds = [unixTimeWithoutMillisecondsString intValue];
-
+            NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
+            
             //Find the User Thread if active
-            SPMessageThread* thread = nil;
-            for(SPMessageThread* thread_ in [self activeMessageThreads])
-            {
-                if([thread_.userID isEqualToString:userID])
-                {
-                    thread = thread_;
-                    break;
-                }
-            }
-            //Create User Thread if inactive
-            if(!thread)
-            {
-                thread = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
-                thread.userID = userID;
-            }
+            SPMessageThread* thread = [self getMessageThreadByUserID:userID];
+
             
-            thread.lastActivity = [NSDate date];
+            [self saveMessage:message toThread:thread isIncoming:YES aTime:time];
             
-            //Create SPMessage
-            SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
-            newMessage.content = message;
-            newMessage.incoming = NO_NSNUMBER;
-            newMessage.date = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
-            
-            [thread addMessagesObject:newMessage];
             messagesRecieved = YES;
         }
         
@@ -255,6 +237,21 @@
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
     }];
+}
+- (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time
+{
+    thread.lastActivity = time;
+    thread.active = YES_NSNUMBER;
+    
+    //Create SPMessage
+    SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
+    newMessage.content = messageBody;
+    newMessage.incoming = (incoming) ? YES_NSNUMBER : NO_NSNUMBER;
+    newMessage.date = time;
+    
+    [thread addMessagesObject:newMessage];
+    
+    return newMessage;
 }
 - (int)unixTimeOfLastRetrieval
 {

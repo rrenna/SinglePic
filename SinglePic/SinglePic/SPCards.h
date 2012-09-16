@@ -8,8 +8,8 @@
 
 typedef enum
 {
-    CARD_STYLE_YELLOW,
-    CARD_STYLE_WHITE
+    CARD_STYLE_YELLOW = 0,
+    CARD_STYLE_WHITE = 1
 } CARD_STYLE;
 
 @protocol SPCard <NSObject>

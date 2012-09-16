@@ -15,7 +15,7 @@
 
 @implementation SPSwitchOrientationCardController
 #define MINIMIZED_SIZE 45
-#define MAXIMIZED_SIZE 220
+#define MAXIMIZED_SIZE 175
 #pragma mark - View lifecycle
 - (id) init
 {
@@ -31,7 +31,6 @@
     self.view.height = MINIMIZED_SIZE;
     
     [self setLabelWithGender:[[SPProfileManager sharedInstance] myGender]  andPreference:[[SPProfileManager sharedInstance] myPreference]];
-    [changeButton setStyle:STYLE_CONFIRM_BUTTON];
 }
 -(void)dealloc
 {
@@ -45,7 +44,7 @@
     
     if(!orientationChooser)
     {
-        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(floor(self.view.width * 0.05),floor(MAXIMIZED_SIZE * 0.07),floor(self.view.width * 0.9),floor(MAXIMIZED_SIZE * 0.7))];
+        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(floor(self.view.width * 0.02),floor(MAXIMIZED_SIZE * 0.0251),floor(self.view.width * 0.9625),floor(MAXIMIZED_SIZE * 0.98))];
         orientationChooser.delegate = self;
         orientationChooser.alpha = 0.0;
         [self.view addSubview:orientationChooser];
@@ -58,7 +57,6 @@
         self.view.height = MAXIMIZED_SIZE;
         orientationLabel.alpha = 0.0;
         orientationIcon.alpha = 0.0;
-        changeButton.alpha = 1.0;
     } 
     completion:^(BOOL finished) 
     {
@@ -74,13 +72,8 @@
 }
 -(IBAction)change:(id)sender
 {    
-    changeButton.enabled = NO;
-    
     [[SPProfileManager sharedInstance] saveMyGender:orientationChooser.chosenGender andPreference:orientationChooser.chosenPreference withCompletionHandler:^(id responseObject) 
     {
-        //Re-enable Change button
-        changeButton.enabled = YES;
-        
         NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MINIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
         
         //Set new title
@@ -92,7 +85,6 @@
         //When we minimize this control, we can flush the switch orientation control out of memory
         [orientationChooser removeFromSuperview];
         orientationChooser = nil;
-        changeButton.alpha = 0.0;
         
         [UIView animateWithDuration:0.3 animations:^
         {
@@ -116,10 +108,6 @@
     } 
     andErrorHandler:^
     {
-        //Re-enable Change button
-        changeButton.enabled = YES;
-        
-        //TODO : 
     }];
 }
 #pragma mark - Private methods
@@ -130,6 +118,7 @@
 #pragma mark - SPOrientationChooserViewDelegate methods
 -(void)orientationChooserSelectionChanged:(SPOrientationChooser*)chooser
 {
+    [self change:nil];
     //Currently does nothing
 }
 @end
