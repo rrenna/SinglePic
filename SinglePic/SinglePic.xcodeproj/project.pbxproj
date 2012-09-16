@@ -15,7 +15,6 @@
 		750E482D14C62FAA00F7CCFC /* SPMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750E482B14C62FAA00F7CCFC /* SPMessagesViewController.xib */; };
 		75115C8B14DAE93F00544A23 /* newMessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75115C8A14DAE93F00544A23 /* newMessage.png */; };
 		7516D82915D4529E003CD732 /* Globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 7516D82815D4529E003CD732 /* Globe.png */; };
-		75181CB414EB0E01000FC667 /* Card-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 75181CB314EB0E01000FC667 /* Card-white.png */; };
 		751D2632149121C800617DD8 /* SPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2630149121C800617DD8 /* SPBaseController.m */; };
 		751D2633149121C800617DD8 /* SPBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751D2631149121C800617DD8 /* SPBaseController.xib */; };
 		751D2638149146B500617DD8 /* SPTouchPassThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2637149146B500617DD8 /* SPTouchPassThroughView.m */; };
@@ -217,7 +216,6 @@
 		F03869EC1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */; };
 		F03869EE1601893800D14B84 /* BG-Linen-Red-Blend-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869ED1601893800D14B84 /* BG-Linen-Red-Blend-568h.png */; };
 		F03869F016018A7F00D14B84 /* default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869EF16018A7F00D14B84 /* default-568h.png */; };
-		F03CD11F14BA428500E1340D /* Card-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD11E14BA428500E1340D /* Card-yellow.png */; };
 		F03CD12814BA443100E1340D /* Orientation-MsM-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */; };
 		F03CD12914BA443100E1340D /* Orientation-MsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12114BA443100E1340D /* Orientation-MsM-default.png */; };
 		F03CD12A14BA443100E1340D /* Orientation-FsF-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12214BA443100E1340D /* Orientation-FsF-selected.png */; };
@@ -364,7 +362,6 @@
 		F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63401604EE4B00785FF2 /* dialog-down.png */; };
 		F0DE63451604EE4C00785FF2 /* dialog-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */; };
 		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
-		F0E04CE714BFF348007F9B9B /* noImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0E04CE614BFF348007F9B9B /* noImage.png */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
 		F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8614CA8A4B00739ADB /* SPProfileIconController.m */; };
@@ -393,7 +390,6 @@
 		750E482B14C62FAA00F7CCFC /* SPMessagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPMessagesViewController.xib; sourceTree = "<group>"; };
 		75115C8A14DAE93F00544A23 /* newMessage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newMessage.png; path = ../../Resources/newMessage.png; sourceTree = "<group>"; };
 		7516D82815D4529E003CD732 /* Globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Globe.png; path = ../../Resources/Globe.png; sourceTree = "<group>"; };
-		75181CB314EB0E01000FC667 /* Card-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Card-white.png"; path = "../../Resources/Card-white.png"; sourceTree = "<group>"; };
 		751D262F149121C800617DD8 /* SPBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseController.h; sourceTree = "<group>"; };
 		751D2630149121C800617DD8 /* SPBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBaseController.m; sourceTree = "<group>"; };
 		751D2631149121C800617DD8 /* SPBaseController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPBaseController.xib; sourceTree = "<group>"; };
@@ -680,7 +676,6 @@
 		F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h@2x.png"; path = "../../Resources/BG-Linen-Red-Blend-568h@2x.png"; sourceTree = "<group>"; };
 		F03869ED1601893800D14B84 /* BG-Linen-Red-Blend-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h.png"; path = "../../Resources/BG-Linen-Red-Blend-568h.png"; sourceTree = "<group>"; };
 		F03869EF16018A7F00D14B84 /* default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h.png"; path = "../../Resources/default-568h.png"; sourceTree = "<group>"; };
-		F03CD11E14BA428500E1340D /* Card-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Card-yellow.png"; path = "../../Resources/Card-yellow.png"; sourceTree = "<group>"; };
 		F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-MsM-selected.png"; path = "../../Resources/Orientation-MsM-selected.png"; sourceTree = "<group>"; };
 		F03CD12114BA443100E1340D /* Orientation-MsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-MsM-default.png"; path = "../../Resources/Orientation-MsM-default.png"; sourceTree = "<group>"; };
 		F03CD12214BA443100E1340D /* Orientation-FsF-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-FsF-selected.png"; path = "../../Resources/Orientation-FsF-selected.png"; sourceTree = "<group>"; };
@@ -918,7 +913,6 @@
 		F0DF78F415EDA35800EE492D /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
 		F0DF78F515EDA35800EE492D /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
 		F0DF78F715EDA39400EE492D /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
-		F0E04CE614BFF348007F9B9B /* noImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noImage.png; path = ../../Resources/noImage.png; sourceTree = "<group>"; };
 		F0E4521614BC082000CDC3D2 /* SPUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserViewController.h; sourceTree = "<group>"; };
 		F0E4521714BC082000CDC3D2 /* SPUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserViewController.m; sourceTree = "<group>"; };
 		F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPUserViewController.xib; sourceTree = "<group>"; };
@@ -1081,7 +1075,6 @@
 				754D1EEA14DB395100F90C19 /* Tab-Profile_Default.png */,
 				F03CD12114BA443100E1340D /* Orientation-MsM-default.png */,
 				F003DB4F14EC902100BD6309 /* blockBackground.png */,
-				F0E04CE614BFF348007F9B9B /* noImage.png */,
 				F03CD12214BA443100E1340D /* Orientation-FsF-selected.png */,
 				F03CD12314BA443100E1340D /* Orientation-FsF-default.png */,
 				754D1EE314DB385200F90C19 /* Tab-Info_Default.png */,
@@ -1768,8 +1761,6 @@
 				75CA53B714CF538B00C36F35 /* card-ninepatch-white@2x.png */,
 				75CA53B814CF538B00C36F35 /* card-ninepatch-yellow.png */,
 				75CA53B914CF538B00C36F35 /* card-ninepatch-yellow@2x.png */,
-				75181CB314EB0E01000FC667 /* Card-white.png */,
-				F03CD11E14BA428500E1340D /* Card-yellow.png */,
 			);
 			name = Cards;
 			sourceTree = "<group>";
@@ -2434,7 +2425,6 @@
 				75CEB1D214B644F300936001 /* Logo-SinglePic-white-vertical.png in Resources */,
 				75CEB1D314B644F300936001 /* Logo-SinglePic-white.png in Resources */,
 				7599399514B7BADC004D1A46 /* BG-linen-black.png in Resources */,
-				F03CD11F14BA428500E1340D /* Card-yellow.png in Resources */,
 				F03CD12814BA443100E1340D /* Orientation-MsM-selected.png in Resources */,
 				F03CD12914BA443100E1340D /* Orientation-MsM-default.png in Resources */,
 				F03CD12A14BA443100E1340D /* Orientation-FsF-selected.png in Resources */,
@@ -2445,7 +2435,6 @@
 				F03CD12F14BA443100E1340D /* Orientation-FsM-default.png in Resources */,
 				F0265D1614BA49BF00CAE538 /* Checkmark.png in Resources */,
 				F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */,
-				F0E04CE714BFF348007F9B9B /* noImage.png in Resources */,
 				F0818D5014C00DFD00649DFF /* location-pin.png in Resources */,
 				75246C7D14C0E46A00BD24B1 /* Parchment-Left.png in Resources */,
 				750E482D14C62FAA00F7CCFC /* SPMessagesViewController.xib in Resources */,
@@ -2530,7 +2519,6 @@
 				75A38B9914E9A1AD000F00DF /* Pic-Frame-Blocks.png in Resources */,
 				75A38B9D14E9B004000F00DF /* noImage-Block.png in Resources */,
 				75A38B9E14E9B004000F00DF /* noImage-Block@2x.png in Resources */,
-				75181CB414EB0E01000FC667 /* Card-white.png in Resources */,
 				F003DB4D14EC8DAB00BD6309 /* Pic-Frame-Blocks@2x.png in Resources */,
 				F003DB5014EC902100BD6309 /* blockBackground.png in Resources */,
 				F0B3C69614F48A6100FC3A92 /* appicon114.png in Resources */,
