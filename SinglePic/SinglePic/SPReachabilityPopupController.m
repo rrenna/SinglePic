@@ -49,8 +49,8 @@
 #pragma mark - Private methods
 -(BOOL)reachable
 {
-     Reachability* reachability = [Reachability reachabilityWithHostName:[[SPSettingsManager sharedInstance] serverAddress]];
-    return [reachability isReachable];
+        //Reachability* reachability = [Reachability reachabilityWithHostName:[[SPSettingsManager sharedInstance] serverAddress]];
+    return true;//[reachability isReachable];
 }
 #pragma mark - Self Delegate methods
 #define DELAY_BETWEEN_REACHABILITY_RETRIES 0.5

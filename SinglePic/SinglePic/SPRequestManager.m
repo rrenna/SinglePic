@@ -9,6 +9,7 @@
 #import "SPRequestManager.h"
 #import "SPWebServiceRequest.h"
 #import "AFImageRequestOperation.h"
+#import "AFJSONRequestOperation.h"
 
 #define USER_DEFAULT_KEY_USER_TOKEN @"USER_DEFAULT_KEY_USER_TOKEN"
 
@@ -35,8 +36,9 @@
     self = [super init];
     if(self)
     {
-        self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@""]] autorelease];
-        [self.httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+        NSString* baseURL = [[SPSettingsManager sharedInstance] serverAddress];
+        self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ] autorelease];
+        [self.httpClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
     }
     return self;
 }
@@ -83,49 +85,137 @@
 {
     [self requestToNamespace:name withType:WEB_SERVICE_POST_REQUEST andParameter:parameter andPayload:payload requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
 }
--(void)requestToNamespace:(REQUEST_NAMESPACE)name withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
+
+
+-(NSString*)generatePathForNamespace:(REQUEST_NAMESPACE)namespace andParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken
 {
-    //Despite method name, will not post to URL unless payload is supplied
-    SPWebServiceRequest* request = [[[SPWebServiceRequest alloc] initWithNamespace:name andParameter:parameter andPayload:payload requiresToken:requiresToken] autorelease];
-    [request setHTTPMethod: WEB_SERVICE_REQUEST_TYPE_NAMES[type] ];
+    NSString* path;
+    NSString* serverAddress = [[SPSettingsManager sharedInstance] serverAddress];
+    NSString* name = REQUEST_NAMESPACES[namespace];
     
-    AFHTTPRequestOperation* requestOperation = [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) 
+    if(parameter)
     {
-        onCompletion(responseObject);
-    } 
-    failure:^(AFHTTPRequestOperation *operation, NSError *error) 
-    {
-        NSData* jsonData = [operation responseData];
-        NSError *theError = nil;
-        NSDictionary* responseJSON = [[CJSONDeserializer deserializer] deserialize:jsonData error:&theError];
-        
-        //We want to store the error in the dictionary, and add the HTTP type
-        NSMutableDictionary* userInfo;
-        if([responseJSON isKindOfClass:[NSDictionary class]])
+        if(requiresToken)
         {
-             userInfo = [NSMutableDictionary dictionaryWithDictionary:responseJSON];
+            NSString* userToken = [[SPRequestManager sharedInstance] userToken];
+            
+            NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                              NULL,
+                                                                                              (CFStringRef)userToken,
+                                                                                              NULL,
+                                                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                              kCFStringEncodingUTF8 );
+            
+            path = [NSString stringWithFormat:@"%@/%@/token/%@",name,parameter,escapedUserToken];
+            [escapedUserToken release];
         }
         else
         {
-            userInfo = [NSMutableDictionary dictionary];
+            path = [NSString stringWithFormat:@"%@/%@",name,parameter];
         }
-       
-        [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
-        
-        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:[[operation response] statusCode] userInfo:userInfo];
-        
-        //Display an alert
-        [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
-        
-        
-        if(onError)
+    }
+    else
+    {
+        if(requiresToken)
         {
-            onError(SPError);
+            NSString* userToken = [[SPRequestManager sharedInstance] userToken];
+            NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                              NULL,
+                                                                                              (CFStringRef)userToken,
+                                                                                              NULL,
+                                                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                              kCFStringEncodingUTF8 );
+            path = [NSString stringWithFormat:@"%@/token/%@",name,escapedUserToken];
+            [escapedUserToken release];
         }
-    }];
+        else
+        {
+            path =  [NSString stringWithFormat:@"%@/",name];
+        }
+    }
     
-    [request generateURL];
-    [httpClient enqueueHTTPRequestOperation:requestOperation];
+    return path;
+}
+
+-(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
+{    
+    NSString* path = [self generatePathForNamespace:namespace andParameter:parameter requiringToken:requiresToken];
+    
+    if(type == WEB_SERVICE_GET_REQUEST)
+    {
+        [self.httpClient getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            onCompletion(responseObject);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
+            /*
+             
+             if([responseJSON isKindOfClass:[NSDictionary class]])
+             {
+             userInfo = [NSMutableDictionary dictionaryWithDictionary:responseJSON];
+             }
+             else
+             {
+             userInfo = [NSMutableDictionary dictionary];
+             }
+             */
+            
+            [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
+            
+            SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:[[operation response] statusCode] userInfo:userInfo];
+            
+                //Display an alert
+            [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
+            
+            
+            if(onError)
+            {
+                onError(SPError);
+            }
+            
+        }];
+    }
+    else if(type == WEB_SERVICE_POST_REQUEST)
+    {
+        [self.httpClient postPath:path parameters:payload success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+        onCompletion(responseObject);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       
+            
+            //We want to store the error in the dictionary, and add the HTTP type
+            NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
+            /*
+
+            if([responseJSON isKindOfClass:[NSDictionary class]])
+            {
+                userInfo = [NSMutableDictionary dictionaryWithDictionary:responseJSON];
+            }
+            else
+            {
+                userInfo = [NSMutableDictionary dictionary];
+            }
+            */
+             
+            [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
+            
+            SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:[[operation response] statusCode] userInfo:userInfo];
+            
+                //Display an alert
+            [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
+            
+            
+            if(onError)
+            {
+                onError(SPError);
+            }
+            
+        }];
+    }
+    //TODO: Implement DELETE
 }
 -(void)putToURL:(NSURL*)url withPayload:(id)payload withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {    
@@ -174,41 +264,48 @@
 -(void)getFromURL:(NSURL*)url withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];    
-    [httpClient enqueueHTTPRequestOperation:
-     [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) 
-      {
-          onCompletion(responseObject);
-      } 
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) 
-      {
-          NSLog(@"GET Request to URL failed : %@", operation.request.URL);
-          
-          if(onError)
-          {
-              onError(error);
-          }
-      }]
-     ]; 
+    
+    AFJSONRequestOperation* getJsonOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+    {
+        onCompletion(JSON);
+    }
+    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        
+        NSLog(@"GET Request to URL failed : %@", request.URL);
+        
+        if(onError)
+        {
+            onError(error);
+        }
+        
+    }];
+    
+    [getJsonOperation start];
 }
 -(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(UIImage* responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {
+    
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url]; 
     
-    [httpClient enqueueHTTPRequestOperation:
-     [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) 
-      {
-          UIImage* image = [UIImage imageWithData:responseObject];
-          onCompletion(image);
-      } 
-    failure:^(AFHTTPRequestOperation *operation, NSError *error) 
-      {
-          NSLog(@"GET Image Request to URL failed : %@", operation.request.URL);
-          
-          if(onError)
-          {
-              onError(error);
-          }
-      }]
-     ]; 
+    AFImageRequestOperation* imageRequest = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *image)
+    {
+        return image;
+    }
+    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+    {
+        onCompletion(image);
+    }
+    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
+    {
+        
+        NSLog(@"GET Image Request to URL failed : %@", request.URL);
+        
+        if(onError)
+        {
+            onError(error);
+        }
+    }];
+    
+    [httpClient enqueueHTTPRequestOperation:imageRequest];
 }
 @end

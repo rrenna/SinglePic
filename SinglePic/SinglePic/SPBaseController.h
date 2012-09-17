@@ -68,6 +68,7 @@ typedef enum
 -(void)pushChatWithID:(NSString*)profileID;
 // Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type;
+-(void)displayReachabilityOverlay;
 //Status bar customization
 -(void)setStatusBarStyle:(STYLE)style;
 @end

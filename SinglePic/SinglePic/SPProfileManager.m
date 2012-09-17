@@ -38,7 +38,7 @@
 -(void)setMyPushTokenSynced:(BOOL)synced synchronize:(BOOL)synchronize;
 
 //Used for generating a JSON string to set a new profile
--(NSString*)generateProfileJSONWithIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference;
+-(NSString*)generateProfileDataWithIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference;
 
 //Helper methods
 -(void) clearProfile;
@@ -527,7 +527,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 }
 -(void)saveMyIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString* payload = [self generateProfileJSONWithIcebreaker:icebreaker_ andGender:gender_ andPreference:preference_];
+    NSDictionary* payload = [self generateProfileDataWithIcebreaker:icebreaker_ andGender:gender_ andPreference:preference_];
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
@@ -660,11 +660,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 }
 -(void)loginWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSDictionary* loginDataDictionary = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",nil];
-    
-    NSError *error = NULL;
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:loginDataDictionary error:&error];
-    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
+    NSDictionary* payload = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",nil];
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_TOKENS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject) 
      {
@@ -776,7 +772,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         return; //Already registered
     }
     
-    NSMutableDictionary* registrationDataDictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:userName_,@"userName",email_,@"email",password_,@"password",GENDER_NAMES[gender_],@"gender",GENDER_NAMES[preference_],@"lookingForGender",[bucket_ identifier],@"bucket",nil];
+    NSMutableDictionary* payload = [NSMutableDictionary dictionaryWithObjectsAndKeys:userName_,@"userName",email_,@"email",password_,@"password",GENDER_NAMES[gender_],@"gender",GENDER_NAMES[preference_],@"lookingForGender",[bucket_ identifier],@"bucket",nil];
     
     //If we have an approximate location for this user, pass it into the registration process
     CLLocation* location = [[SPLocationManager sharedInstance] location];
@@ -785,13 +781,9 @@ static NSURL* _thumbnailUploadURLCache = nil;
         NSString* latString = [NSString stringWithFormat:@"%f",location.coordinate.latitude]; 
         NSString* lonString = [NSString stringWithFormat:@"%f",location.coordinate.longitude]; 
         
-        [registrationDataDictionary setObject:latString forKey:@"lattitude"];
-        [registrationDataDictionary setObject:lonString forKey:@"longitude"];
+        [payload setObject:latString forKey:@"lattitude"];
+        [payload setObject:lonString forKey:@"longitude"];
     }
-    
-    NSError *error = NULL;
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:registrationDataDictionary error:&error];
-    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject) 
     {
@@ -952,11 +944,7 @@ static int profileCounter = 0;
 }
 -(void)retrieveProfilesWithIDs:(NSArray*)profileIDArray withCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSError *error = NULL;
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:profileIDArray error:&error];
-    NSString* payload = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
-    
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:profileIDArray requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
          NSMutableArray* _profiles = [NSMutableArray array];
          NSError *theError = nil;
@@ -1281,7 +1269,7 @@ static int profileCounter = 0;
     }
 }
 #pragma mark - Private methods
--(NSString*)generateProfileJSONWithIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_
+-(NSString*)generateProfileDataWithIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_
 {
     NSMutableDictionary* profileData = [NSMutableDictionary dictionary];
                                         
@@ -1298,12 +1286,7 @@ static int profileCounter = 0;
             [profileData setObject:GENDER_NAMES[preference_] forKey:@"lookingForGender"];
     }
 
-    
-    NSError *error = NULL;
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:profileData error:&error];
-    NSString* jsonString = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
-    
-    return jsonString;
+    return profileData;
 }
 //Wipes app of current profile information (excluding stored messages)
 -(void)clearProfile
