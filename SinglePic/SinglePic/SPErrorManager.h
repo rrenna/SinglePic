@@ -10,11 +10,6 @@
 #import <MessageUI/MessageUI.h>
 
 @interface SPErrorManager : SPSingleton <UIAlertViewDelegate,MFMailComposeViewControllerDelegate>
-{
-@private
-    NSMutableArray* errors;
-    NSArray* knownErrors; // Known errors are url + httpMethod + error code combinations that when reported are given special treatment
-}
 
 //Used for non-critical alerts
 -(void)alertWithTitle:(NSString*)title Description:(NSString*)description;

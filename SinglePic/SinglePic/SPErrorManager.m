@@ -11,6 +11,10 @@
 #import "LoggerClient.h"
 
 @interface SPErrorManager()
+{
+    NSMutableArray* errorQueue;
+    NSArray* knownErrors; // Known errors are url + httpMethod + error code combinations that when reported are given special treatment
+}
 -(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting;
 -(void)reportError:(NSError*)error;
 @end
@@ -54,15 +58,10 @@
             [[SPErrorManager sharedInstance] alertWithTitle:@"Login Expired" Description:@"Your login session has expired. You may have logged in on another device, please log in."];
         }];
         
-        errors = [NSMutableArray new];
+        errorQueue = [NSMutableArray new];
         knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,nil];
     }
     return self;
-}
--(void)dealloc
-{
-    [errors release];
-    [super dealloc];
 }
 #pragma mark
 -(void)alertWithTitle:(NSString*)title Description:(NSString*)description
@@ -112,7 +111,7 @@
 -(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
 {
     //Store Error
-    [errors addObject:error];
+    [errorQueue addObject:error];
     
     //Display the reason for the failure in the console
     NSLog(@"%@",[error localizedDescription]);
@@ -133,7 +132,7 @@
             failureAlert = [[UIAlertView alloc] initWithTitle:[error localizedFailureReason] message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         }
         
-        failureAlert.tag = [errors count] - 1; //Index of current error, used to identify the callbacks of this AlertView
+        failureAlert.tag = error; //Index of current error, used to identify the callbacks of this AlertView
         failureAlert.delegate = self;
         [failureAlert show];
         [failureAlert release];
@@ -183,17 +182,13 @@
 {
     if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:ALERT_BUTTON_TITLE_REPORT])
     {
-        int errorIndex = alertView.tag;
-        if(errorIndex < [errors count])
-        {
-            [self reportError:[errors objectAtIndex:errorIndex]];   
-        }
+            NSError* error = (NSError*)alertView.tag;
+            [self reportError:error];
     }
 }
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    int errorIndex = alertView.tag;
-    [errors removeObject:[errors objectAtIndex:errorIndex]];
+    [errorQueue removeLastObject];
 }
 #pragma mark - MFMailComposeViewControllerDelegate methods
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
