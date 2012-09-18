@@ -84,9 +84,6 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {
-        [self setStyle:STYLE_DEFAULT];
-        [self setDepth:DEPTH_DEFAULT];
-        
         //Default progress colours
         self.progressColour = [UIColor colorWithRed:0.13 green:0.6 blue:0.23 alpha:1.0];
         self.lowProgressColour = [UIColor colorWithRed:1.0 green:0.0 blue:0.1 alpha:1.0];
@@ -132,6 +129,11 @@
         
         [tint release];
         tint = [TINT_TAB retain];
+    }
+    else if(style == STYLE_WHITE)
+    {
+        [tint release];
+        tint = [TINT_WHITE retain];
     }
     else if(style == STYLE_BASE)
     {

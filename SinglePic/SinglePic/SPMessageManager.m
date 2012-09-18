@@ -119,13 +119,9 @@
 -(void)sendMessage:(NSString*)messageBody toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@/msg",userID];
-    NSDictionary* messageJSONData = [NSDictionary dictionaryWithObjectsAndKeys:messageBody,@"message",nil];
-
-    NSError *error = NULL;
-    NSData *jsonData = [[CJSONSerializer serializer] serializeObject:messageJSONData error:&error];
-    NSString* jsonString = [[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] autorelease];
+    NSDictionary* payload = [NSDictionary dictionaryWithObjectsAndKeys:messageBody,@"message",nil];
     
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:jsonString requiringToken:YES withCompletionHandler:^(id responseObject)
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject)
     {
         NSDate* now = [NSDate date];
         

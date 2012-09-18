@@ -335,7 +335,6 @@
 		F0C178AD1491C04900F72809 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178AC1491C04800F72809 /* SystemConfiguration.framework */; };
 		F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178AF1491C0BE00F72809 /* SPSingleton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F0C178BE1491C14D00F72809 /* SPWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B51491C14D00F72809 /* SPWebServiceRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178BF1491C14D00F72809 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B71491C14D00F72809 /* SPProfile.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178C01491C14D00F72809 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B91491C14D00F72809 /* SPBucket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178BA1491C14D00F72809 /* SPBucketManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -866,14 +865,12 @@
 		F0C178B01491C0BE00F72809 /* SPSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSingleton.h; sourceTree = "<group>"; };
 		F0C178B31491C14D00F72809 /* SPProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileManager.h; sourceTree = "<group>"; };
 		F0C178B41491C14D00F72809 /* SPProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileManager.m; sourceTree = "<group>"; };
-		F0C178B51491C14D00F72809 /* SPWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebServiceRequest.m; sourceTree = "<group>"; };
 		F0C178B61491C14D00F72809 /* SPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfile.h; sourceTree = "<group>"; };
 		F0C178B71491C14D00F72809 /* SPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfile.m; sourceTree = "<group>"; };
 		F0C178B81491C14D00F72809 /* SPBucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBucket.h; sourceTree = "<group>"; };
 		F0C178B91491C14D00F72809 /* SPBucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBucket.m; sourceTree = "<group>"; };
 		F0C178BA1491C14D00F72809 /* SPBucketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBucketManager.m; sourceTree = "<group>"; };
 		F0C178BB1491C14D00F72809 /* SPBucketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBucketManager.h; sourceTree = "<group>"; };
-		F0C178BC1491C14D00F72809 /* SPWebServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebServiceRequest.h; sourceTree = "<group>"; };
 		F0C178C51491C18E00F72809 /* SPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRequestManager.h; sourceTree = "<group>"; };
 		F0C178C61491C18E00F72809 /* SPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRequestManager.m; sourceTree = "<group>"; };
 		F0C178C91491C1C900F72809 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
@@ -2214,7 +2211,6 @@
 		F0C178C41491C16C00F72809 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				F0C645F814E76B8B00B6A0ED /* Custom Requests */,
 				75F5099414DC4D7D00458357 /* SPRequests.h */,
 				F0C178C51491C18E00F72809 /* SPRequestManager.h */,
 				F0C178C61491C18E00F72809 /* SPRequestManager.m */,
@@ -2253,15 +2249,6 @@
 				F0ECCB8614CA8A4B00739ADB /* SPProfileIconController.m */,
 			);
 			name = "Profile Screen";
-			sourceTree = "<group>";
-		};
-		F0C645F814E76B8B00B6A0ED /* Custom Requests */ = {
-			isa = PBXGroup;
-			children = (
-				F0C178B51491C14D00F72809 /* SPWebServiceRequest.m */,
-				F0C178BC1491C14D00F72809 /* SPWebServiceRequest.h */,
-			);
-			name = "Custom Requests";
 			sourceTree = "<group>";
 		};
 		F0C6460614E87A5000B6A0ED /* Switch Orientation Controller */ = {
@@ -2643,7 +2630,6 @@
 				F0C178A51491C00E00F72809 /* SVProgressHUD.m in Sources */,
 				F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */,
 				F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */,
-				F0C178BE1491C14D00F72809 /* SPWebServiceRequest.m in Sources */,
 				F0C178BF1491C14D00F72809 /* SPProfile.m in Sources */,
 				F0C178C01491C14D00F72809 /* SPBucket.m in Sources */,
 				F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */,

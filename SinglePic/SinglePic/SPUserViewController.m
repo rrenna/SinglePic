@@ -51,7 +51,6 @@
     [self updateIcebreaker];
     [self updateExpiry];
     
-    [progressView setStyle:STYLE_BASE];
     [insetView setStyle:STYLE_BASE];
  
     [userStackPanel addStackedView:userProfileView];
