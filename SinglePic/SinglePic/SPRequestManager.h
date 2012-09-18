@@ -14,12 +14,11 @@
 @class SPWebServiceRequest;
 
 @interface SPRequestManager : SPSingleton
-{
-    @private
-    NSString* userToken; //Must be past into every request
-}
 @property (readonly) NSString* userToken;
 
+//Reachability
+-(void)checkInitialReachabilityWithCompletionHandler:(void (^)(AFNetworkReachabilityStatus status))status;
+-(void)EnableRealtimeReachabilityMonitoring;
 //User Token Management
 -(void)setUserToken:(NSString *)userToken;
 -(void)setUserToken:(NSString *)userToken synchronize:(BOOL)synchronize;

@@ -17,6 +17,7 @@
 -(void)updateUsername;
 -(void)updateIcebreaker;
 -(void)updateExpiry;
+-(void)updateEmail;
 @end
 
 @implementation SPUserViewController
@@ -50,6 +51,7 @@
     [self updateUsername];
     [self updateIcebreaker];
     [self updateExpiry];
+    [self updateEmail];
     
     [insetView setStyle:STYLE_BASE];
  
@@ -57,7 +59,8 @@
     [userStackPanel addStackedView:orientationController.view];
     //TEMP: Removed bucket selection
     //[userStackPanel addStackedView:locationController.view];
-    [userStackPanel addStackedView:userSubscriptionView];
+    //[userStackPanel addStackedView:userSubscriptionView];
+    [userStackPanel addStackedView:userEmailView];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -201,5 +204,9 @@
             progressView.progressStatus = [NSString stringWithFormat:@"%@ left",progressString];
         }
     }
+}
+-(void)updateEmail
+{
+    userEmailLabel.text = [[SPProfileManager sharedInstance] myEmail];
 }
 @end

@@ -29,6 +29,9 @@
     SPSwitchOrientationCardController* orientationController;
     //User Location
     SPSwitchLocationCardController* locationController;
+    //User Email
+    IBOutlet UIView* userEmailView;
+    IBOutlet UILabel *userEmailLabel;
     //User Subscription
     IBOutlet UIView* userSubscriptionView;
 }

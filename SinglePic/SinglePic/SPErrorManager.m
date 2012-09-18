@@ -159,8 +159,7 @@
     {
         NSString* systemVersion = [[UIDevice currentDevice] systemVersion];
         NSString* model = [[UIDevice currentDevice] model];
-        NSString* appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
- 
+        NSString* appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         
         NSString* emailSubject = [NSString stringWithFormat:@"[Bug Report : %@]",failureReason];
         NSString* emailBody = [NSString stringWithFormat:@"<html><body><br/><br/><br/><hr/><p>Please Add any details above this line.</p><p>System Version : <b>%@</b><br/>Model : <b>%@</b><br/>SinglePic Version : <b>%@</b><br/>Failure : <b>%@</b> </br>Description : <b>%@</b><br/>Method : <b>%@</b> </p></body></html>",systemVersion,model,appVersion,failureReason,description,WEB_SERVICE_REQUEST_TYPE_NAMES[method]];

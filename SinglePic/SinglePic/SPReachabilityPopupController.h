@@ -14,10 +14,6 @@
 @end
 
 @interface SPReachabilityPopupController : NSObject <UIAlertViewDelegate>
-{
-@private
-    UIAlertView* alertView;
-}
 -(SPReachabilityPopupController*)initWithDelegate:(id<SPReachabilityPopupDelegate>)delegate;
 -(void)show;
 @end

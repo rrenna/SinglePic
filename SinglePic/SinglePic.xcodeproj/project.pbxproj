@@ -245,6 +245,7 @@
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
+		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
 		F09B3AD815DC6D7F009EF693 /* Overlay_OOB_BROWSE.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */; };
 		F09B3AD915DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */; };
 		F09B3ADB15DC77FB009EF693 /* MDACDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117314CDF63F00B7EFDA /* MDACDoneButton.png */; };
@@ -716,6 +717,7 @@
 		F06EF7DA14F01AFF008F9EF5 /* SPSubscriptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionsManager.h; sourceTree = "<group>"; };
 		F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionsManager.m; sourceTree = "<group>"; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
+		F08A157F1608116000DDE5DB /* icon-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Email.png"; path = "../../Resources/icon-Email.png"; sourceTree = "<group>"; };
 		F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_BROWSE.png; path = ../../Resources/Overlay_OOB_BROWSE.png; sourceTree = "<group>"; };
 		F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_NAVIGATION.png; path = ../../Resources/Overlay_OOB_NAVIGATION.png; sourceTree = "<group>"; };
 		F09B3ADD15DC7AC1009EF693 /* TopFade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TopFade.png; path = ../../Resources/TopFade.png; sourceTree = "<group>"; };
@@ -1036,6 +1038,7 @@
 				7577B1A415DD927000B15B15 /* icon_Flash-auto.png */,
 				7577B1A515DD927000B15B15 /* icon_Flash-on.png */,
 				7577B1A615DD927000B15B15 /* icon_CameraGrid-on.png */,
+				F08A157F1608116000DDE5DB /* icon-Email.png */,
 				7577B1A715DD927000B15B15 /* icon_Camera-flip.png */,
 				7577B1A815DD927000B15B15 /* icon_Camera-flip@2x.png */,
 				7577B1A915DD927000B15B15 /* icon_CameraGrid-off@2x.png */,
@@ -2563,6 +2566,7 @@
 				F0DE63431604EE4C00785FF2 /* dialog-up@2x.png in Resources */,
 				F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */,
 				F0DE63451604EE4C00785FF2 /* dialog-down@2x.png in Resources */,
+				F08A15801608116000DDE5DB /* icon-Email.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

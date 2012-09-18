@@ -123,7 +123,7 @@
     if (self) 
     {
         tabs = [NSMutableArray new];
-            //reachabilityController = [[SPReachabilityPopupController alloc] initWithDelegate:self];
+        reachabilityController = [[SPReachabilityPopupController alloc] initWithDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userTypeChangedWithNotification:) name:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
@@ -138,20 +138,7 @@
     [miniProgressView setStyle:STYLE_BASE];
     
     self.baseMode = BLANK_BASE_MODE;
-    
-    //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
-    if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
-    {
-            //If location services are not avaliable, and we've yet to ask the user for permission, we will ask permission and wait for a response.
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationServicesValidated) name:NOTIFICATION_LOCATION_PERMISSION_UPDATED object:nil];
-            //Request permission to use iOS location services from the user, this will spawn a popup
-        [[SPLocationManager sharedInstance] requestLocationPermission];
-    }
-    else
-    {
-            //If location services have been requested previously, proceed to the next step
-        [self locationServicesValidated];
-    }
+    [self validateReachability];
 }
 -(void)dealloc
 {
@@ -466,7 +453,21 @@
 #pragma mark - SPReachabilityView delegate methods
 -(void)reachabilityConfirmedForHostName:(NSString*)hostName
 {
+    [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
     
+    //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
+    if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    {
+        //If location services are not avaliable, and we've yet to ask the user for permission, we will ask permission and wait for a response.
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationServicesValidated) name:NOTIFICATION_LOCATION_PERMISSION_UPDATED object:nil];
+            //Request permission to use iOS location services from the user, this will spawn a popup
+        [[SPLocationManager sharedInstance] requestLocationPermission];
+    }
+    else
+    {
+        //If location services have been requested previously, proceed to the next step
+        [self locationServicesValidated];
+    }
 }
 #pragma mark - SPHelpOverlayViewControllerDelegate methods
 -(void)helpOverlayDidDismiss:(SPHelpOverlayViewController*)overlayController

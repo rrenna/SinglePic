@@ -13,7 +13,11 @@
 #define USER_DEFAULT_KEY_USER_TOKEN @"USER_DEFAULT_KEY_USER_TOKEN"
 
 @interface SPRequestManager()
+{
+    NSString* userToken; //Must be past into every request
+}
 @property (retain) AFHTTPClient* httpClient;
+@property (retain) UIAlertView* networkConnectivityAlertView;
 @end
 
 @implementation SPRequestManager
@@ -35,12 +39,44 @@
     self = [super init];
     if(self)
     {
-        NSString* baseURL = [[SPSettingsManager sharedInstance] serverAddress];
-        self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ] autorelease];
-        [self.httpClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
-        [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
+
     }
     return self;
+}
+#pragma mark - Reachability
+-(void)checkInitialReachabilityWithCompletionHandler:(void (^)(AFNetworkReachabilityStatus status))status
+{
+    NSString* baseURL = [[SPSettingsManager sharedInstance] serverAddress];
+    self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ] autorelease];
+    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
+    
+    [self.httpClient setReachabilityStatusChangeBlock:status];
+}
+-(void)EnableRealtimeReachabilityMonitoring
+{
+    [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        if(status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown)
+        {
+            if(![self.httpClient.operationQueue isSuspended])
+            {
+                [self.httpClient.operationQueue setSuspended:YES];
+                
+                self.networkConnectivityAlertView = [[[UIAlertView alloc] initWithTitle:@"Connectivity Issue" message:@"Couldn't connect to SinglePic. Please ensure you have an active internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
+                [self.networkConnectivityAlertView show];
+            }
+           
+        }
+        else if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
+        {
+            if([self.httpClient.operationQueue isSuspended])
+            {
+                [self.httpClient.operationQueue setSuspended:NO];
+                [self.networkConnectivityAlertView dismissWithClickedButtonIndex:0 animated:YES];
+                self.networkConnectivityAlertView = nil;
+            }
+        }
+    }];
 }
 #pragma mark - User Token Management
 -(void)setUserToken:(NSString *)userToken
@@ -138,7 +174,7 @@
 }
 
 -(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
-{    
+{
     NSString* path = [self generatePathForNamespace:namespace andParameter:parameter requiringToken:requiresToken];
     
     id successBlock = ^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -147,12 +183,15 @@
     };
     id failureBlock = ^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        NSError* jsonParseError = nil;
-        id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
-        
-            //We want to store the error in the dictionary, and add the HTTP type
+        //We want to store the error in the dictionary, and add the HTTP type
         NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
+        id responseJSON = nil;
         
+        if(operation.responseData)
+        {
+            NSError* jsonParseError = nil;
+            responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
+        }
         if([responseJSON isKindOfClass:[NSDictionary class]])
         {
             userInfo = [NSMutableDictionary dictionaryWithDictionary:responseJSON];
@@ -162,20 +201,17 @@
             userInfo = [NSMutableDictionary dictionary];
         }
         
-        
         [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
         
-        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:[[operation response] statusCode] userInfo:userInfo];
+        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:[error code] userInfo:userInfo];
         
-            //Display an alert
+        //Display an alert
         [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
-        
         
         if(onError)
         {
             onError(SPError);
         }
-        
     };
     
     if(type == WEB_SERVICE_GET_REQUEST)

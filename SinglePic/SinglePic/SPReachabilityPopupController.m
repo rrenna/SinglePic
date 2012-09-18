@@ -9,7 +9,13 @@
 #import "SPReachabilityPopupController.h"
 
 @interface SPReachabilityPopupController()
+{
+    UIAlertView* alertView;
+    BOOL initialReachabilityRetrieved;
+    BOOL reachable;
+}
 -(BOOL)reachable;
+-(void)delayedReshow;
 @property (retain) id<SPReachabilityPopupDelegate> delegate;
 @end
 
@@ -23,7 +29,21 @@
     if(self)
     {
         self.delegate = delegate_;
-        alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Couldn't connect to SinglePic" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Try Again", nil];
+        reachable = NO;
+        initialReachabilityRetrieved = NO;
+        
+        alertView = [[UIAlertView alloc] initWithTitle:@"Connectivity Issue" message:@"Couldn't connect to SinglePic. Please ensure you have an active internet connection." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Try Again", nil];
+        
+        [[SPRequestManager sharedInstance] checkInitialReachabilityWithCompletionHandler:^(AFNetworkReachabilityStatus status)
+        {
+            initialReachabilityRetrieved = YES;
+            
+            if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
+            {
+                reachable = YES;
+            }
+            
+        }];
     }
     return self;
 }
@@ -36,25 +56,35 @@
 #pragma mark - Overriden methods
 -(void)show
 {
-    if([self reachable])
+    if(!initialReachabilityRetrieved)
     {
-        //If reachable, alert the delegate        
-        [self.delegate reachabilityConfirmedForHostName:[[SPSettingsManager sharedInstance] serverAddress]];
+        [self delayedReshow];
     }
     else
     {
-        [alertView show];
+        if([self reachable])
+        {
+                //If reachable, alert the delegate
+            [self.delegate reachabilityConfirmedForHostName:[[SPSettingsManager sharedInstance] serverAddress]];
+        }
+        else
+        {
+            [alertView show];
+        }
     }
 }
 #pragma mark - Private methods
 -(BOOL)reachable
 {
-        //Reachability* reachability = [Reachability reachabilityWithHostName:[[SPSettingsManager sharedInstance] serverAddress]];
-    return true;//[reachability isReachable];
+    return reachable;
 }
 #pragma mark - Self Delegate methods
 #define DELAY_BETWEEN_REACHABILITY_RETRIES 0.5
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)delayedReshow
+{
+    [self performSelector:@selector(show) withObject:nil afterDelay:DELAY_BETWEEN_REACHABILITY_RETRIES];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if([self reachable])
     {
@@ -63,7 +93,7 @@
     }
     else
     {
-        [self performSelector:@selector(show) withObject:nil afterDelay:DELAY_BETWEEN_REACHABILITY_RETRIES];
+        [self delayedReshow];
     }
 }
 @end
