@@ -70,7 +70,8 @@
                 //If we only want to catch specific server errors, we'll have filled in the serverError property
                 if(_serverError) {
                     
-                    NSString* returnedServerError = [[error userInfo] objectForKey:@"error"];
+                    NSDictionary* responseData = [[error userInfo] objectForKey:@"response"];
+                    NSString* returnedServerError = [responseData objectForKey:@"error"];
                     match = ([returnedServerError isEqualToString:_serverError]);
                     
                 }

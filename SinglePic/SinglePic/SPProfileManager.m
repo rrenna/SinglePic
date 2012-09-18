@@ -802,12 +802,15 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[SPProfileManager sharedInstance] setMyGender:gender_ synchronize:NO];
         [[SPProfileManager sharedInstance] setMyPreference:preference_ synchronize:NO];
         [[SPProfileManager sharedInstance] setMyBucket:bucket_ synchronize:NO];
-
+        
         //NOTE : Should not cache the password
         self.userType = USER_TYPE_PROFILE;
         
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //Set Message Account
+        [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
         
         //Registers for Push notifications
         [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) 
@@ -850,10 +853,9 @@ static NSURL* _thumbnailUploadURLCache = nil;
     
     if(deviceToken)
     {        
-        NSString* escapedDeviceToken = [deviceToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString* registrationParameter = [NSString stringWithFormat:@"%@/pushToken/%@",USER_ID_ME,escapedDeviceToken];
+        NSString* registrationParameter = [NSString stringWithFormat:@"%@/pushToken",USER_ID_ME];
         
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:registrationParameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:registrationParameter andPayload:deviceToken requiringToken:YES withCompletionHandler:^(id responseObject)
          {
              #if defined (TESTING)
              [TestFlight passCheckpoint:@"Registered Device Push Token"];

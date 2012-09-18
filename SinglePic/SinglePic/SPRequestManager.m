@@ -185,25 +185,20 @@
         
         //We want to store the error in the dictionary, and add the HTTP type
         NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
-        id responseJSON = nil;
+        int errorCode = [error code];
+        int statusCode = [[operation response] statusCode];
+        
+        [userInfo setObject:[NSNumber numberWithInt:statusCode] forKey:@"statusCode"];
+        [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
         
         if(operation.responseData)
         {
             NSError* jsonParseError = nil;
-            responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
-        }
-        if([responseJSON isKindOfClass:[NSDictionary class]])
-        {
-            userInfo = [NSMutableDictionary dictionaryWithDictionary:responseJSON];
-        }
-        else
-        {
-            userInfo = [NSMutableDictionary dictionary];
+            id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
+            [userInfo setObject:responseJSON forKey:@"response"];
         }
         
-        [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
-        
-        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:[error code] userInfo:userInfo];
+        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:errorCode userInfo:userInfo];
         
         //Display an alert
         [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
