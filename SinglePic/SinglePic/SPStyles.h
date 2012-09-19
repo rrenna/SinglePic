@@ -42,14 +42,17 @@ typedef enum
 #define INSET_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.2 alpha:0.05]//View vs Control diff
 #define CONTROL_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithWhite:1 alpha:0.1]//View vs Control diff
 #define CONTROL_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.1 alpha:0.2]
+//Custom Gradients for Styles
+//-- Some styles have specific gradient colours assigned
+#define CONFIRM_BUTTON_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithRed:0.0 green:0.729 blue:0.866 alpha:1.0]
+#define CONFIRM_BUTTON_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithRed:0.0 green:0.4 blue:0.58 alpha:1.0]
 //Tints for Styles
 #define TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
 #define TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
 #define TINT_TAB [UIColor colorWithRed:0.98823 green:0.984313 blue:0.93725 alpha:0.95]
-
 #define TINT_BASE [UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0]
 #define TINT_PAGE [UIColor colorWithRed:0.97 green:0.95 blue:0.9 alpha:1.0]
-#define TINT_CONFIRM_BUTTON [UIColor colorWithRed:0.0 green:0.74 blue:0.86 alpha:1.0]
+#define TINT_CONFIRM_BUTTON [UIColor colorWithRed:0.0 green:0.513 blue:0.686 alpha:1.0]
 #define TINT_ALTERNATIVE_ACTION_1_BUTTON [UIColor colorWithRed:0.905 green:0.662 blue:0.0 alpha:1.0]
 #define TINT_ALTERNATIVE_ACTION_2_BUTTON [UIColor colorWithRed:0.47 green:0.85 blue:0.12 alpha:1.0]
 

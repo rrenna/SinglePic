@@ -52,9 +52,10 @@ CAGradientLayer* setupBevelLayerForView(UIView* view)
     bevelLayer.needsDisplayOnBoundsChange = YES;
     return bevelLayer;
 }
-CAGradientLayer* setupColorGradientLayerForControl(UIControl* control)
+CAGradientLayer* setupColorGradientLayerForControl(UIControl<SPStyle>* control)
 {
-    CAGradientLayer* colorGradientLayer = [[CAGradientLayer layer] retain];	
+    CAGradientLayer* colorGradientLayer = [[CAGradientLayer layer] retain];
+    
     colorGradientLayer.colors = [NSArray arrayWithObjects:(id)CONTROL_GRADIENT_BACKGROUND_START_COLOUR.CGColor, CONTROL_GRADIENT_BACKGROUND_END_COLOUR.CGColor , nil];		
     colorGradientLayer.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0], nil];		
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
