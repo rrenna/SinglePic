@@ -195,7 +195,10 @@
         {
             NSError* jsonParseError = nil;
             id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
-            [userInfo setObject:responseJSON forKey:@"response"];
+            if(responseJSON)
+            {
+                [userInfo setObject:responseJSON forKey:@"response"];
+            }
         }
         
         SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:errorCode userInfo:userInfo];
@@ -222,7 +225,7 @@
         [self.httpClient deletePath:path parameters:nil success:successBlock failure:failureBlock];
     }
 }
--(void)putToURL:(NSURL*)url withPayload:(id)payload withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(NSError* error))onError
+-(void)putToURL:(NSURL*)url withPayload:(id)payload withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)(NSError* error))onError
 {    
     NSData* postData = nil;
     //UIImage representation
@@ -250,25 +253,29 @@
     [request setValue:@"image/png" forHTTPHeaderField:@"contentType"];
     [request setHTTPBody:postData];
     
-    [httpClient enqueueHTTPRequestOperation:
-     [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) 
-      {
-          onCompletion(responseObject);
-      } 
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) 
-      {
-          NSLog(@"PUT Request to URL failed : %@", operation.request.URL);
-          
-          if(onError)
-          {
-              onError(error);
-          }
-      }]
-     ]; 
+    AFHTTPRequestOperation* operation = [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         onCompletion(responseObject);
+     }
+     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"PUT Request to URL failed : %@", operation.request.URL);
+         
+         if(onError)
+         {
+             onError(error);
+         }
+     }];
+    
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
+     {
+         onProgress(totalBytesWritten/totalBytesExpectedToWrite);
+     }];
+    
+    [httpClient enqueueHTTPRequestOperation:operation];
 }
 -(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(UIImage* responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {
-    
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url]; 
     
     AFImageRequestOperation* imageRequest = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *image)

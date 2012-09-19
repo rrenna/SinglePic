@@ -116,15 +116,19 @@
 -(void)setMyPicture:(UIImage*)image
 {
     //[SVProgressHUD showWithStatus:@"Uploading" maskType:SVProgressHUDMaskTypeGradient networkIndicator:YES];
-    [[SPProfileManager sharedInstance] saveMyPicture:image withCompletionHandler:^(id responseObject) 
+    [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject) 
      {
         #if defined (TESTING)
         [TestFlight passCheckpoint:@"Saved new Image"];
         #endif
          
         [self close];
-     } 
-     andErrorHandler:^
+     }
+    andProgressHandler:^(float progress)
+    {
+        NSLog(@"");
+    } 
+    andErrorHandler:^
      {
          cameraPreviewImageView.image = nil;
          //[SVProgressHUD dismissWithError:@"Woops! Couldn't upload. Try again."]; 

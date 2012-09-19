@@ -194,8 +194,7 @@
             //Find the User Thread if active
             SPMessageThread* thread = [self getMessageThreadByUserID:userID];
 
-            
-            [self saveMessage:message toThread:thread isIncoming:YES aTime:time];
+            [self saveMessage:message toThread:thread isIncoming:YES atTime:time];
             
             messagesRecieved = YES;
         }

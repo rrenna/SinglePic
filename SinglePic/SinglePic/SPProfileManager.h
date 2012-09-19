@@ -102,7 +102,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 
 //Save Methods - sets the value(s) locally and saves the result
 -(void)saveMyBucket:(SPBucket*)_bucket withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
--(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
+-(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError;
 -(void)saveMyIcebreaker:(NSString*)_icebreaker withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
 -(void)saveMyGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
 -(void)saveMyIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;

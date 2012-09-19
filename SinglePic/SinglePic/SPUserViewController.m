@@ -86,29 +86,6 @@
 #pragma mark - IBActions
 -(IBAction)retakePic:(id)sender
 {
-    /*
-     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-     {
-     if(!self.cameraController)
-     {
-     self.cameraController = [[SPCameraController new] autorelease];
-     
-     }
-     SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
-     [baseController pushModalController:self.cameraController isFullscreen:YES];
-     }
-     else
-     {
-     //This is an iPad 1, an iPod, or the iOS simulator
-     [[SPProfileManager sharedInstance] saveMyPicture:[UIImage imageNamed:DEFAULT_PORTRAIT_IMAGE] withCompletionHandler:^(id responseObject) 
-     {
-     
-     } 
-     andErrorHandler:^
-     {
-     }]; 
-     }
-    */
     if(!self.cameraController)
     {
         self.cameraController = [[SPCameraController new] autorelease];

@@ -404,7 +404,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     if(self.lastImage)
     {
-        [self saveMyPicture:self.lastImage withCompletionHandler:onCompletion andErrorHandler:onError];
+        [self saveMyPicture:self.lastImage withCompletionHandler:onCompletion andProgressHandler:nil andErrorHandler:onError];
         return YES;
     }
     else
@@ -436,7 +436,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 }
 static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
--(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+-(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
     void (^imageAndThumbnailUploaded)(id completedResponseObject) = ^(id completedResponseObject) 
     {
@@ -484,7 +484,14 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
              {
                  imageAndThumbnailUploaded(responseObject);
              }
-         } 
+         }
+         andProgressHandler:^(float progress)
+         {
+             if(onProgress)
+             {
+                 onProgress(progress);
+             }
+         }
          andErrorHandler:^(NSError* error)
          {
              if(onError)
@@ -503,7 +510,14 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
              {
                  imageAndThumbnailUploaded(responseObject);
              }
-         } 
+         }
+         andProgressHandler:^(float progress) {
+             
+             if(onProgress)
+             {
+                 onProgress(progress);
+             }
+         }
          andErrorHandler:^(NSError* error)
          {
              if(onError)
@@ -853,9 +867,9 @@ static NSURL* _thumbnailUploadURLCache = nil;
     
     if(deviceToken)
     {        
-        NSString* registrationParameter = [NSString stringWithFormat:@"%@/pushToken",USER_ID_ME];
-        
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:registrationParameter andPayload:deviceToken requiringToken:YES withCompletionHandler:^(id responseObject)
+        NSString* parameter = [NSString stringWithFormat:@"%@/pushToken",USER_ID_ME];
+
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"pushToken":deviceToken} requiringToken:YES withCompletionHandler:^(id responseObject)
          {
              #if defined (TESTING)
              [TestFlight passCheckpoint:@"Registered Device Push Token"];
