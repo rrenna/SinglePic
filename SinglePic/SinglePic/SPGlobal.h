@@ -24,6 +24,12 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define SECONDS_PER_HOUR (60 * 60)
 #define SECONDS_PER_MINUTE 60
 
+//Typography
+#define FONT_NAME_PRIMARY @"Avenir LT 65 Medium"
+#define FONT_SIZE_MEDIUM 14
+#define FONT_SIZE_SMALL 12
+#define FONT_SIZE_EXTRA_SMALL 11
+
 //Servers
 #define PRODUCTION_ADDRESS @"https://singlepicdating.herokuapp.com/"
 #define TESTING_ADDRESS @"https://singlepicdating-staging.herokuapp.com/"

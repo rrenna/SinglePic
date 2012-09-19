@@ -24,7 +24,7 @@
 - (UIFont *)font
 {
 	if (font == nil) {
-		self.font = [UIFont boldSystemFontOfSize:12.0f];
+		self.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:FONT_SIZE_MEDIUM];
 	}
 	return font;
 }

@@ -8,6 +8,7 @@
 
 #import "SPOrientationChooser.h"
 #import "SPCardView.h"
+#import "SPLabel.h"
 
 @interface SPOrientationChooser()
 -(UIButton*)buttonForGender:(GENDER)gender andPreference:(GENDER)preference;
@@ -115,7 +116,7 @@
     [iconView setImage:[UIImage imageNamed:iconSelectedFileName] forState:UIControlStateSelected];
     [buttonIcons addObject:iconView];
     //Label
-    UILabel* buttonLabel = [[[UILabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))] autorelease];
+    SPLabel* buttonLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))] autorelease];
     buttonLabel.backgroundColor = [UIColor clearColor];
     buttonLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:11];
     buttonLabel.textAlignment = UITextAlignmentCenter;
@@ -169,7 +170,7 @@
     for(int i = 0; i < [self.selectionIndicators count]; i++)
     {
         UIImageView* selectionIndicator = [self.selectionIndicators objectAtIndex:i];
-        UILabel* buttonLabel = [self.buttonTitles objectAtIndex:i];
+        SPLabel* buttonLabel = [self.buttonTitles objectAtIndex:i];
         UIButton* iconView = [self.buttonIcons objectAtIndex:i];
         
         if(i == index)

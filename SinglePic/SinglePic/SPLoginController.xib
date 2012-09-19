@@ -45,6 +45,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{5, 5}, {310, 46}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="173125152"/>
 						<string key="NSReuseIdentifierKey">_NS:196</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -61,6 +62,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{231, 12}, {76, 31}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="278110410"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -100,7 +102,8 @@
 						<int key="NSvFlags">288</int>
 						<string key="NSFrame">{{13, 12}, {76, 31}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
-						<reference key="NSNextKeyView" ref="567815949"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="966128305"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -126,6 +129,8 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{0, 178}, {305, 44}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -158,6 +163,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{-4, 59}, {328, 117}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="787148548"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -182,6 +188,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{89, 17}, {142, 22}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="567815949"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -217,6 +225,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="168326379"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -651,11 +660,11 @@
 					<object class="NSMutableString" key="NSString">
 						<characters key="NS.bytes">test</characters>
 					</object>
-					<dictionary key="NSAttributes" id="154259774">
+					<dictionary key="NSAttributes" id="741795444">
 						<object class="NSFont" key="NSFont">
 							<string key="NSName">LucidaGrande</string>
 							<double key="NSSize">11</double>
-							<int key="NSfFlags">2329</int>
+							<int key="NSfFlags">3100</int>
 						</object>
 						<object class="NSMutableParagraphStyle" key="NSParagraphStyle">
 							<int key="NSAlignment">4</int>
@@ -674,10 +683,11 @@
 					<object class="NSMutableString" key="NSString">
 						<characters key="NS.bytes">test</characters>
 					</object>
-					<reference key="NSAttributes" ref="154259774"/>
+					<reference key="NSAttributes" ref="741795444"/>
 				</object>
 				<string key="6.object.labelIdentifier">IBBuiltInLabel-Yellow</string>
 				<boolean value="YES" key="6.showNotes"/>
+				<string key="64.CustomClassName">SPLabel</string>
 				<string key="64.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -686,7 +696,98 @@
 			<nil key="sourceID"/>
 			<int key="maxID">64</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">SPLabel</string>
+					<string key="superclassName">UILabel</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPLabel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SPLoginController</string>
+					<string key="superclassName">SPTabContentViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="back:">id</string>
+						<string key="login:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="back:">
+							<string key="name">back:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="login:">
+							<string key="name">login:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="emailTableViewCell">UITableViewCell</string>
+						<string key="emailTextField">UITextField</string>
+						<string key="headerStyledView">SPStyledView</string>
+						<string key="loginButton">SPStyledButton</string>
+						<string key="passwordTableViewCell">UITableViewCell</string>
+						<string key="passwordTextField">UITextField</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="emailTableViewCell">
+							<string key="name">emailTableViewCell</string>
+							<string key="candidateClassName">UITableViewCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="emailTextField">
+							<string key="name">emailTextField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="headerStyledView">
+							<string key="name">headerStyledView</string>
+							<string key="candidateClassName">SPStyledView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="loginButton">
+							<string key="name">loginButton</string>
+							<string key="candidateClassName">SPStyledButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="passwordTableViewCell">
+							<string key="name">passwordTableViewCell</string>
+							<string key="candidateClassName">UITableViewCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="passwordTextField">
+							<string key="name">passwordTextField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPLoginController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SPStyledButton</string>
+					<string key="superclassName">UIButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPStyledButton.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SPStyledView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPStyledView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SPTabContentViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SPTabContentViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

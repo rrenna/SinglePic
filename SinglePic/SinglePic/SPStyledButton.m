@@ -11,7 +11,6 @@
 
 #define kHeight 26.0
 #define kPadding 20.0
-#define kFontSize 13.0
 
 @interface SPStyledButton()
 - (void)setupLayers;
@@ -145,7 +144,7 @@
     self.titleLabel.textAlignment = UITextAlignmentCenter;
     self.titleLabel.shadowOffset = CGSizeMake(0, 1);
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:kFontSize];
+    self.titleLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:FONT_SIZE_MEDIUM];
     
     colorLayer.backgroundColor = tint.CGColor;
     

@@ -8,6 +8,7 @@
 
 #import "SPConnectionsViewController.h"
 #import "SPCardView.h"
+#import "SPLabel.h"
 
 @interface SPConnectionsViewController()
 -(void)addedProfileWithNotification:(NSNotification*)notification;
@@ -176,10 +177,10 @@
     
     //Username label
     CGRect userNameLabelFrame = CGRectMake([cell width] * 0.37, [cell height] * 0.1, [cell width] * 0.63, [cell height] * 0.8);
-    UILabel* usernameLabel = [[[UILabel alloc] initWithFrame:userNameLabelFrame] autorelease];
+    SPLabel* usernameLabel = [[[SPLabel alloc] initWithFrame:userNameLabelFrame] autorelease];
+    usernameLabel.style = LABEL_STYLE_SMALL;
     usernameLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     usernameLabel.backgroundColor = [UIColor clearColor];
-    usernameLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:12];
     usernameLabel.text = [profile username];
     
     [cell.contentView addSubview:usernameLabel];

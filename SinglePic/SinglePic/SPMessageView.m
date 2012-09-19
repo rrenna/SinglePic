@@ -7,6 +7,7 @@
 //
 
 #import "SPMessageView.h"
+#import "SPLabel.h"
 
 @implementation SPMessageView
 
@@ -27,12 +28,12 @@
 }
 -(void)setContent:(NSString*)content
 {
-    UILabel* messageContentLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 20, self.frame.size.width - 20, self.frame.size.height - 35)] autorelease];
+    SPLabel* messageContentLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(10, 20, self.frame.size.width - 20, self.frame.size.height - 35)] autorelease];
+    messageContentLabel.style = LABEL_STYLE_SMALL;
     messageContentLabel.backgroundColor = [UIColor clearColor];
     messageContentLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     messageContentLabel.numberOfLines = 0;
     messageContentLabel.lineBreakMode = UILineBreakModeWordWrap;
-    messageContentLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:12];
     messageContentLabel.text = content;
     [self addSubview:messageContentLabel];
 }

@@ -8,6 +8,7 @@
 
 #import "SPStyles.h"
 #import "SPStyledView.h"
+#import "SPLabel.h"
 
 @interface SPStyledProgressView : SPStyledView <SPStyle>
 {
@@ -16,7 +17,7 @@
     UIColor* progressColour;
     UIColor* lowProgressColour;
     CALayer* progressLayer;
-    UILabel* progressLabel;
+    SPLabel* progressLabel;
 }
 
 @property (assign) float progress;

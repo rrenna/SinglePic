@@ -9,7 +9,6 @@
 #import "SPStyledProgressView.h"
 #import <QuartzCore/QuartzCore.h>
 
-
 #define LOW_PROGRESS_VALUE 0.10
 @interface SPStyledProgressView()
 -(void)setLayers;
@@ -151,9 +150,9 @@
 -(void)setLabel
 {
     CGRect progressStatusRect = CGRectMake(0, 1, CGRectGetWidth(self.frame) - 35, CGRectGetHeight(self.frame));
-    progressLabel = [[UILabel alloc] initWithFrame:progressStatusRect];
+    progressLabel = [[SPLabel alloc] initWithFrame:progressStatusRect];
+    progressLabel.style = LABEL_STYLE_EXTRA_SMALL;
     progressLabel.backgroundColor = [UIColor clearColor];
-    progressLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:11];
     progressLabel.textAlignment = UITextAlignmentRight;
     progressLabel.textColor = [UIColor whiteColor];
     progressLabel.shadowColor = [UIColor blackColor];
