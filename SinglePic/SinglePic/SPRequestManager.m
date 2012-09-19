@@ -229,7 +229,7 @@
 {    
     NSData* postData = nil;
     //UIImage representation
-    #define COMPRESSION_QUALITY 0.75
+    #define COMPRESSION_QUALITY 0.33
     if([payload isKindOfClass:[UIImage class]])
     {
         UIImage* image = (UIImage*)payload;

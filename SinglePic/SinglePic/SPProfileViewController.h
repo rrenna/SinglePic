@@ -17,9 +17,7 @@
 @interface SPProfileViewController : SPPageContentViewController <UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UILabel* ageLabel;
-    IBOutlet UIView* imageBackgroundStyledView;
-    IBOutlet UIImageView* imageView; 
-    IBOutlet UIImageView* bubbleImage;
+    IBOutlet UIImageView* imageView;
     IBOutlet UILabel *usernameLabel;
     IBOutlet UILabel* icebreakerLabel;
     IBOutlet SPStyledView* bottomBarView;

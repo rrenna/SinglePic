@@ -72,8 +72,6 @@
     [likeButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
     [bottomBarView setStyle:STYLE_PAGE];
     [bottomBarView setDepth:DEPTH_OUTSET];
-        
-    [imageBackgroundStyledView setBorderWidth:5.0 shadowDepth:5.0 controlPointXOffset:0.0 controlPointYOffset:0.0];
 
     if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
     {

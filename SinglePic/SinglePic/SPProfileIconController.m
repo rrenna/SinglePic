@@ -9,17 +9,24 @@
 #import "SPProfileIconController.h"
 #import "SPProfile.h"
 
+@interface SPProfileIconController()
+{
+    IBOutlet UIImageView* iconView;
+    IBOutlet UIView* pictureStyledView;
+    SPProfile* profile;
+}
+@end
+
 @implementation SPProfileIconController
 
 #pragma mark - View lifecycle
 
 -(id)initWithProfile:(SPProfile*)profile_
 {
-    profile = [profile_ retain];
-    
     self = [self initWithNibName:@"SPProfileIconController" bundle:nil];
     if(self)
     {
+        profile = [profile_ retain];
     }
     return self;
 }

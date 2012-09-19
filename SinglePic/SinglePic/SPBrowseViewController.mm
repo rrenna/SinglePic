@@ -122,7 +122,7 @@ static int profileIndex = 0;
     
     if(![dropTimer isValid])
     {
-        const float delay = 0.75;
+        const float delay = 2.0;//0.75;
         //Start the browsing experience
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
@@ -564,7 +564,7 @@ int currentTick = 0;
 	//You need to make an informed choice, the following URL is useful
 	//http://gafferongames.com/game-physics/fix-your-timestep/
     
-	int32 velocityIterations = 6;
+    int32 velocityIterations = 4;
 	int32 positionIterations = 1;
     
 	// Instruct the world to perform a single step of simulation. It is
