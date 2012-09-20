@@ -41,14 +41,15 @@
 #pragma mark - IBActions
 -(IBAction)spawnRegistrationScreen:(id)sender
 {
-    SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
+    SPBaseController* baseController = [SPAppDelegate baseController];
     
     SPSignUpController* signupController = [[SPSignUpController new] autorelease];
+    
     [baseController pushModalController:signupController isFullscreen:YES];
 }
 -(IBAction)spawnLoginScreen:(id)sender
 {
-    SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
+    SPBaseController* baseController = [SPAppDelegate baseController];
     
     SPLoginController* loginController = [[SPLoginController new] autorelease];
     [baseController pushModalController:loginController isFullscreen:YES];

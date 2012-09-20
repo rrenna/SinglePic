@@ -58,8 +58,8 @@
 - (void) setHandleImage
 {
     //Add right-side parchment 9-slice
-    UIImage* rightImage9Slice = [[UIImage imageNamed:@"Parchment-Right-9Slice.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:100];
-    handleImageView = [[UIImageView alloc] initWithImage:rightImage9Slice];
+    UIImage* rightImage9Slice = [[UIImage imageNamed:@"Parchment-Right-9Slice.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:100];           
+    handleImageView.image = rightImage9Slice;
     handleImageView.frame = CGRectMake(325, 0, 54, self.view.height);
     handleImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view insertSubview:handleImageView aboveSubview:transparentInsetView];
@@ -73,7 +73,6 @@
 -(void)dealloc
 {
     [pages release];
-    [handleImageView release];
     [super dealloc];
 }
 -(void)maximize

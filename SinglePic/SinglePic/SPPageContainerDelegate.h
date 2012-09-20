@@ -16,5 +16,6 @@
 -(void)pushModalContent:(UIView*)view;
 -(void)setFullscreen:(BOOL)fullscreen;
 -(void)closeAllPages;
+-(BOOL)fullscreen;
 -(void)minimize;
 @end

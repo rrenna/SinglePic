@@ -2913,7 +2913,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libraries/Aviary\"",
@@ -2945,7 +2945,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libraries/Aviary\"",
@@ -3005,7 +3005,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libraries/Aviary\"",

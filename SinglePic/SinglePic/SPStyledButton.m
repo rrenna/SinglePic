@@ -13,16 +13,15 @@
 #define kPadding 20.0
 
 @interface SPStyledButton()
-{
-    CALayer *colorLayer;
-    CALayer *darkenLayer;
-    CAGradientLayer *bevelLayer;
-    CAGradientLayer *colorGradientLayer;
-}
+
+@property (retain) CALayer *bevelLayer;
+@property (retain) CAGradientLayer* colorGradientLayer;
 - (void)setupLayers;
 @end
 
 @implementation SPStyledButton
+@synthesize bevelLayer = _bevelLayer, colorGradientLayer = _colorGradientLayer;
+
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -50,10 +49,8 @@
 }
 -(void)dealloc
 {
-    [bevelLayer release];
-    [colorLayer release];
-    [darkenLayer release];
-    [colorGradientLayer release];
+    [self.bevelLayer release];
+    [self.colorGradientLayer release];
     [super dealloc];
 }
 -(void)setStyle:(STYLE)style
@@ -149,26 +146,23 @@
     self.titleLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:FONT_SIZE_MEDIUM];
     
     
-    updateColorGradientLayerForControlWithStyle(colorGradientLayer,style);
+    updateColorGradientLayerForControlWithStyle(self.colorGradientLayer,style);
     
     [self setNeedsDisplay];
     [self setNeedsLayout];
 }
 -(void)setDepth:(DEPTH)depth
 {
-    setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(depth,self,bevelLayer,colorLayer,colorGradientLayer);    
+    setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(depth,self,self.bevelLayer,nil,self.colorGradientLayer);
 }
 #pragma mark - Private methods
 - (void)setupLayers:(STYLE)style
 {
-    bevelLayer = setupBevelLayerForView(self);
-    colorGradientLayer = setupColorGradientLayerForControlWithStyle(self,style);
-	
-    [bevelLayer retain];
-    [colorGradientLayer retain];	
-    
-    [self.layer addSublayer:bevelLayer];
-    [self.layer addSublayer:colorGradientLayer];
+    self.bevelLayer = setupBevelLayerForView(self);
+    self.colorGradientLayer = setupColorGradientLayerForControlWithStyle(self,style);
+
+    [self.layer addSublayer:self.bevelLayer];
+    [self.layer addSublayer:self.colorGradientLayer];
     [self bringSubviewToFront:self.titleLabel];
     [self bringSubviewToFront:self.imageView];
 }

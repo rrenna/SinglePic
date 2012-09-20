@@ -14,6 +14,7 @@
 @end
 
 @implementation SPLoginController
+@synthesize headerStyledView;
 @synthesize loginButton;
 @synthesize emailTextField;
 @synthesize passwordTextField;
@@ -37,20 +38,13 @@
     [emailTextField becomeFirstResponder]; //Launch keyboard, edit user name field
 }
 - (void)dealloc {
+    [headerStyledView release];
     [passwordTextField release];
     [emailTextField release];
     [passwordTableViewCell release];
     [emailTableViewCell release];
     [loginButton release];
     [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setPasswordTextField:nil];
-    [self setEmailTextField:nil];
-    [self setPasswordTableViewCell:nil];
-    [self setEmailTableViewCell:nil];
-    [self setLoginButton:nil];
-    [super viewDidUnload];
 }
 - (IBAction)back:(id)sender
 {

@@ -154,15 +154,23 @@ void setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH d
         bevelLayer.hidden = NO;
         bevelLayer.colors = [NSArray arrayWithObjects:(id)INSET_BEVEL_DARK_COLOUR.CGColor, INSET_BEVEL_LIGHT_COLOUR.CGColor, nil];
         
-        colorLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
-        colorLayer.frame = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);	
-        colorGradientLayer.frame = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);	
+        if(colorLayer)
+        {
+            colorLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
+            colorLayer.frame = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);
+        }
+        
+        colorGradientLayer.frame = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);
     }
     else if(depth == DEPTH_OUTSET)
     {
         bevelLayer.hidden = YES;
-        colorLayer.borderColor = OUTSET_EDGE_DARK_COLOUR.CGColor;
-        colorLayer.frame = CGRectMake(1, 1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
+        if(colorLayer)
+        {
+            colorLayer.borderColor = OUTSET_EDGE_DARK_COLOUR.CGColor;
+            colorLayer.frame = CGRectMake(1, 1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
+        }
+        
         colorGradientLayer.frame = CGRectMake(1,1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
     }
 }

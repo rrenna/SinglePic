@@ -50,7 +50,6 @@
 -(void)dealloc
 {
     [self removeObservationFromContentController]; 
-    [self setContent:nil];
     
     [panRecognizer_ release];
     [controller_ release];
