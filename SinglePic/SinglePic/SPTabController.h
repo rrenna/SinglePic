@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "SPSheetController.h"
 #import "SPPageController.h"
 #import "UIView+SizesAndEdges.h"
 #import "SPTabContentDelegate.h"
@@ -23,7 +24,7 @@
 #define TAB_CONTENT_WIDTH 305
 #define TAB_CONTENT_WIDTH_FULLSCREEN 320
 
-@interface SPTabController : SPPageController <SPPageContainerDelegate>
+@interface SPTabController : SPSheetController <SPPageContainerDelegate>
 {
     IBOutlet UIView* handleView;
     IBOutlet UIView* secretEdgeView;
@@ -37,7 +38,6 @@
 -(id)initIsFullscreen:(BOOL)fullscreen;
 -(void)maximize;
 -(void)maximizeIsFullscreen:(BOOL)fullscreen;
--(void)minimize;
 //Push Sub-Content
 -(void)pushModalController:(UIViewController*)viewController;
 -(void)pushModalContent:(UIView*)view;

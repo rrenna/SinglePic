@@ -122,8 +122,7 @@ static int profileIndex = 0;
     
     if(![dropTimer isValid])
     {
-        const float delay = 2.0;//0.75;
-        //Start the browsing experience
+        const float delay = 0.8;        //Start the browsing experience
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
              dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
