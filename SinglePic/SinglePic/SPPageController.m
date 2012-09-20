@@ -49,8 +49,9 @@
 }
 -(void)dealloc
 {
-    [self removeObservationFromContentController]; 
+    [self removeObservationFromContentController];
     
+    [contentView release];
     [panRecognizer_ release];
     [controller_ release];
     [super dealloc];
@@ -85,6 +86,7 @@
             controller_ = [controller retain];
             //Listen for specific notifications from the designated content controller
             [self addObservationForContentController];
+            
             [self setContent:controller_.view];
         }
     }
