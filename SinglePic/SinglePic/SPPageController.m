@@ -49,6 +49,9 @@
 }
 -(void)dealloc
 {
+    [self removeObservationFromContentController]; 
+    [self setContent:nil];
+    
     [panRecognizer_ release];
     [controller_ release];
     [super dealloc];
@@ -71,25 +74,31 @@
 {
     if(controller != controller_)
     {
+        //Remove old controller
         if(controller_)
         {
-            [self removeObservationFromContentController]; 
+            [self removeObservationFromContentController];
+            [controller_ release];
         }
-        
-        [controller_ release];
-        controller_ = [controller retain];
-        
-        //Listen for specific notifications from the designated content controller
-        [self addObservationForContentController];
-        
-        [self setContent:controller_.view];
+        //Update with new controller
+        if(controller)
+        {
+            controller_ = [controller retain];
+            //Listen for specific notifications from the designated content controller
+            [self addObservationForContentController];
+            [self setContent:controller_.view];
+        }
     }
 }
 -(void)setContent:(UIView *)view
 {
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    view.frame = contentView.bounds;
-    [contentView addSubview:view];
+    
+    if(view)
+    {
+        view.frame = contentView.bounds;
+        [contentView addSubview:view];
+    }
 }
 - (void) removeObservationFromContentController
 {

@@ -15,7 +15,7 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {        
-        [self setupLayers];
+        [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         [self setDepth:DEPTH_DEFAULT];
     }
@@ -29,7 +29,7 @@
     {
         self.frame = frame;
         
-        [self setupLayers];
+        [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         [self setDepth:DEPTH_DEFAULT];
     }
@@ -112,11 +112,11 @@
     setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(depth,self,bevelLayer,colorLayer,colorGradientLayer);    
 }
 #pragma mark - Private methods
-- (void)setupLayers
+- (void)setupLayers:(STYLE)style
 {    
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
-    colorGradientLayer = setupColorGradientLayerForView(self);	
+    colorGradientLayer = setupColorGradientLayerForViewWithStyle(self,style);
 	
     [bevelLayer retain];
     [colorLayer retain];

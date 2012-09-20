@@ -51,7 +51,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Avenir Medium.ttf</string>
+		<string>Avenir LT 65 Medium.ttf</string>
 	</array>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>

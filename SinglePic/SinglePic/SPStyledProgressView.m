@@ -87,7 +87,7 @@
         self.progressColour = [UIColor colorWithRed:0.13 green:0.6 blue:0.23 alpha:1.0];
         self.lowProgressColour = [UIColor colorWithRed:1.0 green:0.0 blue:0.1 alpha:1.0];
         
-        [self setLayers];
+        [self setLayers:STYLE_DEFAULT];
     }
     return self;
 }
@@ -159,7 +159,7 @@
     progressLabel.shadowOffset = CGSizeMake(1,1);
     [self addSubview:progressLabel];
 }
--(void)setLayers
+-(void)setLayers:(STYLE)style
 {
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
@@ -171,7 +171,7 @@
     progressLayer.cornerRadius = INSET_CORNER_RADIUS;
     progressLayer.needsDisplayOnBoundsChange = YES;
     
-    colorGradientLayer = setupColorGradientLayerForView(self);	
+    colorGradientLayer = setupColorGradientLayerForViewWithStyle(self,style);
 	
     [bevelLayer retain];
     [colorLayer retain];

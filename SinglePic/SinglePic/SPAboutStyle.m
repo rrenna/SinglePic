@@ -17,4 +17,17 @@
 {
     return [[UIImage imageNamed:@"MDACCellBackgroundSingle.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:10];
 }
+- (UIFont *)listCellFont
+{
+    return [UIFont fontWithName:FONT_NAME_PRIMARY size:17];
+}
+- (UIFont *)iconCellDetailFont
+{
+    return [UIFont fontWithName:FONT_NAME_PRIMARY size:14];
+}
+- (UIFont *)listCellDetailFont
+{
+    return [UIFont fontWithName:FONT_NAME_PRIMARY size:15];
+
+}
 @end

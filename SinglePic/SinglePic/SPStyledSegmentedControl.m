@@ -43,7 +43,7 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {        
-        [self setupLayers];
+        [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         //self.height = 35;
     }
@@ -57,7 +57,7 @@
         self.layer.needsDisplayOnBoundsChange = YES;
         self.frame = frame;
         
-        [self setupLayers];
+        [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         [self setDepth:DEPTH_OUTSET];
     }
@@ -658,11 +658,11 @@
 	return self.segmentedControlStyle == UISegmentedControlStyleBordered
     || self.segmentedControlStyle == UISegmentedControlStylePlain;
 }
-- (void)setupLayers
+- (void)setupLayers:(STYLE)style
 {   
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
-    colorGradientLayer = setupColorGradientLayerForControl(self);	
+    colorGradientLayer = setupColorGradientLayerForControlWithStyle(self,style);
 	
     [bevelLayer retain];
     [colorLayer retain];

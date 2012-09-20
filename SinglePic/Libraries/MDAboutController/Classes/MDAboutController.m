@@ -48,6 +48,8 @@
 #import "MDACIconCredit.h"
 #import "MDACWebViewController.h"
 #import "MDACStyle.h"
+//
+#import "SPLabel.h"
 
 #pragma mark Constants
 
@@ -374,7 +376,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    UILabel *textLabel = nil, *detailTextLabel = nil;
+    SPLabel *textLabel = nil, *detailTextLabel = nil;
     UIImageView *linkAvailableImageView = nil;
     
     UIImageView *iconView = nil;
@@ -426,7 +428,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             cell.selectedBackgroundView = selectedBackgroundView;
             [selectedBackgroundView release];
             
-            textLabel = [[UILabel alloc] init];
+            textLabel = [[SPLabel alloc] init];
             textLabel.font = [self.style listCellFont];
             
             
@@ -450,7 +452,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             [cell.contentView addSubview:textLabel];
             [textLabel release];
             
-            detailTextLabel = [[UILabel alloc] init];
+            detailTextLabel = [[SPLabel alloc] init];
             detailTextLabel.font = [self.style listCellDetailFont];
             
             if(cellID == MDACSingleListCellID)
@@ -506,7 +508,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             [iconBackground release];
             [iconView release];
             
-            textLabel = [[UILabel alloc] initWithFrame:CGRectMake(iconView.bounds.size.width+25, floorf(10+iconView.bounds.size.height/2.-17), 170, 22)];
+            textLabel = [[SPLabel alloc] initWithFrame:CGRectMake(iconView.bounds.size.width+25, floorf(10+iconView.bounds.size.height/2.-17), 170, 22)];
             textLabel.font = [self.style iconCellFont];
             textLabel.backgroundColor = [UIColor clearColor];
             textLabel.opaque = NO;
@@ -517,7 +519,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             [containerView addSubview:textLabel];
             [textLabel release];
             
-            detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(iconView.bounds.size.width+25, floorf(10+iconView.bounds.size.height/2.+3), 170, 20)];
+            detailTextLabel = [[SPLabel alloc] initWithFrame:CGRectMake(iconView.bounds.size.width+25, floorf(10+iconView.bounds.size.height/2.+3), 170, 20)];
             detailTextLabel.font = [self.style iconCellDetailFont];
             detailTextLabel.backgroundColor = [UIColor clearColor];
             detailTextLabel.opaque = NO;
@@ -533,7 +535,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         } else if (cellID == MDACListTitleCellID) {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, -10, cell.contentView.bounds.size.width-40, cell.contentView.bounds.size.height)];
+            textLabel = [[SPLabel alloc] initWithFrame:CGRectMake(20, -10, cell.contentView.bounds.size.width-40, cell.contentView.bounds.size.height)];
             textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             textLabel.lineBreakMode = UILineBreakModeTailTruncation;
             textLabel.numberOfLines = 0;
@@ -549,7 +551,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         } else if (cellID == MDACTextCellID) {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, cell.contentView.bounds.size.width-20, cell.contentView.bounds.size.height)];
+            textLabel = [[SPLabel alloc] initWithFrame:CGRectMake(10, 0, cell.contentView.bounds.size.width-20, cell.contentView.bounds.size.height)];
             textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             textLabel.lineBreakMode = UILineBreakModeWordWrap;
             textLabel.numberOfLines = 0;
@@ -578,19 +580,19 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         }
     } else {
         if (cellID == MDACTopListCellID || cellID == MDACMiddleListCellID || cellID == MDACBottomListCellID || cellID == MDACSingleListCellID) {
-            textLabel = (UILabel *)[cell.contentView viewWithTag:1];
-            detailTextLabel = (UILabel *)[cell.contentView viewWithTag:2];
+            textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
+            detailTextLabel = (SPLabel *)[cell.contentView viewWithTag:2];
             linkAvailableImageView = (UIImageView *)[cell.contentView viewWithTag:3];
             
         } else if (cellID == MDACIconCellID) {
-            textLabel = (UILabel *)[cell.contentView viewWithTag:1];
-            detailTextLabel = (UILabel *)[cell.contentView viewWithTag:2];
+            textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
+            detailTextLabel = (SPLabel *)[cell.contentView viewWithTag:2];
             iconView = (UIImageView *)[cell.contentView viewWithTag:4];
             containerView = (UIImageView *)[cell.contentView viewWithTag:5];
         } else if (cellID == MDACTextCellID) {
-            textLabel = (UILabel *)[cell.contentView viewWithTag:1];
+            textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
         } else if (cellID == MDACListTitleCellID) {
-            textLabel = (UILabel *)[cell.contentView viewWithTag:1];
+            textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
         } else if (cellID == MDACImageCellID) {
             imageView = (UIImageView *)[cell.contentView viewWithTag:6];
         }

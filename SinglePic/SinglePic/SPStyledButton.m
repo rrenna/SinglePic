@@ -13,6 +13,12 @@
 #define kPadding 20.0
 
 @interface SPStyledButton()
+{
+    CALayer *colorLayer;
+    CALayer *darkenLayer;
+    CAGradientLayer *bevelLayer;
+    CAGradientLayer *colorGradientLayer;
+}
 - (void)setupLayers;
 @end
 
@@ -22,7 +28,7 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {        
-        [self setupLayers];
+        [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         [self setDepth:DEPTH_OUTSET];
     }
@@ -36,7 +42,7 @@
         self.layer.needsDisplayOnBoundsChange = YES;
         self.frame = frame;
         
-        [self setupLayers];
+        [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         [self setDepth:DEPTH_OUTSET];
     }
@@ -48,23 +54,19 @@
     [colorLayer release];
     [darkenLayer release];
     [colorGradientLayer release];
-    [tint release];
     [super dealloc];
 }
 -(void)setStyle:(STYLE)style
 {
     [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     
-    [tint release];
-    tint = [primaryColorForStyle(style) retain];
-    
     if(style == STYLE_DEFAULT)
     {
-        [self setTitleColor:[UIColor colorWithWhite:0.95 alpha:1] forState:UIControlStateNormal];
-        [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.5] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor colorWithWhite:0.396 alpha:1] forState:UIControlStateNormal];
+        [self setTitleShadowColor:[UIColor colorWithWhite:0.917 alpha:0.5] forState:UIControlStateNormal];
         
-        [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateHighlighted];
-        [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.9] forState:UIControlStateHighlighted];
+        [self setTitleColor:[UIColor colorWithWhite:0.1 alpha:1] forState:UIControlStateHighlighted];
+        [self setTitleShadowColor:[UIColor colorWithWhite:1.0 alpha:0.9] forState:UIControlStateHighlighted];
         
         [self setTitleColor:[UIColor colorWithWhite:0.6 alpha:1] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:1 alpha:1] forState:UIControlStateDisabled];
@@ -127,7 +129,7 @@
         [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.5] forState:UIControlStateNormal];	
         
         [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateHighlighted];
-        [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.9] forState:UIControlStateHighlighted];
+        [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.6] forState:UIControlStateHighlighted];
         
         [self setTitleColor:[UIColor colorWithRed:0.8 green:0.55 blue:0.0 alpha:1.0] forState:UIControlStateDisabled];
         [self setTitleShadowColor:[UIColor colorWithWhite:0.8 alpha:1] forState:UIControlStateDisabled];
@@ -146,7 +148,8 @@
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:FONT_SIZE_MEDIUM];
     
-    colorLayer.backgroundColor = tint.CGColor;
+    
+    updateColorGradientLayerForControlWithStyle(colorGradientLayer,style);
     
     [self setNeedsDisplay];
     [self setNeedsLayout];
@@ -156,18 +159,15 @@
     setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(depth,self,bevelLayer,colorLayer,colorGradientLayer);    
 }
 #pragma mark - Private methods
-- (void)setupLayers
-{    
+- (void)setupLayers:(STYLE)style
+{
     bevelLayer = setupBevelLayerForView(self);
-    colorLayer = setupColorLayerForView(self);
-    colorGradientLayer = setupColorGradientLayerForControl(self);	
+    colorGradientLayer = setupColorGradientLayerForControlWithStyle(self,style);
 	
     [bevelLayer retain];
-    [colorLayer retain];
     [colorGradientLayer retain];	
     
     [self.layer addSublayer:bevelLayer];
-    [self.layer addSublayer:colorLayer];
     [self.layer addSublayer:colorGradientLayer];
     [self bringSubviewToFront:self.titleLabel];
     [self bringSubviewToFront:self.imageView];

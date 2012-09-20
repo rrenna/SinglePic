@@ -118,7 +118,7 @@
     //Label
     SPLabel* buttonLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))] autorelease];
     buttonLabel.backgroundColor = [UIColor clearColor];
-    buttonLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:11];
+    buttonLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:11];
     buttonLabel.textAlignment = UITextAlignmentCenter;
     buttonLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@", GENDER_NAMES[gender], GENDER_NAMES[preference] ];
     [self.buttonTitles addObject:buttonLabel];

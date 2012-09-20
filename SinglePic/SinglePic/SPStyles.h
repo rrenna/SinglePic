@@ -22,7 +22,6 @@ typedef enum
 //The default Style is a light gray neutral colour
 #define STYLE_DEFAULT STYLE_NEUTRAL
 
-
 typedef enum
 {
     DEPTH_INSET,
@@ -31,21 +30,23 @@ typedef enum
 //The default Depth is an 3d inset look
 #define DEPTH_DEFAULT DEPTH_INSET
 
-
 //Inset Colours
 #define INSET_CORNER_RADIUS 6.0
 #define INSET_BEVEL_LIGHT_COLOUR [UIColor colorWithWhite:1.0 alpha:0.5]
 #define INSET_BEVEL_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.5]
-#define INSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.15]//Inset vs Outset diff
+#define INSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.25]//Inset vs Outset diff
 #define OUTSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.25]//Inset vs Outset diff
 #define INSET_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithWhite:1 alpha:0.05]
 #define INSET_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.2 alpha:0.05]//View vs Control diff
-#define CONTROL_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithWhite:1 alpha:0.1]//View vs Control diff
-#define CONTROL_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.1 alpha:0.2]
 //Custom Gradients for Styles
 //-- Some styles have specific gradient colours assigned
-#define CONFIRM_BUTTON_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithRed:0.0 green:0.729 blue:0.866 alpha:1.0]
-#define CONFIRM_BUTTON_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithRed:0.0 green:0.4 blue:0.58 alpha:1.0]
+//-- By default they will use their tint colour
+#define BACKGROUND_GRADIENT_CONFIRM_BUTTON_START_COLOUR [UIColor colorWithRed:0.0 green:0.70 blue:0.84 alpha:1.0]
+#define BACKGROUND_GRADIENT_CONFIRM_BUTTON_END_COLOUR [UIColor colorWithRed:0.0 green:0.42 blue:0.6 alpha:1.0]
+#define BACKGROUND_GRADIENT_NEUTRAL_START_COLOUR [UIColor colorWithRed:0.85 green:0.847 blue:0.847 alpha:1.0]
+#define BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR [UIColor colorWithRed:0.733 green:0.733 blue:0.733 alpha:1.0]
+#define BACKGROUND_GRADIENT_BASE_START_COLOUR [UIColor colorWithWhite:1 alpha:0.1]
+#define BACKGROUND_GRADIENT_BASE_END_COLOUR [UIColor colorWithWhite:0.1 alpha:0.2]
 //Tints for Styles
 #define TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
 #define TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
@@ -63,10 +64,17 @@ typedef enum
 
 //Helper function to retrieve the primary colors from a specific style
 UIColor* primaryColorForStyle(STYLE style);
+
 //Helper functions used to construct CALayers for SPStyledView & SPStyledButton subclasses
+//--Bevel Layer
 CAGradientLayer* setupBevelLayerForView(UIView* view);
-CAGradientLayer* setupColorGradientLayerForControl(UIControl* control);
-CAGradientLayer* setupColorGradientLayerForView(UIView* view);
+//--Gradient Layer
+void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE style);
+CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,STYLE style);
+CAGradientLayer* setupColorGradientLayerForViewWithStyle(UIView* view,STYLE style);
+//--Color Layer
+void updateColorLayerForViewWithStyle(CALayer* layer,STYLE style);
+CALayer* setupColorLayerForControl(UIView* view);
 CALayer* setupColorLayerForView(UIView* view);
 //Helper functions used to place and resize CALayers for SPStyledView & SPStyledButton subclasses
 CGRect placeBevelLayerForViewWithDepth(UIView* view,DEPTH depth);

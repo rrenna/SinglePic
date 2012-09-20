@@ -7,6 +7,7 @@
 //
 
 #import "SPStyles.h"
+#import "UIColor+Expanded.h"
 
 UIColor* primaryColorForStyle(STYLE style)
 {
@@ -47,22 +48,73 @@ CAGradientLayer* setupBevelLayerForView(UIView* view)
 {
     CAGradientLayer* bevelLayer = [CAGradientLayer layer];
     bevelLayer.frame = 	placeBevelLayerForViewWithDepth(view,DEPTH_DEFAULT);	
-    bevelLayer.colors = [NSArray arrayWithObjects:(id)INSET_BEVEL_DARK_COLOUR.CGColor, INSET_BEVEL_LIGHT_COLOUR.CGColor, nil];
+    bevelLayer.colors = @[(id)INSET_BEVEL_DARK_COLOUR.CGColor,
+                          (id)INSET_BEVEL_LIGHT_COLOUR.CGColor];
     bevelLayer.cornerRadius = INSET_CORNER_RADIUS;
     bevelLayer.needsDisplayOnBoundsChange = YES;
     return bevelLayer;
 }
-CAGradientLayer* setupColorGradientLayerForControl(UIControl<SPStyle>* control)
+
+void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE style)
 {
-    CAGradientLayer* colorGradientLayer = [[CAGradientLayer layer] retain];
+    if(style == STYLE_CONFIRM_BUTTON)
+    {
+        layer.colors = @[(id)[UIColor whiteColor].CGColor,
+        (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_START_COLOUR.CGColor,
+        (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_END_COLOUR.CGColor];
+        
+        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+    }
+    else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
+    {
+        layer.colors = @[(id)[UIColor whiteColor].CGColor,
+        (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor,
+        (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor];
+        
+        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+    }
+    else if(style == STYLE_NEUTRAL)
+    {
+        layer.colors = @[(id)[UIColor whiteColor].CGColor,
+        (id)BACKGROUND_GRADIENT_NEUTRAL_START_COLOUR.CGColor,
+        (id)BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR.CGColor];
+        
+        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+    }
+    else if(style == STYLE_BASE)
+    {
+        layer.colors = @[
+        (id)BACKGROUND_GRADIENT_BASE_START_COLOUR.CGColor,
+        (id)BACKGROUND_GRADIENT_BASE_END_COLOUR.CGColor];
+        
+        layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+    }
+    else 
+    {
+        layer.colors = @[
+        (id)TINT_DEFAULT.CGColor,
+        (id)TINT_DEFAULT.CGColor];
+        
+        layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+    }
+}
+CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,STYLE style)
+{
+    CAGradientLayer* colorGradientLayer = [CAGradientLayer layer];
     
-    colorGradientLayer.colors = [NSArray arrayWithObjects:(id)CONTROL_GRADIENT_BACKGROUND_START_COLOUR.CGColor, CONTROL_GRADIENT_BACKGROUND_END_COLOUR.CGColor , nil];		
-    colorGradientLayer.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0], nil];		
+    updateColorGradientLayerForControlWithStyle(colorGradientLayer,style);
+
+  
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
     colorGradientLayer.needsDisplayOnBoundsChange = YES;
+
+    colorGradientLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
+    colorGradientLayer.borderWidth = 1.0;
+    colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
+    
     return colorGradientLayer;
 }
-CAGradientLayer* setupColorGradientLayerForView(UIView* view)
+CAGradientLayer* setupColorGradientLayerForViewWithStyle(UIView* view,STYLE style)
 {
     CAGradientLayer* colorGradientLayer = [[CAGradientLayer layer] retain];	
     colorGradientLayer.colors = [NSArray arrayWithObjects:(id)INSET_GRADIENT_BACKGROUND_START_COLOUR.CGColor, INSET_GRADIENT_BACKGROUND_END_COLOUR.CGColor , nil];		
@@ -70,6 +122,20 @@ CAGradientLayer* setupColorGradientLayerForView(UIView* view)
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
     colorGradientLayer.needsDisplayOnBoundsChange = YES;
     return colorGradientLayer;
+}
+void updateColorLayerForViewWithStyle(CALayer* layer,STYLE style)
+{
+    layer.backgroundColor = primaryColorForStyle(style).CGColor;
+}
+CALayer* setupColorLayerForControl(UIView* view)
+{
+    CALayer* colorLayer = [CALayer layer];
+    colorLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
+    colorLayer.backgroundColor = INSET_EDGE_DARK_COLOUR.CGColor;
+    colorLayer.borderWidth = 2.0;
+    colorLayer.cornerRadius = INSET_CORNER_RADIUS;
+    colorLayer.needsDisplayOnBoundsChange = YES;
+    return colorLayer;
 }
 CALayer* setupColorLayerForView(UIView* view)
 {

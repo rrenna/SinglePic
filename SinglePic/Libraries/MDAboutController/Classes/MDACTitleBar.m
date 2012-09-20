@@ -38,6 +38,7 @@
 #import "MDACTitleBar.h"
 #import "MDAboutController.h"
 #import "SPStyledButton.h"
+#import "SPLabel.h"
 
 @implementation MDACTitleBar
 
@@ -51,24 +52,17 @@
         [self addSubview:background];
         [background release];
         
-        title = [[UILabel alloc] initWithFrame:self.bounds];
+        title = [[SPLabel alloc] initWithFrame:self.bounds];
         title.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         title.backgroundColor = nil;
         title.opaque = NO;
         title.textAlignment = UITextAlignmentCenter;
         title.textColor = [UIColor whiteColor];
         title.text = @"About";
-        title.font = [UIFont boldSystemFontOfSize:20];
         title.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
         title.shadowOffset = CGSizeMake(0, -1);
         [self addSubview:title];
         [title release];
-        
-        /*
-        doneButton = [[SPStyledButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
-        [doneButton setDepth:DEPTH_OUTSET];
-        [doneButton setStyle:STYLE_NEUTRAL];
-        */
         
         doneButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width-55, 7, 50, 30)];
         doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -77,11 +71,9 @@
         [doneButton setTitle:@"Done" forState:UIControlStateNormal];
         [doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [doneButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.6] forState:UIControlStateNormal];
-        doneButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
         doneButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
-         
+        doneButton.titleLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:12];
         
-        [doneButton setTitle:@"Done" forState:UIControlStateNormal];
         [doneButton addTarget:controller action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:doneButton];
         [doneButton release];

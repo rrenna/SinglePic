@@ -10,14 +10,7 @@
 #import "SPStyles.h"
 
 @interface SPStyledButton : UIButton <SPStyle>
-{
-@private
-	CALayer *colorLayer;
-    CALayer *darkenLayer;
-    CAGradientLayer *bevelLayer;
-    CAGradientLayer *colorGradientLayer;
-    UIColor *tint;
-}
+
 -(void)setStyle:(STYLE)style;
 -(void)setDepth:(DEPTH)depth;
 @end
