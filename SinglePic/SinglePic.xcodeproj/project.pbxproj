@@ -180,6 +180,8 @@
 		75B4AA6415D44F8700745137 /* pinRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA4C15D44F8700745137 /* pinRed@2x.png */; };
 		75B4AA6515D44F8700745137 /* pinRedFloating.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA4D15D44F8700745137 /* pinRedFloating.png */; };
 		75B4AA6615D44F8700745137 /* pinRedFloating@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA4E15D44F8700745137 /* pinRedFloating@2x.png */; };
+		75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75B8DFA1160BAAF700F8AC84 /* SPDebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B8DFA0160BAAF700F8AC84 /* SPDebugView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75CA32D314AE298300C63CD5 /* SPSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA32D114AE298300C63CD5 /* SPSignUpController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75CA32D414AE298300C63CD5 /* SPSignupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CA32D214AE298300C63CD5 /* SPSignupController.xib */; };
 		75CA53B414CF4FBD00C36F35 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -629,6 +631,10 @@
 		75B4AA4C15D44F8700745137 /* pinRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinRed@2x.png"; sourceTree = "<group>"; };
 		75B4AA4D15D44F8700745137 /* pinRedFloating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinRedFloating.png; sourceTree = "<group>"; };
 		75B4AA4E15D44F8700745137 /* pinRedFloating@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinRedFloating@2x.png"; sourceTree = "<group>"; };
+		75B8DF9B160BA38D00F8AC84 /* SPSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSheetController.h; sourceTree = "<group>"; };
+		75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSheetController.m; sourceTree = "<group>"; };
+		75B8DF9F160BAAF700F8AC84 /* SPDebugView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDebugView.h; sourceTree = "<group>"; };
+		75B8DFA0160BAAF700F8AC84 /* SPDebugView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDebugView.m; sourceTree = "<group>"; };
 		75CA32D014AE298300C63CD5 /* SPSignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSignUpController.h; sourceTree = "<group>"; };
 		75CA32D114AE298300C63CD5 /* SPSignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSignUpController.m; sourceTree = "<group>"; };
 		75CA32D214AE298300C63CD5 /* SPSignupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSignupController.xib; sourceTree = "<group>"; };
@@ -1045,6 +1051,8 @@
 				7531B93E14B4FF5D00ECEDB3 /* SPStyles.h */,
 				75089E9814D9BF1F0044FC63 /* SPStyles.m */,
 				75CA53BE14CF53EB00C36F35 /* SPCards.h */,
+				75B8DF9F160BAAF700F8AC84 /* SPDebugView.h */,
+				75B8DFA0160BAAF700F8AC84 /* SPDebugView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1658,13 +1666,15 @@
 			name = "Card View";
 			sourceTree = "<group>";
 		};
-		75E7E02014B3C22F005C70B4 /* Tabs & Pages */ = {
+		75E7E02014B3C22F005C70B4 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				75B8DF9B160BA38D00F8AC84 /* SPSheetController.h */,
+				75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */,
 				F0F7CEA614C92579009C7DF8 /* Pages */,
 				F0F7CEA514C92567009C7DF8 /* Tabs */,
 			);
-			name = "Tabs & Pages";
+			name = Sheets;
 			sourceTree = "<group>";
 		};
 		75F5631F148FC74200E6A8F9 /* Resources */ = {
@@ -1702,7 +1712,7 @@
 				750E482314C60EC000F7CCFC /* Reachability Popup Controller */,
 				7575EB1815DABCFB00D5707B /* Help Overlay Controller */,
 				F0620D081524B99C008D334C /* Subscription Page */,
-				75E7E02014B3C22F005C70B4 /* Tabs & Pages */,
+				75E7E02014B3C22F005C70B4 /* Sheets */,
 				751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
 				F01B800314CCF2B1009FA39D /* User Screen */,
@@ -2823,6 +2833,8 @@
 				754FB76F1607AD2D0072D53D /* AFXMLRequestOperation.m in Sources */,
 				754FB7701607AD2D0072D53D /* UIImageView+AFNetworking.m in Sources */,
 				758E0E1A160A3CCF0006D1F7 /* SPLabel.m in Sources */,
+				75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */,
+				75B8DFA1160BAAF700F8AC84 /* SPDebugView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -94,30 +94,22 @@
 }
 -(void)minimize
 {
-    //Used to inform the content cotroller that we will be minimizing the tab
-    if([controller_ respondsToSelector:@selector(willMinimize)])
-    {
-        [controller_ performSelector:@selector(willMinimize)];
-    }
-    
     int originOffset = -self.view.left + TAB_POS_LEFT_MINIMIZED;    
     [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished) 
     {
     }];
+    
+    [super minimize];
 }
 -(void)close
 {
-    //Used to inform the content cotroller that we will be closing the tab
-    if([controller_ respondsToSelector:@selector(willClose)])
-    {
-        [controller_ performSelector:@selector(willClose)];
-    }
-    
     int originOffset = -self.view.left + TAB_POS_LEFT_OFFSCREEN;
     [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished) 
      {
          [self.containerDelegate removeTab:self];
      }];
+    
+    [super close];
 }
 -(void)setController:(UIViewController *)controller
 {
