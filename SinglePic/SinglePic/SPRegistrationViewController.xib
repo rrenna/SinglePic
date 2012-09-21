@@ -136,8 +136,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIButton" id="53385352">
 						<reference key="NSNextResponder" ref="324623241"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 228}, {229, 31}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{13, 228}, {218, 31}}</string>
 						<reference key="NSSuperview" ref="324623241"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -176,8 +176,8 @@
 					</object>
 					<object class="IBUILabel" id="904729183">
 						<reference key="NSNextResponder" ref="324623241"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 65}, {229, 117}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{13, 65}, {218, 117}}</string>
 						<reference key="NSSuperview" ref="324623241"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="53385352"/>
@@ -206,12 +206,12 @@
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<double key="preferredMaxLayoutWidth">229</double>
+						<double key="preferredMaxLayoutWidth">218</double>
 					</object>
 					<object class="IBUIImageView" id="869539995">
 						<reference key="NSNextResponder" ref="324623241"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{64, 16}, {127, 41}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{63, 20}, {116, 41}}</string>
 						<reference key="NSSuperview" ref="324623241"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="904729183"/>
@@ -226,7 +226,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{254, 269}</string>
+				<string key="NSFrameSize">{243, 269}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="869539995"/>
@@ -246,8 +246,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIButton" id="1056271594">
 						<reference key="NSNextResponder" ref="786286252"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 42}, {229, 31}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{13, 42}, {218, 31}}</string>
 						<reference key="NSSuperview" ref="786286252"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -273,8 +273,8 @@
 					</object>
 					<object class="IBUILabel" id="686993206">
 						<reference key="NSNextResponder" ref="786286252"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 0}, {240, 37}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{7, 0}, {229, 37}}</string>
 						<reference key="NSSuperview" ref="786286252"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1056271594"/>
@@ -303,10 +303,10 @@
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<double key="preferredMaxLayoutWidth">240</double>
+						<double key="preferredMaxLayoutWidth">229</double>
 					</object>
 				</array>
-				<string key="NSFrameSize">{254, 82}</string>
+				<string key="NSFrameSize">{243, 82}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="686993206"/>
@@ -446,8 +446,8 @@
 						<reference key="object" ref="324623241"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="904729183"/>
-							<reference ref="869539995"/>
 							<reference ref="53385352"/>
+							<reference ref="869539995"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

@@ -47,6 +47,14 @@
     [nextButton setStyle:STYLE_TAB];
     [signupHeaderView setStyle:STYLE_TAB];
     
+    userNameField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:userNameField.font.pointSize];
+    emailField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:emailField.font.pointSize];
+    passwordField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:passwordField.font.pointSize];
+    confirmPasswordField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:confirmPasswordField.font.pointSize];
+    userNameHintLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:userNameHintLabel.font.pointSize];
+    emailHintLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:emailHintLabel.font.pointSize];
+    passwordHintLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:passwordHintLabel.font.pointSize];
+    
     [self transitionToStep:step];
     [self stepOneInitialization];
     [self stepTwoInitialization];

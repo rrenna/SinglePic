@@ -89,6 +89,14 @@ void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE s
         
         layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
     }
+    else if(style == STYLE_TAB)
+    {
+        layer.colors = @[(id)[UIColor whiteColor].CGColor,
+        (id)TINT_TAB.CGColor,
+        (id)TINT_TAB.CGColor];
+        
+        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+    }
     else 
     {
         layer.colors = @[
@@ -109,7 +117,7 @@ CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,S
     colorGradientLayer.needsDisplayOnBoundsChange = YES;
 
     colorGradientLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
-    colorGradientLayer.borderWidth = 1.0;
+    colorGradientLayer.borderWidth = 1.0f;
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
     
     return colorGradientLayer;
@@ -151,8 +159,11 @@ void setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH d
 {
     if(depth == DEPTH_INSET)
     {
-        bevelLayer.hidden = NO;
-        bevelLayer.colors = [NSArray arrayWithObjects:(id)INSET_BEVEL_DARK_COLOUR.CGColor, INSET_BEVEL_LIGHT_COLOUR.CGColor, nil];
+        if(bevelLayer)
+        {
+            bevelLayer.hidden = NO;
+            bevelLayer.colors = [NSArray arrayWithObjects:(id)INSET_BEVEL_DARK_COLOUR.CGColor, INSET_BEVEL_LIGHT_COLOUR.CGColor, nil];
+        }
         
         if(colorLayer)
         {

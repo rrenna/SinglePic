@@ -41,7 +41,7 @@
 					<object class="IBUIView" id="811342565">
 						<reference key="NSNextResponder" ref="479291226"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{25, 87}, {258, 369}}</string>
+						<string key="NSFrame">{{25, 87}, {248, 369}}</string>
 						<reference key="NSSuperview" ref="479291226"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="138530100"/>
@@ -58,10 +58,9 @@
 					<object class="IBUITableView" id="138530100">
 						<reference key="NSNextResponder" ref="479291226"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{28, 88}, {254, 366}}</string>
+						<string key="NSFrame">{{28, 88}, {244, 366}}</string>
 						<reference key="NSSuperview" ref="479291226"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:418</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -70,6 +69,8 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
+						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
+						<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 						<float key="IBUIRowHeight">44</float>
@@ -78,8 +79,8 @@
 					</object>
 					<object class="IBUIButton" id="676930152">
 						<reference key="NSNextResponder" ref="479291226"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{220, 46}, {65, 31}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{210, 46}, {65, 31}}</string>
 						<reference key="NSSuperview" ref="479291226"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="811342565"/>
@@ -155,8 +156,8 @@
 					</object>
 					<object class="IBUISegmentedControl" id="23084674">
 						<reference key="NSNextResponder" ref="479291226"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{25, 47}, {187, 30}}</string>
+						<int key="NSvFlags">288</int>
+						<string key="NSFrame">{{25, 47}, {177, 30}}</string>
 						<reference key="NSSuperview" ref="479291226"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="676930152"/>
@@ -188,7 +189,7 @@
 						</array>
 					</object>
 				</array>
-				<string key="NSFrameSize">{285, 460}</string>
+				<string key="NSFrameSize">{275, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="616702077"/>
@@ -306,8 +307,8 @@
 							<reference ref="138530100"/>
 							<reference ref="811342565"/>
 							<reference ref="616702077"/>
-							<reference ref="23084674"/>
 							<reference ref="676930152"/>
+							<reference ref="23084674"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

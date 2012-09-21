@@ -105,8 +105,6 @@
     UIButton* button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
     button.tag = index;
 
-    NSString* buttonTitle = [NSString stringWithFormat:@"%@ seeking %@",genderName,genderPreference];
-    [button setTitle:buttonTitle forState:UIControlStateNormal];
     [button addTarget:self action:@selector(orientationSelected:) forControlEvents:UIControlEventTouchUpInside];
     //Left Icon
     NSString* iconFileName = [NSString stringWithFormat:@"Orientation-%@s%@-default.png",[genderInitial capitalizedString],[preferenceInitial capitalizedString]];
@@ -115,13 +113,15 @@
     [iconView setImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];
     [iconView setImage:[UIImage imageNamed:iconSelectedFileName] forState:UIControlStateSelected];
     [buttonIcons addObject:iconView];
+    
     //Label
     SPLabel* buttonLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))] autorelease];
     buttonLabel.backgroundColor = [UIColor clearColor];
     buttonLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:11];
     buttonLabel.textAlignment = UITextAlignmentCenter;
-    buttonLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@", GENDER_NAMES[gender], GENDER_NAMES[preference] ];
+    buttonLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@", genderName, genderPreference ];
     [self.buttonTitles addObject:buttonLabel];
+    
     //Right Checkmark (selection indicator)
     UIImageView* selectionIndicatorView = [[[UIImageView alloc] initWithFrame:CGRectMake(buttonLabel.left + buttonLabel.width, 0, 10,button.height)] autorelease];
     selectionIndicatorView.hidden = YES;

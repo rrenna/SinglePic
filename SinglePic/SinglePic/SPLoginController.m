@@ -35,6 +35,9 @@
     [loginButton setStyle:STYLE_CONFIRM_BUTTON];
     [headerStyledView setStyle:STYLE_TAB];
     
+    emailTextField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:emailTextField.font.pointSize];
+    passwordTextField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:emailTextField.font.pointSize];
+    
     [emailTextField becomeFirstResponder]; //Launch keyboard, edit user name field
 }
 - (void)dealloc {

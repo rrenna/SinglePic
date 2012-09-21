@@ -155,7 +155,7 @@
     progressLabel.backgroundColor = [UIColor clearColor];
     progressLabel.textAlignment = UITextAlignmentRight;
     progressLabel.textColor = [UIColor whiteColor];
-    progressLabel.shadowColor = [UIColor blackColor];
+    progressLabel.shadowColor = [UIColor darkGrayColor];
     progressLabel.shadowOffset = CGSizeMake(1,1);
     [self addSubview:progressLabel];
 }

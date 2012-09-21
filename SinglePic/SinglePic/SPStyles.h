@@ -50,7 +50,7 @@ typedef enum
 //Tints for Styles
 #define TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
 #define TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
-#define TINT_TAB [UIColor colorWithRed:0.98823 green:0.984313 blue:0.93725 alpha:0.95]
+#define TINT_TAB [UIColor colorWithRed:0.921 green:0.886 blue:0.85 alpha:0.95]
 #define TINT_BASE [UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0]
 #define TINT_PAGE [UIColor colorWithRed:0.97 green:0.95 blue:0.9 alpha:1.0]
 #define TINT_CONFIRM_BUTTON [UIColor colorWithRed:0.0 green:0.513 blue:0.686 alpha:1.0]

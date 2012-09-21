@@ -40,7 +40,7 @@
 - (void) setHandleImage
 {
     //Add right-side parchment 9-slice
-    UIImage* rightImage9Slice = [[UIImage imageNamed:@"Page-Right.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:50];
+    UIImage* rightImage9Slice = [[UIImage imageNamed:@"Paper-Right.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:50];
     handleImageView.image = rightImage9Slice;
 }
 -(void)viewDidLayoutSubviews
