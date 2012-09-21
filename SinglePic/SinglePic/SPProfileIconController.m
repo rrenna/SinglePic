@@ -11,7 +11,7 @@
 
 @interface SPProfileIconController()
 {
-    IBOutlet UIImageView* iconView;
+    IBOutlet __block UIImageView* iconView;
     IBOutlet UIView* pictureStyledView;
     SPProfile* profile;
 }
@@ -33,10 +33,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+   
     [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
      {
-         iconView.image = thumbnail;
+        iconView.image = thumbnail;
      }
      andErrorHandler:nil];
 }

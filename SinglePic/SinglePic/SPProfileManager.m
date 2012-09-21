@@ -421,14 +421,14 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
      {         
          [self setMyBucket:_bucket synchronize:YES];
          onCompletion(responseObject);
-         [onCompletion release];
+         
      } 
      andErrorHandler:^(NSError* error)
      {
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -440,8 +440,6 @@ static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 -(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
-    //TODO: Figure out where to release onError()
-    
     void (^imageAndThumbnailUploaded)(id completedResponseObject) = ^(id completedResponseObject) 
     {
         //Confirm with the server that the images have been uploaded. This tells the server to set the current time as your upload time.
@@ -461,7 +459,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
             [self setMyImage:_image];
             
             onCompletion(completedResponseObject);
-            [onCompletion release];
+            
         }
         andErrorHandler:^(SPWebServiceError *error) 
         {
@@ -488,7 +486,6 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
              if(thumbnailUploaded)
              {
                  imageAndThumbnailUploaded(responseObject);
-                 [imageAndThumbnailUploaded release];
              }
          }
          andProgressHandler:^(float progress)
@@ -515,7 +512,6 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
              if(imageUploaded)
              {
                  imageAndThumbnailUploaded(responseObject);
-                 [imageAndThumbnailUploaded release];
              }
          }
          andProgressHandler:^(float progress) {
@@ -539,7 +535,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
     }];
 }
@@ -566,14 +562,14 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
              [self setMyPreference:preference_ synchronize:YES];
          }
          onCompletion(responseObject);
-         [onCompletion release];
+         
      } 
      andErrorHandler:^(SPWebServiceError *error) 
      {
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -587,7 +583,6 @@ static NSURL* _thumbnailUploadURLCache = nil;
     if(_imageUploadURLCache && _thumbnailUploadURLCache)
     {
         onCompletion(_imageUploadURLCache,_thumbnailUploadURLCache);
-        [onCompletion release];
         
         [_imageUploadURLCache release];
         [_thumbnailUploadURLCache release];
@@ -616,7 +611,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
              _thumbnailUploadURLCache = [[NSURL URLWithString:thumbnailUploadURLString] retain];
              
              onCompletion(_imageUploadURLCache,_thumbnailUploadURLCache);
-             [onCompletion release];
+             
              
          }
          andErrorHandler:^(SPWebServiceError *error) 
@@ -624,7 +619,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
              if(onError)
              {
                  onError();
-                 [onError release];
+                 
              }
          }];
     }
@@ -661,7 +656,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
         
         onCompletion(responseObject);
-        [onCompletion release];
+        
     }
     andErrorHandler:^(SPWebServiceError *error)
     {
@@ -680,7 +675,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
     }];
     
@@ -750,7 +745,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                   }];
                  
                  onCompletion(responseObject);
-                 [onCompletion release];
+                 
                  
                  //Notify application that the user type has changed
                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
@@ -761,7 +756,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                  if(onError)
                  {
                      onError();
-                     [onError release];
+                     
                  }
              }
 
@@ -771,7 +766,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
              if(onError)
              {
                  onError();
-                 [onError release];
+                 
              }
          }];
      } 
@@ -780,7 +775,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
     
@@ -853,7 +848,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
          }];
         
         onCompletion(responseObject);
-        [onCompletion release];
+        
         
         //Notify application that the user type has changed
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
@@ -866,7 +861,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
     }];
 }
@@ -875,12 +870,12 @@ static NSURL* _thumbnailUploadURLCache = nil;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERNAMES withParameter:userName_ requiringToken:NO withCompletionHandler:^(id responseObject)
     {
         onCompletion(YES);
-        [onCompletion release];
+        
     }
     andErrorHandler:^(SPWebServiceError *error)
     {
         onCompletion(NO);
-        [onCompletion release];
+        
     }];
 }
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
@@ -900,7 +895,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
              
              [self setMyPushTokenSynced:YES synchronize:YES];
              onCompletion(responseObject);
-             [onCompletion release];
+             
          } 
          andErrorHandler:^(NSError* error)
          {
@@ -913,7 +908,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
              if(onError)
              {
                  onError();
-                 [onError release];
+                 
              }
          }];
     }
@@ -928,7 +923,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
     }
 }
@@ -966,14 +961,14 @@ static int profileCounter = 0;
         if([profiles count] == 1)
         {
             onCompletion([profiles objectAtIndex:0]);
-            [onCompletion release];
+            
         }
         else
         {
             if(onError)
             {
                 onError();
-                [onError release];
+                
             }
         }
 
@@ -983,7 +978,7 @@ static int profileCounter = 0;
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
     }];
 }
@@ -1006,14 +1001,14 @@ static int profileCounter = 0;
          
          //Return the retrieved profiles
          onCompletion(_profiles);
-         [onCompletion release];
+         
      } 
      andErrorHandler:^(NSError* error)
      {
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -1053,7 +1048,6 @@ static int profileCounter = 0;
              [pool drain];
              
              onCompletion(self.profiles);
-             [onCompletion release];
              
              //Inform application that the notifications have changed
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PROFILES_CHANGED object:nil];
@@ -1063,7 +1057,7 @@ static int profileCounter = 0;
              if(onError)
              {
                  onError();
-                 [onError release];
+                 
              }
          }];
     }
@@ -1077,7 +1071,7 @@ static int profileCounter = 0;
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
     }
     else if([self myUserType] == USER_TYPE_PROFILE)
@@ -1107,7 +1101,7 @@ static int profileCounter = 0;
              [pool drain];
              
              onCompletion(self.profiles);
-             [onCompletion release];
+             
              
              //Inform application that the notifications have changed
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PROFILES_CHANGED object:nil];
@@ -1117,7 +1111,7 @@ static int profileCounter = 0;
              if(onError)
              {
                  onError();
-                 [onError release];
+                 
              }
          }];
     }
@@ -1130,7 +1124,7 @@ static int profileCounter = 0;
     if(thumbnail)
     {
         onCompletion(thumbnail);
-        [onCompletion release];
+        
     }
     else
     {
@@ -1139,14 +1133,14 @@ static int profileCounter = 0;
              [_thumbnails setObject:responseObject forKey:profile.identifier];
              
              onCompletion(responseObject);
-             [onCompletion release];
+             
          }
          andErrorHandler:^(NSError* error)
          {
              if(onError)
              {
                 onError();
-                [onError release];
+                
              }
          }];
     }
@@ -1157,14 +1151,14 @@ static int profileCounter = 0;
     [[SPRequestManager sharedInstance] getImageFromURL:[profile pictureURL] withCompletionHandler:^(UIImage* responseObject)
      {
          onCompletion(responseObject);
-         [onCompletion release];
+         
      }
      andErrorHandler:^(NSError* error)
      {
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -1198,7 +1192,7 @@ static int profileCounter = 0;
                   _likes = [[NSMutableArray alloc] initWithArray:profiles_];
                   
                   onCompletion(_likes);
-                  [onCompletion release];
+                  
                   
                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKES_RECIEVED object:nil];
               } 
@@ -1207,7 +1201,7 @@ static int profileCounter = 0;
                   if(onError)
                   {
                       onError();
-                      [onError release];
+                      
                   }
               }];
          }
@@ -1215,7 +1209,7 @@ static int profileCounter = 0;
          {
              //If there are no likes recorded, return an empty array
              onCompletion([NSArray array]);
-             [onCompletion release];
+             
          }
      }
      andErrorHandler:^(SPWebServiceError* error)
@@ -1223,7 +1217,7 @@ static int profileCounter = 0;
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -1243,7 +1237,6 @@ static int profileCounter = 0;
                   _likedBy = [profiles_ retain];
                   
                   onCompletion(_likedBy);
-                  [onCompletion release];
                   
                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKED_BY_RECIEVED object:nil];
               } 
@@ -1252,7 +1245,7 @@ static int profileCounter = 0;
                   if(onError)
                   {
                       onError();
-                      [onError release];
+                      
                   }
               }];
          }
@@ -1260,7 +1253,7 @@ static int profileCounter = 0;
          {
              //If there are no liked by recorded, return an empty array
              onCompletion([NSArray array]);
-             [onCompletion release];
+             
          }
          
      } 
@@ -1269,7 +1262,7 @@ static int profileCounter = 0;
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -1282,7 +1275,7 @@ static int profileCounter = 0;
         if(onError)
         {
             onError();
-            [onError release];
+            
         }
         return;
     }
@@ -1293,7 +1286,7 @@ static int profileCounter = 0;
         [_likes addObject:profile];
          
         onCompletion();
-        [onCompletion release];
+        
          
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_ADDED object:profile];
      } 
@@ -1302,7 +1295,7 @@ static int profileCounter = 0;
          if(onError)
          {
              onError();
-             [onError release];
+             
          }
      }];
 }
@@ -1329,7 +1322,7 @@ static int profileCounter = 0;
              [_likes removeObject:profileToRemove];
              
              onCompletion();
-             [onCompletion release];
+             
              
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_REMOVED object:profileToRemove];
          } 
@@ -1338,7 +1331,7 @@ static int profileCounter = 0;
              if(onError)
              {
                  onError();
-                 [onError release];
+                 
              }
          }];
     }
