@@ -39,11 +39,10 @@
 }
 -(void)dealloc
 {
-    [self removeObservationFromContentController];
-    
     [contentView release];
     [panRecognizer_ release];
     [controller_ release];
+    [super dealloc];
 }
 #pragma mark
 -(void)minimize
@@ -56,6 +55,8 @@
 }
 -(void)close
 {
+    [self removeObservationFromContentController];
+    
     //Used to inform the content cotroller that we will be closing the tab
     if([controller_ respondsToSelector:@selector(willClose)])
     {

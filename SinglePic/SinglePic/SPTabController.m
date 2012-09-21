@@ -103,13 +103,13 @@
 }
 -(void)close
 {
-    int originOffset = -self.view.left + TAB_POS_LEFT_OFFSCREEN;
-    [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished) 
-     {
-         [self.containerDelegate removeTab:self];
-     }];
+        int originOffset = -self.view.left + TAB_POS_LEFT_OFFSCREEN;
+        [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished)
+        {
+            [self.containerDelegate removeTab:self];
+        }];
     
-    [super close];
+        [super close];
 }
 -(void)setController:(UIViewController *)controller
 {

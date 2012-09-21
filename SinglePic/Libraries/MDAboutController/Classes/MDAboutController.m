@@ -310,7 +310,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         } else if ([tempCredit isMemberOfClass:[MDACTextCredit class]]) {
             i += 1;
             
-            CGSize textSize = CGSizeMake(300, 30);
+            CGSize textSize; //CGSizeMake(300, 30);
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
                 textSize = [[(MDACTextCredit *)tempCredit text] sizeWithFont:[(MDACTextCredit *)tempCredit font]
                                                            constrainedToSize:CGSizeMake(450, 1000)

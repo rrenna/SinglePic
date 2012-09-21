@@ -269,7 +269,7 @@
 #pragma mark - Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type
 {
-    self.helpOverlayController = [[SPHelpOverlayViewController alloc] initWithType:type];
+    self.helpOverlayController = [[[SPHelpOverlayViewController alloc] initWithType:type] autorelease];
     helpOverlayController.delegate = self;
     [self.view.superview addSubview:helpOverlayController.view];
 }

@@ -49,8 +49,8 @@
 }
 -(void)dealloc
 {
-    [self.bevelLayer release];
-    [self.colorGradientLayer release];
+    [_bevelLayer release];
+    [_colorGradientLayer release];
     [super dealloc];
 }
 -(void)setStyle:(STYLE)style

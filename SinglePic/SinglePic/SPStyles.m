@@ -124,7 +124,7 @@ CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,S
 }
 CAGradientLayer* setupColorGradientLayerForViewWithStyle(UIView* view,STYLE style)
 {
-    CAGradientLayer* colorGradientLayer = [[CAGradientLayer layer] retain];	
+    CAGradientLayer* colorGradientLayer = [CAGradientLayer layer];	
     colorGradientLayer.colors = [NSArray arrayWithObjects:(id)INSET_GRADIENT_BACKGROUND_START_COLOUR.CGColor, INSET_GRADIENT_BACKGROUND_END_COLOUR.CGColor , nil];		
     colorGradientLayer.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0], nil];		
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
@@ -191,24 +191,27 @@ CGRect placeBevelLayerForViewWithDepth(UIView* view,DEPTH depth)
 }
 CGRect placeColorGradientLayerForViewWithDepth(UIView* view,DEPTH depth)
 {
+    CGRect placement;
     if(depth == DEPTH_INSET)
     {
-        return CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);	
+        placement = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);
     }
     else if(depth == DEPTH_OUTSET)
     {
-        return CGRectMake(1,1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
+        placement = CGRectMake(1,1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
     }
+    return placement;
 }
 CGRect placeColorLayerForViewWithDepth(UIView* view,DEPTH depth)
 {
+    CGRect placement;
     if(depth == DEPTH_INSET)
     {
-        return CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);	
+        placement = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);	
     }
     else if(depth == DEPTH_OUTSET)
     {
-        return CGRectMake(1, 1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
+        placement = CGRectMake(1, 1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
     }
-
+    return placement;
 }

@@ -163,19 +163,18 @@
 {
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
-    
-    progressLayer = [[CALayer layer] retain];
-    progressLayer.frame = CGRectMake(0, 1, 0, CGRectGetHeight(self.frame)-2);		
-    progressLayer.borderColor = [UIColor colorWithWhite:0 alpha:0.15].CGColor;
-    progressLayer.borderWidth = 1.0;	
-    progressLayer.cornerRadius = INSET_CORNER_RADIUS;
-    progressLayer.needsDisplayOnBoundsChange = YES;
-    
     colorGradientLayer = setupColorGradientLayerForViewWithStyle(self,style);
 	
     [bevelLayer retain];
     [colorLayer retain];
     [colorGradientLayer retain];
+
+    progressLayer = [[CALayer layer] retain];
+    progressLayer.frame = CGRectMake(0, 1, 0, CGRectGetHeight(self.frame)-2);
+    progressLayer.borderColor = [UIColor colorWithWhite:0 alpha:0.15].CGColor;
+    progressLayer.borderWidth = 1.0;
+    progressLayer.cornerRadius = INSET_CORNER_RADIUS;
+    progressLayer.needsDisplayOnBoundsChange = YES;
     
     [self.layer addSublayer:bevelLayer];
     [self.layer addSublayer:colorLayer];

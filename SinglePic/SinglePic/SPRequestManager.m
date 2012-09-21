@@ -126,24 +126,23 @@
 -(NSString*)generatePathForNamespace:(REQUEST_NAMESPACE)namespace andParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken
 {
     NSString* path;
-    NSString* serverAddress = [[SPSettingsManager sharedInstance] serverAddress];
     NSString* name = REQUEST_NAMESPACES[namespace];
     
     if(parameter)
     {
         if(requiresToken)
         {
-            NSString* userToken = [[SPRequestManager sharedInstance] userToken];
+            NSString* _userToken = [[SPRequestManager sharedInstance] userToken];
             
-            NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+            NSString * _escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
                                                                                               NULL,
-                                                                                              (CFStringRef)userToken,
+                                                                                              (CFStringRef)_userToken,
                                                                                               NULL,
                                                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                               kCFStringEncodingUTF8 );
             
-            path = [NSString stringWithFormat:@"%@/%@/token/%@",name,parameter,escapedUserToken];
-            [escapedUserToken release];
+            path = [NSString stringWithFormat:@"%@/%@/token/%@",name,parameter,_escapedUserToken];
+            [_escapedUserToken release];
         }
         else
         {
@@ -154,15 +153,15 @@
     {
         if(requiresToken)
         {
-            NSString* userToken = [[SPRequestManager sharedInstance] userToken];
-            NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+            NSString* _userToken = [[SPRequestManager sharedInstance] userToken];
+            NSString * _escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
                                                                                               NULL,
-                                                                                              (CFStringRef)userToken,
+                                                                                              (CFStringRef)_userToken,
                                                                                               NULL,
                                                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                               kCFStringEncodingUTF8 );
-            path = [NSString stringWithFormat:@"%@/token/%@",name,escapedUserToken];
-            [escapedUserToken release];
+            path = [NSString stringWithFormat:@"%@/token/%@",name,_escapedUserToken];
+            [_escapedUserToken release];
         }
         else
         {
