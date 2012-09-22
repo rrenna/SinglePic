@@ -369,13 +369,14 @@ static int profileIndex = 0;
         {
             if([subView isKindOfClass:[SPBlockView class]])
             {
+                __block id blockSelf = self;
                 [UIView animateWithDuration:0.70 delay:delay options:nil animations:^{
                     
                     subView.alpha = 0.0;
                     
                 } completion:^(BOOL finished) {
                     
-                    [self destroyBlockView:subView];
+                    [blockSelf destroyBlockView:subView];
                 }];
                 
                 delay -= 0.05;
@@ -645,11 +646,11 @@ int currentTick = 0;
                     //Pauses the stack until the next profile's thumbnail has downloaded (or failed)
                     [self pauseStack:columnIndex];
                     
+                    blockView.data = profile;
+                    [blockView setController:profileIcon];
+                    
                     id block_proceed = ^(UIImage *thumbnail)
                     {
-                        blockView.data = profile;
-                        [blockView setController:profileIcon];
-                        
                         [self addBodyForBoxView:blockView];
                         [canvasView addSubview:blockView];
                         [canvasView sendSubviewToBack:blockView];

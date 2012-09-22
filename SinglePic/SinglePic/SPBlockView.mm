@@ -9,11 +9,19 @@
 #import "SPBlockView.h"
 
 @interface SPBlockView()
+@property (retain) id contentController;
 @end
 
 @implementation SPBlockView
+@synthesize contentController = _contentController; //Private
 @synthesize delegate,data,column,joint;
 
+-(id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self){}
+    return self;
+}
 -(void)layoutSubviews
 {
     UIButton* blockSelectButton = [[[UIButton alloc] initWithFrame:self.bounds] autorelease];
@@ -22,7 +30,7 @@
 }
 -(void)dealloc
 {
-    [controller_ release];
+    [_contentController release];
     [data release];
     [super dealloc];
 }
@@ -34,7 +42,7 @@
 #pragma mark
 -(void)setController:(UIViewController*)viewController
 {
-    controller_ = [viewController retain];
+    self.contentController = viewController;
     [self setContent:viewController.view];
 }
 -(void)setContent:(UIView*)view

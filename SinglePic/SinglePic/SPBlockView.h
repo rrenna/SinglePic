@@ -14,10 +14,7 @@
 @end
 
 @interface SPBlockView : UIView 
-{
-@protected
-    id controller_;
-}
+
 @property (assign) id<SPBlockViewDelegate> delegate;
 @property (retain) id data;
 @property (assign) int column;
