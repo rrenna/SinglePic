@@ -369,6 +369,7 @@
 		F0C988AB14E0BA6100264228 /* BTN-EditPhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A914E0BA6100264228 /* BTN-EditPhoto@2x.png */; };
 		F0C988AC14E0BA6100264228 /* BTN-EditIceBreaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */; };
 		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0D663BE160DC59A00607E2D /* appicon72.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D663BD160DC59A00607E2D /* appicon72.png */; };
 		F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D6D7C5160C1BA60068EBBE /* Paper-Right.png */; };
 		F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D6D7C6160C1BA60068EBBE /* Paper-Right@2x.png */; };
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -932,6 +933,7 @@
 		F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-EditIceBreaker@2x.png"; path = "../../Resources/BTN-EditIceBreaker@2x.png"; sourceTree = "<group>"; };
 		F0D1511F14EA329F006C1978 /* SPOrientationChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOrientationChooser.h; sourceTree = "<group>"; };
 		F0D1512014EA329F006C1978 /* SPOrientationChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOrientationChooser.m; sourceTree = "<group>"; };
+		F0D663BD160DC59A00607E2D /* appicon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon72.png; path = ../../Resources/appicon72.png; sourceTree = "<group>"; };
 		F0D6D7C5160C1BA60068EBBE /* Paper-Right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Paper-Right.png"; path = "../../Resources/Paper-Right.png"; sourceTree = "<group>"; };
 		F0D6D7C6160C1BA60068EBBE /* Paper-Right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Paper-Right@2x.png"; path = "../../Resources/Paper-Right@2x.png"; sourceTree = "<group>"; };
 		F0DB12CF14FA9603008F81A0 /* SPStyledSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledSegmentedControl.h; sourceTree = "<group>"; };
@@ -1346,6 +1348,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B3C69714F48A9600FC3A92 /* appicon57.png */,
+				F0D663BD160DC59A00607E2D /* appicon72.png */,
 				F0B3C69514F48A6100FC3A92 /* appicon114.png */,
 			);
 			name = Icons;
@@ -2664,6 +2667,7 @@
 				758E0E16160A3B170006D1F7 /* Avenir LT 35 Light Oblique.ttf in Resources */,
 				F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */,
 				F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */,
+				F0D663BE160DC59A00607E2D /* appicon72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

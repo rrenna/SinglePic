@@ -15,6 +15,7 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>appicon57.png</string>
+		<string>appicon72.png</string>
 		<string>appicon114.png</string>
 	</array>
 	<key>CFBundleIcons</key>
@@ -23,8 +24,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>default-568h@2x.png</string>
 				<string>appicon57.png</string>
+				<string>appicon72.png</string>
 				<string>appicon114.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>

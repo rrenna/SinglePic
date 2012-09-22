@@ -57,9 +57,13 @@
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Login Expired" Description:@"Your login session has expired. You may have logged in on another device, please log in."];
         }];
+        SPWebServiceErrorProfile* emailEmailProfile = [SPWebServiceErrorProfile profileWithURLString:@"token"  andServerError:@"not an email" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        {
+            [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Email" Description:@"This doesn't appear to be a valid email address."];
+        }];
         
         errorQueue = [NSMutableArray new];
-        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,nil];
+        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,emailEmailProfile,nil];
     }
     return self;
 }
