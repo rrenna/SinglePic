@@ -57,53 +57,71 @@ CAGradientLayer* setupBevelLayerForView(UIView* view)
 
 void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE style)
 {
-    if(style == STYLE_CONFIRM_BUTTON)
+    if(style == STYLE_NAVIGATION)
     {
-        layer.colors = @[(id)[UIColor whiteColor].CGColor,
-        (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_START_COLOUR.CGColor,
-        (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_END_COLOUR.CGColor];
+        layer.borderColor = [UIColor colorWithWhite:0.1 alpha:0.55].CGColor;
         
-        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-    }
-    else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
-    {
-        layer.colors = @[(id)[UIColor whiteColor].CGColor,
-        (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor,
-        (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor];
-        
-        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-    }
-    else if(style == STYLE_NEUTRAL)
-    {
-        layer.colors = @[(id)[UIColor whiteColor].CGColor,
-        (id)BACKGROUND_GRADIENT_NEUTRAL_START_COLOUR.CGColor,
-        (id)BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR.CGColor];
-        
-        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-    }
-    else if(style == STYLE_BASE)
-    {
         layer.colors = @[
-        (id)BACKGROUND_GRADIENT_BASE_START_COLOUR.CGColor,
-        (id)BACKGROUND_GRADIENT_BASE_END_COLOUR.CGColor];
+        (id)BACKGROUND_GRADIENT_NAVIGATION_START_COLOUR.CGColor,
+        (id)[UIColor colorWithWhite:1.0 alpha:0.05].CGColor,
+        (id)BACKGROUND_GRADIENT_NAVIGATION_START_COLOUR.CGColor,
+        (id)BACKGROUND_GRADIENT_NAVIGATION_END_COLOUR.CGColor];
         
-        layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.02],[NSNumber numberWithFloat:0.04], [NSNumber numberWithFloat:1.0]];
     }
-    else if(style == STYLE_TAB)
+    else
     {
-        layer.colors = @[(id)[UIColor whiteColor].CGColor,
-        (id)TINT_TAB.CGColor,
-        (id)TINT_TAB.CGColor];
+        layer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
         
-        layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-    }
-    else 
-    {
-        layer.colors = @[
-        (id)TINT_DEFAULT.CGColor,
-        (id)TINT_DEFAULT.CGColor];
-        
-        layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+        if(style == STYLE_CONFIRM_BUTTON)
+        {
+            layer.colors = @[(id)[UIColor whiteColor].CGColor,
+            (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_START_COLOUR.CGColor,
+            (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_END_COLOUR.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+        }
+        else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
+        {
+            layer.colors = @[(id)[UIColor whiteColor].CGColor,
+            (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor,
+            (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+        }
+        else if(style == STYLE_NEUTRAL)
+        {
+            layer.colors = @[(id)[UIColor whiteColor].CGColor,
+            (id)BACKGROUND_GRADIENT_NEUTRAL_START_COLOUR.CGColor,
+            (id)BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+        }
+        else if(style == STYLE_BASE)
+        {
+            layer.colors = @[
+            (id)BACKGROUND_GRADIENT_BASE_START_COLOUR.CGColor,
+            (id)BACKGROUND_GRADIENT_BASE_END_COLOUR.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+        }
+        else if(style == STYLE_TAB)
+        {
+            layer.colors = @[(id)[UIColor whiteColor].CGColor,
+            (id)TINT_TAB.CGColor,
+            (id)TINT_TAB.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+        }
+        else
+        {
+            layer.colors = @[
+            (id)TINT_DEFAULT.CGColor,
+            (id)TINT_DEFAULT.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+        }
+            
     }
 }
 CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,STYLE style)
@@ -112,11 +130,8 @@ CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,S
     
     updateColorGradientLayerForControlWithStyle(colorGradientLayer,style);
 
-  
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
     colorGradientLayer.needsDisplayOnBoundsChange = YES;
-
-    colorGradientLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
     colorGradientLayer.borderWidth = 1.0f;
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
     
@@ -155,6 +170,33 @@ CALayer* setupColorLayerForView(UIView* view)
     colorLayer.needsDisplayOnBoundsChange = YES;
     return colorLayer;
 }
+void setDepthOfControlIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH depth,UIView* view,CAGradientLayer *bevelLayer,CALayer* colorLayer,CAGradientLayer* colorGradientLayer)
+{
+    if(depth == DEPTH_INSET)
+    {
+        if(bevelLayer)
+        {
+            bevelLayer.hidden = NO;
+            bevelLayer.colors = @[(id)[UIColor clearColor].CGColor,
+                                  (id)INSET_BEVEL_LIGHT_COLOUR.CGColor];
+            bevelLayer.locations = @[[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:1.0]];
+        }
+        
+        colorGradientLayer.frame = CGRectMake(0, 1, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame)-2);
+    }
+    else if(depth == DEPTH_OUTSET)
+    {
+        bevelLayer.hidden = YES;
+        
+        if(colorLayer)
+        {
+            colorLayer.borderColor = OUTSET_EDGE_DARK_COLOUR.CGColor;
+            colorLayer.frame = CGRectMake(1, 1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
+        }
+        
+        colorGradientLayer.frame = CGRectMake(1,1, CGRectGetWidth(view.frame)-2, CGRectGetHeight(view.frame)-2);
+    }
+}
 void setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH depth,UIView* view,CAGradientLayer *bevelLayer,CALayer* colorLayer,CAGradientLayer* colorGradientLayer)
 {
     if(depth == DEPTH_INSET)
@@ -176,6 +218,7 @@ void setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH d
     else if(depth == DEPTH_OUTSET)
     {
         bevelLayer.hidden = YES;
+        
         if(colorLayer)
         {
             colorLayer.borderColor = OUTSET_EDGE_DARK_COLOUR.CGColor;

@@ -17,22 +17,23 @@ typedef enum
     STYLE_BASE = 4,
     STYLE_CONFIRM_BUTTON = 5,
     STYLE_ALTERNATIVE_ACTION_1_BUTTON = 6,
-    STYLE_ALTERNATIVE_ACTION_2_BUTTON = 7
+    STYLE_ALTERNATIVE_ACTION_2_BUTTON = 7,
+    STYLE_NAVIGATION = 8
 } STYLE;
 //The default Style is a light gray neutral colour
 #define STYLE_DEFAULT STYLE_NEUTRAL
 
 typedef enum
 {
-    DEPTH_INSET,
-    DEPTH_OUTSET
+    DEPTH_INSET = 0,
+    DEPTH_OUTSET = 1
 } DEPTH;
 //The default Depth is an 3d inset look
 #define DEPTH_DEFAULT DEPTH_INSET
 
 //Inset Colours
 #define INSET_CORNER_RADIUS 6.0
-#define INSET_BEVEL_LIGHT_COLOUR [UIColor colorWithWhite:1.0 alpha:0.5]
+#define INSET_BEVEL_LIGHT_COLOUR [UIColor colorWithWhite:1.0 alpha:0.3]
 #define INSET_BEVEL_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.5]
 #define INSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.25]//Inset vs Outset diff
 #define OUTSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.25]//Inset vs Outset diff
@@ -47,6 +48,8 @@ typedef enum
 #define BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR [UIColor colorWithRed:0.733 green:0.733 blue:0.733 alpha:1.0]
 #define BACKGROUND_GRADIENT_BASE_START_COLOUR [UIColor colorWithWhite:1 alpha:0.1]
 #define BACKGROUND_GRADIENT_BASE_END_COLOUR [UIColor colorWithWhite:0.1 alpha:0.2]
+#define BACKGROUND_GRADIENT_NAVIGATION_START_COLOUR [UIColor colorWithRed:0.556 green:0.192 blue:0.196 alpha:0.4]
+#define BACKGROUND_GRADIENT_NAVIGATION_END_COLOUR [UIColor colorWithRed:0.43 green:0.16 blue:0.156 alpha:0.4]
 //Tints for Styles
 #define TINT_DEFAULT [UIColor colorWithWhite:0.8 alpha:1.0]
 #define TINT_WHITE [UIColor colorWithWhite:1.0 alpha:1.0]
@@ -80,4 +83,5 @@ CALayer* setupColorLayerForView(UIView* view);
 CGRect placeBevelLayerForViewWithDepth(UIView* view,DEPTH depth);
 CGRect placeColorGradientLayerForViewWithDepth(UIView* view,DEPTH depth);
 CGRect placeColorLayerForViewWithDepth(UIView* view,DEPTH depth);
+void setDepthOfControlIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH depth,UIView* view,CAGradientLayer *bevelLayer,CALayer* colorLayer,CAGradientLayer* colorGradientLayer);
 void setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(DEPTH depth,UIView* view,CAGradientLayer *bevelLayer,CALayer *colorLayer,CAGradientLayer *colorGradientLayer);

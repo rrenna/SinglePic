@@ -28,7 +28,10 @@
 //
 #define NOTIFICATION_PROFILES_CHANGED @"NOTIFICATION_PROFILES_CHANGED"
 //
-#define USER_ID_ME @"me"
+#define NOTIFICATION_BLOCKED_PROFILE @"NOTIFICATION_BLOCKED_PROFILE"
+
+//Constants
+static const NSString* USER_ID_ME  = @"me";
 
 typedef enum
 {
@@ -131,6 +134,8 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError;
 -(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* image))onCompletion andErrorHandler:(void(^)())onError;
 
+//Blocking Users
+-(void)blockProfile:(SPProfile*)profile withCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError;
 //Likes
 -(BOOL)checkIsLiked:(SPProfile*)profile;
 -(void)retrieveLikesWithCompletionHandler:(void (^)(NSArray* likes))onCompletion andErrorHandler:(void(^)())onError;

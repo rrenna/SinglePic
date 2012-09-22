@@ -81,17 +81,15 @@
 }
 -(void)logError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
 {   
-    #if defined (DEBUG)
+    #ifndef RELEASE
     //Log the error using NSLogger - if debugging
     NSString* errorType = nil;
-    NSString* errorInfo = nil;
     
     if([error userInfo]) {
         errorType = [[error userInfo] objectForKey:@"type"];
-        errorInfo = [[error userInfo] objectForKey:@"error"];
     }
     
-    LogMessage([error domain], 0, @"type:%@ error:%@",errorType,errorInfo);
+    LogMessage([error domain], 0, @"type:%@ error:%@",errorType,error);
     #endif
     
     BOOL handled = NO;
@@ -155,7 +153,7 @@
     
     //If beta testing - submit a testflight feedback form with the contents of this error and device information
     #if defined (TESTING)
-    NSString* testFlightReport = [NSString stringWithFormat:@"Error:%@ \n Description:%@ Method:%@",failureReason,description,WEB_SERVICE_REQUEST_TYPE_NAMES[method]];
+    NSString* testFlightReport = [NSString stringWithFormat:@"Error:%@ \n Description:%@ Method:%@ UserInfo:%@",failureReason,description,WEB_SERVICE_REQUEST_TYPE_NAMES[method],error.userInfo];
     [TestFlight submitFeedback:testFlightReport];
     #else
     //If this is not a test product, attempt to compose an email for the user to send

@@ -339,7 +339,7 @@
         miniAvatarImage.hidden = NO;
         miniAvatarImage.image = [[SPProfileManager sharedInstance] myImage];
         miniAvatarImage.layer.cornerRadius = 6.0f;
-        miniAvatarImage.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        miniAvatarImage.layer.borderColor = [UIColor colorWithWhite:0.1 alpha:0.55].CGColor;
         miniAvatarImage.layer.borderWidth = 1.0f;
         miniAvatarImage.layer.masksToBounds = YES;
     }

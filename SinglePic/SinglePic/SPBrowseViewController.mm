@@ -53,7 +53,7 @@ static int profileIndex = 0;
 -(void)destroyBottomViewBody:(UIView*)bottomView;
 -(void)addBodyForBoxView:(SPBlockView *)boxView;
 -(void)addPhysicalBodyForStaticView:(UIView *)physicalView;
--(void)remove:(id)sender;
+-(void)removeProfileByID:(NSString*)profileID;
 -(int)currentTickCount;
 -(int)tickCountWithOffset:(int)offset;
 -(void)increaseCurrentTickCount;
@@ -80,6 +80,7 @@ static int profileIndex = 0;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_GENDER_CHANGED object:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_PREFERENCE_CHANGED object:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_BUCKET_CHANGED object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeProfileByID:) name:NOTIFICATION_BLOCKED_PROFILE object:nil];
         }
     }
     return self;
@@ -428,10 +429,10 @@ static int profileIndex = 0;
 -(void)destroyBottomViewBody:(UIView*)bottomView
 {
     b2Body *viewBody = (b2Body*)[bottomView tag];
-        //if(viewBody)
+    if(viewBody)
     {
         world->DestroyBody(viewBody);
-            //bottomView.tag = 0;//Zero out the pointer so the view can never be re-removed
+        bottomView.tag = 0;//Zero out the pointer so the view can never be re-removed
     }
 }
 -(void)addBodyForBoxView:(SPBlockView *)boxView
@@ -600,10 +601,8 @@ int currentTick = 0;
         }
 	}
 }
--(void)remove:(id)sender
+-(void)removeProfileByID:(NSString*)profileID
 {
-    //SPBlockView* boxView = (SPBlockView*)[sender superview];
-    
     /*
      [UIView beginAnimations:nil context:context];
      [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:socialButton cache:NO];
@@ -619,7 +618,6 @@ int currentTick = 0;
      [boxView removeFromSuperview];
      */
 }
-
 -(void)drop:(NSTimer *)timer
 {
     //Interate over each column

@@ -139,6 +139,17 @@
         [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateHighlighted];
         [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.9] forState:UIControlStateHighlighted];
     }
+    else if(style == STYLE_NAVIGATION)
+    {
+        [self setTitleColor:[UIColor colorWithWhite:0.95 alpha:1] forState:UIControlStateNormal];
+        [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.5] forState:UIControlStateNormal];
+        
+        [self setTitleColor:[UIColor colorWithWhite:0.75 alpha:1] forState:UIControlStateHighlighted];
+        [self setTitleShadowColor:[UIColor colorWithWhite:0.0 alpha:0.9] forState:UIControlStateHighlighted];
+        
+        [self setTitleColor:[UIColor colorWithRed:0.546 green:0.15 blue:0.15 alpha:1.0] forState:UIControlStateDisabled];
+        [self setTitleShadowColor:[UIColor colorWithRed:0.65 green:0.25 blue:0.25 alpha:1.0] forState:UIControlStateDisabled];
+    }
     
     self.titleLabel.textAlignment = UITextAlignmentCenter;
     self.titleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -153,7 +164,9 @@
 }
 -(void)setDepth:(DEPTH)depth
 {
-    setDepthOfViewIncludingBevelLayerAndColorLayerAndColorGradientLayer(depth,self,self.bevelLayer,nil,self.colorGradientLayer);
+    setDepthOfControlIncludingBevelLayerAndColorLayerAndColorGradientLayer(depth,self,self.bevelLayer,nil,self.colorGradientLayer);
+    
+        //[self.layer insertSublayer:self.bevelLayer atIndex:0];
 }
 #pragma mark - Private methods
 - (void)setupLayers:(STYLE)style

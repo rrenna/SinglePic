@@ -14,7 +14,7 @@
 @protocol SPProfileViewDelegate <NSObject>
 @end
 
-@interface SPProfileViewController : SPPageContentViewController <UITableViewDataSource,UITableViewDelegate>
+@interface SPProfileViewController : SPPageContentViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
     IBOutlet UILabel* ageLabel;
     IBOutlet UIImageView* imageView;
@@ -32,5 +32,6 @@
 
 -(IBAction)message:(id)sender;
 -(IBAction)like:(id)sender;
+-(IBAction)more:(id)sender;
 @end
 

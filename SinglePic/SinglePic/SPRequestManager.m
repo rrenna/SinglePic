@@ -186,9 +186,17 @@
         NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
         int errorCode = [error code];
         int statusCode = [[operation response] statusCode];
+
+        if([[operation request] HTTPBody])
+        {
+            NSString* HTTPBody = [[NSString alloc] initWithData:[[operation request] HTTPBody] encoding:NSUTF8StringEncoding];
+            
+            if(HTTPBody)    [userInfo setObject:HTTPBody forKey:@"HTTP Body"];
+        }
         
         [userInfo setObject:[NSNumber numberWithInt:statusCode] forKey:@"statusCode"];
         [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
+        
         
         if(operation.responseData)
         {

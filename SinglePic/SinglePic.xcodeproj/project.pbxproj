@@ -228,7 +228,6 @@
 		F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F615FD122900852650 /* ColorGrid.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F01FC1FB15FD122900852650 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F715FD122900852650 /* Colors.plist */; };
 		F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC20015FD8C5E00852650 /* SPMessageThread.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F01FC20315FD976D00852650 /* BG-Linen-Bright-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = F01FC20215FD976D00852650 /* BG-Linen-Bright-Red.png */; };
 		F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F02505BC15F02407000D4546 /* libicucore.dylib */; };
 		F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F02642A214DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */; };
@@ -258,6 +257,7 @@
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
+		F066BE16160E0A9700FBA319 /* Tab-Icon-Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
 		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
@@ -715,7 +715,6 @@
 		F01FC1FE15FD8BB700852650 /* SPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettings.h; sourceTree = "<group>"; };
 		F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
 		F01FC20015FD8C5E00852650 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
-		F01FC20215FD976D00852650 /* BG-Linen-Bright-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Bright-Red.png"; path = "../../Resources/BG-Linen-Bright-Red.png"; sourceTree = "<group>"; };
 		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F026429E14DF9F2100E8D649 /* SPIcebreakerComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPIcebreakerComposeViewController.h; sourceTree = "<group>"; };
 		F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPIcebreakerComposeViewController.m; sourceTree = "<group>"; };
@@ -751,6 +750,7 @@
 		F0620D091524B9B8008D334C /* SPSubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionViewController.h; sourceTree = "<group>"; };
 		F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionViewController.m; sourceTree = "<group>"; };
 		F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSubscriptionViewController.xib; sourceTree = "<group>"; };
+		F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Icon-Profile.png"; path = "../../Resources/Tab-Icon-Profile.png"; sourceTree = "<group>"; };
 		F06EF7DA14F01AFF008F9EF5 /* SPSubscriptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionsManager.h; sourceTree = "<group>"; };
 		F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionsManager.m; sourceTree = "<group>"; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
@@ -1330,7 +1330,6 @@
 			isa = PBXGroup;
 			children = (
 				F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */,
-				F01FC20215FD976D00852650 /* BG-Linen-Bright-Red.png */,
 				F03869ED1601893800D14B84 /* BG-Linen-Red-Blend-568h.png */,
 				F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */,
 				F03869EF16018A7F00D14B84 /* default-568h.png */,
@@ -1731,6 +1730,7 @@
 		F002E03216096D8900B451BD /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */,
 				F002E02D16096D8400B451BD /* BTN-TakePic.png */,
 				F002E02E16096D8400B451BD /* BTN-TakePic@2x.png */,
 				F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */,
@@ -2639,7 +2639,6 @@
 				F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */,
 				F01FC1F815FD122900852650 /* arrow.png in Resources */,
 				F01FC1FB15FD122900852650 /* Colors.plist in Resources */,
-				F01FC20315FD976D00852650 /* BG-Linen-Bright-Red.png in Resources */,
 				F03869E91601872F00D14B84 /* default-568h@2x.png in Resources */,
 				F03869EC1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png in Resources */,
 				F03869EE1601893800D14B84 /* BG-Linen-Red-Blend-568h.png in Resources */,
@@ -2668,6 +2667,7 @@
 				F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */,
 				F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */,
 				F0D663BE160DC59A00607E2D /* appicon72.png in Resources */,
+				F066BE16160E0A9700FBA319 /* Tab-Icon-Profile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

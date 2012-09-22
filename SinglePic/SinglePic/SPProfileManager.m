@@ -882,6 +882,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
 {
     //Register profile for future requests
     NSString* deviceToken = [[UIApplication sharedApplication].delegate deviceToken];
+    //Encoding shouldn't be required as we are using JSON encoding
+    //NSString* escapedDeviceToken = [deviceToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     if(deviceToken)
     {        
@@ -1162,6 +1164,30 @@ static int profileCounter = 0;
          }
      }];
 }
+#pragma mark - Blocking Users
+-(void)blockProfile:(SPProfile*)profile withCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
+{
+        //Note: We do not cache full-size images
+    NSString* parameter = [NSString stringWithFormat:@"me/blocks/%@",[profile identifier]];
+    
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject) {
+        
+        //Creating a copy of the identifier to ensure it is not removed underneath us during onComplete()
+        NSString* blockedProfileID = [[profile identifier] copy];
+        
+        onCompletion();
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLOCKED_PROFILE object:blockedProfileID];
+        [blockedProfileID release];
+        
+    } andErrorHandler:^(SPWebServiceError *error) {
+        
+        if(onError)
+        {
+            onError();
+        }
+    }];
+}
 #pragma mark - Likes
 -(BOOL)checkIsLiked:(SPProfile*)profile
 {
@@ -1192,7 +1218,6 @@ static int profileCounter = 0;
                   _likes = [[NSMutableArray alloc] initWithArray:profiles_];
                   
                   onCompletion(_likes);
-                  
                   
                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKES_RECIEVED object:nil];
               } 

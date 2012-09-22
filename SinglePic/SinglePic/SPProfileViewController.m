@@ -140,6 +140,13 @@
         }
     }
 }
+-(IBAction)more:(id)sender
+{
+    UIActionSheet* profileMoreActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Block User" otherButtonTitles: nil];
+    [profileMoreActionsSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    [profileMoreActionsSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+    [profileMoreActionsSheet release];
+}
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
@@ -169,5 +176,29 @@
          imageView.image = image;
      }
      andErrorHandler:nil];
+}
+#pragma mark - UIActionSheetDelegate methods
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == [actionSheet cancelButtonIndex])
+    {
+        // Do nothing
+    }
+    else if(buttonIndex == [actionSheet destructiveButtonIndex])
+    {
+        //Block User
+        [[SPProfileManager sharedInstance] blockProfile:self.profile withCompletionHandler:^{
+           
+            [self close];
+            
+        } andErrorHandler:^{
+            
+            
+        }];
+    }
+    else
+    {
+        //
+    }
 }
 @end
