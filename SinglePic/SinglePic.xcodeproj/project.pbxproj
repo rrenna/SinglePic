@@ -1845,11 +1845,11 @@
 		F01C41EA14C7C8980079EB18 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				75F5099214DC4CF000458357 /* SPMessages.h */,
 				F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */,
 				F01FC20015FD8C5E00852650 /* SPMessageThread.m */,
 				757616A115DE989A00706519 /* SPMessageAccount.h */,
 				757616A215DE989A00706519 /* SPMessageAccount.m */,
-				75F5099214DC4CF000458357 /* SPMessages.h */,
 				F01C41EF14C7CB2F0079EB18 /* Storage */,
 				F02ABE5A14D04EB8000FE283 /* SPMessage.h */,
 				F02ABE5B14D04EB8000FE283 /* SPMessage.m */,
@@ -2008,8 +2008,8 @@
 		F0A7923F14ED3FDC00296D7D /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				751EDDBF14EEF763007FBEC7 /* Custom Errors */,
 				75D196F714ED92E200A23654 /* SPErrors.h */,
+				751EDDBF14EEF763007FBEC7 /* Custom Errors */,
 				F0A7924114ED404100296D7D /* SPErrorManager.h */,
 				F0A7924214ED404100296D7D /* SPErrorManager.m */,
 			);
@@ -2431,9 +2431,9 @@
 		F0F80A0A15F6B02600201FF4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F01FC1FE15FD8BB700852650 /* SPSettings.h */,
 				F0F80A0B15F6C69300201FF4 /* SPSettingsManager.h */,
 				F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */,
-				F01FC1FE15FD8BB700852650 /* SPSettings.h */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

@@ -12,9 +12,6 @@
 
 #define MESSAGE_AUTO_REFRESH_TIMER 120 //seconds
 
-extern NSString* NOTIFICATION_NEW_MESSAGES_RECIEVED;
-extern NSString* NOTIFICATION_NO_MESSAGES_RECIEVED;
-
 @interface SPMessageManager : SPSingleton
 {
     @private

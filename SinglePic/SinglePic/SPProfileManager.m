@@ -884,13 +884,13 @@ static NSURL* _thumbnailUploadURLCache = nil;
     //Register profile for future requests
     NSString* deviceToken = [[UIApplication sharedApplication].delegate deviceToken];
     //Encoding shouldn't be required as we are using JSON encoding
-    //NSString* escapedDeviceToken = [deviceToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* escapedDeviceToken = [deviceToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     if(deviceToken)
     {        
         NSString* parameter = [NSString stringWithFormat:@"%@/pushToken",USER_ID_ME];
 
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"pushToken":deviceToken} requiringToken:YES withCompletionHandler:^(id responseObject)
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"pushToken":escapedDeviceToken} requiringToken:YES withCompletionHandler:^(id responseObject)
          {
              #if defined (TESTING)
              [TestFlight passCheckpoint:@"Registered Device Push Token"];

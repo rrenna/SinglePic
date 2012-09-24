@@ -485,6 +485,7 @@
 }
 - (void)viewDidUnload {
     newConnectionAlertImage = nil;
+    newMessageAlertImage = nil;
     [super viewDidUnload];
 }
 @end
