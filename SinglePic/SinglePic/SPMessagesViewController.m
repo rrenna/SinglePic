@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
-    [refreshButton setStyle:STYLE_BASE];
+        //[refreshButton setStyle:STYLE_BASE];
     [editButton setStyle:STYLE_BASE];
     [activityBackgroundView setStyle:STYLE_BASE];
 }
@@ -56,6 +56,7 @@
     [TestFlight passCheckpoint:@"Manually refreshed Messages"];
     #endif
     
+    refreshButton.hidden = YES;
     [activityView startAnimating];
     [[SPMessageManager sharedInstance] forceRefresh];
 }
@@ -71,6 +72,7 @@
 }
 -(void)finishedReloading
 {
+    refreshButton.hidden = NO;
     [activityView stopAnimating];
 }
 #pragma mark - UITableView Delegate and Datasource

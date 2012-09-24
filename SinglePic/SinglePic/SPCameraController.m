@@ -24,6 +24,7 @@
     self = [self initWithNibName:@"SPCameraController" bundle:nil];
     if(self)
     {
+        [imagePicker cameraFlashMode];
     }
     return self;
 }
@@ -46,7 +47,10 @@
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
             imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+            switchFlashModeButton.enabled = YES;
             imagePicker.showsCameraControls = NO;
+            
         }
        
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
@@ -94,10 +98,25 @@
     if(self.imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
     {
         self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        switchFlashModeButton.enabled = YES;
     }
     else
     {
         self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        switchFlashModeButton.enabled = NO;
+    }
+}
+-(IBAction)switchFlashMode:(id)sender
+{
+    if(self.imagePicker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOff)
+    {
+        imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+        switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-on"];
+    }
+    else
+    {
+        imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-off"];
     }
 }
 -(IBAction)takePicture:(id)sender
@@ -149,17 +168,34 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImageOrientation originalOrientation = (picker.cameraDevice == UIImagePickerControllerCameraDeviceRear) ? UIImageOrientationRight : UIImageOrientationLeftMirrored;
+    UIImage* modifiedImage = nil;
     
     float minDimension = MIN(originalImage.size.width, originalImage.size.height);
-    
     UIImage *croppedImage = [originalImage croppedImage:CGRectMake(0,0,minDimension,minDimension) ];
-    UIImage* resizedImage = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0 orientation: originalOrientation];
     
-    cameraPreviewImageView.image = resizedImage;
+    
+    if(picker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
+    {
+        UIImageOrientation originalOrientation = UIImageOrientationRight;
+        modifiedImage = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0 orientation: originalOrientation];
+    }
+    else
+    {
+        CGSize imageSize = croppedImage.size;
+        UIGraphicsBeginImageContextWithOptions(imageSize, YES, 1.0);
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextRotateCTM(ctx, M_PI/2);
+        CGContextTranslateCTM(ctx, 0, -imageSize.width);
+        CGContextScaleCTM(ctx, imageSize.height/imageSize.width, imageSize.width/imageSize.height);
+        CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, imageSize.width, imageSize.height), croppedImage.CGImage);
+        modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }    
+    
+    cameraPreviewImageView.image = modifiedImage;
     imagePicker.view.alpha = 0.0;
     
-    [self setMyPicture:resizedImage];
+    [self setMyPicture:modifiedImage];
 }
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

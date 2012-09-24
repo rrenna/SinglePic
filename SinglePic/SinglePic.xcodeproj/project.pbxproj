@@ -258,6 +258,7 @@
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
 		F066BE16160E0A9700FBA319 /* Tab-Icon-Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */; };
+		F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
 		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
@@ -373,6 +374,13 @@
 		F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D6D7C5160C1BA60068EBBE /* Paper-Right.png */; };
 		F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D6D7C6160C1BA60068EBBE /* Paper-Right@2x.png */; };
 		F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0DB3AC416107DD4006A4A97 /* icon-Refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3AC316107DD4006A4A97 /* icon-Refresh.png */; };
+		F0DB3AC816107DDB006A4A97 /* MessageBubble-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3AC616107DDB006A4A97 /* MessageBubble-white.png */; };
+		F0DB3AC916107DDB006A4A97 /* MessageBubble-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3AC716107DDB006A4A97 /* MessageBubble-blue.png */; };
+		F0DB3ACE16107DE7006A4A97 /* Nav-Messages-ON.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3ACA16107DE7006A4A97 /* Nav-Messages-ON.png */; };
+		F0DB3ACF16107DE7006A4A97 /* Nav-Messages-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3ACB16107DE7006A4A97 /* Nav-Messages-OFF.png */; };
+		F0DB3AD016107DE7006A4A97 /* Nav-Likes-ON.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3ACC16107DE7006A4A97 /* Nav-Likes-ON.png */; };
+		F0DB3AD116107DE7006A4A97 /* Nav-Likes-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DB3ACD16107DE7006A4A97 /* Nav-Likes-OFF.png */; };
 		F0DE63421604EE4C00785FF2 /* dialog-up.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE633E1604EE4A00785FF2 /* dialog-up.png */; };
 		F0DE63431604EE4C00785FF2 /* dialog-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */; };
 		F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63401604EE4B00785FF2 /* dialog-down.png */; };
@@ -751,6 +759,7 @@
 		F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionViewController.m; sourceTree = "<group>"; };
 		F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSubscriptionViewController.xib; sourceTree = "<group>"; };
 		F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Icon-Profile.png"; path = "../../Resources/Tab-Icon-Profile.png"; sourceTree = "<group>"; };
+		F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MyProfile-OBE-Pic.png"; path = "../../Resources/MyProfile-OBE-Pic.png"; sourceTree = "<group>"; };
 		F06EF7DA14F01AFF008F9EF5 /* SPSubscriptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionsManager.h; sourceTree = "<group>"; };
 		F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionsManager.m; sourceTree = "<group>"; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
@@ -938,6 +947,13 @@
 		F0D6D7C6160C1BA60068EBBE /* Paper-Right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Paper-Right@2x.png"; path = "../../Resources/Paper-Right@2x.png"; sourceTree = "<group>"; };
 		F0DB12CF14FA9603008F81A0 /* SPStyledSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledSegmentedControl.h; sourceTree = "<group>"; };
 		F0DB12D014FA9603008F81A0 /* SPStyledSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyledSegmentedControl.m; sourceTree = "<group>"; };
+		F0DB3AC316107DD4006A4A97 /* icon-Refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Refresh.png"; path = "../../Resources/icon-Refresh.png"; sourceTree = "<group>"; };
+		F0DB3AC616107DDB006A4A97 /* MessageBubble-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-white.png"; path = "../../Resources/MessageBubble-white.png"; sourceTree = "<group>"; };
+		F0DB3AC716107DDB006A4A97 /* MessageBubble-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-blue.png"; path = "../../Resources/MessageBubble-blue.png"; sourceTree = "<group>"; };
+		F0DB3ACA16107DE7006A4A97 /* Nav-Messages-ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Messages-ON.png"; path = "../../Resources/Nav-Messages-ON.png"; sourceTree = "<group>"; };
+		F0DB3ACB16107DE7006A4A97 /* Nav-Messages-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Messages-OFF.png"; path = "../../Resources/Nav-Messages-OFF.png"; sourceTree = "<group>"; };
+		F0DB3ACC16107DE7006A4A97 /* Nav-Likes-ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Likes-ON.png"; path = "../../Resources/Nav-Likes-ON.png"; sourceTree = "<group>"; };
+		F0DB3ACD16107DE7006A4A97 /* Nav-Likes-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Likes-OFF.png"; path = "../../Resources/Nav-Likes-OFF.png"; sourceTree = "<group>"; };
 		F0DE633E1604EE4A00785FF2 /* dialog-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-up.png"; path = "../../Resources/dialog-up.png"; sourceTree = "<group>"; };
 		F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-up@2x.png"; path = "../../Resources/dialog-up@2x.png"; sourceTree = "<group>"; };
 		F0DE63401604EE4B00785FF2 /* dialog-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down.png"; path = "../../Resources/dialog-down.png"; sourceTree = "<group>"; };
@@ -1073,9 +1089,12 @@
 				F0207AAA14C66A0200330FF0 /* Cards */,
 				F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */,
 				759008DC14FD73EA00009E86 /* arrow.png */,
+				F0DB3AC616107DDB006A4A97 /* MessageBubble-white.png */,
+				F0DB3AC716107DDB006A4A97 /* MessageBubble-blue.png */,
 				75A38B9B14E9B004000F00DF /* noImage-Block.png */,
 				7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */,
 				7577B1A215DD927000B15B15 /* icon_Close.png */,
+				F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */,
 				7577B1A315DD927000B15B15 /* icon_Flash-off.png */,
 				7577B1BD15DD931500B15B15 /* carbon_fibre.png */,
 				F0F80A0815F6A97E00201FF4 /* testingImage.png */,
@@ -1730,9 +1749,14 @@
 		F002E03216096D8900B451BD /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				F0DB3AC316107DD4006A4A97 /* icon-Refresh.png */,
 				F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */,
 				F002E02D16096D8400B451BD /* BTN-TakePic.png */,
 				F002E02E16096D8400B451BD /* BTN-TakePic@2x.png */,
+				F0DB3ACA16107DE7006A4A97 /* Nav-Messages-ON.png */,
+				F0DB3ACB16107DE7006A4A97 /* Nav-Messages-OFF.png */,
+				F0DB3ACC16107DE7006A4A97 /* Nav-Likes-ON.png */,
+				F0DB3ACD16107DE7006A4A97 /* Nav-Likes-OFF.png */,
 				F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */,
 				F0C988A914E0BA6100264228 /* BTN-EditPhoto@2x.png */,
 				F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */,
@@ -2668,6 +2692,14 @@
 				F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */,
 				F0D663BE160DC59A00607E2D /* appicon72.png in Resources */,
 				F066BE16160E0A9700FBA319 /* Tab-Icon-Profile.png in Resources */,
+				F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */,
+				F0DB3AC416107DD4006A4A97 /* icon-Refresh.png in Resources */,
+				F0DB3AC816107DDB006A4A97 /* MessageBubble-white.png in Resources */,
+				F0DB3AC916107DDB006A4A97 /* MessageBubble-blue.png in Resources */,
+				F0DB3ACE16107DE7006A4A97 /* Nav-Messages-ON.png in Resources */,
+				F0DB3ACF16107DE7006A4A97 /* Nav-Messages-OFF.png in Resources */,
+				F0DB3AD016107DE7006A4A97 /* Nav-Likes-ON.png in Resources */,
+				F0DB3AD116107DE7006A4A97 /* Nav-Likes-OFF.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

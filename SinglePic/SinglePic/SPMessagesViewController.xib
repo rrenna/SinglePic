@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C50</string>
+		<string key="IBDocument.SystemVersion">12C54</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -59,7 +59,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{28, 88}, {244, 366}}</string>
 						<reference key="NSSuperview" ref="528573561"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:418</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -77,7 +76,7 @@
 					<object class="IBUIButton" id="73311265">
 						<reference key="NSNextResponder" ref="528573561"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{210, 46}, {65, 31}}</string>
+						<string key="NSFrame">{{208, 46}, {65, 31}}</string>
 						<reference key="NSSuperview" ref="528573561"/>
 						<reference key="NSNextKeyView" ref="967509401"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
@@ -109,28 +108,6 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="863464712">
-						<reference key="NSNextResponder" ref="528573561"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{137, 46}, {65, 31}}</string>
-						<reference key="NSSuperview" ref="528573561"/>
-						<reference key="NSNextKeyView" ref="73311265"/>
-						<string key="NSReuseIdentifierKey">_NS:225</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Refresh</string>
-						<reference key="IBUIHighlightedTitleColor" ref="139720893"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="263582332"/>
-						<reference key="IBUIFontDescription" ref="745553176"/>
-						<reference key="IBUIFont" ref="725437817"/>
-					</object>
 					<object class="IBUIView" id="25570869">
 						<reference key="NSNextResponder" ref="528573561"/>
 						<int key="NSvFlags">292</int>
@@ -150,7 +127,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{30, 53}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="528573561"/>
-						<reference key="NSNextKeyView" ref="863464712"/>
+						<reference key="NSNextKeyView" ref="73311265"/>
 						<string key="NSReuseIdentifierKey">_NS:1030</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -164,7 +141,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{28, 0}, {254, 41}}</string>
 						<reference key="NSSuperview" ref="528573561"/>
-						<reference key="NSNextKeyView" ref="25570869"/>
+						<reference key="NSNextKeyView" ref="863464712"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -198,6 +175,34 @@
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUIButton" id="863464712">
+						<reference key="NSNextResponder" ref="528573561"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{24, 47}, {32, 31}}</string>
+						<reference key="NSSuperview" ref="528573561"/>
+						<reference key="NSNextKeyView" ref="25570869"/>
+						<string key="NSReuseIdentifierKey">_NS:225</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<double key="IBUIContentEdgeInsets.top">5</double>
+						<double key="IBUIContentEdgeInsets.bottom">5</double>
+						<double key="IBUIContentEdgeInsets.left">5</double>
+						<double key="IBUIContentEdgeInsets.right">5</double>
+						<reference key="IBUIHighlightedTitleColor" ref="139720893"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="263582332"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">icon-Refresh.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="745553176"/>
+						<reference key="IBUIFont" ref="725437817"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{275, 460}</string>
@@ -391,8 +396,8 @@
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.CustomClassName">SPLabel</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="27.CustomClassName">SPStyledButton</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="27.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.CustomClassName">SPStyledView</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -408,6 +413,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">icon-Refresh.png</string>
+			<string key="NS.object.0">{27, 27}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>

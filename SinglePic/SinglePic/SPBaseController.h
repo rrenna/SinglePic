@@ -31,6 +31,7 @@ typedef enum
     IBOutlet UIView* navigationView;
     IBOutlet UIImageView* backgroundImageView;
     IBOutlet UINavigationBar *navigationBar;
+    __weak IBOutlet UIImageView *newConnectionAlertImage;
     IBOutlet UIImageView *miniAvatarImage;
     IBOutlet SPStyledProgressView *miniProgressView;
     //Navigation

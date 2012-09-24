@@ -25,6 +25,7 @@
 -(void)browseScreenProfileSelected;
 -(void)updateExpiry;
 -(void)updateAvatar;
+-(void)flashNewConnectionAlert;
 -(void)validateReachability;
 -(void)locationServicesValidated;
 -(void)navigationMode;
@@ -128,6 +129,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAvatar) name:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flashNewConnectionAlert) name:NOTIFICATION_LIKE_ADDED object:nil];
     }
     return self;
 }
@@ -336,7 +338,6 @@
 {
     if( ![[SPProfileManager sharedInstance] isImageExpired] )
     {
-        miniAvatarImage.hidden = NO;
         miniAvatarImage.image = [[SPProfileManager sharedInstance] myImage];
         miniAvatarImage.layer.cornerRadius = 6.0f;
         miniAvatarImage.layer.borderColor = [UIColor colorWithWhite:0.1 alpha:0.55].CGColor;
@@ -345,9 +346,16 @@
     }
     else
     {
-        miniAvatarImage.image = nil;
-        miniAvatarImage.hidden = YES;
+        miniAvatarImage.image = [UIImage imageNamed:@"Tab-Icon-Profile"];
+        miniAvatarImage.layer.borderWidth = 0.0f;
     }
+}
+-(void)flashNewConnectionAlert
+{
+    newConnectionAlertImage.alpha = 1.0;
+    [UIView animateWithDuration:1.0 animations:^{
+        newConnectionAlertImage.alpha = 0.0;
+    }];
 }
 -(void)userTypeChangedWithNotification:(NSNotification*)notification
 {
@@ -474,5 +482,9 @@
 {
     [overlayController.view removeFromSuperview];
     self.helpOverlayController = nil;
+}
+- (void)viewDidUnload {
+    newConnectionAlertImage = nil;
+    [super viewDidUnload];
 }
 @end

@@ -283,6 +283,22 @@
 }
 -(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(UIImage* responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    [httpClient enqueueHTTPRequestOperation:
+     [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
+      {
+          UIImage* image = [UIImage imageWithData:responseObject];
+          onCompletion(image);
+      }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error)
+      {
+          NSLog(@"GET Image Request to URL failed : %@", operation.request.URL);
+          onError(error);
+      }]
+     ];
+    
+    /*
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url]; 
     
     AFImageRequestOperation* imageRequest = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *image)
@@ -304,6 +320,6 @@
         }
     }];
     
-    [httpClient enqueueHTTPRequestOperation:imageRequest];
+    [httpClient enqueueHTTPRequestOperation:imageRequest];*/
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 //Media
-static NSString* DEFAULT_PORTRAIT_IMAGE = @"MyProfile-OBE-Pic";
+static const NSString* DEFAULT_PORTRAIT_IMAGE = @"MyProfile-OBE-Pic";
 
 //Profiles
 static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};

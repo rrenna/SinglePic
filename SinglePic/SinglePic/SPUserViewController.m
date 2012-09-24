@@ -144,6 +144,11 @@
 -(void)updateImage
 {
     UIImage* avatar = [[SPProfileManager sharedInstance] myImage];
+    if(!avatar)
+    {
+        avatar = [UIImage imageNamed:DEFAULT_PORTRAIT_IMAGE];
+    }
+    
     avatarImageView.image = avatar;
 }
 -(void)updateUsername

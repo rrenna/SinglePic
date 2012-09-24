@@ -12,9 +12,11 @@
 {
     IBOutlet UIView* cameraContainerView;
     IBOutlet UIImageView* cameraPreviewImageView;
+    IBOutlet UIBarButtonItem* switchFlashModeButton;
     IBOutlet UIBarButtonItem* switchCameraBarButton;
 }
 -(IBAction)cancel:(id)sender;
 -(IBAction)switchCameras:(id)sender;
+-(IBAction)switchFlashMode:(id)sender;
 -(IBAction)takePicture:(id)sender;
 @end

@@ -153,7 +153,6 @@
         if(!self.image)
         {
             _hasProfileImage = NO;
-            self.image = [UIImage imageNamed:DEFAULT_PORTRAIT_IMAGE];
         }
     }
     
@@ -479,7 +478,11 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         //Upload the fullsized image
         //Never uploads the full quality image ( > 7mb on iPhone 4) 
         UIImage *resizedImage = [ImageHelper scaleImage:_image proportionalToSize:MAXIMUM_IMAGE_SIZE];
-        [[SPRequestManager sharedInstance] putToURL:imageUploadURL withPayload:resizedImage withCompletionHandler:^(id responseObject) 
+        //Upload the thumbnail image
+        UIImage *resizedThumbnail = [ImageHelper scaleImage:resizedImage proportionalToSize:MAXIMUM_THUMBNAIL_SIZE];
+        
+        
+        [[SPRequestManager sharedInstance] putToURL:imageUploadURL withPayload:resizedImage withCompletionHandler:^(id responseObject)
          {
              //Flag that the image has been uploaded, and if the thumbnail has been uploaded, we are done
              imageUploaded = YES;
@@ -503,9 +506,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
              }
          }];
         
-        //Upload the thumbnail image
-        UIImage *resizedThumbnail = [ImageHelper scaleImage:_image proportionalToSize:MAXIMUM_THUMBNAIL_SIZE];
-        [[SPRequestManager sharedInstance] putToURL:thumbnailUploadURL withPayload:resizedThumbnail withCompletionHandler:^(id responseObject) 
+        [[SPRequestManager sharedInstance] putToURL:thumbnailUploadURL withPayload:resizedThumbnail withCompletionHandler:^(id responseObject)
          {
              //Flag that the image has been uploaded, and if the thumbnail has been uploaded, we are done
              thumbnailUploaded = YES;
