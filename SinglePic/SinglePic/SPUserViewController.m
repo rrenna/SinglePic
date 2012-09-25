@@ -39,7 +39,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUsername) name:NOTIFICATION_MY_USER_NAME_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateIcebreaker) name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     return self;
 }
@@ -72,6 +73,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_USER_NAME_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];     
+    
     [orientationController release];
     [locationController release];
     [cameraController release];
