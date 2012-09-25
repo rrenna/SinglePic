@@ -260,8 +260,8 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
-								<double key="IBUIContentEdgeInsets.top">12</double>
-								<double key="IBUIContentEdgeInsets.bottom">28</double>
+								<double key="IBUIContentEdgeInsets.top">9</double>
+								<double key="IBUIContentEdgeInsets.bottom">31</double>
 								<double key="IBUIContentEdgeInsets.left">5</double>
 								<double key="IBUIContentEdgeInsets.right">11</double>
 								<reference key="IBUIHighlightedTitleColor" ref="191825309"/>
@@ -296,8 +296,8 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
-								<double key="IBUIContentEdgeInsets.top">12</double>
-								<double key="IBUIContentEdgeInsets.bottom">28</double>
+								<double key="IBUIContentEdgeInsets.top">9</double>
+								<double key="IBUIContentEdgeInsets.bottom">31</double>
 								<double key="IBUIContentEdgeInsets.left">5</double>
 								<double key="IBUIContentEdgeInsets.right">11</double>
 								<reference key="IBUIHighlightedTitleColor" ref="191825309"/>
@@ -319,6 +319,7 @@
 								<string key="NSFrame">{{5, 429}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="141723210"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">2</int>

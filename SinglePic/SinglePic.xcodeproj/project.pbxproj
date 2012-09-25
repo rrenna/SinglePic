@@ -257,7 +257,6 @@
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
-		F066BE16160E0A9700FBA319 /* Tab-Icon-Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */; };
 		F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
@@ -283,6 +282,13 @@
 		F0B3C69614F48A6100FC3A92 /* appicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B3C69514F48A6100FC3A92 /* appicon114.png */; };
 		F0B3C69814F48A9600FC3A92 /* appicon57.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B3C69714F48A9600FC3A92 /* appicon57.png */; };
 		F0B40D4114DA50D000C6719C /* SPMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B40D4014DA50D000C6719C /* SPMessageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0B9E8BF1611D7FD006FB767 /* Nav-Likes-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8BD1611D7FD006FB767 /* Nav-Likes-OFF@2x.png */; };
+		F0B9E8C01611D7FD006FB767 /* Nav-Likes-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8BE1611D7FD006FB767 /* Nav-Likes-ON@2x.png */; };
+		F0B9E8C41611D89E006FB767 /* Nav-Profile-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C21611D89E006FB767 /* Nav-Profile-OFF.png */; };
+		F0B9E8C51611D89E006FB767 /* Nav-Profile-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C31611D89E006FB767 /* Nav-Profile-OFF@2x.png */; };
+		F0B9E8C71611D8BB006FB767 /* Nav-Likes-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C61611D8BA006FB767 /* Nav-Likes-ON@2x.png */; };
+		F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C81611D91A006FB767 /* Nav-Messages-OFF@2x.png */; };
+		F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C91611D91A006FB767 /* Nav-Messages-ON@2x.png */; };
 		F0C0B36414F741DA007BEB13 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36314F7401C007BEB13 /* UIImageView+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C0B36514F741DC007BEB13 /* UIButton+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36114F7401C007BEB13 /* UIButton+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C0B36614F741DE007BEB13 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B35F14F7401C007BEB13 /* CurledViewBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -758,7 +764,6 @@
 		F0620D091524B9B8008D334C /* SPSubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionViewController.h; sourceTree = "<group>"; };
 		F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionViewController.m; sourceTree = "<group>"; };
 		F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSubscriptionViewController.xib; sourceTree = "<group>"; };
-		F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tab-Icon-Profile.png"; path = "../../Resources/Tab-Icon-Profile.png"; sourceTree = "<group>"; };
 		F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MyProfile-OBE-Pic.png"; path = "../../Resources/MyProfile-OBE-Pic.png"; sourceTree = "<group>"; };
 		F06EF7DA14F01AFF008F9EF5 /* SPSubscriptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionsManager.h; sourceTree = "<group>"; };
 		F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionsManager.m; sourceTree = "<group>"; };
@@ -787,6 +792,13 @@
 		F0B3C69714F48A9600FC3A92 /* appicon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon57.png; path = ../../Resources/appicon57.png; sourceTree = "<group>"; };
 		F0B40D3F14DA50D000C6719C /* SPMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageView.h; sourceTree = "<group>"; };
 		F0B40D4014DA50D000C6719C /* SPMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageView.m; sourceTree = "<group>"; };
+		F0B9E8BD1611D7FD006FB767 /* Nav-Likes-OFF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Likes-OFF@2x.png"; path = "../../Resources/Nav-Likes-OFF@2x.png"; sourceTree = "<group>"; };
+		F0B9E8BE1611D7FD006FB767 /* Nav-Likes-ON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Likes-ON@2x.png"; path = "../../Resources/Nav-Likes-ON@2x.png"; sourceTree = "<group>"; };
+		F0B9E8C21611D89E006FB767 /* Nav-Profile-OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Profile-OFF.png"; path = "../../Resources/Nav-Profile-OFF.png"; sourceTree = "<group>"; };
+		F0B9E8C31611D89E006FB767 /* Nav-Profile-OFF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Profile-OFF@2x.png"; path = "../../Resources/Nav-Profile-OFF@2x.png"; sourceTree = "<group>"; };
+		F0B9E8C61611D8BA006FB767 /* Nav-Likes-ON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Likes-ON@2x.png"; path = "../../Resources/Nav-Likes-ON@2x.png"; sourceTree = "<group>"; };
+		F0B9E8C81611D91A006FB767 /* Nav-Messages-OFF@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Messages-OFF@2x.png"; path = "../../Resources/Nav-Messages-OFF@2x.png"; sourceTree = "<group>"; };
+		F0B9E8C91611D91A006FB767 /* Nav-Messages-ON@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nav-Messages-ON@2x.png"; path = "../../Resources/Nav-Messages-ON@2x.png"; sourceTree = "<group>"; };
 		F0C0B35E14F7401C007BEB13 /* CurledViewBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CurledViewBase.h; path = Libraries/CurledView/CurledViewBase.h; sourceTree = SOURCE_ROOT; };
 		F0C0B35F14F7401C007BEB13 /* CurledViewBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CurledViewBase.m; path = Libraries/CurledView/CurledViewBase.m; sourceTree = SOURCE_ROOT; };
 		F0C0B36014F7401C007BEB13 /* UIButton+Curled.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIButton+Curled.h"; path = "Libraries/CurledView/UIButton+Curled.h"; sourceTree = SOURCE_ROOT; };
@@ -1750,11 +1762,17 @@
 			isa = PBXGroup;
 			children = (
 				F0DB3AC316107DD4006A4A97 /* icon-Refresh.png */,
-				F066BE15160E0A9700FBA319 /* Tab-Icon-Profile.png */,
+				F0B9E8BD1611D7FD006FB767 /* Nav-Likes-OFF@2x.png */,
+				F0B9E8C21611D89E006FB767 /* Nav-Profile-OFF.png */,
+				F0B9E8C31611D89E006FB767 /* Nav-Profile-OFF@2x.png */,
+				F0B9E8BE1611D7FD006FB767 /* Nav-Likes-ON@2x.png */,
 				F002E02D16096D8400B451BD /* BTN-TakePic.png */,
 				F002E02E16096D8400B451BD /* BTN-TakePic@2x.png */,
+				F0B9E8C61611D8BA006FB767 /* Nav-Likes-ON@2x.png */,
 				F0DB3ACA16107DE7006A4A97 /* Nav-Messages-ON.png */,
 				F0DB3ACB16107DE7006A4A97 /* Nav-Messages-OFF.png */,
+				F0B9E8C81611D91A006FB767 /* Nav-Messages-OFF@2x.png */,
+				F0B9E8C91611D91A006FB767 /* Nav-Messages-ON@2x.png */,
 				F0DB3ACC16107DE7006A4A97 /* Nav-Likes-ON.png */,
 				F0DB3ACD16107DE7006A4A97 /* Nav-Likes-OFF.png */,
 				F0C988A214E0B0C000264228 /* BTN-EditIceBreaker.png */,
@@ -2691,7 +2709,6 @@
 				F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */,
 				F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */,
 				F0D663BE160DC59A00607E2D /* appicon72.png in Resources */,
-				F066BE16160E0A9700FBA319 /* Tab-Icon-Profile.png in Resources */,
 				F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */,
 				F0DB3AC416107DD4006A4A97 /* icon-Refresh.png in Resources */,
 				F0DB3AC816107DDB006A4A97 /* MessageBubble-white.png in Resources */,
@@ -2700,6 +2717,13 @@
 				F0DB3ACF16107DE7006A4A97 /* Nav-Messages-OFF.png in Resources */,
 				F0DB3AD016107DE7006A4A97 /* Nav-Likes-ON.png in Resources */,
 				F0DB3AD116107DE7006A4A97 /* Nav-Likes-OFF.png in Resources */,
+				F0B9E8BF1611D7FD006FB767 /* Nav-Likes-OFF@2x.png in Resources */,
+				F0B9E8C01611D7FD006FB767 /* Nav-Likes-ON@2x.png in Resources */,
+				F0B9E8C41611D89E006FB767 /* Nav-Profile-OFF.png in Resources */,
+				F0B9E8C51611D89E006FB767 /* Nav-Profile-OFF@2x.png in Resources */,
+				F0B9E8C71611D8BB006FB767 /* Nav-Likes-ON@2x.png in Resources */,
+				F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */,
+				F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

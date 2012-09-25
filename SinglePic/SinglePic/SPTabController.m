@@ -143,7 +143,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TAB_REPLACE_WITH_CONTENT object:controller_];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TAB_PUSH_MODAL_CONTROLLER object:controller_];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TAB_PUSH_MODAL_CONTENT object:controller_];
-     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TAB_SET_FULLSCREEN object:controller_];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_TAB_SET_FULLSCREEN object:controller_];
 }
 -(void) addObservationForContentController
 {

@@ -98,19 +98,9 @@
 #pragma mark - Observation
 - (void) removeObservationFromContentController
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_CLOSE object:controller_];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_REPLACE_WITH_CONTENT object:controller_];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_PUSH_MODAL_CONTENT object:controller_];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_PUSH_MODAL_CONTROLLER object:controller_];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_SET_FULLSCREEN object:controller_];
 }
 -(void) addObservationForContentController
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NOTIFICATION_PAGE_CLOSE object:controller_];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replacePageWithNotification:) name:NOTIFICATION_PAGE_REPLACE_WITH_CONTENT object:controller_];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushModalContentWithNotification:) name:NOTIFICATION_PAGE_PUSH_MODAL_CONTENT object:controller_];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushModalControllerWithNotification:) name:NOTIFICATION_PAGE_PUSH_MODAL_CONTROLLER object:controller_];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setFullScreenWithNotification:) name:NOTIFICATION_PAGE_SET_FULLSCREEN object:controller_];
 }
 #pragma mark - Touch Handling
 - (void)moveStackWithOffset:(NSInteger)offset animated:(BOOL)animated userDragging:(BOOL)userDragging
