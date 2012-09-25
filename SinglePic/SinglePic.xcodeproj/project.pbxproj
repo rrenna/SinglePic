@@ -286,7 +286,6 @@
 		F0B9E8C01611D7FD006FB767 /* Nav-Likes-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8BE1611D7FD006FB767 /* Nav-Likes-ON@2x.png */; };
 		F0B9E8C41611D89E006FB767 /* Nav-Profile-OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C21611D89E006FB767 /* Nav-Profile-OFF.png */; };
 		F0B9E8C51611D89E006FB767 /* Nav-Profile-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C31611D89E006FB767 /* Nav-Profile-OFF@2x.png */; };
-		F0B9E8C71611D8BB006FB767 /* Nav-Likes-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C61611D8BA006FB767 /* Nav-Likes-ON@2x.png */; };
 		F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C81611D91A006FB767 /* Nav-Messages-OFF@2x.png */; };
 		F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C91611D91A006FB767 /* Nav-Messages-ON@2x.png */; };
 		F0C0B36414F741DA007BEB13 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36314F7401C007BEB13 /* UIImageView+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2721,7 +2720,6 @@
 				F0B9E8C01611D7FD006FB767 /* Nav-Likes-ON@2x.png in Resources */,
 				F0B9E8C41611D89E006FB767 /* Nav-Profile-OFF.png in Resources */,
 				F0B9E8C51611D89E006FB767 /* Nav-Profile-OFF@2x.png in Resources */,
-				F0B9E8C71611D8BB006FB767 /* Nav-Likes-ON@2x.png in Resources */,
 				F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */,
 				F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */,
 			);

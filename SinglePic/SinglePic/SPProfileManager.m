@@ -702,84 +702,95 @@ static NSURL* _thumbnailUploadURLCache = nil;
          NSString* userGender_ = [user_ objectForKey:@"gender"];
          NSString* userPreference_ = [user_ objectForKey:@"lookingForGender"];
          NSString* lastUpdatedServerTime_ = [user_ objectForKey:@"lastUpdated"];
+         NSString* imageURL_ = [user_ objectForKey:@"imageURL"];
          
          NSDate* lastUpdated = [TimeHelper dateWithServerTime:lastUpdatedServerTime_];
          NSDate* expiry = [lastUpdated dateByAddingTimeInterval:SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid]];
          
-         [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
-         {
-             //Find the appropriate bucket object
-             SPBucket* userBucket_ = nil;
-             for(SPBucket* bucket_ in buckets)
-             {
-                 if([[bucket_ identifier] isEqualToString:userBucketID_])
-                 {
-                     userBucket_ = bucket_; break;
-                 }
-             }
-             //Ensure the bucket id was found (is a valid bucket)
-             if(userBucket_)
-             {
-                 [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO]; //Tells the request manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
-                 [[SPProfileManager sharedInstance] setMyUserID:userID_ synchronize:NO];
-                 [[SPProfileManager sharedInstance] setMyUserName:userName_ synchronize:NO];
-                 [[SPProfileManager sharedInstance] setMyEmail:email_ synchronize:NO]; //Tells the profile manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
-                 //NOTE : Should not cache the password
-                 [[SPProfileManager sharedInstance] setMyBucket:userBucket_ synchronize:NO];
-                 [[SPProfileManager sharedInstance] setMyIcebreaker:userIcebreaker_ synchronize:NO];
-                 [[SPProfileManager sharedInstance] setMyGender:GENDER_FROM_NAME(userGender_) synchronize:NO];
-                 [[SPProfileManager sharedInstance] setMyPreference:GENDER_FROM_NAME(userPreference_) synchronize:NO];
-                 [[SPProfileManager sharedInstance] setMyExpiry:expiry synchronize:NO];
-                 
-                 self.userType = USER_TYPE_PROFILE;
-                 [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
-                 [[NSUserDefaults standardUserDefaults] synchronize];
-                 
-                 //After login set this user as the active message account
-                 [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
-                 
-                 //Registers for Push notifications
-                 [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) 
+         [[SPRequestManager sharedInstance] getImageFromURL:[NSURL URLWithString:imageURL_] withCompletionHandler:^(UIImage *responseImage) {
+             
+             [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
+              {
+                  //Find the appropriate bucket object
+                  SPBucket* userBucket_ = nil;
+                  for(SPBucket* bucket_ in buckets)
                   {
-                  } andErrorHandler:^
+                      if([[bucket_ identifier] isEqualToString:userBucketID_])
+                      {
+                          userBucket_ = bucket_; break;
+                      }
+                  }
+                  //Ensure the bucket id was found (is a valid bucket)
+                  if(userBucket_)
                   {
-                  }];
-                 
-                 onCompletion(responseObject);
-                 
-                 
-                 //Notify application that the user type has changed
-                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
-             }
-             //If the bucket wasn't found, than the process cannot continue
-             else {
-                 
-                 if(onError)
-                 {
-                     onError();
-                     
-                 }
-             }
-
-         }
-         andErrorHandler:^
-         {
+                      [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO]; //Tells the request manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
+                      [[SPProfileManager sharedInstance] setMyUserID:userID_ synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyUserName:userName_ synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyEmail:email_ synchronize:NO]; //Tells the profile manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
+                                                                                            //NOTE : Should not cache the password
+                      [[SPProfileManager sharedInstance] setMyBucket:userBucket_ synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyIcebreaker:userIcebreaker_ synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyGender:GENDER_FROM_NAME(userGender_) synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyPreference:GENDER_FROM_NAME(userPreference_) synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyExpiry:expiry synchronize:NO];
+                      [[SPProfileManager sharedInstance] setMyImage:responseImage];
+                      
+                      
+                      self.userType = USER_TYPE_PROFILE;
+                      [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
+                      [[NSUserDefaults standardUserDefaults] synchronize];
+                      
+                      //After login set this user as the active message account
+                      [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
+                      
+                      //Registers for Push notifications
+                      [self registerDevicePushTokenWithCompletionHandler:^(id responseObject)
+                       {
+                       } andErrorHandler:^
+                       {
+                       }];
+                      
+                      onCompletion(responseObject);
+                      
+                      
+                      //Notify application that the user type has changed
+                      [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
+                  }
+                  //If the bucket wasn't found, than the process cannot continue
+                  else {
+                      
+                      if(onError)
+                      {
+                          onError();
+                      }
+                  }
+                  
+              }
+                                                                    andErrorHandler:^
+              {
+                  if(onError)
+                  {
+                      onError();
+                  }
+              }];
+         } 
+                                            andErrorHandler:^(NSError* error)
+          {
+              if(onError)
+              {
+                  onError();
+                  
+              }
+          }];
+             
+             
+         } andErrorHandler:^(NSError *error) {
+             
              if(onError)
              {
                  onError();
-                 
              }
          }];
-     } 
-    andErrorHandler:^(NSError* error)
-     {
-         if(onError)
-         {
-             onError();
-             
-         }
-     }];
-    
 }
 -(void)logout
 {
