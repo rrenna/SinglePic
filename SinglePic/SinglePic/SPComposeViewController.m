@@ -25,6 +25,7 @@
 -(void) profileLoaded;
 -(void) reload;
 -(void) messageSent;
+-(void) messageRecieved;
 -(void) scrollToBottomAnimated:(BOOL)animated;
 @end
 
@@ -98,7 +99,7 @@ static float minimizedToolbarY = 410.0f;
     
     //Signup for notification on message recieved (reload will be called directly by the send button handler)
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageSent) name:NOTIFICATION_MESSAGE_SENT object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageRecieved) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     
     // always know which keyboard is selected
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textfieldWasSelected:) name:UITextFieldTextDidBeginEditingNotification object:nil];
@@ -174,6 +175,12 @@ static float minimizedToolbarY = 410.0f;
 -(void)messageSent
 {
     [self reload];
+    [self scrollToBottomAnimated:YES];
+}
+-(void) messageRecieved
+{
+    [self reload];
+    //TODO: Check if the message is from this thread
     [self scrollToBottomAnimated:YES];
 }
 -(void) scrollToBottomAnimated:(BOOL)animated
