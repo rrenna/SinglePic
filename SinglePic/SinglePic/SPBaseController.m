@@ -268,6 +268,17 @@
     [tab pushModalController:profileController];
     [tab setFullscreen:YES];
 }
+-(void)pushChatWithProfile:(SPProfile*)profile isFromBase:(BOOL)fromBase
+{
+    SPTabController* tab = [tabs objectAtIndex:0];
+    //Ensure the tab is maximized
+    [tab maximizeIsFullscreen:YES];
+    //Close all existing page
+    [tab closeAllPages];
+    //Present a page containing the chat controller
+    SPComposeViewController* profileController = [[[SPComposeViewController alloc] initWithProfile:profile] autorelease];
+    [tab pushModalController:profileController];
+}
 #pragma mark - Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type
 {

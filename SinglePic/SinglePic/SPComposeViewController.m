@@ -121,6 +121,7 @@ static float minimizedToolbarY = 410.0f;
     [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events
     
     [self setFullscreen:NO];
+    
     [self close];
 }
 -(IBAction)send:(id)sender
@@ -134,7 +135,7 @@ static float minimizedToolbarY = 410.0f;
         [TestFlight passCheckpoint:@"Sent Message to User"];
         #endif
         [textField setText:@""];
-        sendButton.enabled = YES;
+        sendButton.enabled = NO;
         sending = NO;
     } 
     andErrorHandler:^

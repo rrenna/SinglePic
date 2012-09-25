@@ -23,6 +23,8 @@
 -(void)pushModalController:(UIViewController*)viewController;
 -(void)pushModalContent:(UIView*)view;
 -(void)setFullscreen:(BOOL)fullscreen;
+-(void)setCascadeCloseTab:(BOOL)cascadeCloseTab;
+-(void)closeTab;
 -(void)close;
 //Page Controller informing Content Controller
 -(void)willClose;

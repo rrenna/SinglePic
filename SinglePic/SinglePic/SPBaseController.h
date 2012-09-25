@@ -68,6 +68,7 @@ typedef enum
 -(void)pushProfileWithID:(NSString*)profileID;
 -(void)pushChatWithProfile:(SPProfile*)profile;
 -(void)pushChatWithID:(NSString*)profileID;
+-(void)pushChatWithProfile:(SPProfile*)profile isFromBase:(BOOL)fromBase;
 // Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type;
 -(void)displayReachabilityOverlay;

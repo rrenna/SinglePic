@@ -8,6 +8,12 @@
 
 #import "SPPageContentViewController.h"
 
+@interface SPPageContentViewController()
+{
+    BOOL _cascadeCloseTab;
+}
+@end
+
 @implementation SPPageContentViewController
 //Informing Page Controller of intent
 -(void)replaceWith:(id)content
@@ -31,8 +37,19 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_CLOSE object:self];
 }
 //Recieving intent from Page Controller
--(void)willClose
+-(void)setCascadeCloseTab:(BOOL)cascadeCloseTab
+{
+    _cascadeCloseTab = cascadeCloseTab;
+}
+-(void)closeTab
 {
     
+}
+-(void)willClose
+{
+    if(_cascadeCloseTab)
+    {
+        [self closeTab];
+    }
 }
 @end
