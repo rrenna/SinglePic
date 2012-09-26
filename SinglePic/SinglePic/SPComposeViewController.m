@@ -22,6 +22,8 @@
 }
 @property (retain) SPMessageThread* thread;
 @property (retain) SPProfile* profile;
+@property (retain) UIInputToolbar* toolbar;
+
 -(void) _init;
 -(void) profileLoaded;
 -(void) reload;
@@ -34,7 +36,7 @@ static float FingerGrabHandleSize = 20.0f;
 static float minimizedToolbarY = 410.0f;
 
 @implementation SPComposeViewController
-@synthesize thread = _thread, profile = _profile; //private
+@synthesize thread = _thread, profile = _profile, toolbar = _toolbar; //private
 
 #pragma mark - View lifecycle
 -(id)initWithIdentifier:(NSString*)identifier
@@ -79,7 +81,7 @@ static float minimizedToolbarY = 410.0f;
     
     [_thread release];
     [_profile release];
-    [toolbar release];
+    [_toolbar release];
     [textField release];
     [tableView release];
     [usernameLabel release];
@@ -93,6 +95,12 @@ static float minimizedToolbarY = 410.0f;
     {
         [self profileLoaded];
     }
+    
+    _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(152, 410, 305, 44)];
+    _toolbar.delegate = self;
+    _toolbar.textView.placeholder = @"Placeholder";
+    _toolbar.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_toolbar];
     
     [topBarView setStyle:STYLE_PAGE];
     [topBarView setDepth:DEPTH_OUTSET];
@@ -222,9 +230,9 @@ static float minimizedToolbarY = 410.0f;
         options:keyboardTransitionAnimationCurve
         animations:^{
             
-             CGRect toolBarFrame = toolbar.frame;
+             CGRect toolBarFrame = _toolbar.frame;
              toolBarFrame.origin.y = keyboardEndFrameView.origin.y - toolBarFrame.size.height;
-             toolbar.frame = toolBarFrame;
+             _toolbar.frame = toolBarFrame;
              
              CGRect tableViewFrame = tableView.frame;
              tableViewFrame.size.height = toolBarFrame.origin.y - tableView.top;
@@ -284,7 +292,7 @@ static float minimizedToolbarY = 410.0f;
             return;
         }
         
-       CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + toolbar.frame.size.height) + FingerGrabHandleSize;
+       CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + _toolbar.frame.size.height) + FingerGrabHandleSize;
  
          if (location.y < spaceAboveKeyboard) {
             return;
@@ -297,13 +305,13 @@ static float minimizedToolbarY = 410.0f;
         
         [keyboard setFrame: newFrame];
         
-        CGRect toolBarFrame = toolbar.frame;
+        CGRect toolBarFrame = _toolbar.frame;
         CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
         keyboardY = MIN(minimizedToolbarY,keyboardY - 68);
         toolBarFrame.origin.y = keyboardY;
-        [toolbar setFrame: toolBarFrame];
+        [_toolbar setFrame: toolBarFrame];
         
-        CGFloat tableHeight = toolbar.origin.y - tableView.frame.origin.y;
+        CGFloat tableHeight = _toolbar.origin.y - tableView.frame.origin.y;
         tableView.height = tableHeight;
     }
 }
@@ -318,12 +326,12 @@ static float minimizedToolbarY = 410.0f;
                          newFrame.origin.y = keyboard.window.frame.size.height;
                          [keyboard setFrame: newFrame];
                          
-                         CGRect toolBarFrame = toolbar.frame;
+                         CGRect toolBarFrame = _toolbar.frame;
                          CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
                          toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - 68);
-                         [toolbar setFrame: toolBarFrame];
+                         [_toolbar setFrame: toolBarFrame];
                          
-                         CGFloat tableHeight = toolbar.origin.y - tableView.frame.origin.y;
+                         CGFloat tableHeight = _toolbar.origin.y - tableView.frame.origin.y;
                          tableView.height = tableHeight;
                      }
      
@@ -340,12 +348,12 @@ static float minimizedToolbarY = 410.0f;
     newFrame.origin.y = originalKeyboardY;
     [keyboard setFrame: newFrame];
     
-    CGRect toolBarFrame = toolbar.frame;
+    CGRect toolBarFrame = _toolbar.frame;
     CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
     toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - 68);
-    [toolbar setFrame: toolBarFrame];
+    [_toolbar setFrame: toolBarFrame];
     
-    CGFloat tableHeight = toolbar.origin.y - tableView.frame.origin.y;
+    CGFloat tableHeight = _toolbar.origin.y - tableView.frame.origin.y;
     tableView.height = tableHeight;
     [UIView commitAnimations];
 }
@@ -465,5 +473,10 @@ static float minimizedToolbarY = 410.0f;
     NSString* newContent = [textField.text stringByReplacingCharactersInRange:range withString:string];
     sendButton.enabled  = ([newContent length] > 0);
     return YES;
+}
+#pragma mark - UIInputToolbarDelegate
+-(void)inputButtonPressed:(NSString *)inputText
+{
+    
 }
 @end

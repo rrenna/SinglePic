@@ -398,6 +398,9 @@
 		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
+		F0E490881613268C00091EC0 /* UIExpandingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490831613268C00091EC0 /* UIExpandingTextView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0E490891613268C00091EC0 /* UIExpandingTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490851613268C00091EC0 /* UIExpandingTextViewInternal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490871613268C00091EC0 /* UIInputToolbar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8614CA8A4B00739ADB /* SPProfileIconController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0ECCB8914CA8A4B00739ADB /* SPProfileIconController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0ECCB8714CA8A4B00739ADB /* SPProfileIconController.xib */; };
 		F0ECCB8D14CA8D1E00739ADB /* SPBlockView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8C14CA8D1E00739ADB /* SPBlockView.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -986,6 +989,12 @@
 		F0E4521614BC082000CDC3D2 /* SPUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUserViewController.h; sourceTree = "<group>"; };
 		F0E4521714BC082000CDC3D2 /* SPUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUserViewController.m; sourceTree = "<group>"; };
 		F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPUserViewController.xib; sourceTree = "<group>"; };
+		F0E490821613268C00091EC0 /* UIExpandingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIExpandingTextView.h; sourceTree = "<group>"; };
+		F0E490831613268C00091EC0 /* UIExpandingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextView.m; sourceTree = "<group>"; };
+		F0E490841613268C00091EC0 /* UIExpandingTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIExpandingTextViewInternal.h; sourceTree = "<group>"; };
+		F0E490851613268C00091EC0 /* UIExpandingTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextViewInternal.m; sourceTree = "<group>"; };
+		F0E490861613268C00091EC0 /* UIInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIInputToolbar.h; sourceTree = "<group>"; };
+		F0E490871613268C00091EC0 /* UIInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIInputToolbar.m; sourceTree = "<group>"; };
 		F0ECCB8514CA8A4B00739ADB /* SPProfileIconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileIconController.h; sourceTree = "<group>"; };
 		F0ECCB8614CA8A4B00739ADB /* SPProfileIconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileIconController.m; sourceTree = "<group>"; };
 		F0ECCB8714CA8A4B00739ADB /* SPProfileIconController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPProfileIconController.xib; sourceTree = "<group>"; };
@@ -2095,6 +2104,7 @@
 			isa = PBXGroup;
 			children = (
 				754FB7541607AD2D0072D53D /* AFNetworking */,
+				F0E490811613268C00091EC0 /* InputToolbar */,
 				F01FC1F115FD122900852650 /* Pullwalla */,
 				F0DF78F315EDA35800EE492D /* NSLogger */,
 				75B4AA3215D44F8700745137 /* NAMapKit */,
@@ -2442,6 +2452,20 @@
 			);
 			name = NSLogger;
 			path = Libraries/NSLogger;
+			sourceTree = SOURCE_ROOT;
+		};
+		F0E490811613268C00091EC0 /* InputToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				F0E490821613268C00091EC0 /* UIExpandingTextView.h */,
+				F0E490831613268C00091EC0 /* UIExpandingTextView.m */,
+				F0E490841613268C00091EC0 /* UIExpandingTextViewInternal.h */,
+				F0E490851613268C00091EC0 /* UIExpandingTextViewInternal.m */,
+				F0E490861613268C00091EC0 /* UIInputToolbar.h */,
+				F0E490871613268C00091EC0 /* UIInputToolbar.m */,
+			);
+			name = InputToolbar;
+			path = Libraries/InputToolbar;
 			sourceTree = SOURCE_ROOT;
 		};
 		F0F7CEA514C92567009C7DF8 /* Tabs */ = {
@@ -2923,6 +2947,9 @@
 				75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */,
 				75B8DFA1160BAAF700F8AC84 /* SPDebugView.m in Sources */,
 				F0B9E8D81612821F006FB767 /* SPChatBubbleView.m in Sources */,
+				F0E490881613268C00091EC0 /* UIExpandingTextView.m in Sources */,
+				F0E490891613268C00091EC0 /* UIExpandingTextViewInternal.m in Sources */,
+				F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

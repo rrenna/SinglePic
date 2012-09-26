@@ -10,10 +10,11 @@
 #import "SPPageContentViewController.h"
 #import "SPKeyboardDragTableView.h"
 #import "SPStyledView.h"
+#import "UIInputToolbar.h"
 
 @class SPComposeViewController,SPStyledButton;
 
-@interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource>
+@interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource,UIInputToolbarDelegate>
 {
     IBOutlet SPStyledView* topBarView;
     IBOutlet UIImageView* imageView;
@@ -21,7 +22,6 @@
     IBOutlet UITableView *tableView;
     IBOutlet UITextField *textField;
     IBOutlet SPStyledButton* sendButton;
-    IBOutlet UIToolbar *toolbar;
 }
 -(id)initWithIdentifier:(NSString*)identifier;
 -(id)initWithProfile:(SPProfile*)profile;
