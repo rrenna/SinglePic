@@ -180,6 +180,12 @@
 		75B4AA6415D44F8700745137 /* pinRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA4C15D44F8700745137 /* pinRed@2x.png */; };
 		75B4AA6515D44F8700745137 /* pinRedFloating.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA4D15D44F8700745137 /* pinRedFloating.png */; };
 		75B4AA6615D44F8700745137 /* pinRedFloating@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B4AA4E15D44F8700745137 /* pinRedFloating@2x.png */; };
+		75B5F2431613675F000A010A /* buttonbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F2411613675F000A010A /* buttonbg@2x~iphone.png */; };
+		75B5F2441613675F000A010A /* buttonbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F2421613675F000A010A /* buttonbg~iphone.png */; };
+		75B5F24816136773000A010A /* textbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24616136773000A010A /* textbg@2x~iphone.png */; };
+		75B5F24916136773000A010A /* textbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24716136773000A010A /* textbg~iphone.png */; };
+		75B5F24C1613677C000A010A /* toolbarbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24A1613677C000A010A /* toolbarbg@2x~iphone.png */; };
+		75B5F24D1613677C000A010A /* toolbarbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24B1613677C000A010A /* toolbarbg~iphone.png */; };
 		75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75B8DFA1160BAAF700F8AC84 /* SPDebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B8DFA0160BAAF700F8AC84 /* SPDebugView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75CA32D314AE298300C63CD5 /* SPSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA32D114AE298300C63CD5 /* SPSignUpController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -653,6 +659,12 @@
 		75B4AA4C15D44F8700745137 /* pinRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinRed@2x.png"; sourceTree = "<group>"; };
 		75B4AA4D15D44F8700745137 /* pinRedFloating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinRedFloating.png; sourceTree = "<group>"; };
 		75B4AA4E15D44F8700745137 /* pinRedFloating@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinRedFloating@2x.png"; sourceTree = "<group>"; };
+		75B5F2411613675F000A010A /* buttonbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttonbg@2x~iphone.png"; path = "../../Resources/buttonbg@2x~iphone.png"; sourceTree = "<group>"; };
+		75B5F2421613675F000A010A /* buttonbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttonbg~iphone.png"; path = "../../Resources/buttonbg~iphone.png"; sourceTree = "<group>"; };
+		75B5F24616136773000A010A /* textbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg@2x~iphone.png"; path = "../../Resources/textbg@2x~iphone.png"; sourceTree = "<group>"; };
+		75B5F24716136773000A010A /* textbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg~iphone.png"; path = "../../Resources/textbg~iphone.png"; sourceTree = "<group>"; };
+		75B5F24A1613677C000A010A /* toolbarbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg@2x~iphone.png"; path = "../../Resources/toolbarbg@2x~iphone.png"; sourceTree = "<group>"; };
+		75B5F24B1613677C000A010A /* toolbarbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg~iphone.png"; path = "../../Resources/toolbarbg~iphone.png"; sourceTree = "<group>"; };
 		75B8DF9B160BA38D00F8AC84 /* SPSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSheetController.h; sourceTree = "<group>"; };
 		75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSheetController.m; sourceTree = "<group>"; };
 		75B8DF9F160BAAF700F8AC84 /* SPDebugView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDebugView.h; sourceTree = "<group>"; };
@@ -1110,6 +1122,10 @@
 		751D263914916CB500617DD8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				75B5F24A1613677C000A010A /* toolbarbg@2x~iphone.png */,
+				75B5F24B1613677C000A010A /* toolbarbg~iphone.png */,
+				75B5F24616136773000A010A /* textbg@2x~iphone.png */,
+				75B5F24716136773000A010A /* textbg~iphone.png */,
 				F002E03216096D8900B451BD /* Buttons */,
 				759295551603DB2A008FCDC1 /* Dialogs */,
 				F0A6A3E215D9680400F2253D /* Help */,
@@ -1785,6 +1801,8 @@
 		F002E03216096D8900B451BD /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				75B5F2411613675F000A010A /* buttonbg@2x~iphone.png */,
+				75B5F2421613675F000A010A /* buttonbg~iphone.png */,
 				F0DB3AC316107DD4006A4A97 /* icon-Refresh.png */,
 				F0B9E8BD1611D7FD006FB767 /* Nav-Likes-OFF@2x.png */,
 				F0B9E8C21611D89E006FB767 /* Nav-Profile-OFF.png */,
@@ -2775,6 +2793,12 @@
 				F0B9E8DC16128BC2006FB767 /* MessageBubble-white.png in Resources */,
 				F03A7F0C161291EF0049F27B /* MessageBubble-white@2x.png in Resources */,
 				F03A7F0F1612A55B0049F27B /* MessageBubble-blue@2x.png in Resources */,
+				75B5F2431613675F000A010A /* buttonbg@2x~iphone.png in Resources */,
+				75B5F2441613675F000A010A /* buttonbg~iphone.png in Resources */,
+				75B5F24816136773000A010A /* textbg@2x~iphone.png in Resources */,
+				75B5F24916136773000A010A /* textbg~iphone.png in Resources */,
+				75B5F24C1613677C000A010A /* toolbarbg@2x~iphone.png in Resources */,
+				75B5F24D1613677C000A010A /* toolbarbg~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

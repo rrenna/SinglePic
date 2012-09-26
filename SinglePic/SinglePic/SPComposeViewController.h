@@ -14,14 +14,12 @@
 
 @class SPComposeViewController,SPStyledButton;
 
-@interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource,UIInputToolbarDelegate>
+@interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource,UIInputToolbarDelegate,UIExpandingTextViewDelegate>
 {
     IBOutlet SPStyledView* topBarView;
     IBOutlet UIImageView* imageView;
     IBOutlet UILabel *usernameLabel;
     IBOutlet UITableView *tableView;
-    IBOutlet UITextField *textField;
-    IBOutlet SPStyledButton* sendButton;
 }
 -(id)initWithIdentifier:(NSString*)identifier;
 -(id)initWithProfile:(SPProfile*)profile;
