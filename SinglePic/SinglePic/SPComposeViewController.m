@@ -371,7 +371,7 @@ static float minimizedToolbarY = 410.0f;
     SPMessage* message = [sortedMessagesForThread objectAtIndex:indexPath.row];
     
     CGSize size = [SPChatBubbleView heightForMessageBody:message.content withWidth:tableView.frame.size.width - 28 - 15];
-    return size.height + 30;
+    return size.height + 35;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -401,13 +401,13 @@ static float minimizedToolbarY = 410.0f;
         if([message.incoming boolValue])
         {
             //If incoming message
-            messageFrame = CGRectMake(15, 20, cell.contentView.frame.size.width - 28, cell.contentView.frame.size.height - 20);
+            messageFrame = CGRectMake(15, 20, cell.contentView.frame.size.width - 28, cell.contentView.frame.size.height - 25);
             style = CHAT_STYLE_INCOMING;
         }
         else
         {
             //If outgoing message
-            messageFrame = CGRectMake(0, 20, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 20);
+            messageFrame = CGRectMake(0, 20, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
             style = CHAT_STYLE_OUTGOING;
         }
         

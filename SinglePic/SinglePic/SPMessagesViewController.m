@@ -9,8 +9,6 @@
 #import "SPMessagesViewController.h"
 #import "SPMessageThread.h"
 #import "SPMessage.h"
-#import "SPCardView.h"
-#import "SPMessageView.h"
 #import "SPChatBubbleView.h"
 
 @interface SPMessagesViewController()
@@ -106,16 +104,18 @@
     //The lates message is used to represent the object
     if(latestMessage)
     {
-        /*
-        SPMessageView* messageView = [[[SPMessageView alloc] initWithFrame:CGRectMake(5, 20, cell.contentView.frame.size.width - 10, cell.contentView.frame.size.height - 25)] autorelease];
-        [messageView setContent:latestMessage.content];
-        [cell.contentView addSubview:messageView];
-        */
-        
-        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(50, 5, cell.contentView.frame.size.width - 45, cell.contentView.frame.size.height - 8)] autorelease];
+        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(40, 5, cell.contentView.frame.size.width - 45, cell.contentView.frame.size.height - 8)] autorelease];
+        if([latestMessage.incoming boolValue])
+        {
+           bubble.chatStyle = CHAT_STYLE_INCOMING;
+        }
+        else
+        {
+            bubble.chatStyle = CHAT_STYLE_OUTGOING;
+        }
+
         [bubble setContent:latestMessage.content];
         [cell.contentView addSubview:bubble];
-        
     }
     
     return cell;
