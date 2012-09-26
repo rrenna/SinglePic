@@ -11,6 +11,7 @@
 #import "SPMessage.h"
 #import "SPCardView.h"
 #import "SPMessageView.h"
+#import "SPChatBubbleView.h"
 
 @interface SPMessagesViewController()
 -(void)reload;
@@ -61,6 +62,7 @@
     refreshButton.hidden = YES;
     [activityView startAnimating];
     [[SPMessageManager sharedInstance] forceRefresh];
+    [[SPMessageManager sharedInstance] forceRefresh];
 }
 -(IBAction)edit:(id)sender
 {
@@ -84,7 +86,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90.0;
+    return 70.0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -104,10 +106,16 @@
     //The lates message is used to represent the object
     if(latestMessage)
     {
+        /*
         SPMessageView* messageView = [[[SPMessageView alloc] initWithFrame:CGRectMake(5, 20, cell.contentView.frame.size.width - 10, cell.contentView.frame.size.height - 25)] autorelease];
         [messageView setContent:latestMessage.content];
-        
         [cell.contentView addSubview:messageView];
+        */
+        
+        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(50, 5, cell.contentView.frame.size.width - 45, cell.contentView.frame.size.height - 8)] autorelease];
+        [bubble setContent:latestMessage.content];
+        [cell.contentView addSubview:bubble];
+        
     }
     
     return cell;

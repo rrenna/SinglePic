@@ -12,6 +12,7 @@
 #import "SPMessage.h"
 #import "SPStyledButton.h"
 #import "SPMessageView.h"
+#import "SPChatBubbleView.h"
 
 @interface SPComposeViewController()
 {
@@ -369,8 +370,8 @@ static float minimizedToolbarY = 410.0f;
     NSArray* sortedMessagesForThread = [self.thread sortedMessages];
     SPMessage* message = [sortedMessagesForThread objectAtIndex:indexPath.row];
     
-    CGSize size = [SPMessageView heightForMessageBody:message.content withWidth:tableView.frame.size.width - 28 - 20];
-    return size.height + 50;
+    CGSize size = [SPChatBubbleView heightForMessageBody:message.content withWidth:tableView.frame.size.width - 28 - 15];
+    return size.height + 30;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -384,7 +385,7 @@ static float minimizedToolbarY = 410.0f;
         //The lates message is used to represent the object
     if(message)
     {
-        UILabel* timestampLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, 25)] autorelease];
+        UILabel* timestampLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, 20)] autorelease];
         timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:message.date] ];
         timestampLabel.font = [UIFont systemFontOfSize:8];
         timestampLabel.backgroundColor = [UIColor clearColor];
@@ -392,21 +393,27 @@ static float minimizedToolbarY = 410.0f;
         timestampLabel.shadowColor = [UIColor whiteColor];
         timestampLabel.textAlignment = UITextAlignmentCenter;
         timestampLabel.shadowOffset = CGSizeMake(1, 1);
+        timestampLabel.textAlignment = UITextAlignmentCenter;
+        timestampLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
         
         CGRect messageFrame;
+        CHAT_STYLE style;
         if([message.incoming boolValue])
         {
             //If incoming message
-            messageFrame = CGRectMake(15, 20, cell.contentView.frame.size.width - 28, cell.contentView.frame.size.height - 25);
+            messageFrame = CGRectMake(15, 20, cell.contentView.frame.size.width - 28, cell.contentView.frame.size.height - 20);
+            style = CHAT_STYLE_INCOMING;
         }
         else
         {
             //If outgoing message
-            messageFrame = CGRectMake(0, 20, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
-            
+            messageFrame = CGRectMake(0, 20, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 20);
+            style = CHAT_STYLE_OUTGOING;
         }
         
-        SPMessageView* messageView = [[[SPMessageView alloc] initWithFrame:messageFrame] autorelease];
+        SPChatBubbleView* messageView = [[[SPChatBubbleView alloc] initWithFrame:messageFrame] autorelease];
+        messageView.chatStyle = style;
+        messageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
         [messageView setContent:message.content];
         
         [cell.contentView addSubview:timestampLabel];

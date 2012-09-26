@@ -13,12 +13,6 @@
 #define MESSAGE_AUTO_REFRESH_TIMER 120 //seconds
 
 @interface SPMessageManager : SPSingleton
-{
-    @private
-    NSManagedObjectModel *managedObjectModel;
-	NSManagedObjectContext *managedObjectContext;
-	NSPersistentStoreCoordinator *persistentStoreCoordinator;
-}
 
 //Account 
 -(void)setActiveMessageAccount:(NSString*)accountID;
