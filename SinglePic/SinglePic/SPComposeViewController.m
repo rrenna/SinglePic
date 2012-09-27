@@ -181,9 +181,10 @@ static float inputToolbarSize = 42.0f;
     
     [[SPMessageManager sharedInstance] sendMessage:_toolbar.textView.text toUserWithID:self.profile.identifier withCompletionHandler:^(id responseObject)
     {
-        #if defined (TESTING)
+        #if defined (BETA)
         [TestFlight passCheckpoint:@"Sent Message to User"];
         #endif
+        
         _toolbar.textView.text = @"";
         _toolbar.inputButton.enabled = NO;
         sending = NO;

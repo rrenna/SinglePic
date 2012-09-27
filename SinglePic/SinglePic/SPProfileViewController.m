@@ -108,11 +108,6 @@
     {
         if([[SPProfileManager sharedInstance] checkIsLiked:profile])
         {
-            //Liked
-            #if defined (TESTING)
-            [TestFlight passCheckpoint:@"Unliked a User"];
-            #endif
-            
             [[SPProfileManager sharedInstance] removeProfile:profile fromLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;
@@ -124,11 +119,6 @@
         }
         else
         {
-            //Not Liked
-            #if defined (TESTING)
-            [TestFlight passCheckpoint:@"Liked a User"];
-            #endif
-            
             [[SPProfileManager sharedInstance] addProfile:profile toToLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;

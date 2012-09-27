@@ -45,7 +45,8 @@
 }
 + (NSString*) serverTimeWithDate:(NSDate*)date
 {
-        //TODO:
+    NSTimeInterval interval = [date timeIntervalSince1970];
+    return [NSString stringWithFormat:@"%f000",interval];
 }
 #pragma mark - Private methods
 +(NSString*)_descriptionForTimeInterval:(NSTimeInterval)interval

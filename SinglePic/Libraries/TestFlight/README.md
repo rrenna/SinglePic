@@ -44,7 +44,7 @@ This SDK can be run from both the iPhone Simulator and Device and has been teste
 4. In your Application Delegate:
     1. Import TestFlight: `#import "TestFlight.h"`                      
 
-        ***NOTE:*** If you do not want to import `TestFlight.h` in every file you may add the above line into you pre-compiled header (`<projectname>_Prefix.pch`) file inside of the
+        ***NOTE:*** Rather than importing `TestFlight.h` in every file you may add the above line into you pre-compiled header (`<projectname>_Prefix.pch`) file inside of the
 
 
             #ifdef __OBJC__ 
@@ -75,7 +75,7 @@ This SDK can be run from both the iPhone Simulator and Device and has been teste
 
 ##Beta Testing and Release Differentiation
 
-In order to provide more information about your testers while beta testing you will need to provide the device's unique identifier. This identifier is not something that the SDK will collect from the device and we do not recommend using this in production. Here is the recommended code for providing the device unique identifier.
+In order to provide more information about your testers while beta testing you will need to provide the device's unique identifier. This identifier is not something that the SDK will collect from the device and we do not recommend using this in production. To send the device identifier to us put the following code before your call to takeOff.
 
     #define TESTING 1
     #ifdef TESTING

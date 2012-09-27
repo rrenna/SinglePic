@@ -159,7 +159,7 @@
 #pragma mark - IBActions
 -(IBAction)connections:(id)sender
 {
-    #if defined (TESTING)
+    #if defined (BETA)
     [TestFlight passCheckpoint:@"Switched to LIKES screen"]; 
     #endif
     
@@ -174,7 +174,7 @@
 }
 -(IBAction)profile:(id)sender
 {
-    #if defined (TESTING)
+    #if defined (BETA)
     [TestFlight passCheckpoint:@"Switched to MY PROFILE screen"]; 
     #endif
     
@@ -191,7 +191,7 @@
 }
 -(IBAction)inbox:(id)sender
 {
-    #if defined (TESTING)
+    #if defined (BETA)
     [TestFlight passCheckpoint:@"Switched to MESSAGES screen"]; 
     #endif
     

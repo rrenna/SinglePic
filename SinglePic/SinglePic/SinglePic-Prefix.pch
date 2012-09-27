@@ -44,7 +44,7 @@
 #define YES_NSNUMBER [NSNumber numberWithBool:YES]
 #define NO_NSNUMBER [NSNumber numberWithBool:NO]
 
-    #if defined (TESTING)
+    #if defined (BETA)
     #import "TestFlight.h"  
     #endif
 #endif

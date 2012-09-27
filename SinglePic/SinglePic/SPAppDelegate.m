@@ -37,7 +37,7 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    #if defined (TESTING)
+    #if defined (BETA)
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     #endif
     
@@ -95,7 +95,7 @@
                                      stringByReplacingOccurrencesOfString: @"<" withString: @""] 
                                      stringByReplacingOccurrencesOfString: @">" withString: @""];
     
-    #if defined (TESTING)
+    #if defined (BETA)
     [TestFlight passCheckpoint:@"Registered for Remote Notification"];
     #endif
     
@@ -104,7 +104,7 @@
 -(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     //If registration has failed, a new registration will be attempted on the next wake
-    #if defined (TESTING)
+    #if defined (BETA)
     NSString *failString = [error description];
     [TestFlight passCheckpoint:[NSString stringWithFormat:@"Failed to register for Remote Notification : %@",failString]];
     #endif

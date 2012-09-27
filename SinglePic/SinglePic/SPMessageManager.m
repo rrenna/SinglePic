@@ -346,7 +346,7 @@
     [[NSFileManager defaultManager] removeItemAtURL:storeUrl error:&error];
     if (error) 
     {
-        #if defined (TESTING)
+        #if defined (BETA)
         [TestFlight passCheckpoint:@"Application failed to wipe core data storage. File doesn't exist at location (first run?)."];
         #endif
     }

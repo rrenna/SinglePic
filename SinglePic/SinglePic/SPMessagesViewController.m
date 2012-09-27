@@ -53,7 +53,7 @@
 #pragma mark - IBActions
 -(IBAction)refresh:(id)sender
 {
-    #if defined (TESTING)
+    #if defined (BETA)
     [TestFlight passCheckpoint:@"Manually refreshed Messages"];
     #endif
     

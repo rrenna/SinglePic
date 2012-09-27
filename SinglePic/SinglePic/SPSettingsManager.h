@@ -12,6 +12,7 @@
 typedef enum
 {
     ENVIRONMENT_TESTING, //Default
+    ENVIRONMENT_BETA,
     ENVIRONMENT_PRODUCTION
 } ENVIRONMENT;
 
@@ -23,6 +24,7 @@ typedef enum
 
 //Setting Helper Methods
 -(BOOL)canSwitchEnvironments;
+-(BOOL)shouldDisplayVerboseErrors;
 
 //Validates that the app is up to date, retrieves the latest server settings
 -(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion;//Validates that this version of the app is valid (non-expired)

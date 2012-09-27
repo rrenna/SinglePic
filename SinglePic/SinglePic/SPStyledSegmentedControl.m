@@ -190,8 +190,7 @@
 		[super drawRect:rect];
 		return;
 	}
-    
-	// TODO: support for segment custom width
+
 	CGSize itemSize = CGSizeMake(round(rect.size.width / self.numberOfSegments), rect.size.height);
 	CGContextRef c = UIGraphicsGetCurrentContext();
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

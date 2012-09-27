@@ -9,6 +9,8 @@
 #import "SPLoginController.h"
 #import "SPProfileManager.h"
 
+static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED_VALUE_KEY";
+
 @interface SPLoginController ()
 
 @end
@@ -38,7 +40,17 @@
     emailTextField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:emailTextField.font.pointSize];
     passwordTextField.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:emailTextField.font.pointSize];
     
-    [emailTextField becomeFirstResponder]; //Launch keyboard, edit user name field
+    NSString* emailFieldLastUsedValue = [[NSUserDefaults standardUserDefaults] stringForKey:EMAIL_FIELD_LAST_USED_VALUE_KEY];
+    if(emailFieldLastUsedValue)
+    {
+        emailTextField.text = emailFieldLastUsedValue;
+        [passwordTextField becomeFirstResponder]; //Launch keyboard, edit password field
+    }
+    else
+    {
+        [emailTextField becomeFirstResponder]; //Launch keyboard, edit user name field
+    }
+
 }
 - (void)dealloc {
     [headerStyledView release];
@@ -60,16 +72,13 @@
     [[SPProfileManager sharedInstance] loginWithEmail:emailTextField.text andPassword:passwordTextField.text andCompletionHandler:^(id responseObject)
      {
          //Login successful
-         NSLog(@"Login successful");
+         [[NSUserDefaults standardUserDefaults] setObject:emailTextField.text forKey:EMAIL_FIELD_LAST_USED_VALUE_KEY];
+         [[NSUserDefaults standardUserDefaults] synchronize];
          
      } andErrorHandler:^
      {
          //Re-enable the login button if the login fails for any reason
          loginButton.enabled = YES;
-         
-         //Login failed
-         NSLog(@"Login failed");
-         
      }];
 }
 #pragma mark - UITableViewDelegate and UITableViewDataSource methods

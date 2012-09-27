@@ -21,10 +21,6 @@ struct b2Body;
     IBOutlet UIView* canvasView; 
     IBOutlet UIView* centerBottomView;
     IBOutlet UILabel* browseInstructionsLabel;
-    UIView*  nextHeaderView;
-    UILabel* nextLabel;
-    UIImageView* nextArrow;
-    UIActivityIndicatorView* nextSpinner;
     
     @private
     //Box2D
@@ -41,12 +37,10 @@ struct b2Body;
 -(void)setup;
 -(void)visible;
 
-
 -(IBAction)restart:(id)sender;
 -(IBAction)next:(id)sender;
 -(IBAction)reportToggle:(id)sender;
 @end
-
 
 @interface _SPBrowseViewQueuedSelectorCall : NSObject
 @property (assign) int ticks;

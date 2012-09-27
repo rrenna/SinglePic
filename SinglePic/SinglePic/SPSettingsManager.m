@@ -60,11 +60,15 @@
 }
 -(CGFloat)daysPicValid
 {
-    //When debugging reduce time until expiry
-    #if defined (DEBUG)
-    return 0.25; //6 hours
-    #else
-    return 1;
+    
+    #ifdef DEBUG
+    return 0.25; //When debugging reduce time until expiry to 6 hours
+    #endif
+    #ifdef BETA
+    return PHOTO_EXPIRY_DAYS / 2; //During beta tests reduce time until expiry by 50%
+    #endif
+    #ifdef RELEASE
+    return PHOTO_EXPIRY_DAYS;
     #endif
 }
 -(NSString*)defaultBucketID
@@ -87,10 +91,18 @@
 #pragma mark - Setting Helper Methods
 -(BOOL)canSwitchEnvironments
 {
-    #ifdef RELEASE
-    return NO;
-    #else
+    #ifdef DEBUG
     return YES;
+    #else
+    return NO;
+    #endif
+}
+-(BOOL)shouldDisplayVerboseErrors
+{
+    #ifdef DEBUG
+    return YES;
+    #else
+    return NO;
     #endif
 }
 #pragma mark
@@ -98,7 +110,7 @@
 -(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion
 {
     //We perform different validation depending on if we're TESTING on TestFlight or not
-    #if defined (TESTING)
+    #if defined (BETA)
     //This is used to enforce beta client expiry
     //Expires on
     NSCalendar *calendar = [NSCalendar currentCalendar];

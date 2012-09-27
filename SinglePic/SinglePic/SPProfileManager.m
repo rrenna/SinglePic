@@ -642,7 +642,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
     {
         //User Token is valid
         
-        #if defined (TESTING)
+        #if defined (BETA)
         [TestFlight passCheckpoint:@"User Token validated"];
         #endif
     
@@ -661,7 +661,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
     }
     andErrorHandler:^(SPWebServiceError *error)
     {
-        #if defined (TESTING)
+        #if defined (BETA)
         NSString* errorString = [NSString stringWithFormat:@"User Token invalid. Reason : %@",[error localizedFailureReason]];
         [TestFlight passCheckpoint:errorString];
         #endif
@@ -796,6 +796,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
 }
 -(void)logout
 {
+    #if defined (BETA)
+    [TestFlight passCheckpoint:@"User logged out"];
+    #endif
+    
     //Token is invalid - reset user type
     self.userType = USER_TYPE_ANNONYMOUS;
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:USER_TYPE_ANNONYMOUS] forKey:USER_DEFAULT_KEY_USER_TYPE];
@@ -905,7 +909,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 
         [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"pushToken":deviceToken} requiringToken:YES withCompletionHandler:^(id responseObject)
          {
-             #if defined (TESTING)
+             #if defined (BETA)
              [TestFlight passCheckpoint:@"Registered Device Push Token"];
              #endif
              
@@ -915,7 +919,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
          } 
          andErrorHandler:^(NSError* error)
          {
-            #if defined (TESTING)
+            #if defined (BETA)
             [TestFlight passCheckpoint:@"Failed to register Device Push Token - call failed"];
             #endif
              
@@ -930,7 +934,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
     }
     else
     {
-        #if defined (TESTING)
+        #if defined (BETA)
         [TestFlight passCheckpoint:@"Failed to register Device Push Token - no device token recorded"];
         #endif
          
@@ -1322,10 +1326,13 @@ static int profileCounter = 0;
     NSString* parameter = [NSString stringWithFormat:@"%@/likes/%@",USER_ID_ME,[profile identifier]];
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
      {
+        #if defined (BETA)
+        [TestFlight passCheckpoint:@"Liked a User"];
+        #endif
+        
         [_likes addObject:profile];
          
         onCompletion();
-        
          
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_ADDED object:profile];
      } 
@@ -1358,12 +1365,16 @@ static int profileCounter = 0;
         NSString* parameter = [NSString stringWithFormat:@"%@/likes/%@",USER_ID_ME,[profile identifier]];
         [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
          {
-             [_likes removeObject:profileToRemove];
+            #if defined (BETA)
+            [TestFlight passCheckpoint:@"Unliked a User"];
+            #endif
+
              
-             onCompletion();
+            [_likes removeObject:profileToRemove];
              
+            onCompletion();
              
-             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_REMOVED object:profileToRemove];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LIKE_REMOVED object:profileToRemove];
          } 
          andErrorHandler:^(SPWebServiceError* error)
          {

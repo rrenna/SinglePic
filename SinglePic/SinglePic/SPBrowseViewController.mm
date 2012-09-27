@@ -30,6 +30,11 @@ static int profileIndex = 0;
 {
     UIView *refreshHeaderView;
     UIImageView *refreshArrow;
+    UIView*  nextHeaderView;
+    UILabel* nextLabel;
+    UIImageView* nextArrow;
+    UIActivityIndicatorView* nextSpinner;
+    
     BOOL isDragging;
     BOOL isLoading;
     BOOL isRestarting;
@@ -227,7 +232,7 @@ static int profileIndex = 0;
 {
     if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
     {
-        #if defined (TESTING)
+        #if defined (BETA)
         [TestFlight passCheckpoint:@"Viewed a profile"];
         #endif
         

@@ -18,6 +18,7 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define MINIMUM_USERNAME_LENGTH 6
 #define MINIMUM_PASSWORD_LENGTH 6
 #define MINIMUM_EMAIL_LENGTH 4
+#define PHOTO_EXPIRY_DAYS 5
 
 //General
 #define SECONDS_PER_DAY  (60 * 60 * 24)

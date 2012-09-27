@@ -6,7 +6,7 @@
 //  Copyright 2011 TestFlight. All rights reserved.
 
 #import <Foundation/Foundation.h>
-#define TESTFLIGHT_SDK_VERSION @"1.1beta1"
+#define TESTFLIGHT_SDK_VERSION @"1.1"
 #undef TFLog
 
 #if __cplusplus
@@ -58,7 +58,8 @@ extern "C" {
  *                                                               YES - sends logs statements to TestFlight only if there was a crash
  *   attachBacktraceToFeedback   [ NSNumber numberWithBool:YES ] NO  - default, feedback is sent exactly as the user enters it
  *                                                               YES - attaches the current backtrace, with symbols, to the feedback.
-
+ *   disableInAppUpdates         [ NSNumber numberWithBool:YES ] NO  - default, in application updates are allowed
+ *                                                               YES - the in application update screen will not be displayed
  */
 + (void)setOptions:(NSDictionary*)options;
 

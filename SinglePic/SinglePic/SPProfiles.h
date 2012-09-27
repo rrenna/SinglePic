@@ -33,3 +33,17 @@ static NSString* NOTIFICATION_PROFILES_CHANGED = @"NOTIFICATION_PROFILES_CHANGED
 
 //Static Local Notifications
 static NSString* NOTIFICATION_BODY_IMAGE_EXPIRY  = @"Your Pic has expired. Upload a new one now.";
+
+typedef enum
+{
+    GENDER_UNSPECIFIED = 0,
+    GENDER_MALE = 1,
+    GENDER_FEMALE = 2
+} GENDER;
+
+typedef enum
+{
+    USER_TYPE_ANNONYMOUS = 0,
+    USER_TYPE_REGISTERED = 1,
+    USER_TYPE_PROFILE = 2
+} USER_TYPE;

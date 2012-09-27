@@ -1176,7 +1176,7 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */ = {
+		751EDDB914EED9F9007FBEC7 /* Sign Up/Login Screens */ = {
 			isa = PBXGroup;
 			children = (
 				75A24A8514928ED800DC8D50 /* SPRegistrationViewController.h */,
@@ -1184,7 +1184,7 @@
 				75CA32CE14AE295F00C63CD5 /* Signup Screen */,
 				75A24A7F14928E9200DC8D50 /* Login/Signup Screen */,
 			);
-			name = "Registration/Login Screens";
+			name = "Sign Up/Login Screens";
 			sourceTree = "<group>";
 		};
 		751EDDBB14EEDD43007FBEC7 /* Registration / Login */ = {
@@ -1763,7 +1763,7 @@
 				7575EB1815DABCFB00D5707B /* Help Overlay Controller */,
 				F0620D081524B99C008D334C /* Subscription Page */,
 				75E7E02014B3C22F005C70B4 /* Sheets */,
-				751EDDB914EED9F9007FBEC7 /* Registration/Login Screens */,
+				751EDDB914EED9F9007FBEC7 /* Sign Up/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
 				F01B800314CCF2B1009FA39D /* User Screen */,
 				750E482814C62F7300F7CCFC /* Mesages Screen */,
@@ -2991,7 +2991,7 @@
 				PROVISIONING_PROFILE = "AE6881A6-1BED-4B08-B9C9-ED4FD0165D2B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -3019,6 +3019,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Release;
 		};
@@ -3096,7 +3097,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "TESTING=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "BETA=1";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3110,7 +3111,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Beta;
 		};

@@ -13,20 +13,6 @@
 //Constants
 static const NSString* USER_ID_ME  = @"me";
 
-typedef enum
-{
-    GENDER_UNSPECIFIED = 0,
-    GENDER_MALE = 1,
-    GENDER_FEMALE = 2
-} GENDER;
-
-typedef enum
-{
-    USER_TYPE_ANNONYMOUS = 0,
-    USER_TYPE_REGISTERED = 1,
-    USER_TYPE_PROFILE = 2
-} USER_TYPE;
-
 #pragma mark - Helper Functions for enum values
 static GENDER GENDER_FROM_NAME(NSString* genderName)
 {

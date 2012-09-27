@@ -111,27 +111,45 @@
 }
 #pragma mark - Private methods
 -(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
-{
+{ 
+    #ifdef BETA
+    //Log on Testflight
+    TFLog(@"Unknown Error: %@",[error localizedDescription]);
+    #endif
+    
+    #ifdef DEBUG
+    //Display the reason for the failure in the console
+    NSLog(@"Unknown Error: %@",[error localizedDescription]);
+    #endif
+    
     //Store Error
     [errorQueue addObject:error];
-    
-    //Display the reason for the failure in the console
-    NSLog(@"%@",[error localizedDescription]);
-    
-    //Log
-    //TODO: 
     
     //Alert user
     if(alertUser)
     {
-        UIAlertView* failureAlert;
-        if(allowReporting)
+        NSString* alertTitle;
+        NSString* alertBody;
+        
+        if([[SPSettingsManager sharedInstance] shouldDisplayVerboseErrors])
         {
-            failureAlert = [[UIAlertView alloc] initWithTitle:[error localizedFailureReason] message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:ALERT_BUTTON_TITLE_REPORT,nil];
+            alertTitle = [error localizedFailureReason];
+            alertBody = [error localizedDescription];
         }
         else
         {
-            failureAlert = [[UIAlertView alloc] initWithTitle:[error localizedFailureReason] message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            alertTitle = @"We're Sorry";
+            alertBody = @"We had a problem connecting to the SinglePic server. Plase report this issue if it persists.";
+        }
+        
+        UIAlertView* failureAlert;
+        if(allowReporting)
+        {
+            failureAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertBody delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:ALERT_BUTTON_TITLE_REPORT,nil];
+        }
+        else
+        {
+            failureAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertBody delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         }
         
         failureAlert.tag = error; //Index of current error, used to identify the callbacks of this AlertView
@@ -152,7 +170,7 @@
     }
     
     //If beta testing - submit a testflight feedback form with the contents of this error and device information
-    #if defined (TESTING)
+    #if defined (BETA)
     NSString* testFlightReport = [NSString stringWithFormat:@"Error:%@ \n Description:%@ Method:%@ UserInfo:%@",failureReason,description,WEB_SERVICE_REQUEST_TYPE_NAMES[method],error.userInfo];
     [TestFlight submitFeedback:testFlightReport];
     #else
