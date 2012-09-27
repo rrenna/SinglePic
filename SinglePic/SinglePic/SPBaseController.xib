@@ -161,14 +161,11 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUISelectedImage" id="597339263">
+								<object class="NSCustomResource" key="IBUISelectedImage" id="640910051">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Tab-Info_Select.png</string>
+									<string key="NSResourceName">Nav-info.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage" id="543527902">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Tab-Info_Default.png</string>
-								</object>
+								<reference key="IBUINormalImage" ref="640910051"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="375721459">
 									<string key="name">STHeitiSC-Light</string>
 									<string key="family">Heiti SC</string>
@@ -336,8 +333,8 @@
 									<bytes key="NSRGB">MC4xNDcwODc1NDYgMC4wNDE5Nzc3NDU2MiAwLjA0NDk4ODAxNjczAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="559773463"/>
-								<reference key="IBUISelectedImage" ref="597339263"/>
-								<reference key="IBUINormalImage" ref="543527902"/>
+								<reference key="IBUISelectedImage" ref="640910051"/>
+								<reference key="IBUINormalImage" ref="640910051"/>
 								<reference key="IBUIFontDescription" ref="375721459"/>
 								<reference key="IBUIFont" ref="422901443"/>
 							</object>
@@ -766,7 +763,7 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -774,7 +771,7 @@
 				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="58.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="58.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="60.CustomClassName">SPStyledButton</string>
 				<object class="NSMutableDictionary" key="60.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
@@ -1005,9 +1002,8 @@
 			<string key="Nav-Likes-ON.png">{40, 40}</string>
 			<string key="Nav-Messages-OFF.png">{40, 40}</string>
 			<string key="Nav-Messages-ON.png">{40, 40}</string>
+			<string key="Nav-info.png">{40, 40}</string>
 			<string key="Tab-Icon-Profile.png">{59, 59}</string>
-			<string key="Tab-Info_Default.png">{54, 54}</string>
-			<string key="Tab-Info_Select.png">{54, 54}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

@@ -33,7 +33,7 @@
 @end
 
 static float FingerGrabHandleSize = 20.0f;
-static float inputToolbarSize = 44.0f;
+static float inputToolbarSize = 42.0f;
 #define minimizedToolbarY (480.0f - inputToolbarSize)
 
 @implementation SPComposeViewController
@@ -98,10 +98,9 @@ static float inputToolbarSize = 44.0f;
     
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
     
-    _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height - inputToolbarSize, window.width, inputToolbarSize)];
+    _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height, window.width, inputToolbarSize)];
     _toolbar.delegate = self;
     _toolbar.textView.placeholder = @"Placeholder";
-    //_toolbar.textView.delegate = self;
     
     [window addSubview:_toolbar];
     
@@ -122,31 +121,50 @@ static float inputToolbarSize = 44.0f;
     
     [[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
 }
-- (void) viewDidDisappear:(BOOL)animated
+-(void) viewDidAppear:(BOOL)animated
 {
-    
-    
-    [UIView animateWithDuration:0.3
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
+    [UIView animateWithDuration:0.25
+                     delay:0.0
+                     options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         CGRect newFrame = keyboard.frame;
-                         newFrame.origin.y = keyboard.window.frame.size.height;
-
+                         UIWindow* window = [[UIApplication sharedApplication] keyWindow];
                          CGRect toolBarFrame = _toolbar.frame;
-                         CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
-                         toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - inputToolbarSize);
+                         toolBarFrame.origin.y = window.height - inputToolbarSize;
                          [_toolbar setFrame: toolBarFrame];
-
+                         
                      }
-                     completion:^(BOOL finished){
-                         [_toolbar removeFromSuperview];
+                     completion:^(BOOL finished)
+                     {
+                     
                      }];
     
-    
-    
+    [super viewDidAppear:animated];
+}
+-(void) viewDidDisappear:(BOOL)animated
+{
     keyboard.hidden = NO;
     [super viewDidDisappear:animated];
+}
+-(void)close
+{
+    [UIView animateWithDuration:0.25
+    delay:0.2
+    options:UIViewAnimationOptionCurveEaseOut
+    animations:^{
+         CGRect newFrame = keyboard.frame;
+         newFrame.origin.y = keyboard.window.frame.size.height;
+
+         CGRect toolBarFrame = _toolbar.frame;
+         toolBarFrame.origin.y = toolBarFrame.origin.y + toolBarFrame.size.height;
+         [_toolbar setFrame: toolBarFrame];
+        
+     }
+     completion:^(BOOL finished)
+     {
+         [_toolbar removeFromSuperview];
+     }];
+    
+    [super close];
 }
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
@@ -154,7 +172,6 @@ static float inputToolbarSize = 44.0f;
     [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events
     
     [self setFullscreen:NO];
-    
     [self close];
 }
 -(IBAction)send:(id)sender
@@ -180,6 +197,9 @@ static float inputToolbarSize = 44.0f;
     }];
 }
 #pragma mark - Private methods
+#define TABLE_RESIZE_OFFSET 27
+#define HEIGHT_OF_TIME_LABEL 32
+
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
 {
@@ -253,13 +273,10 @@ static float inputToolbarSize = 44.0f;
         options:keyboardTransitionAnimationCurve
         animations:^{
             
-             CGRect toolBarFrame = _toolbar.frame;
-            toolBarFrame.origin.y = keyboardEndFrameView.origin.y - 19;// - toolBarFrame.size.height;
-             _toolbar.frame = toolBarFrame;
-             
-             CGRect tableViewFrame = tableView.frame;
-             tableViewFrame.size.height = toolBarFrame.origin.y - tableView.top;
-             tableView.frame = tableViewFrame;  
+            _toolbar.top = keyboardEndFrameView.origin.y - 17;
+            
+            tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);
+            
         }
         completion:^(BOOL finished){
         
@@ -334,8 +351,7 @@ static float inputToolbarSize = 44.0f;
         toolBarFrame.origin.y = keyboardY;
         [_toolbar setFrame: toolBarFrame];
         
-        CGFloat tableHeight = _toolbar.origin.y - tableView.frame.origin.y;
-        tableView.height = tableHeight;
+        tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);
     }
 }
 
@@ -354,16 +370,13 @@ static float inputToolbarSize = 44.0f;
                          toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - inputToolbarSize);
                          [_toolbar setFrame: toolBarFrame];
                          
-                         CGFloat tableHeight = _toolbar.origin.y - tableView.frame.origin.y;
-                         tableView.height = tableHeight;
+                         tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);
                      }
-     
-                     completion:^(BOOL finished){
-                        //keyboard.hidden = YES;
+                     completion:^(BOOL finished) {
+                         
                          [_toolbar.textView resignFirstResponder];
                      }];
 }
-
 - (void)animateKeyboardReturnToOriginalPosition
 {
     [UIView beginAnimations:nil context:NULL];
@@ -376,8 +389,8 @@ static float inputToolbarSize = 44.0f;
     toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - inputToolbarSize);
     [_toolbar setFrame: toolBarFrame];
     
-    CGFloat tableHeight = _toolbar.origin.y - tableView.frame.origin.y;
-    tableView.height = tableHeight;
+    tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);
+
     [UIView commitAnimations];
 }
 #pragma mark - UITableViewDatasource and UITableViewDelegate methods
@@ -395,14 +408,13 @@ static float inputToolbarSize = 44.0f;
     
     return count;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray* sortedMessagesForThread = [self.thread sortedMessages];
     SPMessage* message = [sortedMessagesForThread objectAtIndex:indexPath.row];
     
-    CGSize size = [SPChatBubbleView heightForMessageBody:message.content withWidth:tableView.frame.size.width - 28 - 15];
-    return size.height + 35;
+    CGSize size = [SPChatBubbleView heightForMessageBody:message.content withWidth:tableView.frame.size.width - 43 - 20];
+    return size.height + 20 + HEIGHT_OF_TIME_LABEL; //top & bottom spacing in chat bubble + time label
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -416,7 +428,7 @@ static float inputToolbarSize = 44.0f;
         //The lates message is used to represent the object
     if(message)
     {
-        UILabel* timestampLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, 20)] autorelease];
+        UILabel* timestampLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)] autorelease];
         timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:message.date] ];
         timestampLabel.font = [UIFont systemFontOfSize:8];
         timestampLabel.backgroundColor = [UIColor clearColor];
@@ -432,13 +444,13 @@ static float inputToolbarSize = 44.0f;
         if([message.incoming boolValue])
         {
             //If incoming message
-            messageFrame = CGRectMake(15, 20, cell.contentView.frame.size.width - 28, cell.contentView.frame.size.height - 25);
+            messageFrame = CGRectMake(15, 24, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
             style = CHAT_STYLE_INCOMING;
         }
         else
         {
             //If outgoing message
-            messageFrame = CGRectMake(0, 20, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
+            messageFrame = CGRectMake(0, 24, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 24);
             style = CHAT_STYLE_OUTGOING;
         }
         
@@ -453,16 +465,29 @@ static float inputToolbarSize = 44.0f;
     
     return cell;
 }
-#pragma mark - UITextField delegate methods
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+#pragma mark - UIInputToolbarDelegate
+-(void)inputButtonPressed:(NSString *)inputText
 {
-    //Cannot edit textbox while sending a previous message
+    if(!sending)
+    {
+        [self send:nil];
+    }
+}
+- (BOOL)expandingTextView:(UIExpandingTextView *)expandingTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    NSString* newContent = [expandingTextView.text stringByReplacingCharactersInRange:range withString:text];
+    _toolbar.inputButton.enabled  = ([newContent length] > 0);
+    return YES;
+}
+- (BOOL)expandingTextViewShouldBeginEditing:(UITextView *)textView
+{
+        //Cannot edit textbox while sending a previous message
     if(sending)
     {
         return NO;
     }
     
-    //Disabled messaging if user has no assigned image
+        //Disabled messaging if user has no assigned image
     if([[SPProfileManager sharedInstance] canSendMessages])
     {
         return YES;
@@ -483,18 +508,5 @@ static float inputToolbarSize = 44.0f;
         return NO;
     }
 }
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    NSString* newContent = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    //sendButton.enabled  = ([newContent length] > 0);
-    return YES;
-}
-#pragma mark - UIInputToolbarDelegate
--(void)inputButtonPressed:(NSString *)inputText
-{
-    if(!sending)
-    {
-        [self send:nil];
-    }
-}
+
 @end

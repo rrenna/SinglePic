@@ -29,6 +29,8 @@
 @protocol UIInputToolbarDelegate <NSObject>
 @optional
 -(void)inputButtonPressed:(NSString *)inputText;
+-(BOOL)expandingTextView:(UIExpandingTextView *)expandingTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+- (BOOL)expandingTextViewShouldBeginEditing:(UITextView *)textView;
 @end
 
 @interface UIInputToolbar : UIToolbar <UIExpandingTextViewDelegate> 

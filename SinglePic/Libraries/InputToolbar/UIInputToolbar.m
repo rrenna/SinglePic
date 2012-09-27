@@ -38,10 +38,6 @@
     {
         [delegate inputButtonPressed:self.textView.text];
     }
-    
-    /* Remove the keyboard and clear the text */
-    //[self.textView resignFirstResponder];
-    //[self.textView clearText];
 }
 
 -(void)setupToolbar:(NSString *)buttonLabel
@@ -50,7 +46,7 @@
     self.tintColor = [UIColor lightGrayColor];
     
     /* Create custom send button*/    
-    SPStyledButton *button = [[[SPStyledButton alloc] initWithFrame:CGRectMake(5,0,66,33)] autorelease];
+    SPStyledButton *button = [[[SPStyledButton alloc] initWithFrame:CGRectMake(5,10,67,31)] autorelease];
     button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [button setStyle:STYLE_CONFIRM_BUTTON];
     
@@ -117,7 +113,6 @@
 
 #pragma mark -
 #pragma mark UIExpandingTextView delegate
-
 -(void)expandingTextView:(UIExpandingTextView *)expandingTextView willChangeHeight:(float)height
 {
     /* Adjust the height of the toolbar when the input component expands */
@@ -127,7 +122,6 @@
     r.size.height -= diff;
     self.frame = r;
 }
-
 -(void)expandingTextViewDidChange:(UIExpandingTextView *)expandingTextView
 {
     /* Enable/Disable the button */
@@ -136,5 +130,26 @@
     else
         self.inputButton.enabled = NO;
 }
-
+- (BOOL)expandingTextView:(UIExpandingTextView *)expandingTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([delegate respondsToSelector:@selector(expandingTextView:shouldChangeTextInRange:replacementText:)])
+    {
+        return [delegate expandingTextView:expandingTextView shouldChangeTextInRange:range replacementText:text];
+    }
+    else
+    {
+        return YES;
+    }
+}
+- (BOOL)expandingTextViewShouldBeginEditing:(UITextView *)textView
+{
+    if([delegate respondsToSelector:@selector(expandingTextViewShouldBeginEditing:)])
+    {
+        return [delegate expandingTextViewShouldBeginEditing:textView];
+    }
+    else
+    {
+        return YES;
+    }
+}
 @end
