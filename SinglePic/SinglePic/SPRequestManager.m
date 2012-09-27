@@ -48,8 +48,7 @@
 {
     NSString* baseURL = [[SPSettingsManager sharedInstance] serverAddress];
     self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ] autorelease];
-    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
-    
+    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];    
     [self.httpClient setReachabilityStatusChangeBlock:status];
 }
 -(void)EnableRealtimeReachabilityMonitoring
