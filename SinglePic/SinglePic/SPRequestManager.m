@@ -109,23 +109,23 @@
 }
 -(void)getFromNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
 {    
-    [self requestToNamespace:name withType:WEB_SERVICE_GET_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self requestToNamespace:name withType:WEB_SERVICE_GET_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withRetryCount:0 withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 -(void)getFromNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
 {
-    [self requestToNamespace:name withType:WEB_SERVICE_GET_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self requestToNamespace:name withType:WEB_SERVICE_GET_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withRetryCount:retryCount withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 -(void)deleteFromNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
 {
-    [self requestToNamespace:name withType:WEB_SERVICE_DELETE_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self requestToNamespace:name withType:WEB_SERVICE_DELETE_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withRetryCount:0 withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 -(void)postToNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString *)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken
 {
-    [self requestToNamespace:name withType:WEB_SERVICE_POST_REQUEST andParameter:parameter andPayload:payload requiringToken:requiresToken withCompletionHandler:nil andErrorHandler:nil];
+    [self requestToNamespace:name withType:WEB_SERVICE_POST_REQUEST andParameter:parameter andPayload:payload requiringToken:requiresToken withRetryCount:0 withCompletionHandler:nil andErrorHandler:nil];
 }
 -(void)postToNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
 {
-    [self requestToNamespace:name withType:WEB_SERVICE_POST_REQUEST andParameter:parameter andPayload:payload requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self requestToNamespace:name withType:WEB_SERVICE_POST_REQUEST andParameter:parameter andPayload:payload requiringToken:requiresToken withRetryCount:0 withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 
 
@@ -177,76 +177,15 @@
     
     return path;
 }
-
--(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
-{
-    NSString* path = [self generatePathForNamespace:namespace andParameter:parameter requiringToken:requiresToken];
-    
-    id successBlock = ^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        onCompletion(responseObject);
-    };
-    id failureBlock = ^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        //We want to store the error in the dictionary, and add the HTTP type
-        NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
-        int errorCode = [error code];
-        int statusCode = [[operation response] statusCode];
-
-        if([[operation request] HTTPBody])
-        {
-            NSString* HTTPBody = [[NSString alloc] initWithData:[[operation request] HTTPBody] encoding:NSUTF8StringEncoding];
-            
-            if(HTTPBody)    [userInfo setObject:HTTPBody forKey:@"HTTP Body"];
-        }
-        
-        [userInfo setObject:[NSNumber numberWithInt:statusCode] forKey:@"statusCode"];
-        [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
-        
-        
-        if(operation.responseData)
-        {
-            NSError* jsonParseError = nil;
-            id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
-            if(responseJSON)
-            {
-                [userInfo setObject:responseJSON forKey:@"response"];
-            }
-        }
-        
-        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:errorCode userInfo:userInfo];
-        
-        //Display an alert
-        [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
-        
-        if(onError)
-        {
-            onError(SPError);
-        }
-    };
-    
-    if(type == WEB_SERVICE_GET_REQUEST)
-    {
-        [self.httpClient getPath:path parameters:nil success:successBlock failure:failureBlock];
-    }
-    else if(type == WEB_SERVICE_POST_REQUEST)
-    {        
-        [self.httpClient postPath:path parameters:payload success:successBlock failure:failureBlock];
-    }
-    else if(type == WEB_SERVICE_DELETE_REQUEST)
-    {
-        [self.httpClient deletePath:path parameters:nil success:successBlock failure:failureBlock];
-    }
-}
 -(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
 {    
     NSString* path = [self generatePathForNamespace:namespace andParameter:parameter requiringToken:requiresToken];
     
+    __unsafe_unretained SPRequestManager* weakSelf = self;
     id successBlock = ^(AFHTTPRequestOperation *operation, id responseObject) {
         
         onCompletion(responseObject);
     };
-    
     void (^failureBlock)(AFHTTPRequestOperation *, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
         
         //We want to store the error in the dictionary, and add the HTTP type
@@ -257,8 +196,8 @@
         if([[operation request] HTTPBody])
         {
             NSString* HTTPBody = [[NSString alloc] initWithData:[[operation request] HTTPBody] encoding:NSUTF8StringEncoding];
-            
             if(HTTPBody)    [userInfo setObject:HTTPBody forKey:@"HTTP Body"];
+            [HTTPBody release];
         }
         
         [userInfo setObject:[NSNumber numberWithInt:statusCode] forKey:@"statusCode"];
@@ -285,31 +224,29 @@
             onError(SPError);
         }
     };
+    id retryCheckBlock = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(retryCount < 0)
+        {
+            failureBlock(operation,error);
+        }
+        else
+        {
+            [weakSelf requestToNamespace:namespace withType:type andParameter:parameter andPayload:payload requiringToken:requiresToken withRetryCount:retryCount - 1 withCompletionHandler:onCompletion andErrorHandler:onError];
+        }
+    };
     
     if(type == WEB_SERVICE_GET_REQUEST)
     {
-        __unsafe_unretained SPRequestManager* weakSelf = self;
-        [self.httpClient getPath:path parameters:nil success:successBlock failure:^
-         
-         (AFHTTPRequestOperation *operation, NSError *error) {
-             
-             if(retryCount < 0)
-             {
-                 failureBlock(operation,error);
-             }
-             else
-             {
-                [weakSelf requestToNamespace:namespace withType:type andParameter:parameter andPayload:payload requiringToken:requiresToken withRetryCount:retryCount - 1 withCompletionHandler:onCompletion andErrorHandler:onError];
-             }
-        }];
+        [self.httpClient getPath:path parameters:nil success:successBlock failure:retryCheckBlock];
     }
     else if(type == WEB_SERVICE_POST_REQUEST)
     {
-        [self.httpClient postPath:path parameters:payload success:successBlock failure:failureBlock];
+        [self.httpClient postPath:path parameters:payload success:successBlock failure:retryCheckBlock];
     }
     else if(type == WEB_SERVICE_DELETE_REQUEST)
     {
-        [self.httpClient deletePath:path parameters:nil success:successBlock failure:failureBlock];
+        [self.httpClient deletePath:path parameters:nil success:successBlock failure:retryCheckBlock];
     }
 }
 -(void)putToURL:(NSURL*)url withPayload:(id)payload withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)(NSError* error))onError

@@ -630,6 +630,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
     }
 }
 #pragma mark - Authentication methods
+#define AUTHENTICATION_RETRY_COUNT 2
 //Validates that the stored credentials are valid
 -(void)validateUserWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
@@ -643,7 +644,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                                                                                       kCFStringEncodingUTF8 );
     
     __unsafe_unretained SPProfileManager* weakSelf = self;
-    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject)
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withRetryCount:AUTHENTICATION_RETRY_COUNT withCompletionHandler:^(id responseObject)
     {
         //User Token is valid
         

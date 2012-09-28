@@ -56,14 +56,14 @@
     
     //[button sizeToFit];
     
-    self.inputButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.inputButton = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
     self.inputButton.customView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     self.inputButton.width = 66;
     /* Disable button initially */
     self.inputButton.enabled = NO;
 
     /* Create UIExpandingTextView input */
-    self.textView = [[UIExpandingTextView alloc] initWithFrame:CGRectMake(7, 7, 230, 26)];
+    self.textView = [[[UIExpandingTextView alloc] initWithFrame:CGRectMake(7, 7, 230, 26)] autorelease];
     self.textView.internalTextView.scrollIndicatorInsets = UIEdgeInsetsMake(4.0f, 0.0f, 10.0f, 0.0f);
     self.textView.delegate = self;
     [self addSubview:self.textView];
