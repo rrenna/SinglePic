@@ -14,6 +14,7 @@
 
 -(void)retrieveBucketsWithCompletionHandler:(void (^)(NSArray* buckets))onCompletion andErrorHandler:(void(^)())onError
 {
+    __unsafe_unretained SPBucketManager* weakSelf = self;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:nil requiringToken:NO withCompletionHandler:^(id responseObject)                            
      {
          NSError *theError = nil;
@@ -26,8 +27,8 @@
              [_buckets addObject:bucket];
              [bucket release];
          }
-         self.buckets = _buckets;
-         onCompletion(self.buckets);
+         weakSelf.buckets = _buckets;
+         onCompletion(weakSelf.buckets);
      }
      andErrorHandler:^(NSError* error)
      {

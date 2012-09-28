@@ -128,14 +128,15 @@
     NSString* parameter = [NSString stringWithFormat:@"%@/msg",userID];
     NSDictionary* payload = [NSDictionary dictionaryWithObjectsAndKeys:messageBody,@"message",nil];
     
+    __unsafe_unretained SPMessageManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject)
     {
         NSDate* now = [NSDate date];
         
         //Find the User Thread if active
-        SPMessageThread* thread = [self getMessageThreadByUserID:userID];
+        SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
         
-        SPMessage* newMessage = [self saveMessage:messageBody toThread:thread isIncoming:NO atTime:now];
+        SPMessage* newMessage = [weakSelf saveMessage:messageBody toThread:thread isIncoming:NO atTime:now];
 
         [managedObjectContext save:nil];
         //Run completion block
@@ -184,11 +185,11 @@
         if([retrievalInProgress boolValue]) return;
 
         retrievalInProgress = @YES;
-        
         int unixTimeSincePreviousRetrieval = [self unixTimeOfLastRetrieval];
-
         NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,unixTimeSincePreviousRetrieval];
-        [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
+        
+        __unsafe_unretained SPMessageManager* weakSelf = self;
+        [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
         {
             NSError *theError = nil;
             NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
@@ -209,9 +210,9 @@
                 NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
                 
                 //Find the User Thread if active
-                SPMessageThread* thread = [self getMessageThreadByUserID:userID];
+                SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
 
-                [self saveMessage:message toThread:thread isIncoming:YES atTime:time];
+                [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
                 
                 messagesRecieved = YES;
             }
@@ -230,7 +231,7 @@
                 [managedObjectContext save:&error];
                 
                 //Inform the user that we've recieved the messages successfully
-                [self sendSyncronizationReceiptWithCompletionHandler:^
+                [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
                 {
                     //Reset Badge
                     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

@@ -18,6 +18,8 @@
 }
 @property (retain) AFHTTPClient* httpClient;
 @property (retain) UIAlertView* networkConnectivityAlertView;
+-(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError;
+-(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError;
 @end
 
 @implementation SPRequestManager
@@ -53,26 +55,27 @@
 }
 -(void)EnableRealtimeReachabilityMonitoring
 {
+    __unsafe_unretained SPRequestManager* weakSelf = self;
     [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
         if(status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown)
         {
-            if(![self.httpClient.operationQueue isSuspended])
+            if(![weakSelf.httpClient.operationQueue isSuspended])
             {
-                [self.httpClient.operationQueue setSuspended:YES];
+                [weakSelf.httpClient.operationQueue setSuspended:YES];
                 
-                self.networkConnectivityAlertView = [[[UIAlertView alloc] initWithTitle:@"Connectivity Issue" message:@"Couldn't connect to SinglePic. Please ensure you have an active internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
-                [self.networkConnectivityAlertView show];
+                weakSelf.networkConnectivityAlertView = [[[UIAlertView alloc] initWithTitle:@"Connectivity Issue" message:@"Couldn't connect to SinglePic. Please ensure you have an active internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
+                [weakSelf.networkConnectivityAlertView show];
             }
            
         }
         else if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
         {
-            if([self.httpClient.operationQueue isSuspended])
+            if([weakSelf.httpClient.operationQueue isSuspended])
             {
-                [self.httpClient.operationQueue setSuspended:NO];
-                [self.networkConnectivityAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                self.networkConnectivityAlertView = nil;
+                [weakSelf.httpClient.operationQueue setSuspended:NO];
+                [weakSelf.networkConnectivityAlertView dismissWithClickedButtonIndex:0 animated:YES];
+                weakSelf.networkConnectivityAlertView = nil;
             }
         }
     }];
@@ -106,6 +109,10 @@
 }
 -(void)getFromNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
 {    
+    [self requestToNamespace:name withType:WEB_SERVICE_GET_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
+}
+-(void)getFromNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
+{
     [self requestToNamespace:name withType:WEB_SERVICE_GET_REQUEST andParameter:parameter andPayload:nil requiringToken:requiresToken withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 -(void)deleteFromNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
@@ -224,6 +231,80 @@
     }
     else if(type == WEB_SERVICE_POST_REQUEST)
     {        
+        [self.httpClient postPath:path parameters:payload success:successBlock failure:failureBlock];
+    }
+    else if(type == WEB_SERVICE_DELETE_REQUEST)
+    {
+        [self.httpClient deletePath:path parameters:nil success:successBlock failure:failureBlock];
+    }
+}
+-(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError
+{    
+    NSString* path = [self generatePathForNamespace:namespace andParameter:parameter requiringToken:requiresToken];
+    
+    id successBlock = ^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        onCompletion(responseObject);
+    };
+    
+    void (^failureBlock)(AFHTTPRequestOperation *, NSError*) = ^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        //We want to store the error in the dictionary, and add the HTTP type
+        NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
+        int errorCode = [error code];
+        int statusCode = [[operation response] statusCode];
+        
+        if([[operation request] HTTPBody])
+        {
+            NSString* HTTPBody = [[NSString alloc] initWithData:[[operation request] HTTPBody] encoding:NSUTF8StringEncoding];
+            
+            if(HTTPBody)    [userInfo setObject:HTTPBody forKey:@"HTTP Body"];
+        }
+        
+        [userInfo setObject:[NSNumber numberWithInt:statusCode] forKey:@"statusCode"];
+        [userInfo setObject:[operation.request HTTPMethod] forKey:@"type"];
+        
+        
+        if(operation.responseData)
+        {
+            NSError* jsonParseError = nil;
+            id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:0 error:&jsonParseError];
+            if(responseJSON)
+            {
+                [userInfo setObject:responseJSON forKey:@"response"];
+            }
+        }
+        
+        SPWebServiceError* SPError = [SPWebServiceError errorWithDomain:[operation.request.URL description] code:errorCode userInfo:userInfo];
+        
+        //Display an alert
+        [[SPErrorManager sharedInstance] logError:SPError alertUser:YES];
+        
+        if(onError)
+        {
+            onError(SPError);
+        }
+    };
+    
+    if(type == WEB_SERVICE_GET_REQUEST)
+    {
+        __unsafe_unretained SPRequestManager* weakSelf = self;
+        [self.httpClient getPath:path parameters:nil success:successBlock failure:^
+         
+         (AFHTTPRequestOperation *operation, NSError *error) {
+             
+             if(retryCount < 0)
+             {
+                 failureBlock(operation,error);
+             }
+             else
+             {
+                [weakSelf requestToNamespace:namespace withType:type andParameter:parameter andPayload:payload requiringToken:requiresToken withRetryCount:retryCount - 1 withCompletionHandler:onCompletion andErrorHandler:onError];
+             }
+        }];
+    }
+    else if(type == WEB_SERVICE_POST_REQUEST)
+    {
         [self.httpClient postPath:path parameters:payload success:successBlock failure:failureBlock];
     }
     else if(type == WEB_SERVICE_DELETE_REQUEST)

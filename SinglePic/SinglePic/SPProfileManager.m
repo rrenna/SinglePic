@@ -416,9 +416,11 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 -(void)saveMyBucket:(SPBucket*)_bucket withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@",[_bucket identifier]];
+    
+    __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
      {         
-         [self setMyBucket:_bucket synchronize:YES];
+         [weakSelf setMyBucket:_bucket synchronize:YES];
          onCompletion(responseObject);
          
      } 
@@ -439,23 +441,24 @@ static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 -(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
-    void (^imageAndThumbnailUploaded)(id completedResponseObject) = ^(id completedResponseObject) 
+    __unsafe_unretained SPProfileManager* weakSelf = self;
+    void (^imageAndThumbnailUploaded)(id completedResponseObject) = ^(id completedResponseObject)
     {
         //Confirm with the server that the images have been uploaded. This tells the server to set the current time as your upload time.
         NSString* parameter = [NSString stringWithFormat:@"%@/imageupdated",USER_ID_ME];
         [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
         {
             //If there has been an image set, store it in an historic state (for an undo operation)
-            if(self.image)
+            if(weakSelf.image)
             {
-                self.lastImage = self.image;
+                weakSelf.lastImage = weakSelf.image;
             }
             
             NSTimeInterval interval = SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid];
             //Set my Expiry
-            [self setMyExpiry:[NSDate dateWithTimeIntervalSinceNow:interval] synchronize:NO];
+            [weakSelf setMyExpiry:[NSDate dateWithTimeIntervalSinceNow:interval] synchronize:NO];
             //Set my Image
-            [self setMyImage:_image];
+            [weakSelf setMyImage:_image];
             
             onCompletion(completedResponseObject);
             
@@ -548,19 +551,20 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 {
     NSDictionary* payload = [self generateProfileDataWithIcebreaker:icebreaker_ andGender:gender_ andPreference:preference_];
     
+    __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
          if(icebreaker_)
          {
-             [self setMyIcebreaker:icebreaker_ synchronize:NO];
+             [weakSelf setMyIcebreaker:icebreaker_ synchronize:NO];
          }
          if(gender_)
          {
-             [self setMyGender:gender_ synchronize:NO];
+             [weakSelf setMyGender:gender_ synchronize:NO];
          }
          if(preference_)
          {
-             [self setMyPreference:preference_ synchronize:YES];
+             [weakSelf setMyPreference:preference_ synchronize:YES];
          }
          onCompletion(responseObject);
          
@@ -637,7 +641,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
                                                                                       NULL,
                                                                                       (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                       kCFStringEncodingUTF8 );
-        
+    
+    __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_TOKENS withParameter:escapedUserToken requiringToken:NO withCompletionHandler:^(id responseObject)
     {
         //User Token is valid
@@ -647,10 +652,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
         #endif
     
         //We now confirm this user has synced this device's push token with their user profile
-        if(![self myPushTokenSynced])
+        if(![weakSelf myPushTokenSynced])
         {
                 //If not, we attempt to sync the device's push token with the user's profile
-            [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) {} andErrorHandler:^{}];
+            [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject) {} andErrorHandler:^{}];
         }
         
         //After validation set this user as the active message account
@@ -667,11 +672,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
         #endif
         
             //Token is invalid - reset user type
-        self.userType = USER_TYPE_ANNONYMOUS;
+        weakSelf.userType = USER_TYPE_ANNONYMOUS;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:USER_TYPE_ANNONYMOUS] forKey:USER_DEFAULT_KEY_USER_TYPE];
         [[NSUserDefaults standardUserDefaults] synchronize];
             // remove token - any other stored information about this profile
-        [self clearProfile];
+        [weakSelf clearProfile];
         
         if(onError)
         {
@@ -687,7 +692,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
 {
     NSDictionary* payload = [NSDictionary dictionaryWithObjectsAndKeys:email_,@"email",password_,@"password",nil];
     
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_TOKENS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject) 
+    __unsafe_unretained SPProfileManager* weakSelf = self;
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_TOKENS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
      {
          NSError *theError = nil;
          NSDictionary* Response = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
@@ -736,22 +742,20 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       [[SPProfileManager sharedInstance] setMyImage:responseImage];
                       
                       
-                      self.userType = USER_TYPE_PROFILE;
-                      [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
+                      weakSelf.userType = USER_TYPE_PROFILE;
+                      [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:weakSelf.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
                       [[NSUserDefaults standardUserDefaults] synchronize];
                       
                       //After login set this user as the active message account
                       [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
                       
                       //Registers for Push notifications
-                      [self registerDevicePushTokenWithCompletionHandler:^(id responseObject)
+                      [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject)
                        {
                        } andErrorHandler:^
                        {
                        }];
-                      
-                      
-                      
+      
                       onCompletion(responseObject);
                       
                       
@@ -768,7 +772,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                   }
                   
               }
-                                                                    andErrorHandler:^
+              andErrorHandler:^
               {
                   if(onError)
                   {
@@ -776,8 +780,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
                   }
               }];
          } 
-                                            andErrorHandler:^(NSError* error)
-          {
+         andErrorHandler:^(NSError* error)
+         {
               if(onError)
               {
                   onError();
@@ -831,6 +835,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [payload setObject:lonString forKey:@"longitude"];
     }
     
+    __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject) 
     {
         NSError *theError = nil;
@@ -850,16 +855,16 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[SPProfileManager sharedInstance] setMyBucket:bucket_ synchronize:NO];
         
         //NOTE : Should not cache the password
-        self.userType = USER_TYPE_PROFILE;
+        weakSelf.userType = USER_TYPE_PROFILE;
         
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:weakSelf.userType] forKey:USER_DEFAULT_KEY_USER_TYPE];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //Set Message Account
         [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
         
         //Registers for Push notifications
-        [self registerDevicePushTokenWithCompletionHandler:^(id responseObject) 
+        [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject) 
          {
          } andErrorHandler:^
          {
@@ -874,7 +879,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
     andErrorHandler:^(NSError* error)
     {
         //If for any reason registration fails. We should ensure that no User Token is cached, another registration attempt can then be retried.
-        [self clearProfile];
+        [weakSelf clearProfile];
         
         if(onError)
         {
@@ -907,13 +912,14 @@ static NSURL* _thumbnailUploadURLCache = nil;
     {        
         NSString* parameter = [NSString stringWithFormat:@"%@/pushToken",USER_ID_ME];
 
+        __unsafe_unretained SPProfileManager* weakSelf = self;
         [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"pushToken":deviceToken} requiringToken:YES withCompletionHandler:^(id responseObject)
          {
              #if defined (BETA)
              [TestFlight passCheckpoint:@"Registered Device Push Token"];
              #endif
              
-             [self setMyPushTokenSynced:YES synchronize:YES];
+             [weakSelf setMyPushTokenSynced:YES synchronize:YES];
              onCompletion(responseObject);
              
          } 
@@ -923,7 +929,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
             [TestFlight passCheckpoint:@"Failed to register Device Push Token - call failed"];
             #endif
              
-            [self setMyPushTokenSynced:NO synchronize:YES];//If we've logged into an account on this device before, we may have the flag set to true. This absolutely ensure's the flag is set to false, so another token registration is attempted in the future
+            [weakSelf setMyPushTokenSynced:NO synchronize:YES];//If we've logged into an account on this device before, we may have the flag set to true. This absolutely ensure's the flag is set to false, so another token registration is attempted in the future
              
              if(onError)
              {
@@ -1050,9 +1056,10 @@ static int profileCounter = 0;
     {
         NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",[[SPSettingsManager sharedInstance] defaultBucketID],GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],0,intTime];
         
+        __unsafe_unretained SPProfileManager* weakSelf = self;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) 
          {
-             [self.profiles removeAllObjects];
+             [weakSelf.profiles removeAllObjects];
              //
              NSError *theError = nil;
              NSDictionary* feedData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
@@ -1062,12 +1069,12 @@ static int profileCounter = 0;
              for(NSDictionary* userData in bucketData)
              {
                  SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
-                 [self.profiles addObject:profile];
+                 [weakSelf.profiles addObject:profile];
 
              }
              [pool drain];
              
-             onCompletion(self.profiles);
+             onCompletion(weakSelf.profiles);
              
              //Inform application that the notifications have changed
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PROFILES_CHANGED object:nil];
@@ -1104,9 +1111,10 @@ static int profileCounter = 0;
         
         NSLog(@"User retrieval parameter isn't finished in 'retrieveProfilesWithCompletionHandler:andErrorHandler:'");
         
+        __unsafe_unretained SPProfileManager* weakSelf = self;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
          {
-             [self.profiles removeAllObjects];
+             [weakSelf.profiles removeAllObjects];
              
              NSError *theError = nil;
              NSDictionary* feedData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
@@ -1116,11 +1124,11 @@ static int profileCounter = 0;
              for(NSDictionary* userData in bucketData)
              {
                  SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
-                 [self.profiles addObject:profile];
+                 [weakSelf.profiles addObject:profile];
              }
              [pool drain];
              
-             onCompletion(self.profiles);
+             onCompletion(weakSelf.profiles);
              
              
              //Inform application that the notifications have changed
@@ -1223,6 +1231,8 @@ static int profileCounter = 0;
 -(void)retrieveLikesWithCompletionHandler:(void (^)(NSArray* likes))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@/likes",USER_ID_ME];
+    
+    __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
          NSError* error = nil;
@@ -1230,7 +1240,7 @@ static int profileCounter = 0;
          
          if([likeData count] > 0)
          {
-             [self retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
+             [weakSelf retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
               {
                   [_likes release];
                   _likes = [[NSMutableArray alloc] initWithArray:profiles_];
@@ -1267,14 +1277,16 @@ static int profileCounter = 0;
 -(void)retrieveLikedByWithCompletionHandler:(void (^)(NSArray* likes))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@/likedby",USER_ID_ME];
-    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
+    
+    __unsafe_unretained SPProfileManager* weakSelf = self;
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
      {
          NSError* error = nil;
          NSArray* likeData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&error];
          
          if([likeData count] > 0)
          {
-             [self retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
+             [weakSelf retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
               {
                   [_likedBy release];
                   _likedBy = [profiles_ retain];
@@ -1369,7 +1381,6 @@ static int profileCounter = 0;
             [TestFlight passCheckpoint:@"Unliked a User"];
             #endif
 
-             
             [_likes removeObject:profileToRemove];
              
             onCompletion();
