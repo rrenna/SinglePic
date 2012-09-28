@@ -26,7 +26,7 @@
 - (NSManagedObjectContext *) managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
--(NSArray*)messageThreads;
+-(NSSet*)messageThreads;
 - (void)retrieveMessages;
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time;
 - (int)unixTimeOfLastRetrieval;
@@ -181,7 +181,7 @@
      }];
 }
 #pragma mark - Private methods
--(NSArray*)messageThreads
+-(NSSet*)messageThreads
 {
     return [self.activeAccount threads];
 }
