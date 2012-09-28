@@ -32,15 +32,20 @@ static int profileIndex = 0;
     UIImageView *refreshArrow;
     UIView*  nextHeaderView;
     UILabel* nextLabel;
-    UIImageView* nextArrow;
-    UIActivityIndicatorView* nextSpinner;
+    ColorGrid *colorGrid;
     
     BOOL isDragging;
     BOOL isLoading;
     BOOL isRestarting;
-    ColorGrid *colorGrid;
+    NSTimer *dropTimer;
+    NSMutableArray* queuedSelectorCalls;
+    //Stack Management
+    int stackCount[3];
+    BOOL stackPaused[3];
+
 }
 @property (retain) NSMutableArray* profileControllers;
+@property (retain) CADisplayLink* tickDisplayLink;
 
 -(void)createPhysicsWorld;
 -(void)createPhysicalBarriers;
@@ -68,7 +73,7 @@ static int profileIndex = 0;
 @end
 
 @implementation SPBrowseViewController
-@synthesize profileControllers;
+@synthesize profileControllers, tickDisplayLink = _tickDisplayLink; //Private
 
 -(id)init
 {
@@ -108,10 +113,10 @@ static int profileIndex = 0;
     [profileControllers release];
     [queuedSelectorCalls release];
     
-    [tickTimer invalidate];
+    [_tickDisplayLink invalidate];
     [dropTimer invalidate];
     
-    [tickTimer release];
+    [_tickDisplayLink release];
     [dropTimer release];
     
     delete world;
@@ -123,7 +128,10 @@ static int profileIndex = 0;
     [self createPhysicsWorld];
     [self createPhysicalBarriers];
     
-    tickTimer = [NSTimer scheduledTimerWithTimeInterval:TICK target:self selector:@selector(tick:) userInfo:nil repeats:YES];
+    self.tickDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(tick:)];
+    [_tickDisplayLink setFrameInterval:1];
+    [_tickDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
     [self resetStackCounters];
     
     if(![dropTimer isValid])
@@ -246,7 +254,7 @@ static int profileIndex = 0;
 -(void)willClose
 {
     //Suspends the main timer
-    [tickTimer invalidate]; tickTimer = nil;
+    [_tickDisplayLink invalidate]; self.tickDisplayLink = nil;
     //Suspends the drop timer
     [dropTimer invalidate]; dropTimer = nil;
     
@@ -370,13 +378,13 @@ static int profileIndex = 0;
         [self destroyBottomViewBody:centerBottomView];
         
         //Fade out & destroy all blocks
-        float delay = 1.5;
+        float delay = 2.0;
         for(UIView* subView in canvasView.subviews)
         {
             if([subView isKindOfClass:[SPBlockView class]])
             {
                 __block id blockSelf = self;
-                [UIView animateWithDuration:0.70 delay:delay options:nil animations:^{
+                [UIView animateWithDuration:0.5 delay:delay options:nil animations:^{
                     
                     subView.alpha = 0.0;
                     
@@ -385,7 +393,7 @@ static int profileIndex = 0;
                     [blockSelf destroyBlockView:subView];
                 }];
                 
-                delay -= 0.05;
+                delay -= 0.02;
             }
         }
         
@@ -393,7 +401,7 @@ static int profileIndex = 0;
         [self pauseAllStacks];
         
         [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
-        [self performSelector:@selector(stopLoading) afterTicks:6500 * TICK];
+        [self performSelector:@selector(stopLoading) afterTicks:6250 * TICK];
         [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
     }
 }
@@ -736,15 +744,12 @@ int currentTick = 0;
     UIEdgeInsets scrollViewContentInset = scrollView.contentInset;
     scrollViewContentInset.top = 1.0;
     scrollView.contentInset = scrollViewContentInset;
-    [nextArrow layer].transform = CATransform3DMakeRotation(M_PI * 2, 0, 0, 1);
     [UIView commitAnimations];
 }
 - (void)stopLoadingComplete:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context 
 {
     // Reset the header
     nextLabel.text = @"";
-    nextArrow.hidden = NO;
-    [nextSpinner stopAnimating];
 }
 #pragma mark - UIScrollView delegate methods
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

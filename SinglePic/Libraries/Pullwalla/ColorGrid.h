@@ -19,7 +19,7 @@ alpha:1.0];
 
 @interface ColorGrid : UIView
 
-@property(nonatomic, strong)NSMutableArray *colors;
+@property(nonatomic, strong) NSMutableArray *colors;
 
 - (id)initWithFrame:(CGRect)frame colors:(NSArray *)gridColors;
 - (void)drawGrid;

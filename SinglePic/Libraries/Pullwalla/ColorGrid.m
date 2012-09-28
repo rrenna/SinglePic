@@ -57,10 +57,10 @@
     {
         for( int column = 0; column < COLUMNS; column++)
         {
-            ColorBlock *colorBlock = [[[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION)
+            ColorBlock *colorBlock = [[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, row * CELL_DIMENSION, CELL_DIMENSION, CELL_DIMENSION)
                                                                 colors:colors 
                                                          startingIndex:0
-                                                         shouldAnimate:YES] autorelease];
+                                                         shouldAnimate:YES];
             
             [self addSubview:colorBlock];
         }
@@ -74,10 +74,10 @@
     
     for( int column = 0; column < COLUMNS; column++)
     {
-        ColorBlock *colorBlock = [[[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, 0, CELL_DIMENSION, CELL_DIMENSION * ROWS - 1)
+        ColorBlock *colorBlock = [[ColorBlock alloc] initWithFrame:CGRectMake(column * CELL_DIMENSION, 0, CELL_DIMENSION, CELL_DIMENSION * ROWS - 1)
                                                             colors:colors 
                                                      startingIndex:column % [colors count]
-                                                     shouldAnimate:NO] autorelease];
+                                                     shouldAnimate:NO];
         
         [self addSubview:colorBlock];
     }

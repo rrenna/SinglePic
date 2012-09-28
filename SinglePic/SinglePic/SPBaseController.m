@@ -367,7 +367,8 @@
     }
     else
     {
-        miniAvatarImage.image = [UIImage imageNamed:@"NAV-Profile-OFF"];
+        UIImage* image = [UIImage imageNamed:@"NAV-Profile-OFF.png"];
+        miniAvatarImage.image = image;
         miniAvatarImage.layer.borderWidth = 0.0f;
     }
 }

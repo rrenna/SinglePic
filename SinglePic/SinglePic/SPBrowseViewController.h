@@ -26,13 +26,6 @@ struct b2Body;
     //Box2D
     struct b2World* world;
     struct b2Body* groundBody;
-    //
-	NSTimer *tickTimer;
-    NSTimer *dropTimer;
-    NSMutableArray* queuedSelectorCalls;
-    //Stack Management
-    int stackCount[3];
-    BOOL stackPaused[3];
 }
 -(void)setup;
 -(void)visible;

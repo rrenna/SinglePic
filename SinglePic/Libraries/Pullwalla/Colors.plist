@@ -2,7 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Colors</key>
+	<key>Colors - Contrast</key>
+	<array>
+		<string>0x54191B</string>
+		<string>0xAA5052</string>
+		<string>0xAA686A</string>
+		<string>0xADA6A0</string>
+		<string>0xD6B4AE</string>
+		<string>0xF3EAD1</string>
+	</array>
+	<key>Colors - original</key>
 	<array>
 		<string>0xebe3c5</string>
 		<string>0xf5828a</string>
@@ -17,6 +26,20 @@
 		<string>0xb34c78</string>
 		<string>0xc7768b</string>
 		<string>0xc23b6b</string>
+	</array>
+	<key>Colors</key>
+	<array>
+		<string>0xc48c8c</string>
+		<string>0x9c5b59</string>
+		<string>0x8f5250</string>
+		<string>0xd3a7a6</string>
+		<string>0x774442</string>
+		<string>0x5d3432</string>
+		<string>0xb46967</string>
+		<string>0xc07d7b</string>
+		<string>0xc07d7b</string>
+		<string>0x683a39</string>
+		<string>0x854c4a</string>
 	</array>
 </dict>
 </plist>
