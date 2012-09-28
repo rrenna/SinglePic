@@ -660,7 +660,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         }
         
         //After validation set this user as the active message account
-        [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
+        [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf userID]];
         
         onCompletion(responseObject);
         
@@ -731,16 +731,16 @@ static NSURL* _thumbnailUploadURLCache = nil;
                   if(userBucket_)
                   {
                       [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO]; //Tells the request manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
-                      [[SPProfileManager sharedInstance] setMyUserID:userID_ synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyUserName:userName_ synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyEmail:email_ synchronize:NO]; //Tells the profile manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
+                      [weakSelf setMyUserID:userID_ synchronize:NO];
+                      [weakSelf setMyUserName:userName_ synchronize:NO];
+                      [weakSelf setMyEmail:email_ synchronize:NO]; //Tells the profile manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
                                                                                             //NOTE : Should not cache the password
-                      [[SPProfileManager sharedInstance] setMyBucket:userBucket_ synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyIcebreaker:userIcebreaker_ synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyGender:GENDER_FROM_NAME(userGender_) synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyPreference:GENDER_FROM_NAME(userPreference_) synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyExpiry:expiry synchronize:NO];
-                      [[SPProfileManager sharedInstance] setMyImage:responseImage];
+                      [weakSelf setMyBucket:userBucket_ synchronize:NO];
+                      [weakSelf setMyIcebreaker:userIcebreaker_ synchronize:NO];
+                      [weakSelf setMyGender:GENDER_FROM_NAME(userGender_) synchronize:NO];
+                      [weakSelf setMyPreference:GENDER_FROM_NAME(userPreference_) synchronize:NO];
+                      [weakSelf setMyExpiry:expiry synchronize:NO];
+                      [weakSelf setMyImage:responseImage];
                       
                       
                       weakSelf.userType = USER_TYPE_PROFILE;
@@ -748,7 +748,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       [[NSUserDefaults standardUserDefaults] synchronize];
                       
                       //After login set this user as the active message account
-                      [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
+                      [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf userID]];
                       
                       //Registers for Push notifications
                       [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject)
@@ -848,12 +848,13 @@ static NSURL* _thumbnailUploadURLCache = nil;
         
         //'synchronize:NO' tells the profile manager to not synchronize the specific setting, as the NSUserDefaults will be synchronized at the end of this block
         [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO];
-        [[SPProfileManager sharedInstance] setMyUserID:userID_ synchronize:NO];
-        [[SPProfileManager sharedInstance] setMyUserName:userName_ synchronize:NO];
-        [[SPProfileManager sharedInstance] setMyEmail:email_ synchronize:NO]; 
-        [[SPProfileManager sharedInstance] setMyGender:gender_ synchronize:NO];
-        [[SPProfileManager sharedInstance] setMyPreference:preference_ synchronize:NO];
-        [[SPProfileManager sharedInstance] setMyBucket:bucket_ synchronize:NO];
+        [weakSelf setMyUserID:userID_ synchronize:NO];
+        [weakSelf setMyUserName:userName_ synchronize:NO];
+        [weakSelf setMyEmail:email_ synchronize:NO]; 
+        [weakSelf setMyGender:gender_ synchronize:NO];
+        [weakSelf setMyPreference:preference_ synchronize:NO];
+        [weakSelf setMyBucket:bucket_ synchronize:NO];
+        [weakSelf setMyExpiry:nil synchronize:NO];
         
         //NOTE : Should not cache the password
         weakSelf.userType = USER_TYPE_PROFILE;
@@ -862,7 +863,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //Set Message Account
-        [[SPMessageManager sharedInstance] setActiveMessageAccount:[[SPProfileManager sharedInstance] userID]];
+        [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf userID]];
         
         //Registers for Push notifications
         [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject) 

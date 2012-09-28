@@ -1742,6 +1742,7 @@
 		75F56321148FC74800E6A8F9 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				C8FE82D7401BA82CBCC18CAD /* Browse */,
 				755A94CE160265660056A03C /* Likes */,
 				755A94CD1602654F0056A03C /* Messages */,
 				755A94CC160265400056A03C /* Tabs & Pages */,
@@ -1752,7 +1753,6 @@
 				F02642A314DFA6B300E8D649 /* Users */,
 				F01B800114CCF2A0009FA39D /* Profiles */,
 				751D2631149121C800617DD8 /* SPBaseController.xib */,
-				F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -1775,6 +1775,14 @@
 				751D2630149121C800617DD8 /* SPBaseController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C8FE82D7401BA82CBCC18CAD /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */,
+			);
+			name = Browse;
 			sourceTree = "<group>";
 		};
 		F002E03216096D8900B451BD /* Buttons */ = {
