@@ -46,10 +46,6 @@ typedef enum
     //Register
     IBOutlet UIView* registrationNavigationView;
     SPRegistrationViewController* registrationController;
-@private
-    NSMutableArray* tabs;
-    SPReachabilityPopupController* reachabilityController;
-    BASE_MODE baseMode_;
 }
 
 @property (assign) BASE_MODE baseMode;

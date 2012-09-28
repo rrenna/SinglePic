@@ -24,7 +24,9 @@
 -(int)activeMessageThreadsCount;
 -(SPMessageThread*)getMessageThreadByUserID:(NSString*)userID;
 -(void)deleteMessageThread:(SPMessageThread*)thread;
-//--Sending messages
+//--Unread Messages
+-(int)unreadMessagesCount;
+//--Sending Messages
 -(void)sendMessage:(NSString*)message toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError;
 //--Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError;

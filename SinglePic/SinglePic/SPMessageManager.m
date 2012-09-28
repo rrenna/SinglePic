@@ -123,6 +123,13 @@
     [[self managedObjectContext] deleteObject:thread];
     [[self managedObjectContext] save:nil];
 }
+#pragma mark - Unread Messages
+-(int)unreadMessagesCount
+{
+    //TODO: Implement unread message count
+    return 0;
+}
+#pragma mark - Sending Messages
 -(void)sendMessage:(NSString*)messageBody toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@/msg",userID];
@@ -153,7 +160,7 @@
         
     }];
 }
-//Message Syncronization
+#pragma mark - Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
 {
     NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastRetrieval]];

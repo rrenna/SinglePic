@@ -19,12 +19,18 @@
 #import "SPStyledButton.h"
 
 @interface SPBaseController()
+{
+    NSMutableArray* tabs;
+    SPReachabilityPopupController* reachabilityController;
+    BASE_MODE baseMode_;
+}
 @property (retain) SPHelpOverlayViewController* helpOverlayController;
 -(SPTabController*)createTab;
 -(SPTabController*)createTabIsMoveable:(BOOL)moveable;
 -(void)browseScreenProfileSelected;
 -(void)updateExpiry;
 -(void)updateAvatar;
+-(void)updateNewMailAlert;
 -(void)flashNewConnectionAlert;
 -(void)validateReachability;
 -(void)locationServicesValidated;
@@ -132,6 +138,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:UIApplicationDidBecomeActiveNotification object:nil];      
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAvatar) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(flashNewConnectionAlert) name:NOTIFICATION_LIKE_ADDED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewMailAlert) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewMailAlert) name:NOTIFICATION_NEW_MESSAGES_READ object:nil];
     }
     return self;
 }
@@ -361,6 +369,19 @@
     {
         miniAvatarImage.image = [UIImage imageNamed:@"NAV-Profile-OFF"];
         miniAvatarImage.layer.borderWidth = 0.0f;
+    }
+}
+-(void)updateNewMailAlert
+{
+    if([[SPMessageManager sharedInstance] unreadMessagesCount] > 0)
+    {
+        newMessageAlertImage.alpha = 1.0;
+    }
+    else
+    {
+        [UIView animateWithDuration:1.0 animations:^{
+            newMessageAlertImage.alpha = 0.0;
+        }];
     }
 }
 -(void)flashNewConnectionAlert

@@ -100,7 +100,7 @@ static float inputToolbarSize = 42.0f;
     
     _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height, window.width, inputToolbarSize)];
     _toolbar.delegate = self;
-    _toolbar.textView.placeholder = @"Placeholder";
+    _toolbar.textView.placeholder = @"Enter a message";
     
     [window addSubview:_toolbar];
     
