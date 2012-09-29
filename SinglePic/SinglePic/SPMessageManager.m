@@ -187,8 +187,13 @@
 }
 -(void)retrieveMessages
 {
-    @synchronized(retrievalInProgress) //Ensures that only one thread can read/modify the state of retrievalInProcess at a time
-    {
+    NSLock* lock = [[NSLock new] autorelease];
+    [lock lock];
+    
+        //@synchronized(retrievalInProgress) //Ensures that only one thread can read/modify the state of retrievalInProcess at a time
+        //{
+
+    
         if([retrievalInProgress boolValue]) return;
 
         retrievalInProgress = @YES;
@@ -200,76 +205,99 @@
         {
             NSError *theError = nil;
             NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
-            BOOL messagesRecieved = NO;
-            
+
             #ifndef RELEASE
             LogMessageCompat(@"%@",messagesData);
             #endif
             
-            for(NSDictionary* messageData in messagesData)
+            if([messagesData count] > 0)
             {
-                NSString* userID = [messageData objectForKey:@"from"];
-                NSString* message = [messageData objectForKey:@"message"];
-                NSNumber* unixTimeWithMillisecondsNumber = [messageData objectForKey:@"timeStamp"];
-                NSString* unixTimeWithMillisecondsString = [unixTimeWithMillisecondsNumber stringValue];
-                NSString* unixTimeWithoutMillisecondsString = [unixTimeWithMillisecondsString substringToIndex:10];
-                int unixTimeWithoutMilliseconds = [unixTimeWithoutMillisecondsString intValue];
-                NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
-                
-                //Find the User Thread if active
-                SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
-
-                [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
-                
-                messagesRecieved = YES;
-            }
-            
-            if(messagesRecieved)
-            {       
-                //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-
-                double unixTime = [[NSDate date] timeIntervalSince1970];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:unixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-                
-                NSError* error = nil;
-                [managedObjectContext save:&error];
-                
                 //Inform the user that we've recieved the messages successfully
                 [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
                 {
+                    BOOL messagesRecieved = NO;
+                    for(NSDictionary* messageData in messagesData)
+                    {
+                        NSString* userID = [messageData objectForKey:@"from"];
+                        NSString* message = [messageData objectForKey:@"message"];
+                        NSNumber* unixTimeWithMillisecondsNumber = [messageData objectForKey:@"timeStamp"];
+                        NSString* unixTimeWithMillisecondsString = [unixTimeWithMillisecondsNumber stringValue];
+                        NSString* unixTimeWithoutMillisecondsString = [unixTimeWithMillisecondsString substringToIndex:10];
+                        int unixTimeWithoutMilliseconds = [unixTimeWithoutMillisecondsString intValue];
+                        NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
+                        
+                        //Find the User Thread if active
+                        SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
+                        
+                        [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
+                        messagesRecieved = YES;
+                    }
+                    
                     //Reset Badge
                     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-                    retrievalInProgress = @NO;
+                    
+                    if(messagesRecieved)
+                    {
+                        //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
+                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                        
+                        double unixTime = [[NSDate date] timeIntervalSince1970];
+                        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:unixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        
+                        NSError* error = nil;
+                        [managedObjectContext save:&error];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
+                    }
+                    else
+                    {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+                    }
+                    
                     
                     #ifndef RELEASE
                     LogMessageCompat(@"Syncronization complete");
                     #endif
-                }
-                andErrorHandler:^
-                {
+                    
                     retrievalInProgress = @NO;
                     
+                    [lock unlock];
+                    
+                }
+                andErrorHandler:^
+                { 
                     #ifndef RELEASE
                     LogMessageCompat(@"Syncronization failure!!");
                     #endif
+                    
+                    retrievalInProgress = @NO;
+                    
+                    [lock unlock];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
                 }];
+
             }
             else
             {
-                 retrievalInProgress = @NO;
-                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+                retrievalInProgress = @NO;
+                
+                [lock unlock];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
             }
-            
+
         } andErrorHandler:^(NSError* error)
         {
             retrievalInProgress = @NO;
+            
+            [lock unlock];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
         }];
         
-    }
+    //}
 }
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time
 {
