@@ -32,9 +32,12 @@
 -(void) scrollToBottomAnimated:(BOOL)animated;
 @end
 
-static float FingerGrabHandleSize = 20.0f;
-static float inputToolbarSize = 42.0f;
-#define minimizedToolbarY (480.0f - inputToolbarSize)
+#define TABLE_RESIZE_OFFSET 27
+#define HEIGHT_OF_TIME_LABEL 32
+#define FINGER_GRAB_HAND_SIZE 20.0f
+#define INPUT_TOOLBAR_SIZE 42.0f
+#define MINIMIZED_TOOLBAR_Y (self.view.window.height - _toolbar.height)
+
 
 @implementation SPComposeViewController
 @synthesize thread = _thread, profile = _profile, toolbar = _toolbar; //private
@@ -45,7 +48,6 @@ static float inputToolbarSize = 42.0f;
     self = [self initWithNibName:@"SPComposeViewController" bundle:nil];
     if(self)
     {
-        
         [[SPProfileManager sharedInstance] retrieveProfile:identifier withCompletionHandler:^
          (SPProfile *profile)
          {
@@ -98,11 +100,13 @@ static float inputToolbarSize = 42.0f;
     
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
     
-    _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height, window.width, inputToolbarSize)];
+    _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height, window.width, INPUT_TOOLBAR_SIZE)];
     _toolbar.delegate = self;
     _toolbar.textView.placeholder = @"Enter a message";
     
     [window addSubview:_toolbar];
+    
+    tableView.height = window.height - 107;
     
     [topBarView setStyle:STYLE_PAGE];
     [topBarView setDepth:DEPTH_OUTSET];
@@ -129,7 +133,7 @@ static float inputToolbarSize = 42.0f;
                      animations:^{
                          UIWindow* window = [[UIApplication sharedApplication] keyWindow];
                          CGRect toolBarFrame = _toolbar.frame;
-                         toolBarFrame.origin.y = window.height - inputToolbarSize;
+                         toolBarFrame.origin.y = window.height - _toolbar.height;
                          [_toolbar setFrame: toolBarFrame];
                          
                      }
@@ -147,22 +151,20 @@ static float inputToolbarSize = 42.0f;
 }
 -(void)close
 {
-    [UIView animateWithDuration:0.25
-    delay:0.2
-    options:UIViewAnimationOptionCurveEaseOut
-    animations:^{
-         CGRect newFrame = keyboard.frame;
-         newFrame.origin.y = keyboard.window.frame.size.height;
 
-         CGRect toolBarFrame = _toolbar.frame;
-         toolBarFrame.origin.y = toolBarFrame.origin.y + toolBarFrame.size.height;
-         [_toolbar setFrame: toolBarFrame];
-        
-     }
-     completion:^(BOOL finished)
-     {
-         [_toolbar removeFromSuperview];
-     }];
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         _toolbar.top = _toolbar.window.height;
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [_toolbar removeFromSuperview];
+                     }];
+    
+    [_toolbar.textView resignFirstResponder];
     
     [super close];
 }
@@ -170,7 +172,7 @@ static float inputToolbarSize = 42.0f;
 -(IBAction)cancel:(id)sender
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events
-    
+
     [self setFullscreen:NO];
     [self close];
 }
@@ -198,9 +200,6 @@ static float inputToolbarSize = 42.0f;
     }];
 }
 #pragma mark - Private methods
-#define TABLE_RESIZE_OFFSET 27
-#define HEIGHT_OF_TIME_LABEL 32
-
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
 {
@@ -274,7 +273,7 @@ static float inputToolbarSize = 42.0f;
         options:keyboardTransitionAnimationCurve
         animations:^{
             
-            _toolbar.top = keyboardEndFrameView.origin.y - 17;
+            _toolbar.top = keyboardEndFrameView.origin.y - _toolbar.height + 25;
             
             tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);
             
@@ -333,7 +332,7 @@ static float inputToolbarSize = 42.0f;
             return;
         }
         
-       CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + _toolbar.frame.size.height) + FingerGrabHandleSize;
+       CGFloat spaceAboveKeyboard = self.view.bounds.size.height - (keyboard.frame.size.height + _toolbar.frame.size.height) + FINGER_GRAB_HAND_SIZE;
  
          if (location.y < spaceAboveKeyboard) {
             return;
@@ -348,7 +347,7 @@ static float inputToolbarSize = 42.0f;
         
         CGRect toolBarFrame = _toolbar.frame;
         CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
-        keyboardY = MIN(minimizedToolbarY,keyboardY - inputToolbarSize);
+        keyboardY = MIN(MINIMIZED_TOOLBAR_Y,keyboardY - _toolbar.height);
         toolBarFrame.origin.y = keyboardY;
         [_toolbar setFrame: toolBarFrame];
         
@@ -368,7 +367,7 @@ static float inputToolbarSize = 42.0f;
                          
                          CGRect toolBarFrame = _toolbar.frame;
                          CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
-                         toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - inputToolbarSize);
+                         toolBarFrame.origin.y = MIN(MINIMIZED_TOOLBAR_Y,keyboardY - _toolbar.height);
                          [_toolbar setFrame: toolBarFrame];
                          
                          tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);
@@ -387,7 +386,7 @@ static float inputToolbarSize = 42.0f;
     
     CGRect toolBarFrame = _toolbar.frame;
     CGFloat keyboardY = (keyboard)? keyboard.frame.origin.y : self.view.bottom;
-    toolBarFrame.origin.y = MIN(minimizedToolbarY,keyboardY - inputToolbarSize);
+    toolBarFrame.origin.y = MIN(MINIMIZED_TOOLBAR_Y,keyboardY - _toolbar.height);
     [_toolbar setFrame: toolBarFrame];
     
     tableView.height = _toolbar.origin.y - (tableView.frame.origin.y + TABLE_RESIZE_OFFSET);

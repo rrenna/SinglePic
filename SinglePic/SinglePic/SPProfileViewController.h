@@ -20,7 +20,6 @@
     IBOutlet UIImageView* imageView;
     IBOutlet UILabel *usernameLabel;
     IBOutlet UILabel* icebreakerLabel;
-    IBOutlet SPStyledView* bottomBarView;
     IBOutlet SPStyledButton* likeButton;
     IBOutlet SPStyledButton* communicateButton;
     IBOutlet SPStyledButton* modeButton;

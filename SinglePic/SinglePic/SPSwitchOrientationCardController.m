@@ -52,9 +52,10 @@
     }
     
     //Fade out content, animate resize, fade in new content
+    __unsafe_unretained SPSwitchOrientationCardController* weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^
     {
-        self.view.height = MAXIMIZED_SIZE;
+        weakSelf.view.height = MAXIMIZED_SIZE;
         orientationLabel.alpha = 0.0;
         orientationIcon.alpha = 0.0;
     } 
@@ -71,44 +72,61 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:userInfo];
 }
 -(IBAction)change:(id)sender
-{    
-    [[SPProfileManager sharedInstance] saveMyGender:orientationChooser.chosenGender andPreference:orientationChooser.chosenPreference withCompletionHandler:^(id responseObject) 
-    {
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MINIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
+{
+    BOOL newSexSelected = (orientationChooser.chosenGender != [[SPProfileManager sharedInstance] myGender]);
+    BOOL newPreferenceSelected = (orientationChooser.chosenPreference != [[SPProfileManager sharedInstance] myPreference]);
+    //Used to communicate with the Stack Panel on resizing
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MINIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
+    
+    __unsafe_unretained SPSwitchOrientationCardController* weakSelf = self;
+    void (^dismiss)() = ^{
         
-        //Set new title
-        GENDER chosenGender = orientationChooser.chosenGender;
-        GENDER chosenPreference = orientationChooser.chosenPreference;
-        
-        [self setLabelWithGender:chosenGender andPreference:chosenPreference];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:userInfo];  
         
         //When we minimize this control, we can flush the switch orientation control out of memory
         [orientationChooser removeFromSuperview];
         orientationChooser = nil;
         
         [UIView animateWithDuration:0.3 animations:^
-        {
+         {
             //Minimize card
-            self.view.height = MINIMIZED_SIZE;
-            
-            orientationLabel.alpha = 1.0;
-            orientationIcon.alpha = 1.0;
-            orientationChooser.alpha = 0.0;
-        }
-        completion:^(BOOL finished) 
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_RESIZED object:userInfo];
-            [orientationChooser removeFromSuperview];
-        }];
-        
-        //After a gender/preference has successfully been set, reset the profile stream
-        [[SPProfileManager sharedInstance] restartProfiles];
-        //
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:userInfo];        
-    } 
-    andErrorHandler:^
+             weakSelf.view.height = MINIMIZED_SIZE;
+             
+             orientationLabel.alpha = 1.0;
+             orientationIcon.alpha = 1.0;
+             orientationChooser.alpha = 0.0;
+         }
+         completion:^(BOOL finished)
+         {
+             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_RESIZED object:userInfo];
+             [orientationChooser removeFromSuperview];
+         }];
+
+    };
+    
+    if(newSexSelected || newPreferenceSelected)
     {
-    }];
+        [[SPProfileManager sharedInstance] saveMyGender:orientationChooser.chosenGender andPreference:orientationChooser.chosenPreference withCompletionHandler:^(id responseObject)
+         {
+             //Set new title
+             GENDER chosenGender = orientationChooser.chosenGender;
+             GENDER chosenPreference = orientationChooser.chosenPreference;
+             
+             dismiss();
+             
+             [weakSelf setLabelWithGender:chosenGender andPreference:chosenPreference];
+             //After a gender/preference has successfully been set, reset the profile stream
+             [[SPProfileManager sharedInstance] restartProfiles];
+         } 
+         andErrorHandler:^
+         {
+         }];
+    }
+    else
+    {  
+        dismiss();
+    }
+
 }
 #pragma mark - Private methods
 -(void)setLabelWithGender:(GENDER)gender andPreference:(GENDER)preference

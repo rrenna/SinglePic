@@ -113,6 +113,14 @@ void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE s
             
             layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
         }
+        else if(style == STYLE_PAGE)
+        {
+            layer.colors = @[(id)[UIColor whiteColor].CGColor,
+            (id)TINT_PAGE.CGColor,
+            (id)TINT_PAGE.CGColor];
+            
+            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+        }
         else
         {
             layer.colors = @[
