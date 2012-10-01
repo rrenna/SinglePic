@@ -18,7 +18,7 @@
 #pragma mark - View lifecycle
 - (id)init
 {
-    self = [self initWithNibName:@"SPRegistrationViewController" bundle:nil];
+    self = [self initWithNibName:@"SPOOBEViewController" bundle:nil];
     if(self)
     {
         
@@ -29,10 +29,16 @@
 {
     [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
-    [registrationButton setStyle:STYLE_CONFIRM_BUTTON];
+     /*
+    [scrollView addContentSubview:browseCard];
+    [scrollView addContentSubview:chatCard];
+    [scrollView addContentSubview:realPeopleRealPicsCard];
+    [scrollView addContentSubview:singlePicCard];*/
     
-    [stackPanel addStackedView:registrationCard];
-    [stackPanel addStackedView:loginCard];
+   [stackPanel addStackedView:browseCard];
+    [stackPanel addStackedView:chatCard];
+    [stackPanel addStackedView:realPeopleRealPicsCard];
+    [stackPanel addStackedView:singlePicCard];
 }
 -(void)dealloc
 {

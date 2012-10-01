@@ -71,65 +71,70 @@ void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE s
     }
     else
     {
-        layer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
-        
         if(style == STYLE_CONFIRM_BUTTON)
         {
+            layer.borderColor = CONFIRM_BUTTON_EDGE_COLOUR.CGColor;
+            
             layer.colors = @[(id)[UIColor whiteColor].CGColor,
             (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_START_COLOUR.CGColor,
             (id)BACKGROUND_GRADIENT_CONFIRM_BUTTON_END_COLOUR.CGColor];
             
-            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-        }
-        else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
-        {
-            layer.colors = @[(id)[UIColor whiteColor].CGColor,
-            (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor,
-            (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor];
-            
-            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-        }
-        else if(style == STYLE_NEUTRAL)
-        {
-            layer.colors = @[(id)[UIColor whiteColor].CGColor,
-            (id)BACKGROUND_GRADIENT_NEUTRAL_START_COLOUR.CGColor,
-            (id)BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR.CGColor];
-            
-            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-        }
-        else if(style == STYLE_BASE)
-        {
-            layer.colors = @[
-            (id)BACKGROUND_GRADIENT_BASE_START_COLOUR.CGColor,
-            (id)BACKGROUND_GRADIENT_BASE_END_COLOUR.CGColor];
-            
-            layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
-        }
-        else if(style == STYLE_TAB)
-        {
-            layer.colors = @[(id)[UIColor whiteColor].CGColor,
-            (id)TINT_TAB.CGColor,
-            (id)TINT_TAB.CGColor];
-            
-            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
-        }
-        else if(style == STYLE_PAGE)
-        {
-            layer.colors = @[(id)[UIColor whiteColor].CGColor,
-            (id)TINT_PAGE.CGColor,
-            (id)TINT_PAGE.CGColor];
-            
-            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+            layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.125], [NSNumber numberWithFloat:1.0]];
         }
         else
         {
-            layer.colors = @[
-            (id)TINT_DEFAULT.CGColor,
-            (id)TINT_DEFAULT.CGColor];
+            layer.borderColor = CONTROL_EDGE_DARK_COLOUR.CGColor;
             
-            layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+            if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
+            {
+                layer.colors = @[(id)[UIColor whiteColor].CGColor,
+                (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor,
+                (id)TINT_ALTERNATIVE_ACTION_1_BUTTON.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+            }
+            else if(style == STYLE_NEUTRAL)
+            {
+                layer.colors = @[(id)[UIColor whiteColor].CGColor,
+                (id)BACKGROUND_GRADIENT_NEUTRAL_START_COLOUR.CGColor,
+                (id)BACKGROUND_GRADIENT_NEUTRAL_END_COLOUR.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+            }
+            else if(style == STYLE_BASE)
+            {
+                layer.colors = @[
+                (id)BACKGROUND_GRADIENT_BASE_START_COLOUR.CGColor,
+                (id)BACKGROUND_GRADIENT_BASE_END_COLOUR.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+            }
+            else if(style == STYLE_TAB)
+            {
+                layer.colors = @[(id)[UIColor whiteColor].CGColor,
+                (id)TINT_TAB.CGColor,
+                (id)TINT_TAB.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+            }
+            else if(style == STYLE_PAGE)
+            {
+                layer.colors = @[(id)[UIColor whiteColor].CGColor,
+                (id)TINT_PAGE.CGColor,
+                (id)TINT_PAGE.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+            }
+            else
+            {
+                layer.colors = @[
+                (id)TINT_DEFAULT.CGColor,
+                (id)TINT_DEFAULT.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
+            }
         }
-            
+        
     }
 }
 CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,STYLE style)
@@ -138,7 +143,6 @@ CAGradientLayer* setupColorGradientLayerForControlWithStyle(UIControl* control,S
     
     updateColorGradientLayerForControlWithStyle(colorGradientLayer,style);
 
-    colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
     colorGradientLayer.needsDisplayOnBoundsChange = YES;
     colorGradientLayer.borderWidth = 1.0f;
     colorGradientLayer.cornerRadius = INSET_CORNER_RADIUS;
@@ -161,8 +165,8 @@ void updateColorLayerForViewWithStyle(CALayer* layer,STYLE style)
 CALayer* setupColorLayerForControl(UIView* view)
 {
     CALayer* colorLayer = [CALayer layer];
-    colorLayer.borderColor = INSET_EDGE_DARK_COLOUR.CGColor;
-    colorLayer.backgroundColor = INSET_EDGE_DARK_COLOUR.CGColor;
+    colorLayer.borderColor = CONTROL_EDGE_DARK_COLOUR.CGColor;
+    colorLayer.backgroundColor = CONTROL_EDGE_DARK_COLOUR.CGColor;
     colorLayer.borderWidth = 2.0;
     colorLayer.cornerRadius = INSET_CORNER_RADIUS;
     colorLayer.needsDisplayOnBoundsChange = YES;

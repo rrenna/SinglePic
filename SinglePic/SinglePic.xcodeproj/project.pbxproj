@@ -144,7 +144,7 @@
 		7599A94F148E980100A48435 /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A94E148E980100A48435 /* SPAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7599A969148EA69300A48435 /* UIView+SizesAndEdges.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A968148EA69300A48435 /* UIView+SizesAndEdges.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75A24A8814928ED800DC8D50 /* SPRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A24A8614928ED800DC8D50 /* SPRegistrationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		75A24A8914928ED800DC8D50 /* SPRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A24A8714928ED800DC8D50 /* SPRegistrationViewController.xib */; };
+		75A24A8914928ED800DC8D50 /* SPOOBEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A24A8714928ED800DC8D50 /* SPOOBEViewController.xib */; };
 		75A38B9914E9A1AD000F00DF /* Pic-Frame-Blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9814E9A1AD000F00DF /* Pic-Frame-Blocks.png */; };
 		75A38B9D14E9B004000F00DF /* noImage-Block.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9B14E9B004000F00DF /* noImage-Block.png */; };
 		75A38B9E14E9B004000F00DF /* noImage-Block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9C14E9B004000F00DF /* noImage-Block@2x.png */; };
@@ -262,6 +262,7 @@
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
 		F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0795556161942E4004837AF /* GCPagedScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
 		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
 		F09B3AD815DC6D7F009EF693 /* Overlay_OOB_BROWSE.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */; };
@@ -609,7 +610,7 @@
 		7599A968148EA69300A48435 /* UIView+SizesAndEdges.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SizesAndEdges.m"; sourceTree = "<group>"; };
 		75A24A8514928ED800DC8D50 /* SPRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRegistrationViewController.h; sourceTree = "<group>"; };
 		75A24A8614928ED800DC8D50 /* SPRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRegistrationViewController.m; sourceTree = "<group>"; };
-		75A24A8714928ED800DC8D50 /* SPRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPRegistrationViewController.xib; sourceTree = "<group>"; };
+		75A24A8714928ED800DC8D50 /* SPOOBEViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPOOBEViewController.xib; sourceTree = "<group>"; };
 		75A38B9814E9A1AD000F00DF /* Pic-Frame-Blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame-Blocks.png"; path = "../../Resources/Pic-Frame-Blocks.png"; sourceTree = "<group>"; };
 		75A38B9B14E9B004000F00DF /* noImage-Block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage-Block.png"; path = "../../Resources/noImage-Block.png"; sourceTree = "<group>"; };
 		75A38B9C14E9B004000F00DF /* noImage-Block@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noImage-Block@2x.png"; path = "../../Resources/noImage-Block@2x.png"; sourceTree = "<group>"; };
@@ -775,6 +776,8 @@
 		F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MyProfile-OBE-Pic.png"; path = "../../Resources/MyProfile-OBE-Pic.png"; sourceTree = "<group>"; };
 		F06EF7DA14F01AFF008F9EF5 /* SPSubscriptionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionsManager.h; sourceTree = "<group>"; };
 		F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionsManager.m; sourceTree = "<group>"; };
+		F0795555161942E4004837AF /* GCPagedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPagedScrollView.h; sourceTree = "<group>"; };
+		F0795556161942E4004837AF /* GCPagedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPagedScrollView.m; sourceTree = "<group>"; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
 		F08A157F1608116000DDE5DB /* icon-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Email.png"; path = "../../Resources/icon-Email.png"; sourceTree = "<group>"; };
 		F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_BROWSE.png; path = ../../Resources/Overlay_OOB_BROWSE.png; sourceTree = "<group>"; };
@@ -1185,14 +1188,14 @@
 			name = "Sign Up/Login Screens";
 			sourceTree = "<group>";
 		};
-		751EDDBB14EEDD43007FBEC7 /* Registration / Login */ = {
+		751EDDBB14EEDD43007FBEC7 /* OOBE / Login / Sign up */ = {
 			isa = PBXGroup;
 			children = (
 				F054E29515730ED300ECCDE7 /* SPLoginController.xib */,
 				75CA32D214AE298300C63CD5 /* SPSignupController.xib */,
-				75A24A8714928ED800DC8D50 /* SPRegistrationViewController.xib */,
+				75A24A8714928ED800DC8D50 /* SPOOBEViewController.xib */,
 			);
-			name = "Registration / Login";
+			name = "OOBE / Login / Sign up";
 			sourceTree = "<group>";
 		};
 		751EDDBF14EEF763007FBEC7 /* Custom Errors */ = {
@@ -1745,7 +1748,7 @@
 				7575EB2915DAC1F300D5707B /* Help */,
 				F0620D071524B964008D334C /* Subscription */,
 				7577AD8C1523792100B30CB3 /* Settings */,
-				751EDDBB14EEDD43007FBEC7 /* Registration / Login */,
+				751EDDBB14EEDD43007FBEC7 /* OOBE / Login / Sign up */,
 				F02642A314DFA6B300E8D649 /* Users */,
 				F01B800114CCF2A0009FA39D /* Profiles */,
 				751D2631149121C800617DD8 /* SPBaseController.xib */,
@@ -2029,6 +2032,16 @@
 			name = "Subscription Page";
 			sourceTree = "<group>";
 		};
+		F0795554161942E4004837AF /* GCPagedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				F0795555161942E4004837AF /* GCPagedScrollView.h */,
+				F0795556161942E4004837AF /* GCPagedScrollView.m */,
+			);
+			name = GCPagedScrollView;
+			path = Libraries/GCPagedScrollView;
+			sourceTree = SOURCE_ROOT;
+		};
 		F09DA06914E21B17004E0646 /* Likes Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -2105,6 +2118,7 @@
 		F0C176861491B80000F72809 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F0795554161942E4004837AF /* GCPagedScrollView */,
 				754FB7541607AD2D0072D53D /* AFNetworking */,
 				F0E490811613268C00091EC0 /* InputToolbar */,
 				F01FC1F115FD122900852650 /* Pullwalla */,
@@ -2566,7 +2580,7 @@
 				F0C178A41491C00E00F72809 /* SVProgressHUD.bundle in Resources */,
 				F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */,
 				F0C178D81491C9C200F72809 /* SPProfileViewController.xib in Resources */,
-				75A24A8914928ED800DC8D50 /* SPRegistrationViewController.xib in Resources */,
+				75A24A8914928ED800DC8D50 /* SPOOBEViewController.xib in Resources */,
 				75CA32D414AE298300C63CD5 /* SPSignupController.xib in Resources */,
 				75CEB1D114B644F300936001 /* Logo-SinglePic-red.png in Resources */,
 				75CEB1D214B644F300936001 /* Logo-SinglePic-white-vertical.png in Resources */,
@@ -2950,6 +2964,7 @@
 				F0E490881613268C00091EC0 /* UIExpandingTextView.m in Sources */,
 				F0E490891613268C00091EC0 /* UIExpandingTextViewInternal.m in Sources */,
 				F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */,
+				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

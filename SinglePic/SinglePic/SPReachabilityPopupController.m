@@ -11,9 +11,10 @@
 @interface SPReachabilityPopupController()
 {
     UIAlertView* alertView;
-    BOOL initialReachabilityRetrieved;
-    BOOL reachable;
+    BOOL __block initialReachabilityRetrieved;
+    BOOL __block reachable;
 }
+-(void)checkReachable;
 -(BOOL)reachable;
 -(void)delayedReshow;
 @property (retain) id<SPReachabilityPopupDelegate> delegate;
@@ -34,16 +35,7 @@
         
         alertView = [[UIAlertView alloc] initWithTitle:@"Connectivity Issue" message:@"Couldn't connect to SinglePic. Please ensure you have an active internet connection." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Try Again", nil];
         
-        [[SPRequestManager sharedInstance] checkInitialReachabilityWithCompletionHandler:^(AFNetworkReachabilityStatus status)
-        {
-            initialReachabilityRetrieved = YES;
-            
-            if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
-            {
-                reachable = YES;
-            }
-            
-        }];
+        [self checkReachable];
     }
     return self;
 }
@@ -69,6 +61,7 @@
         }
         else
         {
+            [self checkReachable];
             [alertView show];
         }
     }
@@ -77,6 +70,19 @@
 -(BOOL)reachable
 {
     return reachable;
+}
+-(void)checkReachable
+{
+    [[SPRequestManager sharedInstance] checkInitialReachabilityWithCompletionHandler:^(AFNetworkReachabilityStatus status)
+     {
+         initialReachabilityRetrieved = YES;
+         
+         if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
+         {
+             reachable = YES;
+         }
+         
+     }];
 }
 #pragma mark - Self Delegate methods
 #define DELAY_BETWEEN_REACHABILITY_RETRIES 0.5
