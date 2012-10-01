@@ -33,12 +33,12 @@
 -(void)setMyPreference:(GENDER)_preference synchronize:(BOOL)synchronize;
 -(void)setMyBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronize;
 -(void)setMyUserID:(NSString*)userID synchronize:(BOOL)synchronize;
--(void) setMyUserName:(NSString*)userID synchronize:(BOOL)synchronize;
+-(void)setMyUserName:(NSString*)userID synchronize:(BOOL)synchronize;
 -(void)setMyExpiry:(NSDate*)expiry_ synchronize:(BOOL)synchronize;
 -(void)setMyPushTokenSynced:(BOOL)synced synchronize:(BOOL)synchronize;
 
 //Used for generating a JSON string to set a new profile
--(NSString*)generateProfileDataWithIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference;
+-(NSMutableDictionary*)generateProfileDataWithIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference;
 
 //Helper methods
 -(void) clearProfile;
@@ -1400,7 +1400,7 @@ static int profileCounter = 0;
     }
 }
 #pragma mark - Private methods
--(NSString*)generateProfileDataWithIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_
+-(NSMutableDictionary*)generateProfileDataWithIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_
 {
     NSMutableDictionary* profileData = [NSMutableDictionary dictionary];
                                         
@@ -1414,7 +1414,7 @@ static int profileCounter = 0;
     }
     if(preference_)
     {
-            [profileData setObject:GENDER_NAMES[preference_] forKey:@"lookingForGender"];
+        [profileData setObject:GENDER_NAMES[preference_] forKey:@"lookingForGender"];
     }
 
     return profileData;
@@ -1427,7 +1427,7 @@ static int profileCounter = 0;
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
     //Clear out various NSUserDefault cached values
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_EXPIRY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_TYPE];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_ID];

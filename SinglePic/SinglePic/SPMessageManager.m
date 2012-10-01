@@ -17,7 +17,7 @@
 
 @interface SPMessageManager()
 {
-    NSNumber* retrievalInProgress;
+    BOOL retrievalInProgress;
     NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -29,7 +29,7 @@
 -(NSSet*)messageThreads;
 - (void)retrieveMessages;
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time;
-- (int)unixTimeOfLastRetrieval;
+-(int)unixTimeOfLastMessage;
 @end
 
 @implementation SPMessageManager
@@ -40,7 +40,7 @@
     self = [super init];
     if(self)
     {
-        retrievalInProgress = @NO;
+        retrievalInProgress = NO;
     }
     return self;
 }
@@ -163,7 +163,7 @@
 #pragma mark - Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastRetrieval]];
+    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage]];
 
     [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
@@ -194,11 +194,11 @@
         //{
 
     
-        if([retrievalInProgress boolValue]) return;
+        if(retrievalInProgress) return;
 
-        retrievalInProgress = @YES;
-        int unixTimeSincePreviousRetrieval = [self unixTimeOfLastRetrieval];
-        NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,unixTimeSincePreviousRetrieval];
+        retrievalInProgress = YES;
+        int unixTimeOfLastMessage = [self unixTimeOfLastMessage];
+        NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage]];
         
         __unsafe_unretained SPMessageManager* weakSelf = self;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
@@ -216,6 +216,7 @@
                 [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
                 {
                     BOOL messagesRecieved = NO;
+                    int newestUnixTime = 0;
                     for(NSDictionary* messageData in messagesData)
                     {
                         NSString* userID = [messageData objectForKey:@"from"];
@@ -224,7 +225,19 @@
                         NSString* unixTimeWithMillisecondsString = [unixTimeWithMillisecondsNumber stringValue];
                         NSString* unixTimeWithoutMillisecondsString = [unixTimeWithMillisecondsString substringToIndex:10];
                         int unixTimeWithoutMilliseconds = [unixTimeWithoutMillisecondsString intValue];
+            
+                        //We store the NSDate for sorting
                         NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
+                        //We update the unix time to allow for syncronization with the server
+                        if(unixTimeWithoutMilliseconds > newestUnixTime)
+                        {
+                            NSLog(@"");
+                            newestUnixTime = unixTimeWithoutMilliseconds; //Finds the unix time of the youngest message
+                        }
+                        else
+                        {
+                            NSLog(@"");
+                        }
                         
                         //Find the User Thread if active
                         SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
@@ -241,8 +254,8 @@
                         //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
                         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
                         
-                        double unixTime = [[NSDate date] timeIntervalSince1970];
-                        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:unixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
+                        //Saves the unix time of the youngest message (sent the latests)
+                        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:newestUnixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
                         [[NSUserDefaults standardUserDefaults] synchronize];
                         
                         NSError* error = nil;
@@ -260,7 +273,7 @@
                     LogMessageCompat(@"Syncronization complete");
                     #endif
                     
-                    retrievalInProgress = @NO;
+                    retrievalInProgress = NO;
                     
                     [lock unlock];
                     
@@ -271,7 +284,7 @@
                     LogMessageCompat(@"Syncronization failure!!");
                     #endif
                     
-                    retrievalInProgress = @NO;
+                    retrievalInProgress = NO;
                     
                     [lock unlock];
                     
@@ -281,7 +294,7 @@
             }
             else
             {
-                retrievalInProgress = @NO;
+                retrievalInProgress = NO;
                 
                 [lock unlock];
                 
@@ -290,7 +303,7 @@
 
         } andErrorHandler:^(NSError* error)
         {
-            retrievalInProgress = @NO;
+            retrievalInProgress = NO;
             
             [lock unlock];
             
@@ -314,10 +327,10 @@
     
     return newMessage;
 }
-- (int)unixTimeOfLastRetrieval
+- (int)unixTimeOfLastMessage
 {
     //Retrieve the last stored retrieval date from NSUserDefaults
-    NSNumber* unixTimeNumber = [[NSUserDefaults standardUserDefaults] objectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY];
+    NSNumber* unixTimeNumber = [[NSUserDefaults standardUserDefaults] objectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
     if(unixTimeNumber)
     {
         double unixTimeSeconds = [unixTimeNumber doubleValue];

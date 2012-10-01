@@ -1177,15 +1177,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		751EDDB914EED9F9007FBEC7 /* Sign Up/Login Screens */ = {
+		751EDDB914EED9F9007FBEC7 /* OOBE/Sign Up/Login Screens */ = {
 			isa = PBXGroup;
 			children = (
 				75A24A8514928ED800DC8D50 /* SPRegistrationViewController.h */,
 				75A24A8614928ED800DC8D50 /* SPRegistrationViewController.m */,
-				75CA32CE14AE295F00C63CD5 /* Signup Screen */,
+				75CA32CE14AE295F00C63CD5 /* Sign up Screen */,
 				75A24A7F14928E9200DC8D50 /* Login/Signup Screen */,
 			);
-			name = "Sign Up/Login Screens";
+			name = "OOBE/Sign Up/Login Screens";
 			sourceTree = "<group>";
 		};
 		751EDDBB14EEDD43007FBEC7 /* OOBE / Login / Sign up */ = {
@@ -1689,13 +1689,13 @@
 			path = Libraries/NAMapKit;
 			sourceTree = SOURCE_ROOT;
 		};
-		75CA32CE14AE295F00C63CD5 /* Signup Screen */ = {
+		75CA32CE14AE295F00C63CD5 /* Sign up Screen */ = {
 			isa = PBXGroup;
 			children = (
 				75CA32D014AE298300C63CD5 /* SPSignUpController.h */,
 				75CA32D114AE298300C63CD5 /* SPSignUpController.m */,
 			);
-			name = "Signup Screen";
+			name = "Sign up Screen";
 			sourceTree = "<group>";
 		};
 		75CEB1C914B6448700936001 /* Locations */ = {
@@ -1764,7 +1764,7 @@
 				7575EB1815DABCFB00D5707B /* Help Overlay Controller */,
 				F0620D081524B99C008D334C /* Subscription Page */,
 				75E7E02014B3C22F005C70B4 /* Sheets */,
-				751EDDB914EED9F9007FBEC7 /* Sign Up/Login Screens */,
+				751EDDB914EED9F9007FBEC7 /* OOBE/Sign Up/Login Screens */,
 				F09DA06914E21B17004E0646 /* Likes Screen */,
 				F01B800314CCF2B1009FA39D /* User Screen */,
 				750E482814C62F7300F7CCFC /* Mesages Screen */,
