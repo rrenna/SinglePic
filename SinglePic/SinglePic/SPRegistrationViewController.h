@@ -8,21 +8,19 @@
 #import "SPStyledButton.h"
 #import "SPStyledView.h"
 #import "SPStackPanel.h"
+#import "GCPagedScrollView.h"
 #import "SPCardView.h"
 
 @interface SPRegistrationViewController : UIViewController
 {
     IBOutlet SPStyledView* insetView;
-    IBOutlet SPStyledButton* registerButton;
     IBOutlet SPStackPanel* stackPanel;
-    //Register Card
-    IBOutlet SPCardView* registrationCard;
-    IBOutlet SPStyledButton* registrationButton;
-    //Login Card
-    IBOutlet SPCardView* loginCard;
-    IBOutlet UITextField* usernameField;
-    IBOutlet UITextField* passwordField;
-    IBOutlet SPStyledButton* loginButton;
+    IBOutlet GCPagedScrollView* scrollView;
+    //Cards
+    IBOutlet SPCardView* browseCard;
+    IBOutlet SPCardView* chatCard;
+    IBOutlet SPCardView* realPeopleRealPicsCard;
+    IBOutlet SPCardView* singlePicCard;
 }
 
 -(IBAction)spawnRegistrationScreen:(id)sender;

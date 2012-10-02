@@ -37,8 +37,12 @@ typedef enum
 #define INSET_BEVEL_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.5]
 #define INSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.25]//Inset vs Outset diff
 #define OUTSET_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.25]//Inset vs Outset diff
+#define CONTROL_EDGE_DARK_COLOUR [UIColor colorWithWhite:0.0 alpha:0.35]
+//Custom Edges for Styles
+#define CONFIRM_BUTTON_EDGE_COLOUR [UIColor colorWithRed:0.003 green:0.235 blue:0.513 alpha:0.75]
+//
 #define INSET_GRADIENT_BACKGROUND_START_COLOUR [UIColor colorWithWhite:1 alpha:0.05]
-#define INSET_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.2 alpha:0.05]//View vs Control diff
+#define INSET_GRADIENT_BACKGROUND_END_COLOUR [UIColor colorWithWhite:0.2 alpha:0.05]//View vs Control diff                                                                     
 //Custom Gradients for Styles
 //-- Some styles have specific gradient colours assigned
 //-- By default they will use their tint colour

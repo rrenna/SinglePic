@@ -70,8 +70,6 @@
     //Set Look and Feel
     [communicateButton setStyle:STYLE_CONFIRM_BUTTON];
     [likeButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
-    [bottomBarView setStyle:STYLE_PAGE];
-    [bottomBarView setDepth:DEPTH_OUTSET];
 
     if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
     {

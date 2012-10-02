@@ -43,7 +43,7 @@
 					<object class="IBUITableView" id="144403565">
 						<reference key="NSNextResponder" ref="143772338"/>
 						<int key="NSvFlags">273</int>
-						<string key="NSFrame">{{20, 38}, {285, 371}}</string>
+						<string key="NSFrame">{{20, 38}, {285, 384}}</string>
 						<reference key="NSSuperview" ref="143772338"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -201,7 +201,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{305, 450}</string>
+				<string key="NSFrameSize">{305, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="913865311"/>
 				<string key="NSReuseIdentifierKey">_NS:196</string>
@@ -386,7 +386,7 @@
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">style</string>
-								<integer value="2" key="value"/>
+								<integer value="3" key="value"/>
 							</object>
 						</array>
 					</object>
@@ -396,6 +396,7 @@
 				<string key="40.CustomClassName">SPKeyboardDragTableView</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<dictionary class="NSMutableDictionary" key="65.IBAttributePlaceholdersKey"/>
 				<string key="65.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>

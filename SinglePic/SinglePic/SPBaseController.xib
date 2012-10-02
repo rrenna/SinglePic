@@ -135,7 +135,7 @@
 							<object class="IBUIButton" id="665544176">
 								<reference key="NSNextResponder" ref="1052620824"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{5, 429}, {25, 25}}</string>
+								<string key="NSFrame">{{5, 420}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="1052620824"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="141723210"/>
@@ -335,7 +335,7 @@
 							<object class="IBUIImageView" id="409687119">
 								<reference key="NSNextResponder" ref="141723210"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{8, 270}, {24, 24}}</string>
+								<string key="NSFrame">{{9, 270}, {23, 23}}</string>
 								<reference key="NSSuperview" ref="141723210"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1008501009"/>
@@ -346,13 +346,13 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Tab-Icon-Profile.png</string>
+									<string key="NSResourceName">Nav-Profile-OFF.png</string>
 								</object>
 							</object>
 							<object class="IBUIImageView" id="154516448">
 								<reference key="NSNextResponder" ref="141723210"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{9, 201}, {21, 21}}</string>
+								<string key="NSFrame">{{9, 201}, {23, 23}}</string>
 								<reference key="NSSuperview" ref="141723210"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="23816650"/>
@@ -368,7 +368,7 @@
 							<object class="IBUIImageView" id="23816650">
 								<reference key="NSNextResponder" ref="141723210"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{9, 201}, {21, 21}}</string>
+								<string key="NSFrame">{{9, 202}, {23, 23}}</string>
 								<reference key="NSSuperview" ref="141723210"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="370849888"/>
@@ -385,7 +385,7 @@
 							<object class="IBUIImageView" id="714910833">
 								<reference key="NSNextResponder" ref="141723210"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{9, 342}, {21, 21}}</string>
+								<string key="NSFrame">{{9, 342}, {23, 23}}</string>
 								<reference key="NSSuperview" ref="141723210"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="992274767"/>
@@ -401,7 +401,7 @@
 							<object class="IBUIImageView" id="992274767">
 								<reference key="NSNextResponder" ref="141723210"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{9, 342}, {23, 22}}</string>
+								<string key="NSFrame">{{9, 342.5}, {23, 23}}</string>
 								<reference key="NSSuperview" ref="141723210"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="342699846"/>
@@ -552,14 +552,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">miniAvatarImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="409687119"/>
-					</object>
-					<int key="connectionID">80</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">newConnectionAlertImage</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="23816650"/>
@@ -701,11 +693,11 @@
 							<reference ref="204554573"/>
 							<reference ref="697061705"/>
 							<reference ref="1008501009"/>
-							<reference ref="409687119"/>
 							<reference ref="992274767"/>
 							<reference ref="23816650"/>
 							<reference ref="154516448"/>
 							<reference ref="714910833"/>
+							<reference ref="409687119"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Navigation View</string>
@@ -1032,8 +1024,8 @@
 			<string key="Nav-Likes-ON.png">{40, 40}</string>
 			<string key="Nav-Messages-OFF.png">{40, 40}</string>
 			<string key="Nav-Messages-ON.png">{40, 40}</string>
+			<string key="Nav-Profile-OFF.png">{40, 40}</string>
 			<string key="Nav-info.png">{40, 40}</string>
-			<string key="Tab-Icon-Profile.png">{59, 59}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

@@ -8,7 +8,7 @@
 //Used to place information about SinglePic messaging that other components may need to reference
 
 //Static Keys
-static NSString* const UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY = @"UNIX_TIME_OF_LAST_MESSAGE_RETRIEVAL_KEY";
+static NSString* const UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY = @"UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY";
 //Static Notifications
 static NSString* const NOTIFICATION_MESSAGE_SENT = @"NOTIFICATION_MESSAGE_SENT";
 static NSString* const NOTIFICATION_NEW_MESSAGES_RECIEVED = @"NOTIFICATION_NEW_MESSAGES_RECIEVED";
