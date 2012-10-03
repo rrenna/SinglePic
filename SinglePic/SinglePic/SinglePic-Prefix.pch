@@ -12,6 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <SystemConfiguration/SystemConfiguration.h>
+    #import <Crashlytics/Crashlytics.h>
     #import "SPGlobal.h"
     //Helpers
     #import "ImageHelper.h"
