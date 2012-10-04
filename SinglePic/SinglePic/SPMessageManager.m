@@ -164,7 +164,17 @@
 #pragma mark - Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage] + 1];
+    int unixTimeOfLastMessage = [self unixTimeOfLastMessage];
+    NSString* parameter;
+    if(unixTimeOfLastMessage == 0)
+    {
+        parameter = [NSString stringWithFormat:@"%@/msg/time/0",USER_ID_ME];
+    }
+    else
+    {
+        parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,unixTimeOfLastMessage];
+    }
+    
 
     [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
@@ -191,10 +201,17 @@
     if(retrievalInProgress) return;
 
     retrievalInProgress = YES;
-    int unixTimeOfLastMessageDouble = [self unixTimeOfLastMessage];
-    NSString* unixTimeOfLastMessageString = [NSString stringWithFormat:@"%d",unixTimeOfLastMessageDouble];
+    int unixTimeOfLastMessage = [self unixTimeOfLastMessage];
     
-    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage]];
+    NSString* parameter;
+    if(unixTimeOfLastMessage == 0)
+    {
+        parameter = [NSString stringWithFormat:@"%@/msg/time/0",USER_ID_ME];
+    }
+    else
+    {
+        parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,unixTimeOfLastMessage];
+    }
     
     __unsafe_unretained SPMessageManager* weakSelf = self;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
@@ -312,8 +329,7 @@
     NSNumber* unixTimeNumber = [[NSUserDefaults standardUserDefaults] objectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
     if(unixTimeNumber)
     {
-        double unixTimeSeconds = [unixTimeNumber doubleValue];
-        return (int)unixTimeSeconds;
+        return [unixTimeNumber intValue];
     }
     return 0;
 }
