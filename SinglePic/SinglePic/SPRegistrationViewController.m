@@ -29,16 +29,16 @@
 {
     [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
-    
+    /*
     [scrollView addContentSubview:browseCard];
     [scrollView addContentSubview:chatCard];
     [scrollView addContentSubview:realPeopleRealPicsCard];
     [scrollView addContentSubview:singlePicCard];
-     /*
+     */
    [stackPanel addStackedView:browseCard];
     [stackPanel addStackedView:chatCard];
     [stackPanel addStackedView:realPeopleRealPicsCard];
-    [stackPanel addStackedView:singlePicCard];*/
+    [stackPanel addStackedView:singlePicCard];
 }
 -(void)dealloc
 {

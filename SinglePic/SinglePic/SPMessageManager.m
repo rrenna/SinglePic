@@ -14,6 +14,7 @@
 #import "SPMessageAccount.h"
 #import "SPMessageThread.h"
 #import "SPMessage.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface SPMessageManager()
 {
@@ -163,7 +164,7 @@
 #pragma mark - Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage]];
+    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage] + 1];
 
     [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
@@ -187,130 +188,108 @@
 }
 -(void)retrieveMessages
 {
-    NSLock* lock = [[NSLock new] autorelease];
-    [lock lock];
-    
-        //@synchronized(retrievalInProgress) //Ensures that only one thread can read/modify the state of retrievalInProcess at a time
-        //{
+    if(retrievalInProgress) return;
 
+    retrievalInProgress = YES;
+    int unixTimeOfLastMessageDouble = [self unixTimeOfLastMessage];
+    NSString* unixTimeOfLastMessageString = [NSString stringWithFormat:@"%d",unixTimeOfLastMessageDouble];
     
-        if(retrievalInProgress) return;
+    NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage]];
+    
+    __unsafe_unretained SPMessageManager* weakSelf = self;
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
+    {
+        NSError *theError = nil;
+        NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
 
-        retrievalInProgress = YES;
-        int unixTimeOfLastMessage = [self unixTimeOfLastMessage];
-        NSString* parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,[self unixTimeOfLastMessage]];
+        #ifndef RELEASE
+        LogMessageCompat(@"%@",messagesData);
+        #endif
         
-        __unsafe_unretained SPMessageManager* weakSelf = self;
-        [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
+        if([messagesData count] > 0)
         {
-            NSError *theError = nil;
-            NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
-
-            #ifndef RELEASE
-            LogMessageCompat(@"%@",messagesData);
-            #endif
-            
-            if([messagesData count] > 0)
+            //Inform the user that we've recieved the messages successfully
+            [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
             {
-                //Inform the user that we've recieved the messages successfully
-                [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
+                BOOL messagesRecieved = NO;
+                int newestUnixTime = 0;
+                for(NSDictionary* messageData in messagesData)
                 {
-                    BOOL messagesRecieved = NO;
-                    int newestUnixTime = 0;
-                    for(NSDictionary* messageData in messagesData)
+                    NSString* userID = [messageData objectForKey:@"from"];
+                    NSString* message = [messageData objectForKey:@"message"];
+                    NSNumber* unixTimeWithMillisecondsNumber = [messageData objectForKey:@"timeStamp"];
+                    NSString* unixTimeWithoutMillisecondsString = [[unixTimeWithMillisecondsNumber stringValue] substringToIndex:10];
+                    
+                    double unixTime = [unixTimeWithoutMillisecondsString doubleValue];
+                    
+                    //We store the NSDate for sorting
+                    NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTime];
+                    //We update the unix time to allow for syncronization with the server
+                    if((int)unixTime > newestUnixTime)
                     {
-                        NSString* userID = [messageData objectForKey:@"from"];
-                        NSString* message = [messageData objectForKey:@"message"];
-                        NSNumber* unixTimeWithMillisecondsNumber = [messageData objectForKey:@"timeStamp"];
-                        NSString* unixTimeWithMillisecondsString = [unixTimeWithMillisecondsNumber stringValue];
-                        NSString* unixTimeWithoutMillisecondsString = [unixTimeWithMillisecondsString substringToIndex:10];
-                        int unixTimeWithoutMilliseconds = [unixTimeWithoutMillisecondsString intValue];
-            
-                        //We store the NSDate for sorting
-                        NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTimeWithoutMilliseconds];
-                        //We update the unix time to allow for syncronization with the server
-                        if(unixTimeWithoutMilliseconds > newestUnixTime)
-                        {
-                            NSLog(@"");
-                            newestUnixTime = unixTimeWithoutMilliseconds; //Finds the unix time of the youngest message
-                        }
-                        else
-                        {
-                            NSLog(@"");
-                        }
-                        
-                        //Find the User Thread if active
-                        SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
-                        
-                        [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
-                        messagesRecieved = YES;
+                        newestUnixTime = (int)unixTime; //Finds the unix time of the youngest message
                     }
+
+                    //Find the User Thread if active
+                    SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
                     
-                    //Reset Badge
-                    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-                    
-                    if(messagesRecieved)
-                    {
-                        //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
-                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-                        
-                        //Saves the unix time of the youngest message (sent the latests)
-                        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithDouble:newestUnixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
-                        
-                        NSError* error = nil;
-                        [managedObjectContext save:&error];
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-                    }
-                    else
-                    {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-                    }
-                    
-                    
-                    #ifndef RELEASE
-                    LogMessageCompat(@"Syncronization complete");
-                    #endif
-                    
-                    retrievalInProgress = NO;
-                    
-                    [lock unlock];
-                    
+                    [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
+                    messagesRecieved = YES;
                 }
-                andErrorHandler:^
-                { 
-                    #ifndef RELEASE
-                    LogMessageCompat(@"Syncronization failure!!");
-                    #endif
+                
+                //Reset Badge
+                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+                
+                if(messagesRecieved)
+                {
+                    //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
                     
-                    retrievalInProgress = NO;
+                    //Saves the unix time of the youngest message (sent the latests)
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:newestUnixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
                     
-                    [lock unlock];
+                    NSError* error = nil;
+                    [managedObjectContext save:&error];
                     
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
+                }
+                else
+                {
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-                }];
-
-            }
-            else
-            {
+                }
+                
+                
+                #ifndef RELEASE
+                LogMessageCompat(@"Syncronization complete");
+                #endif
+                
                 retrievalInProgress = NO;
-                
-                [lock unlock];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
             }
+            andErrorHandler:^
+            { 
+                #ifndef RELEASE
+                LogMessageCompat(@"Syncronization failure!!");
+                #endif
+                
+                retrievalInProgress = NO;
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+            }];
 
-        } andErrorHandler:^(NSError* error)
+        }
+        else
         {
             retrievalInProgress = NO;
-            
-            [lock unlock];
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-        }];
-        
-    //}
+        }
+
+    } andErrorHandler:^(NSError* error)
+    {
+        retrievalInProgress = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+    }];
+    
+//}
 }
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time
 {
