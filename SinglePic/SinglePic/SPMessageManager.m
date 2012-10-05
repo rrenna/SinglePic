@@ -1,10 +1,10 @@
-//
-//  SPMessageManager.m
-//  SinglePic
-//
-//  Created by Ryan Renna on 12-01-18.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+    //
+    //  SPMessageManager.m
+    //  SinglePic
+    //
+    //  Created by Ryan Renna on 12-01-18.
+    //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+    //
 
 #import <CoreData/CoreData.h>
 #import <AudioToolbox/AudioServices.h>
@@ -20,8 +20,8 @@
 {
     BOOL retrievalInProgress;
     NSManagedObjectModel *managedObjectModel;
-	NSManagedObjectContext *managedObjectContext;
-	NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    NSManagedObjectContext *managedObjectContext;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
 }
 @property (retain) SPMessageAccount* activeAccount;
 - (NSManagedObjectContext *) managedObjectContext;
@@ -30,7 +30,7 @@
 -(NSSet*)messageThreads;
 - (void)retrieveMessages;
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time;
--(int)unixTimeOfLastMessage;
+-(long long)unixTimeOfLastMessage;
 @end
 
 @implementation SPMessageManager
@@ -51,7 +51,7 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SPMessageAccount"];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@",accountID]];
     
-    //Asks core data to prefetch the Threads messages relationship
+        //Asks core data to prefetch the Threads messages relationship
     NSArray* fetchedRelationshipArray = @[@"threads",@"activeThreads"];
     [fetchRequest setRelationshipKeyPathsForPrefetching:fetchedRelationshipArray];
     
@@ -64,7 +64,7 @@
     }
     else
     {
-        //Create a Message Account object for this accountID
+            //Create a Message Account object for this accountID
         self.activeAccount = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageAccount" inManagedObjectContext:[self managedObjectContext]];
         self.activeAccount.identifier = accountID;
     }
@@ -72,7 +72,7 @@
 #pragma mark - Messages
 -(void)forceRefresh
 {
-    //Force the refresh of messages
+        //Force the refresh of messages
     [self retrieveMessages];
 }
 -(NSArray*)activeMessageThreads
@@ -93,7 +93,7 @@
         }
     }
     
-    //Create User Thread if inactive
+        //Create User Thread if inactive
     if(!thread)
     {
         thread = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageThread" inManagedObjectContext:[self managedObjectContext]];
@@ -127,7 +127,7 @@
 #pragma mark - Unread Messages
 -(int)unreadMessagesCount
 {
-    //TODO: Implement unread message count
+        //TODO: Implement unread message count
     return 0;
 }
 #pragma mark - Sending Messages
@@ -138,33 +138,34 @@
     
     __unsafe_unretained SPMessageManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject)
-    {
-        NSDate* now = [NSDate date];
-        
-        //Find the User Thread if active
-        SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
-        
-        SPMessage* newMessage = [weakSelf saveMessage:messageBody toThread:thread isIncoming:NO atTime:now];
-
-        [managedObjectContext save:nil];
-        //Run completion block
-        onCompletion(newMessage);
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MESSAGE_SENT object:nil];
-        
-    } andErrorHandler:^(SPWebServiceError *error) {
-        
-        if(onError)
-        {
-            onError();
-        }
-        
-    }];
+     {
+         NSDate* now = [NSDate date];
+         
+             //Find the User Thread if active
+         SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
+         
+         SPMessage* newMessage = [weakSelf saveMessage:messageBody toThread:thread isIncoming:NO atTime:now];
+         
+         [managedObjectContext save:nil];
+             //Run completion block
+         onCompletion(newMessage);
+         
+         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MESSAGE_SENT object:nil];
+         
+     } andErrorHandler:^(SPWebServiceError *error) {
+         
+         if(onError)
+         {
+             onError();
+         }
+         
+     }];
 }
 #pragma mark - Message Syncronization
 -(void)sendSyncronizationReceiptWithCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError
 {
-    int unixTimeOfLastMessage = [self unixTimeOfLastMessage];
+    long long unixTimeOfLastMessage = [self unixTimeOfLastMessage];
+    
     NSString* parameter;
     if(unixTimeOfLastMessage == 0)
     {
@@ -172,18 +173,21 @@
     }
     else
     {
-        parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,unixTimeOfLastMessage];
+        parameter = [NSString stringWithFormat:@"%@/msg/time/%lld",USER_ID_ME,unixTimeOfLastMessage];
     }
     
-
-    [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
+    #ifndef RELEASE
+    LogMessageCompat(@"Clear Messages with parameter : %@",parameter);
+    #endif
+    
+    [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
      {
-         //Reset Badge
+             //Reset Badge
          [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
          
          onCompletion();
-     } 
-     andErrorHandler:^(SPWebServiceError *error) 
+     }
+     andErrorHandler:^(SPWebServiceError *error)
      {
          if(onError)
          {
@@ -199,9 +203,9 @@
 -(void)retrieveMessages
 {
     if(retrievalInProgress) return;
-
+    
     retrievalInProgress = YES;
-    int unixTimeOfLastMessage = [self unixTimeOfLastMessage];
+    long long unixTimeOfLastMessage = [self unixTimeOfLastMessage];
     
     NSString* parameter;
     if(unixTimeOfLastMessage == 0)
@@ -210,110 +214,120 @@
     }
     else
     {
-        parameter = [NSString stringWithFormat:@"%@/msg/time/%d000",USER_ID_ME,unixTimeOfLastMessage];
+        parameter = [NSString stringWithFormat:@"%@/msg/time/%lld",USER_ID_ME,unixTimeOfLastMessage];
     }
+    
+    #ifndef RELEASE
+    LogMessageCompat(@"Retieve Messages with parameter : %@",parameter);
+    #endif
     
     __unsafe_unretained SPMessageManager* weakSelf = self;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
-    {
-        NSError *theError = nil;
-        NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
-
-        #ifndef RELEASE
-        LogMessageCompat(@"%@",messagesData);
-        #endif
-        
-        if([messagesData count] > 0)
-        {
-            //Inform the user that we've recieved the messages successfully
-            [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
-            {
-                BOOL messagesRecieved = NO;
-                int newestUnixTime = 0;
-                for(NSDictionary* messageData in messagesData)
-                {
-                    NSString* userID = [messageData objectForKey:@"from"];
-                    NSString* message = [messageData objectForKey:@"message"];
-                    NSNumber* unixTimeWithMillisecondsNumber = [messageData objectForKey:@"timeStamp"];
-                    NSString* unixTimeWithoutMillisecondsString = [[unixTimeWithMillisecondsNumber stringValue] substringToIndex:10];
-                    
-                    double unixTime = [unixTimeWithoutMillisecondsString doubleValue];
-                    
-                    //We store the NSDate for sorting
-                    NSDate* time = [NSDate dateWithTimeIntervalSince1970:unixTime];
-                    //We update the unix time to allow for syncronization with the server
-                    if((int)unixTime > newestUnixTime)
-                    {
-                        newestUnixTime = (int)unixTime; //Finds the unix time of the youngest message
-                    }
-
+     {
+         NSError *theError = nil;
+         NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+         
+         #ifndef RELEASE
+         LogMessageCompat(@"%@",messagesData);
+         #endif
+         
+         if([messagesData count] > 0)
+         {
+             NSMutableArray* newMessages = [NSMutableArray array];
+             BOOL messagesRecieved = NO;
+             long long newestUnixTime = 0;
+             
+             //Update the Unix time of our retrieval (sets to the latest timestamp that can be found in the retrieved messages
+             // to ensure we are consistent with the server's time
+             for(NSDictionary* messageData in messagesData)
+             {
+                 NSNumber* unixTimeNumber = [messageData objectForKey:@"timeStamp"];
+                 long long unixTime = [unixTimeNumber longLongValue];
+                 
+                 //We update the unix time to allow for syncronization with the server
+                 if(unixTime > newestUnixTime)
+                 {
+                     newestUnixTime = unixTime; //Finds the unix time of the youngest message
+                 }
+             }
+             
+             //Saves the unix time of the youngest message (sent the latests)
+             [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLongLong:newestUnixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+             
+             //Inform the user that we've recieved the messages successfully
+             [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
+              {
+                  for(NSDictionary* messageData in messagesData)
+                  {
+                      NSString* userID = [messageData objectForKey:@"from"];
+                      NSString* message = [messageData objectForKey:@"message"];
+                      NSNumber* unixTimeNumber = [messageData objectForKey:@"timeStamp"];
+                      long long unixTime = [unixTimeNumber longLongValue];
+                      
                     //Find the User Thread if active
-                    SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
-                    
-                    [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
-                    messagesRecieved = YES;
-                }
-                
-                //Reset Badge
-                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-                
-                if(messagesRecieved)
-                {
-                    //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-                    
-                    //Saves the unix time of the youngest message (sent the latests)
-                    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:newestUnixTime] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    
-                    NSError* error = nil;
-                    [managedObjectContext save:&error];
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-                }
-                else
-                {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-                }
-                
-                
-                #ifndef RELEASE
-                LogMessageCompat(@"Syncronization complete");
-                #endif
-                
-                retrievalInProgress = NO;
-            }
-            andErrorHandler:^
-            { 
-                #ifndef RELEASE
-                LogMessageCompat(@"Syncronization failure!!");
-                #endif
-                
-                retrievalInProgress = NO;
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-            }];
-
-        }
-        else
-        {
-            retrievalInProgress = NO;
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-        }
-
-    } andErrorHandler:^(NSError* error)
-    {
-        retrievalInProgress = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-    }];
+                      SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
+                      
+                      //We store the NSDate for sorting
+                      //NSDate deals with seconds instead of milliseconds, device by 1000 to remove
+                      NSDate* time = [NSDate dateWithTimeIntervalSince1970:(unixTime/1000)];
+                      
+                      [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
+                  }
+                  
+                  //Reset Badge
+                  [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+                  
+                  //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
+                  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                      
+                  NSError* error = nil;
+                  [managedObjectContext save:&error];
+                      
+                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
+                  
+                  #ifndef RELEASE
+                  LogMessageCompat(@"Syncronization complete");
+                  #endif
+                  
+                  retrievalInProgress = NO;
+              }
+              andErrorHandler:^
+              {
+                  #ifndef RELEASE
+                  LogMessageCompat(@"Syncronization failure!!");
+                  #endif
+                  
+                  //Resets the unix time to it's initial value
+                  [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLongLong:unixTimeOfLastMessage] forKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
+                  [[NSUserDefaults standardUserDefaults] synchronize];
+                  
+                  
+                  retrievalInProgress = NO;
+                  [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+              }];
+             
+         }
+         else
+         {
+             retrievalInProgress = NO;
+             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+         }
+         
+     } andErrorHandler:^(NSError* error)
+     {
+         retrievalInProgress = NO;
+         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
+     }];
     
-//}
+        //}
 }
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time
 {
     thread.lastActivity = time;
     thread.active = YES_NSNUMBER;
     
-    //Create SPMessage
+        //Create SPMessage
     SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
     newMessage.content = messageBody;
     newMessage.incoming = (incoming) ? YES_NSNUMBER : NO_NSNUMBER;
@@ -323,13 +337,13 @@
     
     return newMessage;
 }
-- (int)unixTimeOfLastMessage
+- (long long)unixTimeOfLastMessage
 {
-    //Retrieve the last stored retrieval date from NSUserDefaults
+    //Retrieve the last stored retrieval date from NSUserDefaults in seconds
     NSNumber* unixTimeNumber = [[NSUserDefaults standardUserDefaults] objectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
     if(unixTimeNumber)
     {
-        return [unixTimeNumber intValue];
+        return [unixTimeNumber longLongValue];
     }
     return 0;
 }
@@ -354,7 +368,7 @@
     }
     NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"messageStorage" ofType:@"momd"];
     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return managedObjectModel;
 }
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
@@ -364,18 +378,18 @@
     }
     
     NSArray *thePathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[thePathArray objectAtIndex:0] 
+    NSURL *storeUrl = [NSURL fileURLWithPath: [[thePathArray objectAtIndex:0]
                                                stringByAppendingPathComponent: @"MessageStorage.sqlite"]];
     
     NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] 
+    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
                                   initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType 
-                                                  configuration:nil URL:storeUrl options:nil error:&error]) 
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                  configuration:nil URL:storeUrl options:nil error:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }    
+    }
     
     return persistentStoreCoordinator;
 }
@@ -383,16 +397,16 @@
 -(void)clearDatabase
 {
     NSArray *thePathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[thePathArray objectAtIndex:0] 
+    NSURL *storeUrl = [NSURL fileURLWithPath: [[thePathArray objectAtIndex:0]
                                                stringByAppendingPathComponent: @"MessageStorage.sqlite"]];
     
     NSError *error = nil;
     [[NSFileManager defaultManager] removeItemAtURL:storeUrl error:&error];
-    if (error) 
+    if (error)
     {
-        #if defined (BETA)
+#if defined (BETA)
         [TestFlight passCheckpoint:@"Application failed to wipe core data storage. File doesn't exist at location (first run?)."];
-        #endif
+#endif
     }
     
     [managedObjectContext release];
