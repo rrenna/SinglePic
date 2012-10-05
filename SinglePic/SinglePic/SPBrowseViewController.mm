@@ -36,7 +36,7 @@ static int profileIndex = 0;
     
     BOOL isDragging;
     BOOL isLoading;
-    BOOL isRestarting;
+    __block BOOL isRestarting;
     NSTimer *dropTimer;
     NSMutableArray* queuedSelectorCalls;
     //Stack Management

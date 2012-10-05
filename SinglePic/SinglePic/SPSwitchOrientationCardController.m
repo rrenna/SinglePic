@@ -115,8 +115,6 @@
              dismiss();
              
              [weakSelf setLabelWithGender:chosenGender andPreference:chosenPreference];
-             //After a gender/preference has successfully been set, reset the profile stream
-             [[SPProfileManager sharedInstance] restartProfiles];
          } 
          andErrorHandler:^
          {

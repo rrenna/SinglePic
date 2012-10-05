@@ -233,8 +233,6 @@
          
          if([messagesData count] > 0)
          {
-             NSMutableArray* newMessages = [NSMutableArray array];
-             BOOL messagesRecieved = NO;
              long long newestUnixTime = 0;
              
              //Update the Unix time of our retrieval (sets to the latest timestamp that can be found in the retrieved messages

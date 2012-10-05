@@ -287,6 +287,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     if([self myGender] != _gender)
     {
+        //After a gender/preference has successfully been set, reset the profile stream
+        [[SPProfileManager sharedInstance] restartProfiles];
+        
         self.gender = _gender;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.gender] forKey:USER_DEFAULT_KEY_USER_GENDER];
         
@@ -299,6 +302,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     if([self myPreference] != _preference)
     {
+        //After a gender/preference has successfully been set, reset the profile stream
+        [[SPProfileManager sharedInstance] restartProfiles];
+        
         self.preference = _preference;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.preference] forKey:USER_DEFAULT_KEY_USER_PREFERENCE];
     
