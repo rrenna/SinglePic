@@ -560,6 +560,10 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
     __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
+         #ifndef RELEASE
+         LogMessageCompat(@"Updated Icebreaker/Gender/Preference with payload : %@",payload);
+         #endif
+         
          if(icebreaker_)
          {
              [weakSelf setMyIcebreaker:icebreaker_ synchronize:NO];
@@ -577,11 +581,14 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
      } 
      andErrorHandler:^(SPWebServiceError *error) 
      {
-         if(onError)
-         {
-             onError();
-             
-         }
+        #ifndef RELEASE
+        LogMessageCompat(@"Failed to updated Icebreaker/Gender/Preference with payload : %@",payload);
+        #endif
+         
+        if(onError)
+        {
+            onError();
+        }
      }];
 }
 #pragma mark - Additonal Save Methods
@@ -759,9 +766,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       //Registers for Push notifications
                       [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject)
                        {
-                       } andErrorHandler:^
-                       {
-                       }];
+                       } andErrorHandler:nil];
       
                       onCompletion(responseObject);
                       

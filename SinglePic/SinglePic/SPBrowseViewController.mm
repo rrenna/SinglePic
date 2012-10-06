@@ -20,6 +20,7 @@ static b2PrismaticJointDef shaftJoint;
 
 #define REFRESH_HEADER_HEIGHT 8.0f//52.0f
 #define BROWSE_ROW_LIMIT 5
+#define BROWSE_ROW_LIMIT_TALL 6
 #define BROWSE_COLUMN_AMOUNT 3
 #define PTM_RATIO 16
 #define TICK (0.016666666)// same as (1.0f/60.0f)
@@ -36,6 +37,7 @@ static int profileIndex = 0;
     
     BOOL isDragging;
     BOOL isLoading;
+    BOOL isDroping;
     __block BOOL isRestarting;
     NSTimer *dropTimer;
     NSMutableArray* queuedSelectorCalls;
@@ -83,6 +85,9 @@ static int profileIndex = 0;
         self.profileControllers = [NSMutableArray array];
         queuedSelectorCalls = [NSMutableArray new];
         stackPaused[0] = NO; stackPaused[1] = NO; stackPaused[2] = NO;
+        isDroping = NO;
+        isDragging = NO;
+        isLoading = NO;
         
         //We don't have to listen for this notification if this is an annonyous user
         if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
@@ -97,15 +102,19 @@ static int profileIndex = 0;
 }
 -(void)viewDidLoad
 {
-    CGSize scrollContentSize = scrollView.frame.size;
-    scrollView.contentSize = scrollContentSize;
-    
     //Sets up the browse screen's physics engine
     [self setup];
     //Set up 'pull to next' header
     [self addPullToNextHeader];
     //Sets the controller to visible, can later be paused to reduce computational load
     [self visible];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    //Calculates the scrollView's content size after resizing (depending on screen resolution)
+    CGSize scrollContentSize = scrollView.frame.size;
+    scrollView.contentSize = scrollContentSize;
+    
 }
 -(void)dealloc
 {
@@ -137,13 +146,15 @@ static int profileIndex = 0;
     if(![dropTimer isValid])
     {
         const float delay = 0.8;        //Start the browsing experience
+        
+        __unsafe_unretained SPBrowseViewController* weakSelf = self;
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
-             dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
+             dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:weakSelf selector:@selector(drop:) userInfo:nil repeats:YES];
          } 
          andErrorHandler:^
          {
-             dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(drop:) userInfo:nil repeats:YES];
+             dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:weakSelf selector:@selector(drop:) userInfo:nil repeats:YES];
          }];
     }
 }
@@ -163,6 +174,7 @@ static int profileIndex = 0;
     {
         isRestarting = YES;
         
+        __unsafe_unretained SPBrowseViewController* weakSelf = self;
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
              //Currently used to stop infinite restart loops
@@ -170,7 +182,7 @@ static int profileIndex = 0;
              {
                  [[SPProfileManager sharedInstance] restartProfiles];
                  profileIndex = 0;
-                 [self next:nil];
+                 [weakSelf next:nil];
              }
              else
              {
@@ -371,26 +383,26 @@ static int profileIndex = 0;
 }
 -(void)dropAllOnscreenBlocks
 {
+    [self resetStackCounters];
+        //Destroys the Box2D Body of these three views, which represent three shapes keeping the profile blocks from falling
+    [self destroyBottomViewBody:centerBottomView];
+    
     if([[SPProfileManager sharedInstance] remainingProfiles] > 0)
     {
-        [self resetStackCounters];
-        //Destroys the Box2D Body of these three views, which represent three shapes keeping the profile blocks from falling
-        [self destroyBottomViewBody:centerBottomView];
-        
         //Fade out & destroy all blocks
         float delay = 2.0;
         for(UIView* subView in canvasView.subviews)
         {
             if([subView isKindOfClass:[SPBlockView class]])
             {
-                __block id blockSelf = self;
+                __unsafe_unretained SPBrowseViewController* weakSelf = self;
                 [UIView animateWithDuration:0.5 delay:delay options:nil animations:^{
                     
                     subView.alpha = 0.0;
                     
                 } completion:^(BOOL finished) {
                     
-                    [blockSelf destroyBlockView:subView];
+                    [weakSelf destroyBlockView:subView];
                 }];
                 
                 delay -= 0.02;
@@ -399,11 +411,11 @@ static int profileIndex = 0;
         
         //Pause the block dropping
         [self pauseAllStacks];
-        
         [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
-        [self performSelector:@selector(stopLoading) afterTicks:6250 * TICK];
-        [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
     }
+    
+    [self performSelector:@selector(stopLoading) afterTicks:6250 * TICK];
+    [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
 }
 -(void)pauseAllStacks
 {
@@ -631,18 +643,22 @@ int currentTick = 0;
      [boxView removeFromSuperview];
      */
 }
+
 -(void)drop:(NSTimer *)timer
 {
+    static const int padding = 5;
+    static const int rowLimit = (self.view.height >  460 ) ? BROWSE_ROW_LIMIT_TALL : BROWSE_ROW_LIMIT;
+    
     //Interate over each column
     for(int columnIndex = 0; columnIndex < BROWSE_COLUMN_AMOUNT; columnIndex++)
     {
         if(![self isStackPaused:columnIndex])
         {
             //Drop a profile box if this stack isn't paused
-            const int padding = 5;
-            if(stackCount[columnIndex] < BROWSE_ROW_LIMIT)
+            if(stackCount[columnIndex] < rowLimit)
             {
                 SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
+                
                 if(profile)
                 {
                     int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
@@ -659,18 +675,27 @@ int currentTick = 0;
                     
                     blockView.data = profile;
                     [blockView setController:profileIcon];
+                    stackCount[columnIndex]++;
                     
+                    __unsafe_unretained SPBrowseViewController* weakSelf = self;
                     id block_proceed = ^(UIImage *thumbnail)
                     {
-                        [self addBodyForBoxView:blockView];
+                        [weakSelf addBodyForBoxView:blockView];
                         [canvasView addSubview:blockView];
                         [canvasView sendSubviewToBack:blockView];
-                        [self resumeStack:columnIndex];
+                        [weakSelf resumeStack:columnIndex];
+                    };
+                    id block_error = ^()
+                    {
+                        [weakSelf addBodyForBoxView:blockView];
+                        [canvasView addSubview:blockView];
+                        [canvasView sendSubviewToBack:blockView];
+                        [weakSelf resumeStack:columnIndex];
                     };
                     
-                    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_proceed];
+                    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_error];
                     
-                    stackCount[columnIndex]++;
+
                 }
                 else
                 {

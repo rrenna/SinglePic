@@ -38,7 +38,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIScrollView" id="263192163">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">256</int>
+						<int key="NSvFlags">272</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUILabel" id="784063370">
 								<reference key="NSNextResponder" ref="263192163"/>
@@ -83,7 +83,7 @@
 							</object>
 							<object class="IBUIView" id="359497027">
 								<reference key="NSNextResponder" ref="263192163"/>
-								<int key="NSvFlags">256</int>
+								<int key="NSvFlags">272</int>
 								<array class="NSMutableArray" key="NSSubviews">
 									<object class="IBUIView" id="171758518">
 										<reference key="NSNextResponder" ref="359497027"/>
@@ -118,6 +118,10 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="359497027"/>
 						<string key="NSReuseIdentifierKey">_NS:190</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40MDAwMDAwMDYgMSAwLjgwMDAwMDAxMTkgMAA</bytes>
+						</object>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<double key="IBUIContentInset.top">1</double>
@@ -134,7 +138,7 @@
 				<reference key="NSNextKeyView" ref="263192163"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC45MDEzNjM4NDk2IDAuODc5NjYzMjM3IDAuODMxNTM5NDEyNyAwAA</bytes>
+					<bytes key="NSRGB">MSAwLjgwMDAwMDAxMTkgMC40MDAwMDAwMDYgMAA</bytes>
 				</object>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">

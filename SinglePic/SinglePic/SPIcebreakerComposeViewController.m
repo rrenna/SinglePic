@@ -40,17 +40,19 @@
 }
 -(IBAction)save:(id)sender
 {
+    saveButton.enabled = NO;
+    
     [[SPProfileManager sharedInstance] saveMyIcebreaker:textView.text withCompletionHandler:^(id responseObject) 
     {
         #if defined (BETA)
         [TestFlight passCheckpoint:@"Saved new Icebreaker"];
         #endif
-        
+
         [self close];
     } 
     andErrorHandler:^
     {
-        
+        saveButton.enabled = YES;
     }];
 }
 #pragma mark - UITextViewDelegate methods

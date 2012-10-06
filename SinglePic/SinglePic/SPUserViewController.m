@@ -159,7 +159,19 @@
 }
 -(void)updateIcebreaker
 {
-    icebreakerLabel.text = [[SPProfileManager sharedInstance] myIcebreaker];
+    NSString* myIcebreaker = [[SPProfileManager sharedInstance] myIcebreaker];
+    
+    //Check if no icebreaker was set
+    if([myIcebreaker isEqualToString:@""])
+    {
+        icebreakerLabel.textColor = [UIColor grayColor];
+        icebreakerLabel.text = @"Enter an icebreaker :)";
+    }
+    else
+    {
+        icebreakerLabel.textColor = [UIColor blackColor];
+        icebreakerLabel.text = myIcebreaker;
+    }
 }
 -(void)updateExpiry
 {

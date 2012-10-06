@@ -12,6 +12,8 @@
 #import "SPOrientationChooser.h"
 #import "SPCardView.h"
 
+static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED_VALUE_KEY";
+
 @interface SPSignUpController()
 -(void)transitionToStep:(int)step;
 -(void)stepOneInitialization;
@@ -134,11 +136,15 @@
         nextButton.enabled = NO;
         
         [[SPProfileManager sharedInstance] registerWithEmail:chosenEmail andUserName:chosenUsername andPassword:chosenPassword andGender:annonymousGender andPreference:annonymousPreference andBucket:annonymousBucket andCompletionHandler:^(id responseObject)
-         {              
+         {
+             //Registration successful
+             [[NSUserDefaults standardUserDefaults] setObject:chosenEmail forKey:EMAIL_FIELD_LAST_USED_VALUE_KEY];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+             
              //When registration is completed - restart the profile stream
              [[SPProfileManager sharedInstance] restartProfiles];
          } 
-                                             andErrorHandler:^
+         andErrorHandler:^
          {
              //This was an invalid email/password combination
              //The Error Manager will print out a human readable explanation depending on the error code returned
