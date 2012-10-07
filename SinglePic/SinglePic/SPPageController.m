@@ -9,16 +9,18 @@
 #import "SPPageController.h"
 
 @interface SPPageController()
-- (void) setHandleImage;
-- (int) snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition;
-- (void) handlePanFrom:(UIPanGestureRecognizer *)recognizer;
+-(void)setHandleImage;
+-(int)snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition;
+-(void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
 -(void)pushModalContentWithNotification:(NSNotification*)notification;
 -(void)pushModalControllerWithNotification:(NSNotification*)notification;
-- (void)setFullScreenWithNotification:(NSNotification*)notification;
+-(void)setFullScreenWithNotification:(NSNotification*)notification;
+-(void)minimizeContainerWithNotification:(NSNotification*)notification;
 @end
 
 @implementation SPPageController
 @synthesize containerDelegate;
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,6 +42,7 @@
 #pragma mark - Observation
 - (void) removeObservationFromContentController
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_MINIMIZE_CONTAINER object:controller_];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_CLOSE object:controller_];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_REPLACE_WITH_CONTENT object:controller_];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PAGE_PUSH_MODAL_CONTENT object:controller_];
@@ -48,6 +51,7 @@
 }
 -(void) addObservationForContentController
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(minimizeContainerWithNotification:) name:NOTIFICATION_PAGE_MINIMIZE_CONTAINER object:controller_];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(close) name:NOTIFICATION_PAGE_CLOSE object:controller_];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(replacePageWithNotification:) name:NOTIFICATION_PAGE_REPLACE_WITH_CONTENT object:controller_];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushModalContentWithNotification:) name:NOTIFICATION_PAGE_PUSH_MODAL_CONTENT object:controller_];
@@ -73,7 +77,16 @@
 -(void)setFullScreenWithNotification:(NSNotification*)notification
 {
     NSNumber* fullscreenNumber = [notification.userInfo objectForKey:KEY_FULLSCREEN];
-    [self.containerDelegate setFullscreen:[fullscreenNumber boolValue]];
+    NSNumber* fullscreenAnimatedNumber = [notification.userInfo objectForKey:KEY_FULLSCREEN_ANIMATED];
+    
+    if(fullscreenAnimatedNumber)
+    {
+        [self.containerDelegate setFullscreen:[fullscreenNumber boolValue] animated:[fullscreenAnimatedNumber boolValue]];
+    }
+    else
+    {
+        [self.containerDelegate setFullscreen:[fullscreenNumber boolValue]];
+    }
 }
 -(void)pushModalContentWithNotification:(NSNotification*)notification
 {
@@ -84,6 +97,11 @@
 {
     id replacement = [notification.userInfo objectForKey:KEY_CONTENT];
     [self.containerDelegate pushModalController:replacement];
+}
+-(void)minimizeContainerWithNotification:(NSNotification*)notification
+{
+    id container = self.containerDelegate;
+    [container minimize];
 }
 #pragma mark - Touch Handling
 -(int)snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition 

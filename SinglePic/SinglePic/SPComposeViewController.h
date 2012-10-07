@@ -21,6 +21,8 @@
     IBOutlet UILabel *usernameLabel;
     IBOutlet UITableView *tableView;
 }
+@property (assign) BOOL minimizeContainerOnClose;
+
 -(id)initWithIdentifier:(NSString*)identifier;
 -(id)initWithProfile:(SPProfile*)profile;
 //IBActions

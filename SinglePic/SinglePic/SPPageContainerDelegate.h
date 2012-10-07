@@ -15,6 +15,7 @@
 -(void)pushModalController:(UIViewController*)viewController;
 -(void)pushModalContent:(UIView*)view;
 -(void)setFullscreen:(BOOL)fullscreen;
+-(void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
 -(void)closeAllPages;
 -(BOOL)fullscreen;
 -(void)minimize;

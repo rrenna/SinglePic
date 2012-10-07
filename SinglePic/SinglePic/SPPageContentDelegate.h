@@ -12,10 +12,12 @@
 #define NOTIFICATION_PAGE_PUSH_MODAL_CONTENT @"NOTIFICATION_PAGE_PUSH_MODAL_CONTENT"
 #define NOTIFICATION_PAGE_SET_FULLSCREEN @"NOTIFICATION_PAGE_SET_FULLSCREEN"
 #define NOTIFICATION_PAGE_CLOSE @"NOTIFICATION_PAGE_CLOSE"
+#define NOTIFICATION_PAGE_MINIMIZE_CONTAINER @"NOTIFICATION_PAGE_MINIMIZE_CONTAINER"
 
 //Keys used to store name/value parameters in a Notification's bundled dictionary
 #define KEY_CONTENT @"KEY_CONTENT"
 #define KEY_FULLSCREEN @"KEY_FULLSCREEN"
+#define KEY_FULLSCREEN_ANIMATED @"KEY_FULLSCREEN_ANIMATED"
 
 @protocol SPPageContentDelegate <NSObject>
 //Content Controller informing Page Controller
@@ -23,8 +25,8 @@
 -(void)pushModalController:(UIViewController*)viewController;
 -(void)pushModalContent:(UIView*)view;
 -(void)setFullscreen:(BOOL)fullscreen;
--(void)setCascadeCloseTab:(BOOL)cascadeCloseTab;
--(void)closeTab;
+-(void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
+-(void)minimizeContainer;
 -(void)close;
 //Page Controller informing Content Controller
 -(void)willClose;

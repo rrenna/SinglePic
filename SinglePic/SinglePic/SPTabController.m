@@ -32,8 +32,12 @@
 #pragma mark - Dynamic Properties
 -(void)setFullscreen:(BOOL)fullscreen_
 {
+    [self setFullscreen:fullscreen_ animated:YES];
+}
+-(void)setFullscreen:(BOOL)fullscreen_ animated:(BOOL)animated_
+{
     _fullscreen = fullscreen_;
-    [self transformTabToFullscreenStatus:fullscreen_ shouldAnimate:YES];
+    [self transformTabToFullscreenStatus:fullscreen_ shouldAnimate:animated_];
 }
 -(BOOL)fullscreen
 {
@@ -54,6 +58,12 @@
 {
     [super viewDidLoad];
     self.view.left = TAB_POS_LEFT_OFFSCREEN;
+    
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    //Don't attempt any tab placement + animation until properly resized
+    [self setFullscreen:_fullscreen animated:animated];
 }
 - (void) setHandleImage
 {
@@ -63,12 +73,6 @@
     handleImageView.frame = CGRectMake(325, 0, 54, self.view.height);
     handleImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view insertSubview:handleImageView aboveSubview:transparentInsetView];
-}
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    //Don't attempt any tab placement + animation until properly resized
-    self.fullscreen = _fullscreen;
 }
 -(void)dealloc
 {
@@ -85,7 +89,7 @@
     _fullscreen = fullscreen;
     
     //Since this helper function will be setting the FULLSCREEN property, it does the 'right' things using this private method
-    [self transformTabToFullscreenStatus:fullscreen shouldAnimate:NO];
+    [self transformTabToFullscreenStatus:fullscreen shouldAnimate:YES];
     
     int originOffset = -self.view.left + offset;
     [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished)
@@ -164,7 +168,16 @@
 -(void)setFullScreenWithNotification:(NSNotification*)notification
 {
     NSNumber* fullscreenNumber = [notification.userInfo objectForKey:KEY_FULLSCREEN];
-    [self setFullscreen:[fullscreenNumber boolValue]];
+    NSNumber* fullscreenAnimatedNumber = [notification.userInfo objectForKey:KEY_FULLSCREEN_ANIMATED];
+    
+    if(fullscreenAnimatedNumber)
+    {
+        [self setFullscreen:[fullscreenNumber boolValue] animated:[fullscreenAnimatedNumber boolValue]];
+    }
+    else
+    {
+        [self setFullscreen:[fullscreenNumber boolValue]];
+    }
 }
 -(void)pushModalContentWithNotification:(NSNotification*)notification
 {
@@ -201,6 +214,10 @@
         [UIView animateWithDuration:0.5 animations:^{
             self.view.left = tabViewLeft;
         }];
+    }
+    else
+    {
+        self.view.left = tabViewLeft;
     }
 }
 #pragma mark - Touch Handling

@@ -10,7 +10,6 @@
 
 @interface SPPageContentViewController()
 {
-    BOOL _cascadeCloseTab;
 }
 @end
 
@@ -30,26 +29,22 @@
 }
 -(void)setFullscreen:(BOOL)fullscreen
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_SET_FULLSCREEN object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:fullscreen] forKey:KEY_FULLSCREEN]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_SET_FULLSCREEN object:self userInfo:@{KEY_FULLSCREEN:[NSNumber numberWithBool:fullscreen],KEY_FULLSCREEN_ANIMATED:@YES} ];    
+}
+-(void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_SET_FULLSCREEN object:self userInfo:@{KEY_FULLSCREEN:[NSNumber numberWithBool:fullscreen],KEY_FULLSCREEN_ANIMATED:[NSNumber numberWithBool:animated]} ];
 }
 -(void)close
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_CLOSE object:self];
 }
 //Recieving intent from Page Controller
--(void)setCascadeCloseTab:(BOOL)cascadeCloseTab
+-(void)minimizeContainer
 {
-    _cascadeCloseTab = cascadeCloseTab;
-}
--(void)closeTab
-{
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_MINIMIZE_CONTAINER object:self];
 }
 -(void)willClose
 {
-    if(_cascadeCloseTab)
-    {
-        [self closeTab];
-    }
 }
 @end

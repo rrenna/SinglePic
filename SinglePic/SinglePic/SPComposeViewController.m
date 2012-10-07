@@ -40,6 +40,7 @@
 
 
 @implementation SPComposeViewController
+@synthesize minimizeContainerOnClose = _minimizeContainerOnClose;
 @synthesize thread = _thread, profile = _profile, toolbar = _toolbar; //private
 
 #pragma mark - View lifecycle
@@ -48,12 +49,14 @@
     self = [self initWithNibName:@"SPComposeViewController" bundle:nil];
     if(self)
     {
+        [self _init];
+        
+        __unsafe_unretained SPComposeViewController* weakSelf = self;
         [[SPProfileManager sharedInstance] retrieveProfile:identifier withCompletionHandler:^
          (SPProfile *profile)
          {
-             [self _init];
-             self.profile = profile;
-             [self profileLoaded];
+             weakSelf.profile = profile;
+             [weakSelf profileLoaded];
              
          } andErrorHandler:^
          {
@@ -75,6 +78,7 @@
 }
 -(void)_init
 {
+    self.minimizeContainerOnClose = NO;
     sending = NO;
 }
 -(void)dealloc
@@ -150,8 +154,7 @@
     [super viewDidDisappear:animated];
 }
 -(void)close
-{
-
+{    
     [UIView animateWithDuration:0.3
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -165,15 +168,24 @@
                      }];
     
     [_toolbar.textView resignFirstResponder];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events    
     
     [super close];
 }
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self]; //When closing, we don't need to consume any of the keyboard specific events
-
-    [self setFullscreen:NO];
+    [self setFullscreen:NO animated:YES];
+    
+    if(self.minimizeContainerOnClose)
+    {
+        [self minimizeContainer];
+    }
+    
+    //When the Chat screen is spawned from the Messages screen it will dismiss it's container tab when closed to bring
+    // the user back to the Messages screen
+    
     [self close];
 }
 -(IBAction)send:(id)sender

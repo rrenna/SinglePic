@@ -257,37 +257,35 @@
 }
 -(void)pushChatWithProfile:(SPProfile*)profile
 {
+    [self pushChatWithProfile:profile isFromBase:NO];
+}
+-(void)pushChatWithID:(NSString*)profileID
+{
+    [self pushChatWithID:profileID isFromBase:NO];
+}
+-(void)pushChatWithProfile:(SPProfile*)profile isFromBase:(BOOL)fromBase
+{
     SPTabController* tab = [tabs objectAtIndex:0];
         //Ensure the tab is maximized
     [tab maximizeIsFullscreen:YES];
         //Close all existing page
     [tab closeAllPages];
         //Present a page containing the chat controller
-    SPComposeViewController* profileController = [[[SPComposeViewController alloc] initWithProfile:profile] autorelease];
-    [tab pushModalController:profileController];
+    SPComposeViewController* chatScreenController = [[[SPComposeViewController alloc] initWithProfile:profile] autorelease];
+    chatScreenController.minimizeContainerOnClose = fromBase;
+    [tab pushModalController:chatScreenController];
 }
--(void)pushChatWithID:(NSString*)profileID
+-(void)pushChatWithID:(NSString*)profileID isFromBase:(BOOL)fromBase
 {
     SPTabController* tab = [tabs objectAtIndex:0];
-    //Ensure the tab is maximized
+        //Ensure the tab is maximized
     [tab maximizeIsFullscreen:YES];
         //Close all existing page
     [tab closeAllPages];
-    //Present a page containing the chat controller
-    SPComposeViewController* profileController = [[[SPComposeViewController alloc] initWithIdentifier:profileID] autorelease];
-    [tab pushModalController:profileController];
-    [tab setFullscreen:YES];
-}
--(void)pushChatWithProfile:(SPProfile*)profile isFromBase:(BOOL)fromBase
-{
-    SPTabController* tab = [tabs objectAtIndex:0];
-    //Ensure the tab is maximized
-    [tab maximizeIsFullscreen:YES];
-    //Close all existing page
-    [tab closeAllPages];
-    //Present a page containing the chat controller
-    SPComposeViewController* profileController = [[[SPComposeViewController alloc] initWithProfile:profile] autorelease];
-    [tab pushModalController:profileController];
+        //Present a page containing the chat controller
+    SPComposeViewController* chatScreenController = [[[SPComposeViewController alloc] initWithIdentifier:profileID] autorelease];
+    chatScreenController.minimizeContainerOnClose = fromBase;
+    [tab pushModalController:chatScreenController];
 }
 #pragma mark - Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type

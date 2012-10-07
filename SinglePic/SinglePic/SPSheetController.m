@@ -55,13 +55,13 @@
 }
 -(void)close
 {
-    [self removeObservationFromContentController];
-    
     //Used to inform the content cotroller that we will be closing the tab
     if([controller_ respondsToSelector:@selector(willClose)])
     {
         [controller_ performSelector:@selector(willClose)];
     }
+    
+    [self removeObservationFromContentController];
 }
 #pragma mark - Setting Content
 -(void)setController:(UIViewController*)controller

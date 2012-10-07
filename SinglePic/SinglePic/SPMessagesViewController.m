@@ -125,8 +125,8 @@
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     
     NSString* userID = [NSString stringWithFormat:@"%i",cell.tag];
-    SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
-    [baseController pushChatWithID:userID];
+    SPBaseController* baseController = [SPAppDelegate baseController];
+    [baseController pushChatWithID:userID isFromBase:YES];
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
