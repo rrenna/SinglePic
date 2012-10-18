@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75071E8216303C0100935B0D /* SPCaptureHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75071E8516303DD500935B0D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8416303DD500935B0D /* ImageIO.framework */; };
+		75071E8716303DE700935B0D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8616303DE700935B0D /* CoreMedia.framework */; };
+		75071E8916303DF000935B0D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8816303DF000935B0D /* CoreVideo.framework */; };
+		75071E8B16303DFB00935B0D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8A16303DFB00935B0D /* AVFoundation.framework */; };
 		75089E9914D9BF1F0044FC63 /* SPStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 75089E9814D9BF1F0044FC63 /* SPStyles.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		750B93671510F03100C354F2 /* SPCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B93661510EBDD00C354F2 /* SPCircleView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		750B936A1510F62A00C354F2 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B93691510F62A00C354F2 /* TimeHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -416,6 +421,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75071E8116303C0100935B0D /* SPCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCaptureHelper.h; sourceTree = "<group>"; };
+		75071E8216303C0100935B0D /* SPCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCaptureHelper.m; sourceTree = "<group>"; };
+		75071E8416303DD500935B0D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		75071E8616303DE700935B0D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		75071E8816303DF000935B0D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		75071E8A16303DFB00935B0D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		75089E9814D9BF1F0044FC63 /* SPStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyles.m; sourceTree = "<group>"; };
 		750B93651510EBDD00C354F2 /* SPCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCircleView.h; sourceTree = "<group>"; };
 		750B93661510EBDD00C354F2 /* SPCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPCircleView.m; sourceTree = "<group>"; };
@@ -1021,6 +1032,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75071E8B16303DFB00935B0D /* AVFoundation.framework in Frameworks */,
+				75071E8916303DF000935B0D /* CoreVideo.framework in Frameworks */,
+				75071E8716303DE700935B0D /* CoreMedia.framework in Frameworks */,
+				75071E8516303DD500935B0D /* ImageIO.framework in Frameworks */,
+				F0C1779E1491BC1700F72809 /* QuartzCore.framework in Frameworks */,
 				F0CA73CE161C58AF00DAE2D1 /* Crashlytics.framework in Frameworks */,
 				F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */,
 				F03F15DF14F931C300EAF11D /* AudioToolbox.framework in Frameworks */,
@@ -1035,7 +1051,6 @@
 				F0C177A21491BC2700F72809 /* Security.framework in Frameworks */,
 				F0C177A01491BC2200F72809 /* CoreText.framework in Frameworks */,
 				7599A943148E980100A48435 /* CoreGraphics.framework in Frameworks */,
-				F0C1779E1491BC1700F72809 /* QuartzCore.framework in Frameworks */,
 				F0C1779C1491BC1000F72809 /* CoreLocation.framework in Frameworks */,
 				F0C1779A1491BC0B00F72809 /* MapKit.framework in Frameworks */,
 				7599A93F148E980100A48435 /* UIKit.framework in Frameworks */,
@@ -1567,6 +1582,10 @@
 		7599A93D148E980100A48435 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75071E8A16303DFB00935B0D /* AVFoundation.framework */,
+				75071E8816303DF000935B0D /* CoreVideo.framework */,
+				75071E8616303DE700935B0D /* CoreMedia.framework */,
+				75071E8416303DD500935B0D /* ImageIO.framework */,
 				F0CA73C9161C57A600DAE2D1 /* Crashlytics.framework */,
 				F03F15DE14F931C200EAF11D /* AudioToolbox.framework */,
 				75D196F414ED910000A23654 /* MessageUI.framework */,
@@ -2409,6 +2428,8 @@
 		F0C178C81491C1A700F72809 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				75071E8116303C0100935B0D /* SPCaptureHelper.h */,
+				75071E8216303C0100935B0D /* SPCaptureHelper.m */,
 				F0C178C91491C1C900F72809 /* ImageHelper.m */,
 				F0C178CA1491C1C900F72809 /* ImageHelper.h */,
 				750B93681510F62A00C354F2 /* TimeHelper.h */,
@@ -2990,6 +3011,7 @@
 				F0E490891613268C00091EC0 /* UIExpandingTextViewInternal.m in Sources */,
 				F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */,
 				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
+				75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

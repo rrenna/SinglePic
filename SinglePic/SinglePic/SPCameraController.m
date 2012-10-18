@@ -7,16 +7,15 @@
 //
 
 #import "SPCameraController.h"
+#import "SPCaptureHelper.h"
 
 @interface SPCameraController()
-@property (retain) UIImagePickerController* imagePicker;
+@property (retain) SPCaptureHelper* captureHelper;
 -(void)setMyPicture:(UIImage*)image;
--(void)makeCameraVisible;
--(void)makeCameraInvisible;
 @end
 
 @implementation SPCameraController
-@synthesize imagePicker;
+@synthesize captureHelper;
 
 #pragma mark - View lifecycle
 -(id)init
@@ -24,7 +23,7 @@
     self = [self initWithNibName:@"SPCameraController" bundle:nil];
     if(self)
     {
-        [imagePicker cameraFlashMode];
+        //[imagePicker cameraFlashMode];
     }
     return self;
 }
@@ -38,8 +37,26 @@
 {
     [super viewDidAppear:animated];
     
-    if(!self.imagePicker)
+    if(!self.captureHelper)
     {
+        self.captureHelper = [[SPCaptureHelper new] autorelease];
+        
+        [self.captureHelper addVideoInputFrontCamera:YES]; // set to YES for Front Camera, No for Back camera
+        
+        [self.captureHelper addStillImageOutput];
+        
+        [self.captureHelper addVideoPreviewLayer];
+        CGRect layerRect = [[cameraContainerView layer] bounds];
+        [[self.captureHelper previewLayer] setBounds:layerRect];
+        [[self.captureHelper previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
+        [[cameraContainerView layer] addSublayer:[self.captureHelper previewLayer]];
+        
+        
+        //Do more stuff
+        
+        [[self.captureHelper captureSession] startRunning];
+        
+        /*
         self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
         imagePicker.delegate = self;
         imagePicker.view.frame = CGRectMake(0, 0, cameraContainerView.width, cameraContainerView.width);
@@ -61,6 +78,7 @@
         }
 
         [cameraContainerView addSubview:imagePicker.view];
+         */
     }
     
     //Pre-Request upload urls
@@ -76,18 +94,21 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     cameraPreviewImageView.image = nil;
-    [self makeCameraInvisible];
 }
 -(void)dealloc
 {
-    [imagePicker release];
+    [self.captureHelper release];
     [super dealloc];
 }
 #pragma mark - Overriden methods
 -(void)close
 {
-    [imagePicker.view removeFromSuperview];
-    self.imagePicker = nil;
+    //[imagePicker.view removeFromSuperview];
+    //self.imagePicker = nil;
+    
+    [self.captureHelper.previewLayer removeFromSuperlayer];
+    self.captureHelper = nil;
+    
     [super close];
 }
 #pragma mark - IBActions
@@ -97,42 +118,82 @@
 }
 -(IBAction)switchCameras:(id)sender
 {
-    if(self.imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
+    /*if(self.imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
     {
-        self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+        //self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
         switchFlashModeButton.enabled = YES;
     }
     else
     {
-        self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        //self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         switchFlashModeButton.enabled = NO;
-    }
+    }*/
 }
 -(IBAction)switchFlashMode:(id)sender
 {
-    if(self.imagePicker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOff)
+    /*if(self.imagePicker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOff)
     {
-        imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+        //imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
         switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-on"];
     }
     else
     {
-        imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+        //imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-off"];
-    }
+    }*/
 }
 -(IBAction)takePicture:(id)sender
 {
-    [self makeCameraInvisible];
-    
     //Perform alternative logic when running on the simulator
     #if TARGET_IPHONE_SIMULATOR
     [self setMyPicture:[UIImage imageNamed:@"testingImage"]];
     #else
+    
+    [self.captureHelper captureWithCompletion:^(UIImage *capturedImage) {
+       
+        UIImage* originalImage = capturedImage;
+        UIImage* modifiedImage = nil;
+        
+        float minDimension = MIN(originalImage.size.width, originalImage.size.height);
+        
+        //Note X refers to Y on screen, as physical camera is sideways
+        float xOffset = (originalImage.size.height - minDimension) / 2;
+        
+        //xOffset is used to crop an equal amount from the top and bottom of the image
+        UIImage *croppedImage = [originalImage croppedImage:CGRectMake(xOffset,0,minDimension,minDimension) ];
+        
+        /*
+        if(picker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
+        {
+            UIImageOrientation originalOrientation = UIImageOrientationRight;
+            modifiedImage = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0 orientation: originalOrientation];
+        }
+        else
+        {*/
+            CGSize imageSize = croppedImage.size;
+            UIGraphicsBeginImageContextWithOptions(imageSize, YES, 1.0);
+            CGContextRef ctx = UIGraphicsGetCurrentContext();
+            CGContextRotateCTM(ctx, M_PI/2);
+            CGContextTranslateCTM(ctx, 0, -imageSize.width);
+            CGContextScaleCTM(ctx, imageSize.height/imageSize.width, imageSize.width/imageSize.height);
+            CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, imageSize.width, imageSize.height), croppedImage.CGImage);
+            modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        //}
+        
+        //[cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:15.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
+        
+        cameraPreviewImageView.image = modifiedImage;
+        
+        [self setMyPicture:modifiedImage];
+        
+    }];
+    
+    /*
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         [self.imagePicker takePicture];
-    }
+    }*/
     #endif
 }
 #pragma mark - Private methods
@@ -155,21 +216,10 @@
      {
          cameraPreviewImageView.image = nil;
          //[SVProgressHUD dismissWithError:@"Woops! Couldn't upload. Try again."];
-         [self makeCameraVisible];
          
      }]; 
 }
--(void)makeCameraVisible
-{
-    [UIView animateWithDuration:0.75 animations:^
-    {
-        cameraContainerView.alpha = 1.0;
-    }];
-}
--(void)makeCameraInvisible
-{
-    cameraContainerView.alpha = 0.0;
-}
+/*
 #pragma mark - UIImagePickerControllerDelegate methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -216,5 +266,5 @@
     }
     
     [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
-}
+}*/
 @end
