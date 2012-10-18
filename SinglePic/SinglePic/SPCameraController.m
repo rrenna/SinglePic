@@ -42,7 +42,7 @@
     {
         self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
         imagePicker.delegate = self;
-        imagePicker.view.frame = cameraContainerView.bounds;
+        imagePicker.view.frame = CGRectMake(0, 0, cameraContainerView.width, cameraContainerView.width);
         
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
@@ -50,7 +50,9 @@
             imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
             switchFlashModeButton.enabled = YES;
             imagePicker.showsCameraControls = NO;
-            
+            imagePicker.navigationBarHidden = YES;
+            imagePicker.toolbarHidden = YES;
+            imagePicker.wantsFullScreenLayout = YES;
         }
        
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
@@ -121,6 +123,8 @@
 }
 -(IBAction)takePicture:(id)sender
 {
+    [self makeCameraInvisible];
+    
     //Perform alternative logic when running on the simulator
     #if TARGET_IPHONE_SIMULATOR
     [self setMyPicture:[UIImage imageNamed:@"testingImage"]];
@@ -150,7 +154,9 @@
     andErrorHandler:^
      {
          cameraPreviewImageView.image = nil;
-         //[SVProgressHUD dismissWithError:@"Woops! Couldn't upload. Try again."]; 
+         //[SVProgressHUD dismissWithError:@"Woops! Couldn't upload. Try again."];
+         [self makeCameraVisible];
+         
      }]; 
 }
 -(void)makeCameraVisible
@@ -173,7 +179,6 @@
     float minDimension = MIN(originalImage.size.width, originalImage.size.height);
     UIImage *croppedImage = [originalImage croppedImage:CGRectMake(0,0,minDimension,minDimension) ];
     
-    
     if(picker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
     {
         UIImageOrientation originalOrientation = UIImageOrientationRight;
@@ -192,8 +197,9 @@
         UIGraphicsEndImageContext();
     }    
     
-    cameraPreviewImageView.image = modifiedImage;
-    imagePicker.view.alpha = 0.0;
+    [cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:15.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
+    
+        //cameraPreviewImageView.image = modifiedImage;
     
     [self setMyPicture:modifiedImage];
 }
@@ -205,12 +211,8 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
         
-        /*
-        if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
-        {
-            imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-        }
-         */
+            //imagePicker.cameraViewTransform = CGAffineTransformMakeScale(1.0, 1.0);
+            //imagePicker.cameraViewTransform = CGAffineTransformTranslate(imagePicker.cameraViewTransform, 0.0, 150.0);
     }
     
     [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
