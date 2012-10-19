@@ -246,6 +246,8 @@
 		F03869F016018A7F00D14B84 /* default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869EF16018A7F00D14B84 /* default-568h.png */; };
 		F03A7F0C161291EF0049F27B /* MessageBubble-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03A7F0B161291EF0049F27B /* MessageBubble-white@2x.png */; };
 		F03A7F0F1612A55B0049F27B /* MessageBubble-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03A7F0E1612A55B0049F27B /* MessageBubble-blue@2x.png */; };
+		F03B1E3B1630E50000BC8B6E /* Intro-Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = F03B1E391630E50000BC8B6E /* Intro-Chat.png */; };
+		F03B1E3C1630E50000BC8B6E /* Intro-Pics.png in Resources */ = {isa = PBXBuildFile; fileRef = F03B1E3A1630E50000BC8B6E /* Intro-Pics.png */; };
 		F03CD12814BA443100E1340D /* Orientation-MsM-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */; };
 		F03CD12914BA443100E1340D /* Orientation-MsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12114BA443100E1340D /* Orientation-MsM-default.png */; };
 		F03CD12A14BA443100E1340D /* Orientation-FsF-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12214BA443100E1340D /* Orientation-FsF-selected.png */; };
@@ -764,6 +766,8 @@
 		F03869EF16018A7F00D14B84 /* default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h.png"; path = "../../Resources/default-568h.png"; sourceTree = "<group>"; };
 		F03A7F0B161291EF0049F27B /* MessageBubble-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-white@2x.png"; path = "../../Resources/MessageBubble-white@2x.png"; sourceTree = "<group>"; };
 		F03A7F0E1612A55B0049F27B /* MessageBubble-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-blue@2x.png"; path = "../../Resources/MessageBubble-blue@2x.png"; sourceTree = "<group>"; };
+		F03B1E391630E50000BC8B6E /* Intro-Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Chat.png"; path = "../../Resources/Intro-Chat.png"; sourceTree = "<group>"; };
+		F03B1E3A1630E50000BC8B6E /* Intro-Pics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Pics.png"; path = "../../Resources/Intro-Pics.png"; sourceTree = "<group>"; };
 		F03CD12014BA443100E1340D /* Orientation-MsM-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-MsM-selected.png"; path = "../../Resources/Orientation-MsM-selected.png"; sourceTree = "<group>"; };
 		F03CD12114BA443100E1340D /* Orientation-MsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-MsM-default.png"; path = "../../Resources/Orientation-MsM-default.png"; sourceTree = "<group>"; };
 		F03CD12214BA443100E1340D /* Orientation-FsF-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Orientation-FsF-selected.png"; path = "../../Resources/Orientation-FsF-selected.png"; sourceTree = "<group>"; };
@@ -1129,6 +1133,8 @@
 		751D263914916CB500617DD8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F03B1E391630E50000BC8B6E /* Intro-Chat.png */,
+				F03B1E3A1630E50000BC8B6E /* Intro-Pics.png */,
 				F0F58B43162CC543003DD1B3 /* Intro-Browse.png */,
 				75B5F24A1613677C000A010A /* toolbarbg@2x~iphone.png */,
 				75B5F24B1613677C000A010A /* toolbarbg~iphone.png */,
@@ -2819,6 +2825,8 @@
 				F001A1CE1613C53F0011DBFC /* Nav-info@2x.png in Resources */,
 				F04C36481615640500462CBB /* icon-Refresh@2x.png in Resources */,
 				F0F58B44162CC543003DD1B3 /* Intro-Browse.png in Resources */,
+				F03B1E3B1630E50000BC8B6E /* Intro-Chat.png in Resources */,
+				F03B1E3C1630E50000BC8B6E /* Intro-Pics.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
