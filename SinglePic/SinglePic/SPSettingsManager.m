@@ -74,7 +74,7 @@
     #endif
     
     #ifdef PUBLIC_RELEASE
-    return RELEASE_PHOTO_EXPIRY_DAYS;
+    return PHOTO_EXPIRY_DAYS;
     #endif
 }
 -(NSString*)defaultBucketID
