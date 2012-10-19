@@ -727,8 +727,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
          NSDate* lastUpdated = [TimeHelper dateWithServerTime:lastUpdatedServerTime_];
          NSDate* expiry = [lastUpdated dateByAddingTimeInterval:SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid]];
          
-         [[SPRequestManager sharedInstance] getImageFromURL:[NSURL URLWithString:imageURL_] withCompletionHandler:^(UIImage *responseImage) {
-             
+         void (^onImageRecieved)(UIImage*) = ^(UIImage* responseImage) {
+         
              [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
               {
                   //Find the appropriate bucket object
@@ -747,7 +747,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       [weakSelf setMyUserID:userID_ synchronize:NO];
                       [weakSelf setMyUserName:userName_ synchronize:NO];
                       [weakSelf setMyEmail:email_ synchronize:NO]; //Tells the profile manager to not synchronize the user token setting, as the NSUserDefaults will be synchronized at the end of this block
-                                                                                            //NOTE : Should not cache the password
+                                                                   //NOTE : Should not cache the password
                       [weakSelf setMyBucket:userBucket_ synchronize:NO];
                       [weakSelf setMyIcebreaker:userIcebreaker_ synchronize:NO];
                       [weakSelf setMyGender:GENDER_FROM_NAME(userGender_) synchronize:NO];
@@ -765,9 +765,9 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       
                       //Registers for Push notifications
                       [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject)
-                       {
-                       } andErrorHandler:nil];
-      
+                      {
+                      } andErrorHandler:nil];
+                      
                       onCompletion(responseObject);
                       
                       
@@ -791,24 +791,34 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       onError();
                   }
               }];
-         } 
-         andErrorHandler:^(NSError* error)
+         
+         };
+         
+         //If an image URL is defined, attempt to download the image
+         if(![imageURL_ isEqualToString:@""])
          {
-              if(onError)
-              {
-                  onError();
-                  
-              }
-          }];
-             
-             
-         } andErrorHandler:^(NSError *error) {
-             
-             if(onError)
+             [[SPRequestManager sharedInstance] getImageFromURL:[NSURL URLWithString:imageURL_] withCompletionHandler:onImageRecieved
+             andErrorHandler:^(NSError* error)
              {
-                 onError();
-             }
-         }];
+                 if(onError)
+                 {
+                     onError();
+                 }
+             }];
+         }
+         else
+         {
+             //Continue without an image
+             onImageRecieved(nil);
+         }
+             
+     } andErrorHandler:^(NSError *error) {
+         
+         if(onError)
+         {
+             onError();
+         }
+     }];
 }
 -(void)logout
 {

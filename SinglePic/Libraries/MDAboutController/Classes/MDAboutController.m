@@ -50,6 +50,7 @@
 #import "MDACStyle.h"
 //
 #import "SPLabel.h"
+#import "TestFlight.h"
 
 #pragma mark Constants
 
@@ -652,20 +653,24 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
 
 - (void)openMailToRecipient:(NSString *)recipient subject:(NSString *)subject
 {
+    #ifdef BETA
+    [TestFlight openFeedbackView];
+    #else
     UIViewController *mailer = [[[NSClassFromString(@"MFMailComposeViewController") alloc] init] autorelease];
     [mailer performSelector:@selector(setMailComposeDelegate:) withObject:self];
     [mailer performSelector:@selector(setToRecipients:) withObject:[NSArray arrayWithObject:recipient]];
     [mailer performSelector:@selector(setSubject:) withObject:subject];
     
-        // dear compiler warning... shut up
-        // the following should be fully backwards compatible.
+    // dear compiler warning... shut up
+    // the following should be fully backwards compatible.
     if ([self respondsToSelector:@selector(presentViewController:animated:completion:)]) {
         objc_msgSend(self, @selector(presentViewController:animated:completion:), mailer, YES, NULL);
-            //        [self presentViewController:mailer animated:YES completion:NULL];
+        //        [self presentViewController:mailer animated:YES completion:NULL];
     } else {
         objc_msgSend(self, @selector(presentModalViewController:animated:), mailer, YES);
-            //        [self presentModalViewController:mailer animated:YES];
+        //        [self presentModalViewController:mailer animated:YES];
     }
+    #endif
 }
 
 - (void)mailComposeController:(id)controller didFinishWithResult:(int)result error:(NSError *)error
