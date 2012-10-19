@@ -9,8 +9,6 @@
 //Media
 static const NSString* DEFAULT_PORTRAIT_IMAGE = @"MyProfile-OBE-Pic";
 
-
-
 //Profiles
 static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define DEFAULT_GENDER GENDER_FEMALE
@@ -20,7 +18,6 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define MINIMUM_USERNAME_LENGTH 6
 #define MINIMUM_PASSWORD_LENGTH 6
 #define MINIMUM_EMAIL_LENGTH 4
-#define PHOTO_EXPIRY_DAYS 5
 
 //General
 #define SECONDS_PER_DAY  (60 * 60 * 24)
@@ -39,8 +36,8 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 
 //Beta expiry
 #define BETA_EXPIRY_YEAR 2012
-#define BETA_EXPIRY_MONTH 10
-#define BETA_EXPIRY_DAY 28
+#define BETA_EXPIRY_MONTH 11
+#define BETA_EXPIRY_DAY 1
 
 //Help
 typedef enum

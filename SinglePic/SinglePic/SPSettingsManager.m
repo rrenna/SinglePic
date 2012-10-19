@@ -26,7 +26,7 @@
 #pragma mark - Dynamic Properties
 -(ENVIRONMENT)environment
 {
-    #ifdef RELEASE
+    #ifdef PUBLIC
     return ENVIRONMENT_PRODUCTION;
     #else
     return _environment;
@@ -45,7 +45,7 @@
 }
 -(NSString*)serverAddress
 {
-    #ifdef RELEASE
+    #ifdef PUBLIC
     return PRODUCTION_ADDRESS;
     #else
     if([self environment] == ENVIRONMENT_PRODUCTION)
@@ -64,11 +64,17 @@
     #ifdef DEBUG
     return 0.25; //When debugging reduce time until expiry to 6 hours
     #endif
-    #ifdef BETA
+    
+    #ifdef PRIVATE_BETA
     return PHOTO_EXPIRY_DAYS / 2; //During beta tests reduce time until expiry by 50%
     #endif
-    #ifdef RELEASE
-    return PHOTO_EXPIRY_DAYS;
+    
+    #ifdef PUBLIC_BETA
+    return PHOTO_EXPIRY_DAYS - 2; //During beta tests reduce time until expiry by 2 days (currently 5 days)
+    #endif
+    
+    #ifdef PUBLIC_RELEASE
+    return RELEASE_PHOTO_EXPIRY_DAYS;
     #endif
 }
 -(NSString*)defaultBucketID
@@ -91,7 +97,7 @@
 #pragma mark - Setting Helper Methods
 -(BOOL)canSwitchEnvironments
 {
-    #ifdef DEBUG
+    #ifdef PRIVATE
     return YES;
     #else
     return NO;
@@ -99,7 +105,7 @@
 }
 -(BOOL)shouldDisplayVerboseErrors
 {
-    #ifdef DEBUG
+    #ifdef PRIVATE
     return YES;
     #else
     return NO;
@@ -110,8 +116,8 @@
 -(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion
 {
     //We perform different validation depending on if we're TESTING on TestFlight or not
-    #if defined (BETA)
-    //This is used to enforce beta client expiry
+    #if defined (PUBLIC_BETA)
+    //This is used to enforce beta client expiry for Public beta testing
     //Expires on
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
@@ -128,7 +134,7 @@
     {
         needsUpdate = YES;
         title = @"SinglePic Beta has expired";
-        NSString* description = @"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com.";
+        description = @"This version of SinglePic has expired. You will recieve an email when a newer version has been released. You may also check on www.testflightapp.com.";
     }
     
     onCompletion(needsUpdate,title,description);

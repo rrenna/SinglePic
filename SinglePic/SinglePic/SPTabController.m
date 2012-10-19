@@ -63,7 +63,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     //Don't attempt any tab placement + animation until properly resized
-    [self setFullscreen:_fullscreen animated:animated];
+    [self setFullscreen:_fullscreen animated:YES];
 }
 - (void) setHandleImage
 {

@@ -131,7 +131,7 @@
 						<string key="NSFrame">{{8, 154}, {305, 44}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="628077115"/>
+						<reference key="NSNextKeyView" ref="529214943"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -139,7 +139,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Forgot Password?</string>
-						<object class="NSColor" key="IBUITextColor" id="789284739">
+						<object class="NSColor" key="IBUITextColor" id="898920756">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
@@ -236,10 +236,10 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="932598147">
+					<object class="IBUIImageView" id="876905120">
 						<reference key="NSNextResponder" ref="512538306"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{97, 204}, {127, 41}}</string>
+						<string key="NSFrame">{{97, 187}, {127, 41}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -253,13 +253,13 @@
 							<string key="NSResourceName">Logo-SinglePic-red.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="628077115">
+					<object class="IBUILabel" id="529214943">
 						<reference key="NSNextResponder" ref="512538306"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{70, 185}, {180, 25}}</string>
+						<string key="NSFrame">{{70, 168}, {180, 25}}</string>
 						<reference key="NSSuperview" ref="512538306"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="932598147"/>
+						<reference key="NSNextKeyView" ref="876905120"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -267,7 +267,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">A Fun Way to Meet Singles</string>
-						<reference key="IBUITextColor" ref="789284739"/>
+						<reference key="IBUITextColor" ref="898920756"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -629,8 +629,8 @@
 							<reference ref="966128305"/>
 							<reference ref="929162708"/>
 							<reference ref="787148548"/>
-							<reference ref="932598147"/>
-							<reference ref="628077115"/>
+							<reference ref="876905120"/>
+							<reference ref="529214943"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">view</string>
@@ -712,12 +712,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">66</int>
-						<reference key="object" ref="932598147"/>
+						<reference key="object" ref="876905120"/>
 						<reference key="parent" ref="512538306"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">67</int>
-						<reference key="object" ref="628077115"/>
+						<reference key="object" ref="529214943"/>
 						<reference key="parent" ref="512538306"/>
 					</object>
 				</array>
