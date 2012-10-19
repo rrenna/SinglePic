@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "SPCameraController.h"
 #import "SPCaptureHelper.h"
 
@@ -37,11 +38,17 @@
 {
     [super viewDidAppear:animated];
     
+    cameraPreviewImageView.center = CGPointMake(160, -90.0);
+    
+    cameraPreviewImageView.image = nil;
+    
+    uploadProgressBar.hidden = YES;
+    
     if(!self.captureHelper)
     {
         self.captureHelper = [[SPCaptureHelper new] autorelease];
         
-        [self.captureHelper addVideoInputFrontCamera:YES]; // set to YES for Front Camera, No for Back camera
+        [self.captureHelper addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
         
         [self.captureHelper addStillImageOutput];
         
@@ -51,10 +58,12 @@
         [[self.captureHelper previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
         [[cameraContainerView layer] addSublayer:[self.captureHelper previewLayer]];
         
-        
-        //Do more stuff
-        
         [[self.captureHelper captureSession] startRunning];
+        
+        if([self.captureHelper canSwitchCamera])
+        {
+            switchCameraBarButton.enabled = YES;
+        }
         
         /*
         self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
@@ -118,6 +127,11 @@
 }
 -(IBAction)switchCameras:(id)sender
 {
+    if([self.captureHelper canSwitchCamera])
+    {
+        [self.captureHelper switchCamera];
+    }
+
     /*if(self.imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
     {
         //self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
@@ -146,8 +160,34 @@
 {
     //Perform alternative logic when running on the simulator
     #if TARGET_IPHONE_SIMULATOR
-    [self setMyPicture:[UIImage imageNamed:@"testingImage"]];
+    UIImage* modifiedImage = [UIImage imageNamed:@"testingImage"];
+    
+    [cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:5.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
+
+    CGAffineTransform swingTransform = CGAffineTransformIdentity;
+    swingTransform = CGAffineTransformRotate(swingTransform, 0.06);
+    
+    [UIView beginAnimations:@"swing" context:cameraPreviewImageView];
+    [UIView setAnimationDuration:0.5];
+    
+    cameraPreviewImageView.transform = swingTransform;
+    cameraPreviewImageView.center = CGPointMake(160,200);
+    
+    [UIView commitAnimations];
+    
+    [self setMyPicture:modifiedImage];
     #else
+    //Remove Preview
+    [self.captureHelper.previewLayer removeFromSuperlayer];
+    //Replace with all white layer
+    CALayer* flashColor = [CALayer layer];
+    flashColor.frame = cameraContainerView.layer.bounds;
+    flashColor.backgroundColor = [UIColor whiteColor].CGColor;
+    [cameraContainerView.layer addSublayer:flashColor];
+    //Fade white layer out
+    [UIView animateWithDuration:0.33 animations:^{
+        cameraContainerView.alpha = 0.0;
+    }];
     
     [self.captureHelper captureWithCompletion:^(UIImage *capturedImage) {
        
@@ -181,12 +221,20 @@
             UIGraphicsEndImageContext();
         //}
         
-        //[cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:15.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
+        [cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:5.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
+    
+        CGAffineTransform swingTransform = CGAffineTransformIdentity;
+        swingTransform = CGAffineTransformRotate(swingTransform, 0.06);
+    
+        [UIView beginAnimations:@"swing" context:cameraPreviewImageView];
+        [UIView setAnimationDuration:0.5];
         
-        cameraPreviewImageView.image = modifiedImage;
+        cameraPreviewImageView.transform = swingTransform;
+        cameraPreviewImageView.center = CGPointMake(160,200);
+        
+        [UIView commitAnimations];
         
         [self setMyPicture:modifiedImage];
-        
     }];
     
     /*
@@ -199,6 +247,9 @@
 #pragma mark - Private methods
 -(void)setMyPicture:(UIImage*)image
 {
+    uploadProgressBar.progress = 0.0;
+    uploadProgressBar.hidden = NO;
+    
     //[SVProgressHUD showWithStatus:@"Uploading" maskType:SVProgressHUDMaskTypeGradient networkIndicator:YES];
     [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject) 
      {
@@ -206,15 +257,17 @@
         [TestFlight passCheckpoint:@"Saved new Image"];
         #endif
          
+        [uploadProgressBar setProgress:1.0 animated:YES];
         [self close];
      }
     andProgressHandler:^(float progress)
     {
-        NSLog(@"");
+        [uploadProgressBar setProgress:progress animated:YES];
     } 
     andErrorHandler:^
      {
          cameraPreviewImageView.image = nil;
+         uploadProgressBar.hidden = YES;
          //[SVProgressHUD dismissWithError:@"Woops! Couldn't upload. Try again."];
          
      }]; 
@@ -267,4 +320,8 @@
     
     [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
 }*/
+- (void)viewDidUnload {
+    uploadProgressBar = nil;
+    [super viewDidUnload];
+}
 @end

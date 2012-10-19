@@ -12,7 +12,6 @@
 #import "SVProgressHUD.h"
 
 @interface SPUserViewController()
-@property (retain) SPCameraController* cameraController;
 -(void)updateImage;
 -(void)updateUsername;
 -(void)updateIcebreaker;
@@ -21,7 +20,6 @@
 @end
 
 @implementation SPUserViewController
-@synthesize cameraController;
 #pragma mark - View lifecycle
 -(id)init
 {
@@ -76,25 +74,14 @@
     
     [orientationController release];
     [locationController release];
-    [cameraController release];
     [usernameLabel release];
     [super dealloc];
-}
--(void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    self.cameraController = nil;
 }
 #pragma mark - IBActions
 -(IBAction)retakePic:(id)sender
 {
-    if(!self.cameraController)
-    {
-        self.cameraController = [[SPCameraController new] autorelease];
-    }
-    
-    SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
-    [baseController pushModalController:self.cameraController isFullscreen:YES];
+    SPCameraController* cameraController = [[SPCameraController new] autorelease]; 
+    [[SPAppDelegate baseController] pushModalController:cameraController isFullscreen:YES];
 }
 -(IBAction)editPic:(id)sender
 {

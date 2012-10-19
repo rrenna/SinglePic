@@ -1,18 +1,24 @@
 #import "SPCaptureHelper.h"
 #import <ImageIO/ImageIO.h>
 
-@implementation SPCaptureHelper
+@interface SPCaptureHelper()
+{
+    BOOL isFrontCamera;
+}
+@property (retain) AVCaptureSession *captureSession;
+@property (retain) AVCaptureStillImageOutput *stillImageOutput;
+@end
 
-@synthesize captureSession;
-@synthesize previewLayer;
-@synthesize stillImageOutput;
-@synthesize stillImage;
+@implementation SPCaptureHelper
+@synthesize captureSession,stillImageOutput; //Private
+@synthesize previewLayer,stillImage;
 
 #pragma mark Capture Session Configuration
 
 - (id)init {
 	if ((self = [super init])) {
 		[self setCaptureSession:[[AVCaptureSession alloc] init]];
+        isFrontCamera = NO;
 	}
 	return self;
 }
@@ -89,7 +95,85 @@
     
     [[self captureSession] addOutput:[self stillImageOutput]];
 }
+- (BOOL)isFrontCamera
+{
+    return isFrontCamera;
+}
+- (BOOL)canSwitchCamera
+{
+    NSArray *devices = [AVCaptureDevice devices];
+    AVCaptureDevice *frontCamera = nil;
 
+    for (AVCaptureDevice *device in devices) {
+        
+        NSLog(@"Device name: %@", [device localizedName]);
+        
+        if ([device hasMediaType:AVMediaTypeVideo]) {
+            
+            if ([device position] == AVCaptureDevicePositionFront) {
+                NSLog(@"Device position : back");
+                frontCamera = device;
+            }
+        }
+    }
+    
+    return (frontCamera) ? YES : NO;
+}
+- (void)switchCamera
+{
+    isFrontCamera = !isFrontCamera;
+    
+    NSArray *devices = [AVCaptureDevice devices];
+    AVCaptureDevice *frontCamera = nil;
+    AVCaptureDevice *backCamera = nil;
+    
+    for (AVCaptureDevice *device in devices) {
+        
+        NSLog(@"Device name: %@", [device localizedName]);
+        
+        if ([device hasMediaType:AVMediaTypeVideo]) {
+            
+            if ([device position] == AVCaptureDevicePositionBack) {
+                NSLog(@"Device position : back");
+                backCamera = device;
+            }
+            else {
+                NSLog(@"Device position : front");
+                frontCamera = device;
+            }
+        }
+    }
+    
+    NSError *error = nil;
+    
+    for(id input in [[self captureSession] inputs])
+    {
+        [[self captureSession] removeInput:input];
+    }
+
+    
+    if (isFrontCamera && frontCamera) {
+        AVCaptureDeviceInput *frontFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
+        if (!error) {
+            if ([[self captureSession] canAddInput:frontFacingCameraDeviceInput]) {
+                [[self captureSession] addInput:frontFacingCameraDeviceInput];
+            } else {
+                NSLog(@"Couldn't add front facing video input");
+            }
+        }
+    } else if(!isFrontCamera && backCamera) {
+        AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
+        if (!error) {
+            if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) {
+                [[self captureSession] addInput:backFacingCameraDeviceInput];
+            } else {
+                NSLog(@"Couldn't add back facing video input");
+            }
+        }
+    }
+    
+    
+}
 -(void)captureWithCompletion:(void (^)(UIImage* capturedImage))onCompletion
 {
     

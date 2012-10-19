@@ -14,6 +14,7 @@
     IBOutlet UIImageView* cameraPreviewImageView;
     IBOutlet UIBarButtonItem* switchFlashModeButton;
     IBOutlet UIBarButtonItem* switchCameraBarButton;
+    IBOutlet UIProgressView *uploadProgressBar;
 }
 -(IBAction)cancel:(id)sender;
 -(IBAction)switchCameras:(id)sender;
