@@ -235,7 +235,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     //Step 2 initialization steps
     if(!orientationChooser)
     {
-        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.02, stepTwoView.height * 0.23, stepTwoView.width * 0.96, stepTwoView.height * 0.7)];
+        orientationChooser = [[SPOrientationChooser alloc] initWithFrame:CGRectMake(stepTwoView.width * 0.02, stepTwoView.height * 0.0, stepTwoView.width * 0.96, stepTwoView.height * 0.7)];
     }
 
     [stepTwoView addSubview:orientationChooser];
