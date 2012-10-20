@@ -8,6 +8,7 @@
 
 #import "SPAppDelegate.h"
 #import "SPBaseController.h"
+#import <objc/runtime.h>
 
 //--NSUserDefault Keys--
 //Device Keys
@@ -41,8 +42,6 @@
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     #endif
     
-    [Crashlytics startWithAPIKey:@"9741e90523aaddc2c850b566f7fab4df77250742"];
-    
     [[SPSettingsManager sharedInstance] validateAppWithCompletionHandler:^(BOOL needsUpdate, NSString *title, NSString *description) {
        
         if(needsUpdate)
@@ -66,6 +65,9 @@
     self.baseController = [[[SPBaseController alloc] initWithNibName:@"SPBaseController" bundle:nil] autorelease];
     self.window.rootViewController = self.baseController;
     [self.window makeKeyAndVisible];
+    
+    //Setup Crashlytics Reporting
+    [Crashlytics startWithAPIKey:@"9741e90523aaddc2c850b566f7fab4df77250742"];
     
     return YES;
 }

@@ -99,7 +99,7 @@
     //Card View
     SPCardView* card = [[[SPCardView alloc] initWithFrame:view.bounds] autorelease];
     [card setStyle:CARD_STYLE_YELLOW];
-    card.alpha = 0.2;
+    card.alpha = 0.25;
     
     //Button - will contain a tag storing the index
     UIButton* button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];

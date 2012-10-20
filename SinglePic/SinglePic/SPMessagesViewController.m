@@ -60,7 +60,6 @@
     refreshButton.hidden = YES;
     [activityView startAnimating];
     [[SPMessageManager sharedInstance] forceRefresh];
-    [[SPMessageManager sharedInstance] forceRefresh];
 }
 -(IBAction)edit:(id)sender
 {

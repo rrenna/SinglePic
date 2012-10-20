@@ -700,7 +700,6 @@ static NSURL* _thumbnailUploadURLCache = nil;
     }];
     
     [escapedUserToken release];
-
 }
 -(void)loginWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
