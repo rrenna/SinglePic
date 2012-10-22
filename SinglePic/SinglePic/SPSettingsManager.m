@@ -70,7 +70,7 @@
     #endif
     
     #ifdef PUBLIC_BETA
-    return PHOTO_EXPIRY_DAYS - 2; //During beta tests reduce time until expiry by 2 days (currently 5 days)
+    return PHOTO_EXPIRY_DAYS - 5; //During beta tests reduce time until expiry by 5 days (currently 2 days)
     #endif
     
     #ifdef PUBLIC_RELEASE

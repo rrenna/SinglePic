@@ -1445,12 +1445,17 @@ static int profileCounter = 0;
     [[SPRequestManager sharedInstance] removeUserToken];
     //Cancel any queued local notifications
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    //Clear properties
+    self.icebreaker = nil;
+    //TODO: cleared all properties
 
     //Clear out various NSUserDefault cached values
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_EXPIRY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_TYPE];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_ID];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_NAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_BUCKET];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_ICEBREAKER];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_EMAIL];
@@ -1458,6 +1463,7 @@ static int profileCounter = 0;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_PREFERENCE];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN_SYNCED];
     //Cannot remove USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION as it's stored as an integer
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //Reset variables
     _hasProfileImage = NO;
