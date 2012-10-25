@@ -12,18 +12,17 @@
 #import "SPProfileIconController.h"
 #import "SPProfileViewController.h"
 #import "SPBlockView.h"
-#import <Box2D/Box2D.h>//Must be included AFTER MKMapKit or anything that includes MKMapKit
+#import <Box2D/Box2D.h> //Must be included AFTER MKMapKit or anything that includes MKMapKit
 
 //Box2D
 static b2PrismaticJointDef shaftJoint;
 
-
-#define REFRESH_HEADER_HEIGHT 8.0f//52.0f
+#define REFRESH_HEADER_HEIGHT 8.0f //52.0f
 #define BROWSE_ROW_LIMIT 5
 #define BROWSE_ROW_LIMIT_TALL 6
 #define BROWSE_COLUMN_AMOUNT 3
 #define PTM_RATIO 16
-#define TICK (0.016666666)// same as (1.0f/60.0f)
+#define TICK (0.016666666) // same as (1.0f/60.0f)
 
 static int profileIndex = 0;
 
@@ -41,11 +40,15 @@ static int profileIndex = 0;
     __block BOOL isRestarting;
     NSTimer *dropTimer;
     NSMutableArray* queuedSelectorCalls;
+    
     //Stack Management
-    int stackCount[3];
     BOOL stackPaused[3];
-
+    
+    //Box2D
+    struct b2World* world;
+    struct b2Body* groundBody;
 }
+@property (retain) NSArray* stacks;
 @property (retain) NSMutableArray* profileControllers;
 @property (retain) CADisplayLink* tickDisplayLink;
 
@@ -60,7 +63,6 @@ static int profileIndex = 0;
 -(void)isAnyStackPaused;
 -(void)resumeAllStacks;
 -(void)resumeStack:(int)stackIndex;
--(void)resetStackCounters;
 -(void)destroyBlockView:(SPBlockView*)blockView;
 -(void)destroyBottomViewBody:(UIView*)bottomView;
 -(void)addBodyForBoxView:(SPBlockView *)boxView;
@@ -72,10 +74,11 @@ static int profileIndex = 0;
 -(void)tick:(NSTimer *)timer;
 -(void)drop:(NSTimer *)timer;
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks;
+
 @end
 
 @implementation SPBrowseViewController
-@synthesize profileControllers, tickDisplayLink = _tickDisplayLink; //Private
+@synthesize stacks = _stacks, profileControllers, tickDisplayLink = _tickDisplayLink; //Private
 
 -(id)init
 {
@@ -84,6 +87,7 @@ static int profileIndex = 0;
     {
         self.profileControllers = [NSMutableArray array];
         queuedSelectorCalls = [NSMutableArray new];
+        self.stacks = @[ [NSMutableArray array],[NSMutableArray array],[NSMutableArray array] ];
         stackPaused[0] = NO; stackPaused[1] = NO; stackPaused[2] = NO;
         isDroping = NO;
         isDragging = NO;
@@ -141,11 +145,9 @@ static int profileIndex = 0;
     [_tickDisplayLink setFrameInterval:1];
     [_tickDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
-    [self resetStackCounters];
-    
     if(![dropTimer isValid])
     {
-        const float delay = 0.8;        //Start the browsing experience
+        const float delay = 0.8; //Start the browsing experience
         
         __unsafe_unretained SPBrowseViewController* weakSelf = self;
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
@@ -370,12 +372,6 @@ static int profileIndex = 0;
         [scrollView addSubview:colorGrid];
         [scrollView addSubview:refreshHeaderView];
 }
--(void)resetStackCounters
-{
-    stackCount[0] = 0;
-    stackCount[1] = 0;
-    stackCount[2] = 0;
-}
 -(void)beginDropSchedule
 {    
     [profileControllers removeAllObjects];
@@ -383,30 +379,35 @@ static int profileIndex = 0;
 }
 -(void)dropAllOnscreenBlocks
 {
-    [self resetStackCounters];
-        //Destroys the Box2D Body of these three views, which represent three shapes keeping the profile blocks from falling
+    //Destroys the Box2D Body of the bottom view, which represent the shape keeping the profile blocks from falling
     [self destroyBottomViewBody:centerBottomView];
     
     if([[SPProfileManager sharedInstance] remainingProfiles] > 0)
     {
         //Fade out & destroy all blocks
         float delay = 2.0;
-        for(UIView* subView in canvasView.subviews)
+        
+        for(NSMutableArray* stack in self.stacks)
         {
-            if([subView isKindOfClass:[SPBlockView class]])
+            for(SPBlockView* blockView in stack)
             {
-                __unsafe_unretained SPBrowseViewController* weakSelf = self;
-                [UIView animateWithDuration:0.5 delay:delay options:nil animations:^{
+                if([blockView isKindOfClass:[SPBlockView class]])
+                {
+                    __unsafe_unretained SPBrowseViewController* weakSelf = self;
+                    [UIView animateWithDuration:0.5 delay:delay options:nil animations:^{
+                        
+                        blockView.alpha = 0.0;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        [weakSelf destroyBlockView:blockView];
+                    }];
                     
-                    subView.alpha = 0.0;
-                    
-                } completion:^(BOOL finished) {
-                    
-                    [weakSelf destroyBlockView:subView];
-                }];
-                
-                delay -= 0.02;
+                    delay -= 0.02;
+                }
             }
+            
+            [stack removeAllObjects]; //Must be done after iteration
         }
         
         //Pause the block dropping
@@ -655,7 +656,8 @@ int currentTick = 0;
         if(![self isStackPaused:columnIndex])
         {
             //Drop a profile box if this stack isn't paused
-            if(stackCount[columnIndex] < rowLimit)
+            NSMutableArray* stack = [self.stacks objectAtIndex:columnIndex];
+            if([stack count] < rowLimit)
             {
                 SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
                 
@@ -675,7 +677,8 @@ int currentTick = 0;
                     
                     blockView.data = profile;
                     [blockView setController:profileIcon];
-                    stackCount[columnIndex]++;
+                    
+                    [stack addObject:blockView];
                     
                     __unsafe_unretained SPBrowseViewController* weakSelf = self;
                     id block_proceed = ^(UIImage *thumbnail)

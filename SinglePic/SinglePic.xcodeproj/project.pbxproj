@@ -764,6 +764,7 @@
 		F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h@2x.png"; path = "../../Resources/BG-Linen-Red-Blend-568h@2x.png"; sourceTree = "<group>"; };
 		F03869ED1601893800D14B84 /* BG-Linen-Red-Blend-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h.png"; path = "../../Resources/BG-Linen-Red-Blend-568h.png"; sourceTree = "<group>"; };
 		F03869EF16018A7F00D14B84 /* default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h.png"; path = "../../Resources/default-568h.png"; sourceTree = "<group>"; };
+		F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F03A7F0B161291EF0049F27B /* MessageBubble-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-white@2x.png"; path = "../../Resources/MessageBubble-white@2x.png"; sourceTree = "<group>"; };
 		F03A7F0E1612A55B0049F27B /* MessageBubble-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-blue@2x.png"; path = "../../Resources/MessageBubble-blue@2x.png"; sourceTree = "<group>"; };
 		F03B1E391630E50000BC8B6E /* Intro-Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Chat.png"; path = "../../Resources/Intro-Chat.png"; sourceTree = "<group>"; };
@@ -3347,9 +3348,10 @@
 		F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */,
 				F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */,
 			);
-			currentVersion = F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */;
+			currentVersion = F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */;
 			path = messageStorage.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -31,6 +31,7 @@
 -(void)updateExpiry;
 -(void)updateAvatar;
 -(void)updateNewMailAlert;
+-(void)updatenewMailCount;
 -(void)flashNewConnectionAlert;
 -(void)validateReachability;
 -(void)locationServicesValidated;
@@ -108,6 +109,7 @@
         //Set the image expiry "mini" progress view in the navigation bar
         [self updateExpiry];
         [self updateAvatar];
+        [self updatenewMailCount];
         
         #define HELP_OVERLAY_BROWSE_DISPLAYED_KEY @"HELP_OVERLAY_BROWSE_DISPLAYED_KEY"
         if(![[NSUserDefaults standardUserDefaults] boolForKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY])
@@ -383,6 +385,10 @@
         }];
     }
 }
+-(void)updatenewMailCount
+{
+    newMessageCountLabel.text = [NSString stringWithFormat:@"%d",[[SPMessageManager sharedInstance] unreadMessagesCount]];
+}
 -(void)flashNewConnectionAlert
 {
     newConnectionAlertImage.alpha = 1.0;
@@ -520,6 +526,7 @@
 - (void)viewDidUnload {
     newConnectionAlertImage = nil;
     newMessageAlertImage = nil;
+    newMessageCountLabel = nil;
     [super viewDidUnload];
 }
 @end

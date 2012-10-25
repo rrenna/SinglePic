@@ -64,9 +64,10 @@
     }
     else
     {
-            //Create a Message Account object for this accountID
+        //Create a Message Account object for this accountID
         self.activeAccount = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessageAccount" inManagedObjectContext:[self managedObjectContext]];
         self.activeAccount.identifier = accountID;
+        [[self managedObjectContext] save:nil];
     }
 }
 #pragma mark - Messages
@@ -127,8 +128,13 @@
 #pragma mark - Unread Messages
 -(int)unreadMessagesCount
 {
-        //TODO: Implement unread message count
-    return 0;
+    int unreadCount = 0;
+    for(SPMessageThread* thread in [self activeMessageThreads])
+    {
+        unreadCount+=  [thread.unreadMessagesCount intValue];
+    }
+    
+    return unreadCount;
 }
 #pragma mark - Sending Messages
 -(void)sendMessage:(NSString*)messageBody toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
@@ -331,6 +337,7 @@
     newMessage.incoming = (incoming) ? YES_NSNUMBER : NO_NSNUMBER;
     newMessage.date = time;
     
+    thread.unreadMessagesCount = @( [thread.unreadMessagesCount intValue] + 1);
     [thread addMessagesObject:newMessage];
     
     return newMessage;
@@ -382,8 +389,12 @@
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
                                   initWithManagedObjectModel:[self managedObjectModel]];
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                  configuration:nil URL:storeUrl options:nil error:&error])
+                                                  configuration:nil URL:storeUrl options:options error:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();

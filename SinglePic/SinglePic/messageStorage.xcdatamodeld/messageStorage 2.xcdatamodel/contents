@@ -16,6 +16,7 @@
     <entity name="SPMessageThread" representedClassName="SPMessageThread" syncable="YES">
         <attribute name="active" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="lastActivity" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="unreadMessagesCount" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="account" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SPMessageAccount" inverseName="threads" inverseEntity="SPMessageAccount" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SPMessage" inverseName="thread" inverseEntity="SPMessage" syncable="YES"/>
@@ -23,6 +24,6 @@
     <elements>
         <element name="SPMessage" positionX="0" positionY="0" width="128" height="105"/>
         <element name="SPMessageAccount" positionX="-342" positionY="-5" width="128" height="104"/>
-        <element name="SPMessageThread" positionX="-297" positionY="-288" width="128" height="120"/>
+        <element name="SPMessageThread" positionX="-297" positionY="-288" width="128" height="135"/>
     </elements>
 </model>

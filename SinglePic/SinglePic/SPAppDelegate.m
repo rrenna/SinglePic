@@ -51,8 +51,7 @@
             [expiredAlert release];
         }
     }];
-     
-    
+
     /* Device Push Notification Management */
     UIRemoteNotificationType requiredNotificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
     //We are not registered for all required notification types

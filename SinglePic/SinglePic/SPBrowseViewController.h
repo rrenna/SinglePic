@@ -21,12 +21,8 @@ struct b2Body;
     IBOutlet UIView* canvasView; 
     IBOutlet UIView* centerBottomView;
     IBOutlet UILabel* browseInstructionsLabel;
-    
-    @private
-    //Box2D
-    struct b2World* world;
-    struct b2Body* groundBody;
 }
+
 -(void)setup;
 -(void)visible;
 
