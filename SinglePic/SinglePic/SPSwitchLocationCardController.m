@@ -35,6 +35,8 @@
 #pragma mark - IBOutlet
 -(IBAction)open:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MAXIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
     
     //TODO: Lazily load the location chooser instead of instantiating it from a XIB
@@ -61,6 +63,8 @@
 }
 -(IBAction)change:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     changeButton.enabled = NO;
     
     [[SPProfileManager sharedInstance] saveMyBucket:locationChooser.selected withCompletionHandler:^(id responseObject) {

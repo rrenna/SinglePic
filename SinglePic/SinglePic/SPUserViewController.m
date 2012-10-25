@@ -80,11 +80,15 @@
 #pragma mark - IBActions
 -(IBAction)retakePic:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPCameraController* cameraController = [[SPCameraController new] autorelease]; 
     [[SPAppDelegate baseController] pushModalController:cameraController isFullscreen:YES];
 }
 -(IBAction)editPic:(id)sender
 {
+    [SPSoundHelper playTap];
+    
         //UIImage* imageToEdit = avatarImageView.image;
     
     /*
@@ -97,6 +101,8 @@
 }
 -(IBAction)revertPic:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     /*
     [SVProgressHUD showWithStatus:@"Undoing" maskType:SVProgressHUDMaskTypeGradient networkIndicator:YES];
     
@@ -117,6 +123,8 @@
 }
 -(IBAction)editIcebreaker:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPIcebreakerComposeViewController* icebreakerComposeController = [SPIcebreakerComposeViewController new];
     
     SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
@@ -126,6 +134,8 @@
 
 -(IBAction)viewImageExpiryHelp:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
     [baseController displayHelpOverlay:HELP_OVERLAY_IMAGE_EXPIRY];
 }

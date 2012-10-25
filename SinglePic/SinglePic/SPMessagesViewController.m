@@ -53,6 +53,8 @@
 #pragma mark - IBActions
 -(IBAction)refresh:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     #if defined (BETA)
     [TestFlight passCheckpoint:@"Manually refreshed Messages"];
     #endif
@@ -63,6 +65,8 @@
 }
 -(IBAction)edit:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [tableView setEditing:(!tableView.editing) animated:YES];
 }
 #pragma mark - Private

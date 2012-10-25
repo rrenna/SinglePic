@@ -17,6 +17,7 @@
     //Helpers
     #import "ImageHelper.h"
     #import "TimeHelper.h"
+    #import "SPSoundHelper.h"
     //Extensions
     #import "UIView+SizesAndEdges.h"
     #import "UIDevice+IdentifierAddition.h"

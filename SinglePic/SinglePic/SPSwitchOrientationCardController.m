@@ -40,6 +40,8 @@
 #pragma mark - IBOutlet
 -(IBAction)open:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MAXIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
     
     if(!orientationChooser)
@@ -73,6 +75,8 @@
 }
 -(IBAction)change:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     BOOL newSexSelected = (orientationChooser.chosenGender != [[SPProfileManager sharedInstance] myGender]);
     BOOL newPreferenceSelected = (orientationChooser.chosenPreference != [[SPProfileManager sharedInstance] myPreference]);
     //Used to communicate with the Stack Panel on resizing

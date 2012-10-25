@@ -176,6 +176,8 @@
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [self setFullscreen:NO animated:YES];
     
     if(self.minimizeContainerOnClose)
@@ -190,6 +192,8 @@
 }
 -(IBAction)send:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     _toolbar.inputButton.enabled = NO;
     sending = YES;
     

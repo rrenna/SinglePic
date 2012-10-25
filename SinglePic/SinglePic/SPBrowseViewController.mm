@@ -204,6 +204,8 @@ static int profileIndex = 0;
 
 -(IBAction)next:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [UIView animateWithDuration:0.5 animations:^
     {
             browseInstructionsLabel.alpha = 0.0;
@@ -222,6 +224,9 @@ static int profileIndex = 0;
 }
 -(IBAction)reportToggle:(id)sender
 {
+    
+    [SPSoundHelper playTap];
+    
     /*
     
     UIButton* reportButton = (UIButton*)sender;
@@ -252,6 +257,8 @@ static int profileIndex = 0;
 #pragma mark - SPBlockViewDelegate methods
 -(void)blockViewWasSelected : (SPBlockView*) blockView
 {
+    [SPSoundHelper playTap];
+    
     if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
     {
         #if defined (BETA)

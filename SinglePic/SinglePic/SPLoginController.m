@@ -63,6 +63,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (IBAction)back:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [self close];
 }
 - (IBAction)login:(id)sender

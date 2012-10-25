@@ -44,11 +44,15 @@
 //Callbacks for selectors called by the MDAboutController (parent class)
 -(void)logout
 {
+    [SPSoundHelper playTap];
+    
     [[SPProfileManager sharedInstance] logout];
     [self dismissModalViewControllerAnimated:YES];
 }
 -(void)switchEnvironment
 {
+    [SPSoundHelper playTap];
+    
     if([[SPSettingsManager sharedInstance] environment] == ENVIRONMENT_TESTING)
     {
         [[SPSettingsManager sharedInstance] setEnvironment:ENVIRONMENT_PRODUCTION];

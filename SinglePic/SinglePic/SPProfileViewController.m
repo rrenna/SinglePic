@@ -88,13 +88,17 @@
 #pragma mark - IBActions
 -(IBAction)message:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPComposeViewController* composeController = [[[SPComposeViewController alloc] initWithProfile:self.profile] autorelease];
     
     [self setFullscreen:YES];
     [self pushModalController:composeController];
 }
 -(IBAction)like:(id)sender
-{
+{    
+    [SPSoundHelper playTap];
+
     //Disable button until action is completed
     likeButton.enabled = NO;
     
@@ -130,6 +134,8 @@
 }
 -(IBAction)more:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     UIActionSheet* profileMoreActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Block User" otherButtonTitles: nil];
     [profileMoreActionsSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     [profileMoreActionsSheet showInView:[[UIApplication sharedApplication] keyWindow]];

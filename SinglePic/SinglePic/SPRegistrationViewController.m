@@ -47,6 +47,8 @@
 #pragma mark - IBActions
 -(IBAction)spawnRegistrationScreen:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPBaseController* baseController = [SPAppDelegate baseController];
     
     SPSignUpController* signupController = [[SPSignUpController new] autorelease];
@@ -55,6 +57,8 @@
 }
 -(IBAction)spawnLoginScreen:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPBaseController* baseController = [SPAppDelegate baseController];
     
     SPLoginController* loginController = [[SPLoginController new] autorelease];

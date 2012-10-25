@@ -7,7 +7,6 @@
     //
 
 #import <CoreData/CoreData.h>
-#import <AudioToolbox/AudioServices.h>
 #import "CJSONSerializer.h"
 #import "SPMessageManager.h"
 #import "SPRequestManager.h"
@@ -282,8 +281,7 @@
                   //Reset Badge
                   [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
                   
-                  //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
-                  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                  [SPSoundHelper vibrate];
                       
                   NSError* error = nil;
                   [managedObjectContext save:&error];

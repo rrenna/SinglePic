@@ -112,9 +112,6 @@
 #pragma mark - Overriden methods
 -(void)close
 {
-    //[imagePicker.view removeFromSuperview];
-    //self.imagePicker = nil;
-    
     [self.captureHelper.previewLayer removeFromSuperlayer];
     self.captureHelper = nil;
     
@@ -123,10 +120,14 @@
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [self close];
 }
 -(IBAction)switchCameras:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     if([self.captureHelper canSwitchCamera])
     {
         [self.captureHelper switchCamera];
@@ -145,6 +146,8 @@
 }
 -(IBAction)switchFlashMode:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     /*if(self.imagePicker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOff)
     {
         //imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;

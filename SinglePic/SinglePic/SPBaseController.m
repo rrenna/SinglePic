@@ -173,6 +173,8 @@
     [TestFlight passCheckpoint:@"Switched to LIKES screen"]; 
     #endif
     
+    [SPSoundHelper playTap];
+    
     [self minimizeAllTabs];
     
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -187,6 +189,8 @@
     #if defined (BETA)
     [TestFlight passCheckpoint:@"Switched to MY PROFILE screen"]; 
     #endif
+    
+    [SPSoundHelper playTap];
     
     [self updateExpiry];
     
@@ -205,6 +209,8 @@
     [TestFlight passCheckpoint:@"Switched to MESSAGES screen"]; 
     #endif
     
+    [SPSoundHelper playTap];
+    
     [self minimizeAllTabs];
     
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -216,10 +222,14 @@
 }
 -(IBAction)registration:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [self minimizeAllTabs];
 }
 -(IBAction)info:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     SPSettingsViewController* settingsController = [[SPSettingsViewController new] autorelease];
     [self presentModalViewController:settingsController animated:YES];
 }
@@ -530,3 +540,4 @@
     [super viewDidUnload];
 }
 @end
+

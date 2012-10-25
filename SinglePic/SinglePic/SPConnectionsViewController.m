@@ -65,10 +65,14 @@
 #pragma mark - IBActions
 -(IBAction)edit:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [tableView setEditing:(!tableView.editing) animated:YES];
 }
 -(IBAction)likesTypeSwitched:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     if([likeTypeSegmentedControl selectedSegmentIndex] == 0)
     {
         //Likes

@@ -36,10 +36,14 @@
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     [self close];
 }
 -(IBAction)save:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     saveButton.enabled = NO;
     
     [[SPProfileManager sharedInstance] saveMyIcebreaker:textView.text withCompletionHandler:^(id responseObject) 

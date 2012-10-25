@@ -239,6 +239,10 @@
 		F02642A814DFA94E00E8D649 /* SPCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = F02642A614DFA94E00E8D649 /* SPCameraController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F02642A914DFA94E00E8D649 /* SPCameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A714DFA94E00E8D649 /* SPCameraController.xib */; };
 		F0265D1614BA49BF00CAE538 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = F0265D1514BA49BF00CAE538 /* Checkmark.png */; };
+		F0280B891639091A007B2BC8 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B861639091A007B2BC8 /* alert.wav */; };
+		F0280B8A1639091A007B2BC8 /* tap1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B871639091A007B2BC8 /* tap1.wav */; };
+		F0280B8B1639091A007B2BC8 /* tap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B881639091A007B2BC8 /* tap2.wav */; };
+		F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */; };
 		F02ABE5C14D04EB8000FE283 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F02ABE5B14D04EB8000FE283 /* SPMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F03869E91601872F00D14B84 /* default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869E81601872F00D14B84 /* default-568h@2x.png */; };
 		F03869EC1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */; };
@@ -758,13 +762,18 @@
 		F02642A614DFA94E00E8D649 /* SPCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCameraController.m; sourceTree = "<group>"; };
 		F02642A714DFA94E00E8D649 /* SPCameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPCameraController.xib; sourceTree = "<group>"; };
 		F0265D1514BA49BF00CAE538 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = ../../Resources/Checkmark.png; sourceTree = "<group>"; };
+		F0280B861639091A007B2BC8 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = alert.wav; path = ../../Resources/alert.wav; sourceTree = "<group>"; };
+		F0280B871639091A007B2BC8 /* tap1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap1.wav; path = ../../Resources/tap1.wav; sourceTree = "<group>"; };
+		F0280B881639091A007B2BC8 /* tap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap2.wav; path = ../../Resources/tap2.wav; sourceTree = "<group>"; };
+		F0280B8C16390B1D007B2BC8 /* SPSoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSoundHelper.h; sourceTree = "<group>"; };
+		F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSoundHelper.m; sourceTree = "<group>"; };
 		F02ABE5A14D04EB8000FE283 /* SPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessage.h; sourceTree = "<group>"; };
 		F02ABE5B14D04EB8000FE283 /* SPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessage.m; sourceTree = "<group>"; };
 		F03869E81601872F00D14B84 /* default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h@2x.png"; path = "../../Resources/default-568h@2x.png"; sourceTree = "<group>"; };
 		F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h@2x.png"; path = "../../Resources/BG-Linen-Red-Blend-568h@2x.png"; sourceTree = "<group>"; };
 		F03869ED1601893800D14B84 /* BG-Linen-Red-Blend-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h.png"; path = "../../Resources/BG-Linen-Red-Blend-568h.png"; sourceTree = "<group>"; };
 		F03869EF16018A7F00D14B84 /* default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h.png"; path = "../../Resources/default-568h.png"; sourceTree = "<group>"; };
-		F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
+		F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F03A7F0B161291EF0049F27B /* MessageBubble-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-white@2x.png"; path = "../../Resources/MessageBubble-white@2x.png"; sourceTree = "<group>"; };
 		F03A7F0E1612A55B0049F27B /* MessageBubble-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-blue@2x.png"; path = "../../Resources/MessageBubble-blue@2x.png"; sourceTree = "<group>"; };
 		F03B1E391630E50000BC8B6E /* Intro-Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Chat.png"; path = "../../Resources/Intro-Chat.png"; sourceTree = "<group>"; };
@@ -1764,6 +1773,7 @@
 		75F5631F148FC74200E6A8F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F0280B8416390911007B2BC8 /* Sounds */,
 				758E0DFF160A3B070006D1F7 /* Fonts */,
 				751D263914916CB500617DD8 /* Images */,
 				75F56321148FC74800E6A8F9 /* Xibs */,
@@ -2028,6 +2038,16 @@
 				F02642A614DFA94E00E8D649 /* SPCameraController.m */,
 			);
 			name = "Camera Screen";
+			sourceTree = "<group>";
+		};
+		F0280B8416390911007B2BC8 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F0280B861639091A007B2BC8 /* alert.wav */,
+				F0280B871639091A007B2BC8 /* tap1.wav */,
+				F0280B881639091A007B2BC8 /* tap2.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		F041881515D7386D000E958E /* Switch Location Controller */ = {
@@ -2441,6 +2461,8 @@
 				F0C178CA1491C1C900F72809 /* ImageHelper.h */,
 				750B93681510F62A00C354F2 /* TimeHelper.h */,
 				750B93691510F62A00C354F2 /* TimeHelper.m */,
+				F0280B8C16390B1D007B2BC8 /* SPSoundHelper.h */,
+				F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2828,6 +2850,9 @@
 				F0F58B44162CC543003DD1B3 /* Intro-Browse.png in Resources */,
 				F03B1E3B1630E50000BC8B6E /* Intro-Chat.png in Resources */,
 				F03B1E3C1630E50000BC8B6E /* Intro-Pics.png in Resources */,
+				F0280B891639091A007B2BC8 /* alert.wav in Resources */,
+				F0280B8A1639091A007B2BC8 /* tap1.wav in Resources */,
+				F0280B8B1639091A007B2BC8 /* tap2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3021,6 +3046,7 @@
 				F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */,
 				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
 				75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */,
+				F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

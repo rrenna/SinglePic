@@ -79,6 +79,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 #pragma mark - IBActions
 -(IBAction)back:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     if(step == 3)
     {
         [self transitionToStep:2];
@@ -98,6 +100,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (IBAction)next:(id)sender
 {
+    [SPSoundHelper playTap];
+    
     if(step == 1)
     {
         [self transitionToStep:2];

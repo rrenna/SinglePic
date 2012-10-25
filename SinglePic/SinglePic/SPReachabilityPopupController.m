@@ -92,6 +92,8 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [SPSoundHelper playTap];
+    
     if([self reachable])
     {
         //If reachable, alert the delegate
