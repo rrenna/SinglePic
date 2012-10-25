@@ -278,20 +278,40 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 2)
+    if(indexPath.row == 0)
+    {
+        return 40;
+    }
+    else if(indexPath.row == 2)
     {
         //Return 80 point height for the password row in the registration form
         return 70;
     }
 
-    return 40;
+    return 46;
 }
 #pragma mark - UITextField delegate methods
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-
+    if(textField == userNameField)
+    {
+        userNameHintLabel.hidden = NO;
+        emailHintLabel.hidden = YES;
+        passwordHintLabel.hidden = YES;
+    }
+    else if(textField == emailField)
+    {
+        userNameHintLabel.hidden = YES;
+        emailHintLabel.hidden = NO;
+        passwordHintLabel.hidden = YES;
+    }
+    else if(textField == passwordField || textField == confirmPasswordField)
+    {
+        userNameHintLabel.hidden = YES;
+        emailHintLabel.hidden = YES;
+        passwordHintLabel.hidden = NO;
+    }
 }
-
 BOOL validateUserName(NSString* userName,NSString **hint) {
     
     BOOL length = ([userName length] >= MINIMUM_USERNAME_LENGTH);

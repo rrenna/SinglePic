@@ -135,6 +135,13 @@
     
     return unreadCount;
 }
+-(void)readMessageThread:(SPMessageThread*)thread
+{
+    thread.unreadMessagesCount = @0;
+    [managedObjectContext save:nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_READ object:nil];
+}
 #pragma mark - Sending Messages
 -(void)sendMessage:(NSString*)messageBody toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError
 {
@@ -152,7 +159,7 @@
          SPMessage* newMessage = [weakSelf saveMessage:messageBody toThread:thread isIncoming:NO atTime:now];
          
          [managedObjectContext save:nil];
-             //Run completion block
+         //Run completion block
          onCompletion(newMessage);
          
          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MESSAGE_SENT object:nil];
@@ -261,6 +268,9 @@
              //Inform the user that we've recieved the messages successfully
              [weakSelf sendSyncronizationReceiptWithCompletionHandler:^
               {
+                  //Play an alert informing the user of new messages
+                  [SPSoundHelper playAlert];
+                  
                   for(NSDictionary* messageData in messagesData)
                   {
                       NSString* userID = [messageData objectForKey:@"from"];
@@ -321,21 +331,25 @@
          retrievalInProgress = NO;
          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
      }];
-    
-        //}
+
 }
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time
 {
     thread.lastActivity = time;
     thread.active = YES_NSNUMBER;
     
-        //Create SPMessage
+    //Create SPMessage
     SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
     newMessage.content = messageBody;
     newMessage.incoming = (incoming) ? YES_NSNUMBER : NO_NSNUMBER;
     newMessage.date = time;
     
-    thread.unreadMessagesCount = @( [thread.unreadMessagesCount intValue] + 1);
+    //If an incoming message, increase unread count
+    if(incoming)
+    {
+        thread.unreadMessagesCount = @( [thread.unreadMessagesCount intValue] + 1);
+    }
+
     [thread addMessagesObject:newMessage];
     
     return newMessage;

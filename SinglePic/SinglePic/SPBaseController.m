@@ -31,12 +31,14 @@
 -(void)updateExpiry;
 -(void)updateAvatar;
 -(void)updateNewMailAlert;
--(void)updatenewMailCount;
 -(void)flashNewConnectionAlert;
 -(void)validateReachability;
 -(void)locationServicesValidated;
 -(void)navigationMode;
 -(void)registrationMode;
+-(void)displayLikesView;
+-(void)displayProfileView;
+-(void)displayMessagesView;
 -(void)addContent:(UIView*)content;
 @end
 
@@ -100,7 +102,7 @@
             connectionsController = [SPConnectionsViewController new];
         }
         
-        [self profile:profileButton];
+        [self displayProfileView]; //Default content
         
         backgroundImageView.image = [UIImage imageNamed:@"BG-Linen-Red-Blend-568h.png"];
         navigationView.hidden = NO;
@@ -109,7 +111,7 @@
         //Set the image expiry "mini" progress view in the navigation bar
         [self updateExpiry];
         [self updateAvatar];
-        [self updatenewMailCount];
+        [self updateNewMailAlert];
         
         #define HELP_OVERLAY_BROWSE_DISPLAYED_KEY @"HELP_OVERLAY_BROWSE_DISPLAYED_KEY"
         if(![[NSUserDefaults standardUserDefaults] boolForKey:HELP_OVERLAY_BROWSE_DISPLAYED_KEY])
@@ -174,15 +176,7 @@
     #endif
     
     [SPSoundHelper playTap];
-    
-    [self minimizeAllTabs];
-    
-    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self addContent:connectionsController.view];
-    
-    profileButton.selected = NO;
-    mailButton.selected = NO;
-    connectionButton.selected = YES;
+    [self displayLikesView];
 }
 -(IBAction)profile:(id)sender
 {
@@ -191,17 +185,7 @@
     #endif
     
     [SPSoundHelper playTap];
-    
-    [self updateExpiry];
-    
-    [self minimizeAllTabs];
-    
-    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self addContent:userController.view];
-    
-    profileButton.selected = YES;
-    mailButton.selected = NO;
-    connectionButton.selected = NO;
+    [self displayProfileView];
 }
 -(IBAction)inbox:(id)sender
 {
@@ -210,15 +194,7 @@
     #endif
     
     [SPSoundHelper playTap];
-    
-    [self minimizeAllTabs];
-    
-    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [self addContent:messagesController.view];
-    
-    profileButton.selected = NO;
-    mailButton.selected = YES;
-    connectionButton.selected = NO;
+    [self displayMessagesView];
 }
 -(IBAction)registration:(id)sender
 {
@@ -337,6 +313,41 @@
     self.baseMode = REGISTRATION_BASE_MODE;
     [self pushModalController: [[SPBrowseViewController new] autorelease] isFullscreen:NO];
 }
+-(void)displayLikesView
+{
+    [self minimizeAllTabs];
+    
+    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self addContent:connectionsController.view];
+    
+    profileButton.selected = NO;
+    mailButton.selected = NO;
+    connectionButton.selected = YES;
+}
+-(void)displayProfileView
+{
+    [self updateExpiry];
+    
+    [self minimizeAllTabs];
+    
+    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self addContent:userController.view];
+    
+    profileButton.selected = YES;
+    mailButton.selected = NO;
+    connectionButton.selected = NO;
+}
+-(void)displayMessagesView
+{
+    [self minimizeAllTabs];
+    
+    [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self addContent:messagesController.view];
+    
+    profileButton.selected = NO;
+    mailButton.selected = YES;
+    connectionButton.selected = NO;
+}
 -(void)browseScreenProfileSelected
 {
     if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
@@ -387,16 +398,16 @@
     if([[SPMessageManager sharedInstance] unreadMessagesCount] > 0)
     {
         newMessageAlertImage.alpha = 1.0;
+        newMessageCountLabel.alpha = 1.0;
     }
     else
     {
         [UIView animateWithDuration:1.0 animations:^{
             newMessageAlertImage.alpha = 0.0;
+            newMessageCountLabel.alpha = 0.0;
         }];
     }
-}
--(void)updatenewMailCount
-{
+    
     newMessageCountLabel.text = [NSString stringWithFormat:@"%d",[[SPMessageManager sharedInstance] unreadMessagesCount]];
 }
 -(void)flashNewConnectionAlert

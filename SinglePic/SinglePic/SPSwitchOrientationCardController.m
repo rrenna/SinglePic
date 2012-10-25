@@ -128,7 +128,6 @@
     {  
         dismiss();
     }
-
 }
 #pragma mark - Private methods
 -(void)setLabelWithGender:(GENDER)gender andPreference:(GENDER)preference

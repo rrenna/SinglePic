@@ -17,10 +17,14 @@ static SystemSoundID alertSoundID;
 @implementation SPSoundHelper
 +(void)load
 {
-    NSURL *tapSoundURL = [[NSBundle mainBundle] URLForResource: @"tap2"
-                                                withExtension: @"wav"];
+    NSURL *tapSoundURL = [[NSBundle mainBundle] URLForResource: @"tap" withExtension: @"wav"];
+    NSURL* alertSoundURL = [[NSBundle mainBundle] URLForResource: @"alert" withExtension: @"wav"];
+    
     tapSoundURLRef = (__bridge CFURLRef) tapSoundURL;
+    alertSoundURLRef = (__bridge CFURLRef) alertSoundURL;
+    
     AudioServicesCreateSystemSoundID (tapSoundURLRef,&tapSoundID);
+    AudioServicesCreateSystemSoundID (alertSoundURLRef,&alertSoundID);
 }
 #pragma mark - Sound playback methods
 +(void) playTap
@@ -29,7 +33,7 @@ static SystemSoundID alertSoundID;
 }
 +(void) playAlert
 {
-    
+    AudioServicesPlaySystemSound (alertSoundID);
 }
 #pragma mark - Vibration methods
 +(void) vibrate

@@ -230,8 +230,10 @@
     }
     andErrorHandler:nil];
     
-    self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
     usernameLabel.text = self.profile.username;
+    
+    self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
+    [[SPMessageManager sharedInstance] readMessageThread:self.thread];
     
     [self reload];
     [self scrollToBottomAnimated:NO];

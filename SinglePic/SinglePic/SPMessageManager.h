@@ -26,6 +26,7 @@
 -(void)deleteMessageThread:(SPMessageThread*)thread;
 //--Unread Messages
 -(int)unreadMessagesCount;
+-(void)readMessageThread:(SPMessageThread*)thread;
 //--Sending Messages
 -(void)sendMessage:(NSString*)message toUserWithID:(NSString*)userID withCompletionHandler:(void (^)(SPMessage* message))onCompletion andErrorHandler:(void(^)())onError;
 //--Message Syncronization

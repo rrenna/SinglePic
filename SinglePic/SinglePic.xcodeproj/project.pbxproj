@@ -240,8 +240,6 @@
 		F02642A914DFA94E00E8D649 /* SPCameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A714DFA94E00E8D649 /* SPCameraController.xib */; };
 		F0265D1614BA49BF00CAE538 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = F0265D1514BA49BF00CAE538 /* Checkmark.png */; };
 		F0280B891639091A007B2BC8 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B861639091A007B2BC8 /* alert.wav */; };
-		F0280B8A1639091A007B2BC8 /* tap1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B871639091A007B2BC8 /* tap1.wav */; };
-		F0280B8B1639091A007B2BC8 /* tap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B881639091A007B2BC8 /* tap2.wav */; };
 		F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */; };
 		F02ABE5C14D04EB8000FE283 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F02ABE5B14D04EB8000FE283 /* SPMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F03869E91601872F00D14B84 /* default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03869E81601872F00D14B84 /* default-568h@2x.png */; };
@@ -407,6 +405,7 @@
 		F0DE63431604EE4C00785FF2 /* dialog-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */; };
 		F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63401604EE4B00785FF2 /* dialog-down.png */; };
 		F0DE63451604EE4C00785FF2 /* dialog-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */; };
+		F0DEC14D1639D15000BF2BEF /* tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0DEC14C1639D15000BF2BEF /* tap.wav */; };
 		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
@@ -763,8 +762,6 @@
 		F02642A714DFA94E00E8D649 /* SPCameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPCameraController.xib; sourceTree = "<group>"; };
 		F0265D1514BA49BF00CAE538 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = ../../Resources/Checkmark.png; sourceTree = "<group>"; };
 		F0280B861639091A007B2BC8 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = alert.wav; path = ../../Resources/alert.wav; sourceTree = "<group>"; };
-		F0280B871639091A007B2BC8 /* tap1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap1.wav; path = ../../Resources/tap1.wav; sourceTree = "<group>"; };
-		F0280B881639091A007B2BC8 /* tap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap2.wav; path = ../../Resources/tap2.wav; sourceTree = "<group>"; };
 		F0280B8C16390B1D007B2BC8 /* SPSoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSoundHelper.h; sourceTree = "<group>"; };
 		F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSoundHelper.m; sourceTree = "<group>"; };
 		F02ABE5A14D04EB8000FE283 /* SPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessage.h; sourceTree = "<group>"; };
@@ -1011,6 +1008,7 @@
 		F0DE633F1604EE4A00785FF2 /* dialog-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-up@2x.png"; path = "../../Resources/dialog-up@2x.png"; sourceTree = "<group>"; };
 		F0DE63401604EE4B00785FF2 /* dialog-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down.png"; path = "../../Resources/dialog-down.png"; sourceTree = "<group>"; };
 		F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down@2x.png"; path = "../../Resources/dialog-down@2x.png"; sourceTree = "<group>"; };
+		F0DEC14C1639D15000BF2BEF /* tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap.wav; path = ../../Resources/tap.wav; sourceTree = "<group>"; };
 		F0DF78F415EDA35800EE492D /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
 		F0DF78F515EDA35800EE492D /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
 		F0DF78F715EDA39400EE492D /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
@@ -2043,9 +2041,8 @@
 		F0280B8416390911007B2BC8 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F0DEC14C1639D15000BF2BEF /* tap.wav */,
 				F0280B861639091A007B2BC8 /* alert.wav */,
-				F0280B871639091A007B2BC8 /* tap1.wav */,
-				F0280B881639091A007B2BC8 /* tap2.wav */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -2851,8 +2848,7 @@
 				F03B1E3B1630E50000BC8B6E /* Intro-Chat.png in Resources */,
 				F03B1E3C1630E50000BC8B6E /* Intro-Pics.png in Resources */,
 				F0280B891639091A007B2BC8 /* alert.wav in Resources */,
-				F0280B8A1639091A007B2BC8 /* tap1.wav in Resources */,
-				F0280B8B1639091A007B2BC8 /* tap2.wav in Resources */,
+				F0DEC14D1639D15000BF2BEF /* tap.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

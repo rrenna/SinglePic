@@ -125,6 +125,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [SPSoundHelper playTap];
+    
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     
     NSString* userID = [NSString stringWithFormat:@"%i",cell.tag];

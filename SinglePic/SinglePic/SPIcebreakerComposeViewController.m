@@ -49,7 +49,7 @@
     [[SPProfileManager sharedInstance] saveMyIcebreaker:textView.text withCompletionHandler:^(id responseObject) 
     {
         #if defined (BETA)
-        [TestFlight passCheckpoint:@"Saved new Icebreaker"];
+        [TestFlight passCheckpoint:@"Set new Icebreaker"];
         #endif
 
         [self close];

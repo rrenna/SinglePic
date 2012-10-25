@@ -673,7 +673,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         }
         
         //After validation set this user as the active message account
-        [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf userID]];
+        [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf myUserID]];
         
         onCompletion(responseObject);
         
@@ -760,7 +760,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       [[NSUserDefaults standardUserDefaults] synchronize];
                       
                       //After login set this user as the active message account
-                      [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf userID]];
+                      [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf myUserID]];
                       
                       //Registers for Push notifications
                       [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject)
@@ -883,7 +883,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //Set Message Account
-        [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf userID]];
+        [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf myUserID]];
         
         //Registers for Push notifications
         [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject) 
