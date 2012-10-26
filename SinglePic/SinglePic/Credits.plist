@@ -7,6 +7,31 @@
 		<array>
 			<dict>
 				<key>Link</key>
+				<string>Logout</string>
+				<key>Name</key>
+				<string>Logout</string>
+				<key>Type</key>
+				<string>Command</string>
+			</dict>
+			<dict>
+				<key>Link</key>
+				<string>test</string>
+				<key>Name</key>
+				<string>Sound</string>
+				<key>Type</key>
+				<string>Switch</string>
+			</dict>
+		</array>
+		<key>Type</key>
+		<string>Options</string>
+		<key>Title</key>
+		<string>Options</string>
+	</dict>
+	<dict>
+		<key>Items</key>
+		<array>
+			<dict>
+				<key>Link</key>
 				<string>http://www.singlepicdating.com</string>
 				<key>Name</key>
 				<string>SinglePicDating.com</string>

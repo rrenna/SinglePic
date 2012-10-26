@@ -46,6 +46,7 @@
 #import "MDACTextCredit.h"
 #import "MDACImageCredit.h"
 #import "MDACIconCredit.h"
+#import "SPOptionCredit.h"
 #import "MDACWebViewController.h"
 #import "MDACStyle.h"
 //
@@ -56,11 +57,23 @@
 
 static NSString *MDACIconCellID         = @"MDACIconCell";
 static NSString *MDACSpacerCellID       = @"MDACSpacerCell";
+//Lists
 static NSString *MDACListTitleCellID    = @"MDACListTitleCellID";
 static NSString *MDACTopListCellID      = @"MDACTopListCell";
 static NSString *MDACMiddleListCellID   = @"MDACMiddleListCell";
 static NSString *MDACBottomListCellID   = @"MDACBottomListCell";
 static NSString *MDACSingleListCellID   = @"MDACSingleListCell";
+//Options
+static NSString *SPOptionsTitleCellID    = @"SPOptionsTitleCellID";
+static NSString *SPTopOptionSwitchCellID      = @"SPTopOptionSwitchCellID";
+static NSString *SPMiddleOptionSwitchCellID   = @"SPMiddleOptionSwitchCellID";
+static NSString *SPBottomOptionSwitchCellID   = @"SPBottomOptionSwitchCellID";
+static NSString *SPSingleOptionSwitchCellID   = @"SPSingleOptionSwitchCellID";
+static NSString *SPTopOptionCommandCellID      = @"SPTopOptionCommandCellID";
+static NSString *SPMiddleOptionCommandCellID   = @"SPMiddleOptionCommandCellID";
+static NSString *SPBottomOptionCommandCellID   = @"SPBottomOptionCommandCellID";
+static NSString *SPSingleOptionCommandCellID   = @"SPSingleOptionCommandCellID";
+
 static NSString *MDACTextCellID         = @"MDACTextCell";
 static NSString *MDACImageCellID        = @"MDACImageCell";
 
@@ -167,12 +180,21 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             if (creditsFile) {
                 for (NSDictionary *creditDict in creditsFile) {
                     if (creditDict) {
-                        if ([[creditDict objectForKey:@"Type"] isEqualToString:@"List"]) {
+                        if ([[creditDict objectForKey:@"Type"] isEqualToString:@"List"])
+                        {
                             [credits addObject:[MDACListCredit listCreditWithDictionary:creditDict]];
-                        } else if ([[creditDict objectForKey:@"Type"] isEqualToString:@"Text"]) {
+                        }
+                        else if ([[creditDict objectForKey:@"Type"] isEqualToString:@"Text"])
+                        {
                             [credits addObject:[MDACTextCredit textCreditWithDictionary:creditDict]];
-                        } if ([[creditDict objectForKey:@"Type"] isEqualToString:@"Image"]) {
+                        }
+                        else if ([[creditDict objectForKey:@"Type"] isEqualToString:@"Image"])
+                        {
                             [credits addObject:[MDACImageCredit imageCreditWithDictionary:creditDict]];
+                        }
+                        else if ([[creditDict objectForKey:@"Type"] isEqualToString:@"Options"])
+                        {
+                            [credits addObject:[SPOptionCredit optionsCreditWithDictionary:creditDict]];
                         }
                     }
                 }
@@ -295,7 +317,41 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
                 [cachedCellIDs addObject:cellID];
                 [cachedCellIndices addObject:[NSNumber numberWithInteger:index]];
             }
-        } else if ([tempCredit isMemberOfClass:[MDACIconCredit class]]) {
+        }
+        else if([tempCredit isMemberOfClass:[SPOptionCredit class]])
+        {
+            count = [(MDACListCredit *)tempCredit count];
+            j = i;
+            i += count;
+            
+            if ([(MDACListCredit *)tempCredit title] && ![[(MDACListCredit *)tempCredit title] isEqualToString:@""]) {
+                [cachedCellCredits addObject:tempCredit];
+                [cachedCellHeights addObject:[NSNumber numberWithFloat:[self.style listTitleHeight]]];
+                [cachedCellIDs addObject:SPOptionsTitleCellID];
+                [cachedCellIndices addObject:[NSNull null]];
+            }
+            
+            for (; j < i; j++) {
+                index = j - (i - count);
+                if (index == count-1) {
+                    if (index == 0) {
+                        cellID = SPSingleOptionSwitchCellID;
+                    } else {
+                        cellID = SPBottomOptionSwitchCellID;
+                    }
+                } else if (index == 0) {
+                    cellID = SPTopOptionSwitchCellID;
+                } else {
+                    cellID = SPMiddleOptionSwitchCellID;
+                }
+                
+                [cachedCellCredits addObject:tempCredit];
+                [cachedCellHeights addObject:[NSNumber numberWithFloat:[self.style listHeight]]];
+                [cachedCellIDs addObject:cellID];
+                [cachedCellIndices addObject:[NSNumber numberWithInteger:index]];
+            }
+        }
+        else if ([tempCredit isMemberOfClass:[MDACIconCredit class]]) {
             i += 1;
             
             float iconHeight = 57;
@@ -378,6 +434,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
     SPLabel *textLabel = nil, *detailTextLabel = nil;
+    UISwitch * optionSwitch = nil;
     UIImageView *linkAvailableImageView = nil;
     
     UIImageView *iconView = nil;
@@ -482,7 +539,104 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             linkAvailableImageView.tag = 3;
             [cell.contentView addSubview:linkAvailableImageView];
             [linkAvailableImageView release];
-        } else if (cellID == MDACIconCellID) {
+        }
+        if (cellID == SPTopOptionSwitchCellID || cellID == SPMiddleOptionSwitchCellID || cellID == SPBottomOptionSwitchCellID || cellID == SPSingleOptionSwitchCellID) {
+            UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self.style listHeight])];
+            UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, [self.style listHeight])];
+            
+            UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, tableView.bounds.size.width-20, [self.style listHeight])];
+            UIImageView *selectedBackgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, tableView.bounds.size.width-20, [self.style listHeight])];
+            
+            if (cellID == SPTopOptionSwitchCellID) {
+                backgroundImage.frame = CGRectMake(10, -1, tableView.bounds.size.width-20, [self.style listHeight]+1);
+                backgroundImage.image = [self.style listCellBackgroundTop];
+                selectedBackgroundImage.frame = CGRectMake(10, -1, tableView.bounds.size.width-20, [self.style listHeight]+1);
+                selectedBackgroundImage.image = [self.style listCellBackgroundTopSelected];
+            } else if (cellID == SPMiddleOptionSwitchCellID) {
+                backgroundImage.image = [self.style listCellBackgroundMiddle];
+                selectedBackgroundImage.image = [self.style listCellBackgroundMiddleSelected];
+            } else if (cellID == SPBottomOptionSwitchCellID) {
+                backgroundImage.frame = CGRectMake(10, 0, tableView.bounds.size.width-20, [self.style listHeight]+1);
+                backgroundImage.image = [self.style listCellBackgroundBottom];
+                selectedBackgroundImage.frame = CGRectMake(10, 0, tableView.bounds.size.width-20, [self.style listHeight]+1);
+                selectedBackgroundImage.image = [self.style listCellBackgroundBottomSelected];
+            } else {
+                backgroundImage.frame = CGRectMake(10, -1, tableView.bounds.size.width-20, [self.style listHeight]+2);
+                backgroundImage.image = [self.style listCellBackgroundSingle];
+                selectedBackgroundImage.frame = CGRectMake(10, -1, tableView.bounds.size.width-20, [self.style listHeight]+2);
+                selectedBackgroundImage.image = [self.style listCellBackgroundSingleSelected];
+            }
+            
+            backgroundImage.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [backgroundView addSubview:backgroundImage];
+            [backgroundImage release];
+            
+            selectedBackgroundImage.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [selectedBackgroundView addSubview:selectedBackgroundImage];
+            [selectedBackgroundImage release];
+            
+            cell.backgroundView = backgroundView;
+            [backgroundView release];
+            
+            cell.selectedBackgroundView = selectedBackgroundView;
+            [selectedBackgroundView release];
+            
+            textLabel = [[SPLabel alloc] init];
+            textLabel.font = [self.style listCellFont];
+            
+            
+            if(cellID == SPSingleOptionSwitchCellID)
+            {
+                textLabel.backgroundColor = [self.style listCellBackgroundColorSingle];
+                textLabel.textColor = [self.style listCellTextColorSingle];
+                textLabel.shadowColor = [self.style listCellShadowColorSingle];
+            }
+            else
+            {
+                textLabel.backgroundColor = [self.style listCellBackgroundColor];
+                textLabel.textColor = [self.style listCellTextColor];
+                textLabel.shadowColor = [self.style listCellShadowColor];
+            }
+            
+            
+            
+            textLabel.shadowOffset = [self.style listCellShadowOffset];
+            textLabel.tag = 1;
+            [cell.contentView addSubview:textLabel];
+            [textLabel release];
+            
+            detailTextLabel = [[SPLabel alloc] init];
+            detailTextLabel.font = [self.style listCellDetailFont];
+            
+            if(cellID == SPSingleOptionSwitchCellID)
+            {
+                detailTextLabel.backgroundColor = [self.style listCellBackgroundColorSingle];
+                detailTextLabel.textColor = [self.style listCellTextColorSingle];
+                detailTextLabel.shadowColor = [self.style listCellShadowColorSingle];
+            }
+            else
+            {
+                detailTextLabel.backgroundColor = [self.style listCellBackgroundColor];
+                detailTextLabel.textColor = [self.style listCellDetailTextColor];
+                detailTextLabel.shadowColor = [self.style listCellShadowColor];
+            }
+            
+            
+            detailTextLabel.shadowOffset = [self.style listCellShadowOffset];
+            detailTextLabel.textAlignment = UITextAlignmentRight;
+            detailTextLabel.tag = 2;
+            [cell.contentView addSubview:detailTextLabel];
+            [detailTextLabel release];
+            
+            linkAvailableImageView = [[UIImageView alloc] initWithFrame:CGRectMake(cell.contentView.bounds.size.width-39, 9, 24, 24)];
+            linkAvailableImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            linkAvailableImageView.image = [self.style listCellLinkArrow];
+            linkAvailableImageView.tag = 3;
+            [cell.contentView addSubview:linkAvailableImageView];
+            [linkAvailableImageView release];
+        }
+        else if (cellID == MDACIconCellID)
+        {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             containerView = [[UIView alloc] init];
             containerView.tag = 5;
@@ -533,7 +687,9 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             
             [cell.contentView addSubview:containerView];
             [containerView release];
-        } else if (cellID == MDACListTitleCellID) {
+        }
+        else if (cellID == MDACListTitleCellID)
+        {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             textLabel = [[SPLabel alloc] initWithFrame:CGRectMake(20, -10, cell.contentView.bounds.size.width-40, cell.contentView.bounds.size.height)];
@@ -549,7 +705,27 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             textLabel.tag = 1;
             [cell.contentView addSubview:textLabel];
             [textLabel release];
-        } else if (cellID == MDACTextCellID) {
+        }
+        else if(cellID == SPOptionsTitleCellID)
+        {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            textLabel = [[SPLabel alloc] initWithFrame:CGRectMake(20, -10, cell.contentView.bounds.size.width-40, cell.contentView.bounds.size.height)];
+            textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+            textLabel.lineBreakMode = UILineBreakModeTailTruncation;
+            textLabel.numberOfLines = 0;
+            textLabel.backgroundColor = [UIColor clearColor];
+            textLabel.opaque = NO;
+            textLabel.font = [self.style listCellTitleFont];
+            textLabel.textColor = [self.style listCellTitleTextColor];
+            textLabel.shadowColor = [self.style listCellTitleShadowColor];
+            textLabel.shadowOffset = [self.style listCellTitleShadowOffset];
+            textLabel.tag = 1;
+            [cell.contentView addSubview:textLabel];
+            [textLabel release];
+        }
+        else if (cellID == MDACTextCellID)
+        {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             textLabel = [[SPLabel alloc] initWithFrame:CGRectMake(10, 0, cell.contentView.bounds.size.width-20, cell.contentView.bounds.size.height)];
@@ -565,7 +741,9 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             textLabel.tag = 1;
             [cell.contentView addSubview:textLabel];
             [textLabel release];
-        } else if (cellID == MDACImageCellID) {
+        }
+        else if (cellID == MDACImageCellID)
+        {
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.bounds.size.width, cell.contentView.bounds.size.height)];
@@ -580,27 +758,37 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     } else {
-        if (cellID == MDACTopListCellID || cellID == MDACMiddleListCellID || cellID == MDACBottomListCellID || cellID == MDACSingleListCellID) {
+        if (cellID == MDACTopListCellID || cellID == MDACMiddleListCellID || cellID == MDACBottomListCellID || cellID == MDACSingleListCellID)
+        {
             textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
             detailTextLabel = (SPLabel *)[cell.contentView viewWithTag:2];
             linkAvailableImageView = (UIImageView *)[cell.contentView viewWithTag:3];
             
-        } else if (cellID == MDACIconCellID) {
+        }
+        else if (cellID == MDACIconCellID) {
             textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
             detailTextLabel = (SPLabel *)[cell.contentView viewWithTag:2];
             iconView = (UIImageView *)[cell.contentView viewWithTag:4];
             containerView = (UIImageView *)[cell.contentView viewWithTag:5];
-        } else if (cellID == MDACTextCellID) {
+        }
+        else if (cellID == MDACTextCellID)
+        {
             textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
-        } else if (cellID == MDACListTitleCellID) {
+        }
+        else if (cellID == MDACListTitleCellID)
+        {
             textLabel = (SPLabel *)[cell.contentView viewWithTag:1];
-        } else if (cellID == MDACImageCellID) {
+        }
+        else if (cellID == MDACImageCellID)
+        {
             imageView = (UIImageView *)[cell.contentView viewWithTag:6];
         }
     }
     
     if ([credit isMemberOfClass:[MDACListCredit class]]) {
-        if (cellID == MDACListTitleCellID) {
+        
+        if (cellID == MDACListTitleCellID)
+        {
             textLabel.text = [(MDACListCredit *)credit title];
         } else {
             textLabel.text = [(MDACListCredit *)credit itemAtIndex:index].name;
@@ -624,7 +812,38 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
                 textLabel.frame = CGRectMake(24, roundf((cell.contentView.bounds.size.height-textLabel.bounds.size.height)/2.-2), textLabel.bounds.size.width, textLabel.bounds.size.height);
             }
         }
-    } else if ([credit isMemberOfClass:[MDACIconCredit class]]) {
+    }
+    else if ([credit isMemberOfClass:[SPOptionCredit class]])
+    {
+        if (cellID == SPOptionsTitleCellID)
+        {
+            textLabel.text = [(MDACListCredit *)credit title];
+        }
+        else
+        {
+            textLabel.text = [(MDACListCredit *)credit itemAtIndex:index].name;
+            detailTextLabel.text = [[(MDACListCredit *)credit itemAtIndex:index].role lowercaseString];
+            
+            [textLabel sizeToFit];
+            [detailTextLabel sizeToFit];
+            
+            if ([(MDACListCredit *)credit itemAtIndex:index].link) {
+                linkAvailableImageView.hidden = NO;
+                cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            } else {
+                linkAvailableImageView.hidden = YES;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            
+            if (detailTextLabel.text) {
+                textLabel.frame = CGRectMake(114, floorf((cell.contentView.bounds.size.height-textLabel.bounds.size.height)/2.-2), textLabel.bounds.size.width, textLabel.bounds.size.height);
+                detailTextLabel.frame = CGRectMake(24, floorf((cell.contentView.bounds.size.height-detailTextLabel.bounds.size.height)/2.-1), 80, detailTextLabel.bounds.size.height);
+            } else {
+                textLabel.frame = CGRectMake(24, roundf((cell.contentView.bounds.size.height-textLabel.bounds.size.height)/2.-2), textLabel.bounds.size.width, textLabel.bounds.size.height);
+            }
+        }
+    }
+    else if ([credit isMemberOfClass:[MDACIconCredit class]]) {
         textLabel.text = [(MDACIconCredit *)credit appName];
         detailTextLabel.text = [(MDACIconCredit *)credit versionString];
         iconView.image = [(MDACIconCredit *)credit icon];

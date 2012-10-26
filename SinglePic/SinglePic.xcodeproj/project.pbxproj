@@ -202,6 +202,7 @@
 		75D196F514ED910000A23654 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D196F414ED910000A23654 /* MessageUI.framework */; };
 		75D726E116022792006059B8 /* Parchment-Right-9Slice.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D726E016022792006059B8 /* Parchment-Right-9Slice.png */; };
 		75DB6B1914BF96CF00338A7C /* SPCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DB6B1814BF96CF00338A7C /* SPCardView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD433F163B24550084C61A /* SPOptionCredit.m */; };
 		75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */; };
 		75E7E02414B3C39B005C70B4 /* SPTabContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -697,6 +698,8 @@
 		75D726E016022792006059B8 /* Parchment-Right-9Slice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice.png"; path = "../../Resources/Parchment-Right-9Slice.png"; sourceTree = "<group>"; };
 		75DB6B1714BF96CF00338A7C /* SPCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCardView.h; sourceTree = "<group>"; };
 		75DB6B1814BF96CF00338A7C /* SPCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCardView.m; sourceTree = "<group>"; };
+		75DD433E163B24550084C61A /* SPOptionCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOptionCredit.h; sourceTree = "<group>"; };
+		75DD433F163B24550084C61A /* SPOptionCredit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOptionCredit.m; sourceTree = "<group>"; };
 		75DD4B5714C8B4EA007A8FF2 /* SPPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageController.h; sourceTree = "<group>"; };
 		75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageController.m; sourceTree = "<group>"; };
 		75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPPageController.xib; sourceTree = "<group>"; };
@@ -1329,6 +1332,8 @@
 				7532114B14CDF63F00B7EFDA /* MDACWebViewController.m */,
 				7532114C14CDF63F00B7EFDA /* UIImage+DBMaskedImageAdditions.h */,
 				7532114D14CDF63F00B7EFDA /* UIImage+DBMaskedImageAdditions.m */,
+				75DD433E163B24550084C61A /* SPOptionCredit.h */,
+				75DD433F163B24550084C61A /* SPOptionCredit.m */,
 			);
 			name = Classes;
 			path = Libraries/MDAboutController/Classes;
@@ -3043,6 +3048,7 @@
 				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
 				75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */,
 				F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */,
+				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
