@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C54</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1929</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -61,7 +61,7 @@
 						<string key="NSFrame">{{61, 30}, {234, 234}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="88722768"/>
+						<reference key="NSNextKeyView" ref="275502962"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -75,7 +75,7 @@
 					<object class="IBUILabel" id="736217766">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{125, 5}, {145, 15}}</string>
+						<string key="NSFrame">{{84, 5}, {145, 15}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="658706682"/>
@@ -96,7 +96,6 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">2</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">STHeitiSC-Light</string>
 							<string key="family">Heiti SC</string>
@@ -112,10 +111,10 @@
 					<object class="IBUIImageView" id="658706682">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{278.5, 3}, {15, 15}}</string>
+						<string key="NSFrame">{{61, 5}, {15, 15}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="275502962"/>
+						<reference key="NSNextKeyView" ref="802438607"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">1</int>
@@ -208,7 +207,7 @@
 					<object class="IBUILabel" id="88722768">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{62, 298}, {231.5, 80}}</string>
+						<string key="NSFrame">{{63, 298}, {230, 82}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1004694122"/>
@@ -231,7 +230,6 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUINumberOfLines">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">STHeitiSC-Light</string>
 							<string key="family">Heiti SC</string>
@@ -243,7 +241,7 @@
 							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<double key="preferredMaxLayoutWidth">231.5</double>
+						<double key="preferredMaxLayoutWidth">230</double>
 					</object>
 					<object class="IBUIButton" id="958593001">
 						<reference key="NSNextResponder" ref="1035966604"/>
@@ -251,6 +249,7 @@
 						<string key="NSFrame">{{266, 407}, {35, 31}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<reference key="IBUIBackgroundColor" ref="481400151"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -276,10 +275,10 @@
 					<object class="IBUILabel" id="275502962">
 						<reference key="NSNextResponder" ref="1035966604"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{52, 272}, {250, 21}}</string>
+						<string key="NSFrame">{{63, 272}, {230, 21}}</string>
 						<reference key="NSSuperview" ref="1035966604"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="802438607"/>
+						<reference key="NSNextKeyView" ref="88722768"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -290,7 +289,6 @@
 						<reference key="IBUITextColor" ref="893525979"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">STHeitiSC-Medium</string>
 							<string key="family">Heiti SC</string>
@@ -438,12 +436,12 @@
 							<reference ref="1004694122"/>
 							<reference ref="68736382"/>
 							<reference ref="88722768"/>
-							<reference ref="736217766"/>
 							<reference ref="802438607"/>
-							<reference ref="658706682"/>
 							<reference ref="920473602"/>
 							<reference ref="958593001"/>
 							<reference ref="275502962"/>
+							<reference ref="658706682"/>
+							<reference ref="736217766"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Details View</string>
@@ -651,6 +649,6 @@
 			<string key="icon-like.png">{40, 32}</string>
 			<string key="icon-message.png">{28, 22}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1929</string>
 	</data>
 </archive>

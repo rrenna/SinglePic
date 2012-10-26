@@ -104,10 +104,26 @@
     cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
     cell.tag = [[messageThread userID] integerValue];
     
+    UIImageView* correspondantThumbnailView = [[[UIImageView alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width - 55, 20, 30, 30)] autorelease];
+    
+    [[SPProfileManager sharedInstance] retrieveProfile:messageThread.userID withCompletionHandler:^(SPProfile *profile) {
+        
+        [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail) {
+            
+            correspondantThumbnailView.image = thumbnail;
+            
+        } andErrorHandler:^{
+            
+        }];
+        
+    } andErrorHandler:^{
+        
+    }];
+    
     //The lates message is used to represent the object
     if(latestMessage)
     {
-        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(40, 5, cell.contentView.frame.size.width - 45, cell.contentView.frame.size.height - 8)] autorelease];
+        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(5, 5, cell.contentView.frame.size.width - 45, cell.contentView.frame.size.height - 8)] autorelease];
         if([latestMessage.incoming boolValue])
         {
            bubble.chatStyle = CHAT_STYLE_INCOMING;
@@ -120,6 +136,8 @@
         [bubble setContent:latestMessage.content];
         [cell.contentView addSubview:bubble];
     }
+    
+    [cell.contentView addSubview:correspondantThumbnailView];
     
     return cell;
 }

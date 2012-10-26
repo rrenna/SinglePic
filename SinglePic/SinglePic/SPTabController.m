@@ -9,6 +9,17 @@
 #import "SPTabController.h"
 #import "SPCameraController.h"
 
+//iPhone screen coorindates (in portrait mode) for the various Tab states
+#define TAB_POS_LEFT_OFFSCREEN -385
+#define TAB_POS_LEFT_MINIMIZED -324
+#define TAB_POS_LEFT_MAXIMIZED -58
+#define TAB_POS_LEFT_FULLSCREEN -14
+
+#define TAB_CONTENT_POS_LEFT 25
+#define TAB_CONTENT_POS_LEFT_FULLSCREEN 14
+#define TAB_CONTENT_WIDTH 305
+#define TAB_CONTENT_WIDTH_FULLSCREEN 320
+
 @interface SPTabController()
 @property(nonatomic, assign) NSInteger firstVisibleIndex;
 @property(nonatomic, assign) CGFloat floatIndex;

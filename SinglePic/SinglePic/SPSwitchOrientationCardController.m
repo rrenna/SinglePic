@@ -10,7 +10,7 @@
 #import "SPOrientationChooser.h"
 
 @interface SPSwitchOrientationCardController()
--(void)setLabelWithGender:(GENDER)gender andPreference:(GENDER)preference;
+-(void)setDisplayWithGender:(GENDER)gender andPreference:(GENDER)preference;
 @end
 
 @implementation SPSwitchOrientationCardController
@@ -30,7 +30,7 @@
     [super viewDidLoad];
     self.view.height = MINIMIZED_SIZE;
     
-    [self setLabelWithGender:[[SPProfileManager sharedInstance] myGender]  andPreference:[[SPProfileManager sharedInstance] myPreference]];
+    [self setDisplayWithGender:[[SPProfileManager sharedInstance] myGender]  andPreference:[[SPProfileManager sharedInstance] myPreference]];
 }
 -(void)dealloc
 {
@@ -118,7 +118,7 @@
              
              dismiss();
              
-             [weakSelf setLabelWithGender:chosenGender andPreference:chosenPreference];
+             [weakSelf setDisplayWithGender:chosenGender andPreference:chosenPreference];
          } 
          andErrorHandler:^
          {
@@ -130,9 +130,20 @@
     }
 }
 #pragma mark - Private methods
--(void)setLabelWithGender:(GENDER)gender andPreference:(GENDER)preference
+-(void)setDisplayWithGender:(GENDER)gender andPreference:(GENDER)preference
 {
-    orientationLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@",GENDER_NAMES[gender],GENDER_NAMES[preference] ];
+    NSString* genderName = GENDER_NAMES[gender];
+    NSString* preferenceName = GENDER_NAMES[preference];
+    NSString* genderInitial = [genderName substringToIndex:1];
+    NSString* preferenceInitial = [preferenceName substringToIndex:1];
+
+    NSString* iconFileName = [NSString stringWithFormat:@"Orientation-%@s%@-selected.png",[genderInitial capitalizedString],[preferenceInitial capitalizedString]];
+    
+    orientationIcon.image = [UIImage imageNamed:iconFileName];
+    
+    
+    
+    orientationLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@",genderName,preferenceName];
 }
 #pragma mark - SPOrientationChooserViewDelegate methods
 -(void)orientationChooserSelectionChanged:(SPOrientationChooser*)chooser

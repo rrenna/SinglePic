@@ -7,29 +7,6 @@
 		<array>
 			<dict>
 				<key>Link</key>
-				<string>http://twitter.com/rrenna</string>
-				<key>Name</key>
-				<string>@rrenna</string>
-				<key>Role</key>
-				<string>Developer</string>
-			</dict>
-			<dict>
-				<key>Link</key>
-				<string>http://twitter.com/dyashkir</string>
-				<key>Name</key>
-				<string>@dyashkir</string>
-				<key>Role</key>
-				<string>Developer</string>
-			</dict>
-		</array>
-		<key>Type</key>
-		<string>List</string>
-	</dict>
-	<dict>
-		<key>Items</key>
-		<array>
-			<dict>
-				<key>Link</key>
 				<string>http://www.singlepicdating.com</string>
 				<key>Name</key>
 				<string>SinglePicDating.com</string>
@@ -47,6 +24,31 @@
 		<string>Links</string>
 		<key>Type</key>
 		<string>List</string>
+	</dict>
+	<dict>
+		<key>Items</key>
+		<array>
+			<dict>
+				<key>Link</key>
+				<string>http://twitter.com/rrenna</string>
+				<key>Name</key>
+				<string>@rrenna</string>
+				<key>Role</key>
+				<string>Developer</string>
+			</dict>
+			<dict>
+				<key>Link</key>
+				<string>http://twitter.com/dyashkir</string>
+				<key>Name</key>
+				<string>@dyashkir</string>
+				<key>Role</key>
+				<string>Developer</string>
+			</dict>
+		</array>
+		<key>Type</key>
+		<string>List</string>
+		<key>Title</key>
+		<string>About Us</string>
 	</dict>
 	<dict>
 		<key>Alignment</key>
