@@ -269,6 +269,7 @@
 		F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F054E29415730ED300ECCDE7 /* SPLoginController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
 		F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */; };
+		F0605353163D050E00969DA6 /* arrow-squiggle.png in Resources */ = {isa = PBXBuildFile; fileRef = F0605352163D050E00969DA6 /* arrow-squiggle.png */; };
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
 		F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */; };
@@ -800,6 +801,7 @@
 		F054E29515730ED300ECCDE7 /* SPLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLoginController.xib; sourceTree = "<group>"; };
 		F060534A163B5C5100969DA6 /* SPOptionCreditItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOptionCreditItem.h; sourceTree = "<group>"; };
 		F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOptionCreditItem.m; sourceTree = "<group>"; };
+		F0605352163D050E00969DA6 /* arrow-squiggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-squiggle.png"; path = "../../Resources/arrow-squiggle.png"; sourceTree = "<group>"; };
 		F0620D091524B9B8008D334C /* SPSubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionViewController.h; sourceTree = "<group>"; };
 		F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionViewController.m; sourceTree = "<group>"; };
 		F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSubscriptionViewController.xib; sourceTree = "<group>"; };
@@ -1147,6 +1149,7 @@
 		751D263914916CB500617DD8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F0605352163D050E00969DA6 /* arrow-squiggle.png */,
 				F03B1E391630E50000BC8B6E /* Intro-Chat.png */,
 				F03B1E3A1630E50000BC8B6E /* Intro-Pics.png */,
 				F0F58B43162CC543003DD1B3 /* Intro-Browse.png */,
@@ -2859,6 +2862,7 @@
 				F03B1E3C1630E50000BC8B6E /* Intro-Pics.png in Resources */,
 				F0280B891639091A007B2BC8 /* alert.wav in Resources */,
 				F0DEC14D1639D15000BF2BEF /* tap.wav in Resources */,
+				F0605353163D050E00969DA6 /* arrow-squiggle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

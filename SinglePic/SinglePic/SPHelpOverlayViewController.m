@@ -33,7 +33,8 @@
     }
     return self;
 }
-#define FADE_DURATION 0.25
+#define FADE_DURATION 0.55
+#define HELP_FADE_DURATION 0.1
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
@@ -63,6 +64,9 @@
 #pragma mark - IBActions
 -(IBAction)dismiss:(id)sender
 {
+    [UIView animateWithDuration:HELP_FADE_DURATION animations:^{
+        overlayImageView.alpha = 0.0;
+    }];
     [UIView animateWithDuration:FADE_DURATION animations:^{
         self.view.alpha = 0.0;
     }

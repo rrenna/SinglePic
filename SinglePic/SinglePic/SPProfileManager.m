@@ -256,8 +256,16 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         NSString* path = [documentsDirectory stringByAppendingPathComponent: 
                           [NSString stringWithString: [self myUserID] ] ];
         NSData* data = UIImageJPEGRepresentation(_image,1.0);
+        
         //Save image to disk
         [data writeToFile:path atomically:YES];
+        
+        //Save image to Camera Roll (if enabled)
+        if([[SPSettingsManager sharedInstance] saveToCameraRollEnabled])
+        {
+            UIImageWriteToSavedPhotosAlbum(_image, nil, nil, nil);
+        }
+        
         //Save orientation to NSUserDefaults
         [[NSUserDefaults standardUserDefaults] setInteger:_image.imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
         
