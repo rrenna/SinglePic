@@ -268,6 +268,7 @@
 		F04C36481615640500462CBB /* icon-Refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F04C36471615640500462CBB /* icon-Refresh@2x.png */; };
 		F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F054E29415730ED300ECCDE7 /* SPLoginController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
+		F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */; };
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0620D0D1524B9B8008D334C /* SPSubscriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */; };
 		F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */; };
@@ -797,6 +798,8 @@
 		F054E29315730ED300ECCDE7 /* SPLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLoginController.h; sourceTree = "<group>"; };
 		F054E29415730ED300ECCDE7 /* SPLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLoginController.m; sourceTree = "<group>"; };
 		F054E29515730ED300ECCDE7 /* SPLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLoginController.xib; sourceTree = "<group>"; };
+		F060534A163B5C5100969DA6 /* SPOptionCreditItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOptionCreditItem.h; sourceTree = "<group>"; };
+		F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOptionCreditItem.m; sourceTree = "<group>"; };
 		F0620D091524B9B8008D334C /* SPSubscriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSubscriptionViewController.h; sourceTree = "<group>"; };
 		F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionViewController.m; sourceTree = "<group>"; };
 		F0620D0B1524B9B8008D334C /* SPSubscriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSubscriptionViewController.xib; sourceTree = "<group>"; };
@@ -1334,6 +1337,8 @@
 				7532114D14CDF63F00B7EFDA /* UIImage+DBMaskedImageAdditions.m */,
 				75DD433E163B24550084C61A /* SPOptionCredit.h */,
 				75DD433F163B24550084C61A /* SPOptionCredit.m */,
+				F060534A163B5C5100969DA6 /* SPOptionCreditItem.h */,
+				F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */,
 			);
 			name = Classes;
 			path = Libraries/MDAboutController/Classes;
@@ -3049,6 +3054,7 @@
 				75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */,
 				F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */,
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
+				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

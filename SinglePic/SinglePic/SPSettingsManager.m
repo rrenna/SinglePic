@@ -9,6 +9,8 @@
 #import "SPSettingsManager.h"
 
 #define USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY @"USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY"
+#define USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY @"USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY"
+#define USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY @"USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY"
 
 @interface SPSettingsManager()
 {
@@ -16,11 +18,11 @@
     ENVIRONMENT _environment;
     #endif
 }
-@property (retain) NSDictionary* settings;
+@property (retain) NSDictionary* serverSettings;
 @end
 
 @implementation SPSettingsManager
-@synthesize settings = _settings;
+@synthesize serverSettings = _serverSettings;
 @dynamic environment,serverAddress,defaultBucketID;
 
 #pragma mark - Dynamic Properties
@@ -150,9 +152,9 @@
      {
         //retrieve server settings
         NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
-        self.settings = settingsDictionary;
+        self.serverSettings = settingsDictionary;
          
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APPLICATION_SETTINGS_CHANGED object:settingsDictionary];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SERVER_SETTINGS_CHANGED object:nil];
          
         BOOL needsUpdate = NO;
         NSString* title = nil;
@@ -172,5 +174,43 @@
      {
      }];
     #endif
+}
+#pragma mark - Client Settings
+    //Client Settings
+-(BOOL)soundEffectsEnabled
+{
+    if([[NSUserDefaults standardUserDefaults] valueForKey:USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY])
+    {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY];
+    }
+    else
+    {
+        return SOUND_EFFECTS_ENABLED_DEFAULT;
+    }
+}
+-(void)setSoundEffectsEnabled:(BOOL)enabled
+{
+    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CLIENT_SETTINGS_CHANGED object:nil];
+}
+-(BOOL)saveToCameraRollEnabled
+{
+    if([[NSUserDefaults standardUserDefaults] valueForKey:USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY])
+    {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY];
+    }
+    else
+    {
+        return SAVE_TO_CAMERA_ROLL_DEFAULT;
+    }
+}
+-(void)setSaveToCameraRollEnabled:(BOOL)enabled
+{
+    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CLIENT_SETTINGS_CHANGED object:nil];
 }
 @end

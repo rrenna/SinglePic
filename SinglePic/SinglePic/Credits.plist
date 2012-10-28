@@ -6,18 +6,22 @@
 		<key>Items</key>
 		<array>
 			<dict>
-				<key>Link</key>
-				<string>Logout</string>
+				<key>Setter</key>
+				<string>setSoundEffectsEnabledWithControl:</string>
+				<key>Getter</key>
+				<string>soundEffectsEnabledValue</string>
 				<key>Name</key>
-				<string>Logout</string>
+				<string>Sound Effects</string>
 				<key>Type</key>
-				<string>Command</string>
+				<string>Switch</string>
 			</dict>
 			<dict>
-				<key>Link</key>
-				<string>test</string>
+				<key>Setter</key>
+				<string>setSaveToCameraRollEnabledWithControl:</string>
+				<key>Getter</key>
+				<string>saveToCameraRollEnabledValue</string>
 				<key>Name</key>
-				<string>Sound</string>
+				<string>Save Pics to Camera Roll</string>
 				<key>Type</key>
 				<string>Switch</string>
 			</dict>

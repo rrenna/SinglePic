@@ -7,7 +7,7 @@
 //
 
 #import "SPOptionCredit.h"
-#import "MDACCreditItem.h"
+#import "SPOptionCreditItem.h"
 
 @implementation SPOptionCredit
 
@@ -42,7 +42,7 @@
     if ((self = [self initWithTitle:[aDict objectForKey:@"Title"]])) {
         NSArray *itemsList = [aDict objectForKey:@"Items"];
         for (NSDictionary *item in itemsList) {
-            [self addItem:[MDACCreditItem itemWithDictionary:item]];
+            [self addItem:[SPOptionCreditItem itemWithDictionary:item]];
         }
     }
     return self;
@@ -58,17 +58,17 @@
     return [items count];
 }
 
-- (void)addItem:(MDACCreditItem *)anItem
+- (void)addItem:(SPOptionCreditItem *)anItem
 {
     [items addObject:anItem];
 }
 
-- (void)removeItem:(MDACCreditItem *)anItem
+- (void)removeItem:(SPOptionCreditItem *)anItem
 {
     [items removeObject:anItem];
 }
 
-- (MDACCreditItem *)itemAtIndex:(NSUInteger)index
+- (SPOptionCreditItem *)itemAtIndex:(NSUInteger)index
 {
     return [items objectAtIndex:index];
 }

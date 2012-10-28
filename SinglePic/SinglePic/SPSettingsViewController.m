@@ -67,13 +67,41 @@
     [self logout];
 
 }
+-(BOOL)soundEffectsEnabledValue
+{
+    return [[SPSettingsManager sharedInstance] soundEffectsEnabled];
+}
+-(void)setSoundEffectsEnabledWithControl:(id)control
+{
+    BOOL enabled;
+    
+    if([control respondsToSelector:@selector(isOn)])
+    {
+        enabled = (BOOL)[control performSelector:@selector(isOn)];
+        [[SPSettingsManager sharedInstance] setSoundEffectsEnabled:enabled];
+    }
+}
+-(BOOL)saveToCameraRollEnabledValue
+{
+    return [[SPSettingsManager sharedInstance] saveToCameraRollEnabled];
+}
+-(void)setSaveToCameraRollEnabledWithControl:(id)control
+{
+    BOOL enabled;
+    
+    if([control respondsToSelector:@selector(isOn)])
+    {
+        enabled = (BOOL)[control performSelector:@selector(isOn)];
+        [[SPSettingsManager sharedInstance] setSaveToCameraRollEnabled:enabled];
+    }
+}
 #pragma mark - Private methods
 -(void)addLogoutButton
 {
     MDACListCredit* appOptionsListCredit = [MDACListCredit listCreditWithTitle:@""];
     MDACCreditItem* logoutCreditItem = [MDACCreditItem itemWithName:@"Logout" role:@"" linkString:@"selector:logout"];
     [appOptionsListCredit addItem:logoutCreditItem];
-    [self insertCredit:appOptionsListCredit  atIndex:1];
+    [self insertCredit:appOptionsListCredit  atIndex:2];
 }
 -(void)addSwitchEnvironmentButton
 {
@@ -90,6 +118,6 @@
     }
 
     [switchEnvironmentListCredit addItem:switchEnvironmentCreditItem];
-    [self insertCredit:switchEnvironmentListCredit  atIndex:2];
+    [self insertCredit:switchEnvironmentListCredit  atIndex:1];
 }
 @end
