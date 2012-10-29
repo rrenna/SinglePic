@@ -260,12 +260,6 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         //Save image to disk
         [data writeToFile:path atomically:YES];
         
-        //Save image to Camera Roll (if enabled)
-        if([[SPSettingsManager sharedInstance] saveToCameraRollEnabled])
-        {
-            UIImageWriteToSavedPhotosAlbum(_image, nil, nil, nil);
-        }
-        
         //Save orientation to NSUserDefaults
         [[NSUserDefaults standardUserDefaults] setInteger:_image.imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
         
@@ -1072,10 +1066,11 @@ static int profileCounter = 0;
 {
     [self restartProfiles];
     
-    double time = [[NSDate date] timeIntervalSince1970];
-    //Rounded to nearest 100 seconds
-    double roundedTime = round( time / 100.0 ) * 100.0;
-    int intTime = (int)roundedTime;
+    double currenTimeInterval = [[NSDate date] timeIntervalSince1970];
+    //Start Time (default = 7 days ago)
+    int intStartTime = (int)(currenTimeInterval - (SECONDS_PER_DAY * PHOTO_EXPIRY_DAYS));
+    //End Time (now)
+    int intCurrentTime = (int)currenTimeInterval;
     
     /* Note : We no longer ask annonymous users for their gender/preference. If implementing this functionality, use the below call :
      
@@ -1084,7 +1079,7 @@ static int profileCounter = 0;
     
     if([self myUserType] == USER_TYPE_ANNONYMOUS)
     {
-        NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",[[SPSettingsManager sharedInstance] defaultBucketID],GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],0,intTime];
+        NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",[[SPSettingsManager sharedInstance] defaultBucketID],GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],intStartTime,intCurrentTime];
         
         __unsafe_unretained SPProfileManager* weakSelf = self;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) 
@@ -1133,11 +1128,11 @@ static int profileCounter = 0;
     }
     else if([self myUserType] == USER_TYPE_PROFILE)
     {
-        //Perform ad-hoc profile retrieval
+        //TODO: Perform ad-hoc profile retrieval
         //Ad-hoc profile retrieval consists of an initial call to get a 'chunck' of profiles from your bucket
-        // and scheduling periodic updates to check for new additions
-
-        NSString* parameter = [NSString stringWithFormat:@"%@/starttime/%d000/endtime/%d000",USER_ID_ME,0,intTime];//TEMP
+        // and scheduling periodic updates to check for new additions.
+        // Current implementation : Retrieve all profiles that were last updated within the last X days (X = photo expiry timeout)
+        NSString* parameter = [NSString stringWithFormat:@"%@/starttime/%d000/endtime/%d000",USER_ID_ME,intStartTime,intCurrentTime];
         
         NSLog(@"User retrieval parameter isn't finished in 'retrieveProfilesWithCompletionHandler:andErrorHandler:'");
         

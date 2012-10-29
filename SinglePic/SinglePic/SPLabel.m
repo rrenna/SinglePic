@@ -26,9 +26,13 @@
     {
         self.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:FONT_SIZE_SMALL];
     }
-    else if(style == LABEL_STYLE_MEDIUM)
+    else if(style == LABEL_STYLE_REGULAR)
     {
         self.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:FONT_SIZE_MEDIUM];
+    }
+    else if(style == LABEL_STYLE_REGULAR_HEAVY)
+    {
+        self.font = [UIFont fontWithName:FONT_NAME_SECONDARY size:FONT_SIZE_MEDIUM];
     }
 }
 #pragma mark

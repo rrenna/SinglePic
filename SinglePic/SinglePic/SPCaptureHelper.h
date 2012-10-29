@@ -19,6 +19,9 @@
 - (void)addVideoPreviewLayer;
 - (void)addStillImageOutput;
 - (void)addVideoInputFrontCamera:(BOOL)front;
+- (BOOL)isFlashMode;
+- (BOOL)canSetFlashMode;
+- (void)switchFlashMode;
 - (BOOL)isFrontCamera;
 - (BOOL)canSwitchCamera;
 - (void)switchCamera;

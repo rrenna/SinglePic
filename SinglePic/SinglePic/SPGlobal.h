@@ -26,6 +26,8 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 
 //Typography
 #define FONT_NAME_PRIMARY @"Avenir LT 65 Medium"
+#define FONT_NAME_SECONDARY @"Avenir LT 55 Roman" //Problem with Avenir LT 85 Heavy, mislabelled as 55 Roman
+
 #define FONT_SIZE_MEDIUM 14
 #define FONT_SIZE_SMALL 12
 #define FONT_SIZE_EXTRA_SMALL 11

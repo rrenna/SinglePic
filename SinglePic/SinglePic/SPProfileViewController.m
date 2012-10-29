@@ -19,12 +19,14 @@
 @interface SPProfileViewController()
 @property (retain) SPProfile* profile;
 @property (retain) UIImage* avatar;
+@property (retain) UIAlertView* unlikeUserAlertView;
+@property (retain) UIAlertView* blockUserAlertView;
 -(void)profileLoaded;
 @end
 
 @implementation SPProfileViewController
 @synthesize delegate;
-@synthesize profile,avatar;//Private
+@synthesize profile,avatar,unlikeUserAlertView,blockUserAlertView;//Private
 
 #pragma mark - View lifecycle
 -(id)initWithProfile:(SPProfile*)profile_
@@ -83,6 +85,8 @@
     [profile release];
     [avatar release];
     [usernameLabel release];
+    self.unlikeUserAlertView = nil;
+    self.blockUserAlertView = nil;
     [super dealloc];
 }
 #pragma mark - IBActions
@@ -110,14 +114,9 @@
     {
         if([[SPProfileManager sharedInstance] checkIsLiked:profile])
         {
-            [[SPProfileManager sharedInstance] removeProfile:profile fromLikesWithCompletionHandler:^()
-             {
-                 likeButton.enabled = YES;
-             }
-             andErrorHandler:^
-             {
-                 likeButton.enabled = YES;
-             }];
+            NSString* title = [NSString stringWithFormat:@"Unlike %@?",profile.username];
+            self.unlikeUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:@"Are you sure you would like to unlike this person?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+            [self.unlikeUserAlertView show];
         }
         else
         {
@@ -171,6 +170,43 @@
      }
      andErrorHandler:nil];
 }
+#pragma mark - UIAlertViewDelegate methods
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView == self.unlikeUserAlertView)
+    {
+        if(buttonIndex == 0)
+        {
+            likeButton.enabled = YES;
+        }
+        else
+        {
+            [[SPProfileManager sharedInstance] removeProfile:profile fromLikesWithCompletionHandler:^()
+             {
+                 likeButton.enabled = YES;
+             }
+             andErrorHandler:^
+             {
+                 likeButton.enabled = YES;
+             }];
+        }
+    }
+    else if(alertView == self.blockUserAlertView)
+    {
+        if(buttonIndex > 0)
+        {
+            //Block User
+            [[SPProfileManager sharedInstance] blockProfile:self.profile withCompletionHandler:^{
+                
+                [self close];
+                
+            } andErrorHandler:^{ 
+            }];
+        }
+
+    }
+}
 #pragma mark - UIActionSheetDelegate methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -180,15 +216,9 @@
     }
     else if(buttonIndex == [actionSheet destructiveButtonIndex])
     {
-        //Block User
-        [[SPProfileManager sharedInstance] blockProfile:self.profile withCompletionHandler:^{
-           
-            [self close];
-            
-        } andErrorHandler:^{
-            
-            
-        }];
+        NSString* title = [NSString stringWithFormat:@"Block %@?",profile.username];
+        self.blockUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:@"Are you sure you would like to block this person?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+        [self.blockUserAlertView show];
     }
     else
     {

@@ -13,6 +13,7 @@
 @interface SPCameraController()
 @property (retain) SPCaptureHelper* captureHelper;
 -(void)setMyPicture:(UIImage*)image;
+-(void)setFlashIcon:(BOOL)flashEnabled;
 @end
 
 @implementation SPCameraController
@@ -24,7 +25,6 @@
     self = [self initWithNibName:@"SPCameraController" bundle:nil];
     if(self)
     {
-        //[imagePicker cameraFlashMode];
     }
     return self;
 }
@@ -48,7 +48,7 @@
     {
         self.captureHelper = [[SPCaptureHelper new] autorelease];
         
-        [self.captureHelper addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
+        [self.captureHelper addVideoInputFrontCamera:YES]; // set to YES for Front Camera, No for Back camera
         
         [self.captureHelper addStillImageOutput];
         
@@ -65,29 +65,11 @@
             switchCameraBarButton.enabled = YES;
         }
         
-        /*
-        self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
-        imagePicker.delegate = self;
-        imagePicker.view.frame = CGRectMake(0, 0, cameraContainerView.width, cameraContainerView.width);
-        
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        if([self.captureHelper canSetFlashMode])
         {
-            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
             switchFlashModeButton.enabled = YES;
-            imagePicker.showsCameraControls = NO;
-            imagePicker.navigationBarHidden = YES;
-            imagePicker.toolbarHidden = YES;
-            imagePicker.wantsFullScreenLayout = YES;
+            [self setFlashIcon:[self.captureHelper isFlashMode]];
         }
-       
-        if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
-        {
-            switchCameraBarButton.enabled = YES;
-        }
-
-        [cameraContainerView addSubview:imagePicker.view];
-         */
     }
     
     //Pre-Request upload urls
@@ -103,6 +85,10 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     cameraPreviewImageView.image = nil;
+}
+- (void)viewDidUnload {
+    uploadProgressBar = nil;
+    [super viewDidUnload];
 }
 -(void)dealloc
 {
@@ -132,32 +118,25 @@
     {
         [self.captureHelper switchCamera];
     }
-
-    /*if(self.imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
-    {
-        //self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-        switchFlashModeButton.enabled = YES;
-    }
-    else
-    {
-        //self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-        switchFlashModeButton.enabled = NO;
-    }*/
 }
 -(IBAction)switchFlashMode:(id)sender
 {
     [SPSoundHelper playTap];
     
-    /*if(self.imagePicker.cameraFlashMode == UIImagePickerControllerCameraFlashModeOff)
+    if([self.captureHelper canSetFlashMode])
     {
-        //imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+        [self.captureHelper switchFlashMode];
+    }
+    
+    //Switch flash icon
+    if([self.captureHelper isFlashMode])
+    {
         switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-on"];
     }
     else
     {
-        //imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
         switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-off"];
-    }*/
+    }
 }
 -(IBAction)takePicture:(id)sender
 {
@@ -194,6 +173,12 @@
     
     [self.captureHelper captureWithCompletion:^(UIImage *capturedImage) {
        
+        //Save image to Camera Roll (if enabled)
+        if([[SPSettingsManager sharedInstance] saveToCameraRollEnabled])
+        {
+            UIImageWriteToSavedPhotosAlbum(capturedImage, nil, nil, nil);
+        }
+        
         UIImage* originalImage = capturedImage;
         UIImage* modifiedImage = nil;
         
@@ -205,25 +190,16 @@
         //xOffset is used to crop an equal amount from the top and bottom of the image
         UIImage *croppedImage = [originalImage croppedImage:CGRectMake(xOffset,0,minDimension,minDimension) ];
         
-        /*
-        if(picker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
-        {
-            UIImageOrientation originalOrientation = UIImageOrientationRight;
-            modifiedImage = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0 orientation: originalOrientation];
-        }
-        else
-        {*/
-            CGSize imageSize = croppedImage.size;
-            UIGraphicsBeginImageContextWithOptions(imageSize, YES, 1.0);
-            CGContextRef ctx = UIGraphicsGetCurrentContext();
-            CGContextRotateCTM(ctx, M_PI/2);
-            CGContextTranslateCTM(ctx, 0, -imageSize.width);
-            CGContextScaleCTM(ctx, imageSize.height/imageSize.width, imageSize.width/imageSize.height);
-            CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, imageSize.width, imageSize.height), croppedImage.CGImage);
-            modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-        //}
-        
+        CGSize imageSize = croppedImage.size;
+        UIGraphicsBeginImageContextWithOptions(imageSize, YES, 1.0);
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextRotateCTM(ctx, M_PI/2);
+        CGContextTranslateCTM(ctx, 0, -imageSize.width);
+        CGContextScaleCTM(ctx, imageSize.height/imageSize.width, imageSize.width/imageSize.height);
+        CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, imageSize.width, imageSize.height), croppedImage.CGImage);
+        modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+  
         [cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:5.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
     
         CGAffineTransform swingTransform = CGAffineTransformIdentity;
@@ -239,12 +215,6 @@
         
         [self setMyPicture:modifiedImage];
     }];
-    
-    /*
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        [self.imagePicker takePicture];
-    }*/
     #endif
 }
 #pragma mark - Private methods
@@ -252,8 +222,7 @@
 {
     uploadProgressBar.progress = 0.0;
     uploadProgressBar.hidden = NO;
-    
-    //[SVProgressHUD showWithStatus:@"Uploading" maskType:SVProgressHUDMaskTypeGradient networkIndicator:YES];
+
     [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject) 
      {
         #if defined (BETA)
@@ -271,60 +240,18 @@
      {
          cameraPreviewImageView.image = nil;
          uploadProgressBar.hidden = YES;
-         //[SVProgressHUD dismissWithError:@"Woops! Couldn't upload. Try again."];
-         
      }]; 
 }
-/*
-#pragma mark - UIImagePickerControllerDelegate methods
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+-(void)setFlashIcon:(BOOL)flashEnabled
 {
-    UIImage* originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImage* modifiedImage = nil;
-    
-    float minDimension = MIN(originalImage.size.width, originalImage.size.height);
-    UIImage *croppedImage = [originalImage croppedImage:CGRectMake(0,0,minDimension,minDimension) ];
-    
-    if(picker.cameraDevice == UIImagePickerControllerCameraDeviceRear)
+        //Switch flash icon
+    if(flashEnabled)
     {
-        UIImageOrientation originalOrientation = UIImageOrientationRight;
-        modifiedImage = [UIImage imageWithCGImage:croppedImage.CGImage scale:1.0 orientation: originalOrientation];
+        switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-on"];
     }
     else
     {
-        CGSize imageSize = croppedImage.size;
-        UIGraphicsBeginImageContextWithOptions(imageSize, YES, 1.0);
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-        CGContextRotateCTM(ctx, M_PI/2);
-        CGContextTranslateCTM(ctx, 0, -imageSize.width);
-        CGContextScaleCTM(ctx, imageSize.height/imageSize.width, imageSize.width/imageSize.height);
-        CGContextDrawImage(ctx, CGRectMake(0.0, 0.0, imageSize.width, imageSize.height), croppedImage.CGImage);
-        modifiedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }    
-    
-    [cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:15.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
-    
-        //cameraPreviewImageView.image = modifiedImage;
-    
-    [self setMyPicture:modifiedImage];
-}
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        //The ImagePicker will remove the status bar, this restores it
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
-        
-            //imagePicker.cameraViewTransform = CGAffineTransformMakeScale(1.0, 1.0);
-            //imagePicker.cameraViewTransform = CGAffineTransformTranslate(imagePicker.cameraViewTransform, 0.0, 150.0);
+        switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-off"];
     }
-    
-    [self performSelector:@selector(makeCameraVisible) withObject:nil afterDelay:1.0];
-}*/
-- (void)viewDidUnload {
-    uploadProgressBar = nil;
-    [super viewDidUnload];
 }
 @end

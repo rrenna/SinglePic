@@ -4,6 +4,7 @@
 @interface SPCaptureHelper()
 {
     BOOL isFrontCamera;
+    BOOL isFlashMode;
 }
 @property (retain) AVCaptureSession *captureSession;
 @property (retain) AVCaptureStillImageOutput *stillImageOutput;
@@ -19,6 +20,16 @@
 	if ((self = [super init])) {
 		[self setCaptureSession:[[AVCaptureSession alloc] init]];
         isFrontCamera = NO;
+        isFlashMode = NO;
+        
+        NSArray *devices = [AVCaptureDevice devices];
+        for (AVCaptureDevice *device in devices) {
+            
+            if ([device isFlashActive])
+            {
+                isFlashMode = YES;
+            }
+        }
 	}
 	return self;
 }
@@ -53,22 +64,74 @@
     
     NSError *error = nil;
     
-    if (front && frontCamera) {
+    if (front && frontCamera)
+    {
         AVCaptureDeviceInput *frontFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:frontCamera error:&error];
-        if (!error) {
+        if (!error)
+        {
             if ([[self captureSession] canAddInput:frontFacingCameraDeviceInput]) {
+                
                 [[self captureSession] addInput:frontFacingCameraDeviceInput];
-            } else {
+                isFrontCamera = NO;
+            }
+            else
+            {
                 NSLog(@"Couldn't add front facing video input");
             }
         }
-    } else if(!front && backCamera) {
+    }
+    else if(backCamera) //If back, or front doesn't exist
+    {
         AVCaptureDeviceInput *backFacingCameraDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
-        if (!error) {
+        if (!error)
+        {
             if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) {
+                
                 [[self captureSession] addInput:backFacingCameraDeviceInput];
-            } else {
+                isFrontCamera = YES;
+            }
+            else
+            {
                 NSLog(@"Couldn't add back facing video input");
+            }
+        }
+    }
+}
+
+- (BOOL)isFlashMode
+{
+    return isFlashMode;
+}
+- (BOOL)canSetFlashMode
+{
+    NSArray *devices = [AVCaptureDevice devices];
+    for (AVCaptureDevice *device in devices) {
+        
+        if ([device hasMediaType:AVMediaTypeVideo] && [device hasFlash])  {
+            return YES;
+        }
+    }
+    return NO;
+}
+- (void)switchFlashMode
+{
+    isFlashMode = !isFlashMode; //Switch states
+    
+    NSArray *devices = [AVCaptureDevice devices];
+    for (AVCaptureDevice *device in devices) {
+        
+        if ([device hasMediaType:AVMediaTypeVideo] && [device hasFlash])  {
+            
+            if([device lockForConfiguration:nil])
+            {
+                if(isFlashMode)
+                {
+                    [device setFlashMode:AVCaptureFlashModeOn];
+                }
+                else
+                {
+                    [device setFlashMode:AVCaptureFlashModeOff];
+                }
             }
         }
     }

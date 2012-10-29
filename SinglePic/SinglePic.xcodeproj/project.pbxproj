@@ -126,17 +126,8 @@
 		7577B1BB15DD927000B15B15 /* icon_Flash-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1AD15DD927000B15B15 /* icon_Flash-off@2x.png */; };
 		7577B1BC15DD927000B15B15 /* icon_Flash-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1AE15DD927000B15B15 /* icon_Flash-on@2x.png */; };
 		7577B1BE15DD931500B15B15 /* carbon_fibre.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1BD15DD931500B15B15 /* carbon_fibre.png */; };
-		758E0E0C160A3B170006D1F7 /* Avenir LT 95 Black Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E01160A3B170006D1F7 /* Avenir LT 95 Black Oblique.ttf */; };
-		758E0E0D160A3B170006D1F7 /* Avenir LT 95 Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E02160A3B170006D1F7 /* Avenir LT 95 Black.ttf */; };
-		758E0E0E160A3B170006D1F7 /* Avenir LT 86 Heavy Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E03160A3B170006D1F7 /* Avenir LT 86 Heavy Oblique.ttf */; };
 		758E0E0F160A3B170006D1F7 /* Avenir LT 85 Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E04160A3B170006D1F7 /* Avenir LT 85 Heavy.ttf */; };
 		758E0E10160A3B170006D1F7 /* Avenir LT 65 Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E05160A3B170006D1F7 /* Avenir LT 65 Medium.ttf */; };
-		758E0E11160A3B170006D1F7 /* Avenir LT 55 Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E06160A3B170006D1F7 /* Avenir LT 55 Roman.ttf */; };
-		758E0E12160A3B170006D1F7 /* Avenir LT 55 Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E07160A3B170006D1F7 /* Avenir LT 55 Oblique.ttf */; };
-		758E0E13160A3B170006D1F7 /* Avenir LT 45 Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E08160A3B170006D1F7 /* Avenir LT 45 Book.ttf */; };
-		758E0E14160A3B170006D1F7 /* Avenir LT 45 Book Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E09160A3B170006D1F7 /* Avenir LT 45 Book Oblique.ttf */; };
-		758E0E15160A3B170006D1F7 /* Avenir LT 35 Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E0A160A3B170006D1F7 /* Avenir LT 35 Light.ttf */; };
-		758E0E16160A3B170006D1F7 /* Avenir LT 35 Light Oblique.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 758E0E0B160A3B170006D1F7 /* Avenir LT 35 Light Oblique.ttf */; };
 		758E0E1A160A3CCF0006D1F7 /* SPLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E0E19160A3CCF0006D1F7 /* SPLabel.m */; };
 		759008DD14FD73EA00009E86 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 759008DC14FD73EA00009E86 /* arrow.png */; };
 		759295541603D14E008FCDC1 /* SPDialogBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 759295531603D14E008FCDC1 /* SPDialogBubbleView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -423,6 +414,7 @@
 		F0EE799314E35FB900439040 /* icon-message.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799014E35FB900439040 /* icon-message.png */; };
 		F0EE799814E3633D00439040 /* icon-message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799714E3633D00439040 /* icon-message@2x.png */; };
 		F0EE799A14E364E700439040 /* icon-like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799914E364E700439040 /* icon-like@2x.png */; };
+		F0F040F8163E1E3D00CF76F8 /* icon-Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F040F7163E1E3D00CF76F8 /* icon-Chat.png */; };
 		F0F58B44162CC543003DD1B3 /* Intro-Browse.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F58B43162CC543003DD1B3 /* Intro-Browse.png */; };
 		F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F80A0815F6A97E00201FF4 /* testingImage.png */; };
 		F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -599,20 +591,10 @@
 		7577B1AD15DD927000B15B15 /* icon_Flash-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_Flash-off@2x.png"; path = "../../Resources/icon_Flash-off@2x.png"; sourceTree = "<group>"; };
 		7577B1AE15DD927000B15B15 /* icon_Flash-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_Flash-on@2x.png"; path = "../../Resources/icon_Flash-on@2x.png"; sourceTree = "<group>"; };
 		7577B1BD15DD931500B15B15 /* carbon_fibre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = carbon_fibre.png; path = ../../Resources/carbon_fibre.png; sourceTree = "<group>"; };
-		758E0E01160A3B170006D1F7 /* Avenir LT 95 Black Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 95 Black Oblique.ttf"; path = "../../Resources/fonts/Avenir LT 95 Black Oblique.ttf"; sourceTree = "<group>"; };
-		758E0E02160A3B170006D1F7 /* Avenir LT 95 Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 95 Black.ttf"; path = "../../Resources/fonts/Avenir LT 95 Black.ttf"; sourceTree = "<group>"; };
-		758E0E03160A3B170006D1F7 /* Avenir LT 86 Heavy Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 86 Heavy Oblique.ttf"; path = "../../Resources/fonts/Avenir LT 86 Heavy Oblique.ttf"; sourceTree = "<group>"; };
 		758E0E04160A3B170006D1F7 /* Avenir LT 85 Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 85 Heavy.ttf"; path = "../../Resources/fonts/Avenir LT 85 Heavy.ttf"; sourceTree = "<group>"; };
 		758E0E05160A3B170006D1F7 /* Avenir LT 65 Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 65 Medium.ttf"; path = "../../Resources/fonts/Avenir LT 65 Medium.ttf"; sourceTree = "<group>"; };
-		758E0E06160A3B170006D1F7 /* Avenir LT 55 Roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 55 Roman.ttf"; path = "../../Resources/fonts/Avenir LT 55 Roman.ttf"; sourceTree = "<group>"; };
-		758E0E07160A3B170006D1F7 /* Avenir LT 55 Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 55 Oblique.ttf"; path = "../../Resources/fonts/Avenir LT 55 Oblique.ttf"; sourceTree = "<group>"; };
-		758E0E08160A3B170006D1F7 /* Avenir LT 45 Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 45 Book.ttf"; path = "../../Resources/fonts/Avenir LT 45 Book.ttf"; sourceTree = "<group>"; };
-		758E0E09160A3B170006D1F7 /* Avenir LT 45 Book Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 45 Book Oblique.ttf"; path = "../../Resources/fonts/Avenir LT 45 Book Oblique.ttf"; sourceTree = "<group>"; };
-		758E0E0A160A3B170006D1F7 /* Avenir LT 35 Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 35 Light.ttf"; path = "../../Resources/fonts/Avenir LT 35 Light.ttf"; sourceTree = "<group>"; };
-		758E0E0B160A3B170006D1F7 /* Avenir LT 35 Light Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 35 Light Oblique.ttf"; path = "../../Resources/fonts/Avenir LT 35 Light Oblique.ttf"; sourceTree = "<group>"; };
 		758E0E18160A3CCF0006D1F7 /* SPLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLabel.h; sourceTree = "<group>"; };
 		758E0E19160A3CCF0006D1F7 /* SPLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLabel.m; sourceTree = "<group>"; };
-		758E0E1B160A401F0006D1F7 /* Avenir LT 65 Medium Oblique.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 65 Medium Oblique.ttf"; path = "../../Resources/fonts/Avenir LT 65 Medium Oblique.ttf"; sourceTree = "<group>"; };
 		759008DC14FD73EA00009E86 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow.png; path = ../../Resources/arrow.png; sourceTree = "<group>"; };
 		759295521603D14E008FCDC1 /* SPDialogBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDialogBubbleView.h; sourceTree = "<group>"; };
 		759295531603D14E008FCDC1 /* SPDialogBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDialogBubbleView.m; sourceTree = "<group>"; };
@@ -1039,6 +1021,7 @@
 		F0EE799014E35FB900439040 /* icon-message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-message.png"; path = "../../Resources/icon-message.png"; sourceTree = "<group>"; };
 		F0EE799714E3633D00439040 /* icon-message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-message@2x.png"; path = "../../Resources/icon-message@2x.png"; sourceTree = "<group>"; };
 		F0EE799914E364E700439040 /* icon-like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-like@2x.png"; path = "../../Resources/icon-like@2x.png"; sourceTree = "<group>"; };
+		F0F040F7163E1E3D00CF76F8 /* icon-Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Chat.png"; path = "../../Resources/icon-Chat.png"; sourceTree = "<group>"; };
 		F0F58B43162CC543003DD1B3 /* Intro-Browse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Browse.png"; path = "../../Resources/Intro-Browse.png"; sourceTree = "<group>"; };
 		F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContainerDelegate.h; sourceTree = "<group>"; };
 		F0F7CEA414C924D3009C7DF8 /* SPPageContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContentDelegate.h; sourceTree = "<group>"; };
@@ -1171,6 +1154,7 @@
 				F0DB3AC616107DDB006A4A97 /* MessageBubble-white.png */,
 				F03A7F0B161291EF0049F27B /* MessageBubble-white@2x.png */,
 				F0DB3AC716107DDB006A4A97 /* MessageBubble-blue.png */,
+				F0F040F7163E1E3D00CF76F8 /* icon-Chat.png */,
 				75A38B9B14E9B004000F00DF /* noImage-Block.png */,
 				7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */,
 				7577B1A215DD927000B15B15 /* icon_Close.png */,
@@ -1544,18 +1528,8 @@
 		758E0DFF160A3B070006D1F7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				758E0E01160A3B170006D1F7 /* Avenir LT 95 Black Oblique.ttf */,
-				758E0E02160A3B170006D1F7 /* Avenir LT 95 Black.ttf */,
-				758E0E03160A3B170006D1F7 /* Avenir LT 86 Heavy Oblique.ttf */,
 				758E0E04160A3B170006D1F7 /* Avenir LT 85 Heavy.ttf */,
 				758E0E05160A3B170006D1F7 /* Avenir LT 65 Medium.ttf */,
-				758E0E06160A3B170006D1F7 /* Avenir LT 55 Roman.ttf */,
-				758E0E07160A3B170006D1F7 /* Avenir LT 55 Oblique.ttf */,
-				758E0E1B160A401F0006D1F7 /* Avenir LT 65 Medium Oblique.ttf */,
-				758E0E08160A3B170006D1F7 /* Avenir LT 45 Book.ttf */,
-				758E0E09160A3B170006D1F7 /* Avenir LT 45 Book Oblique.ttf */,
-				758E0E0A160A3B170006D1F7 /* Avenir LT 35 Light.ttf */,
-				758E0E0B160A3B170006D1F7 /* Avenir LT 35 Light Oblique.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -2818,17 +2792,8 @@
 				F08A15801608116000DDE5DB /* icon-Email.png in Resources */,
 				F002E02F16096D8400B451BD /* BTN-TakePic.png in Resources */,
 				F002E03016096D8400B451BD /* BTN-TakePic@2x.png in Resources */,
-				758E0E0C160A3B170006D1F7 /* Avenir LT 95 Black Oblique.ttf in Resources */,
-				758E0E0D160A3B170006D1F7 /* Avenir LT 95 Black.ttf in Resources */,
-				758E0E0E160A3B170006D1F7 /* Avenir LT 86 Heavy Oblique.ttf in Resources */,
 				758E0E0F160A3B170006D1F7 /* Avenir LT 85 Heavy.ttf in Resources */,
 				758E0E10160A3B170006D1F7 /* Avenir LT 65 Medium.ttf in Resources */,
-				758E0E11160A3B170006D1F7 /* Avenir LT 55 Roman.ttf in Resources */,
-				758E0E12160A3B170006D1F7 /* Avenir LT 55 Oblique.ttf in Resources */,
-				758E0E13160A3B170006D1F7 /* Avenir LT 45 Book.ttf in Resources */,
-				758E0E14160A3B170006D1F7 /* Avenir LT 45 Book Oblique.ttf in Resources */,
-				758E0E15160A3B170006D1F7 /* Avenir LT 35 Light.ttf in Resources */,
-				758E0E16160A3B170006D1F7 /* Avenir LT 35 Light Oblique.ttf in Resources */,
 				F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */,
 				F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */,
 				F0D663BE160DC59A00607E2D /* appicon72.png in Resources */,
@@ -2863,6 +2828,7 @@
 				F0280B891639091A007B2BC8 /* alert.wav in Resources */,
 				F0DEC14D1639D15000BF2BEF /* tap.wav in Resources */,
 				F0605353163D050E00969DA6 /* arrow-squiggle.png in Resources */,
+				F0F040F8163E1E3D00CF76F8 /* icon-Chat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

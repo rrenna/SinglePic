@@ -215,7 +215,7 @@
 					<object class="IBUILabel" id="904729183">
 						<reference key="NSNextResponder" ref="324623241"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{13, 135}, {218, 40}}</string>
+						<string key="NSFrame">{{13, 122}, {218, 24}}</string>
 						<reference key="NSSuperview" ref="324623241"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -225,7 +225,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Look for sinlges in your area.</string>
+						<string key="IBUIText">Look for singles in your area.</string>
 						<reference key="IBUITextColor" ref="221202944"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -249,7 +249,7 @@
 					<object class="IBUILabel" id="614645907">
 						<reference key="NSNextResponder" ref="324623241"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{13, 121}, {218, 15}}</string>
+						<string key="NSFrame">{{13, 108}, {218, 15}}</string>
 						<reference key="NSSuperview" ref="324623241"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="904729183"/>
@@ -294,7 +294,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{13, 13}, {218, 106}}</string>
+						<string key="NSFrame">{{13, 0}, {218, 106}}</string>
 						<reference key="NSSuperview" ref="324623241"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="794096537"/>
@@ -306,7 +306,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{243, 185}</string>
+				<string key="NSFrameSize">{243, 158}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="196664379"/>
@@ -327,7 +327,7 @@
 					<object class="IBUILabel" id="686993206">
 						<reference key="NSNextResponder" ref="786286252"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{7, 68}, {229, 20}}</string>
+						<string key="NSFrame">{{7, 64}, {229, 20}}</string>
 						<reference key="NSSuperview" ref="786286252"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="377892963"/>
@@ -361,7 +361,7 @@
 					<object class="IBUILabel" id="377892963">
 						<reference key="NSNextResponder" ref="786286252"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{7, 87}, {229, 20}}</string>
+						<string key="NSFrame">{{7, 84}, {229, 18}}</string>
 						<reference key="NSSuperview" ref="786286252"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -386,7 +386,7 @@
 					<object class="IBUIImageView" id="297666316">
 						<reference key="NSNextResponder" ref="786286252"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{56, 15.5}, {130, 45}}</string>
+						<string key="NSFrame">{{54, 20}, {134, 38}}</string>
 						<reference key="NSSuperview" ref="786286252"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="686993206"/>
@@ -422,7 +422,7 @@
 					<object class="IBUILabel" id="118841062">
 						<reference key="NSNextResponder" ref="942568688"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{13, 141}, {218, 38}}</string>
+						<string key="NSFrame">{{13, 128}, {218, 37}}</string>
 						<reference key="NSSuperview" ref="942568688"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -447,7 +447,7 @@
 					<object class="IBUILabel" id="221135953">
 						<reference key="NSNextResponder" ref="942568688"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{13, 122}, {218, 20}}</string>
+						<string key="NSFrame">{{13, 109}, {218, 20}}</string>
 						<reference key="NSSuperview" ref="942568688"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="118841062"/>
@@ -476,7 +476,7 @@
 							<object class="IBUIImageView" id="154507844">
 								<reference key="NSNextResponder" ref="763329823"/>
 								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{0, 4}, {220, 106}}</string>
+								<string key="NSFrameSize">{220, 106}</string>
 								<reference key="NSSuperview" ref="763329823"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="221135953"/>
@@ -492,7 +492,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{13, 13}, {218, 106}}</string>
+						<string key="NSFrame">{{13, 0}, {218, 102}}</string>
 						<reference key="NSSuperview" ref="942568688"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="154507844"/>
@@ -505,7 +505,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{243, 190}</string>
+				<string key="NSFrameSize">{243, 180}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="763329823"/>
@@ -526,7 +526,7 @@
 					<object class="IBUILabel" id="349920844">
 						<reference key="NSNextResponder" ref="921218071"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{13, 142}, {218, 59}}</string>
+						<string key="NSFrame">{{13, 128}, {218, 57}}</string>
 						<reference key="NSSuperview" ref="921218071"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -551,7 +551,7 @@
 					<object class="IBUILabel" id="749010887">
 						<reference key="NSNextResponder" ref="921218071"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{13, 123}, {218, 20}}</string>
+						<string key="NSFrame">{{13, 109}, {218, 20}}</string>
 						<reference key="NSSuperview" ref="921218071"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="349920844"/>
@@ -580,7 +580,7 @@
 							<object class="IBUIImageView" id="654662854">
 								<reference key="NSNextResponder" ref="814882920"/>
 								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{-1, 4}, {220, 106}}</string>
+								<string key="NSFrame">{{-1, 0}, {220, 106}}</string>
 								<reference key="NSSuperview" ref="814882920"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="749010887"/>
@@ -596,7 +596,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{13, 13}, {218, 106}}</string>
+						<string key="NSFrame">{{13, 4}, {218, 102}}</string>
 						<reference key="NSSuperview" ref="921218071"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="654662854"/>
@@ -609,7 +609,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{243, 210}</string>
+				<string key="NSFrameSize">{243, 199}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="814882920"/>
@@ -904,6 +904,20 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="108.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="108.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="614645907"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="3" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="108.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="109.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="121.CustomClassName">GCPagedScrollView</string>
@@ -912,6 +926,20 @@
 				<string key="127.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="129.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="129.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="221135953"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="3" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="130.CustomClassName">SPLabel</string>
 				<string key="130.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -919,6 +947,20 @@
 				<string key="135.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="136.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="137.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="137.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="749010887"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="3" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="137.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="138.CustomClassName">SPLabel</string>
 				<string key="138.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -953,6 +995,20 @@
 				<string key="37.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="37.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="48.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="48.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="819390907"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="3" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="57.CustomClassName">SPLabel</string>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -976,6 +1032,20 @@
 				<string key="76.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="76.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="82.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="82.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="686993206"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="3" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>

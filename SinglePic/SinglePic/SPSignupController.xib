@@ -203,7 +203,7 @@
 					<object class="IBUIImageView" id="410656286">
 						<reference key="NSNextResponder" ref="1054413631"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{97, 20}, {127, 41}}</string>
+						<string key="NSFrame">{{97, 22}, {127, 41}}</string>
 						<reference key="NSSuperview" ref="1054413631"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="624531323"/>
@@ -339,7 +339,7 @@
 					<object class="IBUILabel" id="910403111">
 						<reference key="NSNextResponder" ref="590200920"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{70, 257}, {180, 25}}</string>
+						<string key="NSFrame">{{70, 252}, {180, 25}}</string>
 						<reference key="NSSuperview" ref="590200920"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="188274083"/>
@@ -1346,6 +1346,21 @@
 				<string key="209.object.labelIdentifier">IBBuiltInLabel-Yellow</string>
 				<boolean value="YES" key="209.showNotes"/>
 				<string key="213.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="214.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="214.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="910403111"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="0" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="214.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="215.CustomClassName">SPStyledButton</string>
 				<object class="NSMutableDictionary" key="215.IBAttributePlaceholdersKey">
@@ -1379,6 +1394,20 @@
 				<string key="227.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="230.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="233.CustomClassName">SPLabel</string>
+				<object class="NSMutableDictionary" key="233.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="682477323"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">style</string>
+								<integer value="3" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="233.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="234.CustomClassName">SPCardView</string>
 				<object class="NSMutableDictionary" key="234.IBAttributePlaceholdersKey">
@@ -1397,6 +1426,7 @@
 				</object>
 				<string key="234.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<dictionary class="NSMutableDictionary" key="53.IBAttributePlaceholdersKey"/>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="78.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>

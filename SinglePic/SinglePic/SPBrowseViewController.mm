@@ -7,7 +7,6 @@
 //
 
 #import "SPBrowseViewController.h"
-#import "SVProgressHUD.h"
 #import "ColorGrid.h"
 #import "SPProfileIconController.h"
 #import "SPProfileViewController.h"
@@ -168,7 +167,6 @@ static int profileIndex = 0;
         [self resume];
     }*/
 }
-#define RESTARTING_STRING @"Restarting, time to do it all over again."
 #pragma mark - IBActions
 -(IBAction)restart:(id)sender
 {
@@ -191,12 +189,10 @@ static int profileIndex = 0;
                  [self dropAllOnscreenBlocks];
              }
              
-             [SVProgressHUD dismissWithSuccess:RESTARTING_STRING afterDelay:1.5];
              isRestarting = NO;
          }
          andErrorHandler:^
          {
-             [SVProgressHUD dismiss];
              isRestarting = NO;
          }];
     }
@@ -214,7 +210,6 @@ static int profileIndex = 0;
    //No more profiles
    if([[SPProfileManager sharedInstance] remainingProfiles] == 0)
    {
-       [SVProgressHUD showWithStatus:RESTARTING_STRING maskType:SVProgressHUDMaskTypeClear networkIndicator:YES];
        [self restart:nil];
    }
    else
