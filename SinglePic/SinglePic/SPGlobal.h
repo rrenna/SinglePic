@@ -39,7 +39,7 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 //Beta expiry
 #define BETA_EXPIRY_YEAR 2012
 #define BETA_EXPIRY_MONTH 11
-#define BETA_EXPIRY_DAY 1
+#define BETA_EXPIRY_DAY 14
 
 //Help
 typedef enum
