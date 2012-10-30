@@ -187,10 +187,10 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<double key="IBUIContentEdgeInsets.top">3</double>
-						<double key="IBUIContentEdgeInsets.bottom">3</double>
-						<double key="IBUIContentEdgeInsets.left">3</double>
-						<double key="IBUIContentEdgeInsets.right">3</double>
+						<double key="IBUIContentEdgeInsets.top">7</double>
+						<double key="IBUIContentEdgeInsets.bottom">6</double>
+						<double key="IBUIContentEdgeInsets.left">8</double>
+						<double key="IBUIContentEdgeInsets.right">8</double>
 						<reference key="IBUIHighlightedTitleColor" ref="548798078"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -199,7 +199,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="233473767"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon-like.png</string>
+							<string key="NSResourceName">icon-Heart-white.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="974312045"/>
 						<reference key="IBUIFont" ref="8491658"/>
@@ -660,8 +660,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="icon-Chat.png">{40, 40}</string>
+			<string key="icon-Heart-white.png">{80, 80}</string>
 			<string key="icon-clock.png">{40, 40}</string>
-			<string key="icon-like.png">{40, 32}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1929</string>
 	</data>
