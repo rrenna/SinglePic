@@ -20,17 +20,17 @@ typedef enum
     STYLE_ALTERNATIVE_ACTION_2_BUTTON = 7,
     STYLE_NAVIGATION = 8
 } STYLE;
-//The default Style is a light gray neutral colour
-#define STYLE_DEFAULT STYLE_NEUTRAL
 
 typedef enum
 {
     DEPTH_INSET = 0,
     DEPTH_OUTSET = 1
 } DEPTH;
+
+//The default Style is a light gray neutral colour
+#define STYLE_DEFAULT STYLE_NEUTRAL
 //The default Depth is an 3d inset look
 #define DEPTH_DEFAULT DEPTH_INSET
-
 //Inset Colours
 #define INSET_CORNER_RADIUS 6.0
 #define INSET_BEVEL_LIGHT_COLOUR [UIColor colorWithWhite:1.0 alpha:0.3]
@@ -71,7 +71,6 @@ typedef enum
 
 //Helper function to retrieve the primary colors from a specific style
 UIColor* primaryColorForStyle(STYLE style);
-
 //Helper functions used to construct CALayers for SPStyledView & SPStyledButton subclasses
 //--Bevel Layer
 CAGradientLayer* setupBevelLayerForView(UIView* view);

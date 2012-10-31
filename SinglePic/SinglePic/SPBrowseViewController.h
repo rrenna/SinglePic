@@ -12,14 +12,10 @@
 
 @protocol SPBlockViewDelegate;
 
-struct b2World;
-struct b2Body;
-
 @interface SPBrowseViewController : SPTabContentViewController <SPBlockViewDelegate,UIScrollViewDelegate>
 {
     IBOutlet UIScrollView* scrollView;
     IBOutlet UIView* canvasView; 
-    IBOutlet UIView* centerBottomView;
     IBOutlet UILabel* browseInstructionsLabel;
 }
 
@@ -28,7 +24,7 @@ struct b2Body;
 
 -(IBAction)restart:(id)sender;
 -(IBAction)next:(id)sender;
--(IBAction)reportToggle:(id)sender;
+
 @end
 
 @interface _SPBrowseViewQueuedSelectorCall : NSObject

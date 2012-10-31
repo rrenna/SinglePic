@@ -13,9 +13,6 @@
 #import "SPBlockView.h"
 #import <Box2D/Box2D.h> //Must be included AFTER MKMapKit or anything that includes MKMapKit
 
-//Box2D
-static b2PrismaticJointDef shaftJoint;
-
 #define REFRESH_HEADER_HEIGHT 8.0f //52.0f
 #define BROWSE_ROW_LIMIT 5
 #define BROWSE_ROW_LIMIT_TALL 6
@@ -23,7 +20,10 @@ static b2PrismaticJointDef shaftJoint;
 #define PTM_RATIO 16
 #define TICK (0.016666666) // same as (1.0f/60.0f)
 
-static int profileIndex = 0;
+//Box2D
+struct b2World;
+struct b2Body;
+static b2PrismaticJointDef shaftJoint;
 
 @interface SPBrowseViewController()
 {
@@ -46,26 +46,26 @@ static int profileIndex = 0;
     //Box2D
     struct b2World* world;
     struct b2Body* groundBody;
+    b2Body *barrierBody;
+    
 }
 @property (retain) NSArray* stacks;
 @property (retain) NSMutableArray* profileControllers;
 @property (retain) CADisplayLink* tickDisplayLink;
 
 -(void)createPhysicsWorld;
--(void)createPhysicalBarriers;
+-(void)createPhysicalBarrier;
+-(void)destroyPhysicalBarrier;
 -(void)addPullToNextHeader;
 -(void)beginDropSchedule;
 -(void)dropAllOnscreenBlocks;
 -(void)pauseAllStacks;
 -(void)pauseStack:(int)stackIndex;
 -(BOOL)isStackPaused:(int)stackIndex;
--(void)isAnyStackPaused;
 -(void)resumeAllStacks;
 -(void)resumeStack:(int)stackIndex;
 -(void)destroyBlockView:(SPBlockView*)blockView;
--(void)destroyBottomViewBody:(UIView*)bottomView;
 -(void)addBodyForBoxView:(SPBlockView *)boxView;
--(void)addPhysicalBodyForStaticView:(UIView *)physicalView;
 -(void)removeProfileByID:(NSString*)profileID;
 -(int)currentTickCount;
 -(int)tickCountWithOffset:(int)offset;
@@ -117,7 +117,6 @@ static int profileIndex = 0;
     //Calculates the scrollView's content size after resizing (depending on screen resolution)
     CGSize scrollContentSize = scrollView.frame.size;
     scrollView.contentSize = scrollContentSize;
-    
 }
 -(void)dealloc
 {
@@ -138,7 +137,7 @@ static int profileIndex = 0;
 -(void)setup
 {
     [self createPhysicsWorld];
-    [self createPhysicalBarriers];
+    [self createPhysicalBarrier];
     
     self.tickDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(tick:)];
     [_tickDisplayLink setFrameInterval:1];
@@ -162,10 +161,6 @@ static int profileIndex = 0;
 -(void)visible
 {
     //TODO: Improve resume functionality
-    /*if([self isAnyStackPaused])
-    {
-        [self resume];
-    }*/
 }
 #pragma mark - IBActions
 -(IBAction)restart:(id)sender
@@ -181,7 +176,6 @@ static int profileIndex = 0;
              if([profiles count] > 0)
              {
                  [[SPProfileManager sharedInstance] restartProfiles];
-                 profileIndex = 0;
                  [weakSelf next:nil];
              }
              else
@@ -216,38 +210,6 @@ static int profileIndex = 0;
    {
        [self dropAllOnscreenBlocks];
    }
-}
--(IBAction)reportToggle:(id)sender
-{
-    
-    [SPSoundHelper playTap];
-    
-    /*
-    
-    UIButton* reportButton = (UIButton*)sender;
-    
-    //If paused, flip around all tiles (to images) and resume dropping
-    if(paused)
-    {
-        [self resume];
-        //[reportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    }
-    //If in action, pause
-    else
-    {
-        //Stop further images from dropping 
-        [self pause];
-        //[reportButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    }
-    
-    
-    float delay = 0.0;
-    for(SPProfileViewController* profileController in self.profileControllers)
-    {   
-        delay += 0.1;
-        [profileController performSelector:@selector(flip:) withObject:nil afterDelay:delay];
-    }
-     */
 }
 #pragma mark - SPBlockViewDelegate methods
 -(void)blockViewWasSelected : (SPBlockView*) blockView
@@ -321,42 +283,50 @@ static int profileIndex = 0;
 	groundBox.Set(b2Vec2(screenSize.width/PTM_RATIO,screenSize.height/PTM_RATIO), b2Vec2(screenSize.width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox, 0);
 }
--(void)createPhysicalBarriers
+-(void)createPhysicalBarrier
 {
-   [self addPhysicalBodyForStaticView:centerBottomView];
+    // Define the dynamic body.
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+    
+    CGPoint barrierCenter = CGPointMake(135.0f, 436.5f);
+    CGSize barrierSize = CGSizeMake(150.0f/PTM_RATIO/2.0, 1.0/PTM_RATIO/2.0);
+    
+	bodyDef.position.Set(barrierCenter.x/PTM_RATIO, (canvasView.frame.size.height - barrierCenter.y)/PTM_RATIO);
+    
+    // Tell the physics world to create the body
+	barrierBody = world->CreateBody(&bodyDef);
+    
+    // Define another box shape for our dynamic body.
+	b2PolygonShape dynamicBox;
+    
+	dynamicBox.SetAsBox(barrierSize.width, barrierSize.height);
+    
+    // Define the dynamic body fixture.
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 20000.0f;
+	fixtureDef.friction = 1.0f;
+	fixtureDef.restitution = 0.05f; // 0 is a lead ball, 1 is a super bouncy ball
+	barrierBody->CreateFixture(&fixtureDef);
+}
+-(void)destroyPhysicalBarrier
+{
+    if(barrierBody)
+    {
+        world->DestroyBody(barrierBody);
+        barrierBody = nil;//Zero out the pointer so the view can never be re-removed
+    }
 }
 -(void)addPullToNextHeader
-{
-    /*
-    nextHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)];
-    nextHeaderView.backgroundColor = [UIColor clearColor];
-    
-    nextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, REFRESH_HEADER_HEIGHT)];
-    nextLabel.backgroundColor = [UIColor clearColor];
-    nextLabel.font = [UIFont boldSystemFontOfSize:12.0];
-    nextLabel.textAlignment = UITextAlignmentCenter;
-    
-    nextArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-    nextArrow.frame = CGRectMake(floorf((REFRESH_HEADER_HEIGHT - 27) / 2),
-                                    (floorf(REFRESH_HEADER_HEIGHT - 44) / 2),
-                                    27, 44);
-    
-    nextSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    nextSpinner.frame = CGRectMake(floorf(floorf(REFRESH_HEADER_HEIGHT - 20) / 2), floorf((REFRESH_HEADER_HEIGHT - 20) / 2), 20, 20);
-    nextSpinner.hidesWhenStopped = YES;
-    
-    [nextHeaderView addSubview:nextLabel];
-    [nextHeaderView addSubview:nextArrow];
-    [nextHeaderView addSubview:nextSpinner];
-    [scrollView addSubview:nextHeaderView];*/
-          
-            // Load color settings
+{  
+        // Load color settings
         NSString *settingsPath = [[NSBundle mainBundle] pathForResource:@"Colors"
                                                                  ofType:@"plist"];
         
         NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:settingsPath];
         
-            // Grab an array of predefined colors
+        // Grab an array of predefined colors
         NSArray *colors = [settings objectForKey:@"Colors"];
         
         refreshHeaderView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, 320, REFRESH_HEADER_HEIGHT)] autorelease];
@@ -382,7 +352,7 @@ static int profileIndex = 0;
 -(void)dropAllOnscreenBlocks
 {
     //Destroys the Box2D Body of the bottom view, which represent the shape keeping the profile blocks from falling
-    [self destroyBottomViewBody:centerBottomView];
+    [self destroyPhysicalBarrier];
     
     if([[SPProfileManager sharedInstance] remainingProfiles] > 0)
     {
@@ -417,8 +387,8 @@ static int profileIndex = 0;
         [self performSelector:@selector(beginDropSchedule) afterTicks:4500 * TICK];
     }
     
-    [self performSelector:@selector(stopLoading) afterTicks:6250 * TICK];
-    [self performSelector:@selector(createPhysicalBarriers) afterTicks:7380 * TICK];
+        //[self performSelector:@selector(stopLoading) afterTicks:6250 * TICK];
+    [self performSelector:@selector(createPhysicalBarrier) afterTicks:7380 * TICK];
 }
 -(void)pauseAllStacks
 {
@@ -433,10 +403,6 @@ static int profileIndex = 0;
 -(BOOL)isStackPaused:(int)stackIndex
 {
     return stackPaused[stackIndex];
-}
--(BOOL)isAnyStackPaused
-{
-    return (stackPaused[0] || stackPaused[1] || stackPaused[2]);
 }
 -(void)resumeStack:(int)stackIndex
 {
@@ -453,15 +419,6 @@ static int profileIndex = 0;
     b2Body *body = (b2Body*)[blockView tag];
     world->DestroyBody(body);
     [blockView removeFromSuperview];
-}
--(void)destroyBottomViewBody:(UIView*)bottomView
-{
-    b2Body *viewBody = (b2Body*)[bottomView tag];
-    if(viewBody)
-    {
-        world->DestroyBody(viewBody);
-        bottomView.tag = 0;//Zero out the pointer so the view can never be re-removed
-    }
 }
 -(void)addBodyForBoxView:(SPBlockView *)boxView
 {
@@ -499,41 +456,6 @@ static int profileIndex = 0;
     
 	// we abuse the tag property as pointer to the physical body
 	boxView.tag = (int)body;
-}
--(void)addPhysicalBodyForStaticView:(UIView *)physicalView
-{
-    // Define the dynamic body.
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-    
-	CGPoint p = physicalView.center;
-	CGPoint boxDimensions = CGPointMake(physicalView.bounds.size.width/PTM_RATIO/2.0,physicalView.bounds.size.height/PTM_RATIO/2.0);
-    
-	bodyDef.position.Set(p.x/PTM_RATIO, (canvasView.frame.size.height - p.y)/PTM_RATIO);
-	bodyDef.userData = physicalView;
-    
-	// Tell the physics world to create the body
-	b2Body *body = world->CreateBody(&bodyDef);
-    
-	// Define another box shape for our dynamic body.
-	b2PolygonShape dynamicBox;
-    
-	dynamicBox.SetAsBox(boxDimensions.x, boxDimensions.y);
-    
-	// Define the dynamic body fixture.
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 20000.0f;
-	fixtureDef.friction = 1.0f;
-	fixtureDef.restitution = 0.05f; // 0 is a lead ball, 1 is a super bouncy ball
-	body->CreateFixture(&fixtureDef);
-    
-	// a dynamic body reacts to forces right away
-	//body->SetType(b2_staticBody);
-    
-	// we abuse the tag property as pointer to the physical body
-	physicalView.tag = (int)body;
-    
 }
 int currentTick = 0;
 -(int)currentTickCount
@@ -606,7 +528,8 @@ int currentTick = 0;
         b2Vec2 linearVelocity = b->GetLinearVelocity();
         
         //Prevent view modification if no vertical change will be made - UIView optmization (I hope)
-        if(linearVelocity.y == 0) {
+        if(linearVelocity.y == 0)
+        {
             //Do nothing
         }
         else
@@ -638,7 +561,6 @@ int currentTick = 0;
      [UIView setAnimationDuration:duration];
      [UIView commitAnimations];
      */
-    
     /*
      b2Body *body = (b2Body*)[boxView tag];
      world->DestroyBody(body);
@@ -646,7 +568,6 @@ int currentTick = 0;
      [boxView removeFromSuperview];
      */
 }
-
 -(void)drop:(NSTimer *)timer
 {
     static const int padding = 5;
@@ -700,11 +621,14 @@ int currentTick = 0;
                     
                     [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_error];
                     
-
                 }
                 else
                 {
-                    //No more contacts
+                    //No more contacts - dismiss loading bar
+                    if(isLoading)
+                    {
+                        [self stopLoading];
+                    }
                 }
             }
         }
@@ -734,27 +658,11 @@ int currentTick = 0;
     
     [UIView commitAnimations];
     
-        // Refresh action!
-        //[self refresh];
-    
-    /*
-    isLoading = YES;
-    
-    // Show the header
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    scrollView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
-    nextLabel.text = @"Loading";//self.textLoading;
-    nextArrow.hidden = YES;
-    [nextSpinner startAnimating];
-    [UIView commitAnimations];
-    */
-    
-    
     // Next action
     [self next:nil];
 }
-- (void)stopLoading {
+- (void)stopLoading
+{
     isLoading = NO;
     
     [colorGrid drawRow];
@@ -789,7 +697,6 @@ int currentTick = 0;
     if (isLoading) return;
     isDragging = YES;
 }
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if (isLoading) {
