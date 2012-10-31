@@ -46,17 +46,13 @@
     AVCaptureDevice *backCamera = nil;
     
     for (AVCaptureDevice *device in devices) {
-        
-        NSLog(@"Device name: %@", [device localizedName]);
-        
+    
         if ([device hasMediaType:AVMediaTypeVideo]) {
             
             if ([device position] == AVCaptureDevicePositionBack) {
-                NSLog(@"Device position : back");
                 backCamera = device;
             }
             else {
-                NSLog(@"Device position : front");
                 frontCamera = device;
             }
         }
@@ -72,7 +68,7 @@
             if ([[self captureSession] canAddInput:frontFacingCameraDeviceInput]) {
                 
                 [[self captureSession] addInput:frontFacingCameraDeviceInput];
-                isFrontCamera = NO;
+                isFrontCamera = YES;
             }
             else
             {
@@ -88,7 +84,7 @@
             if ([[self captureSession] canAddInput:backFacingCameraDeviceInput]) {
                 
                 [[self captureSession] addInput:backFacingCameraDeviceInput];
-                isFrontCamera = YES;
+                isFrontCamera = NO;
             }
             else
             {
@@ -168,13 +164,10 @@
     AVCaptureDevice *frontCamera = nil;
 
     for (AVCaptureDevice *device in devices) {
-        
-        NSLog(@"Device name: %@", [device localizedName]);
-        
+
         if ([device hasMediaType:AVMediaTypeVideo]) {
             
             if ([device position] == AVCaptureDevicePositionFront) {
-                NSLog(@"Device position : back");
                 frontCamera = device;
             }
         }
@@ -192,16 +185,14 @@
     
     for (AVCaptureDevice *device in devices) {
         
-        NSLog(@"Device name: %@", [device localizedName]);
-        
         if ([device hasMediaType:AVMediaTypeVideo]) {
             
             if ([device position] == AVCaptureDevicePositionBack) {
-                NSLog(@"Device position : back");
+
                 backCamera = device;
             }
             else {
-                NSLog(@"Device position : front");
+
                 frontCamera = device;
             }
         }
