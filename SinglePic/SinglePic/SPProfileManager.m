@@ -1068,7 +1068,11 @@ static int profileCounter = 0;
     
     double currenTimeInterval = [[NSDate date] timeIntervalSince1970];
     //Start Time (default = 7 days ago)
+    #if defined (PUBLIC)
     int intStartTime = (int)(currenTimeInterval - (SECONDS_PER_DAY * PHOTO_EXPIRY_DAYS));
+    #else
+    int intStartTime = 0; 
+    #endif
     //End Time (now)
     int intCurrentTime = (int)currenTimeInterval;
     
