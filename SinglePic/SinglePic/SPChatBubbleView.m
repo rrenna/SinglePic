@@ -30,7 +30,7 @@
 {
     _chatStyle = chatStyle;
     
-    UIImage* chatImage = (chatStyle == CHAT_STYLE_INCOMING) ? [UIImage imageNamed:@"MessageBubble-blue"] : [UIImage imageNamed:@"MessageBubble-white"];
+    UIImage* chatImage = (chatStyle == CHAT_STYLE_INCOMING) ? [UIImage imageNamed:@"MessageBubble-white"] : [UIImage imageNamed:@"MessageBubble-blue"];
     self.image = [chatImage stretchableImageWithLeftCapWidth:SIDE_SPACING topCapHeight:TOP_SPACING];
 }
 -(CHAT_STYLE)chatStyle

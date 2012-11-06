@@ -446,9 +446,9 @@
         //The lates message is used to represent the object
     if(message)
     {
-        UILabel* timestampLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)] autorelease];
+        SPLabel* timestampLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)] autorelease];
+        [timestampLabel setStyle:LABEL_STYLE_EXTRA_SMALL];
         timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:message.date] ];
-        timestampLabel.font = [UIFont systemFontOfSize:8];
         timestampLabel.backgroundColor = [UIColor clearColor];
         timestampLabel.textColor = [UIColor lightGrayColor];
         timestampLabel.shadowColor = [UIColor whiteColor];

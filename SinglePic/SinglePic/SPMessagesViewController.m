@@ -89,6 +89,10 @@
 {
     return 70.0;
 }
+
+#define AVATAR_WIDTH 32
+#define HEIGHT_OF_TIME_LABEL 23
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray* messageThreadsSorted = [[SPMessageManager sharedInstance] activeMessageThreadsSorted];
@@ -104,26 +108,41 @@
     cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
     cell.tag = [[messageThread userID] integerValue];
     
-    UIImageView* correspondantThumbnailView = [[[UIImageView alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width - 55, 20, 30, 30)] autorelease];
+    SPLabel* timestampLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)] autorelease];
+    [timestampLabel setStyle:LABEL_STYLE_EXTRA_SMALL];
+    timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:latestMessage.date] ];
+    timestampLabel.backgroundColor = [UIColor clearColor];
+    timestampLabel.textColor = [UIColor lightGrayColor];
+    timestampLabel.shadowColor = [UIColor whiteColor];
+    timestampLabel.textAlignment = UITextAlignmentCenter;
+    timestampLabel.shadowOffset = CGSizeMake(1, 1);
+    timestampLabel.textAlignment = UITextAlignmentCenter;
     
-    [[SPProfileManager sharedInstance] retrieveProfile:messageThread.userID withCompletionHandler:^(SPProfile *profile) {
-        
-        [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail) {
+    [cell.contentView addSubview:timestampLabel];
+    
+    UIImageView* correspondantThumbnailView = [[[UIImageView alloc] initWithFrame:CGRectMake(11, 20, AVATAR_WIDTH, 30)] autorelease];
+    [cell.contentView addSubview:correspondantThumbnailView];
+    
+    //If no image is set, download user image
+    if(!correspondantThumbnailView.image)
+    {
+        [[SPProfileManager sharedInstance] retrieveProfile:messageThread.userID withCompletionHandler:^(SPProfile *profile) {
             
-            correspondantThumbnailView.image = thumbnail;
+            [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail) {
+                
+                correspondantThumbnailView.image = thumbnail;
+                
+            } andErrorHandler:^{
+                
+            }];
             
-        } andErrorHandler:^{
-            
-        }];
-        
-    } andErrorHandler:^{
-        
-    }];
+        } andErrorHandler:^{}];
+    }
     
     //The lates message is used to represent the object
     if(latestMessage)
     {
-        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(5, 5, cell.contentView.frame.size.width - 45, cell.contentView.frame.size.height - 8)] autorelease];
+        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(16 + AVATAR_WIDTH, 12, cell.contentView.frame.size.width - 55, cell.contentView.frame.size.height - 16)] autorelease];
         if([latestMessage.incoming boolValue])
         {
            bubble.chatStyle = CHAT_STYLE_INCOMING;
@@ -136,9 +155,7 @@
         [bubble setContent:latestMessage.content];
         [cell.contentView addSubview:bubble];
     }
-    
-    [cell.contentView addSubview:correspondantThumbnailView];
-    
+
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
