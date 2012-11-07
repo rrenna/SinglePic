@@ -218,7 +218,6 @@
 		F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F003DB9C14ECBD2300BD6309 /* StoreKit.framework */; };
 		F013D89415DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */; };
 		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F01C41F214C7CB6E0079EB18 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
 		F01FC1F815FD122900852650 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F215FD122900852650 /* arrow.png */; };
 		F01FC1F915FD122900852650 /* ColorBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F415FD122900852650 /* ColorBlock.m */; };
@@ -269,6 +268,7 @@
 		F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0795556161942E4004837AF /* GCPagedScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
 		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
+		F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */; };
 		F09B3AD815DC6D7F009EF693 /* Overlay_OOB_BROWSE.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */; };
 		F09B3AD915DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */; };
 		F09B3ADB15DC77FB009EF693 /* MDACDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117314CDF63F00B7EFDA /* MDACDoneButton.png */; };
@@ -730,7 +730,6 @@
 		F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend@2x.png"; path = "../../Resources/BG-Linen-Red-Blend@2x.png"; sourceTree = "<group>"; };
 		F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageManager.h; sourceTree = "<group>"; };
 		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
-		F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = messageStorage.xcdatamodel; sourceTree = "<group>"; };
 		F01C41F614C7CEFE0079EB18 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F01FC1F215FD122900852650 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		F01FC1F315FD122900852650 /* ColorBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBlock.h; sourceTree = "<group>"; };
@@ -759,7 +758,6 @@
 		F03869EB1601884100D14B84 /* BG-Linen-Red-Blend-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h@2x.png"; path = "../../Resources/BG-Linen-Red-Blend-568h@2x.png"; sourceTree = "<group>"; };
 		F03869ED1601893800D14B84 /* BG-Linen-Red-Blend-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend-568h.png"; path = "../../Resources/BG-Linen-Red-Blend-568h.png"; sourceTree = "<group>"; };
 		F03869EF16018A7F00D14B84 /* default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default-568h.png"; path = "../../Resources/default-568h.png"; sourceTree = "<group>"; };
-		F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F03A7F0B161291EF0049F27B /* MessageBubble-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-white@2x.png"; path = "../../Resources/MessageBubble-white@2x.png"; sourceTree = "<group>"; };
 		F03A7F0E1612A55B0049F27B /* MessageBubble-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-blue@2x.png"; path = "../../Resources/MessageBubble-blue@2x.png"; sourceTree = "<group>"; };
 		F03B1E391630E50000BC8B6E /* Intro-Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Chat.png"; path = "../../Resources/Intro-Chat.png"; sourceTree = "<group>"; };
@@ -797,6 +795,7 @@
 		F0795556161942E4004837AF /* GCPagedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPagedScrollView.m; sourceTree = "<group>"; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
 		F08A157F1608116000DDE5DB /* icon-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Email.png"; path = "../../Resources/icon-Email.png"; sourceTree = "<group>"; };
+		F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F09B3AD615DC6D7F009EF693 /* Overlay_OOB_BROWSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_BROWSE.png; path = ../../Resources/Overlay_OOB_BROWSE.png; sourceTree = "<group>"; };
 		F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_NAVIGATION.png; path = ../../Resources/Overlay_OOB_NAVIGATION.png; sourceTree = "<group>"; };
 		F09B3ADD15DC7AC1009EF693 /* TopFade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TopFade.png; path = ../../Resources/TopFade.png; sourceTree = "<group>"; };
@@ -1944,7 +1943,7 @@
 		F01C41EF14C7CB2F0079EB18 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */,
+				F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -2940,7 +2939,6 @@
 				750E482714C60EE400F7CCFC /* SPReachabilityPopupController.m in Sources */,
 				750E482C14C62FAA00F7CCFC /* SPMessagesViewController.m in Sources */,
 				F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */,
-				F01C41F214C7CB6E0079EB18 /* messageStorage.xcdatamodeld in Sources */,
 				75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */,
 				F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */,
 				F0ECCB8D14CA8D1E00739ADB /* SPBlockView.mm in Sources */,
@@ -3033,6 +3031,7 @@
 				F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */,
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
+				F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3229,8 +3228,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dmytro Yashkir";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dmytro Yashkir";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Renna";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ryan Renna";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libraries\"",
@@ -3252,8 +3251,8 @@
 					"\"$(SRCROOT)/Libraries/TestFlight\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E3626EC-2C06-470D-92A4-3BF73C90CFDB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3357,13 +3356,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		F01C41F014C7CB6E0079EB18 /* messageStorage.xcdatamodeld */ = {
+		F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */,
-				F01C41F114C7CB6E0079EB18 /* messageStorage.xcdatamodel */,
+				F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */,
 			);
-			currentVersion = F0397EDA1638E67B0064B6DA /* messageStorage 2.xcdatamodel */;
+			currentVersion = F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */;
 			path = messageStorage.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
