@@ -583,7 +583,7 @@ int currentTick = 0;
             if([stack count] < rowLimit)
             {
                 SPProfile* profile = [[SPProfileManager sharedInstance] nextProfile];
-                
+   
                 if(profile)
                 {
                     int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
@@ -622,14 +622,12 @@ int currentTick = 0;
                     [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_error];
                     
                 }
-                else
-                {
-                    //No more contacts - dismiss loading bar
-                    if(isLoading)
-                    {
-                        [self stopLoading];
-                    }
-                }
+            }
+            
+            //No more contacts - dismiss loading bar
+            if(isLoading && [[SPProfileManager sharedInstance] remainingProfiles] > 0)
+            {
+                [self stopLoading];
             }
         }
     }
