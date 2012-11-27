@@ -14,7 +14,6 @@
 #import "SPReachabilityPopupController.h"
 #import "SPHelpOverlayViewController.h"
 
-@protocol SPReachabilityPopupDelegate;
 @class SPStyledButton;
 
 typedef enum
@@ -24,7 +23,7 @@ typedef enum
     NAVIGATION_BASE_MODE
 } BASE_MODE;
 
-@interface SPBaseController : UIViewController <SPTabContainerDelegate,SPReachabilityPopupDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate>
+@interface SPBaseController : UIViewController <SPTabContainerDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate>
 {
     IBOutlet UIActivityIndicatorView* activityView;
     IBOutlet UIView* contentView;

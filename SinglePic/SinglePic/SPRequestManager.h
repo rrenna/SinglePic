@@ -17,8 +17,8 @@
 @property (readonly) NSString* userToken;
 
 //Reachability
--(void)checkInitialReachabilityWithCompletionHandler:(void (^)(AFNetworkReachabilityStatus status))status;
 -(void)EnableRealtimeReachabilityMonitoring;
+-(void)ManuallyRefreshReachability;
 //User Token Management
 -(void)setUserToken:(NSString *)userToken;
 -(void)setUserToken:(NSString *)userToken synchronize:(BOOL)synchronize;

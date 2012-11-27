@@ -6,14 +6,13 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "SPRequests.h"
+#import "AFHTTPClient.h"
 
-@protocol SPReachabilityPopupDelegate <NSObject>
--(void)reachabilityConfirmedForHostName:(NSString*)hostName;
-@end
+@class SPReachabilityPopupController;
 
 @interface SPReachabilityPopupController : NSObject <UIAlertViewDelegate>
--(SPReachabilityPopupController*)initWithDelegate:(id<SPReachabilityPopupDelegate>)delegate;
+-(SPReachabilityPopupController*)init;
 -(void)show;
+-(void)hide;
 @end

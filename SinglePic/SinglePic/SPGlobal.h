@@ -37,9 +37,9 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 #define TESTING_ADDRESS @"https://singlepicdating-staging.herokuapp.com/"
 
 //Beta expiry
-#define BETA_EXPIRY_YEAR 2012
-#define BETA_EXPIRY_MONTH 11
-#define BETA_EXPIRY_DAY 14
+#define BETA_EXPIRY_YEAR 2013
+#define BETA_EXPIRY_MONTH 01
+#define BETA_EXPIRY_DAY 30
 
 //Help
 typedef enum

@@ -9,17 +9,18 @@
 #import "SPRequestManager.h"
 #import "AFImageRequestOperation.h"
 #import "AFJSONRequestOperation.h"
+#import "SPReachabilityPopupController.h"
 
 #define USER_DEFAULT_KEY_USER_TOKEN @"USER_DEFAULT_KEY_USER_TOKEN"
 
 @interface SPRequestManager()
 {
+    SPReachabilityPopupController* reachabilityController;
     NSString* userToken; //Must be past into every request
 }
 @property (retain) AFHTTPClient* httpClient;
-@property (retain) UIAlertView* networkConnectivityAlertView;
--(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError;
 -(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError;
+-(void)refreshReachabilityAlert:(AFNetworkReachabilityStatus)status;
 @end
 
 @implementation SPRequestManager
@@ -41,44 +42,54 @@
     self = [super init];
     if(self)
     {
-
+        reachabilityController = [SPReachabilityPopupController new];
     }
     return self;
 }
 #pragma mark - Reachability
--(void)checkInitialReachabilityWithCompletionHandler:(void (^)(AFNetworkReachabilityStatus status))status
+-(void)EnableRealtimeReachabilityMonitoring
 {
     NSString* baseURL = [[SPSettingsManager sharedInstance] serverAddress];
     self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ] autorelease];
-    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];    
-    [self.httpClient setReachabilityStatusChangeBlock:status];
-}
--(void)EnableRealtimeReachabilityMonitoring
-{
+    [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
+    
     __unsafe_unretained SPRequestManager* weakSelf = self;
     [self.httpClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
-        if(status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown)
-        {
-            if(![weakSelf.httpClient.operationQueue isSuspended])
-            {
-                [weakSelf.httpClient.operationQueue setSuspended:YES];
-                
-                weakSelf.networkConnectivityAlertView = [[[UIAlertView alloc] initWithTitle:@"Connectivity Issue" message:@"Couldn't connect to SinglePic. Please ensure you have an active internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles: nil] autorelease];
-                [weakSelf.networkConnectivityAlertView show];
-            }
-           
-        }
-        else if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
-        {
-            if([weakSelf.httpClient.operationQueue isSuspended])
-            {
-                [weakSelf.httpClient.operationQueue setSuspended:NO];
-                [weakSelf.networkConnectivityAlertView dismissWithClickedButtonIndex:0 animated:YES];
-                weakSelf.networkConnectivityAlertView = nil;
-            }
-        }
+        [weakSelf refreshReachabilityAlert:status];
     }];
+}
+-(void)ManuallyRefreshReachability
+{
+    [self refreshReachabilityAlert:self.httpClient.networkReachabilityStatus];
+}
+-(void)refreshReachabilityAlert:(AFNetworkReachabilityStatus)status
+{
+    if(status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown)
+    {
+        if(![self.httpClient.operationQueue isSuspended])
+        {
+            [self.httpClient.operationQueue setSuspended:YES];
+        }
+        
+        [reachabilityController show];
+    }
+    else if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
+    {
+        if([self.httpClient.operationQueue isSuspended])
+        {
+            [self.httpClient.operationQueue setSuspended:NO];
+        }
+        
+        [reachabilityController hide];
+        
+        //Post a notification informing the system that we've confirmed reachability
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REACHABILITY_REACHABLE object:nil];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self refreshReachabilityAlert:self.httpClient.networkReachabilityStatus];
 }
 #pragma mark - User Token Management
 -(void)setUserToken:(NSString *)userToken

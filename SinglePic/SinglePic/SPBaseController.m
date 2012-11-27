@@ -11,7 +11,6 @@
 #import "SPMessageManager.h"
 #import "SPTabController.h"
 #import "SPBrowseViewController.h"
-#import "SPReachabilityPopupController.h"
 #import "SPSubscriptionsManager.h"
 #import "SPProfileViewController.h"
 #import "SPComposeViewController.h"
@@ -21,7 +20,7 @@
 @interface SPBaseController()
 {
     NSMutableArray* tabs;
-    SPReachabilityPopupController* reachabilityController;
+
     BASE_MODE baseMode_;
 }
 @property (retain) SPHelpOverlayViewController* helpOverlayController;
@@ -33,6 +32,8 @@
 -(void)updateNewMailAlert;
 -(void)flashNewConnectionAlert;
 -(void)validateReachability;
+-(void)reachabilityValidated;
+-(void)validateLocationServices;
 -(void)locationServicesValidated;
 -(void)navigationMode;
 -(void)registrationMode;
@@ -134,7 +135,6 @@
     if (self) 
     {
         tabs = [NSMutableArray new];
-        reachabilityController = [[SPReachabilityPopupController alloc] initWithDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userTypeChangedWithNotification:) name:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
@@ -162,7 +162,6 @@
     [tabs release];
     [registrationController release];
     [userController release];
-    [reachabilityController release]; 
     [navigationBar release];
     [miniProgressView release];
     [miniAvatarImage release];
@@ -433,8 +432,31 @@
 }
 -(void)validateReachability
 {
+    //We will ask to check network reachability and wait for a response.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityValidated) name:NOTIFICATION_REACHABILITY_REACHABLE object:nil];
+    
     //Validates the device can reach the internet
-    [reachabilityController show];
+    [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
+}
+-(void)reachabilityValidated
+{
+    //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
+    if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    {
+        [self validateLocationServices];
+    }
+    else
+    {
+        //If location services have been requested previously, proceed to the next step
+        [self locationServicesValidated];
+    }
+}
+-(void)validateLocationServices
+{
+    //If location services are not avaliable, and we've yet to ask the user for permission, we will ask permission and wait for a response.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationServicesValidated) name:NOTIFICATION_LOCATION_PERMISSION_UPDATED object:nil];
+        //Request permission to use iOS location services from the user, this will spawn a popup
+    [[SPLocationManager sharedInstance] requestLocationPermission];
 }
 //Proceed to this step after location services have been validatd, this is to prevent the UI from loading before the Location Services popup
 -(void)locationServicesValidated
@@ -518,25 +540,6 @@
     }
     
     [tab close];
-}
-#pragma mark - SPReachabilityView delegate methods
--(void)reachabilityConfirmedForHostName:(NSString*)hostName
-{
-    [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
-    
-    //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
-    if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
-    {
-        //If location services are not avaliable, and we've yet to ask the user for permission, we will ask permission and wait for a response.
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationServicesValidated) name:NOTIFICATION_LOCATION_PERMISSION_UPDATED object:nil];
-            //Request permission to use iOS location services from the user, this will spawn a popup
-        [[SPLocationManager sharedInstance] requestLocationPermission];
-    }
-    else
-    {
-        //If location services have been requested previously, proceed to the next step
-        [self locationServicesValidated];
-    }
 }
 #pragma mark - SPHelpOverlayViewControllerDelegate methods
 -(void)helpOverlayDidDismiss:(SPHelpOverlayViewController*)overlayController

@@ -8,6 +8,9 @@
 
 //Used to place information about SinglePic requests that other components may need to reference
 
+//Static Notifications
+static NSString* NOTIFICATION_REACHABILITY_REACHABLE = @"NOTIFICATION_REACHABILITY_REACHABLE";
+
 typedef enum
 {
     REQUEST_NAMESPACE_TOKENS = 0,
@@ -18,4 +21,3 @@ typedef enum
 } REQUEST_NAMESPACE;
 
 static NSString* REQUEST_NAMESPACES[5] = {@"tokens",@"users",@"usernames",@"buckets",@"versioncheck"};
-
