@@ -114,8 +114,14 @@
 -(void)removedProfileWithNotification:(NSNotification*)notification
 {
     SPProfile* profile = (SPProfile*)[notification object];
-    [likes_ removeObject:profile];
-    [tableView reloadData];
+
+    if([likes_ containsObject:profile])
+    {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:[likes_ indexOfObject:profile] inSection:0];
+        [likes_ removeObject:profile];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 #pragma mark - UITableViewDelegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -243,9 +249,6 @@
         //unlike profile. If successful, remove row
         [[SPProfileManager sharedInstance] removeProfile:profileToRemove fromLikesWithCompletionHandler:^
         {
-            [likes_ removeObject:profileToRemove];
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];    
-            
         } andErrorHandler:^
         {
 
