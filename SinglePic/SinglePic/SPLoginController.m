@@ -104,6 +104,19 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     }
 }
 #pragma mark - UITextFieldDelegate methods
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField == emailTextField)
+    {
+        //Shouldn't include a space
+        if([string rangeOfString:@" "].location != NSNotFound)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
 //Used to enable 'Next' button on email textfield
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
