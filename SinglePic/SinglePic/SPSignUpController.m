@@ -15,6 +15,14 @@
 static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED_VALUE_KEY";
 
 @interface SPSignUpController()
+{
+    SPOrientationChooser* orientationChooser;
+    int step;
+    //Step 3
+    BOOL userNameFieldValid;
+    BOOL emailFieldValid;
+    BOOL passwordsValid;
+}
 -(void)transitionToStep:(int)step;
 -(void)stepOneInitialization;
 -(void)stepTwoInitialization;

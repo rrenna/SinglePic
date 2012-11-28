@@ -12,7 +12,10 @@
 static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED_VALUE_KEY";
 
 @interface SPLoginController ()
-
+{
+    BOOL emailFieldValid;
+    BOOL passwordFieldValid;
+}
 @end
 
 @implementation SPLoginController
@@ -44,6 +47,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     if(emailFieldLastUsedValue)
     {
         emailTextField.text = emailFieldLastUsedValue;
+        emailFieldValid = true; //If we're pre-filling in the username, it passes validation automatically
         [passwordTextField becomeFirstResponder]; //Launch keyboard, edit password field
     }
     else
@@ -106,6 +110,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 #pragma mark - UITextFieldDelegate methods
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+     //Step 1 - Filter out invalid characters
     if(textField == emailTextField)
     {
         //Shouldn't include a space
@@ -114,6 +119,24 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
             return NO;
         }
     }
+    
+    //Step 2 - Re-calculate valid, update hint text
+    {
+        //New textfield value
+        NSString* newValue = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        if(textField == emailTextField)
+        {
+            emailFieldValid = ([newValue length] > 0);
+        }
+        else
+        {
+            passwordFieldValid = ([newValue length] > 0);
+            
+        }
+    }
+    
+    loginButton.enabled = (emailFieldValid && passwordFieldValid);
     
     return YES;
 }
@@ -132,5 +155,9 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
         [passwordTextField becomeFirstResponder];
     }
     return YES;
+}
+- (void)viewDidUnload {
+    [self setLoginButton:nil];
+    [super viewDidUnload];
 }
 @end

@@ -36,13 +36,6 @@
     IBOutlet UITableViewCell *firstNameTableViewCell;
     IBOutlet UITableViewCell *emailTableViewCell;
     IBOutlet UITableViewCell *passwordTableViewCell;
-@private
-    SPOrientationChooser* orientationChooser;
-    int step;
-    //Step 3
-    BOOL userNameFieldValid;
-    BOOL emailFieldValid;
-    BOOL passwordsValid;
 }
 //IBActions
 -(IBAction)start:(id)sender;
