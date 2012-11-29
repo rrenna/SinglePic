@@ -65,6 +65,8 @@
 #pragma mark - IBActions
 -(IBAction)edit:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Edit' button in the Likes screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [tableView setEditing:(!tableView.editing) animated:YES];
@@ -76,6 +78,7 @@
     if([likeTypeSegmentedControl selectedSegmentIndex] == 0)
     {
         //Likes
+        [Crashlytics setObjectValue:@"Clicked on the 'Likes' segment in the Likes screen." forKey:@"last_UI_action"];
         
         //Re-enable the edit button
         editButton.enabled = YES;
@@ -83,6 +86,8 @@
     else 
     {
         //Liked By
+        [Crashlytics setObjectValue:@"Clicked on the 'Likes Me' segment in the Likes screen." forKey:@"last_UI_action"];
+        
         //Disable EDIT mode of TableView - if active, and hide EDIT button
         [tableView setEditing:NO animated:YES];
         
@@ -209,6 +214,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [Crashlytics setObjectValue:@"Clicked on an individual profile row in the Likes screen." forKey:@"last_UI_action"];
+    
     SPProfile* profile;
     if([likeTypeSegmentedControl selectedSegmentIndex] == 0)
     {
@@ -223,6 +230,7 @@
     
     SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
     [baseController pushProfile:profile];
+    
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -243,6 +251,8 @@
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [Crashlytics setObjectValue:@"Clicked 'Unlike' on an individual profile row (revealed by a horizontal swipe) in the Likes screen." forKey:@"last_UI_action"];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         SPProfile* profileToRemove = [likes_ objectAtIndex:indexPath.row];

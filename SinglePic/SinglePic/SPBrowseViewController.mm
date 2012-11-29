@@ -167,6 +167,8 @@ static b2PrismaticJointDef shaftJoint;
 {
     if(!isRestarting)
     {
+        [Crashlytics setObjectValue:@"Pulled Browse screen down for more profiles - restarting." forKey:@"last_UI_action"];
+        
         isRestarting = YES;
         
         __unsafe_unretained SPBrowseViewController* weakSelf = self;
@@ -194,6 +196,13 @@ static b2PrismaticJointDef shaftJoint;
 
 -(IBAction)next:(id)sender
 {
+    #if defined (BETA)
+    [TestFlight passCheckpoint:@"Pulled Browse screen down for more profiles."];
+    #endif
+    
+    [Crashlytics setObjectValue:@"Pulled Browse screen down for more profiles." forKey:@"last_UI_action"];
+    
+    
     [SPSoundHelper playTap];
     
     [UIView animateWithDuration:0.5 animations:^
@@ -216,11 +225,17 @@ static b2PrismaticJointDef shaftJoint;
 {
     [SPSoundHelper playTap];
     
-    if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
+    if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
+    {
+        [Crashlytics setObjectValue:@"Selected Profile block in Browse screen (but is not signed in)" forKey:@"last_UI_action"];
+    }
+    else
     {
         #if defined (BETA)
         [TestFlight passCheckpoint:@"Viewed a profile"];
         #endif
+        
+        [Crashlytics setObjectValue:@"Selected Profile block in Browse screen" forKey:@"last_UI_action"];
         
         SPProfileViewController* profileController = [[[SPProfileViewController alloc] initWithProfile:blockView.data] autorelease];
         [self pushModalController:profileController];

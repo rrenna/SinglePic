@@ -40,6 +40,8 @@
 #pragma mark - IBOutlet
 -(IBAction)open:(id)sender
 {
+    [Crashlytics setObjectValue:@"Open the switch orientation control." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MAXIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
@@ -75,6 +77,8 @@
 }
 -(IBAction)change:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on an gender/preference in an opened switch orientation control." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     BOOL newSexSelected = (orientationChooser.chosenGender != [[SPProfileManager sharedInstance] myGender]);

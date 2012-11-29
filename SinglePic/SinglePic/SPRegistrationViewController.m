@@ -47,6 +47,8 @@
 #pragma mark - IBActions
 -(IBAction)spawnRegistrationScreen:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Register' button in the OOBE screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPBaseController* baseController = [SPAppDelegate baseController];
@@ -57,6 +59,8 @@
 }
 -(IBAction)spawnLoginScreen:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Login' button in the OOBE screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPBaseController* baseController = [SPAppDelegate baseController];

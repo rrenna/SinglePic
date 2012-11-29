@@ -154,7 +154,7 @@
     [super viewDidDisappear:animated];
 }
 -(void)close
-{    
+{
     [UIView animateWithDuration:0.3
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -176,6 +176,8 @@
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Close' button in a chat screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [self setFullscreen:NO animated:YES];
@@ -192,6 +194,8 @@
 }
 -(IBAction)send:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Send' button in a chat screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     _toolbar.inputButton.enabled = NO;

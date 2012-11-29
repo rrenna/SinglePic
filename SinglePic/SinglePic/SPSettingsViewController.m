@@ -44,6 +44,8 @@
 //Callbacks for selectors called by the MDAboutController (parent class)
 -(void)logout
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Logout' button in the Info screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [[SPProfileManager sharedInstance] logout];
@@ -51,6 +53,8 @@
 }
 -(void)switchEnvironment
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Switch Environment' button in the Info screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     if([[SPSettingsManager sharedInstance] environment] == ENVIRONMENT_TESTING)
@@ -73,6 +77,8 @@
 }
 -(void)setSoundEffectsEnabledWithControl:(id)control
 {
+    [Crashlytics setObjectValue:@"Switched on the 'Sound Effects' switch in the Info screen." forKey:@"last_UI_action"];
+    
     BOOL enabled;
     
     if([control respondsToSelector:@selector(isOn)])
@@ -87,6 +93,8 @@
 }
 -(void)setSaveToCameraRollEnabledWithControl:(id)control
 {
+    [Crashlytics setObjectValue:@"Switched on the 'Save Pics to Camera Roll' switch in the Info screen." forKey:@"last_UI_action"];
+    
     BOOL enabled;
     
     if([control respondsToSelector:@selector(isOn)])

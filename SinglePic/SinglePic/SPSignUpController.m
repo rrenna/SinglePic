@@ -87,6 +87,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 #pragma mark - IBActions
 -(IBAction)back:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Back' button in the Register screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     if(step == 3)
@@ -108,6 +110,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (IBAction)next:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Next' button in the Register screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     if(step == 1)
@@ -133,6 +137,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 //Leave Out of Box experience
 -(IBAction)start:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the final 'Next' button in the Register screen to create an account." forKey:@"last_UI_action"];
+    
     if([passwordField.text isEqualToString:confirmPasswordField.text])
     {
         NSString* chosenUsername = userNameField.text;
