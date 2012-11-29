@@ -67,12 +67,16 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (IBAction)back:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Back' button in the Login screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [self close];
 }
 - (IBAction)login:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Login' button in the Login screen." forKey:@"last_UI_action"];
+    
     loginButton.enabled = NO;
     
     [[SPProfileManager sharedInstance] loginWithEmail:emailTextField.text andPassword:passwordTextField.text andCompletionHandler:^(id responseObject)

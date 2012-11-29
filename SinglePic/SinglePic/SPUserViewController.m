@@ -80,6 +80,8 @@
 #pragma mark - IBActions
 -(IBAction)retakePic:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Photo' button in the My Profile screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPCameraController* cameraController = [[SPCameraController new] autorelease]; 
@@ -123,6 +125,8 @@
 }
 -(IBAction)editIcebreaker:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the icebreaker area in the My Profile screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPIcebreakerComposeViewController* icebreakerComposeController = [SPIcebreakerComposeViewController new];
@@ -134,6 +138,8 @@
 
 -(IBAction)viewImageExpiryHelp:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the image expiry countdown, spawning a Help overlay on the My Profile screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];

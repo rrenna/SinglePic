@@ -62,7 +62,6 @@
     self = [self initWithNibName:@"SPProfileViewController" bundle:nil];
     if(self)
     {
-
     }
     return self;
 }
@@ -92,6 +91,8 @@
 #pragma mark - IBActions
 -(IBAction)message:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on 'message' button in a Profile screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPComposeViewController* composeController = [[[SPComposeViewController alloc] initWithProfile:self.profile] autorelease];
@@ -100,7 +101,9 @@
     [self pushModalController:composeController];
 }
 -(IBAction)like:(id)sender
-{    
+{
+    [Crashlytics setObjectValue:@"Clicked on 'like' button in a Profile screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
 
     //Disable button until action is completed
@@ -133,6 +136,8 @@
 }
 -(IBAction)more:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on 'more' button in a Profile screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     UIActionSheet* profileMoreActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Block User" otherButtonTitles: nil];
@@ -178,10 +183,14 @@
     {
         if(buttonIndex == 0)
         {
+            [Crashlytics setObjectValue:@"Clicked on the 'No' button in the 'Unlike <username>' alert." forKey:@"last_UI_action"];
+            
             likeButton.enabled = YES;
         }
         else
         {
+            [Crashlytics setObjectValue:@"Clicked on the 'Yes' button in the 'Unlike <username>' alert." forKey:@"last_UI_action"];
+            
             [[SPProfileManager sharedInstance] removeProfile:profile fromLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;
@@ -196,6 +205,8 @@
     {
         if(buttonIndex > 0)
         {
+            [Crashlytics setObjectValue:@"Clicked on the 'Yes' button in the 'Block <username>' alert." forKey:@"last_UI_action"];
+            
             //Block User
             [[SPProfileManager sharedInstance] blockProfile:self.profile withCompletionHandler:^{
                 
@@ -204,7 +215,6 @@
             } andErrorHandler:^{ 
             }];
         }
-
     }
 }
 #pragma mark - UIActionSheetDelegate methods
@@ -212,10 +222,14 @@
 {
     if(buttonIndex == [actionSheet cancelButtonIndex])
     {
+        [Crashlytics setObjectValue:@"Clicked on the 'cancel' button in the 'more' action sheet." forKey:@"last_UI_action"];
+        
         // Do nothing
     }
     else if(buttonIndex == [actionSheet destructiveButtonIndex])
     {
+        [Crashlytics setObjectValue:@"Clicked on the 'block' button in the 'more' action sheet." forKey:@"last_UI_action"];
+        
         NSString* title = [NSString stringWithFormat:@"Block %@?",profile.username];
         self.blockUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:@"Are you sure you would like to block this person?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
         [self.blockUserAlertView show];

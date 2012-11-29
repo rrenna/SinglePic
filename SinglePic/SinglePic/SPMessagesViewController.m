@@ -53,11 +53,13 @@
 #pragma mark - IBActions
 -(IBAction)refresh:(id)sender
 {
-    [SPSoundHelper playTap];
-    
     #if defined (BETA)
-    [TestFlight passCheckpoint:@"Manually refreshed Messages"];
+    [TestFlight passCheckpoint:@"Clicked on the refresh button in the Messages screen."];
     #endif
+    
+    [Crashlytics setObjectValue:@"Clicked on the refresh button in the Messages screen." forKey:@"last_UI_action"];
+    
+    [SPSoundHelper playTap];
     
     refreshButton.hidden = YES;
     [activityView startAnimating];
@@ -65,6 +67,8 @@
 }
 -(IBAction)edit:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Edit' button in the Messages screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [tableView setEditing:(!tableView.editing) animated:YES];
@@ -160,6 +164,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [Crashlytics setObjectValue:@"Clicked on an individual profile row in the Messages screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -170,6 +176,8 @@
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [Crashlytics setObjectValue:@"Clicked 'Delete' on an individual profile row (revealed by a horizontal swipe) in the Messages screen." forKey:@"last_UI_action"];
+    
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
         NSArray* messageThreads = [[SPMessageManager sharedInstance] activeMessageThreads];

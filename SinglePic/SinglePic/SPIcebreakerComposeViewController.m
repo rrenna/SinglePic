@@ -36,12 +36,16 @@
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Cancel' button in the edit Icebreaker screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [self close];
 }
 -(IBAction)save:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the 'Save' button in the edit Icebreaker screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     saveButton.enabled = NO;

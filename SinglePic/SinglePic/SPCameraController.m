@@ -106,12 +106,16 @@
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the Close icon button in the Camera screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     [self close];
 }
 -(IBAction)switchCameras:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the Switch Camera icon button in the Camera screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     if([self.captureHelper canSwitchCamera])
@@ -121,6 +125,8 @@
 }
 -(IBAction)switchFlashMode:(id)sender
 {
+    [Crashlytics setObjectValue:@"Clicked on the Flash icon button in the Camera screen." forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     if([self.captureHelper canSetFlashMode])
@@ -142,6 +148,8 @@
 {
     //Perform alternative logic when running on the simulator
     #if TARGET_IPHONE_SIMULATOR
+    [Crashlytics setObjectValue:@"Clicked on the take picture button in the Camera screen - simulator." forKey:@"last_UI_action"];
+    
     UIImage* modifiedImage = [UIImage imageNamed:@"testingImage"];
     
     [cameraPreviewImageView setImage:modifiedImage borderWidth:6.0 shadowDepth:5.0 controlPointXOffset:83.3 controlPointYOffset:166.6];
@@ -159,6 +167,8 @@
     
     [self setMyPicture:modifiedImage];
     #else
+    [Crashlytics setObjectValue:@"Clicked on the take picture button in the Camera screen - device." forKey:@"last_UI_action"];
+    
     //Remove Preview
     [self.captureHelper.previewLayer removeFromSuperlayer];
     //Replace with all white layer

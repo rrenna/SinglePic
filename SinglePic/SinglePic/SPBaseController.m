@@ -174,6 +174,8 @@
     [TestFlight passCheckpoint:@"Switched to LIKES screen"]; 
     #endif
     
+    [Crashlytics setObjectValue:@"Switched to LIKES screen" forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     [self displayLikesView];
 }
@@ -183,6 +185,8 @@
     [TestFlight passCheckpoint:@"Switched to MY PROFILE screen"]; 
     #endif
     
+    [Crashlytics setObjectValue:@"Switched to MY PROFILE screen" forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     [self displayProfileView];
 }
@@ -191,6 +195,8 @@
     #if defined (BETA)
     [TestFlight passCheckpoint:@"Switched to MESSAGES screen"]; 
     #endif
+    
+    [Crashlytics setObjectValue:@"Switched to MESSAGES screen" forKey:@"last_UI_action"];
     
     [SPSoundHelper playTap];
     [self displayMessagesView];
@@ -203,6 +209,12 @@
 }
 -(IBAction)info:(id)sender
 {
+    #if defined (BETA)
+    [TestFlight passCheckpoint:@"Opened INFO screen"];
+    #endif
+    
+    [Crashlytics setObjectValue:@"Opened INFO screen" forKey:@"last_UI_action"];
+    
     [SPSoundHelper playTap];
     
     SPSettingsViewController* settingsController = [[SPSettingsViewController new] autorelease];
