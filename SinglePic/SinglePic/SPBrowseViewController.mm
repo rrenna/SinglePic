@@ -12,6 +12,7 @@
 #import "SPProfileViewController.h"
 #import "SPBlockView.h"
 #import <Box2D/Box2D.h> //Must be included AFTER MKMapKit or anything that includes MKMapKit
+#import <typeinfo>
 
 #define REFRESH_HEADER_HEIGHT 8.0f //52.0f
 #define BROWSE_ROW_LIMIT 5
@@ -65,7 +66,8 @@ static b2PrismaticJointDef shaftJoint;
 -(void)resumeAllStacks;
 -(void)resumeStack:(int)stackIndex;
 -(void)destroyBlockView:(SPBlockView*)blockView;
--(void)addBodyForBoxView:(SPBlockView *)boxView;
+-(void)addBodyForBoxView:(SPBlockView *)blockView;
+-(void)initializeBodyForBoxView:(SPBlockView *)blockView;
 -(void)removeProfileByID:(NSString*)profileID;
 -(int)currentTickCount;
 -(int)tickCountWithOffset:(int)offset;
@@ -300,6 +302,9 @@ static b2PrismaticJointDef shaftJoint;
 }
 -(void)createPhysicalBarrier
 {
+    //Ensure there's no physical barrier already created
+    [self destroyPhysicalBarrier];
+    
     // Define the dynamic body.
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
@@ -432,20 +437,32 @@ static b2PrismaticJointDef shaftJoint;
 -(void)destroyBlockView:(SPBlockView*)blockView
 {
     b2Body *body = (b2Body*)[blockView tag];
-    world->DestroyBody(body);
-    [blockView removeFromSuperview];
+    
+    if((int)[blockView tag] > 0 && body)
+    {
+        // Used the C++ Dynamic cast to ensure that the provided body is indeed an instance of b2Body, if so the result will be
+        // another pointer to the same b2Body, which can be destroyed by world successfully
+        b2Body *bodyCast = dynamic_cast<b2Body *>(body);
+        
+        if(bodyCast)
+        {
+            world->DestroyBody(body);
+            blockView.tag = -1;
+            [blockView removeFromSuperview];
+        }
+    }
 }
--(void)addBodyForBoxView:(SPBlockView *)boxView
+-(void)addBodyForBoxView:(SPBlockView *)blockView
 {
 	// Define the dynamic body.
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
     
-	CGPoint p = boxView.center;
-	CGPoint boxDimensions = CGPointMake(boxView.bounds.size.width/PTM_RATIO/2.0,boxView.bounds.size.height/PTM_RATIO/2.0);
+	CGPoint p = blockView.center;
+	CGPoint boxDimensions = CGPointMake(blockView.bounds.size.width/PTM_RATIO/2.0,blockView.bounds.size.height/PTM_RATIO/2.0);
     
 	bodyDef.position.Set(p.x/PTM_RATIO, (canvasView.frame.size.height - p.y)/PTM_RATIO);
-	bodyDef.userData = boxView;
+	bodyDef.userData = blockView;
     
 	// Tell the physics world to create the body
 	b2Body *body = world->CreateBody(&bodyDef);
@@ -466,11 +483,23 @@ static b2PrismaticJointDef shaftJoint;
     // a dynamic body reacts to forces right away
 	body->SetType(b2_dynamicBody);
     
-    shaftJoint.Initialize(groundBody, body, b2Vec2(0.0f, 17.0f), b2Vec2(0.0f, 1.0f));
-    boxView.joint = (b2PrismaticJoint*)world->CreateJoint(&shaftJoint);
-    
 	// we abuse the tag property as pointer to the physical body
-	boxView.tag = (int)body;
+	blockView.tag = (int)body;
+}
+-(void)initializeBodyForBoxView:(SPBlockView *)blockView
+{
+    if([blockView tag] == -1)
+    {
+        // If the blockView has it's tag set to -1, then it's b2Body was destroyed before it was initialized. During destruction
+        // it's tag was reset to -1.
+    }
+    else
+    {
+        b2Body* body = (b2Body*)[blockView tag];
+        shaftJoint.Initialize(groundBody, body, b2Vec2(0.0f, 17.0f), b2Vec2(0.0f, 1.0f));
+        blockView.joint = (b2PrismaticJoint*)world->CreateJoint(&shaftJoint);
+
+    }
 }
 int currentTick = 0;
 -(int)currentTickCount
@@ -618,17 +647,19 @@ int currentTick = 0;
                     
                     [stack addObject:blockView];
                     
+                    [self addBodyForBoxView:blockView];
+                    
                     __unsafe_unretained SPBrowseViewController* weakSelf = self;
                     id block_proceed = ^(UIImage *thumbnail)
                     {
-                        [weakSelf addBodyForBoxView:blockView];
+                        [self initializeBodyForBoxView:blockView];
                         [canvasView addSubview:blockView];
                         [canvasView sendSubviewToBack:blockView];
                         [weakSelf resumeStack:columnIndex];
                     };
                     id block_error = ^()
                     {
-                        [weakSelf addBodyForBoxView:blockView];
+                        [self initializeBodyForBoxView:blockView];
                         [canvasView addSubview:blockView];
                         [canvasView sendSubviewToBack:blockView];
                         [weakSelf resumeStack:columnIndex];
