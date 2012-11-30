@@ -173,9 +173,18 @@ static b2PrismaticJointDef shaftJoint;
         
         isRestarting = YES;
         
+        //Pause any further additional blocks from being dropped
+        [self pauseAllStacks];
+        
+        //If there are any remaining profiles in the browse screen, release them now
+        [self dropAllOnscreenBlocks];
+        
         __unsafe_unretained SPBrowseViewController* weakSelf = self;
         [[SPProfileManager sharedInstance] retrieveProfilesWithCompletionHandler:^(NSArray *profiles)
          {
+             //Resume dropping
+             [self resumeAllStacks];
+             
              //Currently used to stop infinite restart loops
              if([profiles count] > 0)
              {
@@ -191,6 +200,9 @@ static b2PrismaticJointDef shaftJoint;
          }
          andErrorHandler:^
          {
+             //Resume dropping
+             [self resumeAllStacks];
+             
              isRestarting = NO;
          }];
     }
