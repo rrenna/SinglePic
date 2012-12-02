@@ -37,6 +37,7 @@ static b2PrismaticJointDef shaftJoint;
     BOOL isDragging;
     BOOL isLoading;
     BOOL isDroping;
+    BOOL isThereProfileThatHaveDroppedThisIteration;
     __block BOOL isRestarting;
     NSTimer *dropTimer;
     NSMutableArray* queuedSelectorCalls;
@@ -642,6 +643,11 @@ int currentTick = 0;
    
                 if(profile)
                 {
+                    // If there are any profiles that queue themselves up for dropping, then we set a flag
+                    // this is because just knowing that we're loading or not doesn't tell us when to stop "loading"
+                    // finished loading is when all loaded profiles have been dropped.
+                    isThereProfileThatHaveDroppedThisIteration = YES;
+                    
                     int boxDimension = (int)(canvasView.frame.size.width / 3.0) - padding;
                     CGRect frame = CGRectMake(boxDimension * columnIndex + (padding * columnIndex), - 150, boxDimension, boxDimension);
                     
@@ -682,9 +688,21 @@ int currentTick = 0;
                 }
             }
             
+            
             //No more contacts - dismiss loading bar
-            if(isLoading && [[SPProfileManager sharedInstance] remainingProfiles] > 0)
+            if(isThereProfileThatHaveDroppedThisIteration)
             {
+                if([[SPProfileManager sharedInstance] remainingProfiles] > 0)
+                {
+                    isThereProfileThatHaveDroppedThisIteration = NO;
+                    [self stopLoading];
+                }
+
+            }
+            //If the loading has started - restarting is over, and no profiles have been been dropped this iteration
+            else if(isLoading && !isRestarting)
+            {
+                //Stop loading
                 [self stopLoading];
             }
         }
