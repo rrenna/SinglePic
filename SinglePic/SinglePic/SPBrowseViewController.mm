@@ -108,6 +108,9 @@ static b2PrismaticJointDef shaftJoint;
 }
 -(void)viewDidLoad
 {
+    //Localize the browse instruction label
+    browseInstructionsLabel.text = NSLocalizedString(@"Pull down for more...", @"");
+    
     //Sets up the browse screen's physics engine
     [self setup];
     //Set up 'pull to next' header

@@ -118,7 +118,7 @@
         if([[SPProfileManager sharedInstance] checkIsLiked:profile])
         {
             NSString* title = [NSString stringWithFormat:@"Unlike %@?",profile.username];
-            self.unlikeUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:@"Are you sure you would like to unlike this person?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+            self.unlikeUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:NSLocalizedString(@"Are you sure you would like to unlike this person?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil] autorelease];
             [self.unlikeUserAlertView show];
         }
         else
@@ -140,7 +140,7 @@
     
     [SPSoundHelper playTap];
     
-    UIActionSheet* profileMoreActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Block User" otherButtonTitles: nil];
+    UIActionSheet* profileMoreActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) destructiveButtonTitle:NSLocalizedString(@"Block User",nil) otherButtonTitles: nil];
     [profileMoreActionsSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     [profileMoreActionsSheet showInView:[[UIApplication sharedApplication] keyWindow]];
     [profileMoreActionsSheet release];
@@ -231,7 +231,7 @@
         [Crashlytics setObjectValue:@"Clicked on the 'block' button in the 'more' action sheet." forKey:@"last_UI_action"];
         
         NSString* title = [NSString stringWithFormat:@"Block %@?",profile.username];
-        self.blockUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:@"Are you sure you would like to block this person?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] autorelease];
+        self.blockUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:NSLocalizedString(@"Are you sure you would like to block this person?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil] autorelease];
         [self.blockUserAlertView show];
     }
     else

@@ -14,6 +14,16 @@
 "About Me" = "About Me";
 "My Profile" = "My Profile";
 "Likes" = "Likes";
+"Messages" = "Messages";
+"Register" = "Sign up with Email";
+"Cancel" = "Cancel";
+"Back" = "Back";
+"Next" = "Next";
+"Yes" = "Yes";
+"No" = "No";
+"Upload your first image!" = "Upload your first image! :)";
+"Upload a new Pic!" = "Upload a new Pic! :)";
+"Enter an Icebreaker" = "Enter an icebreaker :)";
 "Pull down for more..." = "Pull down for more...";
 "Look for singles in your area." = "Look for singles in your area.";
 "Chat" = "Chat";
@@ -23,3 +33,6 @@
 "A Fun Way To Meet Singles" = "A Fun Way To Meet Singles";
 "Sign up or log in." = "Sign up or log in.";
 "Where are you?" = "Where are you?";
+"Block User" = "Block User";
+"Are you sure you would like to block this person?" = "Are you sure you would like to block this person?";
+"Are you sure you would like to unlike this person?" = "Are you sure you would like to unlike this person?";

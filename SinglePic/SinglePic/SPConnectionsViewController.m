@@ -46,6 +46,9 @@
 }
 - (void)viewDidLoad
 {
+    //Localize Controls
+    titleLabel.text = NSLocalizedString(@"Likes", nil);
+    
     [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
     [editButton setStyle:STYLE_BASE];
@@ -264,5 +267,9 @@
 
         }];
     }
+}
+- (void)viewDidUnload {
+    titleLabel = nil;
+    [super viewDidUnload];
 }
 @end

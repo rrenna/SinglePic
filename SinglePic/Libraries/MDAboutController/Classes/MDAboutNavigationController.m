@@ -67,6 +67,8 @@
     
     if (self.parentViewController.class != [UITabBarController class]) {
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(hideAbout:)];
+        doneButton.title = NSLocalizedString(@"Back",nil);
+        
         self.aboutController.navigationItem.rightBarButtonItem = doneButton;
         [doneButton release];
     }

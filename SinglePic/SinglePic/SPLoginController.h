@@ -9,8 +9,11 @@
 #import "SPTabContentViewController.h"
 
 @interface SPLoginController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
-
+{
+    __weak IBOutlet SPLabel *titleLabel;
+}
 @property (retain, nonatomic) IBOutlet SPStyledButton *loginButton;
+@property (retain, nonatomic) IBOutlet SPStyledButton *backButton;
 @property (retain, nonatomic) IBOutlet SPStyledView* headerStyledView;
 @property (retain, nonatomic) IBOutlet UITextField *emailTextField;
 @property (retain, nonatomic) IBOutlet UITextField *passwordTextField;

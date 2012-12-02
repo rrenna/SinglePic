@@ -37,6 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Localized Controls
+    titleLabel.text = NSLocalizedString(@"Messages", nil);
+    
     [insetView setStyle:STYLE_BASE];
         //[refreshButton setStyle:STYLE_BASE];
     [editButton setStyle:STYLE_BASE];
@@ -186,5 +190,9 @@
 
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];           
     }
+}
+- (void)viewDidUnload {
+    titleLabel = nil;
+    [super viewDidUnload];
 }
 @end

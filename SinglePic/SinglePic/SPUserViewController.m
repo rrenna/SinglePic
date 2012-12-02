@@ -43,6 +43,9 @@
 }
 - (void)viewDidLoad
 {
+    //Localized Controls
+    titleLabel.text = NSLocalizedString(@"My Profile",nil);
+    
     [super viewDidLoad];
     
     [self updateImage];
@@ -168,7 +171,7 @@
     if([myIcebreaker isEqualToString:@""])
     {
         icebreakerLabel.textColor = [UIColor grayColor];
-        icebreakerLabel.text = @"Enter an icebreaker :)";
+        icebreakerLabel.text = NSLocalizedString(@"Enter an Icebreaker", nil);
     }
     else
     {
@@ -185,7 +188,7 @@
     if(!expiryDate)
     {
         progressView.progress = 0.0;
-        progressView.progressStatus = @"Upload your first image! :)";
+        progressView.progressStatus = NSLocalizedString(@"Upload your first image!", nil);
     }
     else
     {
@@ -194,7 +197,7 @@
         //If the picture is expired
         if(progress <= 0.0)
         {
-            progressView.progressStatus = @"Upload a new Pic! :)";
+            progressView.progressStatus = NSLocalizedString(@"Upload a new Pic!", nil);
         }
         //If the picture is not expired
         else 
@@ -207,5 +210,9 @@
 -(void)updateEmail
 {
     userEmailLabel.text = [[SPProfileManager sharedInstance] myEmail];
+}
+- (void)viewDidUnload {
+    titleLabel = nil;
+    [super viewDidUnload];
 }
 @end

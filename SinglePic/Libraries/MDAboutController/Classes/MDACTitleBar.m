@@ -68,7 +68,7 @@
         doneButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [doneButton setBackgroundImage:[UIImage imageNamed:@"MDACDoneButton.png"] forState:UIControlStateNormal];
             //[doneButton setBackgroundImage:[UIImage imageNamed:@"MDACDoneButtonPressed.png"] forState:UIControlStateHighlighted];
-        [doneButton setTitle:@"Done" forState:UIControlStateNormal];
+        [doneButton setTitle:NSLocalizedString(@"Back",nil) forState:UIControlStateNormal];
         [doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [doneButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.6] forState:UIControlStateNormal];
         doneButton.titleLabel.shadowOffset = CGSizeMake(0, -1);

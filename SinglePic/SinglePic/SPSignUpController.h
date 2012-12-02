@@ -15,6 +15,7 @@
 @interface SPSignUpController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SPLocationChooserDelegate>
 {
     IBOutlet UIView *contentView;
+    __weak IBOutlet SPLabel *titleLabel;
     IBOutlet SPStyledButton *backButton;
     IBOutlet SPStyledButton *nextButton;
     IBOutlet SPStyledView* signupHeaderView;

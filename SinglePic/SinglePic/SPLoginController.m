@@ -21,6 +21,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 @implementation SPLoginController
 @synthesize headerStyledView;
 @synthesize loginButton;
+@synthesize backButton;
 @synthesize emailTextField;
 @synthesize passwordTextField;
 @synthesize passwordTableViewCell;
@@ -36,6 +37,11 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (void)viewDidLoad
 {
+    //Localize Controls
+    titleLabel.text = NSLocalizedString(@"Login",nil);
+    [loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
+    [backButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
+    
     [super viewDidLoad];
     [loginButton setStyle:STYLE_CONFIRM_BUTTON];
     [headerStyledView setStyle:STYLE_TAB];
@@ -63,6 +69,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     [passwordTableViewCell release];
     [emailTableViewCell release];
     [loginButton release];
+    [backButton release];
     [super dealloc];
 }
 - (IBAction)back:(id)sender
@@ -162,6 +169,9 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (void)viewDidUnload {
     [self setLoginButton:nil];
+    [self setBackButton:nil];
+    [self setTitleLabel:nil];
+    titleLabel = nil;
     [super viewDidUnload];
 }
 @end

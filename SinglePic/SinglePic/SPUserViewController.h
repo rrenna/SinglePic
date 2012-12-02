@@ -15,6 +15,7 @@
 
 @interface SPUserViewController : UIViewController <UIImagePickerControllerDelegate>
 {
+    __weak IBOutlet SPLabel *titleLabel;
     IBOutlet SPStyledView* insetView;
     IBOutlet SPStyledProgressView* progressView;
     IBOutlet SPStackPanel* userStackPanel;

@@ -12,6 +12,7 @@
 
 @interface SPMessagesViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
+    __weak IBOutlet SPLabel *titleLabel;
     IBOutlet SPStyledView* insetView;
     IBOutlet SPStyledButton* refreshButton;
     IBOutlet SPStyledButton* editButton;

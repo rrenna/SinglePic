@@ -54,6 +54,11 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 {
     [super viewDidLoad];
     
+    //Localize Controls
+    titleLabel.text = NSLocalizedString(@"Registration",nil);
+    [nextButton setTitle:NSLocalizedString(@"Next", nil) forState:UIControlStateNormal];
+    [backButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
+    
     [nextButton setStyle:STYLE_TAB];
     [signupHeaderView setStyle:STYLE_TAB];
     
@@ -82,6 +87,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     contentView = nil;
     [signupFormTable release];
     signupFormTable = nil;
+    titleLabel = nil;
     [super viewDidUnload];
 }
 #pragma mark - IBActions

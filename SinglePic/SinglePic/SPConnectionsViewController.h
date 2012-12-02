@@ -10,6 +10,7 @@
 
 @interface SPConnectionsViewController : UIViewController
 {
+    __weak IBOutlet SPLabel *titleLabel;
     IBOutlet SPStyledView* insetView;
     IBOutlet SPStyledSegmentedControl* likeTypeSegmentedControl;
     IBOutlet SPStyledButton* editButton;
