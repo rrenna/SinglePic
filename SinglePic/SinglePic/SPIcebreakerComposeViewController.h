@@ -11,6 +11,7 @@
 @interface SPIcebreakerComposeViewController : SPTabContentViewController <UITextViewDelegate>
 {
     IBOutlet SPStyledView* topBarView;
+    __weak IBOutlet SPLabel *titleLabel;
     IBOutlet SPStyledButton* cancelButton;
     IBOutlet SPStyledButton* saveButton;
     IBOutlet UITextView* textView;

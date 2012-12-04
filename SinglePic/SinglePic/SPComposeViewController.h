@@ -17,6 +17,7 @@
 @interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource,UIInputToolbarDelegate,UIExpandingTextViewDelegate>
 {
     IBOutlet SPStyledView* topBarView;
+    __weak IBOutlet SPStyledButton *closeButton;
     IBOutlet UIImageView* imageView;
     IBOutlet UILabel *usernameLabel;
     IBOutlet UITableView *tableView;

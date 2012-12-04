@@ -11,6 +11,9 @@
 @interface SPLoginController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     __weak IBOutlet SPLabel *titleLabel;
+    __weak IBOutlet UILabel *emailLabel;
+    __weak IBOutlet UILabel *passwordLabel;
+    __weak IBOutlet SPLabel *taglineLabel;
 }
 @property (retain, nonatomic) IBOutlet SPStyledButton *loginButton;
 @property (retain, nonatomic) IBOutlet SPStyledButton *backButton;

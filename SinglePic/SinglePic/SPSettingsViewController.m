@@ -107,7 +107,7 @@
 -(void)addLogoutButton
 {
     MDACListCredit* appOptionsListCredit = [MDACListCredit listCreditWithTitle:@""];
-    MDACCreditItem* logoutCreditItem = [MDACCreditItem itemWithName:@"Logout" role:@"" linkString:@"selector:logout"];
+    MDACCreditItem* logoutCreditItem = [MDACCreditItem itemWithName:NSLocalizedString(@"Logout",nil) role:@"" linkString:@"selector:logout"];
     [appOptionsListCredit addItem:logoutCreditItem];
     [self insertCredit:appOptionsListCredit  atIndex:2];
 }

@@ -6,9 +6,16 @@
 
 */
 
-
+"Version" = "Version";
 "Login" = "Login";
+"Logout" = "Logout";
+"Username" = "Username";
+"Email" = "Email";
+"Password" = "Password";
+"Repeat Password" = "Confirm";
+"Required" = "Required";
 "Registration" = "Registration";
+"About" = "About";
 "Browse" = "Browse";
 "Sign Up" = "Sign Up";
 "About Me" = "About Me";
@@ -19,13 +26,28 @@
 "Cancel" = "Cancel";
 "Back" = "Back";
 "Next" = "Next";
+"Save" = "Save";
 "Yes" = "Yes";
 "No" = "No";
+"Edit" = "Edit";
+"I Like" = "Likes";
+"Likes Me" = "Likes Me";
+"Unlike" = "Unlike";
+"Send" = "Send";
+"Sound Effects" = "Sound Effects";
+"Save to Camera Roll" = "Save to Camera Roll";
+"I'm a male seeking a female" = "I'm a male seeking a female";
+"I'm a female seeking a female" = "I'm a female seeking a female";
+"I'm a female seeking a male" = "I'm a female seeking a male";
+"I'm a male seeking a male" = "I'm a male seeking a male";
+"Enter a Message" = "Enter a Message";
 "Upload your first image!" = "Upload your first image! :)";
 "Upload a new Pic!" = "Upload a new Pic! :)";
 "Enter an Icebreaker" = "Enter an icebreaker :)";
 "Pull down for more..." = "Pull down for more...";
 "Look for singles in your area." = "Look for singles in your area.";
+"You must have a Pic set to send a message" = "You must have a Pic set to send a message";
+"You must update your expired Pic to send a message" = "You must update your expired Pic to send a message";
 "Chat" = "Chat";
 "Say hello. Start a conversation and see where it leads." = "Say hello. Start a conversation and see where it leads.";
 "Real People. Real Pics." = "Real People. Real Pics.";

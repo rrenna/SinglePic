@@ -78,7 +78,7 @@
 -(id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        [self setupToolbar:@"Send"];
+        [self setupToolbar:NSLocalizedString(@"Send",nil)];
     }
     return self;
 }
@@ -86,7 +86,7 @@
 -(id)init
 {
     if ((self = [super init])) {
-        [self setupToolbar:@"Send"];
+        [self setupToolbar:NSLocalizedString(@"Send",nil)];
     }
     return self;
 }

@@ -21,6 +21,11 @@
 {
     [super viewDidLoad];
     
+    //Localize Controls
+    titleLabel.text = NSLocalizedString(@"About Me", nil);
+    [cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
+    [saveButton setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
+    
     //Look and Feel
     [topBarView setStyle:STYLE_TAB];
     [cancelButton setStyle:STYLE_TAB];
@@ -86,5 +91,9 @@
     }
     
     return YES;
+}
+- (void)viewDidUnload {
+    titleLabel = nil;
+    [super viewDidUnload];
 }
 @end

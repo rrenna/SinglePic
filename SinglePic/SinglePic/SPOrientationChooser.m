@@ -93,6 +93,7 @@
     NSString* preferenceName = GENDER_NAMES[preference];
     NSString* genderInitial = [genderName substringToIndex:1];
     NSString* preferenceInitial = [preferenceName substringToIndex:1];
+    NSString* genderPreferenceKey = [NSString stringWithFormat:@"I'm a %@ seeking a %@", genderName, preferenceName ];
     
     UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
     
@@ -119,7 +120,7 @@
     buttonLabel.backgroundColor = [UIColor clearColor];
     buttonLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:11];
     buttonLabel.textAlignment = UITextAlignmentCenter;
-    buttonLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@", genderName, preferenceName ];
+    buttonLabel.text = NSLocalizedString(genderPreferenceKey, nil);
     [self.buttonTitles addObject:buttonLabel];
     
     //Right Checkmark (selection indicator)

@@ -140,14 +140,12 @@
     NSString* preferenceName = GENDER_NAMES[preference];
     NSString* genderInitial = [genderName substringToIndex:1];
     NSString* preferenceInitial = [preferenceName substringToIndex:1];
-
+    NSString* genderPreferenceKey = [NSString stringWithFormat:@"I'm a %@ seeking a %@", genderName, preferenceName ];
+    
     NSString* iconFileName = [NSString stringWithFormat:@"Orientation-%@s%@-selected.png",[genderInitial capitalizedString],[preferenceInitial capitalizedString]];
     
     orientationIcon.image = [UIImage imageNamed:iconFileName];
-    
-    
-    
-    orientationLabel.text = [NSString stringWithFormat:@"I'm a %@ seeking a %@",genderName,preferenceName];
+    orientationLabel.text = NSLocalizedString(genderPreferenceKey, nil);
 }
 #pragma mark - SPOrientationChooserViewDelegate methods
 -(void)orientationChooserSelectionChanged:(SPOrientationChooser*)chooser

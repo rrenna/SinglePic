@@ -110,20 +110,23 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         
         // Former makes about string too long
         //self.navigationItem.title = [NSString stringWithFormat:@"About %@", appName];
-        self.navigationItem.title = @"About";
+        self.navigationItem.title = NSLocalizedString(@"About",nil);
         
         NSString *bundleShortVersionString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        NSString *bundleVersionString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
         
-        if (bundleShortVersionString && bundleVersionString) {
+        //NOTE: Modified library to only display short version string and leave out the bundle version.
+        // Also added localization of "Version".
+        //NSString *bundleVersionString = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        
+        /*f (bundleShortVersionString && bundleVersionString) {
             versionString = [NSString stringWithFormat:@"Version %@ (%@)",
                              bundleShortVersionString,
                              bundleVersionString];
-        } else if (bundleShortVersionString) {
-            versionString = [NSString stringWithFormat:@"Version %@", bundleShortVersionString];
-        } else if (bundleVersionString) {
+        } else if (bundleShortVersionString) {*/
+            versionString = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Version",nil),bundleShortVersionString];
+            /*} else if (bundleVersionString) {
             versionString = [NSString stringWithFormat:@"Version %@", bundleVersionString];
-        }
+        }*/
 		
         UIImage *icon = nil;
         

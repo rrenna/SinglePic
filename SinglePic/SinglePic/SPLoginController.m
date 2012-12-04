@@ -39,8 +39,13 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 {
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Login",nil);
+    taglineLabel.text = NSLocalizedString(@"A Fun Way To Meet Singles", nil);
     [loginButton setTitle:NSLocalizedString(@"Login", nil) forState:UIControlStateNormal];
     [backButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
+    emailLabel.text = NSLocalizedString(@"Email", nil);
+    passwordLabel.text = NSLocalizedString(@"Password", nil);
+    emailTextField.placeholder = NSLocalizedString(@"Required", nil);
+    passwordTextField.placeholder = NSLocalizedString(@"Required", nil);
     
     [super viewDidLoad];
     [loginButton setStyle:STYLE_CONFIRM_BUTTON];
@@ -172,6 +177,10 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     [self setBackButton:nil];
     [self setTitleLabel:nil];
     titleLabel = nil;
+    [self setEmailLabel:nil];
+    emailLabel = nil;
+    passwordLabel = nil;
+    taglineLabel = nil;
     [super viewDidUnload];
 }
 @end

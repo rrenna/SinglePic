@@ -56,8 +56,18 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Registration",nil);
+    tagline1Label.text = NSLocalizedString(@"A Fun Way To Meet Singles", nil);
+    tagline2Label.text = NSLocalizedString(@"A Fun Way To Meet Singles", nil);
     [nextButton setTitle:NSLocalizedString(@"Next", nil) forState:UIControlStateNormal];
     [backButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
+    usernameLabel.text = NSLocalizedString(@"Username", nil);
+    emailLabel.text = NSLocalizedString(@"Email", nil);
+    passwordLabel.text = NSLocalizedString(@"Password", nil);
+    confirmPasswordLabel.text = NSLocalizedString(@"Repeat Password", nil);
+    userNameField.placeholder = NSLocalizedString(@"Required", nil);
+    emailField.placeholder = NSLocalizedString(@"Required", nil);
+    passwordField.placeholder = NSLocalizedString(@"Required", nil);
+    confirmPasswordField.placeholder = NSLocalizedString(@"Required", nil);
     
     [nextButton setStyle:STYLE_TAB];
     [signupHeaderView setStyle:STYLE_TAB];
@@ -88,6 +98,12 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     [signupFormTable release];
     signupFormTable = nil;
     titleLabel = nil;
+    emailLabel = nil;
+    usernameLabel = nil;
+    passwordLabel = nil;
+    confirmPasswordLabel = nil;
+    tagline1Label = nil;
+    tagline2Label = nil;
     [super viewDidUnload];
 }
 #pragma mark - IBActions

@@ -22,13 +22,19 @@
     
     //Step 1
     IBOutlet UIView* stepOneView;
+    __weak IBOutlet UILabel *tagline1Label;
     //Step 2
     IBOutlet UIView* stepTwoView;
+    __weak IBOutlet SPLabel *tagline2Label;
     //Step 3
     IBOutlet UIView* stepThreeView;
+    __weak IBOutlet SPLabel *usernameLabel;
     IBOutlet UITextField* userNameField;
+    __weak IBOutlet SPLabel *emailLabel;
     IBOutlet UITextField* emailField;
+    __weak IBOutlet SPLabel *passwordLabel;
     IBOutlet UITextField* passwordField;
+    __weak IBOutlet SPLabel *confirmPasswordLabel;
     IBOutlet UITextField* confirmPasswordField;
     IBOutlet UILabel* userNameHintLabel;
     IBOutlet UILabel* emailHintLabel;

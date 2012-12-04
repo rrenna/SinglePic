@@ -58,7 +58,6 @@
         title.opaque = NO;
         title.textAlignment = UITextAlignmentCenter;
         title.textColor = [UIColor whiteColor];
-        title.text = @"About";
         title.shadowColor = [UIColor colorWithWhite:0 alpha:0.6];
         title.shadowOffset = CGSizeMake(0, -1);
         [self addSubview:title];

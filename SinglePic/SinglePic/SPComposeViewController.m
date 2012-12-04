@@ -97,6 +97,9 @@
 {
     [super viewDidLoad];
     
+    //Localize Controls
+    [closeButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
+    
     if(self.profile)
     {
         [self profileLoaded];
@@ -106,7 +109,7 @@
     
     _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height, window.width, INPUT_TOOLBAR_SIZE)];
     _toolbar.delegate = self;
-    _toolbar.textView.placeholder = @"Enter a message";
+    _toolbar.textView.placeholder = NSLocalizedString(@"Enter a Message", nil);
     
     [window addSubview:_toolbar];
     
@@ -520,15 +523,19 @@
         
         if(![[SPProfileManager sharedInstance] isImageSet])
         {
-            [SVProgressHUD dismissWithError:@"You must have a Pic set to send a message." afterDelay:2.0];
+            [SVProgressHUD dismissWithError:NSLocalizedString(@"You must have a Pic set to send a message", nil) afterDelay:2.0];
         }
         else if([[SPProfileManager sharedInstance] isImageExpired])
         {
-            [SVProgressHUD dismissWithError:@"You must update your expired Pic to send a message." afterDelay:2.0];
+            [SVProgressHUD dismissWithError:NSLocalizedString(@"You must update your expired Pic to send a message",nil) afterDelay:2.0];
         }
         
         return NO;
     }
 }
 
+- (void)viewDidUnload {
+    closeButton = nil;
+    [super viewDidUnload];
+}
 @end

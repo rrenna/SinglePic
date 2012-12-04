@@ -40,6 +40,7 @@
     
     //Localized Controls
     titleLabel.text = NSLocalizedString(@"Messages", nil);
+    [editButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
     
     [insetView setStyle:STYLE_BASE];
         //[refreshButton setStyle:STYLE_BASE];
@@ -166,7 +167,7 @@
 
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [Crashlytics setObjectValue:@"Clicked on an individual profile row in the Messages screen." forKey:@"last_UI_action"];
     

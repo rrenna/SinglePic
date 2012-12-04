@@ -48,6 +48,9 @@
 {
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Likes", nil);
+    [editButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
+    [likeTypeSegmentedControl setTitle:NSLocalizedString(@"I Like", nil) forSegmentAtIndex:0];
+    [likeTypeSegmentedControl setTitle:NSLocalizedString(@"Likes Me", nil) forSegmentAtIndex:1];
     
     [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
@@ -250,7 +253,7 @@
 }
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"Unlike";
+    return NSLocalizedString(@"Unlike",nil);
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
