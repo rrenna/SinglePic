@@ -25,7 +25,7 @@ static BOOL soundEffectsEnabledInApp; //Cache the setting to avoid extra message
 {
     NSURL *tapSoundURL = [[NSBundle mainBundle] URLForResource: @"tap" withExtension: @"wav"];
     NSURL* alertSoundURL = [[NSBundle mainBundle] URLForResource: @"alert" withExtension: @"wav"];
-    soundEffectsEnabledInApp = NO;//Default value
+    soundEffectsEnabledInApp = [[SPSettingsManager sharedInstance] soundEffectsEnabled];
     
     tapSoundURLRef = (__bridge CFURLRef) tapSoundURL;
     alertSoundURLRef = (__bridge CFURLRef) alertSoundURL;
