@@ -8,6 +8,13 @@
 
 #import "SPPageContentDelegate.h"
 
+typedef enum
+{
+    SHEET_STATE_MINIMIZED,
+    SHEET_STATE_MAXIMIZED,
+    SHEET_STATE_FULLSCREEN
+} SHEET_STATE;
+
 @interface SPSheetController : UIViewController <UIGestureRecognizerDelegate>
 {
     IBOutlet UIView* transparentInsetView;

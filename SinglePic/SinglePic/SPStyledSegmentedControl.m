@@ -42,7 +42,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if(self)
-    {        
+    {
         [self setupLayers:STYLE_DEFAULT];
         [self setStyle:STYLE_DEFAULT];
         //self.height = 35;
@@ -562,9 +562,11 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	if (![self _mustCustomize]) {
+	if (![self _mustCustomize])
+    {
 		[super touchesBegan:touches withEvent:event];
-	} else {
+	} else
+    {
 		CGPoint point = [[touches anyObject] locationInView:self];
 		int itemIndex = floor(self.numberOfSegments * point.x / self.bounds.size.width);
 		self.selectedSegmentIndex = itemIndex;
