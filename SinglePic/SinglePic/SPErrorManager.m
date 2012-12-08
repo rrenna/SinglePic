@@ -15,6 +15,7 @@
     NSMutableArray* errorQueue;
     NSArray* knownErrors; // Known errors are url + httpMethod + error code combinations that when reported are given special treatment
 }
+-(void)handleError:(NSError*)error withTitle:(NSString*)title body:(NSString*)body alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting;
 -(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting;
 -(void)reportError:(NSError*)error;
 @end
@@ -29,48 +30,54 @@
         
         //Registration Errors
         //-- Problem assigning bucket
-        SPWebServiceErrorProfile* bucketInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"users" andServerError:@"no such bucket" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
-        {
-            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration couldn't be completed" Description:@"There was a problem when we tried to create your account. If this problem persists please contact us."];
+        SPWebServiceErrorProfile* bucketInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"users" andServerError:@"no such bucket" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error) {
+                [[SPErrorManager sharedInstance] alertWithTitle:@"Registration couldn't be completed" Description:@"There was a problem when we tried to create your account. If this problem persists please contact us."];
         }];
         //-- Email already exists
-        SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"users"  andServerError:@"email exists" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        SPWebServiceErrorProfile* emailTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"users"  andServerError:@"email exists" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email is already taken. Please try again."];
         }];
         //-- Email is invalid
-        SPWebServiceErrorProfile* emailInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"users"  andServerError:@"email invalid" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        SPWebServiceErrorProfile* emailInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"users"  andServerError:@"email invalid" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
        {
            [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This email appears to be invalid. Please try again."];
        }];
        //-- Username already exists
-        SPWebServiceErrorProfile* usernameTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"users"  andServerError:@"username exists" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        SPWebServiceErrorProfile* usernameTakenProfile = [SPWebServiceErrorProfile profileWithURLString:@"users"  andServerError:@"username exists" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Registration information is invalid" Description:@"This username is already taken. Please try again."];
         }];
         //Login Erors
-        SPWebServiceErrorProfile* loginInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens"  andServerError:@"authentication failed" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        SPWebServiceErrorProfile* loginInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens"  andServerError:@"authentication failed" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Login/Password" Description:@"This doesn't appear to be a valid email and password combination."];
         }];
-        SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens" andServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^
+        SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens" andServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^(NSError * error)
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Login Expired" Description:@"Your login session has expired. You may have logged in on another device, please log in."];
         }];
-        SPWebServiceErrorProfile* emailEmailProfile = [SPWebServiceErrorProfile profileWithURLString:@"token"  andServerError:@"not an email" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^
+        SPWebServiceErrorProfile* emailEmailProfile = [SPWebServiceErrorProfile profileWithURLString:@"token"  andServerError:@"not an email" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
         {
             [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Email" Description:@"This doesn't appear to be a valid email address."];
         }];
         
+        //Upload Errors
+        //-- Problem downloading user's full image
+        SPErrorProfile* downloadPhotoProfile = [SPErrorProfile profileWithURLString:@"http://singlepic_image_test.s3.amazonaws.com/full/" andErrorHandler:^(NSError * error) {
+            
+            [[SPErrorManager sharedInstance] handleError:error withTitle:@"Cannot Access Image" body:@"We're sorry but there was a problem accessing an online image. Please try again and report this issue if it persists." alertUser:YES allowReporting:YES];
+        }];
+        
         errorQueue = [NSMutableArray new];
-        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,emailEmailProfile,nil];
+        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,emailEmailProfile,downloadPhotoProfile,nil];
     }
     return self;
 }
 #pragma mark
 -(void)alertWithTitle:(NSString*)title Description:(NSString*)description
 {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
 
     [alert show];
     [alert release];
@@ -97,8 +104,8 @@
     {
         if([errorProfile evaluateError:error])
         {
-            [errorProfile handle];
-                //Set flag
+            [errorProfile handleError:error];
+            //Set flag
             handled = YES;
             break;
         }
@@ -110,8 +117,8 @@
     }
 }
 #pragma mark - Private methods
--(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
-{ 
+-(void)handleError:(NSError*)error withTitle:(NSString*)title body:(NSString*)body alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
+{
     #ifdef BETA
     //Log on Testflight
     TFLog(@"Unknown Error: %@",[error localizedDescription]);
@@ -122,34 +129,39 @@
     NSLog(@"Unknown Error: %@",[error localizedDescription]);
     #endif
     
+    if(!error) //Shouldn't happen, but we don't want error handling code to, itself, crash
+    {
+        error = [NSError errorWithDomain:@"No error was provided to be handled." code:0 userInfo:nil];
+    }
+    
     //Store Error
     [errorQueue addObject:error];
     
-    //Alert user
+        //Alert user
     if(alertUser)
     {
         NSString* alertTitle;
         NSString* alertBody;
         
-        if([[SPSettingsManager sharedInstance] shouldDisplayVerboseErrors])
+        if([[SPSettingsManager sharedInstance] displayVerboseErrorsEnabled])
         {
             alertTitle = [error localizedFailureReason];
             alertBody = [error localizedDescription];
         }
         else
         {
-            alertTitle = @"We're Sorry";
-            alertBody = @"We had a problem connecting to the SinglePic server. Plase report this issue if it persists.";
+            alertTitle = title;
+            alertBody = body;
         }
         
         UIAlertView* failureAlert;
         if(allowReporting)
         {
-            failureAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertBody delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:ALERT_BUTTON_TITLE_REPORT,nil];
+            failureAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertBody delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:ALERT_BUTTON_TITLE_REPORT,nil];
         }
         else
         {
-            failureAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertBody delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            failureAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertBody delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
         }
         
         failureAlert.tag = error; //Index of current error, used to identify the callbacks of this AlertView
@@ -157,6 +169,10 @@
         [failureAlert show];
         [failureAlert release];
     }
+}
+-(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
+{
+    [self handleError:error withTitle:@"We're Sorry" body:@"We had a problem connecting to the SinglePic server. Plase report this issue if it persists." alertUser:alertUser allowReporting:allowReporting];
 }
 -(void)reportError:(NSError*)error
 {

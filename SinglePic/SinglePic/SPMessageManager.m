@@ -278,7 +278,7 @@
                       NSNumber* unixTimeNumber = [messageData objectForKey:@"timeStamp"];
                       long long unixTime = [unixTimeNumber longLongValue];
                       
-                    //Find the User Thread if active
+                      //Find the User Thread if active
                       SPMessageThread* thread = [weakSelf getMessageThreadByUserID:userID];
                       
                       //We store the NSDate for sorting

@@ -797,7 +797,6 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       onError();
                   }
               }];
-         
          };
          
          //If an image URL is defined, attempt to download the image
@@ -808,6 +807,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
              {
                  if(onError)
                  {
+                     //Report login failed due to failed image download
+                     [[SPErrorManager sharedInstance] logError:error alertUser:YES allowReporting:YES];
                      onError();
                  }
              }];

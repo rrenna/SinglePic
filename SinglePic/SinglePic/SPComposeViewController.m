@@ -119,7 +119,7 @@
     [topBarView setDepth:DEPTH_OUTSET];
     
     //Signup for notification on message recieved (reload will be called directly by the send button handler)
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageSent) name:NOTIFICATION_MESSAGE_SENT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageSent) name:NOTIFICATION_MESSAGE_SENT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageRecieved) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     
     // always know which keyboard is selected
@@ -129,8 +129,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:tableView selector:@selector(reloadData) name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
 }
 -(void) viewDidAppear:(BOOL)animated
 {

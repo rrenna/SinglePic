@@ -11,6 +11,7 @@
 #define USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY @"USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY"
 #define USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY @"USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY"
 #define USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY @"USER_DEFAULTS_SAVE_TO_CAMERA_ROLL_KEY"
+#define USER_DEFAULTS_DISPLAY_VERBOSE_ERRORS_KEY @"USER_DEFAULTS_DISPLAY_VERBOSE_ERRORS_KEY"
 
 @interface SPSettingsManager()
 {
@@ -105,7 +106,7 @@
     return NO;
     #endif
 }
--(BOOL)shouldDisplayVerboseErrors
+-(BOOL)canSwitchDisplayVerboseErrors
 {
     #ifdef PRIVATE
     return YES;
@@ -176,7 +177,30 @@
     #endif
 }
 #pragma mark - Client Settings
-    //Client Settings
+//-(BOOL)shouldDisplayVerboseErrors
+-(BOOL)displayVerboseErrorsEnabled
+{
+    #ifdef PRIVATE
+    if([[NSUserDefaults standardUserDefaults] valueForKey:USER_DEFAULTS_DISPLAY_VERBOSE_ERRORS_KEY])
+    {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:USER_DEFAULTS_DISPLAY_VERBOSE_ERRORS_KEY];
+    }
+    else
+    {
+        return YES;
+    }
+    #else
+    return NO;
+    #endif
+}
+-(void)setDisplayVerboseErrorsEnabled:(BOOL)enabled
+{
+    [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:USER_DEFAULTS_DISPLAY_VERBOSE_ERRORS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CLIENT_SETTINGS_CHANGED object:nil];
+}
+//Client Settings
 -(BOOL)soundEffectsEnabled
 {
     if([[NSUserDefaults standardUserDefaults] valueForKey:USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY])

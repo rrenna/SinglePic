@@ -25,7 +25,7 @@
 		751D2638149146B500617DD8 /* SPTouchPassThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2637149146B500617DD8 /* SPTouchPassThroughView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		751D263D14916D2B00617DD8 /* BG-Linen-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263A14916D2B00617DD8 /* BG-Linen-Red.png */; };
 		751D263F14916D2B00617DD8 /* Pic-Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263C14916D2B00617DD8 /* Pic-Frame.png */; };
-		751EDDBE14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		751EDDBE14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */; };
 		75246C7D14C0E46A00BD24B1 /* Parchment-Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 75246C7A14C0E46A00BD24B1 /* Parchment-Left.png */; };
 		752EF17E14BCE48D00F26C50 /* SPStyledProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 752EF17D14BCE48D00F26C50 /* SPStyledProgressView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7531B93714B4BE2700ECEDB3 /* UIColor+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531B93614B4BE2700ECEDB3 /* UIColor+Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -215,6 +215,7 @@
 		F003DB9A14ECB2F300BD6309 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB8E14ECB2F300BD6309 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F003DB9B14ECB2F300BD6309 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F003DB9014ECB2F300BD6309 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F003DB9C14ECBD2300BD6309 /* StoreKit.framework */; };
+		F00994BE1673BE7C00719D08 /* SPErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F00994BD1673BE7C00719D08 /* SPErrorProfile.m */; };
 		F013D89415DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */; };
 		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
@@ -375,7 +376,7 @@
 		F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178D21491C2AF00F72809 /* SPProfileViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */; };
 		F0C178D81491C9C200F72809 /* SPProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D71491C9C200F72809 /* SPProfileViewController.xib */; };
-		F0C645F614E76B8600B6A0ED /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0C645F614E76B8600B6A0ED /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */; };
 		F0C6460B14E8892100B6A0ED /* SPSwitchOrientationCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C6460914E8892100B6A0ED /* SPSwitchOrientationCardController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C6460C14E8892100B6A0ED /* SPSwitchOrientationCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */; };
 		F0C7851B1522E8DB00512232 /* SPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C785191522E8DB00512232 /* SPSettingsViewController.xib */; };
@@ -727,6 +728,8 @@
 		F003DB9014ECB2F300BD6309 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F003DB9114ECB2F300BD6309 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		F003DB9C14ECBD2300BD6309 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F00994BC1673BE7C00719D08 /* SPErrorProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorProfile.h; sourceTree = "<group>"; };
+		F00994BD1673BE7C00719D08 /* SPErrorProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorProfile.m; sourceTree = "<group>"; };
 		F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend@2x.png"; path = "../../Resources/BG-Linen-Red-Blend@2x.png"; sourceTree = "<group>"; };
 		F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageManager.h; sourceTree = "<group>"; };
 		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
@@ -1245,6 +1248,8 @@
 				F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */,
 				751EDDBC14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.h */,
 				751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */,
+				F00994BC1673BE7C00719D08 /* SPErrorProfile.h */,
+				F00994BD1673BE7C00719D08 /* SPErrorProfile.m */,
 			);
 			name = "Custom Errors";
 			sourceTree = "<group>";
@@ -3043,6 +3048,7 @@
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
 				F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */,
+				F00994BE1673BE7C00719D08 /* SPErrorProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

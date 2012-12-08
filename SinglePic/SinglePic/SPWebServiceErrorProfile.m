@@ -11,14 +11,11 @@
 @class SPWebServiceError;
 
 @interface SPWebServiceErrorProfile()
-@property (retain) NSString* url;
-@property (retain) NSString* serverError;
 @property (assign) WEB_SERVICE_REQUEST_TYPE type;
-@property (nonatomic, copy) errorHandlerBlock handlerBlock;
 @end
 
 @implementation SPWebServiceErrorProfile
-@synthesize url = _url,serverError = _serverError,type = _type,handlerBlock = _handlerBlock;
+@synthesize type = _type;
 
 +(id)profileWithURLString:(NSString*)urlString andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler
 {
@@ -26,7 +23,7 @@
 }
 +(id)profileWithURLString:(NSString*)urlString andServerError:(NSString*)serverError andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler
 {
-    return [[[SPWebServiceErrorProfile alloc] initWithURLString:urlString andServerError:serverError andRequestType:type andErrorHandler:handler] autorelease];
+    return [[SPWebServiceErrorProfile alloc] initWithURLString:urlString andServerError:serverError andRequestType:type andErrorHandler:handler];
 }
 #pragma mark
 -(id)initWithURLString:(NSString*)urlString andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler
@@ -36,22 +33,12 @@
 }
 -(id)initWithURLString:(NSString*)urlString andServerError:(NSString*)serverError andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler
 {
-    self = [super init];
+    self = [super initWithURLString:urlString andServerError:serverError andErrorHandler:handler];
     if(self)
     {
-        self.url = urlString;
-        self.serverError = serverError;
         self.type = type;
-        self.handlerBlock = handler;
     }
     return self;
-}
--(void)dealloc
-{
-    [_url release];
-    [_serverError release];
-    [_handlerBlock release];
-    [super dealloc];
 }
 #pragma mark
 -(BOOL)evaluateError:(NSError*)error
@@ -60,20 +47,20 @@
     
     if([error isKindOfClass:[SPWebServiceError class]])
     {
-        NSString* verboseURL = [NSString stringWithFormat:@"%@%@",[[SPSettingsManager sharedInstance] serverAddress],_url];
+        NSString* verboseURL = [NSString stringWithFormat:@"%@%@",[[SPSettingsManager sharedInstance] serverAddress],self.url];
         NSRange rangeOfVerboseURL = [[error domain] rangeOfString:verboseURL options:NSCaseInsensitiveSearch];
         
         if(rangeOfVerboseURL.location != NSNotFound)
         {
-            if((WEB_SERVICE_REQUEST_TYPE)[error type] == _type)
+            SPWebServiceError* err = (SPWebServiceError*)error;
+            if((WEB_SERVICE_REQUEST_TYPE)[err type] == self.type)
             {
                 //If we only want to catch specific server errors, we'll have filled in the serverError property
-                if(_serverError) {
+                if(self.serverError) {
                     
                     NSDictionary* responseData = [[error userInfo] objectForKey:@"response"];
                     NSString* returnedServerError = [responseData objectForKey:@"error"];
-                    match = ([returnedServerError isEqualToString:_serverError]);
-                    
+                    match = ([returnedServerError isEqualToString:self.serverError]);
                 }
                 else
                 {
@@ -84,8 +71,8 @@
     }
     return match;
 }
--(void)handle
+-(void)handleError:(NSError*)error
 {
-    self.handlerBlock();
+    self.handlerBlock(error);
 }
 @end

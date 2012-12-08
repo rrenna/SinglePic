@@ -110,7 +110,7 @@
     alert = [[UIAlertView alloc] initWithTitle:@"An error accessing the internet"
                                         message:[error localizedDescription]
                                        delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:NSLocalizedString(@"OK",nil)
                               otherButtonTitles:nil];
     
 	[alert show];

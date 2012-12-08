@@ -9,11 +9,14 @@
 #import "SPSettingsViewController.h"
 #import "MDACListCredit.h"
 #import "MDACCreditItem.h"
+#import "SPOptionCredit.h"
+#import "SPOptionCreditItem.h"
 #import "SPAboutStyle.h"
 
 @interface SPSettingsViewController ()
 -(void)addLogoutButton;
 -(void)addSwitchEnvironmentButton;
+-(void)addVerboseErrorsToggle;
 @end
 
 @implementation SPSettingsViewController
@@ -23,8 +26,6 @@
     self = [super initWithStyle:[SPAboutStyle style]];
     if(self)
     {
-        [self removeLastCredit];
-        
         //Add App setting specific credits (interactive)
         //If logged-in - display a logout button
         if([[SPProfileManager sharedInstance] myUserType] != USER_TYPE_ANNONYMOUS)
@@ -36,6 +37,12 @@
         if([[SPSettingsManager sharedInstance] canSwitchEnvironments])
         {
             [self addSwitchEnvironmentButton];
+        }
+        
+        //Add the ability to switch errors logging on and off
+        if([[SPSettingsManager sharedInstance] canSwitchDisplayVerboseErrors])
+        {
+            [self addVerboseErrorsToggle];
         }
     }
     return self;
@@ -103,6 +110,22 @@
         [[SPSettingsManager sharedInstance] setSaveToCameraRollEnabled:enabled];
     }
 }
+-(BOOL)verboseErrorMessagesEnabled
+{
+    return [[SPSettingsManager sharedInstance] displayVerboseErrorsEnabled];
+}
+-(void)setVerboseErrorMessagesEnabledWithControl:(id)control
+{
+    [Crashlytics setObjectValue:@"Switched on the 'Display Verbose Errors' switch in the Info screen." forKey:@"last_UI_action"];
+    
+    BOOL enabled;
+    
+    if([control respondsToSelector:@selector(isOn)])
+    {
+        enabled = (BOOL)[control performSelector:@selector(isOn)];
+        [[SPSettingsManager sharedInstance] setDisplayVerboseErrorsEnabled:enabled];
+    }
+}
 #pragma mark - Private methods
 -(void)addLogoutButton
 {
@@ -127,5 +150,17 @@
 
     [switchEnvironmentListCredit addItem:switchEnvironmentCreditItem];
     [self insertCredit:switchEnvironmentListCredit  atIndex:1];
+}
+-(void)addVerboseErrorsToggle
+{
+    SPOptionCredit* optionsListCredit = nil;
+    //Find 'Options' List Credit
+    for(MDACCredit* credit in self.credits)
+    {
+        if([credit class] == [SPOptionCredit class]) { optionsListCredit = (SPOptionCredit*)credit; break; } //Find the credit
+    }
+
+    SPOptionCreditItem* verboseErrorMessagesEnabledToggleItem = [[SPOptionCreditItem alloc] initWithName:@"Verbose Errors" andOptionGetter:@selector(verboseErrorMessagesEnabled) andOptionSetter:@selector(setVerboseErrorMessagesEnabledWithControl:)];
+    [optionsListCredit addItem:verboseErrorMessagesEnabledToggleItem];
 }
 @end

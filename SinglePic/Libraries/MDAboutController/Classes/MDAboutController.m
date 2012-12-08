@@ -208,10 +208,10 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         
         // To remove (:sadface:) the following credit, call [aboutController removeLastCredit]; after initializing your controller.
         
-        [credits addObject:[MDACTextCredit textCreditWithText:@"About screen powered by MDAboutViewController, available free on GitHub!"
+            /*[credits addObject:[MDACTextCredit textCreditWithText:@"About screen powered by MDAboutViewController, available free on GitHub!"
                                                          font:[UIFont boldSystemFontOfSize:11]
                                                     alignment:UITextAlignmentCenter
-                                                      linkURL:[NSURL URLWithString:@"https://github.com/mochidev/MDAboutControllerDemo"]]];
+                                                      linkURL:[NSURL URLWithString:@"https://github.com/mochidev/MDAboutControllerDemo"]]];*/
     }
     return self;
 }

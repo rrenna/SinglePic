@@ -6,17 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "SPErrorProfile.h"
 #import "SPWebServiceError.h"
 
-typedef void(^errorHandlerBlock)(void);
 
-@interface SPWebServiceErrorProfile : NSObject
+@interface SPWebServiceErrorProfile : SPErrorProfile
 
 +(id)profileWithURLString:(NSString*)urlString andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler;
 +(id)profileWithURLString:(NSString*)urlString andServerError:(NSString*)serverError andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler;
 -(id)initWithURLString:(NSString*)urlString andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler;
 -(id)initWithURLString:(NSString*)urlString andServerError:(NSString*)serverError andRequestType:(WEB_SERVICE_REQUEST_TYPE)type andErrorHandler:(errorHandlerBlock)handler;
-
--(BOOL)evaluateError:(NSError*)error;
--(void)handle;
 @end

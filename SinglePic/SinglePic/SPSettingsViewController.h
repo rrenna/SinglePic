@@ -17,4 +17,6 @@
 -(void)setSoundEffectsEnabledWithControl:(id)control;
 -(BOOL)saveToCameraRollEnabledValue;
 -(void)setSaveToCameraRollEnabledWithControl:(id)control;
+-(BOOL)verboseErrorMessagesEnabled;
+-(void)setVerboseErrorMessagesEnabledWithControl:(id)control;
 @end

@@ -11,6 +11,29 @@
 @implementation SPOptionCreditItem
 @synthesize optionType, optionGetter, optionSetter;
 
+-(id)initWithName:(NSString*)name andCommand:(SEL)command
+{
+    self = [super init];
+    if(self)
+    {
+        self.name = name;
+        self.optionType = OPTION_TYPE_COMMAND;
+        self.command = command;
+    }
+    return self;
+}
+-(id)initWithName:(NSString*)name andOptionGetter:(SEL)getter andOptionSetter:(SEL)setter
+{
+    self = [super init];
+    if(self)
+    {
+        self.name = name;
+        self.optionType = OPTION_TYPE_SWITCH;
+        self.optionGetter = getter;
+        self.optionSetter = setter;
+    }
+    return self;
+}
 - (id)initWithDictionary:(NSDictionary *)aDict
 {
     self = [super initWithDictionary:aDict];

@@ -20,4 +20,6 @@ typedef enum
 @property (nonatomic, assign) SEL optionSetter;
 @property (nonatomic, assign) SEL optionGetter;
 
+-(id)initWithName:(NSString*)name andCommand:(SEL)command;
+-(id)initWithName:(NSString*)name andOptionGetter:(SEL)getter andOptionSetter:(SEL)setter;
 @end
