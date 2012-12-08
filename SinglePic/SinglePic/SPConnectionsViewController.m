@@ -35,10 +35,12 @@
          {
              [likes_ release];
              likes_ = [[NSMutableArray alloc] initWithArray:likes];
+             [tableView reloadData];
          } 
          andErrorHandler:^
          {
          }];
+        
         //Retrieve liked by me
         [self refreshLikedBy];
     }
@@ -46,13 +48,14 @@
 }
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Likes", nil);
     [editButton setTitle:NSLocalizedString(@"Edit", nil) forState:UIControlStateNormal];
     [likeTypeSegmentedControl setTitle:NSLocalizedString(@"I Like", nil) forSegmentAtIndex:0];
     [likeTypeSegmentedControl setTitle:NSLocalizedString(@"Likes Me", nil) forSegmentAtIndex:1];
     
-    [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
     [editButton setStyle:STYLE_BASE];
     [likeTypeSegmentedControl setStyle:STYLE_BASE];

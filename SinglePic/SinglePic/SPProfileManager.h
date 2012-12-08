@@ -28,13 +28,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 }
 #pragma mark
 @interface SPProfileManager : SPSingleton
-{
-    @private
-    BOOL _hasProfileImage;
-    NSCache* _thumbnails;
-    NSMutableArray* _likes;
-    NSArray* _likedBy;
-}
+
 //My Profile
 -(USER_TYPE)myUserType;
 -(SPBucket*)myBucket;

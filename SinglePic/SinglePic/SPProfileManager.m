@@ -10,6 +10,12 @@
 #import "SPProfile.h"
 
 @interface SPProfileManager()
+{
+    BOOL _hasProfileImage;
+    NSCache* _thumbnails;
+    NSMutableArray* _likes;
+    NSArray* _likedBy;
+}
 @property (retain) NSMutableArray* profiles;
 @property (assign) USER_TYPE userType;
 @property (retain) SPBucket* bucket;
@@ -23,7 +29,6 @@
 @property (assign) GENDER gender;
 @property (assign) GENDER preference;
 @property (assign) BOOL hasProfileImageSet;
-
 
 //Set Methods - sets the value(s) locally, optionally callinging syncronize when completed - should only be called from within the SPProfileManager
 -(void)setMyImage:(UIImage*)_image;
@@ -79,8 +84,8 @@
     self = [super init];
     if(self)
     {
+        self.profiles = [NSMutableArray array];
         _thumbnails = [NSCache new];
-        _profiles = [NSMutableArray new];
         _likes = [NSMutableArray new];
     }
     return self;
@@ -1036,7 +1041,7 @@ static int profileCounter = 0;
 {
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:profileIDArray requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
-         NSMutableArray* _profiles = [NSMutableArray array];
+         NSMutableArray* _pickedProfiles = [NSMutableArray array];
          NSError *theError = nil;
          NSDictionary* profilesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
 
@@ -1045,12 +1050,12 @@ static int profileCounter = 0;
          {
              
              SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
-             [_profiles addObject:profile];
+             [_pickedProfiles addObject:profile];
          }
          [pool drain];
          
          //Return the retrieved profiles
-         onCompletion(_profiles);
+         onCompletion(_pickedProfiles);
          
      } 
      andErrorHandler:^(NSError* error)
@@ -1454,8 +1459,24 @@ static int profileCounter = 0;
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     //Clear properties
+    self.profiles = [NSMutableArray array];
+    self.bucket = nil;
     self.icebreaker = nil;
-    //TODO: cleared all properties
+    self.email = nil;
+    self.expiry = nil;
+    self.gender = GENDER_UNSPECIFIED;
+    self.preference = GENDER_UNSPECIFIED;
+    self.userID = nil;
+    self.userName = nil;
+    self.image = nil;
+    self.lastImage = nil;
+
+    //Reset variables
+    [_likes release];
+    _likes = [NSMutableArray new];
+    _hasProfileImage = NO;
+    RETRIEVED_GENDER_FROM_DEFAULTS = NO;
+    RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 
     //Clear out various NSUserDefault cached values
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UNIX_TIME_OF_LAST_MESSAGE_RETRIEVED_KEY];
@@ -1471,10 +1492,6 @@ static int profileCounter = 0;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN_SYNCED];
     //Cannot remove USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION as it's stored as an integer
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    //Reset variables
-    _hasProfileImage = NO;
-    [_image release]; _image = nil;
 }
 //Wipes app of all profile information (including stored messages of all accounts)
 -(void)wipeProfiles
