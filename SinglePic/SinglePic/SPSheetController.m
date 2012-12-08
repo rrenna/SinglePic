@@ -41,6 +41,7 @@
 }
 - (void) setHandleImage
 {
+    // Stub
 }
 -(void)viewDidLayoutSubviews
 {
@@ -61,6 +62,10 @@
     {
         [controller_ performSelector:@selector(willMinimize)];
     }
+    
+    state_ = SHEET_STATE_MINIMIZED;
+
+    [self transformToState:state_ shouldAnimate:YES];
 }
 -(void)close
 {
@@ -74,7 +79,7 @@
 }
 -(void)transformToState:(SHEET_STATE)state shouldAnimate:(BOOL)shouldAnimate
 {
-    
+    // Stub
 }
 #pragma mark - Setting Content
 -(void)setController:(UIViewController*)controller
@@ -111,9 +116,11 @@
 #pragma mark - Observation
 - (void) removeObservationFromContentController
 {
+    // Stub
 }
 -(void) addObservationForContentController
 {
+    // Stub
 }
 #pragma mark - Touch Handling
 - (void)moveStackWithOffset:(NSInteger)offset animated:(BOOL)animated userDragging:(BOOL)userDragging

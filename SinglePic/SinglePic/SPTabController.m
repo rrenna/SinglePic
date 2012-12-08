@@ -23,7 +23,6 @@
 @interface SPTabController()
 {
     NSMutableArray* pages;
-    //BOOL _fullscreen;
 }
 @property(nonatomic, assign) NSInteger firstVisibleIndex;
 @property(nonatomic, assign) CGFloat floatIndex;
@@ -32,7 +31,7 @@
 -(void)addObservationForContentController;
 -(void)removeObservationFromContentController;
 -(void)replaceTabWithNotification:(NSNotification*)notification;
--(int)snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition;
+-(SHEET_STATE)sheetStateForPosition:(int)leftPosition withOriginPosition:(int)originPosition;
 -(void)handlePanFrom:(UIPanGestureRecognizer *)recognizer;
 -(void)pushModalContentWithNotification:(NSNotification*)notification;
 -(void)pushModalControllerWithNotification:(NSNotification*)notification;
@@ -99,25 +98,10 @@
 }
 -(void)maximizeIsFullscreen:(BOOL)fullscreen
 {
-    int offset = (fullscreen) ? TAB_POS_LEFT_FULLSCREEN : TAB_POS_LEFT_MAXIMIZED;
     state_ = (fullscreen) ? SHEET_STATE_FULLSCREEN : SHEET_STATE_MAXIMIZED;
     
     //Since this helper function will be setting the FULLSCREEN property, it does the 'right' things using this private method
     [self transformToState:state_ shouldAnimate:YES];
-    
-    int originOffset = -self.view.left + offset;
-    [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished)
-     {
-     }];
-}
--(void)minimize
-{
-    int originOffset = -self.view.left + TAB_POS_LEFT_MINIMIZED;    
-    [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished) 
-    {
-    }];
-    
-    [super minimize];
 }
 -(void)close
 {
@@ -243,14 +227,16 @@
     }
 }
 #pragma mark - Touch Handling
--(int)snapOffsetForPosition:(int)leftPosition withOriginPosition:(int)originPosition
+-(SHEET_STATE)sheetStateForPosition:(int)leftPosition withOriginPosition:(int)originPosition
 {
     const int numberOfSnapPoints = 2;
     int differences[numberOfSnapPoints] = {leftPosition - TAB_POS_LEFT_MINIMIZED,leftPosition - TAB_POS_LEFT_MAXIMIZED};
+    SHEET_STATE states[3] = {SHEET_STATE_MINIMIZED, SHEET_STATE_MAXIMIZED};
+    
     int selectedIndex;
     
-    //There are two ways we select which position to move the tab. 
-    // - First we check if we're within a buffer zone. An amount of points around a position that the tab can be moved, where it'll bounce back into it's initial position.
+        //There are two ways we select which position to move the tab.
+        // - First we check if we're within a buffer zone. An amount of points around a position that the tab can be moved, where it'll bounce back into it's initial position.
     if(abs(differences[0]) < PAGE_SNAP_BUFFER)
     {
         selectedIndex = 0;
@@ -259,10 +245,10 @@
     {
         selectedIndex = 1;
     }
-    // - The second strategy, when the tab has been moved outside the buffer zone, is to slide to the nearest point to the left.
+        // - The second strategy, when the tab has been moved outside the buffer zone, is to slide to the nearest point to the left.
     else
     {
-        BOOL isMovingLeft = (self.view.left < originPosition);  
+        BOOL isMovingLeft = (self.view.left < originPosition);
         if(isMovingLeft)
         {
             if(differences[1] > 0)
@@ -275,7 +261,7 @@
             }
         }
         else
-        {        
+        {
             if(differences[0] < 0)
             {
                 selectedIndex = 0;
@@ -285,10 +271,10 @@
                 selectedIndex = 1;
             }
         }
-
+        
     }
-       
-    return -1 * differences[selectedIndex];
+    
+    return states[selectedIndex];
 }
 - (void)handlePanFrom:(UIPanGestureRecognizer *)recognizer 
 {
@@ -331,8 +317,10 @@
         BOOL gestureEnded = state == UIGestureRecognizerStateEnded;
         if (gestureEnded) 
         {
-            NSInteger snapOffset = [self snapOffsetForPosition:self.view.left withOriginPosition:dragStart_];
-            [self moveStackWithOffset:snapOffset animated:YES userDragging:NO];
+            SHEET_STATE targetState = [self sheetStateForPosition:self.view.left withOriginPosition:dragStart_];
+            
+            state_ = targetState;
+            [self transformToState:state_ shouldAnimate:YES];
         }
 
     }
