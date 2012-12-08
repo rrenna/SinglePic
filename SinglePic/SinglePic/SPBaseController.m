@@ -530,7 +530,8 @@
 }
 -(SPTabController*)createTabIsFullscreen:(BOOL)fullscreen
 {
-    SPTabController* tab = [[[SPTabController alloc] initIsFullscreen:fullscreen] autorelease];
+    SHEET_STATE state = (fullscreen) ? SHEET_STATE_FULLSCREEN : SHEET_STATE_MAXIMIZED;
+    SPTabController* tab = [[[SPTabController alloc] initWithState:state] autorelease];
     tab.containerDelegate = self;
     
     //Resize the tab to be the height of the baseController (should be full screen)

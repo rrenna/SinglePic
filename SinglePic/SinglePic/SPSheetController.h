@@ -25,10 +25,13 @@ typedef enum
     NSInteger lastDragOffset_;
     UIPanGestureRecognizer *panRecognizer_;
     UIViewController* controller_;
+    SHEET_STATE state_;
 }
 
+-(id)initWithState:(SHEET_STATE)state;
 -(void)minimize;
 -(void)close;
+-(void)transformToState:(SHEET_STATE)state shouldAnimate:(BOOL)shouldAnimate;
 //Set Content
 -(void)setController:(UIViewController*)controller;
 -(void)setContent:(UIView *)view;

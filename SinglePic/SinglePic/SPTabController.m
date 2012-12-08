@@ -21,8 +21,13 @@
 #define TAB_CONTENT_WIDTH_FULLSCREEN 320
 
 @interface SPTabController()
+{
+    NSMutableArray* pages;
+    //BOOL _fullscreen;
+}
 @property(nonatomic, assign) NSInteger firstVisibleIndex;
 @property(nonatomic, assign) CGFloat floatIndex;
+
 -(SPPageController*)createPage;
 -(void)addObservationForContentController;
 -(void)removeObservationFromContentController;
@@ -32,7 +37,6 @@
 -(void)pushModalContentWithNotification:(NSNotification*)notification;
 -(void)pushModalControllerWithNotification:(NSNotification*)notification;
 -(void)setFullScreenWithNotification:(NSNotification*)notification;
--(void)transformTabToFullscreenStatus:(BOOL)isFullscreen shouldAnimate:(BOOL)shouldAnimate;
 @end
 
 @implementation SPTabController
@@ -47,21 +51,21 @@
 }
 -(void)setFullscreen:(BOOL)fullscreen_ animated:(BOOL)animated_
 {
-    _fullscreen = fullscreen_;
-    [self transformTabToFullscreenStatus:fullscreen_ shouldAnimate:animated_];
+    state_ = (fullscreen_ == YES) ? SHEET_STATE_FULLSCREEN : SHEET_STATE_MAXIMIZED;
+    [self transformToState:state_ shouldAnimate:animated_];
 }
 -(BOOL)fullscreen
 {
-    return _fullscreen;
+    return (state_ == SHEET_STATE_FULLSCREEN);
 }
 #pragma mark - View lifecycle
--(id)initIsFullscreen:(BOOL)fullscreen_
+-(id)initWithState:(SHEET_STATE)state
 {
     self = [self initWithNibName:@"SPTabController" bundle:nil];
     if(self)
     {
         pages = [NSMutableArray new];
-        _fullscreen = fullscreen_;
+        state_ = state;
     }
     return self;
 }
@@ -69,12 +73,11 @@
 {
     [super viewDidLoad];
     self.view.left = TAB_POS_LEFT_OFFSCREEN;
-    
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     //Don't attempt any tab placement + animation until properly resized
-    [self setFullscreen:_fullscreen animated:YES];
+    [self transformToState:state_ shouldAnimate:YES];
 }
 - (void) setHandleImage
 {
@@ -97,10 +100,10 @@
 -(void)maximizeIsFullscreen:(BOOL)fullscreen
 {
     int offset = (fullscreen) ? TAB_POS_LEFT_FULLSCREEN : TAB_POS_LEFT_MAXIMIZED;
-    _fullscreen = fullscreen;
+    state_ = (fullscreen) ? SHEET_STATE_FULLSCREEN : SHEET_STATE_MAXIMIZED;
     
     //Since this helper function will be setting the FULLSCREEN property, it does the 'right' things using this private method
-    [self transformTabToFullscreenStatus:fullscreen shouldAnimate:YES];
+    [self transformToState:state_ shouldAnimate:YES];
     
     int originOffset = -self.view.left + offset;
     [self moveStackWithOffset:originOffset animated:YES userDragging:NO onCompletion:^(BOOL finished)
@@ -200,21 +203,29 @@
     id replacement = [notification.userInfo objectForKey:KEY_CONTENT];
     [self pushModalController:replacement];
 }
--(void)transformTabToFullscreenStatus:(BOOL)isFullscreen shouldAnimate:(BOOL)shouldAnimate
+-(void)transformToState:(SHEET_STATE)state shouldAnimate:(BOOL)shouldAnimate
 {
+    [super transformToState:state shouldAnimate:shouldAnimate];
+    
     int tabViewLeft,contentViewLeft,contentViewWidth;
     
-    if(isFullscreen)
+    switch(state)
     {
-        tabViewLeft = TAB_POS_LEFT_FULLSCREEN;
-        contentViewLeft = TAB_CONTENT_POS_LEFT_FULLSCREEN;
-        contentViewWidth = TAB_CONTENT_WIDTH_FULLSCREEN;
-    }
-    else
-    {
-        tabViewLeft = TAB_POS_LEFT_MAXIMIZED;
-        contentViewLeft = TAB_CONTENT_POS_LEFT;
-        contentViewWidth = TAB_CONTENT_WIDTH;
+        case SHEET_STATE_FULLSCREEN:
+            tabViewLeft = TAB_POS_LEFT_FULLSCREEN;
+            contentViewLeft = TAB_CONTENT_POS_LEFT_FULLSCREEN;
+            contentViewWidth = TAB_CONTENT_WIDTH_FULLSCREEN;
+            break;
+        case SHEET_STATE_MAXIMIZED:
+            tabViewLeft = TAB_POS_LEFT_MAXIMIZED;
+            contentViewLeft = TAB_CONTENT_POS_LEFT;
+            contentViewWidth = TAB_CONTENT_WIDTH;
+            break;
+        case SHEET_STATE_MINIMIZED:
+            tabViewLeft = TAB_POS_LEFT_MINIMIZED;
+            contentViewLeft = TAB_CONTENT_POS_LEFT;
+            contentViewWidth = TAB_CONTENT_WIDTH;
+            break;
     }
     
     contentView.width = contentViewWidth;

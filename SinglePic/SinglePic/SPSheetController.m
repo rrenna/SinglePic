@@ -9,11 +9,20 @@
 #import "SPSheetController.h"
 
 @interface SPSheetController ()
-
 @end
 
 @implementation SPSheetController
 
+
+-(id)initWithState:(SHEET_STATE)state
+{
+    self = [super init];
+    if(self)
+    {
+        state_ = state;
+    }
+    return self;
+}
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,6 +71,10 @@
     }
     
     [self removeObservationFromContentController];
+}
+-(void)transformToState:(SHEET_STATE)state shouldAnimate:(BOOL)shouldAnimate
+{
+    
 }
 #pragma mark - Setting Content
 -(void)setController:(UIViewController*)controller
