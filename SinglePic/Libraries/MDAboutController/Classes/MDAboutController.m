@@ -904,19 +904,28 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
     #ifdef BETA
     [TestFlight openFeedbackView];
     #else
-    UIViewController *mailer = [[[NSClassFromString(@"MFMailComposeViewController") alloc] init] autorelease];
-    [mailer performSelector:@selector(setMailComposeDelegate:) withObject:self];
-    [mailer performSelector:@selector(setToRecipients:) withObject:[NSArray arrayWithObject:recipient]];
-    [mailer performSelector:@selector(setSubject:) withObject:subject];
     
-    // dear compiler warning... shut up
-    // the following should be fully backwards compatible.
-    if ([self respondsToSelector:@selector(presentViewController:animated:completion:)]) {
-        objc_msgSend(self, @selector(presentViewController:animated:completion:), mailer, YES, NULL);
-        //        [self presentViewController:mailer animated:YES completion:NULL];
-    } else {
-        objc_msgSend(self, @selector(presentModalViewController:animated:), mailer, YES);
-        //        [self presentModalViewController:mailer animated:YES];
+    Class mailComposeClass = NSClassFromString(@"MFMailComposeViewController");
+    
+    if([mailComposeClass canSendMail])
+    {
+        UIViewController *mailer = [[[mailComposeClass alloc] init] autorelease];
+        [mailer performSelector:@selector(setMailComposeDelegate:) withObject:self];
+        [mailer performSelector:@selector(setToRecipients:) withObject:[NSArray arrayWithObject:recipient]];
+        [mailer performSelector:@selector(setSubject:) withObject:subject];
+        [[mailer navigationBar] setTintColor:[UIColor darkGrayColor]];
+        
+        // dear compiler warning... shut up
+        // the following should be fully backwards compatible.
+        if ([self respondsToSelector:@selector(presentViewController:animated:completion:)])
+        {
+            objc_msgSend(self, @selector(presentViewController:animated:completion:), mailer, YES, NULL);
+            // [self presentViewController:mailer animated:YES completion:NULL];
+        } else
+        {
+            objc_msgSend(self, @selector(presentModalViewController:animated:), mailer, YES);
+            // [self presentModalViewController:mailer animated:YES];
+        }
     }
     #endif
 }
