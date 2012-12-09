@@ -536,7 +536,7 @@ BOOL validatePasswords(NSString* password, NSString* confirm, NSString **hint) {
 #pragma mark - SPLocationChooserDelegate methods
 -(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser
 {
-    SPBucket* bucket = chooser.selected;
+    SPBucket* bucket = chooser.chosenBucket;
     
     [[SPProfileManager sharedInstance] setMyAnnonymousBucket:bucket synchronize:YES];
     

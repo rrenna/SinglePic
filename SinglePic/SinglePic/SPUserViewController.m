@@ -58,8 +58,8 @@
  
     [userStackPanel addStackedView:userProfileView];
     [userStackPanel addStackedView:orientationController.view];
-    //TEMP: Removed bucket selection
-    //[userStackPanel addStackedView:locationController.view];
+    [userStackPanel addStackedView:locationController.view];
+    //TEMP: Removed Subscription selection
     //[userStackPanel addStackedView:userSubscriptionView];
     [userStackPanel addStackedView:userEmailView];
 }

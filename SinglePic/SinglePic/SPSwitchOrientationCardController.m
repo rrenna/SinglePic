@@ -14,7 +14,7 @@
 @end
 
 @implementation SPSwitchOrientationCardController
-#define MINIMIZED_SIZE 45
+#define MINIMIZED_SIZE 38
 #define MAXIMIZED_SIZE 175
 #pragma mark - View lifecycle
 - (id) init

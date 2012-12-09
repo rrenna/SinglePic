@@ -83,7 +83,7 @@
 		<key>Alignment</key>
 		<string>Center</string>
 		<key>Text</key>
-		<string>SinglePic would not be possible without the following libraries and frameworks : AFNetworking, Aviary, Box2D, MDAboutController, NAMapKit, SBJson, StackPanel, SVProgressHUD and TestFlight</string>
+		<string>SinglePic would not be possible without the following libraries and frameworks : AFNetworking, Aviary, Box2D, MDAboutController, SBJson, StackPanel, SVProgressHUD and TestFlight</string>
 		<key>Type</key>
 		<string>Text</string>
 	</dict>

@@ -13,8 +13,8 @@
 @end
 
 @implementation SPSwitchLocationCardController
-#define MINIMIZED_SIZE 45
-#define MAXIMIZED_SIZE 343
+#define MINIMIZED_SIZE 38
+#define MAXIMIZED_SIZE 200
 #pragma mark - View lifecycle
 - (id) init
 {
@@ -29,7 +29,9 @@
     [super viewDidLoad];
     self.view.height = MINIMIZED_SIZE;
     
-        //[self setLabelWithGender:[[SPProfileManager sharedInstance] myGender]  andPreference:[[SPProfileManager sharedInstance] myPreference]];
+    SPBucket* myBucket = [[SPProfileManager sharedInstance] myBucket];
+    locationLabel.text = myBucket.name;
+    
     [changeButton setStyle:STYLE_CONFIRM_BUTTON];
 }
 #pragma mark - IBOutlet
@@ -67,7 +69,7 @@
     
     changeButton.enabled = NO;
     
-    [[SPProfileManager sharedInstance] saveMyBucket:locationChooser.selected withCompletionHandler:^(id responseObject) {
+    [[SPProfileManager sharedInstance] saveMyBucket:locationChooser.chosenBucket withCompletionHandler:^(id responseObject) {
         
         //Re-enable Change button
         changeButton.enabled = YES;

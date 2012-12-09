@@ -83,7 +83,7 @@
 		<key>Alignment</key>
 		<string>Center</string>
 		<key>Text</key>
-		<string>此应用程序是不可能的没有下面的库和框架：AFNetworking, Aviary, Box2D, MDAboutController, NAMapKit, SBJson, StackPanel, SVProgressHUD, TestFlight</string>
+		<string>此应用程序是不可能的没有下面的库和框架：AFNetworking, Aviary, Box2D, MDAboutController, SBJson, StackPanel, SVProgressHUD, TestFlight</string>
 		<key>Type</key>
 		<string>Text</string>
 	</dict>
