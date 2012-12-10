@@ -10,6 +10,7 @@
 
 @interface SPSwitchLocationCardController ()
 @property (strong) SPLocationChooser* locationChooser;
+-(void)displayLocation;
 @end
 
 @implementation SPSwitchLocationCardController
@@ -29,8 +30,7 @@
     [super viewDidLoad];
     self.view.height = MINIMIZED_SIZE;
     
-    SPBucket* myBucket = [[SPProfileManager sharedInstance] myBucket];
-    locationLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"I live in", nil),myBucket.name];
+    [self displayLocation];
 }
 #pragma mark - IBOutlet
 -(IBAction)open:(id)sender
@@ -67,6 +67,12 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:userInfo];
 }
+#pragma mark - Private methods
+-(void)displayLocation
+{
+    SPBucket* myBucket = [[SPProfileManager sharedInstance] myBucket];
+    locationLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"I live in", nil),myBucket.name];
+}
 #pragma mark - SPLocationChooserDelegate methods
 -(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser
 {
@@ -74,6 +80,8 @@
     __unsafe_unretained SPSwitchLocationCardController* weakSelf = self;
     [[SPProfileManager sharedInstance] saveMyBucket:chooser.chosenBucket withCompletionHandler:^(id responseObject)
     {
+        [self displayLocation];
+        
         NSDictionary* userInfo = @{@"height":@(MINIMIZED_SIZE),@"index":@(weakSelf.view.tag),@"view":weakSelf.view};
         
         [UIView animateWithDuration:0.3 animations:^
