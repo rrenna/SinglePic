@@ -14,7 +14,7 @@
 -(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser;
 @end
 
-@interface SPLocationChooser : UIView <UITableViewDataSource,UITableViewDelegate>
+@interface SPLocationChooser : UIView
 @property (assign) IBOutlet id<SPLocationChooserDelegate> delegate;
 @property (strong,readonly) SPBucket* chosenBucket;
 

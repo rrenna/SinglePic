@@ -9,7 +9,7 @@
 #import "SPSwitchLocationCardController.h"
 
 @interface SPSwitchLocationCardController ()
-
+@property (strong) SPLocationChooser* locationChooser;
 @end
 
 @implementation SPSwitchLocationCardController
@@ -30,9 +30,7 @@
     self.view.height = MINIMIZED_SIZE;
     
     SPBucket* myBucket = [[SPProfileManager sharedInstance] myBucket];
-    locationLabel.text = myBucket.name;
-    
-    [changeButton setStyle:STYLE_CONFIRM_BUTTON];
+    locationLabel.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"I live in", nil),myBucket.name];
 }
 #pragma mark - IBOutlet
 -(IBAction)open:(id)sender
@@ -41,7 +39,14 @@
     
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MAXIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
     
-    //TODO: Lazily load the location chooser instead of instantiating it from a XIB
+    //Lazily load the location chooser
+    if(!self.locationChooser)
+    {
+        self.locationChooser = [[SPLocationChooser alloc] initWithFrame:CGRectMake(3, 5, self.view.frame.size.width - 8, MAXIMIZED_SIZE - 10)];
+        self.locationChooser.delegate = self;
+    }
+    
+    [self.view addSubview:self.locationChooser];
     
     //Fade out content, animate resize, fade in new content
     [UIView animateWithDuration:0.3 animations:^
@@ -49,13 +54,12 @@
          self.view.height = MAXIMIZED_SIZE;
          locationLabel.alpha = 0.0;
          locationIcon.alpha = 0.0;
-         changeButton.alpha = 1.0;
      }
-                     completion:^(BOOL finished)
+     completion:^(BOOL finished)
      {
          [UIView animateWithDuration:0.3 animations:^
           {
-                  locationChooser.alpha = 1.0;
+                  self.locationChooser.alpha = 1.0;
           }];
          
          [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_RESIZED object:userInfo];
@@ -63,52 +67,39 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:userInfo];
 }
--(IBAction)change:(id)sender
+#pragma mark - SPLocationChooserDelegate methods
+-(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser
 {
-    [SPSoundHelper playTap];
-    
-    changeButton.enabled = NO;
-    
-    [[SPProfileManager sharedInstance] saveMyBucket:locationChooser.chosenBucket withCompletionHandler:^(id responseObject) {
-        
-        //Re-enable Change button
-        changeButton.enabled = YES;
-        
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MINIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
+    //New location chosen
+    __unsafe_unretained SPSwitchLocationCardController* weakSelf = self;
+    [[SPProfileManager sharedInstance] saveMyBucket:chooser.chosenBucket withCompletionHandler:^(id responseObject)
+    {
+        NSDictionary* userInfo = @{@"height":@(MINIMIZED_SIZE),@"index":@(weakSelf.view.tag),@"view":weakSelf.view};
         
         [UIView animateWithDuration:0.3 animations:^
-         {
-                 //Minimize card
-             self.view.height = MINIMIZED_SIZE;
+        {
+             //Minimize card
+             weakSelf.view.height = MINIMIZED_SIZE;
              
              locationLabel.alpha = 1.0;
              locationIcon.alpha = 1.0;
-             locationChooser.alpha = 0.0;
-             changeButton.alpha = 0.0;
-         }
-                         completion:^(BOOL finished)
-         {
+             chooser.alpha = 0.0;
+        }
+        completion:^(BOOL finished)
+        {
+             [weakSelf.locationChooser removeFromSuperview];
+             weakSelf.locationChooser = nil;
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_RESIZED object:userInfo];
-         }];
+        }];
         
             //After a gender/preference has successfully been set, reset the profile stream
         [[SPProfileManager sharedInstance] restartProfiles];
             //
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:userInfo];
         
-        
-    } andErrorHandler:^{
-        
-        //Re-enable Change button
-        changeButton.enabled = YES;
-        
-        //TODO :
+    } andErrorHandler:^
+    {
+
     }];
-    
-}
-#pragma mark - SPLocationChooserDelegate methods
--(void)locationChooserSelectionChanged:(SPLocationChooser*)chooser
-{
-    changeButton.enabled = YES;
 }
 @end

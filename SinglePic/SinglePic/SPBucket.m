@@ -25,6 +25,10 @@
     [_data release];
     [super dealloc];
 }
+-(NSString*)description
+{
+    return [self name];
+}
 #pragma mark
 -(NSString*)name
 {

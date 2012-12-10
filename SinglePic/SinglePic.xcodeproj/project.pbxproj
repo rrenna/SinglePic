@@ -229,7 +229,7 @@
 		F03CD12F14BA443100E1340D /* Orientation-FsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F03CD12714BA443100E1340D /* Orientation-FsM-default.png */; };
 		F03D8BF51648B62300D3F724 /* Logo-SinglePic-white-vertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F03D8BF41648B62300D3F724 /* Logo-SinglePic-white-vertical@2x.png */; };
 		F03F15DF14F931C300EAF11D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03F15DE14F931C200EAF11D /* AudioToolbox.framework */; };
-		F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = F041881815D73890000E958E /* SPSwitchLocationCardController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = F041881815D73890000E958E /* SPSwitchLocationCardController.m */; };
 		F041881B15D73890000E958E /* SPSwitchLocationCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F041881915D73890000E958E /* SPSwitchLocationCardController.xib */; };
 		F04A0E7A15DDF1E90043FADC /* Camera-bottombar.png in Resources */ = {isa = PBXBuildFile; fileRef = F04A0E7815DDF1E90043FADC /* Camera-bottombar.png */; };
 		F04A0E7B15DDF1E90043FADC /* Camera-SnapButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F04A0E7915DDF1E90043FADC /* Camera-SnapButton.png */; };
@@ -359,7 +359,7 @@
 		F0C988AB14E0BA6100264228 /* BTN-EditPhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988A914E0BA6100264228 /* BTN-EditPhoto@2x.png */; };
 		F0C988AC14E0BA6100264228 /* BTN-EditIceBreaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C988AA14E0BA6100264228 /* BTN-EditIceBreaker@2x.png */; };
 		F0CA73CE161C58AF00DAE2D1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CA73C9161C57A600DAE2D1 /* Crashlytics.framework */; };
-		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D1512014EA329F006C1978 /* SPOrientationChooser.m */; };
 		F0D663BE160DC59A00607E2D /* appicon72.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D663BD160DC59A00607E2D /* appicon72.png */; };
 		F0D6D7C7160C1BA60068EBBE /* Paper-Right.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D6D7C5160C1BA60068EBBE /* Paper-Right.png */; };
 		F0D6D7C8160C1BA60068EBBE /* Paper-Right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0D6D7C6160C1BA60068EBBE /* Paper-Right@2x.png */; };

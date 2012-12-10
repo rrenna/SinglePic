@@ -84,7 +84,8 @@
     BOOL newSexSelected = (orientationChooser.chosenGender != [[SPProfileManager sharedInstance] myGender]);
     BOOL newPreferenceSelected = (orientationChooser.chosenPreference != [[SPProfileManager sharedInstance] myPreference]);
     //Used to communicate with the Stack Panel on resizing
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:MINIMIZED_SIZE],@"height",[NSNumber numberWithInt:[self.view tag]],@"index",self.view,@"view",nil];
+
+    NSDictionary* userInfo = @{@"height":@(MINIMIZED_SIZE),@"index":@(self.view.tag),@"view":self.view};
     
     __unsafe_unretained SPSwitchOrientationCardController* weakSelf = self;
     void (^dismiss)() = ^{

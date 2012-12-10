@@ -632,6 +632,7 @@ int currentTick = 0;
 {
     static const int padding = 5;
     static const int rowLimit = (self.view.height >  460 ) ? BROWSE_ROW_LIMIT_TALL : BROWSE_ROW_LIMIT;
+    isThereProfileThatHaveDroppedThisIteration = NO;
     
     //Interate over each column
     for(int columnIndex = 0; columnIndex < BROWSE_COLUMN_AMOUNT; columnIndex++)
@@ -690,25 +691,14 @@ int currentTick = 0;
                     
                 }
             }
-            
-            
-            //No more contacts - dismiss loading bar
-            if(isThereProfileThatHaveDroppedThisIteration)
-            {
-                if([[SPProfileManager sharedInstance] remainingProfiles] > 0)
-                {
-                    isThereProfileThatHaveDroppedThisIteration = NO;
-                    [self stopLoading];
-                }
 
-            }
-            //If the loading has started - restarting is over, and no profiles have been been dropped this iteration
-            else if(isLoading && !isRestarting)
-            {
-                //Stop loading
-                [self stopLoading];
-            }
         }
+    }
+    
+    //If the loading has started - but no profiles have been been dropped this iteration, stop loading
+    if(!isThereProfileThatHaveDroppedThisIteration && isLoading)
+    {
+        [self stopLoading];
     }
 }
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks

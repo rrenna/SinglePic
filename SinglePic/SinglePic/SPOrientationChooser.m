@@ -41,13 +41,6 @@
     }
     return self;
 }
--(void)dealloc
-{
-    [selectionIndicators release];
-    [buttonTitles release];
-    [buttonIcons release];
-    [super dealloc];
-}
 -(void)layoutSubviews
 {
     //Must be added in this order
@@ -95,28 +88,28 @@
     NSString* preferenceInitial = [preferenceName substringToIndex:1];
     NSString* genderPreferenceKey = [NSString stringWithFormat:@"I'm a %@ seeking a %@", genderName, preferenceName ];
     
-    UIView* view = [[[UIView alloc] initWithFrame:frame] autorelease];
+    UIView* view = [[UIView alloc] initWithFrame:frame];
     
     //Card View
-    SPCardView* card = [[[SPCardView alloc] initWithFrame:view.bounds] autorelease];
+    SPCardView* card = [[SPCardView alloc] initWithFrame:view.bounds];
     [card setStyle:CARD_STYLE_YELLOW];
     card.alpha = 0.25;
     
     //Button - will contain a tag storing the index
-    UIButton* button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
+    UIButton* button = [[UIButton alloc] initWithFrame:view.bounds];
     button.tag = index;
 
     [button addTarget:self action:@selector(orientationSelected:) forControlEvents:UIControlEventTouchUpInside];
     //Left Icon
     NSString* iconFileName = [NSString stringWithFormat:@"Orientation-%@s%@-default.png",[genderInitial capitalizedString],[preferenceInitial capitalizedString]];
     NSString* iconSelectedFileName = [NSString stringWithFormat:@"Orientation-%@s%@-selected.png",[genderInitial capitalizedString],[preferenceInitial capitalizedString]];
-    UIButton* iconView = [[[UIButton alloc] initWithFrame:iconFrame] autorelease];
+    UIButton* iconView = [[UIButton alloc] initWithFrame:iconFrame];
     [iconView setImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];
     [iconView setImage:[UIImage imageNamed:iconSelectedFileName] forState:UIControlStateSelected];
     [buttonIcons addObject:iconView];
     
     //Label
-    SPLabel* buttonLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))] autorelease];
+    SPLabel* buttonLabel = [[SPLabel alloc] initWithFrame:CGRectMake(floor(iconView.width + iconView.left),floor(iconView.top),floor(-iconView.left - iconView.width + button.width - iconView.width - 8),floor(iconView.height))];
     buttonLabel.backgroundColor = [UIColor clearColor];
     buttonLabel.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:11];
     buttonLabel.textAlignment = UITextAlignmentCenter;
@@ -124,7 +117,7 @@
     [self.buttonTitles addObject:buttonLabel];
     
     //Right Checkmark (selection indicator)
-    UIImageView* selectionIndicatorView = [[[UIImageView alloc] initWithFrame:CGRectMake(buttonLabel.left + buttonLabel.width, 0, 10,button.height)] autorelease];
+    UIImageView* selectionIndicatorView = [[UIImageView alloc] initWithFrame:CGRectMake(buttonLabel.left + buttonLabel.width, 0, 10,button.height)];
     selectionIndicatorView.hidden = YES;
     selectionIndicatorView.contentMode = UIViewContentModeScaleAspectFit;
     selectionIndicatorView.image = [UIImage imageNamed:@"Checkmark.png"];
