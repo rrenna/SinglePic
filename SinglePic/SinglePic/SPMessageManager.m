@@ -336,12 +336,12 @@
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time
 {
     thread.lastActivity = time;
-    thread.active = YES_NSNUMBER;
+    thread.active = @YES;
     
     //Create SPMessage
     SPMessage* newMessage = [NSEntityDescription insertNewObjectForEntityForName:@"SPMessage" inManagedObjectContext:[self managedObjectContext]];
     newMessage.content = messageBody;
-    newMessage.incoming = (incoming) ? YES_NSNUMBER : NO_NSNUMBER;
+    newMessage.incoming = (incoming) ? @YES : @NO;
     newMessage.date = time;
     
     //If an incoming message, increase unread count

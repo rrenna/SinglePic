@@ -345,7 +345,6 @@
 		F0C178C01491C14D00F72809 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B91491C14D00F72809 /* SPBucket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178BA1491C14D00F72809 /* SPBucketManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178C71491C18E00F72809 /* SPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178C61491C18E00F72809 /* SPRequestManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F0C178CB1491C1C900F72809 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178C91491C1C900F72809 /* ImageHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178D21491C2AF00F72809 /* SPProfileViewController.m */; };
 		F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */; };
@@ -913,8 +912,6 @@
 		F0C178BB1491C14D00F72809 /* SPBucketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBucketManager.h; sourceTree = "<group>"; };
 		F0C178C51491C18E00F72809 /* SPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRequestManager.h; sourceTree = "<group>"; };
 		F0C178C61491C18E00F72809 /* SPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRequestManager.m; sourceTree = "<group>"; };
-		F0C178C91491C1C900F72809 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
-		F0C178CA1491C1C900F72809 /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
 		F0C178CC1491C1ED00F72809 /* SPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGlobal.h; sourceTree = "<group>"; };
 		F0C178CE1491C24600F72809 /* SPBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBrowseViewController.h; sourceTree = "<group>"; };
 		F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SPBrowseViewController.mm; sourceTree = "<group>"; };
@@ -2355,8 +2352,6 @@
 			children = (
 				75071E8116303C0100935B0D /* SPCaptureHelper.h */,
 				75071E8216303C0100935B0D /* SPCaptureHelper.m */,
-				F0C178C91491C1C900F72809 /* ImageHelper.m */,
-				F0C178CA1491C1C900F72809 /* ImageHelper.h */,
 				750B93681510F62A00C354F2 /* TimeHelper.h */,
 				750B93691510F62A00C354F2 /* TimeHelper.m */,
 				F0280B8C16390B1D007B2BC8 /* SPSoundHelper.h */,
@@ -2813,7 +2808,6 @@
 				F0C178C01491C14D00F72809 /* SPBucket.m in Sources */,
 				F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */,
 				F0C178C71491C18E00F72809 /* SPRequestManager.m in Sources */,
-				F0C178CB1491C1C900F72809 /* ImageHelper.m in Sources */,
 				F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */,
 				F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */,
 				75A24A8814928ED800DC8D50 /* SPRegistrationViewController.m in Sources */,

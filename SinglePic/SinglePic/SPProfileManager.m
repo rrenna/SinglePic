@@ -373,7 +373,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     if(synced)
     {
-        [[NSUserDefaults standardUserDefaults] setValue:YES_NSNUMBER forKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN_SYNCED];
+        [[NSUserDefaults standardUserDefaults] setValue:@YES forKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN_SYNCED];
     }
     else
     {
@@ -446,13 +446,13 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
          }
      }];
 }
--(void)saveMyIcebreaker:(NSString*)_icebreaker withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+-(void)saveMyIcebreaker:(NSString*)icebreaker_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    [self saveMyIcebreaker:_icebreaker andGender:nil andPreference:nil withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self saveMyIcebreaker:icebreaker_ andGender:nil andPreference:nil withCompletionHandler:onCompletion andErrorHandler:onError];
 }
 static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
--(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
+-(void)saveMyPicture:(UIImage*)image_ withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
     __unsafe_unretained SPProfileManager* weakSelf = self;
     void (^imageAndThumbnailUploaded)(id completedResponseObject) = ^(id completedResponseObject)
@@ -471,7 +471,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
             //Set my Expiry
             [weakSelf setMyExpiry:[NSDate dateWithTimeIntervalSinceNow:interval] synchronize:NO];
             //Set my Image
-            [weakSelf setMyImage:_image];
+            [weakSelf setMyImage:image_];
             
             onCompletion(completedResponseObject);
             
@@ -492,11 +492,11 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         __block BOOL thumbnailUploaded = NO;
         
         //Upload the fullsized image
-        //Never uploads the full quality image ( > 7mb on iPhone 4) 
-        UIImage *resizedImage = [ImageHelper scaleImage:_image proportionalToSize:MAXIMUM_IMAGE_SIZE];
-        //Upload the thumbnail image
-        UIImage *resizedThumbnail = [ImageHelper scaleImage:resizedImage proportionalToSize:MAXIMUM_THUMBNAIL_SIZE];
+        //Never uploads the full quality image ( > 7mb on iPhone 4)
+        UIImage *resizedImage = [image_ resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_IMAGE_SIZE interpolationQuality:kCGInterpolationHigh];
         
+        //Upload the thumbnail image
+        UIImage *resizedThumbnail = [resizedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_THUMBNAIL_SIZE interpolationQuality:kCGInterpolationHigh];
         
         [[SPRequestManager sharedInstance] putToURL:imageUploadURL withPayload:resizedImage withCompletionHandler:^(id responseObject)
          {
@@ -935,9 +935,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 {
     //Register profile for future requests
     NSString* deviceToken = [[UIApplication sharedApplication].delegate deviceToken];
-    //Encoding shouldn't be required as we are using JSON encoding
-    //NSString* escapedDeviceToken = [deviceToken stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+
     if(deviceToken)
     {        
         NSString* parameter = [NSString stringWithFormat:@"%@/pushToken",USER_ID_ME];

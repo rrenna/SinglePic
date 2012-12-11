@@ -15,7 +15,6 @@
     #import <Crashlytics/Crashlytics.h>
     #import "SPGlobal.h"
     //Helpers
-    #import "ImageHelper.h"
     #import "TimeHelper.h"
     #import "SPSoundHelper.h"
     //Extensions
@@ -42,9 +41,6 @@
     #import "SPRequestManager.h"
     #import "SPMessageThread+Sorting.h"
     #import "SPBaseController.h"
-
-#define YES_NSNUMBER [NSNumber numberWithBool:YES]
-#define NO_NSNUMBER [NSNumber numberWithBool:NO]
 
     #if defined (BETA)
     #import "TestFlight.h"  
