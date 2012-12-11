@@ -48,6 +48,8 @@
 "Enter an Icebreaker" = "Enter an icebreaker :)";
 "Pull down for more..." = "Pull down for more...";
 "Look for singles in your area." = "Look for singles in your area.";
+"SinglePic is out of date" = "SinglePic is out of date";
+"This version of SinglePic is too old." = "This version of SinglePic is too old. You must download the latest version on the App Store before continuing.";
 "You must have a Pic set to send a message" = "You must have a Pic set to send a message";
 "You must update your expired Pic to send a message" = "You must update your expired Pic to send a message";
 "Chat" = "Chat";

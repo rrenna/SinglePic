@@ -165,19 +165,19 @@
         if([needsUpdateValue boolValue])
         {
             needsUpdate = YES;
-            title = @"SinglePic is out of date";
-            description = @"This version of SinglePic is (too) old. You should download the latest version on the App Store before continuing.";
+            title = NSLocalizedString(@"SinglePic is out of date",nil);
+            description = NSLocalizedString(@"This version of SinglePic is too old.",nil);
         }
          
         onCompletion(needsUpdate,title,description);
          
      } andErrorHandler:^(SPWebServiceError *error)
      {
+  
      }];
     #endif
 }
 #pragma mark - Client Settings
-//-(BOOL)shouldDisplayVerboseErrors
 -(BOOL)displayVerboseErrorsEnabled
 {
     #ifdef PRIVATE

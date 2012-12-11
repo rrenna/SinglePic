@@ -48,6 +48,8 @@
 "Enter an Icebreaker" = "输入破冰船 :)";
 "Pull down for more..." = "下拉更多...";
 "Look for singles in your area." = "寻找您所在地区的单打.";
+"SinglePic is out of date" = "singlePic是过时的";
+"This version of SinglePic is too old." = "这个版本的SinglePic是太旧了。你应该在App Store上下载最新的版本，然后再继续。";
 "You must have a Pic set to send a message" = "你必须有一个图片设置为发送消息。";
 "You must update your expired Pic to send a message" = "您必须更新已过期的图片发送消息";
 "Chat" = "聊天";

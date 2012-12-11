@@ -444,11 +444,22 @@
 }
 -(void)validateReachability
 {
-    //We will ask to check network reachability and wait for a response.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityValidated) name:NOTIFICATION_REACHABILITY_REACHABLE object:nil];
-    
     //Validates the device can reach the internet
     [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
+    
+    //Retrieve and validate settings from Server
+    [[SPSettingsManager sharedInstance] validateAppWithCompletionHandler:^(BOOL needsUpdate, NSString *title, NSString *description) {
+        
+        if(needsUpdate)
+        {
+            UIAlertView* expiredAlert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            [expiredAlert show];
+            [expiredAlert release];
+        }
+    }];
+    
+    //We will ask to check network reachability and wait for a response.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityValidated) name:NOTIFICATION_REACHABILITY_REACHABLE object:nil];
 }
 -(void)reachabilityValidated
 {
