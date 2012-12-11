@@ -7,6 +7,7 @@
 //
 
 #import "SPRequestManager.h"
+#import "AFNetworkActivityIndicatorManager.h"
 #import "AFImageRequestOperation.h"
 #import "AFJSONRequestOperation.h"
 #import "SPReachabilityPopupController.h"
@@ -43,6 +44,7 @@
     if(self)
     {
         reachabilityController = [SPReachabilityPopupController new];
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     }
     return self;
 }

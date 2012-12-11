@@ -650,7 +650,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
             if(cellID == SPTopOptionSwitchCellID || cellID == SPMiddleOptionSwitchCellID || cellID == SPBottomOptionSwitchCellID || cellID == SPSingleOptionSwitchCellID)
             {
                 optionSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(222, 8, 75, 50)];
-                optionSwitch.onTintColor = TINT_DEFAULT;
+                optionSwitch.onTintColor = [UIColor colorWithWhite:0.369 alpha:1.000];
                 [cell.contentView addSubview:optionSwitch];
                 [optionSwitch release];
             }
