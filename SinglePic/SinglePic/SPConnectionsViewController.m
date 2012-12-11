@@ -29,20 +29,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addedProfileWithNotification:) name:NOTIFICATION_LIKE_ADDED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedProfileWithNotification:) name:NOTIFICATION_LIKE_REMOVED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLikedBy) name:NOTIFICATION_PUSH_NOTIFICATION_RECIEVED object:nil];
-        
-        //Retrieve my Likes
-        [[SPProfileManager sharedInstance] retrieveLikesWithCompletionHandler:^(NSArray *likes) 
-         {
-             [likes_ release];
-             likes_ = [[NSMutableArray alloc] initWithArray:likes];
-             [tableView reloadData];
-         } 
-         andErrorHandler:^
-         {
-         }];
-        
-        //Retrieve liked by me
-        [self refreshLikedBy];
     }
     return self;
 }
@@ -62,6 +48,22 @@
     
     //Manually set's the height of the styled segmented control, as it cannot be set in Interface Builder
     likeTypeSegmentedControl.height = 30.0f;
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    //Retrieve my Likes
+    [[SPProfileManager sharedInstance] retrieveLikesWithCompletionHandler:^(NSArray *likes)
+     {
+         [likes_ release];
+         likes_ = [[NSMutableArray alloc] initWithArray:likes];
+         [tableView reloadData];
+     }
+     andErrorHandler:^
+     {
+     }];
+    
+    //Retrieve liked by me
+    [self refreshLikedBy];
 }
 -(void)dealloc
 {
