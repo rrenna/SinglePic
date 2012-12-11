@@ -11,7 +11,7 @@
 
 @interface SPProfileIconController()
 {
-    IBOutlet __block UIImageView* iconView;
+    IBOutlet UIImageView* iconView;
     IBOutlet UIView* pictureStyledView;
     SPProfile* profile;
 }
@@ -26,7 +26,7 @@
     self = [self initWithNibName:@"SPProfileIconController" bundle:nil];
     if(self)
     {
-        profile = [profile_ retain];
+        profile = profile_;
     }
     return self;
 }
@@ -39,10 +39,5 @@
         iconView.image = thumbnail;
      }
      andErrorHandler:nil];
-}
--(void)dealloc
-{
-    [profile release];
-    [super dealloc];
 }
 @end

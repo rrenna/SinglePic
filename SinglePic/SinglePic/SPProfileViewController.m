@@ -25,8 +25,6 @@
 @end
 
 @implementation SPProfileViewController
-@synthesize delegate;
-@synthesize profile,avatar,unlikeUserAlertView,blockUserAlertView;//Private
 
 #pragma mark - View lifecycle
 -(id)initWithProfile:(SPProfile*)profile_
@@ -43,7 +41,6 @@
     self = [self init];
     if(self)
     {
-        
         [[SPProfileManager sharedInstance] retrieveProfile:identifier withCompletionHandler:^
         (SPProfile *profile) 
         {
@@ -77,16 +74,7 @@
         communicateButton.hidden = YES;
     }
     
-    if(profile) { [self profileLoaded]; }
-}
--(void)dealloc
-{
-    [profile release];
-    [avatar release];
-    [usernameLabel release];
-    self.unlikeUserAlertView = nil;
-    self.blockUserAlertView = nil;
-    [super dealloc];
+    if(self.profile) { [self profileLoaded]; }
 }
 #pragma mark - IBActions
 -(IBAction)message:(id)sender
@@ -95,7 +83,7 @@
     
     [SPSoundHelper playTap];
     
-    SPComposeViewController* composeController = [[[SPComposeViewController alloc] initWithProfile:self.profile] autorelease];
+    SPComposeViewController* composeController = [[SPComposeViewController alloc] initWithProfile:self.profile];
     
     [self setFullscreen:YES];
     [self pushModalController:composeController];
@@ -115,15 +103,15 @@
     }
     else
     {
-        if([[SPProfileManager sharedInstance] checkIsLiked:profile])
+        if([[SPProfileManager sharedInstance] checkIsLiked:self.profile])
         {
-            NSString* title = [NSString stringWithFormat:@"Unlike %@?",profile.username];
-            self.unlikeUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:NSLocalizedString(@"Are you sure you would like to unlike this person?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil] autorelease];
+            NSString* title = [NSString stringWithFormat:@"Unlike %@?",self.profile.username];
+            self.unlikeUserAlertView = [[UIAlertView alloc] initWithTitle:title message:NSLocalizedString(@"Are you sure you would like to unlike this person?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
             [self.unlikeUserAlertView show];
         }
         else
         {
-            [[SPProfileManager sharedInstance] addProfile:profile toToLikesWithCompletionHandler:^()
+            [[SPProfileManager sharedInstance] addProfile:self.profile toToLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;
              }
@@ -143,7 +131,6 @@
     UIActionSheet* profileMoreActionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) destructiveButtonTitle:NSLocalizedString(@"Block User",nil) otherButtonTitles: nil];
     [profileMoreActionsSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     [profileMoreActionsSheet showInView:[[UIApplication sharedApplication] keyWindow]];
-    [profileMoreActionsSheet release];
 }
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded
@@ -153,13 +140,13 @@
     communicateButton.enabled = YES;
     
     //Fill in profile details
-    usernameLabel.text = [profile username];
-    icebreakerLabel.text = [profile icebreaker];
+    usernameLabel.text = [self.profile username];
+    icebreakerLabel.text = [self.profile icebreaker];
     
     //Set image age
-    ageLabel.text = [NSString stringWithFormat:@"%@ old",[TimeHelper ageOfDate:[profile timestamp]]];
+    ageLabel.text = [NSString stringWithFormat:@"%@ old",[TimeHelper ageOfDate:[self.profile timestamp]]];
             
-    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
+    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
     {
          //The Profile object should have a cached UIImage thumbnail at this point, but if not, it'll request it. If the request takes longer than the request for the fullsize image, the thumbnail could override the fullsize image permanently. For this reason we check that the imageView has not already had it's image set.
          if(!imageView.image)
@@ -169,7 +156,7 @@
     }
     andErrorHandler:nil];
     
-    [[SPProfileManager sharedInstance] retrieveProfileImage:profile withCompletionHandler:^(UIImage *image)
+    [[SPProfileManager sharedInstance] retrieveProfileImage:self.profile withCompletionHandler:^(UIImage *image)
      {
          imageView.image = image;
      }
@@ -191,7 +178,7 @@
         {
             [Crashlytics setObjectValue:@"Clicked on the 'Yes' button in the 'Unlike <username>' alert." forKey:@"last_UI_action"];
             
-            [[SPProfileManager sharedInstance] removeProfile:profile fromLikesWithCompletionHandler:^()
+            [[SPProfileManager sharedInstance] removeProfile:self.profile fromLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;
              }
@@ -230,8 +217,8 @@
     {
         [Crashlytics setObjectValue:@"Clicked on the 'block' button in the 'more' action sheet." forKey:@"last_UI_action"];
         
-        NSString* title = [NSString stringWithFormat:@"Block %@?",profile.username];
-        self.blockUserAlertView = [[[UIAlertView alloc] initWithTitle:title message:NSLocalizedString(@"Are you sure you would like to block this person?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil] autorelease];
+        NSString* title = [NSString stringWithFormat:@"Block %@?",self.profile.username];
+        self.blockUserAlertView = [[UIAlertView alloc] initWithTitle:title message:NSLocalizedString(@"Are you sure you would like to block this person?",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"No", nil) otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
         [self.blockUserAlertView show];
     }
     else

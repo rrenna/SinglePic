@@ -40,8 +40,6 @@
 
 @implementation SPTabController
 @dynamic fullscreen;
-@synthesize containerDelegate;
-@synthesize firstVisibleIndex,floatIndex;//Private
 
 #pragma mark - Dynamic Properties
 -(void)setFullscreen:(BOOL)fullscreen_
@@ -86,11 +84,6 @@
     handleImageView.frame = CGRectMake(325, 0, 54, self.view.height);
     handleImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view insertSubview:handleImageView aboveSubview:transparentInsetView];
-}
--(void)dealloc
-{
-    [pages release];
-    [super dealloc];
 }
 -(void)maximize
 {
@@ -328,7 +321,7 @@
 #pragma mark - SPPageContainerDelegate methods
 -(SPPageController*)createPage
 {
-    SPPageController* page = [[[SPPageController alloc] initWithNibName:@"SPPageController" bundle:nil] autorelease];
+    SPPageController* page = [[SPPageController alloc] initWithNibName:@"SPPageController" bundle:nil];
     page.containerDelegate = self;
     page.view.left = PAGE_POS_LEFT_OFFSCREEN;
     page.view.height = self.view.height;

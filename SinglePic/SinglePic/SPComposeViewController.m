@@ -38,10 +38,7 @@
 #define INPUT_TOOLBAR_SIZE 42.0f
 #define MINIMIZED_TOOLBAR_Y (self.view.window.height - _toolbar.height)
 
-
 @implementation SPComposeViewController
-@synthesize minimizeContainerOnClose = _minimizeContainerOnClose;
-@synthesize thread = _thread, profile = _profile, toolbar = _toolbar; //private
 
 #pragma mark - View lifecycle
 -(id)initWithIdentifier:(NSString*)identifier
@@ -85,13 +82,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self]; //Ensures we are not listening to any more events
     [[NSNotificationCenter defaultCenter] removeObserver:tableView name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
-    
-    [_thread release];
-    [_profile release];
-    [_toolbar release];
-    [tableView release];
-    [usernameLabel release];
-    [super dealloc];
 }
 - (void)viewDidLoad
 {
@@ -444,14 +434,14 @@
     NSArray* sortedMessagesForThread = [self.thread sortedMessages];
     SPMessage* message = [sortedMessagesForThread objectAtIndex:indexPath.row];
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.width = tableView.width;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
         //The lates message is used to represent the object
     if(message)
     {
-        SPLabel* timestampLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)] autorelease];
+        SPLabel* timestampLabel = [[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)];
         [timestampLabel setStyle:LABEL_STYLE_EXTRA_SMALL];
         timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:message.date] ];
         timestampLabel.backgroundColor = [UIColor clearColor];
@@ -477,7 +467,7 @@
             style = CHAT_STYLE_OUTGOING;
         }
         
-        SPChatBubbleView* messageView = [[[SPChatBubbleView alloc] initWithFrame:messageFrame] autorelease];
+        SPChatBubbleView* messageView = [[SPChatBubbleView alloc] initWithFrame:messageFrame];
         messageView.chatStyle = style;
         messageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
         [messageView setContent:message.content];

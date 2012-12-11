@@ -1193,7 +1193,7 @@ static int profileCounter = 0;
     {
         [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(UIImage* responseObject)
          {
-             [_thumbnails setObject:responseObject forKey:profile.identifier];
+            [_thumbnails setObject:responseObject forKey:profile.identifier];
              
              onCompletion(responseObject);
              

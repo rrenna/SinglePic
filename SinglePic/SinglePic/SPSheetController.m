@@ -7,12 +7,12 @@
 //
 
 #import "SPSheetController.h"
+#import "SPTouchPassThroughView.h"
 
 @interface SPSheetController ()
 @end
 
 @implementation SPSheetController
-
 
 -(id)initWithState:(SHEET_STATE)state
 {
@@ -45,14 +45,8 @@
 }
 -(void)viewDidLayoutSubviews
 {
-    [self.view setPassThroughZone: transparentInsetView.frame];
-}
--(void)dealloc
-{
-    [contentView release];
-    [panRecognizer_ release];
-    [controller_ release];
-    [super dealloc];
+    SPTouchPassThroughView* passThroughSelf = (SPTouchPassThroughView*)self.view;
+    [passThroughSelf setPassThroughZone: transparentInsetView.frame];
 }
 #pragma mark
 -(void)minimize
@@ -90,12 +84,11 @@
         if(controller_)
         {
             [self removeObservationFromContentController];
-            [controller_ release];
         }
         //Update with new controller
         if(controller)
         {
-            controller_ = [controller retain];
+            controller_ = controller;
             //Listen for specific notifications from the designated content controller
             [self addObservationForContentController];
             
