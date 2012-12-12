@@ -52,13 +52,19 @@
     NSString* verboseURL = [NSString stringWithFormat:@"%@",_url];
     NSDictionary* userInfo = [error userInfo];
     NSURL* failingURL = [userInfo objectForKey:@"NSErrorFailingURLKey"];
-    
-    NSRange rangeOfVerboseURL = [[failingURL absoluteString] rangeOfString:verboseURL options:NSCaseInsensitiveSearch];
-    
-    if(rangeOfVerboseURL.location != NSNotFound)
+    //IF a failure URL is not stored in the userDictionary, check if this error stores a url in the Domain property 
+    NSString* failingURLString = (failingURLString) ? [failingURL absoluteString] : [error domain];
+
+    if(failingURLString)
     {
-        match = YES;
+        NSRange rangeOfVerboseURL = [failingURLString rangeOfString:verboseURL options:NSCaseInsensitiveSearch];
+        
+        if(rangeOfVerboseURL.location != NSNotFound)
+        {
+            match = YES;
+        }
     }
+
     
     return match;
 }
