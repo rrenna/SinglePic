@@ -20,7 +20,6 @@
 @interface SPBaseController()
 {
     NSMutableArray* tabs;
-
     BASE_MODE baseMode_;
 }
 @property (retain) SPHelpOverlayViewController* helpOverlayController;
@@ -67,12 +66,10 @@
         }
         if(userController)
         {
-            [userController release];
             userController = nil;
         }
         if(messagesController)
         {
-            [messagesController release];
             messagesController = nil;
         }
 
@@ -87,7 +84,6 @@
         if(registrationController)
         {
             [registrationController.view removeFromSuperview];
-            [registrationController release];
             registrationController = nil;
         }
         if(!userController)
@@ -159,13 +155,6 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [tabs release];
-    [registrationController release];
-    [userController release];
-    [navigationBar release];
-    [miniProgressView release];
-    [miniAvatarImage release];
-    [super dealloc];
 }
 #pragma mark - IBActions
 -(IBAction)connections:(id)sender
@@ -217,7 +206,7 @@
     
     [SPSoundHelper playTap];
     
-    SPSettingsViewController* settingsController = [[SPSettingsViewController new] autorelease];
+    SPSettingsViewController* settingsController = [SPSettingsViewController new];
     [self presentModalViewController:settingsController animated:YES];
 }
 #pragma mark - Content
@@ -240,7 +229,7 @@
     //Close all existing page
     [tab closeAllPages];
     //Present a page containing the profile controller
-    SPProfileViewController* profileController = [[[SPProfileViewController alloc] initWithProfile:profile] autorelease];
+    SPProfileViewController* profileController = [[SPProfileViewController alloc] initWithProfile:profile];
     [tab pushModalController:profileController];
 }
 -(void)pushProfileWithID:(NSString*)profileID
@@ -251,7 +240,7 @@
     //Close all existing page
     [tab closeAllPages];
     //Present a page containing the profile controller
-    SPProfileViewController* profileController = [[[SPProfileViewController alloc] initWithIdentifier:profileID] autorelease];
+    SPProfileViewController* profileController = [[SPProfileViewController alloc] initWithIdentifier:profileID];
     [tab pushModalController:profileController];
 }
 -(void)pushChatWithProfile:(SPProfile*)profile
@@ -270,7 +259,7 @@
         //Close all existing page
     [tab closeAllPages];
         //Present a page containing the chat controller
-    SPComposeViewController* chatScreenController = [[[SPComposeViewController alloc] initWithProfile:profile] autorelease];
+    SPComposeViewController* chatScreenController = [[SPComposeViewController alloc] initWithProfile:profile];
     chatScreenController.minimizeContainerOnClose = fromBase;
     [tab pushModalController:chatScreenController];
 }
@@ -282,14 +271,14 @@
         //Close all existing page
     [tab closeAllPages];
         //Present a page containing the chat controller
-    SPComposeViewController* chatScreenController = [[[SPComposeViewController alloc] initWithIdentifier:profileID] autorelease];
+    SPComposeViewController* chatScreenController = [[SPComposeViewController alloc] initWithIdentifier:profileID];
     chatScreenController.minimizeContainerOnClose = fromBase;
     [tab pushModalController:chatScreenController];
 }
 #pragma mark - Help
 -(void)displayHelpOverlay:(HELP_OVERLAY_TYPE)type
 {
-    self.helpOverlayController = [[[SPHelpOverlayViewController alloc] initWithType:type] autorelease];
+    self.helpOverlayController = [[SPHelpOverlayViewController alloc] initWithType:type];
     helpOverlayController.delegate = self;
     [self.view.superview addSubview:helpOverlayController.view];
 }
@@ -316,13 +305,13 @@
 {
     [activityView stopAnimating];
     self.baseMode = NAVIGATION_BASE_MODE;
-    [self pushModalController: [[SPBrowseViewController new] autorelease] isFullscreen:NO];
+    [self pushModalController: [SPBrowseViewController new] isFullscreen:NO];
 }
 -(void)registrationMode
 {
     [activityView stopAnimating];
     self.baseMode = REGISTRATION_BASE_MODE;
-    [self pushModalController: [[SPBrowseViewController new] autorelease] isFullscreen:NO];
+    [self pushModalController: [SPBrowseViewController new] isFullscreen:NO];
 }
 -(void)displayLikesView
 {
@@ -406,7 +395,10 @@
 }
 -(void)updateNewMailAlert
 {
-    if([[SPMessageManager sharedInstance] unreadMessagesCount] > 0)
+    SPMessageManager* manager = [SPMessageManager sharedInstance];
+    int unreadMessageCount = [manager unreadMessagesCount];
+    
+    if(unreadMessageCount > 0)
     {
         newMessageAlertImage.alpha = 1.0;
         newMessageCountLabel.alpha = 1.0;
@@ -419,7 +411,7 @@
         }];
     }
     
-    newMessageCountLabel.text = [NSString stringWithFormat:@"%d",[[SPMessageManager sharedInstance] unreadMessagesCount]];
+    newMessageCountLabel.text = [NSString stringWithFormat:@"%d",unreadMessageCount];
 }
 -(void)flashNewConnectionAlert
 {
@@ -454,7 +446,6 @@
         {
             UIAlertView* expiredAlert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
             [expiredAlert show];
-            [expiredAlert release];
         }
     }];
     
@@ -542,7 +533,7 @@
 -(SPTabController*)createTabIsFullscreen:(BOOL)fullscreen
 {
     SHEET_STATE state = (fullscreen) ? SHEET_STATE_FULLSCREEN : SHEET_STATE_MAXIMIZED;
-    SPTabController* tab = [[[SPTabController alloc] initWithState:state] autorelease];
+    SPTabController* tab = [[SPTabController alloc] initWithState:state];
     tab.containerDelegate = self;
     
     //Resize the tab to be the height of the baseController (should be full screen)
@@ -570,12 +561,6 @@
 {
     [overlayController.view removeFromSuperview];
     self.helpOverlayController = nil;
-}
-- (void)viewDidUnload {
-    newConnectionAlertImage = nil;
-    newMessageAlertImage = nil;
-    newMessageCountLabel = nil;
-    [super viewDidUnload];
 }
 @end
 

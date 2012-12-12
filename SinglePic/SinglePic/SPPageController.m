@@ -19,7 +19,6 @@
 @end
 
 @implementation SPPageController
-@synthesize containerDelegate;
 
 -(void)viewDidLoad
 {
@@ -30,14 +29,6 @@
     //Add right-side parchment 9-slice
     UIImage* rightImage9Slice = [[UIImage imageNamed:@"Paper-Right.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:50];
     handleImageView.image = rightImage9Slice;
-}
--(void)viewDidLayoutSubviews
-{
-    [self.view setPassThroughZone: transparentInsetView.frame];
-}
--(void)dealloc
-{
-    [super dealloc];
 }
 #pragma mark - Observation
 - (void) removeObservationFromContentController
@@ -157,7 +148,6 @@
     //Fullscreen tabs cannot be panned
     if(![self.containerDelegate fullscreen])
     {
-
         CGPoint translatedPoint = [recognizer translationInView:self.view];
         UIGestureRecognizerState state = recognizer.state;
         

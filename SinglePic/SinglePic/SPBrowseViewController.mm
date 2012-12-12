@@ -80,7 +80,6 @@ static b2PrismaticJointDef shaftJoint;
 @end
 
 @implementation SPBrowseViewController
-@synthesize stacks = _stacks, profileControllers, tickDisplayLink = _tickDisplayLink; //Private
 
 -(id)init
 {
@@ -127,13 +126,16 @@ static b2PrismaticJointDef shaftJoint;
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [profileControllers release];
-    [queuedSelectorCalls release];
+    
+    self.stacks = nil;
+    self.profileControllers = nil;
     
     [_tickDisplayLink invalidate];
-    [dropTimer invalidate];
+    self.tickDisplayLink = nil;
     
-    [_tickDisplayLink release];
+    [queuedSelectorCalls release];
+    
+    [dropTimer invalidate];
     [dropTimer release];
     
     delete world;
@@ -382,7 +384,7 @@ static b2PrismaticJointDef shaftJoint;
 }
 -(void)beginDropSchedule
 {    
-    [profileControllers removeAllObjects];
+    [self.profileControllers removeAllObjects];
     [self resumeAllStacks];
 }
 -(void)dropAllOnscreenBlocks

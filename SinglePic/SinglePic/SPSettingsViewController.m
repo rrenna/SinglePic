@@ -64,7 +64,9 @@
     
     [SPSoundHelper playTap];
     
-    if([[SPSettingsManager sharedInstance] environment] == ENVIRONMENT_TESTING)
+    SPSettingsManager* settingsManager = [SPSettingsManager sharedInstance];
+    
+    if([settingsManager environment] == ENVIRONMENT_TESTING)
     {
         [[SPSettingsManager sharedInstance] setEnvironment:ENVIRONMENT_PRODUCTION];
     }
@@ -138,8 +140,9 @@
 {
     MDACListCredit* switchEnvironmentListCredit = [MDACListCredit listCreditWithTitle:@""];
     MDACCreditItem* switchEnvironmentCreditItem;
+    SPSettingsManager* settingsManager = [SPSettingsManager sharedInstance];
     
-    if([[SPSettingsManager sharedInstance] environment] == ENVIRONMENT_TESTING)
+    if([settingsManager environment] == ENVIRONMENT_TESTING)
     {
              switchEnvironmentCreditItem = [MDACCreditItem itemWithName:@"Switch to Production" role:@"" linkString:@"selector:switchEnvironment"];
     }
@@ -163,4 +166,5 @@
     SPOptionCreditItem* verboseErrorMessagesEnabledToggleItem = [[SPOptionCreditItem alloc] initWithName:@"Verbose Errors" andOptionGetter:@selector(verboseErrorMessagesEnabled) andOptionSetter:@selector(setVerboseErrorMessagesEnabledWithControl:)];
     [optionsListCredit addItem:verboseErrorMessagesEnabledToggleItem];
 }
+
 @end

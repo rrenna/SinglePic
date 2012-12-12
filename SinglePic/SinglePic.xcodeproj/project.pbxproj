@@ -19,7 +19,7 @@
 		750E482C14C62FAA00F7CCFC /* SPMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750E482A14C62FAA00F7CCFC /* SPMessagesViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		750E482D14C62FAA00F7CCFC /* SPMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750E482B14C62FAA00F7CCFC /* SPMessagesViewController.xib */; };
 		75115C8B14DAE93F00544A23 /* newMessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75115C8A14DAE93F00544A23 /* newMessage.png */; };
-		751D2632149121C800617DD8 /* SPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2630149121C800617DD8 /* SPBaseController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		751D2632149121C800617DD8 /* SPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2630149121C800617DD8 /* SPBaseController.m */; };
 		751D2633149121C800617DD8 /* SPBaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 751D2631149121C800617DD8 /* SPBaseController.xib */; };
 		751D2638149146B500617DD8 /* SPTouchPassThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2637149146B500617DD8 /* SPTouchPassThroughView.m */; };
 		751D263D14916D2B00617DD8 /* BG-Linen-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263A14916D2B00617DD8 /* BG-Linen-Red.png */; };
@@ -142,7 +142,7 @@
 		75A38B9914E9A1AD000F00DF /* Pic-Frame-Blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9814E9A1AD000F00DF /* Pic-Frame-Blocks.png */; };
 		75A38B9D14E9B004000F00DF /* noImage-Block.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9B14E9B004000F00DF /* noImage-Block.png */; };
 		75A38B9E14E9B004000F00DF /* noImage-Block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A38B9C14E9B004000F00DF /* noImage-Block@2x.png */; };
-		75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B1C4D915FA6CBC001055A0 /* SPSettingsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B1C4D915FA6CBC001055A0 /* SPSettingsViewController.m */; };
 		75B4AA3115D44E5700745137 /* SPLocationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B4AA3015D44E5700745137 /* SPLocationChooser.m */; };
 		75B5F24816136773000A010A /* textbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24616136773000A010A /* textbg@2x~iphone.png */; };
 		75B5F24916136773000A010A /* textbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24716136773000A010A /* textbg~iphone.png */; };
@@ -167,7 +167,7 @@
 		75D726E116022792006059B8 /* Parchment-Right-9Slice.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D726E016022792006059B8 /* Parchment-Right-9Slice.png */; };
 		75DB6B1914BF96CF00338A7C /* SPCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DB6B1814BF96CF00338A7C /* SPCardView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD433F163B24550084C61A /* SPOptionCredit.m */; };
-		75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */; };
 		75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */; };
 		75E7E02414B3C39B005C70B4 /* SPTabContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */; };
 		75F56329148FE8CA00E6A8F9 /* SPTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56327148FE8CA00E6A8F9 /* SPTabController.m */; };
@@ -270,8 +270,6 @@
 		F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C81611D91A006FB767 /* Nav-Messages-OFF@2x.png */; };
 		F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C91611D91A006FB767 /* Nav-Messages-ON@2x.png */; };
 		F0B9E8D81612821F006FB767 /* SPChatBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E8D71612821F006FB767 /* SPChatBubbleView.m */; };
-		F0B9E8DB16128BC2006FB767 /* MessageBubble-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8D916128BC1006FB767 /* MessageBubble-blue.png */; };
-		F0B9E8DC16128BC2006FB767 /* MessageBubble-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8DA16128BC2006FB767 /* MessageBubble-white.png */; };
 		F0C0B36414F741DA007BEB13 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36314F7401C007BEB13 /* UIImageView+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C0B36514F741DC007BEB13 /* UIButton+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36114F7401C007BEB13 /* UIButton+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C0B36614F741DE007BEB13 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B35F14F7401C007BEB13 /* CurledViewBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2700,8 +2698,6 @@
 				F0B9E8C51611D89E006FB767 /* Nav-Profile-OFF@2x.png in Resources */,
 				F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */,
 				F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */,
-				F0B9E8DB16128BC2006FB767 /* MessageBubble-blue.png in Resources */,
-				F0B9E8DC16128BC2006FB767 /* MessageBubble-white.png in Resources */,
 				F03A7F0C161291EF0049F27B /* MessageBubble-white@2x.png in Resources */,
 				F03A7F0F1612A55B0049F27B /* MessageBubble-blue@2x.png in Resources */,
 				75B5F24816136773000A010A /* textbg@2x~iphone.png in Resources */,
