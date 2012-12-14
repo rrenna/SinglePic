@@ -40,16 +40,6 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     }
     return self;
 }
--(void)dealloc
-{
-    [orientationChooser release];
-    [firstNameTableViewCell release];
-    [emailTableViewCell release];
-    [passwordTableViewCell release];
-    [contentView release];
-    [signupFormTable release];
-    [super dealloc];
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -86,26 +76,6 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     [self stepThreeInitialization];
 
 }
-- (void)viewDidUnload {
-    [firstNameTableViewCell release];
-    firstNameTableViewCell = nil;
-    [emailTableViewCell release];
-    emailTableViewCell = nil;
-    [passwordTableViewCell release];
-    passwordTableViewCell = nil;
-    [contentView release];
-    contentView = nil;
-    [signupFormTable release];
-    signupFormTable = nil;
-    titleLabel = nil;
-    emailLabel = nil;
-    usernameLabel = nil;
-    passwordLabel = nil;
-    confirmPasswordLabel = nil;
-    tagline1Label = nil;
-    tagline2Label = nil;
-    [super viewDidUnload];
-}
 #pragma mark - IBActions
 -(IBAction)back:(id)sender
 {
@@ -120,10 +90,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     }
     else if(step == 2)
     {
-        [self close]; //TEMP: Removed step 1
-        
-        //[self transitionToStep:1];
-        //step = 1;
+        [self transitionToStep:1];
+        step = 1;
     }
     else
     {
@@ -226,16 +194,9 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     
     if(_step == 1)
     {
-        //TEMP: Removed step 1
-        
-        /*
         nextButton.enabled = NO;
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
         newView = stepOneView;
-         */
-        
-        step = 2;
-        [self transitionToStep:2];
     }
     else if(_step == 2)
     {

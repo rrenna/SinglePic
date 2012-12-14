@@ -149,7 +149,7 @@
 		75B5F24C1613677C000A010A /* toolbarbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24A1613677C000A010A /* toolbarbg@2x~iphone.png */; };
 		75B5F24D1613677C000A010A /* toolbarbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75B5F24B1613677C000A010A /* toolbarbg~iphone.png */; };
 		75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */; };
-		75CA32D314AE298300C63CD5 /* SPSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA32D114AE298300C63CD5 /* SPSignUpController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75CA32D314AE298300C63CD5 /* SPSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA32D114AE298300C63CD5 /* SPSignUpController.m */; };
 		75CA32D414AE298300C63CD5 /* SPSignupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CA32D214AE298300C63CD5 /* SPSignupController.xib */; };
 		75CA53B414CF4FBD00C36F35 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75CA53BA14CF538C00C36F35 /* card-ninepatch-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CA53B614CF538B00C36F35 /* card-ninepatch-white.png */; };
