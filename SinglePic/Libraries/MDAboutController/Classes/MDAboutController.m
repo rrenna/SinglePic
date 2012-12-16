@@ -84,6 +84,7 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
 - (void)generateCachedCellsIfNeeded; // internal
 
 - (void)openMailToRecipient:(NSString *)recipient subject:(NSString *)subject;
+- (void)openMailToRecipient:(NSString *)recipient subject:(NSString *)subject body:(NSString*)body;
 
 @property (nonatomic, retain, readwrite) MDACStyle *style;
 
@@ -901,6 +902,10 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
 
 - (void)openMailToRecipient:(NSString *)recipient subject:(NSString *)subject
 {
+    [self openMailToRecipient:recipient subject:subject body:nil];
+}
+- (void)openMailToRecipient:(NSString *)recipient subject:(NSString *)subject body:(NSString*)body
+{
     #ifdef BETA
     [TestFlight openFeedbackView];
     #else
@@ -917,19 +922,20 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
         
         // dear compiler warning... shut up
         // the following should be fully backwards compatible.
+        if(body && [mailer respondsToSelector:@selector(setMessageBody:isHTML:)])
+        {
+            objc_msgSend(mailer, @selector(setMessageBody:isHTML:), body, YES);
+        }
         if ([self respondsToSelector:@selector(presentViewController:animated:completion:)])
         {
             objc_msgSend(self, @selector(presentViewController:animated:completion:), mailer, YES, NULL);
-            // [self presentViewController:mailer animated:YES completion:NULL];
         } else
         {
             objc_msgSend(self, @selector(presentModalViewController:animated:), mailer, YES);
-            // [self presentModalViewController:mailer animated:YES];
         }
     }
-    #endif
+#endif
 }
-
 - (void)mailComposeController:(id)controller didFinishWithResult:(int)result error:(NSError *)error
 {
     [self dismissModalViewControllerAnimated:YES];
@@ -999,7 +1005,14 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
                         recipient = [NSString stringWithFormat:@"%@ <%@>", [[(MDACListCredit *)credit itemAtIndex:index].userAssociations objectForKey:@"EmailName"], recipient];
                     }
                     
-                    [self openMailToRecipient:recipient subject:subject];
+                    //Body
+                    NSString* systemVersion = [[UIDevice currentDevice] systemVersion];
+                    NSString* model = [[UIDevice currentDevice] model];
+                    NSString* appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+                    
+                    NSString* emailBody = [NSString stringWithFormat:@"<html><body><br/><br/><br/><hr/><p>Please Add any comments/questions above this line.</p><p>System Version : <b>%@</b><br/>Model : <b>%@</b><br/>SinglePic Version : <b>%@</b></body></html>",systemVersion,model,appVersion];
+                    
+                    [self openMailToRecipient:recipient subject:subject body:emailBody];
                 } else {
                     [[UIApplication sharedApplication] openURL:url];
                 }
