@@ -67,16 +67,6 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     }
 
 }
-- (void)dealloc {
-    [headerStyledView release];
-    [passwordTextField release];
-    [emailTextField release];
-    [passwordTableViewCell release];
-    [emailTableViewCell release];
-    [loginButton release];
-    [backButton release];
-    [super dealloc];
-}
 - (IBAction)back:(id)sender
 {
     [Crashlytics setObjectValue:@"Clicked on the 'Back' button in the Login screen." forKey:@"last_UI_action"];
@@ -171,16 +161,5 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
         [passwordTextField becomeFirstResponder];
     }
     return YES;
-}
-- (void)viewDidUnload {
-    [self setLoginButton:nil];
-    [self setBackButton:nil];
-    [self setTitleLabel:nil];
-    titleLabel = nil;
-    [self setEmailLabel:nil];
-    emailLabel = nil;
-    passwordLabel = nil;
-    taglineLabel = nil;
-    [super viewDidUnload];
 }
 @end

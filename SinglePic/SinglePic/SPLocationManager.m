@@ -8,15 +8,22 @@
 
 #import "SPLocationManager.h"
 
+@interface SPLocationManager()
+{
+}
+@property (copy) void(^waitOnLocationCompleteBlock)(CLLocation*);
+@property (copy) void(^waitOnLocationErrorBlock)();
+
+-(void)createLocationManager;
+@end
+
 @implementation SPLocationManager
 #pragma mark
 -(id)init
 {
     self = [super init];
     if(self)
-    {
-        
-    }
+    { }
     return self;
 }
 -(void)dealloc
@@ -32,12 +39,29 @@
 {
     if(!locationManager)
     {
-        locationManager = [[CLLocationManager alloc] init]; 
-        [locationManager setDesiredAccuracy:2000]; //2 km accuracy
-        locationManager.delegate = self;
+        [self createLocationManager];
     }
     
     [locationManager startUpdatingLocation];
+}
+-(void)waitOnLocationWithCompletion:(void(^)(CLLocation*))onComplete andError:(void(^)(void))onError
+{
+    if(!locationManager)
+    {
+        [self createLocationManager];
+    }
+    
+    CLLocation* location = [self location];
+    if(location)
+    {
+        onComplete(location);
+    }
+    else
+    {
+        self.waitOnLocationCompleteBlock = onComplete;
+        self.waitOnLocationErrorBlock = onError;
+        [locationManager startUpdatingLocation];
+    }
 }
 -(CLLocation*)location
 {
@@ -53,13 +77,17 @@
 {
     if(!locationManager)
     {
-        locationManager = [[CLLocationManager alloc] init]; 
-        [locationManager setDesiredAccuracy:2000]; //1 km accuracy
-        locationManager.delegate = self;
+        [self createLocationManager];
     }
        
     [locationManager startUpdatingLocation];
-    [locationManager stopUpdatingHeading];
+}
+#pragma mark - Private methods
+-(void)createLocationManager
+{
+    locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyThreeKilometers]; //3 km accuracy
+    locationManager.delegate = self;
 }
 #pragma mark - LocationManager delegate methods
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -74,7 +102,24 @@
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    if(self.waitOnLocationCompleteBlock)
+    {
+        self.waitOnLocationCompleteBlock(newLocation);
+        self.waitOnLocationCompleteBlock = nil;
+        self.waitOnLocationErrorBlock = nil;
+    }
+    
     //We only need an estimated location, we can now turn the GPS off
     [manager stopUpdatingLocation];
+}
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    if(self.waitOnLocationErrorBlock)
+    {
+        self.waitOnLocationErrorBlock();
+        self.waitOnLocationCompleteBlock = nil;
+        self.waitOnLocationErrorBlock = nil;
+    }
 }
 @end

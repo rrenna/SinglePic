@@ -17,6 +17,7 @@
 }
 -(BOOL)locationAvaliable;
 -(void)getLocation;//Attempts to get a user location (if possible)
+-(void)waitOnLocationWithCompletion:(void(^)(CLLocation*))onComplete andError:(void(^)(void))onError;
 -(CLLocation*)location;
 -(CLAuthorizationStatus)locationAuthorizationStatus;
 -(void)requestLocationPermission;

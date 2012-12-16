@@ -25,6 +25,7 @@
 @property (strong) SPLabel* statusLabel;
 
 -(void)_init;
+-(void)retrieveLocation;
 -(void)retrieveBuckets;
 -(void)displayCurrentBucket:(SPBucket*)currentBucket;
 -(void)displayBuckets;
@@ -34,8 +35,6 @@
 @end
 
 @implementation SPLocationChooser
-@synthesize buckets = _buckets, selectionIndicators = _selectionIndicators, buttonTitles = _buttonTitles, buttonIcons = _buttonIcons; //Private
-@synthesize delegate = _delegate,chosenBucket = _chosenBucket;
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -91,7 +90,14 @@
     self.activityIndicator.alpha = 0.0;
     self.activityIndicator.color = TINT_BASE;
     
-    [self retrieveBuckets];
+    //Retrieve current bucket
+    SPBucket* currentBucket = [[SPProfileManager sharedInstance] myBucket];
+    if(currentBucket)
+    {
+        [self displayCurrentBucket:currentBucket];
+    }
+    
+    [self retrieveLocation];
 }
 #pragma mark - IBActions
 -(IBAction)locationSelected:(id)sender
@@ -100,18 +106,39 @@
     [self selectLocationAtIndex:index];
 }
 #pragma mark - Private methods
+-(void)retrieveLocation
+{
+    //
+    [[SPLocationManager sharedInstance] getLocation];
+    
+    //Retrieve location
+    if([[SPLocationManager sharedInstance] locationAvaliable])
+    {
+        //Display and fade in status
+        [self.activityIndicator startAnimating];
+        self.statusLabel.text = @"Finding your location...";
+        [UIView animateWithDuration:0.5 animations:^{
+            self.activityIndicator.alpha = 1.0;
+            self.statusLabel.alpha = 1.0;
+        }];
+        
+        [[SPLocationManager sharedInstance] waitOnLocationWithCompletion:^(CLLocation* location)
+        {
+            //TODO: Sort buckets based on this Location
+            [self retrieveBuckets];
+        }
+        andError:^
+        {
+            [self retrieveBuckets];
+        }];
+    }
+    else
+    {
+        [self retrieveBuckets];
+    }
+}
 -(void)retrieveBuckets
 {
-    //Retrieve current bucket
-    SPBucket* currentBucket = [[SPProfileManager sharedInstance] myBucket];
-    if(currentBucket)
-    {
-        [self displayCurrentBucket:currentBucket];
-    }
-    
-    //Retrieve buckets
-    
-    
     //Display and fade in status
     [self.activityIndicator startAnimating];
     self.statusLabel.text = @"Finding nearby locations...";
