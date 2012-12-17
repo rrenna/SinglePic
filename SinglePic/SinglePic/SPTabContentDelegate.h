@@ -32,6 +32,7 @@
 -(void)close;
 //Tab Controller informing Content Controller
 -(void)willMinimize;
+-(void)willMaximize;
 -(void)willClose;
 @end
 

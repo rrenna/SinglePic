@@ -38,9 +38,14 @@
 //Recieving intent from Tab Controller
 -(void)willMinimize
 {
+    //Stub
+}
+-(void)willMaximize
+{
+    //Stub
 }
 -(void)willClose
 {
-    
+    //Stub
 }
 @end

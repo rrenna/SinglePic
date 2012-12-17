@@ -13,6 +13,7 @@
 #import "SPBlockView.h"
 #import <Box2D/Box2D.h> //Must be included AFTER MKMapKit or anything that includes MKMapKit
 #import <typeinfo>
+#import <objc/message.h>
 
 #define REFRESH_HEADER_HEIGHT 8.0f //52.0f
 #define BROWSE_ROW_LIMIT 5
@@ -36,7 +37,7 @@ static b2PrismaticJointDef shaftJoint;
     
     BOOL isDragging;
     BOOL isLoading;
-    BOOL isDroping;
+    BOOL isVisible;
     BOOL isThereProfileThatHaveDroppedThisIteration;
     __block BOOL isRestarting;
     NSTimer *dropTimer;
@@ -76,7 +77,8 @@ static b2PrismaticJointDef shaftJoint;
 -(void)tick:(NSTimer *)timer;
 -(void)drop:(NSTimer *)timer;
 -(void)performSelector:(SEL)aSelector afterTicks:(int)ticks;
-
+//C Functions
+void increaseCurrentTickCount();
 @end
 
 @implementation SPBrowseViewController
@@ -90,7 +92,7 @@ static b2PrismaticJointDef shaftJoint;
         queuedSelectorCalls = [NSMutableArray new];
         self.stacks = @[ [NSMutableArray array],[NSMutableArray array],[NSMutableArray array] ];
         stackPaused[0] = NO; stackPaused[1] = NO; stackPaused[2] = NO;
-        isDroping = NO;
+        isVisible = YES;
         isDragging = NO;
         isLoading = NO;
         
@@ -114,8 +116,6 @@ static b2PrismaticJointDef shaftJoint;
     [self setup];
     //Set up 'pull to next' header
     [self addPullToNextHeader];
-    //Sets the controller to visible, can later be paused to reduce computational load
-    [self visible];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -165,10 +165,6 @@ static b2PrismaticJointDef shaftJoint;
              dropTimer = [NSTimer scheduledTimerWithTimeInterval:delay target:weakSelf selector:@selector(drop:) userInfo:nil repeats:YES];
          }];
     }
-}
--(void)visible
-{
-    //TODO: Improve resume functionality
 }
 #pragma mark - IBActions
 -(IBAction)restart:(id)sender
@@ -272,6 +268,18 @@ static b2PrismaticJointDef shaftJoint;
     [dropTimer invalidate]; dropTimer = nil;
     
     [super willClose];
+}
+-(void)willMinimize
+{
+    [super willMinimize];
+    
+    isVisible = NO;
+}
+-(void)willMaximize
+{
+    [super willMaximize];
+    
+    isVisible = YES;
 }
 #pragma mark - Private methods
 -(void)createPhysicsWorld
@@ -537,6 +545,10 @@ int currentTick = 0;
 }
 -(void)increaseCurrentTickCount
 {
+    increaseCurrentTickCount();
+}
+void increaseCurrentTickCount()
+{
     if(currentTick == INT_MAX)
     {
         currentTick = 0;
@@ -548,11 +560,14 @@ int currentTick = 0;
 }
 -(void)tick:(NSTimer *)timer
 {
+    if(!isVisible)
+        return;
+    
     NSMutableArray* selectorsToPerform = nil;
     //Flag actions to be performed, or reduce their tick count
     for(_SPBrowseViewQueuedSelectorCall* queuedSelectorCall in queuedSelectorCalls) {
         
-        if([self currentTickCount] == queuedSelectorCall.ticks) {
+        if(currentTick == queuedSelectorCall.ticks) {
             
             //Add entry to deletion array
             if(!selectorsToPerform) { selectorsToPerform = [NSMutableArray arrayWithObject:queuedSelectorCall]; }
@@ -562,7 +577,7 @@ int currentTick = 0;
     //Perform actions
     for(_SPBrowseViewQueuedSelectorCall* queuedSelectorCall in selectorsToPerform)
     {
-        [self performSelector: queuedSelectorCall.selector];
+        objc_msgSend(self, queuedSelectorCall.selector);
     }
     //Delete performed actions
     if(selectorsToPerform)
@@ -570,7 +585,7 @@ int currentTick = 0;
         [queuedSelectorCalls removeObjectsInArray:selectorsToPerform];
     }
     
-    [self increaseCurrentTickCount];
+    increaseCurrentTickCount();
     
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
@@ -606,6 +621,7 @@ int currentTick = 0;
                 // y Position subtracted because of flipped coordinate system
                 CGPoint newCenter = CGPointMake(position.x * PTM_RATIO,
                                                 canvasView.bounds.size.height - position.y * PTM_RATIO);
+                
                 oneView.center = newCenter;
                 
                 //CGAffineTransform transform = CGAffineTransformMakeRotation(- b->GetAngle());
@@ -632,6 +648,9 @@ int currentTick = 0;
 }
 -(void)drop:(NSTimer *)timer
 {
+    if(!isVisible)
+        return;
+    
     static const int padding = 5;
     static const int rowLimit = (self.view.height >  460 ) ? BROWSE_ROW_LIMIT_TALL : BROWSE_ROW_LIMIT;
     isThereProfileThatHaveDroppedThisIteration = NO;

@@ -91,6 +91,12 @@
 }
 -(void)maximizeIsFullscreen:(BOOL)fullscreen
 {
+    //Used to inform the content cotroller that we will be maximizing the tab
+    if([controller_ respondsToSelector:@selector(willMaximize)])
+    {
+        [controller_ performSelector:@selector(willMaximize)];
+    }
+
     state_ = (fullscreen) ? SHEET_STATE_FULLSCREEN : SHEET_STATE_MAXIMIZED;
     
     //Since this helper function will be setting the FULLSCREEN property, it does the 'right' things using this private method
@@ -312,8 +318,14 @@
         {
             SHEET_STATE targetState = [self sheetStateForPosition:self.view.left withOriginPosition:dragStart_];
             
-            state_ = targetState;
-            [self transformToState:state_ shouldAnimate:YES];
+            if(targetState == SHEET_STATE_MINIMIZED)
+            {
+                [self minimize];
+            }
+            else if(targetState == SHEET_STATE_MAXIMIZED)
+            {
+                [self maximize];
+            }
         }
 
     }

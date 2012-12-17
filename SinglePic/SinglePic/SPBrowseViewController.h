@@ -20,7 +20,6 @@
 }
 
 -(void)setup;
--(void)visible;
 
 -(IBAction)restart:(id)sender;
 -(IBAction)next:(id)sender;
