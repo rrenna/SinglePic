@@ -260,16 +260,20 @@
         bucketDisplayIndex++;
     }
     
-    // Select the first closest bucket
     
-    [self displaySelectedAtIndex:0];
-    
-    self.chosenBucket = [self.buckets objectAtIndex:0];
-    
-    if(self.delegate)
+    if(self.autoselectFirstBucket == YES)
     {
-        [self.delegate locationChooserSelectionChanged:self];
+        // Select the first closest bucket
+        [self displaySelectedAtIndex:0];
+        
+        self.chosenBucket = [self.buckets objectAtIndex:0];
+        
+        if(self.delegate)
+        {
+            [self.delegate locationChooserSelectionChanged:self];
+        }
     }
+
 }
 #define ICON_DIMENSION 20
 -(UIView*)buttonForLocation:(SPBucket*)bucket atIndex:(int)index

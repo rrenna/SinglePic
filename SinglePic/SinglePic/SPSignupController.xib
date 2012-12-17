@@ -1315,7 +1315,7 @@
 					<object class="NSMutableString" key="NSString">
 						<characters key="NS.bytes">test</characters>
 					</object>
-					<dictionary key="NSAttributes" id="727091420">
+					<dictionary key="NSAttributes" id="58032959">
 						<object class="NSFont" key="NSFont">
 							<string key="NSName">LucidaGrande</string>
 							<double key="NSSize">11</double>
@@ -1367,12 +1367,25 @@
 					<object class="NSMutableString" key="NSString">
 						<characters key="NS.bytes">test</characters>
 					</object>
-					<reference key="NSAttributes" ref="727091420"/>
+					<reference key="NSAttributes" ref="58032959"/>
 				</object>
 				<string key="215.object.labelIdentifier">IBBuiltInLabel-Yellow</string>
 				<boolean value="YES" key="215.showNotes"/>
 				<string key="218.CustomClassName">SPLocationChooser</string>
-				<dictionary class="NSMutableDictionary" key="218.IBAttributePlaceholdersKey"/>
+				<object class="NSMutableDictionary" key="218.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUIUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="556988362"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.boolean</string>
+								<string key="keyPath">autoselectFirstBucket</string>
+								<boolean value="YES" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
 				<string key="218.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="221.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="227.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
