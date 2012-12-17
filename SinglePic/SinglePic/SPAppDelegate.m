@@ -21,21 +21,12 @@
 @end
 
 @implementation SPAppDelegate
-@synthesize window = _window;
-@synthesize baseController;
-
 +(SPBaseController*)baseController
 {
     SPAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
     return appDelegate.baseController;
 }
 #pragma mark
-- (void)dealloc
-{
-    [_window release];
-    [baseController release];
-    [super dealloc];
-}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     #if defined (BETA)
@@ -50,8 +41,8 @@
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:requiredNotificationTypes];
     
     // Override point for customization after application launch.
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.baseController = [[[SPBaseController alloc] initWithNibName:@"SPBaseController" bundle:nil] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.baseController = [[SPBaseController alloc] initWithNibName:@"SPBaseController" bundle:nil];
     self.window.rootViewController = self.baseController;
     [self.window makeKeyAndVisible];
     

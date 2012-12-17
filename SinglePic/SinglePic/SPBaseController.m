@@ -17,6 +17,10 @@
 #import "SPSettingsViewController.h"
 #import "SPStyledButton.h"
 
+// We used to validate location services on start-up, this has been eliminated to reduce the amount of system
+// permission pop-ups a user has to accept before reaching the application
+#define VALIDATE_LOCATION_SERVICES_ON_STARTUP NO
+
 @interface SPBaseController()
 {
     NSMutableArray* tabs;
@@ -34,6 +38,7 @@
 -(void)reachabilityValidated;
 -(void)validateLocationServices;
 -(void)locationServicesValidated;
+-(void)validateUser;
 -(void)navigationMode;
 -(void)registrationMode;
 -(void)displayLikesView;
@@ -454,15 +459,22 @@
 }
 -(void)reachabilityValidated
 {
-    //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
-    if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    if(VALIDATE_LOCATION_SERVICES_ON_STARTUP)
     {
-        [self validateLocationServices];
+        //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
+        if([[SPLocationManager sharedInstance] locationAvaliable] && [[SPLocationManager sharedInstance] locationAuthorizationStatus] == kCLAuthorizationStatusNotDetermined)
+        {
+            [self validateLocationServices];
+        }
+        else
+        {
+            //If location services have been requested previously, proceed to the next step
+            [self locationServicesValidated];
+        }
     }
     else
     {
-        //If location services have been requested previously, proceed to the next step
-        [self locationServicesValidated];
+        [self validateUser];
     }
 }
 -(void)validateLocationServices
@@ -481,21 +493,25 @@
     //After location services have been validated (the user has explicitly chosen yes/no), ask the locationManager to retrieve the location of the user (if possible)
     [[SPLocationManager sharedInstance] getLocation];
     
+    [self validateUser];
+}
+-(void)validateUser
+{
     if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_PROFILE)
     {
         [activityView startAnimating];
-        [[SPProfileManager sharedInstance] validateUserWithCompletionHandler:^(id responseObject) 
+        [[SPProfileManager sharedInstance] validateUserWithCompletionHandler:^(id responseObject)
          {
-             //TODO: Re-Implement transaction retrieval. Removed to reduce (useless) load on server
+                 //TODO: Re-Implement transaction retrieval. Removed to reduce (useless) load on server
              /*
-             //Recieves iTunes store products
-             [[SPSubscriptionsManager sharedInstance] retrieveITunesProducts];
-             
-             //Retrieve Valid Transactions
-             [[SPSubscriptionsManager sharedInstance] getTransactionsWithCompletionHandler: nil andErrorHandler:nil];
-             */
+              //Recieves iTunes store products
+              [[SPSubscriptionsManager sharedInstance] retrieveITunesProducts];
               
-             //Retrieve messages from the user
+              //Retrieve Valid Transactions
+              [[SPSubscriptionsManager sharedInstance] getTransactionsWithCompletionHandler: nil andErrorHandler:nil];
+              */
+             
+                 //Retrieve messages from the user
              [[SPMessageManager sharedInstance] forceRefresh];
              
              [self navigationMode];

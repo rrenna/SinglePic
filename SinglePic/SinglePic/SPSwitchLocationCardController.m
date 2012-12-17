@@ -15,7 +15,7 @@
 
 @implementation SPSwitchLocationCardController
 #define MINIMIZED_SIZE 38
-#define MAXIMIZED_SIZE 200
+#define MAXIMIZED_SIZE 175
 #pragma mark - View lifecycle
 - (id) init
 {
@@ -42,7 +42,7 @@
     //Lazily load the location chooser
     if(!self.locationChooser)
     {
-        self.locationChooser = [[SPLocationChooser alloc] initWithFrame:CGRectMake(3, 5, self.view.frame.size.width - 8, MAXIMIZED_SIZE - 10)];
+        self.locationChooser = [[SPLocationChooser alloc] initWithFrame:CGRectMake(3, 5, self.view.frame.size.width - 8, MAXIMIZED_SIZE - 5)];
         self.locationChooser.delegate = self;
     }
     

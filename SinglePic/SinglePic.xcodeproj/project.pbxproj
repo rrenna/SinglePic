@@ -135,7 +135,7 @@
 		7599A943148E980100A48435 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A942148E980100A48435 /* CoreGraphics.framework */; };
 		7599A949148E980100A48435 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7599A947148E980100A48435 /* InfoPlist.strings */; };
 		7599A94B148E980100A48435 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A94A148E980100A48435 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		7599A94F148E980100A48435 /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A94E148E980100A48435 /* SPAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7599A94F148E980100A48435 /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A94E148E980100A48435 /* SPAppDelegate.m */; };
 		7599A969148EA69300A48435 /* UIView+SizesAndEdges.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A968148EA69300A48435 /* UIView+SizesAndEdges.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75A24A8814928ED800DC8D50 /* SPRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A24A8614928ED800DC8D50 /* SPRegistrationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		75A24A8914928ED800DC8D50 /* SPOOBEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75A24A8714928ED800DC8D50 /* SPOOBEViewController.xib */; };
