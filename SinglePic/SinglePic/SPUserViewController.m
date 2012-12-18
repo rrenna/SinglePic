@@ -74,11 +74,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    [orientationController release];
-    [locationController release];
-    [usernameLabel release];
-    [super dealloc];
 }
 #pragma mark - IBActions
 -(IBAction)retakePic:(id)sender
@@ -87,7 +82,7 @@
     
     [SPSoundHelper playTap];
     
-    SPCameraController* cameraController = [[SPCameraController new] autorelease]; 
+    SPCameraController* cameraController = [SPCameraController new]; 
     [[SPAppDelegate baseController] pushModalController:cameraController isFullscreen:YES];
 }
 -(IBAction)editPic:(id)sender
@@ -134,9 +129,8 @@
     
     SPIcebreakerComposeViewController* icebreakerComposeController = [SPIcebreakerComposeViewController new];
     
-    SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
+    SPBaseController* baseController = [SPAppDelegate baseController];
     [baseController pushModalController:icebreakerComposeController isFullscreen:YES];
-    [icebreakerComposeController release];
 }
 
 -(IBAction)viewImageExpiryHelp:(id)sender
@@ -145,7 +139,7 @@
     
     [SPSoundHelper playTap];
     
-    SPBaseController* baseController = [[UIApplication sharedApplication].delegate baseController];
+    SPBaseController* baseController = [SPAppDelegate baseController];
     [baseController displayHelpOverlay:HELP_OVERLAY_IMAGE_EXPIRY];
 }
 #pragma mark - Private methods
