@@ -11,17 +11,9 @@
 #import "SPLabel.h"
 
 @interface SPStyledProgressView : SPStyledView <SPStyle>
-{
-@private
-    float progress;
-    UIColor* progressColour;
-    UIColor* lowProgressColour;
-    CALayer* progressLayer;
-    SPLabel* progressLabel;
-}
-
 @property (assign) float progress;
 @property (assign) NSString* progressStatus;
 @property (retain) UIColor* progressColour;
 @property (retain) UIColor* lowProgressColour;
+
 @end

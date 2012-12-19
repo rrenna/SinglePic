@@ -11,12 +11,19 @@
 
 #define LOW_PROGRESS_VALUE 0.10
 @interface SPStyledProgressView()
+{
+    float progress;
+    UIColor* progressColour;
+    UIColor* lowProgressColour;
+    CALayer* progressLayer;
+    SPLabel* progressLabel;
+}
 -(void)setLayers;
 -(void)setLabel;
 @end
 
 @implementation SPStyledProgressView
-@dynamic progress,progressStatus,progressColour,lowProgressColour;
+
 #pragma mark - Dynamic properties
 -(float)progress
 {
@@ -58,7 +65,7 @@
 }
 -(void)setProgressColour:(UIColor *)progressColour_
 {
-    progressColour = [progressColour_ retain];
+    progressColour = progressColour_;
     
     if(!lowProgressColour)
     {
@@ -71,7 +78,7 @@
 }
 -(void)setLowProgressColour:(UIColor *)lowProgressColour_
 {
-    lowProgressColour = [lowProgressColour_ retain];
+    lowProgressColour = lowProgressColour_;
     if(self.progress <= LOW_PROGRESS_VALUE)
     {
         progressLayer.backgroundColor = lowProgressColour.CGColor;
@@ -107,38 +114,24 @@
     }
     return self;
 }
--(void)dealloc
-{
-    [progressColour release];
-    [lowProgressColour release];
-    [progressLabel release];
-    [progressLayer release];
-    [super dealloc];
-}
 #pragma mark
 -(void)setStyle:(STYLE)style
 {
     if(style == STYLE_DEFAULT)
     {
-        [tint release];
-        tint = [TINT_DEFAULT retain];	
+        tint = TINT_DEFAULT;
     }
     else if(style == STYLE_TAB)
     {
-        
-        [tint release];
-        tint = [TINT_TAB retain];
+        tint = TINT_TAB;
     }
     else if(style == STYLE_WHITE)
     {
-        [tint release];
-        tint = [TINT_WHITE retain];
+        tint = TINT_WHITE;
     }
     else if(style == STYLE_BASE)
     {
-        
-        [tint release];
-        tint = [TINT_BASE retain];
+        tint = TINT_BASE;
     }
     
     colorLayer.backgroundColor = tint.CGColor;
@@ -164,12 +157,8 @@
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
     colorGradientLayer = setupColorGradientLayerForViewWithStyle(self,style);
-	
-    [bevelLayer retain];
-    [colorLayer retain];
-    [colorGradientLayer retain];
 
-    progressLayer = [[CALayer layer] retain];
+    progressLayer = [CALayer layer];
     progressLayer.frame = CGRectMake(0, 1, 0, CGRectGetHeight(self.frame)-2);
     progressLayer.borderColor = [UIColor colorWithWhite:0 alpha:0.15].CGColor;
     progressLayer.borderWidth = 1.0;

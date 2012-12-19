@@ -837,5 +837,4 @@ void increaseCurrentTickCount()
 @end
 
 @implementation _SPBrowseViewQueuedSelectorCall
-@synthesize ticks,selector;
 @end

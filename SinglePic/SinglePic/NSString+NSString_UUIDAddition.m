@@ -17,11 +17,7 @@
     
     // create a new CFStringRef (toll-free bridged to NSString)
     // that you own
-    NSString *uuidString = (NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
-    
-    // transfer ownership of the string
-    // to the autorelease pool
-    [uuidString autorelease];
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
     
     // release the UUID
     CFRelease(uuid);

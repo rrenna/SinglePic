@@ -20,7 +20,6 @@
 @end
 
 @implementation SPStyledButton
-@synthesize bevelLayer = _bevelLayer, colorGradientLayer = _colorGradientLayer;
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -46,12 +45,6 @@
         [self setDepth:DEPTH_OUTSET];
     }
     return self;
-}
--(void)dealloc
-{
-    [_bevelLayer release];
-    [_colorGradientLayer release];
-    [super dealloc];
 }
 -(void)setStyle:(STYLE)style
 {

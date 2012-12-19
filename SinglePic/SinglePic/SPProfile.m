@@ -28,15 +28,9 @@
     self = [super init];
     if(self)
     {
-        _data = [data retain];
+        _data = data;
     }
     return self;
-}
--(void)dealloc
-{
-    [_data release];
-    [_thumbnail release];
-    [super dealloc];
 }
 -(BOOL)isValid
 {

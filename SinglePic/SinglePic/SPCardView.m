@@ -45,11 +45,6 @@
     }
     return self;
 }
--(void)dealloc
-{
-    [backgroundView release];
-    [super dealloc];
-}
 #pragma mark
 -(void)setStyle:(CARD_STYLE)style
 {

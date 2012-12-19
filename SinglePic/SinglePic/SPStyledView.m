@@ -35,15 +35,6 @@
     }
     return self;
 }
--(void)dealloc
-{
-    [bevelLayer release];
-    [colorGradientLayer release];
-    [colorLayer release];
-    [darkenLayer release];
-    [tint release];
-    [super dealloc];
-}
 - (void)layoutSubviews 
 {
     //CALayer resizing operations automatically animate any changes to their size/position, this manually disables that functionality
@@ -62,43 +53,35 @@
 {
     if(style == STYLE_DEFAULT)
     {
-        [tint release];
-        tint = [TINT_DEFAULT retain];	
+        tint = TINT_DEFAULT;
     }
     else if(style == STYLE_WHITE)
     {
-        [tint release];
-        tint = [TINT_WHITE retain];
+        tint = TINT_WHITE;
     }
     else if(style == STYLE_TAB)
     {
-        [tint release];
-        tint = [TINT_TAB retain];
+        tint = TINT_TAB;
     }
     else if(style == STYLE_PAGE)
     {
-        [tint release];
-        tint = [TINT_PAGE retain];
+        tint = TINT_PAGE;
     }
     else if(style == STYLE_BASE)
     {
-        [tint release];
-        tint = [TINT_BASE retain];
+        tint = TINT_BASE;
     }
     else if(style == STYLE_CONFIRM_BUTTON)
     {
-        [tint release];
-        tint = [TINT_CONFIRM_BUTTON retain];
+        tint = TINT_CONFIRM_BUTTON;
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
     {
-        [tint release];
-        tint = [TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
+        tint = TINT_ALTERNATIVE_ACTION_1_BUTTON;
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
     {
-        [tint release];
-        tint = [TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
+        tint = TINT_ALTERNATIVE_ACTION_2_BUTTON;
     }
     
     colorLayer.backgroundColor = tint.CGColor;
@@ -117,10 +100,6 @@
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
     colorGradientLayer = setupColorGradientLayerForViewWithStyle(self,style);
-	
-    [bevelLayer retain];
-    [colorLayer retain];
-    [colorGradientLayer retain];
     
     [self.layer addSublayer:bevelLayer];
     [self.layer addSublayer:colorLayer];

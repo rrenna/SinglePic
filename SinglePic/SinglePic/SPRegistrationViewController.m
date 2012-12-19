@@ -27,6 +27,8 @@
 }
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Sign Up",nil);
     browseCardTitleLabel.text = NSLocalizedString(@"Browse",nil);
@@ -42,18 +44,12 @@
     [loginButton setTitle:NSLocalizedString(@"Login",nil)
                     forState:UIControlStateNormal];
     
-    
-    [super viewDidLoad];
     [insetView setStyle:STYLE_BASE];
 
    [stackPanel addStackedView:browseCard];
    [stackPanel addStackedView:chatCard];
    [stackPanel addStackedView:realPeopleRealPicsCard];
    [stackPanel addStackedView:singlePicCard];
-}
--(void)dealloc
-{
-    [super dealloc];
 }
 #pragma mark - IBActions
 -(IBAction)spawnRegistrationScreen:(id)sender
@@ -64,7 +60,7 @@
     
     SPBaseController* baseController = [SPAppDelegate baseController];
     
-    SPSignUpController* signupController = [[SPSignUpController new] autorelease];
+    SPSignUpController* signupController = [SPSignUpController new];
     
     [baseController pushModalController:signupController isFullscreen:YES];
 }
@@ -76,21 +72,7 @@
     
     SPBaseController* baseController = [SPAppDelegate baseController];
     
-    SPLoginController* loginController = [[SPLoginController new] autorelease];
+    SPLoginController* loginController = [SPLoginController new];
     [baseController pushModalController:loginController isFullscreen:YES];
-}
-- (void)viewDidUnload {
-    registerButton = nil;
-    loginButton = nil;
-    browseCardTitleLabel = nil;
-    browseCardBodyLabel = nil;
-    chatCardTitleLabel = nil;
-    chatCardBodyLabel = nil;
-    realPeopleRealPicsCardTitleLabel = nil;
-    realPeopleRealPicsCardBodyLabel = nil;
-    singlePicCardTitleLabel = nil;
-    singlePicCardBodyLabel = nil;
-    titleLabel = nil;
-    [super viewDidUnload];
 }
 @end
