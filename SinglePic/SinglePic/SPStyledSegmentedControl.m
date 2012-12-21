@@ -10,7 +10,7 @@
 #import "UIColor+Expanded.h"
 
 @interface SPStyledSegmentedControl()
-@property (retain) NSArray* items;
+@property (retain) NSMutableArray* items;
 @property (retain) UIFont  *font;
 @property (retain) UIColor* selectedItemColor;
 @property (retain) UIColor* unselectedItemColor;
@@ -18,8 +18,8 @@
 @end
 
 @implementation SPStyledSegmentedControl
-@synthesize items,selectedItemColor,unselectedItemColor,unselectedItemShadowColor;
 @dynamic font;
+
 #pragma mark - Dynamic Properties
 - (UIFont *)font
 {
@@ -31,8 +31,8 @@
 - (void)setFont:(UIFont *)aFont
 {
 	if (font != aFont) {
-		[font release];
-		font = [aFont retain];
+
+		font = aFont;
         
 		[self setNeedsDisplay];
 	}
@@ -62,18 +62,6 @@
         [self setDepth:DEPTH_OUTSET];
     }
     return self;
-}
--(void)dealloc
-{
-    [selectedItemColor release];
-    [unselectedItemColor release];
-    [items release];
-    [bevelLayer release];
-    [colorLayer release];
-    [darkenLayer release];
-    [colorGradientLayer release];
-    [tint release];
-    [super dealloc];
 }
 - (void)awakeFromNib
 {
@@ -108,33 +96,29 @@
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
-        
-        [tint release];
-        tint = [TINT_DEFAULT retain];	
+
+        tint = TINT_DEFAULT;	
     }
     else if(style == STYLE_WHITE)
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.75 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.8 alpha:1];
-        
-        [tint release];
-        tint = [TINT_WHITE retain];
+
+        tint = TINT_WHITE;
     }
     else if(style == STYLE_TAB)
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.75 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
-        
-        [tint release];
-        tint = [TINT_TAB retain];
+
+        tint = TINT_TAB;
     }
     else if(style == STYLE_PAGE)
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.75 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.6 alpha:1];
-             
-        [tint release];
-        tint = [TINT_PAGE retain];
+
+        tint = TINT_PAGE;
     }
     else if(style == STYLE_BASE)
     {
@@ -142,35 +126,31 @@
         self.unselectedItemColor = [UIColor colorWithWhite:0.9 alpha:1];
         self.unselectedItemShadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 
-        [tint release];
         //Nice and dark
-        tint = [[TINT_BASE colorByMultiplyingByRed:0.78 green:0.95 blue:0.95 alpha:1.0] retain];
-        unselectedTint = [[TINT_BASE colorByMultiplyingByRed:0.9 green:0.9 blue:0.9 alpha:1.0] retain];
+        tint = [TINT_BASE colorByMultiplyingByRed:0.78 green:0.95 blue:0.95 alpha:1.0];
+        unselectedTint = [TINT_BASE colorByMultiplyingByRed:0.9 green:0.9 blue:0.9 alpha:1.0];
     }
     else if(style == STYLE_CONFIRM_BUTTON)
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.75 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.95 alpha:1];
         
-        [tint release];
         //Nice and dark //tint = [[INSET_TINT_CONFIRM_BUTTON colorByMultiplyingByRed:0.63 green:0.81 blue:0.81 alpha:1.0] retain];
-        tint = [[TINT_CONFIRM_BUTTON colorByMultiplyingByRed:0.63 green:0.81 blue:0.81 alpha:1.0] retain];
+        tint = [TINT_CONFIRM_BUTTON colorByMultiplyingByRed:0.63 green:0.81 blue:0.81 alpha:1.0];
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.75 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.95 alpha:1];
- 
-        [tint release];
-        tint = [TINT_ALTERNATIVE_ACTION_1_BUTTON retain];
+
+        tint = TINT_ALTERNATIVE_ACTION_1_BUTTON;
     }
     else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
     {
         self.selectedItemColor = [UIColor colorWithWhite:0.75 alpha:1];
         self.unselectedItemColor = [UIColor colorWithWhite:0.95 alpha:1];
-        
-        [tint release];
-        tint = [TINT_ALTERNATIVE_ACTION_2_BUTTON retain];
+
+        tint = TINT_ALTERNATIVE_ACTION_2_BUTTON;
     }
     
     colorLayer.backgroundColor = tint.CGColor;
@@ -461,7 +441,7 @@
 		else if ([item isKindOfClass:[NSString class]]) 
         {
             
-			NSString *string = (NSString *)[items objectAtIndex:i];
+			NSString *string = (NSString *)[self.items objectAtIndex:i];
 			CGSize stringSize = [string sizeWithFont:self.font];
 			CGRect stringRect = CGRectMake(i * itemSize.width + (itemSize.width - stringSize.width) / 2, 
 										   (itemSize.height - stringSize.height) / 2,
@@ -664,10 +644,6 @@
     bevelLayer = setupBevelLayerForView(self);
     colorLayer = setupColorLayerForView(self);
     colorGradientLayer = setupColorGradientLayerForControlWithStyle(self,style);
-	
-    [bevelLayer retain];
-    [colorLayer retain];
-    [colorGradientLayer retain];	
     
     //[self.layer addSublayer:bevelLayer];
     [self.layer addSublayer:colorLayer];

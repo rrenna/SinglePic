@@ -78,16 +78,5 @@
         }
     
     }];
-    
-    
-}
-- (void)dealloc {
-    [overlayImageView release];
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [overlayImageView release];
-    overlayImageView = nil;
-    [super viewDidUnload];
 }
 @end

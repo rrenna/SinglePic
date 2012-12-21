@@ -28,7 +28,7 @@
 }
 -(void)setContent:(NSString*)content
 {
-    SPLabel* messageContentLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(10, 20, self.frame.size.width - 20, self.frame.size.height - 35)] autorelease];
+    SPLabel* messageContentLabel = [[SPLabel alloc] initWithFrame:CGRectMake(10, 20, self.frame.size.width - 20, self.frame.size.height - 35)];
     messageContentLabel.style = LABEL_STYLE_SMALL;
     messageContentLabel.backgroundColor = [UIColor clearColor];
     messageContentLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

@@ -26,11 +26,6 @@
     }
     return self;
 }
--(void)dealloc
-{
-    [alertView release];
-    [super dealloc];
-}
 #pragma mark - Overriden methods
 -(void)show
 {

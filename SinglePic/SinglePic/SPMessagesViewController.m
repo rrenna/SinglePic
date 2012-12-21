@@ -53,7 +53,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_NO_MESSAGES_RECIEVED object:nil];
-    [super dealloc];
 }
 #pragma mark - IBActions
 -(IBAction)refresh:(id)sender
@@ -110,11 +109,11 @@
     NSArray* sortedMessagesForThread = [messageThread sortedMessages];
     SPMessage* latestMessage = ([sortedMessagesForThread count] > 0) ? [sortedMessagesForThread objectAtIndex:[sortedMessagesForThread count] - 1] : nil;
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.width = tableView.width;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundView = [[[SPCardView alloc] initWithFrame:cell.bounds] autorelease];
+    cell.backgroundView = [[SPCardView alloc] initWithFrame:cell.bounds];
     cell.tag = [[messageThread userID] integerValue];
     
     /*SPLabel* timestampLabel = [[[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)] autorelease];
@@ -129,7 +128,7 @@
     
     [cell.contentView addSubview:timestampLabel];*/
     
-    UIImageView* correspondantThumbnailView = [[[UIImageView alloc] initWithFrame:CGRectMake(11, 20, AVATAR_WIDTH, 30)] autorelease];
+    UIImageView* correspondantThumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(11, 20, AVATAR_WIDTH, 30)];
     [cell.contentView addSubview:correspondantThumbnailView];
     
     //If no image is set, download user image
@@ -151,7 +150,7 @@
     //The lates message is used to represent the object
     if(latestMessage)
     {
-        SPChatBubbleView* bubble = [[[SPChatBubbleView alloc] initWithFrame:CGRectMake(16 + AVATAR_WIDTH, 6, cell.contentView.frame.size.width - 55, cell.contentView.frame.size.height - 11)] autorelease];
+        SPChatBubbleView* bubble = [[SPChatBubbleView alloc] initWithFrame:CGRectMake(16 + AVATAR_WIDTH, 6, cell.contentView.frame.size.width - 55, cell.contentView.frame.size.height - 11)];
         if([latestMessage.incoming boolValue])
         {
            bubble.chatStyle = CHAT_STYLE_INCOMING;
@@ -191,9 +190,5 @@
 
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];           
     }
-}
-- (void)viewDidUnload {
-    titleLabel = nil;
-    [super viewDidUnload];
 }
 @end

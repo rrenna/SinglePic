@@ -22,7 +22,6 @@
     }
     return self;
 }
-
 -(void)drawRect:(CGRect)rect
 {
 	CGContextRef contextRef = UIGraphicsGetCurrentContext();
@@ -30,16 +29,9 @@
     CGContextSetFillColorWithColor(contextRef, color.CGColor); 
 	CGContextFillEllipseInRect(contextRef, smallerFrame);
     
-  
-        //Draw border
-        CGContextSetLineWidth(contextRef, 2.0);
-        CGContextSetStrokeColorWithColor(contextRef, [UIColor whiteColor].CGColor);
-        CGContextStrokeEllipseInRect(contextRef, smallerFrame);
- 
-}
-- (void)dealloc
-{
-    [color release];
-    [super dealloc];
+    //Draw border
+    CGContextSetLineWidth(contextRef, 2.0);
+    CGContextSetStrokeColorWithColor(contextRef, [UIColor whiteColor].CGColor);
+    CGContextStrokeEllipseInRect(contextRef, smallerFrame);
 }
 @end

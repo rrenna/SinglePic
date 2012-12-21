@@ -12,9 +12,15 @@
 
 
 -(void)handlePan:(id)event
-{
-    [self.delegate panGesture:event];
+{    
+    id<SPKeyboardDragTableViewDelegate> _delegate = (id<SPKeyboardDragTableViewDelegate>) self.delegate;
+    [_delegate panGesture:event];
     [super handlePan:event];
+    
+    /*
+    [self.delegate panGesture:event];
+    
+    [super performSelector:@selector(handlePan:) withObject:event];
+     */
 }
-
 @end
