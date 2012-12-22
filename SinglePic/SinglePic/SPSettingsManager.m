@@ -23,8 +23,7 @@
 @end
 
 @implementation SPSettingsManager
-@synthesize serverSettings = _serverSettings;
-@dynamic environment,serverAddress,defaultBucketID;
+@dynamic environment,serverAddress,daysPicValid,defaultBucketID;
 
 #pragma mark - Dynamic Properties
 -(ENVIRONMENT)environment
@@ -84,6 +83,15 @@
 {
     return @"1";
 }
+
++ (SPSettingsManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPSettingsManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPSettingsManager alloc] init]; });
+    return sharedInstance;
+}
+
 #pragma mark
 -(id)init
 {

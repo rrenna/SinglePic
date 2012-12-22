@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPSingleton.h"
 #import "SPBucket.h"
 #import "SPProfile.h"
 
@@ -27,7 +26,9 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
     return GENDER_UNSPECIFIED;//If neither
 }
 #pragma mark
-@interface SPProfileManager : SPSingleton
+@interface SPProfileManager : NSObject
+
++ (SPProfileManager *)sharedInstance;
 
 //My Profile
 -(USER_TYPE)myUserType;

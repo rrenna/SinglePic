@@ -12,6 +12,13 @@
 @implementation SPBucketManager
 @synthesize buckets;
 
++ (SPBucketManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPBucketManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPBucketManager alloc] init]; });
+    return sharedInstance;
+}
 -(void)retrieveBucketsWithCompletionHandler:(void (^)(NSArray* buckets))onCompletion andErrorHandler:(void(^)())onError
 {
     __unsafe_unretained SPBucketManager* weakSelf = self;
@@ -25,7 +32,6 @@
          {
              SPBucket* bucket = [[SPBucket alloc] initWithData:bucketData];
              [_buckets addObject:bucket];
-             [bucket release];
          }
          weakSelf.buckets = _buckets;
          onCompletion(weakSelf.buckets);

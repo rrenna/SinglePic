@@ -6,14 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPSingleton.h"
 #import <StoreKit/StoreKit.h>
 
-@interface SPSubscriptionsManager : SPSingleton <SKProductsRequestDelegate>
-{
-@private
-    SKProductsRequest* productRequest;
-}
+@interface SPSubscriptionsManager : NSObject <SKProductsRequestDelegate>
+
++ (SPSubscriptionsManager *)sharedInstance;
+
 //Retrieve iTunes Products
 -(void)retrieveITunesProducts;
 //Retrieve Transactions

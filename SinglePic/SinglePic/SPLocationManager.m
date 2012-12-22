@@ -18,6 +18,15 @@
 @end
 
 @implementation SPLocationManager
+
++ (SPLocationManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPLocationManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPLocationManager alloc] init]; });
+    return sharedInstance;
+}
+
 #pragma mark
 -(id)init
 {
@@ -25,11 +34,6 @@
     if(self)
     { }
     return self;
-}
--(void)dealloc
-{
-    [locationManager release];
-    [super dealloc];
 }
 -(BOOL)locationAvaliable
 {

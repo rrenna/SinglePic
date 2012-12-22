@@ -70,7 +70,15 @@
 #define USER_DEFAULT_KEY_ANNONYMOUS_PREFERENCE @"USER_DEFAULT_KEY_ANNONYMOUS_PREFERENCE"
 
 @implementation SPProfileManager
-@synthesize profiles = _profiles, userType = _userType, userID = _userID, userName = _userName, expiry = _expiry, bucket = _bucket, image = _image, lastImage = _lastImage, icebreaker = _icebreaker,email = _email, gender = _gender, preference = _preference;
+
++ (SPProfileManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPProfileManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPProfileManager alloc] init]; });
+    return sharedInstance;
+}
+
 @dynamic hasProfileImageSet;
 #pragma mark - Dynamic Properties
 -(BOOL)hasProfileImageSet
@@ -357,7 +365,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     
     if(![self isImageExpired])
     {
-        UILocalNotification* expiryNotification = [[[UILocalNotification alloc] init] autorelease];
+        UILocalNotification* expiryNotification = [[UILocalNotification alloc] init];
         expiryNotification.fireDate = expiry_;
         expiryNotification.alertBody = NOTIFICATION_BODY_IMAGE_EXPIRY;
         [[UIApplication sharedApplication] scheduleLocalNotification:expiryNotification];
@@ -609,8 +617,6 @@ static NSURL* _thumbnailUploadURLCache = nil;
     {
         onCompletion(_imageUploadURLCache,_thumbnailUploadURLCache);
         
-        [_imageUploadURLCache release];
-        [_thumbnailUploadURLCache release];
         _imageUploadURLCache = nil;
         _thumbnailUploadURLCache = nil;
     }
@@ -627,13 +633,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
              NSString* thumbnailUploadURLString = [responseDictionary objectForKey:@"urlThumbImage"];
              
              //Clear any previously cached URLs
-             [_imageUploadURLCache release];
-             [_thumbnailUploadURLCache release];
              _imageUploadURLCache = nil;
              _thumbnailUploadURLCache = nil;
              
-             _imageUploadURLCache = [[NSURL URLWithString:imageUploadURLString] retain];
-             _thumbnailUploadURLCache = [[NSURL URLWithString:thumbnailUploadURLString] retain];
+             _imageUploadURLCache = [NSURL URLWithString:imageUploadURLString];
+             _thumbnailUploadURLCache = [NSURL URLWithString:thumbnailUploadURLString];
              
              onCompletion(_imageUploadURLCache,_thumbnailUploadURLCache);
              
@@ -656,7 +660,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 {
     //We cannot provide the User Token as a parameter without making it URL safe, as it's 64bit encoding may allow a '/' character
     NSString* userToken = [[SPRequestManager sharedInstance] userToken];
-    NSString * escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+    NSString * escapedUserToken = (__bridge_transfer NSString*) CFURLCreateStringByAddingPercentEscapes(
                                                                                       NULL,
                                                                                       (CFStringRef)userToken,
                                                                                       NULL,
@@ -705,8 +709,6 @@ static NSURL* _thumbnailUploadURLCache = nil;
             
         }
     }];
-    
-    [escapedUserToken release];
 }
 -(void)loginWithEmail:(NSString*)email_ andPassword:(NSString*)password_ andCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
@@ -934,7 +936,8 @@ static NSURL* _thumbnailUploadURLCache = nil;
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     //Register profile for future requests
-    NSString* deviceToken = [[UIApplication sharedApplication].delegate deviceToken];
+    SPAppDelegate* delegate = (SPAppDelegate*)[UIApplication sharedApplication].delegate;
+    NSString* deviceToken = [delegate deviceToken];
 
     if(deviceToken)
     {        
@@ -1044,15 +1047,15 @@ static int profileCounter = 0;
          NSError *theError = nil;
          NSDictionary* profilesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
 
-         NSAutoreleasePool* pool = [NSAutoreleasePool new];
-         for(NSDictionary* userData in profilesData)
-         {
+         @autoreleasepool {
              
-             SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
-             [_pickedProfiles addObject:profile];
+             for(NSDictionary* userData in profilesData)
+             {
+                 SPProfile* profile = [[SPProfile alloc] initWithData:userData];
+                 [_pickedProfiles addObject:profile];
+             }
          }
-         [pool drain];
-         
+
          //Return the retrieved profiles
          onCompletion(_pickedProfiles);
          
@@ -1098,15 +1101,16 @@ static int profileCounter = 0;
              NSDictionary* feedData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
              NSArray* bucketData = [feedData objectForKey:@"users"];
              
-             NSAutoreleasePool* pool = [NSAutoreleasePool new];
-             for(NSDictionary* userData in bucketData)
-             {
-                 SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
-                 [weakSelf.profiles addObject:profile];
-
+             @autoreleasepool {
+                 
+                 for(NSDictionary* userData in bucketData)
+                 {
+                     SPProfile* profile = [[SPProfile alloc] initWithData:userData];
+                     [weakSelf.profiles addObject:profile];
+                     
+                 }
              }
-             [pool drain];
-             
+
              onCompletion(weakSelf.profiles);
              
              //Inform application that the notifications have changed
@@ -1153,13 +1157,16 @@ static int profileCounter = 0;
              NSDictionary* feedData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
              
              NSDictionary* bucketData = [feedData objectForKey:@"users"];
-             NSAutoreleasePool* pool = [NSAutoreleasePool new];
-             for(NSDictionary* userData in bucketData)
-             {
-                 SPProfile* profile = [[[SPProfile alloc] initWithData:userData] autorelease];
-                 [weakSelf.profiles addObject:profile];
+
+             @autoreleasepool {
+             
+                 for(NSDictionary* userData in bucketData)
+                 {
+                     SPProfile* profile = [[SPProfile alloc] initWithData:userData];
+                     [weakSelf.profiles addObject:profile];
+                 }
+                 
              }
-             [pool drain];
              
              onCompletion(weakSelf.profiles);
              
@@ -1237,7 +1244,6 @@ static int profileCounter = 0;
         onCompletion();
         
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_BLOCKED_PROFILE object:blockedProfileID];
-        [blockedProfileID release];
         
     } andErrorHandler:^(SPWebServiceError *error) {
         
@@ -1275,7 +1281,6 @@ static int profileCounter = 0;
          {
              [weakSelf retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
               {
-                  [_likes release];
                   _likes = [[NSMutableArray alloc] initWithArray:profiles_];
                   
                   onCompletion(_likes);
@@ -1321,8 +1326,7 @@ static int profileCounter = 0;
          {
              [weakSelf retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
               {
-                  [_likedBy release];
-                  _likedBy = [profiles_ retain];
+                  _likedBy = profiles_;
                   
                   onCompletion(_likedBy);
                   
@@ -1471,7 +1475,6 @@ static int profileCounter = 0;
     self.lastImage = nil;
 
     //Reset variables
-    [_likes release];
     _likes = [NSMutableArray new];
     _hasProfileImage = NO;
     RETRIEVED_GENDER_FROM_DEFAULTS = NO;

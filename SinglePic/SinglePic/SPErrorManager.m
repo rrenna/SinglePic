@@ -21,6 +21,15 @@
 @end
 
 @implementation SPErrorManager
+
++ (SPErrorManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPErrorManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPErrorManager alloc] init]; });
+    return sharedInstance;
+}
+
 -(id)init
 {
     self = [super init];

@@ -6,10 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPSingleton.h"
-
-@interface SPBucketManager : SPSingleton
+@interface SPBucketManager : NSObject
 @property (retain) NSMutableArray* buckets;
+
++(SPBucketManager *)sharedInstance;
 
 -(void)retrieveBucketsWithCompletionHandler:(void (^)(NSArray* buckets))onCompletion andErrorHandler:(void(^)())onError;
 @end

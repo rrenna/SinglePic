@@ -7,6 +7,7 @@
 //
 
 #import "SPComposeViewController.h"
+#import "SPProfileViewController.h"
 #import "SVProgressHUD.h"
 #import "SPMessageManager.h"
 #import "SPMessage.h"
@@ -210,6 +211,24 @@
         sending = NO;
     }];
 }
+-(IBAction)viewProfile:(id)sender
+{
+    [Crashlytics setObjectValue:@"Clicked on the Profile Image button in a chat screen (view profile)." forKey:@"last_UI_action"];
+    
+    [SPSoundHelper playTap];
+    
+    // This tells us if this screen was spawned from the Messages screen (need to replace page with profile page)
+    // or spawned from the profile page (need to just close the chat window)
+    if(self.minimizeContainerOnClose)
+    {
+        //Present a page containing the profile controller
+        SPProfileViewController* profileController = [[SPProfileViewController alloc] initWithProfile:self.profile];
+        [self pushModalController:profileController];
+    }
+    
+    [self setFullscreen:NO animated:YES];
+    [self close];
+}
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
@@ -224,6 +243,9 @@
         imageView.image = thumbnail;
     }
     andErrorHandler:nil];
+    
+    //Enable the view profile button
+    viewProfileButton.enabled = YES;
     
     usernameLabel.text = self.profile.username;
     
@@ -438,7 +460,6 @@
     cell.width = tableView.width;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-        //The lates message is used to represent the object
     if(message)
     {
         SPLabel* timestampLabel = [[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)];
@@ -457,13 +478,13 @@
         if([message.incoming boolValue])
         {
             //If incoming message
-            messageFrame = CGRectMake(15, 24, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
+            messageFrame = CGRectMake(20, 24, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 24);
             style = CHAT_STYLE_INCOMING;
         }
         else
         {
             //If outgoing message
-            messageFrame = CGRectMake(0, 24, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 24);
+            messageFrame = CGRectMake(44, 24, cell.contentView.frame.size.width - 43, cell.contentView.frame.size.height - 25);
             style = CHAT_STYLE_OUTGOING;
         }
         
@@ -524,6 +545,7 @@
 
 - (void)viewDidUnload {
     closeButton = nil;
+    viewProfileButton = nil;
     [super viewDidUnload];
 }
 @end

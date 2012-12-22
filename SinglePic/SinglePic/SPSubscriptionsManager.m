@@ -8,7 +8,22 @@
 
 #import "SPSubscriptionsManager.h"
 
+@interface SPSubscriptionsManager()
+{
+    SKProductsRequest* productRequest;
+}
+@end
+
 @implementation SPSubscriptionsManager
+
++ (SPSubscriptionsManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPSubscriptionsManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPSubscriptionsManager alloc] init]; });
+    return sharedInstance;
+}
+
 -(id)init
 {
     self = [super init];

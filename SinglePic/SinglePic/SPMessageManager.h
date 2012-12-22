@@ -6,13 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPSingleton.h"
 #import "SPMessageThread.h"
 #import "SPMessages.h"
 
 #define MESSAGE_AUTO_REFRESH_TIMER 120 //seconds
 
-@interface SPMessageManager : SPSingleton
+@interface SPMessageManager : NSObject
+
++ (SPMessageManager *)sharedInstance;
 
 //Account 
 -(void)setActiveMessageAccount:(NSString*)accountID;

@@ -6,7 +6,6 @@
 //
 //
 
-#import "SPSingleton.h"
 #import "SPSettings.h"
 
 typedef enum
@@ -16,11 +15,13 @@ typedef enum
     ENVIRONMENT_PRODUCTION
 } ENVIRONMENT;
 
-@interface SPSettingsManager : SPSingleton
+@interface SPSettingsManager : NSObject
 @property (readonly) NSString* serverAddress;
 @property (assign) ENVIRONMENT environment;
 @property (readonly) CGFloat daysPicValid;
 @property (readonly) NSString* defaultBucketID;
+
++ (SPSettingsManager *)sharedInstance;
 
 //Setting Helper Methods
 -(BOOL)canSwitchEnvironments;

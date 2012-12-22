@@ -18,6 +18,7 @@
 {
     IBOutlet SPStyledView* topBarView;
     __weak IBOutlet SPStyledButton *closeButton;
+    __weak IBOutlet UIButton *viewProfileButton;
     IBOutlet UIImageView* imageView;
     IBOutlet UILabel *usernameLabel;
     IBOutlet UITableView *tableView;
@@ -29,4 +30,5 @@
 //IBActions
 -(IBAction)cancel:(id)sender;
 -(IBAction)send:(id)sender;
+-(IBAction)viewProfile:(id)sender;
 @end

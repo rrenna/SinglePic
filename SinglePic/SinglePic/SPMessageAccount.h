@@ -2,7 +2,7 @@
 //  SPMessageAccount.h
 //  SinglePic
 //
-//  Created by Ryan Renna on 2012-09-16.
+//  Created by Ryan Renna on 2012-12-21.
 //
 //
 
@@ -23,4 +23,7 @@
 - (void)removeThreadsObject:(SPMessageThread *)value;
 - (void)addThreads:(NSSet *)values;
 - (void)removeThreads:(NSSet *)values;
+
+-(id)activeThreads;
+
 @end

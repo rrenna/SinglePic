@@ -33,7 +33,14 @@
 @end
 
 @implementation SPMessageManager
-@synthesize activeAccount;
+
++ (SPMessageManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPMessageManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPMessageManager alloc] init]; });
+    return sharedInstance;
+}
 
 -(id)init
 {
@@ -430,9 +437,7 @@
 #endif
     }
     
-    [managedObjectContext release];
     managedObjectContext = nil;
-    [persistentStoreCoordinator release];
     persistentStoreCoordinator = nil;
 }
 @end
