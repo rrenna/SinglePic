@@ -26,7 +26,6 @@
 
 @implementation SPRequestManager
 @dynamic userToken;
-@synthesize httpClient;
 #pragma mark - Dynamic Properties
 -(NSString*)userToken
 {
@@ -38,6 +37,14 @@
     return userToken;
 }
 #pragma mark
++ (SPRequestManager *)sharedInstance
+{
+    static dispatch_once_t once;
+    static SPRequestManager *sharedInstance;
+    dispatch_once(&once, ^ { sharedInstance = [[SPRequestManager alloc] init]; });
+    return sharedInstance;
+}
+
 -(id)init
 {
     self = [super init];
@@ -290,7 +297,7 @@
     [request setValue:@"image/png" forHTTPHeaderField:@"contentType"];
     [request setHTTPBody:postData];
     
-    AFHTTPRequestOperation* operation = [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
+    AFHTTPRequestOperation* operation = [self.httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          onCompletion(responseObject);
      }
@@ -309,14 +316,15 @@
          onProgress(totalBytesWritten/totalBytesExpectedToWrite);
      }];
     
-    [httpClient enqueueHTTPRequestOperation:operation];
+    [self.httpClient enqueueHTTPRequestOperation:operation];
 }
 -(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(UIImage* responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     
-    [httpClient enqueueHTTPRequestOperation:
-     [httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
+    //Note : This has been implemented with an AFImageRequestOperation, but the result didn't meet our needs
+    [self.httpClient enqueueHTTPRequestOperation:
+     [self.httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
       {
           UIImage* image = [UIImage imageWithData:responseObject];
           onCompletion(image);
@@ -327,29 +335,5 @@
           onError(error);
       }]
      ];
-    
-    /*
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url]; 
-    
-    AFImageRequestOperation* imageRequest = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *image)
-    {
-        return image;
-    }
-    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-    {
-        onCompletion(image);
-    }
-    failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error)
-    {
-        
-        NSLog(@"GET Image Request to URL failed : %@", request.URL);
-        
-        if(onError)
-        {
-            onError(error);
-        }
-    }];
-    
-    [httpClient enqueueHTTPRequestOperation:imageRequest];*/
 }
 @end

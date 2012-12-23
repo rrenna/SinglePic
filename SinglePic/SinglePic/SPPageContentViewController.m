@@ -18,6 +18,8 @@
 -(void)replaceWith:(id)content
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PAGE_REPLACE_WITH_CONTENT object:self userInfo:[NSDictionary dictionaryWithObject:content forKey:KEY_CONTENT]];
+    
+    [self close];
 }
 -(void)pushModalController:(UIViewController*)viewController
 {

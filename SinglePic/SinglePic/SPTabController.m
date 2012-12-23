@@ -342,19 +342,23 @@
     [pages addObject:page];
     
      //Animate tab on-screen
-     [UIView animateWithDuration:0.5 animations:^
+
+    [UIView animateWithDuration:0.5 animations:^
      {
          //Push all current pages 5px to the right
-         for(SPPageController* currentPage in pages)
+         /*
+          for(SPPageController* currentPage in pages)
          {
              currentPage.view.left += 5;
-         }
+         }*/
          
-         page.view.left = PAGE_POS_LEFT_MAXIMIZED;
+        page.view.left = PAGE_POS_LEFT_MAXIMIZED;
      } 
      completion:^(BOOL finished) 
      {
      }];
+    
+
     
     return page;
 }
@@ -376,6 +380,7 @@
     [page.view removeFromSuperview];
     [pages removeObject:page];
     
+    /*
     //Animate remaining pages
     [UIView animateWithDuration:0.5 animations:^
      {
@@ -385,6 +390,7 @@
              currentPage.view.left -= 5;
          }
     }];
+     */
 }
 -(void)closeAllPages
 {

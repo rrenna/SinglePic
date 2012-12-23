@@ -217,17 +217,20 @@
     
     [SPSoundHelper playTap];
     
+    [self setFullscreen:NO animated:YES];
+    
     // This tells us if this screen was spawned from the Messages screen (need to replace page with profile page)
     // or spawned from the profile page (need to just close the chat window)
     if(self.minimizeContainerOnClose)
     {
         //Present a page containing the profile controller
         SPProfileViewController* profileController = [[SPProfileViewController alloc] initWithProfile:self.profile];
-        [self pushModalController:profileController];
+        [self replaceWith:profileController];
     }
-    
-    [self setFullscreen:NO animated:YES];
-    [self close];
+    else
+    {
+        [self close];
+    }
 }
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded

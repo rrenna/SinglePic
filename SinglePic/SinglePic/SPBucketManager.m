@@ -19,6 +19,7 @@
     dispatch_once(&once, ^ { sharedInstance = [[SPBucketManager alloc] init]; });
     return sharedInstance;
 }
+
 -(void)retrieveBucketsWithCompletionHandler:(void (^)(NSArray* buckets))onCompletion andErrorHandler:(void(^)())onError
 {
     __unsafe_unretained SPBucketManager* weakSelf = self;

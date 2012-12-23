@@ -22,6 +22,7 @@
 @property (retain) UIAlertView* unlikeUserAlertView;
 @property (retain) UIAlertView* blockUserAlertView;
 -(void)profileLoaded;
+-(void)refreshLikeStatus;
 @end
 
 @implementation SPProfileViewController
@@ -114,8 +115,9 @@
             [[SPProfileManager sharedInstance] addProfile:self.profile toToLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;
+                 [self refreshLikeStatus];
              }
-                                          andErrorHandler:^
+             andErrorHandler:^
              {
                  likeButton.enabled = YES;
              }];
@@ -143,6 +145,9 @@
     usernameLabel.text = [self.profile username];
     icebreakerLabel.text = [self.profile icebreaker];
     
+    //Set the icon on the Like button
+    [self refreshLikeStatus];
+    
     //Set image age
     ageLabel.text = [NSString stringWithFormat:@"%@ old",[TimeHelper ageOfDate:[self.profile timestamp]]];
             
@@ -161,6 +166,17 @@
          imageView.image = image;
      }
      andErrorHandler:nil];
+}
+-(void)refreshLikeStatus
+{
+    if([[SPProfileManager sharedInstance] checkIsLiked:self.profile])
+    {
+        [likeButton setImage:[UIImage imageNamed:@"icon-Heart-white-liked"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [likeButton setImage:[UIImage imageNamed:@"icon-Heart-white"] forState:UIControlStateNormal];
+    }
 }
 #pragma mark - UIAlertViewDelegate methods
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
@@ -181,6 +197,7 @@
             [[SPProfileManager sharedInstance] removeProfile:self.profile fromLikesWithCompletionHandler:^()
              {
                  likeButton.enabled = YES;
+                 [self refreshLikeStatus];
              }
              andErrorHandler:^
              {

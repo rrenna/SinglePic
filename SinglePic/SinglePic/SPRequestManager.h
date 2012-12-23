@@ -6,15 +6,16 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPSingleton.h"
 #import "CJSONDeserializer.h"
 #import "AFHTTPClient.h"
 #import "SPWebServiceError.h"
 
 @class SPWebServiceRequest;
 
-@interface SPRequestManager : SPSingleton
+@interface SPRequestManager : NSObject
 @property (readonly) NSString* userToken;
+
++ (SPRequestManager *)sharedInstance;
 
 //Reachability
 -(void)EnableRealtimeReachabilityMonitoring;
