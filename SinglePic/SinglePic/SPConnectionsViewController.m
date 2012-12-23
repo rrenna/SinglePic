@@ -54,7 +54,6 @@
     //Retrieve my Likes
     [[SPProfileManager sharedInstance] retrieveLikesWithCompletionHandler:^(NSArray *likes)
      {
-         [likes_ release];
          likes_ = [[NSMutableArray alloc] initWithArray:likes];
          [tableView reloadData];
      }
@@ -69,9 +68,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_LIKE_ADDED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_PUSH_NOTIFICATION_RECIEVED object:nil];
-    [likes_ release];
-    [likedBy_ release];
-    [super dealloc];
 }
 #pragma mark - IBActions
 -(IBAction)edit:(id)sender
@@ -113,8 +109,7 @@
 {
     [[SPProfileManager sharedInstance] retrieveLikedByWithCompletionHandler:^(NSArray *likes) 
      {
-         [likedBy_ release];
-         likedBy_ = [likes retain];
+         likedBy_ = likes;
      } 
      andErrorHandler:^
      {
@@ -171,12 +166,12 @@
         profile = [likedBy_ objectAtIndex:indexPath.row];
     }
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.width = tableView.width;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-    SPCardView* cardBackground = [[[SPCardView alloc] initWithFrame:cell.contentView.bounds] autorelease];
+    SPCardView* cardBackground = [[SPCardView alloc] initWithFrame:cell.contentView.bounds];
     cardBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     cell.backgroundView = cardBackground;
     
@@ -191,8 +186,8 @@
                                          frameImageFrame.size.width * 0.94,
                                          frameImageFrame.size.height * 0.92);
     
-    UIImageView* frameImage = [[[UIImageView alloc] initWithFrame:frameImageFrame] autorelease];
-    UIImageView* avatarImage = [[[UIImageView alloc] initWithFrame:avatarImageFrame] autorelease];
+    UIImageView* frameImage = [[UIImageView alloc] initWithFrame:frameImageFrame];
+    UIImageView* avatarImage = [[UIImageView alloc] initWithFrame:avatarImageFrame];
     
     frameImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     avatarImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -203,7 +198,7 @@
     
     //Username label
     CGRect userNameLabelFrame = CGRectMake([cell width] * 0.37, [cell height] * 0.1, [cell width] * 0.63, [cell height] * 0.8);
-    SPLabel* usernameLabel = [[[SPLabel alloc] initWithFrame:userNameLabelFrame] autorelease];
+    SPLabel* usernameLabel = [[SPLabel alloc] initWithFrame:userNameLabelFrame];
     usernameLabel.style = LABEL_STYLE_REGULAR_HEAVY;
     usernameLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |  UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     usernameLabel.backgroundColor = [UIColor clearColor];
@@ -220,7 +215,6 @@
      }
      andErrorHandler:nil];
 
-  
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -239,7 +233,7 @@
         profile = [likedBy_ objectAtIndex:indexPath.row];
     }
     
-    SPBaseController* baseController = [[[UIApplication sharedApplication] delegate] baseController];
+    SPBaseController* baseController = [SPAppDelegate baseController];
     [baseController pushProfile:profile];
     
 }
@@ -266,18 +260,21 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        //Disable switching from Likes to Likes Me using the segmented control
+        likeTypeSegmentedControl.enabled = NO;
+        
         SPProfile* profileToRemove = [likes_ objectAtIndex:indexPath.row];
         //unlike profile. If successful, remove row
         [[SPProfileManager sharedInstance] removeProfile:profileToRemove fromLikesWithCompletionHandler:^
         {
-        } andErrorHandler:^
+            //Re-enable switching from Likes to Likes Me using the segmented control
+            likeTypeSegmentedControl.enabled = YES;
+        }
+        andErrorHandler:^
         {
-
+            //Re-enable switching from Likes to Likes Me using the segmented control
+            likeTypeSegmentedControl.enabled = YES;
         }];
     }
-}
-- (void)viewDidUnload {
-    titleLabel = nil;
-    [super viewDidUnload];
 }
 @end
