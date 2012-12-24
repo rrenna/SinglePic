@@ -59,10 +59,10 @@
     [self setAdjustsFontSizeToFitWidth:YES];
     
     //Only possible on iOS 6
-    if([self respondsToSelector:@selector(setAdjustsLetterSpacingToFitWidth:)])
+    /*if([self respondsToSelector:@selector(setAdjustsLetterSpacingToFitWidth:)])
     {
         objc_msgSend(self, @selector(setAdjustsLetterSpacingToFitWidth:), YES);
-    }
+    }*/
     
     CGFloat size = [self.font pointSize];
     self.font = [UIFont fontWithName:FONT_NAME_PRIMARY size:size];
