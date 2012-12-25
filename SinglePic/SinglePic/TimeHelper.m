@@ -19,7 +19,7 @@
     NSTimeInterval interval = -1 * [date timeIntervalSinceNow];
     return [self _descriptionForTimeInterval:interval];
 }
-+ (NSString*) countdownUntilDate:(NSString*)date
++ (NSString*) countdownUntilDate:(NSDate*)date
 {
     NSTimeInterval interval = [date timeIntervalSinceNow];
     return [self _descriptionForTimeInterval:interval];

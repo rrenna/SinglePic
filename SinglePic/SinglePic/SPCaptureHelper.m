@@ -6,14 +6,10 @@
     BOOL isFrontCamera;
     BOOL isFlashMode;
 }
-@property (retain) AVCaptureSession *captureSession;
 @property (retain) AVCaptureStillImageOutput *stillImageOutput;
 @end
 
 @implementation SPCaptureHelper
-@synthesize captureSession,stillImageOutput; //Private
-@synthesize previewLayer,stillImage;
-
 #pragma mark Capture Session Configuration
 
 - (id)init {
@@ -33,13 +29,11 @@
 	}
 	return self;
 }
-
-- (void)addVideoPreviewLayer {
-	[self setPreviewLayer:[[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]] autorelease]];
-	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    
+- (void)addVideoPreviewLayer
+{
+	[self setPreviewLayer:[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]]];
+	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];    
 }
-
 - (void)addVideoInputFrontCamera:(BOOL)front {
     NSArray *devices = [AVCaptureDevice devices];
     AVCaptureDevice *frontCamera = nil;
@@ -93,7 +87,6 @@
         }
     }
 }
-
 - (BOOL)isFlashMode
 {
     return isFlashMode;
@@ -132,10 +125,9 @@
         }
     }
 }
-
 - (void)addStillImageOutput
 {
-    [self setStillImageOutput:[[[AVCaptureStillImageOutput alloc] init] autorelease]];
+    [self setStillImageOutput:[[AVCaptureStillImageOutput alloc] init]];
     NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG,AVVideoCodecKey,nil];
     [[self stillImageOutput] setOutputSettings:outputSettings];
     
@@ -225,12 +217,9 @@
             }
         }
     }
-    
-    
 }
 -(void)captureWithCompletion:(void (^)(UIImage* capturedImage))onCompletion
 {
-    
     AVCaptureConnection *videoConnection = nil;
 	for (AVCaptureConnection *connection in [[self stillImageOutput] connections]) {
 		for (AVCaptureInputPort *port in [connection inputPorts]) {
@@ -243,7 +232,6 @@
             break;
         }
 	}
-    
     __unsafe_unretained SPCaptureHelper *weakSelf = self;
     [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:videoConnection
                                                          completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
@@ -256,23 +244,13 @@
                                                              NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
                                                              UIImage *image = [[UIImage alloc] initWithData:imageData];
                                                              [weakSelf setStillImage:image];
-                                                             [image release];
                                                              
                                                              onCompletion(weakSelf.stillImage);
                                                              
                                                          }];
 }
-
 - (void)dealloc {
     
 	[[self captureSession] stopRunning];
-    
-	[previewLayer release], previewLayer = nil;
-	[captureSession release], captureSession = nil;
-    [stillImageOutput release], stillImageOutput = nil;
-    [stillImage release], stillImage = nil;
-    
-	[super dealloc];
 }
-
 @end

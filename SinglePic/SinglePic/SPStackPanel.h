@@ -46,11 +46,6 @@ static NSString* NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE = @"NOTIFICATION_ST
 */
 
 @interface SPStackPanel : UIView <UITableViewDelegate, UITableViewDataSource/*, SPStackPanelContentDelegate*/>
-{
-	UITableView *tableView;
-	NSMutableArray *cells;
-	id<SPStackPanelDelegate> delegate;
-}
 @property(nonatomic,assign) id<SPStackPanelDelegate> delegate;
 
 // Add

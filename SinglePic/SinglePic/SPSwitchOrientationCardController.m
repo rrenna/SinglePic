@@ -32,11 +32,6 @@
     
     [self setDisplayWithGender:[[SPProfileManager sharedInstance] myGender]  andPreference:[[SPProfileManager sharedInstance] myPreference]];
 }
--(void)dealloc
-{
-    [orientationChooser release];
-    [super dealloc];
-}
 #pragma mark - IBOutlet
 -(IBAction)open:(id)sender
 {
@@ -52,7 +47,6 @@
         orientationChooser.delegate = self;
         orientationChooser.alpha = 0.0;
         [self.view addSubview:orientationChooser];
-        [orientationChooser release];
     }
     
     //Fade out content, animate resize, fade in new content

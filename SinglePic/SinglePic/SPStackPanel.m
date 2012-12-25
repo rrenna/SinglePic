@@ -22,11 +22,14 @@
 #import "SPStackPanel.h"
 
 @interface SPStackPanel ()
+{
+	UITableView *tableView;
+	NSMutableArray *cells;
+}
 - (void)configureView;
 @end
 
 @implementation SPStackPanel
-@synthesize delegate;
 
 #pragma mark
 - (id)initWithFrame:(CGRect)frame
@@ -53,10 +56,6 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_STACKPANEL_CONTENT_RESIZED object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE object:nil];
-    
-	[cells release];
-	[tableView release];
-	[super dealloc];
 }
 
 #pragma mark -
@@ -102,7 +101,6 @@
     [cell.contentView addSubview:v];
 	
 	[cells addObject:cell];
-	[cell release];
 
 	if (yn)
 	{

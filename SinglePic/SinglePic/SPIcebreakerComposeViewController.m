@@ -92,8 +92,4 @@
     
     return YES;
 }
-- (void)viewDidUnload {
-    titleLabel = nil;
-    [super viewDidUnload];
-}
 @end

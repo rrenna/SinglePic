@@ -11,8 +11,8 @@
 @implementation SPMessageThread (SPMessageThread_Sorting)
 -(NSArray*)sortedMessages
 {
-        NSSortDescriptor *sortNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES] autorelease];
-        NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortNameDescriptor, nil] autorelease];
-        return [self.messages sortedArrayUsingDescriptors:sortDescriptors];
+    NSSortDescriptor *sortNameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortNameDescriptor, nil];
+    return [self.messages sortedArrayUsingDescriptors:sortDescriptors];
 }
 @end

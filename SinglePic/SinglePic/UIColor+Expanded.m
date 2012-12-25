@@ -381,7 +381,6 @@ static NSLock *crayolaNameCacheLock;
 	
 	return [[colors copy] autorelease];
 }
-
 #pragma mark String utilities
 
 - (NSString *)stringFromColor {

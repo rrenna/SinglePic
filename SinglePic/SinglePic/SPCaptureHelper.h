@@ -14,7 +14,8 @@
 @interface SPCaptureHelper : NSObject
 
 @property (retain) AVCaptureVideoPreviewLayer *previewLayer;
-@property (nonatomic, retain) UIImage *stillImage;
+@property (retain) UIImage *stillImage;
+@property (retain) AVCaptureSession *captureSession;
 
 - (void)addVideoPreviewLayer;
 - (void)addStillImageOutput;

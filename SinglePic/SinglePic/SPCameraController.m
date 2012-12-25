@@ -46,7 +46,7 @@
     
     if(!self.captureHelper)
     {
-        self.captureHelper = [[SPCaptureHelper new] autorelease];
+        self.captureHelper = [SPCaptureHelper new];
         
         [self.captureHelper addVideoInputFrontCamera:YES]; // set to YES for Front Camera, No for Back camera
         
@@ -85,15 +85,6 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     cameraPreviewImageView.image = nil;
-}
-- (void)viewDidUnload {
-    uploadProgressBar = nil;
-    [super viewDidUnload];
-}
--(void)dealloc
-{
-    [self.captureHelper release];
-    [super dealloc];
 }
 #pragma mark - Overriden methods
 -(void)close
@@ -157,7 +148,7 @@
     CGAffineTransform swingTransform = CGAffineTransformIdentity;
     swingTransform = CGAffineTransformRotate(swingTransform, 0.06);
     
-    [UIView beginAnimations:@"swing" context:cameraPreviewImageView];
+    [UIView beginAnimations:@"swing" context:nil];
     [UIView setAnimationDuration:0.5];
     
     cameraPreviewImageView.transform = swingTransform;
