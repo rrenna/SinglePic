@@ -49,12 +49,11 @@
     {
         [self _init];
         
-        __unsafe_unretained SPComposeViewController* weakSelf = self;
         [[SPProfileManager sharedInstance] retrieveProfile:identifier withCompletionHandler:^
          (SPProfile *profile)
          {
-             weakSelf.profile = profile;
-             [weakSelf profileLoaded];
+             self.profile = profile;
+             [self profileLoaded];
              
          } andErrorHandler:^
          {
