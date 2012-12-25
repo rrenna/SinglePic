@@ -160,7 +160,10 @@
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
      {
         //retrieve server settings
-        NSDictionary* settingsDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:nil];
+        NSError* theError = nil;
+        NSData* responseData = (NSData*)responseObject;
+        NSDictionary* settingsDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
+         
         self.serverSettings = settingsDictionary;
          
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SERVER_SETTINGS_CHANGED object:nil];

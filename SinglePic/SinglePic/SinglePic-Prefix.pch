@@ -29,8 +29,6 @@
     #import "SPMessages.h"
     #import "SPBucket.h"
     #import "SPProfiles.h"
-    #import "CJSONDeserializer.h"
-    #import "CJSONSerializer.h"
     #import "SPAppDelegate.h"
     #import "SPSettingsManager.h"
     #import "SPErrorManager.h"

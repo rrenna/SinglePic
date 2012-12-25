@@ -32,7 +32,7 @@
     if(!userToken)
     {
         //Check if a user token has been saved in NSUserDefaults
-        userToken = [[[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULT_KEY_USER_TOKEN] retain];
+        userToken = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULT_KEY_USER_TOKEN];
     }
     return userToken;
 }
@@ -59,7 +59,7 @@
 -(void)EnableRealtimeReachabilityMonitoring
 {
     NSString* baseURL = [[SPSettingsManager sharedInstance] serverAddress];
-    self.httpClient = [[[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ] autorelease];
+    self.httpClient = [[AFHTTPClient alloc] initWithBaseURL: [NSURL URLWithString:baseURL] ];
     [self.httpClient setParameterEncoding:AFJSONParameterEncoding];
     
     __unsafe_unretained SPRequestManager* weakSelf = self;
@@ -118,7 +118,6 @@
 -(void)removeUserTokenSynchronize:(BOOL)synchronize
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_DEFAULT_KEY_USER_TOKEN];
-    [userToken release];
     userToken = nil;
     if(synchronize)[[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -160,7 +159,7 @@
         {
             NSString* _userToken = [[SPRequestManager sharedInstance] userToken];
             
-            NSString * _escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+            NSString * _escapedUserToken = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
                                                                                               NULL,
                                                                                               (CFStringRef)_userToken,
                                                                                               NULL,
@@ -168,7 +167,6 @@
                                                                                               kCFStringEncodingUTF8 );
             
             path = [NSString stringWithFormat:@"%@/%@/token/%@",name,parameter,_escapedUserToken];
-            [_escapedUserToken release];
         }
         else
         {
@@ -180,14 +178,13 @@
         if(requiresToken)
         {
             NSString* _userToken = [[SPRequestManager sharedInstance] userToken];
-            NSString * _escapedUserToken = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+            NSString * _escapedUserToken = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
                                                                                               NULL,
                                                                                               (CFStringRef)_userToken,
                                                                                               NULL,
                                                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                               kCFStringEncodingUTF8 );
             path = [NSString stringWithFormat:@"%@/token/%@",name,_escapedUserToken];
-            [_escapedUserToken release];
         }
         else
         {
@@ -216,8 +213,10 @@
         if([[operation request] HTTPBody])
         {
             NSString* HTTPBody = [[NSString alloc] initWithData:[[operation request] HTTPBody] encoding:NSUTF8StringEncoding];
-            if(HTTPBody)    [userInfo setObject:HTTPBody forKey:@"HTTP Body"];
-            [HTTPBody release];
+            if(HTTPBody)
+            {
+                [userInfo setObject:HTTPBody forKey:@"HTTP Body"];
+            }
         }
         
         [userInfo setObject:[NSNumber numberWithInt:statusCode] forKey:@"statusCode"];
@@ -289,7 +288,6 @@
         //Switching to BMP
         //postData = UIImagePNGRepresentation(image);
         postData = UIImageJPEGRepresentation(image,COMPRESSION_QUALITY);
-        [image release];
     }
 
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];

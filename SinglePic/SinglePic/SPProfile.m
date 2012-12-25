@@ -32,6 +32,7 @@
     }
     return self;
 }
+
 -(BOOL)isValid
 {
     return [self _checkIsValid:_data];

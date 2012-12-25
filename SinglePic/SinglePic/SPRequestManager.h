@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CJSONDeserializer.h"
 #import "AFHTTPClient.h"
 #import "SPWebServiceError.h"
 

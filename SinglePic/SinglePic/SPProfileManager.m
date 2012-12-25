@@ -627,7 +627,9 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
          {
              NSError *theError = nil;
-             NSDictionary* responseDictionary = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+             
+             NSData* responseData = (NSData*)responseObject;
+             NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
              
              NSString* imageUploadURLString = [responseDictionary objectForKey:@"urlFullImage"];
              NSString* thumbnailUploadURLString = [responseDictionary objectForKey:@"urlThumbImage"];
@@ -718,11 +720,13 @@ static NSURL* _thumbnailUploadURLCache = nil;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_TOKENS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
      {
          NSError *theError = nil;
-         NSDictionary* Response = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
          
+         NSData* responseData = (NSData*)responseObject;
+         NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
+
          //Retrieve server generated attributes
-         NSString* userToken_ = [Response objectForKey:@"token"];
-         NSDictionary* user_ = [Response objectForKey:@"user"];//Retrieve the user profile
+         NSString* userToken_ = [responseDictionary objectForKey:@"token"];
+         NSDictionary* user_ = [responseDictionary objectForKey:@"user"];//Retrieve the user profile
          NSString* userID_ = [user_ objectForKey:@"id"];
          NSString* userName_ = [user_ objectForKey:@"userName"];
          NSString* userBucketID_ = [user_ objectForKey:@"bucket"];
@@ -870,11 +874,13 @@ static NSURL* _thumbnailUploadURLCache = nil;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject) 
     {
         NSError *theError = nil;
-        NSDictionary* Response = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+        
+        NSData* responseData = (NSData*)responseObject;
+        NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
 
         //Retrieve server generated attributes
-        NSString* userID_ = [[Response objectForKey:@"id"] stringValue];
-        NSString* userToken_ = [Response objectForKey:@"token"];
+        NSString* userID_ = [[responseDictionary objectForKey:@"id"] stringValue];
+        NSString* userToken_ = [responseDictionary objectForKey:@"token"];
         
         //'synchronize:NO' tells the profile manager to not synchronize the specific setting, as the NSUserDefaults will be synchronized at the end of this block
         [[SPRequestManager sharedInstance] setUserToken:userToken_ synchronize:NO];
@@ -1045,7 +1051,9 @@ static int profileCounter = 0;
      {
          NSMutableArray* _pickedProfiles = [NSMutableArray array];
          NSError *theError = nil;
-         NSDictionary* profilesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+         
+         NSData* responseData = (NSData*)responseObject;
+         NSDictionary* profilesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
 
          @autoreleasepool {
              
@@ -1098,7 +1106,10 @@ static int profileCounter = 0;
              [weakSelf.profiles removeAllObjects];
              //
              NSError *theError = nil;
-             NSDictionary* feedData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+             
+             NSData* responseData = (NSData*)responseObject;
+             NSDictionary* feedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
+             
              NSArray* bucketData = [feedData objectForKey:@"users"];
              
              @autoreleasepool {
@@ -1154,8 +1165,9 @@ static int profileCounter = 0;
              [weakSelf.profiles removeAllObjects];
              
              NSError *theError = nil;
-             NSDictionary* feedData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
              
+             NSData* responseData = (NSData*)responseObject;
+             NSDictionary* feedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
              NSDictionary* bucketData = [feedData objectForKey:@"users"];
 
              @autoreleasepool {
@@ -1275,8 +1287,10 @@ static int profileCounter = 0;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
          NSError* error = nil;
-         NSArray* likeData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&error];
          
+         NSData* responseData = (NSData*)responseObject;
+         NSArray* likeData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+  
          if([likeData count] > 0)
          {
              [weakSelf retrieveProfilesWithIDs:likeData withCompletionHandler:^(NSArray *profiles_) 
@@ -1320,7 +1334,8 @@ static int profileCounter = 0;
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
      {
          NSError* error = nil;
-         NSArray* likeData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&error];
+         NSData* responseData = (NSData*)responseObject;
+         NSArray* likeData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
          
          if([likeData count] > 0)
          {

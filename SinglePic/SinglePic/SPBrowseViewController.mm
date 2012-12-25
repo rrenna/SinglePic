@@ -33,8 +33,7 @@ static b2PrismaticJointDef shaftJoint;
     UIImageView *refreshArrow;
     UIView*  nextHeaderView;
     UILabel* nextLabel;
-    ColorGrid *colorGrid;
-    
+
     BOOL isDragging;
     BOOL isLoading;
     BOOL isVisible;
@@ -52,9 +51,11 @@ static b2PrismaticJointDef shaftJoint;
     b2Body *barrierBody;
     
 }
+
 @property (retain) NSArray* stacks;
 @property (retain) NSMutableArray* profileControllers;
 @property (retain) CADisplayLink* tickDisplayLink;
+@property (retain) ColorGrid *colorGrid;
 
 -(void)createPhysicsWorld;
 -(void)createPhysicalBarrier;
@@ -127,15 +128,14 @@ void increaseCurrentTickCount();
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    self.stacks = nil;
-    self.profileControllers = nil;
-    
-    [_tickDisplayLink invalidate];
-    self.tickDisplayLink = nil;
+    [self.stacks release];
+    [self.profileControllers release];
+    [_tickDisplayLink invalidate]; //Timers must be invalidated before destroyed
+    [self.tickDisplayLink release];
+    [self.colorGrid release];
     
     [queuedSelectorCalls release];
-    
-    [dropTimer invalidate];
+    [dropTimer invalidate]; //Timers must be invalidated before destroyed
     [dropTimer release];
     
     delete world;
@@ -379,7 +379,7 @@ void increaseCurrentTickCount();
         refreshHeaderView.backgroundColor = [UIColor clearColor];
         
         // Create the loading color grid
-        colorGrid = [[[ColorGrid alloc] initWithFrame:CGRectMake(0, 0 - ROWS * CELL_DIMENSION, COLUMNS * CELL_DIMENSION, ROWS * CELL_DIMENSION) colors:colors] autorelease];
+        self.colorGrid = [[[ColorGrid alloc] initWithFrame:CGRectMake(0, 0 - ROWS * CELL_DIMENSION, COLUMNS * CELL_DIMENSION, ROWS * CELL_DIMENSION) colors:colors] autorelease];
         
         refreshArrow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]] autorelease];
         refreshArrow.frame = CGRectMake(floorf((COLUMNS * CELL_DIMENSION - 21.5) / 2),
@@ -387,7 +387,7 @@ void increaseCurrentTickCount();
                                         21.5, 21);
         
         [refreshHeaderView addSubview:refreshArrow];
-        [scrollView addSubview:colorGrid];
+        [scrollView addSubview:self.colorGrid];
         [scrollView addSubview:refreshHeaderView];
 }
 -(void)beginDropSchedule
@@ -737,7 +737,7 @@ void increaseCurrentTickCount()
     isLoading = YES;
     
     // Show the header and animate the loading color grid
-    [colorGrid drawGrid];
+    [self.colorGrid drawGrid];
     [UIView beginAnimations:nil context:NULL];
     
     [UIView setAnimationDuration:0.3];
@@ -753,7 +753,7 @@ void increaseCurrentTickCount()
 {
     isLoading = NO;
     
-    [colorGrid drawRow];
+    [self.colorGrid drawRow];
     
     //Re-display helper text
     [UIView animateWithDuration:0.5 animations:^

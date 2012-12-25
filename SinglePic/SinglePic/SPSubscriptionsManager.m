@@ -45,7 +45,9 @@
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:@"me/transactions" requiringToken:YES withCompletionHandler:^(id responseObject)
      {
          NSError *theError = nil;
-         NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+         NSData* responseData = (NSData*)responseObject;
+         NSArray* messagesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
+
          BOOL messagesRecieved = NO;
          
          for(NSDictionary* transactionData in messagesData)

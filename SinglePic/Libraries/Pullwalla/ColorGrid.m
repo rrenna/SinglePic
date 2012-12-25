@@ -13,6 +13,7 @@
 
 @synthesize colors;
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

@@ -26,8 +26,9 @@
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:nil requiringToken:NO withCompletionHandler:^(id responseObject)                            
      {
          NSError *theError = nil;
-         NSArray* responseArray = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
-         
+         NSData* responseData = (NSData*)responseObject;
+         NSArray* responseArray = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
+
          NSMutableArray* _buckets = [NSMutableArray arrayWithCapacity:[responseArray count]];
          for(NSDictionary* bucketData in responseArray)
          {

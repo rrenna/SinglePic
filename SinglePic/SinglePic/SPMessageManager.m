@@ -7,7 +7,6 @@
     //
 
 #import <CoreData/CoreData.h>
-#import "CJSONSerializer.h"
 #import "SPMessageManager.h"
 #import "SPRequestManager.h"
 #import "SPMessageAccount.h"
@@ -244,7 +243,8 @@
     [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
      {
          NSError *theError = nil;
-         NSArray* messagesData = [[CJSONDeserializer deserializer] deserialize:responseObject error:&theError];
+         NSData* responseData = (NSData*)responseObject;
+         NSArray* messagesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
          
          #ifndef RELEASE
          LogMessageCompat(@"%@",messagesData);
