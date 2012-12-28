@@ -44,6 +44,9 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 {
     [super viewDidLoad];
     
+    //Initially the 'next' button will be disabled
+    nextButton.enabled = NO;
+    
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Registration",nil);
     tagline1Label.text = NSLocalizedString(@"A Fun Way To Meet Singles", nil);
@@ -194,7 +197,6 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     
     if(_step == 1)
     {
-        nextButton.enabled = NO;
         [nextButton setStyle:STYLE_ALTERNATIVE_ACTION_1_BUTTON];
         newView = stepOneView;
     }

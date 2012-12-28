@@ -18,6 +18,7 @@
 @property (assign) IBOutlet id<SPLocationChooserDelegate> delegate;
 @property (strong,readonly) SPBucket* chosenBucket;
 @property (assign) BOOL autoselectFirstBucket;
+@property (assign) int bucketsToDisplay;
 
 -(IBAction)locationSelected:(id)sender;
 @end

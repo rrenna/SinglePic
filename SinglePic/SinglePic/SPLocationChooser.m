@@ -66,6 +66,7 @@
     self.buttonTitles = [NSMutableArray array];
     self.distanceLabels = [NSMutableArray array];
     self.buttonIcons = [NSMutableArray array];
+    _bucketsToDisplay = 4;
     bucketDisplayIndex = 0;
     userLocation = nil;
     
@@ -248,11 +249,11 @@
         self.bucketView.height += STATUS_HEIGHT;
     }];
     
-        //Adds buttons representing the 4 closest buckets
+        //Adds buttons representing the closest buckets
     for(int bucketIndex = bucketDisplayIndex; bucketIndex < self.buckets.count; bucketIndex++) {
         
-        //Only display the first 4
-        if(bucketIndex >= 4) break;
+        //Only display the first X buckets
+        if(bucketIndex >= _bucketsToDisplay) break;
         
         //Must be added in this order
         SPBucket* bucket = [self.buckets objectAtIndex:bucketIndex];
@@ -278,12 +279,14 @@
 #define ICON_DIMENSION 20
 -(UIView*)buttonForLocation:(SPBucket*)bucket atIndex:(int)index
 {
-    int buttonY = (self.frame.size.height/4 * index);
+    int buttonY = (self.frame.size.height/_bucketsToDisplay * index);
     int avaliableHeight = self.frame.size.height;
-    int buttonHeight = (avaliableHeight /4 ) - 5;
-    int iconY = (buttonHeight - ICON_DIMENSION) / 2;
+    int buttonHeight = (avaliableHeight /_bucketsToDisplay ) - 5;
+    int iconDimension = (self.frame.size.height/_bucketsToDisplay ) * 0.4;
+    
+    int iconY = (buttonHeight - iconDimension) / 2;
     CGRect frame = CGRectMake(0, floor(buttonY), floor(self.frame.size.width),floor(buttonHeight));
-    CGRect iconFrame = CGRectMake(8,iconY, ICON_DIMENSION, ICON_DIMENSION);
+    CGRect iconFrame = CGRectMake(iconDimension / 2,iconY, iconDimension, iconDimension);
     
     NSString* locationName = bucket.name;
 
@@ -299,6 +302,7 @@
     button.tag = index;
     
     [button addTarget:self action:@selector(locationSelected:) forControlEvents:UIControlEventTouchUpInside];
+    
     //Left Icon
     NSString* iconFileName = @"location-pin.png";
     NSString* iconSelectedFileName = @"location-pin.png";
