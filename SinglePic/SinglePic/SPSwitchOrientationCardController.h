@@ -7,10 +7,7 @@
 //
 
 #import "SPStyledButton.h"
-
-@class SPOrientationChooser;
-
-@protocol SPOrientationChooserDelegate;
+#import "SPOrientationChooser.h"
 
 @interface SPSwitchOrientationCardController : UIViewController <SPOrientationChooserDelegate>
 {
