@@ -206,7 +206,7 @@
         CGAffineTransform swingTransform = CGAffineTransformIdentity;
         swingTransform = CGAffineTransformRotate(swingTransform, 0.06);
     
-        [UIView beginAnimations:@"swing" context:cameraPreviewImageView];
+        [UIView beginAnimations:@"swing" context:nil];
         [UIView setAnimationDuration:0.5];
         
         cameraPreviewImageView.transform = swingTransform;
