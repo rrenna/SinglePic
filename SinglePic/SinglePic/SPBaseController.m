@@ -459,6 +459,9 @@
 }
 -(void)reachabilityValidated
 {
+    //Remove observation of reachability permission notification
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_REACHABILITY_REACHABLE object:nil];
+    
     if(VALIDATE_LOCATION_SERVICES_ON_STARTUP)
     {
         //Initiate the Location Manager, we want the popup for location services permission to appear with just a splash screen behind it.
@@ -511,7 +514,7 @@
               [[SPSubscriptionsManager sharedInstance] getTransactionsWithCompletionHandler: nil andErrorHandler:nil];
               */
              
-                 //Retrieve messages from the user
+             //Retrieve messages from the user
              [[SPMessageManager sharedInstance] forceRefresh];
              
              [self navigationMode];

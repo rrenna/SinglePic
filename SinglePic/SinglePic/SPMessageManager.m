@@ -244,7 +244,9 @@
      {
          NSError *theError = nil;
          NSData* responseData = (NSData*)responseObject;
-         NSArray* messagesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
+         
+         //If there is no response data, messageData should be initialized as an empty array
+         NSArray* messagesData = (responseData == nil) ? [NSArray array] : [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
          
          #ifndef RELEASE
          LogMessageCompat(@"%@",messagesData);
