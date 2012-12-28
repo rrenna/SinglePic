@@ -68,7 +68,7 @@
                                                 CGImageGetBitsPerComponent(self.CGImage),
                                                 0,
                                                 CGImageGetColorSpace(self.CGImage),
-                                                CGImageGetBitmapInfo(self.CGImage));
+                                                kCGImageAlphaPremultipliedLast);
     
     // Draw the image in the center of the context, leaving a gap around the edges
     CGRect imageLocation = CGRectMake(borderSize, borderSize, image.size.width, image.size.height);

@@ -28,7 +28,7 @@
                                                  CGImageGetBitsPerComponent(image.CGImage),
                                                  0,
                                                  CGImageGetColorSpace(image.CGImage),
-                                                 CGImageGetBitmapInfo(image.CGImage));
+                                                 kCGImageAlphaPremultipliedLast);
     
     // Create a clipping path with rounded corners
     CGContextBeginPath(context);
