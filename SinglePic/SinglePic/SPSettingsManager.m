@@ -23,7 +23,7 @@
 @end
 
 @implementation SPSettingsManager
-@dynamic environment,serverAddress,daysPicValid,defaultBucketID;
+@dynamic environment,serverAddress,daysPicValid;
 
 #pragma mark - Dynamic Properties
 -(ENVIRONMENT)environment
@@ -78,10 +78,6 @@
     #ifdef PUBLIC_RELEASE
     return PHOTO_EXPIRY_DAYS;
     #endif
-}
--(NSString*)defaultBucketID
-{
-    return @"1";
 }
 
 + (SPSettingsManager *)sharedInstance

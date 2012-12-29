@@ -19,7 +19,6 @@ typedef enum
 @property (readonly) NSString* serverAddress;
 @property (assign) ENVIRONMENT environment;
 @property (readonly) CGFloat daysPicValid;
-@property (readonly) NSString* defaultBucketID;
 
 + (SPSettingsManager *)sharedInstance;
 
