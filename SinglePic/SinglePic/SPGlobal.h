@@ -30,7 +30,7 @@ static NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
 
 #define FONT_SIZE_MEDIUM 14
 #define FONT_SIZE_SMALL 12
-#define FONT_SIZE_EXTRA_SMALL 10
+#define FONT_SIZE_EXTRA_SMALL 9
 
 //Servers
 #define PRODUCTION_ADDRESS @"https://singlepicdating.herokuapp.com/"

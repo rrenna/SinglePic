@@ -282,7 +282,7 @@
     int buttonY = (self.frame.size.height/_bucketsToDisplay * index);
     int avaliableHeight = self.frame.size.height;
     int buttonHeight = (avaliableHeight /_bucketsToDisplay ) - 5;
-    int iconDimension = (self.frame.size.height/_bucketsToDisplay ) * 0.4;
+    int iconDimension = (self.frame.size.height/_bucketsToDisplay ) * 0.35;
     
     int iconY = (buttonHeight - iconDimension) / 2;
     CGRect frame = CGRectMake(0, floor(buttonY), floor(self.frame.size.width),floor(buttonHeight));
@@ -329,7 +329,7 @@
     
     //Right Distance Label
     SPLabel* distanceLabel = [[SPLabel alloc] initWithFrame:CGRectMake(buttonLabel.left + buttonLabel.width - 2,0,45,button.height)];
-    distanceLabel.textAlignment = UITextAlignmentRight;
+    distanceLabel.textAlignment = UITextAlignmentCenter;
     distanceLabel.textColor = [UIColor darkGrayColor];
     distanceLabel.backgroundColor = [UIColor clearColor];
     distanceLabel.style = LABEL_STYLE_EXTRA_SMALL;

@@ -1093,7 +1093,7 @@ static int profileCounter = 0;
     
     if([self myUserType] == USER_TYPE_ANNONYMOUS)
     {
-        NSString* parameter = [NSString stringWithFormat:@"gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],intStartTime,intCurrentTime];
+        NSString* parameter = [NSString stringWithFormat:@"undefined/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],intStartTime,intCurrentTime];
         
         __unsafe_unretained SPProfileManager* weakSelf = self;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) 
@@ -1113,7 +1113,6 @@ static int profileCounter = 0;
                  {
                      SPProfile* profile = [[SPProfile alloc] initWithData:userData];
                      [weakSelf.profiles addObject:profile];
-                     
                  }
              }
 
@@ -1127,7 +1126,6 @@ static int profileCounter = 0;
              if(onError)
              {
                  onError();
-                 
              }
          }];
     }
@@ -1141,7 +1139,6 @@ static int profileCounter = 0;
         if(onError)
         {
             onError();
-            
         }
     }
     else if([self myUserType] == USER_TYPE_PROFILE)
@@ -1172,11 +1169,9 @@ static int profileCounter = 0;
                      SPProfile* profile = [[SPProfile alloc] initWithData:userData];
                      [weakSelf.profiles addObject:profile];
                  }
-                 
              }
              
              onCompletion(weakSelf.profiles);
-             
              
              //Inform application that the notifications have changed
              [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_PROFILES_CHANGED object:nil];
@@ -1199,7 +1194,6 @@ static int profileCounter = 0;
     if(thumbnail)
     {
         onCompletion(thumbnail);
-        
     }
     else
     {
@@ -1211,14 +1205,12 @@ static int profileCounter = 0;
             }
 
              onCompletion(responseObject);
-             
          }
          andErrorHandler:^(NSError* error)
          {
              if(onError)
              {
                 onError();
-                
              }
          }];
     }
@@ -1229,14 +1221,12 @@ static int profileCounter = 0;
     [[SPRequestManager sharedInstance] getImageFromURL:[profile pictureURL] withCompletionHandler:^(UIImage* responseObject)
      {
          onCompletion(responseObject);
-         
      }
      andErrorHandler:^(NSError* error)
      {
          if(onError)
          {
              onError();
-             
          }
      }];
 }
@@ -1304,7 +1294,6 @@ static int profileCounter = 0;
                   if(onError)
                   {
                       onError();
-                      
                   }
               }];
          }
@@ -1312,7 +1301,6 @@ static int profileCounter = 0;
          {
              //If there are no likes recorded, return an empty array
              onCompletion([NSArray array]);
-             
          }
      }
      andErrorHandler:^(SPWebServiceError* error)
@@ -1320,7 +1308,6 @@ static int profileCounter = 0;
          if(onError)
          {
              onError();
-             
          }
      }];
 }
@@ -1350,7 +1337,6 @@ static int profileCounter = 0;
                   if(onError)
                   {
                       onError();
-                      
                   }
               }];
          }
@@ -1358,7 +1344,6 @@ static int profileCounter = 0;
          {
              //If there are no liked by recorded, return an empty array
              onCompletion([NSArray array]);
-             
          }
          
      } 
@@ -1367,7 +1352,6 @@ static int profileCounter = 0;
          if(onError)
          {
              onError();
-             
          }
      }];
 }
