@@ -294,7 +294,10 @@
 #pragma mark - Status bar customization
 -(void)setStatusBarStyle:(STYLE)style
 {
-    navigationBar.tintColor = primaryColorForStyle(style);
+    //Animates changes to the status bar
+    [UIView animateWithDuration:0.4 animations:^{
+            navigationBar.tintColor = primaryColorForStyle(style);
+    }];
 }
 #pragma mark - Private methods
 -(void)addContent:(UIView*)content

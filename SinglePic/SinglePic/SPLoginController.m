@@ -37,6 +37,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     //Localize Controls
     titleLabel.text = NSLocalizedString(@"Login",nil);
     taglineLabel.text = NSLocalizedString(@"A Fun Way To Meet Singles", nil);
@@ -47,7 +49,9 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     emailTextField.placeholder = NSLocalizedString(@"Required", nil);
     passwordTextField.placeholder = NSLocalizedString(@"Required", nil);
     
-    [super viewDidLoad];
+    //Set device status bar to be yellow
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_TAB];
+    
     [loginButton setStyle:STYLE_CONFIRM_BUTTON];
     [headerStyledView setStyle:STYLE_TAB];
     
@@ -67,6 +71,13 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     }
 
 }
+-(void)close
+{
+    [super close];
+    
+    //Set device status bar colour back to base
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_BASE];
+}
 - (IBAction)back:(id)sender
 {
     [Crashlytics setObjectValue:@"Clicked on the 'Back' button in the Login screen." forKey:@"last_UI_action"];
@@ -83,6 +94,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     
     [[SPProfileManager sharedInstance] loginWithEmail:emailTextField.text andPassword:passwordTextField.text andCompletionHandler:^(id responseObject)
      {
+         [self close];
          //Login successful
          [[NSUserDefaults standardUserDefaults] setObject:emailTextField.text forKey:EMAIL_FIELD_LAST_USED_VALUE_KEY];
          [[NSUserDefaults standardUserDefaults] synchronize];

@@ -31,7 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     //Look and Feel
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_CHARCOAL];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"carbon_fibre.png"]];
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -91,6 +93,8 @@
 {
     [self.captureHelper.previewLayer removeFromSuperlayer];
     self.captureHelper = nil;
+    
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_BASE];
     
     [super close];
 }

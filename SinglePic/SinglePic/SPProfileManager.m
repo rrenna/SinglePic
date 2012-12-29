@@ -1091,14 +1091,9 @@ static int profileCounter = 0;
     //End Time (now)
     int intCurrentTime = (int)currenTimeInterval;
     
-    /* Note : We no longer ask annonymous users for their gender/preference. If implementing this functionality, use the below call :
-     
-         NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",[[self myAnnonymousBucket] identifier],GENDER_NAMES[[self myAnnonymousGender]],GENDER_NAMES[[self myAnnonymousPreference]],0,intTime];
-    */
-    
     if([self myUserType] == USER_TYPE_ANNONYMOUS)
     {
-        NSString* parameter = [NSString stringWithFormat:@"%@/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",[[SPSettingsManager sharedInstance] defaultBucketID],GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],intStartTime,intCurrentTime];
+        NSString* parameter = [NSString stringWithFormat:@"gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],intStartTime,intCurrentTime];
         
         __unsafe_unretained SPProfileManager* weakSelf = self;
         [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) 

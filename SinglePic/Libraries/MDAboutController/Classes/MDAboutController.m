@@ -1091,7 +1091,6 @@ static NSString *MDACImageCellID        = @"MDACImageCell";
 
 - (void)dismiss:(id)sender
 {
-    [SPSoundHelper playTap];
     [self dismissModalViewControllerAnimated:YES];
 }
 

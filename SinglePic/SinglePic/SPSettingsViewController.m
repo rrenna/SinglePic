@@ -47,6 +47,18 @@
     }
     return self;
 }
+-(void)viewDidLoad
+{
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_CHARCOAL];
+}
+- (IBAction)dismiss:(id)sender
+{
+    [SPSoundHelper playTap];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[SPAppDelegate baseController] setStatusBarStyle:STYLE_BASE];
+    }];
+}
 #pragma mark - Actions
 //Callbacks for selectors called by the MDAboutController (parent class)
 -(void)logout
@@ -56,7 +68,7 @@
     [SPSoundHelper playTap];
     
     [[SPProfileManager sharedInstance] logout];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismiss:nil];
 }
 -(void)switchEnvironment
 {

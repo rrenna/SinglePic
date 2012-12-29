@@ -18,7 +18,8 @@ typedef enum
     STYLE_CONFIRM_BUTTON = 5,
     STYLE_ALTERNATIVE_ACTION_1_BUTTON = 6,
     STYLE_ALTERNATIVE_ACTION_2_BUTTON = 7,
-    STYLE_NAVIGATION = 8
+    STYLE_NAVIGATION = 8,
+    STYLE_CHARCOAL = 9
 } STYLE;
 
 typedef enum
@@ -63,6 +64,7 @@ typedef enum
 #define TINT_CONFIRM_BUTTON [UIColor colorWithRed:0.0 green:0.513 blue:0.686 alpha:1.0]
 #define TINT_ALTERNATIVE_ACTION_1_BUTTON [UIColor colorWithRed:0.905 green:0.662 blue:0.0 alpha:1.0]
 #define TINT_ALTERNATIVE_ACTION_2_BUTTON [UIColor colorWithRed:0.47 green:0.85 blue:0.12 alpha:1.0]
+#define TINY_CHARCOAL [UIColor colorWithWhite:0.33 alpha:1.0]
 
 @protocol SPStyle <NSObject>
 -(void)setStyle:(STYLE)style;

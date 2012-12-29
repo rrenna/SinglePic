@@ -62,6 +62,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     passwordField.placeholder = NSLocalizedString(@"Required", nil);
     confirmPasswordField.placeholder = NSLocalizedString(@"Required", nil);
     
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_TAB];
+    
     [nextButton setStyle:STYLE_TAB];
     [signupHeaderView setStyle:STYLE_TAB];
     
@@ -78,6 +80,13 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
     [self stepTwoInitialization];
     [self stepThreeInitialization];
 
+}
+-(void) close
+{
+    [super close];
+    
+    //Set device status bar colour back to base
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_BASE];
 }
 #pragma mark - IBActions
 -(IBAction)back:(id)sender
@@ -148,6 +157,8 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
         
         [[SPProfileManager sharedInstance] registerWithEmail:chosenEmail andUserName:chosenUsername andPassword:chosenPassword andGender:annonymousGender andPreference:annonymousPreference andBucket:annonymousBucket andCompletionHandler:^(id responseObject)
          {
+             [self close];
+             
              //Registration successful
              [[NSUserDefaults standardUserDefaults] setObject:chosenEmail forKey:EMAIL_FIELD_LAST_USED_VALUE_KEY];
              [[NSUserDefaults standardUserDefaults] synchronize];

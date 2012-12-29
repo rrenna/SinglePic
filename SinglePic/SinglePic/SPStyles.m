@@ -39,6 +39,10 @@ UIColor* primaryColorForStyle(STYLE style)
     {
         return TINT_ALTERNATIVE_ACTION_2_BUTTON;
     }
+    else if(style == STYLE_CHARCOAL)
+    {
+        return TINY_CHARCOAL;
+    }
     
     //STYLE_NEUTRAL or default
     return TINT_DEFAULT;

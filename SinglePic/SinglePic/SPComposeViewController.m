@@ -105,6 +105,9 @@
     
     tableView.height = window.height - 107;
     
+    //Set device status bar to be yellow
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_TAB];
+
     [topBarView setStyle:STYLE_PAGE];
     [topBarView setDepth:DEPTH_OUTSET];
     
@@ -146,6 +149,9 @@
 }
 -(void)close
 {
+    //Set device status bar back to the base style
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_BASE];
+    
     [UIView animateWithDuration:0.3
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut

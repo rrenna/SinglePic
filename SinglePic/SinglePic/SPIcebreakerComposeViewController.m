@@ -27,6 +27,7 @@
     [saveButton setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
     
     //Look and Feel
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_PAGE];
     [topBarView setStyle:STYLE_TAB];
     [cancelButton setStyle:STYLE_TAB];
     [saveButton setStyle:STYLE_CONFIRM_BUTTON];
@@ -37,6 +38,12 @@
     
     //On load set focus to the textview
     [textView becomeFirstResponder];
+}
+-(void)close
+{
+    [super close];
+    
+    [[SPAppDelegate baseController] setStatusBarStyle:STYLE_BASE];
 }
 #pragma mark - IBActions
 -(IBAction)cancel:(id)sender
