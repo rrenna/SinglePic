@@ -18,67 +18,14 @@
     #ifndef RELEASE
     ENVIRONMENT _environment;
     #endif
+    #ifndef PUBLIC_BETA
+    BOOL _imageRequiresFaceDetected;
+    #endif
 }
 @property (retain) NSDictionary* serverSettings;
 @end
 
 @implementation SPSettingsManager
-@dynamic environment,serverAddress,daysPicValid;
-
-#pragma mark - Dynamic Properties
--(ENVIRONMENT)environment
-{
-    #ifdef PUBLIC
-    return ENVIRONMENT_PRODUCTION;
-    #else
-    return _environment;
-    #endif
-}
--(void)setEnvironment:(ENVIRONMENT)environment
-{
-    NSAssert([self canSwitchEnvironments], @"An attempt to switch environments has been made in an instance that shouldn't be able to.");
-    
-    #ifndef RELEASE
-    [[NSUserDefaults standardUserDefaults] setInteger:environment forKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    _environment = environment;
-    #endif
-}
--(NSString*)serverAddress
-{
-    #ifdef PUBLIC
-    return PRODUCTION_ADDRESS;
-    #else
-    if([self environment] == ENVIRONMENT_PRODUCTION)
-    {
-        return PRODUCTION_ADDRESS;
-    }
-    else
-    {
-        return TESTING_ADDRESS;
-    }
-    #endif
-}
--(CGFloat)daysPicValid
-{
-    
-    #ifdef DEBUG
-    return 0.25; //When debugging reduce time until expiry to 6 hours
-    #endif
-    
-    #ifdef PRIVATE_BETA
-    return PHOTO_EXPIRY_DAYS / 2; //During beta tests reduce time until expiry by 50%
-    #endif
-    
-    #ifdef PUBLIC_BETA
-    return PHOTO_EXPIRY_DAYS - 5; //During beta tests reduce time until expiry by 5 days (currently 2 days)
-    #endif
-    
-    #ifdef PUBLIC_RELEASE
-    return PHOTO_EXPIRY_DAYS;
-    #endif
-}
 
 + (SPSettingsManager *)sharedInstance
 {
@@ -97,6 +44,7 @@
         #ifndef RELEASE
         ENVIRONMENT lastSelectedEnvironment = (ENVIRONMENT)[[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
         _environment = lastSelectedEnvironment;
+        _imageRequiresFaceDetected = YES;
         #endif
     }
     return self;
@@ -147,10 +95,8 @@
     onCompletion(needsUpdate,title,description);
     #else
     
+    //Sends app version, and that this is the iOS app to the server to be validated
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        //Re-enable below if we need to validate build number
-        //NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
-    
     NSDictionary* payload = [NSDictionary dictionaryWithObjectsAndKeys:version,@"version",@"iOS/iPhone",@"platform",nil];
     
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_APP withParameter:nil andPayload:payload requiringToken:NO withCompletionHandler:^(id responseObject)
@@ -176,6 +122,12 @@
             description = NSLocalizedString(@"This version of SinglePic is too old.",nil);
         }
          
+         NSNumber* imagesRequireFaceDetectedValue = [settingsDictionary objectForKey:@"imagesRequireFaceDetected"];
+         if(imagesRequireFaceDetectedValue)
+         {
+             _imageRequiresFaceDetected = [imagesRequireFaceDetectedValue boolValue];
+         }
+         
         onCompletion(needsUpdate,title,description);
          
      } andErrorHandler:^(SPWebServiceError *error)
@@ -184,7 +136,26 @@
      }];
     #endif
 }
-#pragma mark - Client Settings
+#pragma mark - Client Settings (User Controlled)
+-(ENVIRONMENT)environment
+{
+    #ifdef PUBLIC
+        return ENVIRONMENT_PRODUCTION;
+    #else
+        return _environment;
+    #endif
+}
+-(void)setEnvironment:(ENVIRONMENT)environment
+{
+    NSAssert([self canSwitchEnvironments], @"An attempt to switch environments has been made in an instance that shouldn't be able to.");
+    
+    #ifndef RELEASE
+        [[NSUserDefaults standardUserDefaults] setInteger:environment forKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    
+        _environment = environment;
+    #endif
+}
 -(BOOL)displayVerboseErrorsEnabled
 {
     #ifdef PRIVATE
@@ -243,5 +214,48 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CLIENT_SETTINGS_CHANGED object:nil];
+}
+#pragma mark - App Settings (App/Server Controlled)
+-(NSString*)serverAddress
+{
+    #ifdef PUBLIC
+        return PRODUCTION_ADDRESS;
+    #else
+        if([self environment] == ENVIRONMENT_PRODUCTION)
+        {
+            return PRODUCTION_ADDRESS;
+        }
+        else
+        {
+            return TESTING_ADDRESS;
+        }
+    #endif
+}
+-(CGFloat)daysPicValid
+{
+    #ifdef DEBUG
+        return 0.25; //When debugging reduce time until expiry to 6 hours
+    #endif
+        
+    #ifdef PRIVATE_BETA
+        return PHOTO_EXPIRY_DAYS / 2; //During beta tests reduce time until expiry by 50%
+    #endif
+        
+    #ifdef PUBLIC_BETA
+        return PHOTO_EXPIRY_DAYS - 5; //During beta tests reduce time until expiry by 5 days (currently 2 days)
+    #endif
+        
+    #ifdef PUBLIC_RELEASE
+        return PHOTO_EXPIRY_DAYS;
+    #endif
+}
+-(BOOL)imageRequiresFaceDetected
+{
+    #if defined (PUBLIC_BETA)
+    //Public beta users do not retrieve dynamic server settings, this setting is hard-coded for them
+    return YES;
+    #endif
+    
+    return _imageRequiresFaceDetected;
 }
 @end

@@ -238,6 +238,7 @@
 		F066BE1D160E9ACC00FBA319 /* MyProfile-OBE-Pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F066BE1C160E9ACC00FBA319 /* MyProfile-OBE-Pic.png */; };
 		F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; };
 		F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0795556161942E4004837AF /* GCPagedScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F07ABC43169246E900219A25 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F07ABC42169246E900219A25 /* CoreImage.framework */; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
 		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
 		F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */; };
@@ -721,6 +722,7 @@
 		F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSubscriptionsManager.m; sourceTree = "<group>"; };
 		F0795555161942E4004837AF /* GCPagedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPagedScrollView.h; sourceTree = "<group>"; };
 		F0795556161942E4004837AF /* GCPagedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCPagedScrollView.m; sourceTree = "<group>"; };
+		F07ABC42169246E900219A25 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
 		F08A157F1608116000DDE5DB /* icon-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Email.png"; path = "../../Resources/icon-Email.png"; sourceTree = "<group>"; };
 		F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -964,6 +966,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F07ABC43169246E900219A25 /* CoreImage.framework in Frameworks */,
 				75071E8B16303DFB00935B0D /* AVFoundation.framework in Frameworks */,
 				75071E8916303DF000935B0D /* CoreVideo.framework in Frameworks */,
 				75071E8716303DE700935B0D /* CoreMedia.framework in Frameworks */,
@@ -1508,6 +1511,7 @@
 		7599A93D148E980100A48435 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F07ABC42169246E900219A25 /* CoreImage.framework */,
 				75071E8A16303DFB00935B0D /* AVFoundation.framework */,
 				75071E8816303DF000935B0D /* CoreVideo.framework */,
 				75071E8616303DE700935B0D /* CoreMedia.framework */,

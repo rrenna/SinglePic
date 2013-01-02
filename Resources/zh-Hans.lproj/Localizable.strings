@@ -28,6 +28,7 @@
 "Back" = "返回";
 "Next" = "前头的";
 "Save" = "保存";
+"Proceed" = "继续";
 "Yes" = "是";
 "No" = "没有";
 "Edit" = "编辑";
@@ -59,6 +60,7 @@
 "A Fun Way To Meet Singles" = "一个有趣的方式去认识新人";
 "Sign up or log in." = "报名或登录.";
 "Where are you?" = "你在哪里?";
+"A face cannot be validated in this photo. Proceed?" = "脸不能验证在这张照片。要继续吗？";
 "Block User" = "列入黑名单";
 "Are you sure you would like to block this person?" = "你确定你想阻止这个人吗？";
 "" = "你确定你想不喜欢这个人吗？";

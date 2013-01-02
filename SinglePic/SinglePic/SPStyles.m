@@ -41,7 +41,7 @@ UIColor* primaryColorForStyle(STYLE style)
     }
     else if(style == STYLE_CHARCOAL)
     {
-        return TINY_CHARCOAL;
+        return TINT_CHARCOAL;
     }
     
     //STYLE_NEUTRAL or default
@@ -128,6 +128,14 @@ void updateColorGradientLayerForControlWithStyle(CAGradientLayer* layer, STYLE s
                 (id)TINT_PAGE.CGColor];
                 
                 layer.locations = @[[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.1], [NSNumber numberWithFloat:1.0]];
+            }
+            else if (style == STYLE_CHARCOAL)
+            {
+                layer.colors = @[
+                                 (id)TINT_CHARCOAL.CGColor,
+                                 (id)TINT_CHARCOAL.CGColor];
+                
+                layer.locations = @[[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:1.0]];
             }
             else
             {

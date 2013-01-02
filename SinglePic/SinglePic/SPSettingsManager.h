@@ -16,9 +16,6 @@ typedef enum
 } ENVIRONMENT;
 
 @interface SPSettingsManager : NSObject
-@property (readonly) NSString* serverAddress;
-@property (assign) ENVIRONMENT environment;
-@property (readonly) CGFloat daysPicValid;
 
 + (SPSettingsManager *)sharedInstance;
 
@@ -28,11 +25,18 @@ typedef enum
 
 //Validates that the app is up to date, retrieves the latest server settings
 -(void)validateAppWithCompletionHandler:(void (^)(BOOL needsUpdate,NSString* title, NSString* description))onCompletion;//Validates that this version of the app is valid (non-expired)
-//Client Settings
+
+//Client Settings (User Controlled)
+-(ENVIRONMENT)environment;
+-(void)setEnvironment:(ENVIRONMENT)environment;
 -(BOOL)displayVerboseErrorsEnabled;
 -(void)setDisplayVerboseErrorsEnabled:(BOOL)enabled;
 -(BOOL)soundEffectsEnabled;
 -(void)setSoundEffectsEnabled:(BOOL)enabled;
 -(BOOL)saveToCameraRollEnabled;
 -(void)setSaveToCameraRollEnabled:(BOOL)enabled;
+//App Settings (App/Server Controlled)
+-(NSString*)serverAddress;
+-(CGFloat)daysPicValid;
+-(BOOL)imageRequiresFaceDetected;
 @end

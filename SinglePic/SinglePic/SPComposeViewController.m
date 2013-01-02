@@ -87,18 +87,17 @@
 {
     [super viewDidLoad];
     
-    //Localize Controls
-    [closeButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
-    
     if(self.profile)
     {
         [self profileLoaded];
     }
     
     UIWindow* window = [[UIApplication sharedApplication] keyWindow];
-    
     _toolbar = [[UIInputToolbar alloc] initWithFrame:CGRectMake(0, window.height, window.width, INPUT_TOOLBAR_SIZE)];
     _toolbar.delegate = self;
+    
+    //Localize Controls
+    [closeButton setTitle:NSLocalizedString(@"Back", nil) forState:UIControlStateNormal];
     _toolbar.textView.placeholder = NSLocalizedString(@"Enter a Message", nil);
     
     [window addSubview:_toolbar];
@@ -549,11 +548,5 @@
         
         return NO;
     }
-}
-
-- (void)viewDidUnload {
-    closeButton = nil;
-    viewProfileButton = nil;
-    [super viewDidUnload];
 }
 @end

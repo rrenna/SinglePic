@@ -28,6 +28,7 @@
 "Back" = "Back";
 "Next" = "Next";
 "Save" = "Save";
+"Proceed" = "Proceed";
 "Yes" = "Yes";
 "No" = "No";
 "Edit" = "Edit";
@@ -59,6 +60,7 @@
 "A Fun Way To Meet Singles" = "A Fun Way To Meet Singles";
 "Sign up or log in." = "Sign up or log in.";
 "Where are you?" = "Where are you?";
+"A face cannot be validated in this photo. Proceed?" = "A face cannot be validated in this photo. Proceed?";
 "Block User" = "Block User";
 "Are you sure you would like to block this person?" = "Are you sure you would like to block this person?";
 "Are you sure you would like to unlike this person?" = "Are you sure you would like to unlike this person?";

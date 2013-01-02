@@ -14,10 +14,17 @@
     IBOutlet UIImageView* cameraPreviewImageView;
     IBOutlet UIBarButtonItem* switchFlashModeButton;
     IBOutlet UIBarButtonItem* switchCameraBarButton;
+    __weak IBOutlet UIView *statusView;
+    __weak IBOutlet SPLabel *statusLabel;
+    __weak IBOutlet SPStyledButton *statusCancelButton;
+    __weak IBOutlet SPStyledButton *statusProceedButton;
     IBOutlet UIProgressView *uploadProgressBar;
+    __weak IBOutlet UIButton *takePictureButton;
 }
 -(IBAction)cancel:(id)sender;
 -(IBAction)switchCameras:(id)sender;
 -(IBAction)switchFlashMode:(id)sender;
 -(IBAction)takePicture:(id)sender;
+-(IBAction)statusProceed:(id)sender;
+-(IBAction)statusCancel:(id)sender;
 @end

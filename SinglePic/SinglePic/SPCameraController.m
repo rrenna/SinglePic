@@ -7,17 +7,21 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <CoreImage/CoreImage.h>
 #import "SPCameraController.h"
 #import "SPCaptureHelper.h"
 
 @interface SPCameraController()
 @property (retain) SPCaptureHelper* captureHelper;
+@property (retain) UIImage* takenImage;
+-(void)validatePicture:(UIImage*)image;
 -(void)setMyPicture:(UIImage*)image;
 -(void)setFlashIcon:(BOOL)flashEnabled;
+-(void)enableViewfinder;
+-(void)disableViewfinder;
 @end
 
 @implementation SPCameraController
-@synthesize captureHelper;
 
 #pragma mark - View lifecycle
 -(id)init
@@ -40,10 +44,11 @@
 {
     [super viewDidAppear:animated];
     
-    cameraPreviewImageView.center = CGPointMake(160, -90.0);
+    [statusProceedButton setTitle:NSLocalizedString(@"Proceed",nil) forState:UIControlStateNormal];
+    [statusCancelButton setTitle:NSLocalizedString(@"Cancel",nil) forState:UIControlStateNormal];
     
+    cameraPreviewImageView.center = CGPointMake(160, -95.0);
     cameraPreviewImageView.image = nil;
-    
     uploadProgressBar.hidden = YES;
     
     if(!self.captureHelper)
@@ -58,9 +63,9 @@
         CGRect layerRect = [[cameraContainerView layer] bounds];
         [[self.captureHelper previewLayer] setBounds:layerRect];
         [[self.captureHelper previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
-        [[cameraContainerView layer] addSublayer:[self.captureHelper previewLayer]];
-        
         [[self.captureHelper captureSession] startRunning];
+        
+        [self enableViewfinder];
         
         if([self.captureHelper canSwitchCamera])
         {
@@ -160,21 +165,17 @@
     
     [UIView commitAnimations];
     
-    [self setMyPicture:modifiedImage];
+    [self validatePicture:modifiedImage];
     #else
     [Crashlytics setObjectValue:@"Clicked on the take picture button in the Camera screen - device." forKey:@"last_UI_action"];
     
-    //Remove Preview
-    [self.captureHelper.previewLayer removeFromSuperlayer];
+    [self disableViewfinder];
+    
     //Replace with all white layer
     CALayer* flashColor = [CALayer layer];
     flashColor.frame = cameraContainerView.layer.bounds;
     flashColor.backgroundColor = [UIColor whiteColor].CGColor;
     [cameraContainerView.layer addSublayer:flashColor];
-    //Fade white layer out
-    [UIView animateWithDuration:0.33 animations:^{
-        cameraContainerView.alpha = 0.0;
-    }];
     
     [self.captureHelper captureWithCompletion:^(UIImage *capturedImage) {
        
@@ -214,20 +215,84 @@
         [UIView setAnimationDuration:0.5];
         
         cameraPreviewImageView.transform = swingTransform;
-        cameraPreviewImageView.center = CGPointMake(160,200);
+
+        CGFloat midY = CGRectGetMidY(cameraPreviewImageView.superview.frame);
+        cameraPreviewImageView.center = CGPointMake(160,midY - 48);
         
         [UIView commitAnimations];
         
-        [self setMyPicture:modifiedImage];
+        [self validatePicture:modifiedImage];
     }];
     #endif
 }
+- (IBAction)statusProceed:(id)sender
+{
+    [UIView animateWithDuration:0.2 animations:^
+    {
+        statusView.alpha = 0.0;
+        statusProceedButton.alpha = 0.0;
+        statusCancelButton.alpha = 0.0;
+        takePictureButton.enabled = YES;
+    }];
+    
+    [self setMyPicture:self.takenImage];
+    self.takenImage = nil;
+}
+- (IBAction)statusCancel:(id)sender
+{
+    [UIView animateWithDuration:0.2 animations:^
+    {
+        cameraPreviewImageView.center = CGPointMake(160, -95.0);
+        statusView.alpha = 0.0;
+        statusProceedButton.alpha = 0.0;
+        statusCancelButton.alpha = 0.0;
+        takePictureButton.enabled = YES;
+    }];
+    
+    [self enableViewfinder];
+}
 #pragma mark - Private methods
+-(void)validatePicture:(UIImage*)image
+{
+    CIImage* cIImage = [CIImage imageWithCGImage:image.CGImage];
+    CIDetector *faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace
+                                                context:nil
+                                                  options:@{CIDetectorAccuracy:CIDetectorAccuracyLow}];
+    NSArray* facialFeatures = [faceDetector featuresInImage:cIImage];
+    
+    BOOL containsFace = NO;
+    for(CIFeature* feature in facialFeatures)
+    {
+        if([feature isKindOfClass:[CIFaceFeature class]])
+        {
+            containsFace = YES;
+            break;
+        }
+    }
+    
+    if(containsFace)
+    {        
+        [self setMyPicture:image];
+    }
+    else
+    {
+        self.takenImage = image;
+        statusLabel.text = NSLocalizedString(@"A face cannot be validated in this photo. Proceed?", nil);
+        [UIView animateWithDuration:0.2 animations:^
+        {
+            statusView.alpha = 1.0;
+            statusProceedButton.alpha = 1.0;
+            statusCancelButton.alpha = 1.0;
+            takePictureButton.enabled = NO;
+        }];
+    }
+}
 -(void)setMyPicture:(UIImage*)image
 {
     uploadProgressBar.progress = 0.0;
     uploadProgressBar.hidden = NO;
-
+    takePictureButton.hidden = YES;
+    
     [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject) 
      {
         #if defined (BETA)
@@ -244,6 +309,7 @@
     andErrorHandler:^
      {
          cameraPreviewImageView.image = nil;
+         takePictureButton.hidden = NO;
          uploadProgressBar.hidden = YES;
      }]; 
 }
@@ -258,5 +324,24 @@
     {
         switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-off"];
     }
+}
+-(void)enableViewfinder
+{
+    [[cameraContainerView layer] addSublayer:[self.captureHelper previewLayer]];
+    
+    //Fade in viewfinder view
+    [UIView animateWithDuration:0.33 animations:^{
+        cameraContainerView.alpha = 1.0;
+    }];
+}
+-(void)disableViewfinder
+{
+    //Remove Preview
+    [self.captureHelper.previewLayer removeFromSuperlayer];
+    
+        //Fade white layer out
+    [UIView animateWithDuration:0.33 animations:^{
+        cameraContainerView.alpha = 0.0;
+    }];
 }
 @end

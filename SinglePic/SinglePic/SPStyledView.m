@@ -51,39 +51,7 @@
 }
 -(void)setStyle:(STYLE)style
 {
-    if(style == STYLE_DEFAULT)
-    {
-        tint = TINT_DEFAULT;
-    }
-    else if(style == STYLE_WHITE)
-    {
-        tint = TINT_WHITE;
-    }
-    else if(style == STYLE_TAB)
-    {
-        tint = TINT_TAB;
-    }
-    else if(style == STYLE_PAGE)
-    {
-        tint = TINT_PAGE;
-    }
-    else if(style == STYLE_BASE)
-    {
-        tint = TINT_BASE;
-    }
-    else if(style == STYLE_CONFIRM_BUTTON)
-    {
-        tint = TINT_CONFIRM_BUTTON;
-    }
-    else if(style == STYLE_ALTERNATIVE_ACTION_1_BUTTON)
-    {
-        tint = TINT_ALTERNATIVE_ACTION_1_BUTTON;
-    }
-    else if(style == STYLE_ALTERNATIVE_ACTION_2_BUTTON)
-    {
-        tint = TINT_ALTERNATIVE_ACTION_2_BUTTON;
-    }
-    
+    tint = primaryColorForStyle(style);
     colorLayer.backgroundColor = tint.CGColor;
     
     [self setNeedsDisplay];
