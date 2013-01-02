@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <CoreImage/CoreImage.h>
+#import "SVProgressHUD.h"
 #import "SPCameraController.h"
 #import "SPCaptureHelper.h"
 
@@ -247,6 +248,8 @@
         statusProceedButton.alpha = 0.0;
         statusCancelButton.alpha = 0.0;
         takePictureButton.enabled = YES;
+        uploadProgressBar.hidden = YES;
+        takePictureButton.hidden = NO;
     }];
     
     [self enableViewfinder];
@@ -293,7 +296,7 @@
     uploadProgressBar.hidden = NO;
     takePictureButton.hidden = YES;
     
-    [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject) 
+    [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject)
      {
         #if defined (BETA)
         [TestFlight passCheckpoint:@"Saved new Image"];
@@ -307,11 +310,12 @@
         [uploadProgressBar setProgress:progress animated:YES];
     } 
     andErrorHandler:^
-     {
-         cameraPreviewImageView.image = nil;
-         takePictureButton.hidden = NO;
-         uploadProgressBar.hidden = YES;
-     }]; 
+    {
+        [SVProgressHUD show];
+        [SVProgressHUD dismissWithError:NSLocalizedString(@"Sorry. There was an error uploading your photo. Please try again.", nil) afterDelay:2.0];
+
+        [self statusCancel:nil];
+    }];
 }
 -(void)setFlashIcon:(BOOL)flashEnabled
 {

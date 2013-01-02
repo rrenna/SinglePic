@@ -64,3 +64,6 @@
 "Block User" = "列入黑名单";
 "Are you sure you would like to block this person?" = "你确定你想阻止这个人吗？";
 "" = "你确定你想不喜欢这个人吗？";
+
+//Errors
+"Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";

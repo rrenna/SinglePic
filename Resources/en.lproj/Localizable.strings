@@ -64,3 +64,6 @@
 "Block User" = "Block User";
 "Are you sure you would like to block this person?" = "Are you sure you would like to block this person?";
 "Are you sure you would like to unlike this person?" = "Are you sure you would like to unlike this person?";
+
+//Errors
+"Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";
