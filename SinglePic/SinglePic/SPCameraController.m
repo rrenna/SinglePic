@@ -319,7 +319,7 @@
 }
 -(void)setFlashIcon:(BOOL)flashEnabled
 {
-        //Switch flash icon
+    //Switch flash icon
     if(flashEnabled)
     {
         switchFlashModeButton.image = [UIImage imageNamed:@"icon_Flash-on"];

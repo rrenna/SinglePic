@@ -65,5 +65,10 @@
 "Are you sure you would like to block this person?" = "Are you sure you would like to block this person?";
 "Are you sure you would like to unlike this person?" = "Are you sure you would like to unlike this person?";
 
+//Loading Messages
+"Finding your location..." = "Finding your location...";
+"Finding nearby locations..." = "Finding nearby locations...";
+"Location couldn't be retrieved" = "Location couldn't be retrieved";
+
 //Errors
 "Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";

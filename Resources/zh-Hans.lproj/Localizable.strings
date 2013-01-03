@@ -65,5 +65,10 @@
 "Are you sure you would like to block this person?" = "你确定你想阻止这个人吗？";
 "" = "你确定你想不喜欢这个人吗？";
 
+//Loading Messages
+"Finding your location..." = "寻找你的位置...";
+"Finding nearby locations..." = "查找附近的位置...";
+"Location couldn't be retrieved" = "位置无法检索";
+
 //Errors
 "Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";

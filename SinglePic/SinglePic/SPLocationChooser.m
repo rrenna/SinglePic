@@ -57,7 +57,7 @@
     }
     return self;
 }
-#define STATUS_HEIGHT 30
+#define STATUS_HEIGHT 42
 -(void)_init
 {
     self.buckets = [NSMutableArray array];
@@ -72,7 +72,7 @@
     
     self.statusView = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.frame.size.width,STATUS_HEIGHT)];
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0,0,STATUS_HEIGHT,STATUS_HEIGHT)];
-    self.statusLabel = [[SPLabel alloc] initWithFrame:CGRectMake(STATUS_HEIGHT + 5, 0, self.frame.size.width - STATUS_HEIGHT - 5, STATUS_HEIGHT)];
+    self.statusLabel = [[SPLabel alloc] initWithFrame:CGRectMake(5, 0, self.frame.size.width - 10, STATUS_HEIGHT)];
     self.bucketView = [[UIView alloc] initWithFrame:CGRectMake(0,STATUS_HEIGHT,self.frame.size.width,self.frame.size.height - STATUS_HEIGHT)];
     
     [self.statusView addSubview:self.activityIndicator];
@@ -85,9 +85,11 @@
     self.statusLabel.backgroundColor = [UIColor clearColor];
     self.statusLabel.style = LABEL_STYLE_SMALL;
     self.statusLabel.alpha = 0.0;
+    self.statusLabel.textAlignment = UITextAlignmentCenter;
+    self.statusLabel.textColor = [UIColor grayColor];
     self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     self.activityIndicator.alpha = 0.0;
-    self.activityIndicator.color = TINT_BASE;
+    self.activityIndicator.color = [UIColor grayColor];
     
     //Retrieve current bucket
     SPBucket* currentBucket = [[SPProfileManager sharedInstance] myBucket];
@@ -115,7 +117,7 @@
     {
         //Display and fade in status
         [self.activityIndicator startAnimating];
-        self.statusLabel.text = @"Finding your location...";
+        self.statusLabel.text = NSLocalizedString(@"Finding your location...",nil);
         [UIView animateWithDuration:0.5 animations:^{
             self.activityIndicator.alpha = 1.0;
             self.statusLabel.alpha = 1.0;
@@ -141,7 +143,7 @@
 {
     //Display and fade in status
     [self.activityIndicator startAnimating];
-    self.statusLabel.text = @"Finding nearby locations...";
+    self.statusLabel.text = NSLocalizedString(@"Finding nearby locations...",nil);
     [UIView animateWithDuration:0.5 animations:^{
         self.activityIndicator.alpha = 1.0;
         self.statusLabel.alpha = 1.0;
@@ -242,22 +244,34 @@
 {
     //Stop the activity animation - move bucket content up
     [self.activityIndicator stopAnimating];
-    self.statusLabel.text = @"";
+
+    int numberOfBucketsToHide = 0;
     
-    [UIView animateWithDuration:1.0 animations:^{
-        self.bucketView.top = 0;
-        self.bucketView.height += STATUS_HEIGHT;
-    }];
+    if(userLocation)
+    {
+        [UIView animateWithDuration:1.0 animations:^{
+            self.bucketView.top = 0;
+            self.bucketView.height += STATUS_HEIGHT;
+        }];
+        
+        self.statusLabel.text = @"";
+    }
+    else
+    {
+        numberOfBucketsToHide = 1;
+        self.statusLabel.text = NSLocalizedString(@"Location couldn't be retrieved", nil);
+    }
     
         //Adds buttons representing the closest buckets
     for(int bucketIndex = bucketDisplayIndex; bucketIndex < self.buckets.count; bucketIndex++) {
         
         //Only display the first X buckets
-        if(bucketIndex >= _bucketsToDisplay) break;
+        if(bucketIndex >= (_bucketsToDisplay - numberOfBucketsToHide)) break;
         
         //Must be added in this order
         SPBucket* bucket = [self.buckets objectAtIndex:bucketIndex];
         [self.bucketView addSubview: [self buttonForLocation:bucket atIndex:bucketDisplayIndex]];
+        
         bucketDisplayIndex++;
     }
     
