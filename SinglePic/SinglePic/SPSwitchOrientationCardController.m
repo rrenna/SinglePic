@@ -7,9 +7,11 @@
 //
 
 #import "SPSwitchOrientationCardController.h"
-#import "SPOrientationChooser.h"
 
 @interface SPSwitchOrientationCardController()
+{
+    SPOrientationChooser* orientationChooser;
+}
 -(void)setDisplayWithGender:(GENDER)gender andPreference:(GENDER)preference;
 @end
 

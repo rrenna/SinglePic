@@ -8,10 +8,18 @@
 
 #import "SPUserViewController.h"
 #import "SPIcebreakerComposeViewController.h"
+#import "SPSwitchOrientationCardController.h"
+#import "SPSwitchLocationCardController.h"
 #import "SPCameraController.h"
 #import "SVProgressHUD.h"
 
 @interface SPUserViewController()
+{
+    //User Orientation
+    SPSwitchOrientationCardController* orientationController;
+    //User Location
+    SPSwitchLocationCardController* locationController;
+}
 -(void)updateImage;
 -(void)updateUsername;
 -(void)updateIcebreaker;

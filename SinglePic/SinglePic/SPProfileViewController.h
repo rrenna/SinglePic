@@ -16,13 +16,13 @@
 
 @interface SPProfileViewController : SPPageContentViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
-    IBOutlet UILabel* ageLabel;
-    IBOutlet UIImageView* imageView;
-    IBOutlet UILabel *usernameLabel;
-    IBOutlet UILabel* icebreakerLabel;
-    IBOutlet SPStyledButton* likeButton;
-    IBOutlet SPStyledButton* communicateButton;
-    IBOutlet SPStyledButton* modeButton;
+    IBOutlet __weak UILabel* ageLabel;
+    IBOutlet __weak UIImageView* imageView;
+    IBOutlet __weak UILabel *usernameLabel;
+    IBOutlet __weak UILabel* icebreakerLabel;
+    IBOutlet __weak SPStyledButton* likeButton;
+    IBOutlet __weak SPStyledButton* communicateButton;
+    IBOutlet __weak SPStyledButton* modeButton;
 }
 @property (assign) id<SPProfileViewDelegate> delegate;
 

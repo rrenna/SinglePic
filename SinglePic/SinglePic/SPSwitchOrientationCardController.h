@@ -11,10 +11,8 @@
 
 @interface SPSwitchOrientationCardController : UIViewController <SPOrientationChooserDelegate>
 {
-    IBOutlet UIImageView* orientationIcon;
-    IBOutlet UILabel* orientationLabel;
-@private
-    SPOrientationChooser* orientationChooser;
+    IBOutlet __weak UIImageView* orientationIcon;
+    IBOutlet __weak UILabel* orientationLabel;
 }
 
 -(IBAction)open:(id)sender;

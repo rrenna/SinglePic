@@ -7,34 +7,28 @@
 //
 
 #import "SPStyledProgressView.h"
-#import "SPSwitchOrientationCardController.h"
-#import "SPSwitchLocationCardController.h"
 #import "SPStyledView.h"
 #import "SPStyledButton.h"
 #import "SPStackPanel.h"
 
 @interface SPUserViewController : UIViewController <UIImagePickerControllerDelegate>
 {
-    __weak IBOutlet SPLabel *titleLabel;
-    IBOutlet SPStyledView* insetView;
-    IBOutlet SPStyledProgressView* progressView;
-    IBOutlet SPStackPanel* userStackPanel;
+    IBOutlet __weak SPLabel *titleLabel;
+    IBOutlet __weak SPStyledView* insetView;
+    IBOutlet __weak SPStyledProgressView* progressView;
+    IBOutlet __weak SPStackPanel* userStackPanel;
     //User Profile
-    IBOutlet UIView* userProfileView;
-    IBOutlet UIImageView* avatarImageView;
-    IBOutlet UILabel *usernameLabel;
-    IBOutlet UILabel* icebreakerLabel;
-    IBOutlet SPStyledButton* retakePhotoButton;
-    IBOutlet SPStyledButton* editIcebreakerButton;
-    //User Orientation
-    SPSwitchOrientationCardController* orientationController;
-    //User Location
-    SPSwitchLocationCardController* locationController;
+    IBOutlet __weak UIView* userProfileView;
+    IBOutlet __weak UIImageView* avatarImageView;
+    IBOutlet __weak UILabel *usernameLabel;
+    IBOutlet __weak UILabel* icebreakerLabel;
+    IBOutlet __weak SPStyledButton* retakePhotoButton;
+    IBOutlet __weak SPStyledButton* editIcebreakerButton;
     //User Email
-    IBOutlet UIView* userEmailView;
-    IBOutlet UILabel *userEmailLabel;
+    IBOutlet __weak UIView* userEmailView;
+    IBOutlet __weak UILabel *userEmailLabel;
     //User Subscription
-    IBOutlet UIView* userSubscriptionView;
+    IBOutlet __weak UIView* userSubscriptionView;
 }
 -(IBAction)retakePic:(id)sender;
 -(IBAction)editPic:(id)sender;

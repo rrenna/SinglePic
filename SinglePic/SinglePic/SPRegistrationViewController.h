@@ -15,27 +15,27 @@
 
 @interface SPRegistrationViewController : UIViewController
 {
-    IBOutlet SPStyledView* insetView;
-    IBOutlet SPStackPanel* stackPanel;
+    IBOutlet __weak SPStyledView* insetView;
+    IBOutlet __weak SPStackPanel* stackPanel;
     //Cards
-    IBOutlet SPCardView* browseCard;
-    IBOutlet SPCardView* chatCard;
-    IBOutlet SPCardView* realPeopleRealPicsCard;
-    IBOutlet SPCardView* singlePicCard;
+    IBOutlet __weak SPCardView* browseCard;
+    IBOutlet __weak SPCardView* chatCard;
+    IBOutlet __weak SPCardView* realPeopleRealPicsCard;
+    IBOutlet __weak SPCardView* singlePicCard;
     //Labels
-    __weak IBOutlet SPLabel *titleLabel;
-    __weak IBOutlet SPLabel *browseCardTitleLabel;
-    __weak IBOutlet SPLabel *browseCardBodyLabel;
-    __weak IBOutlet SPLabel *chatCardTitleLabel;
-    __weak IBOutlet SPLabel *chatCardBodyLabel;
-    __weak IBOutlet SPLabel *realPeopleRealPicsCardTitleLabel;
-    __weak IBOutlet SPLabel *realPeopleRealPicsCardBodyLabel;
-    __weak IBOutlet SPLabel *singlePicCardTitleLabel;
-    __weak IBOutlet SPLabel *singlePicCardBodyLabel;
+    IBOutlet __weak SPLabel *titleLabel;
+    IBOutlet __weak SPLabel *browseCardTitleLabel;
+    IBOutlet __weak SPLabel *browseCardBodyLabel;
+    IBOutlet __weak SPLabel *chatCardTitleLabel;
+    IBOutlet __weak SPLabel *chatCardBodyLabel;
+    IBOutlet __weak SPLabel *realPeopleRealPicsCardTitleLabel;
+    IBOutlet __weak SPLabel *realPeopleRealPicsCardBodyLabel;
+    IBOutlet __weak SPLabel *singlePicCardTitleLabel;
+    IBOutlet __weak SPLabel *singlePicCardBodyLabel;
     
     //Buttons
-    __weak IBOutlet SPStyledButton *registerButton;
-    __weak IBOutlet SPStyledButton *loginButton;
+    IBOutlet __weak SPStyledButton *registerButton;
+    IBOutlet __weak SPStyledButton *loginButton;
 }
 
 -(IBAction)spawnRegistrationScreen:(id)sender;

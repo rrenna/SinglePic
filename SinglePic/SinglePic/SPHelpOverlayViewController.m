@@ -9,7 +9,10 @@
 #import "SPHelpOverlayViewController.h"
 
 @interface SPHelpOverlayViewController ()
-
+{
+    HELP_OVERLAY_TYPE _type;
+    IBOutlet UIImageView *overlayImageView;
+}
 @end
 
 @implementation SPHelpOverlayViewController

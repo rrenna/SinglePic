@@ -25,27 +25,21 @@ typedef enum
 
 @interface SPBaseController : UIViewController <SPTabContainerDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate>
 {
-    IBOutlet UIActivityIndicatorView* activityView;
-    IBOutlet UIView* contentView;
-    IBOutlet UIView* navigationView;
-    IBOutlet UIImageView* backgroundImageView;
-    IBOutlet UINavigationBar *navigationBar;
-    __weak IBOutlet UIImageView *newConnectionAlertImage;
-    __weak IBOutlet UIImageView *newMessageAlertImage;
-    __weak IBOutlet UILabel *newMessageCountLabel;
-    IBOutlet UIImageView *miniAvatarImage;
-    IBOutlet SPStyledProgressView *miniProgressView;
+    IBOutlet __weak UIActivityIndicatorView* activityView;
+    IBOutlet __weak UIView* contentView;
+    IBOutlet __weak UIView* navigationView;
+    IBOutlet __weak UIImageView* backgroundImageView;
+    IBOutlet __weak UINavigationBar *navigationBar;
+    IBOutlet __weak UIImageView *newConnectionAlertImage;
+    IBOutlet __weak UIImageView *newMessageAlertImage;
+    IBOutlet __weak UILabel *newMessageCountLabel;
+    IBOutlet __weak UIImageView *miniAvatarImage;
+    IBOutlet __weak SPStyledProgressView *miniProgressView;
+    IBOutlet __weak UIView* registrationNavigationView;
     //Navigation
-    IBOutlet UIButton* connectionButton;
-    IBOutlet UIButton* profileButton;
-    IBOutlet UIButton* mailButton;
-    //Profile
-    SPUserViewController* userController;
-    SPMessagesViewController* messagesController;
-    SPConnectionsViewController* connectionsController;
-    //Register
-    IBOutlet UIView* registrationNavigationView;
-    SPRegistrationViewController* registrationController;
+    IBOutlet __weak UIButton* connectionButton;
+    IBOutlet __weak UIButton* profileButton;
+    IBOutlet __weak UIButton* mailButton;
 }
 
 @property (assign) BASE_MODE baseMode;

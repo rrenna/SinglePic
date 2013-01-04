@@ -23,8 +23,15 @@
 
 @interface SPBaseController()
 {
+    //General
     NSMutableArray* tabs;
     BASE_MODE _baseMode;
+    //Profile
+    SPUserViewController* userController;
+    SPMessagesViewController* messagesController;
+    SPConnectionsViewController* connectionsController;
+    //Register
+    SPRegistrationViewController* registrationController;
 }
 @property (retain) SPHelpOverlayViewController* helpOverlayController;
 -(SPTabController*)createTab;

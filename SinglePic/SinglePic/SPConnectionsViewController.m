@@ -11,6 +11,10 @@
 #import "SPLabel.h"
 
 @interface SPConnectionsViewController()
+{
+    NSMutableArray* likes_;
+    NSMutableArray* likedBy_;
+}
 -(void)addedProfileWithNotification:(NSNotification*)notification;
 -(void)removedProfileWithNotification:(NSNotification*)notification;
 @end

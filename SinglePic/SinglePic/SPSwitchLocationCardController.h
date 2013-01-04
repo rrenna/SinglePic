@@ -11,8 +11,8 @@
 
 @interface SPSwitchLocationCardController : UIViewController <SPLocationChooserDelegate>
 {
-    IBOutlet UIImageView* locationIcon;
-    IBOutlet UILabel* locationLabel;
+    IBOutlet __weak UIImageView* locationIcon;
+    IBOutlet __weak UILabel* locationLabel;
 }
 
 -(IBAction)open:(id)sender;

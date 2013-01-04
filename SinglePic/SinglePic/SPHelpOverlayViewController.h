@@ -16,9 +16,6 @@
 
 @interface SPHelpOverlayViewController : UIViewController
 {
-    @private
-    HELP_OVERLAY_TYPE _type;
-    IBOutlet UIImageView *overlayImageView;
 }
 @property (assign) id<SPHelpOverlayViewControllerDelegate> delegate;
 
