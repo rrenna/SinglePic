@@ -9,7 +9,7 @@
 //Used to place information about SinglePic requests that other components may need to reference
 
 //Static Notifications
-static NSString* NOTIFICATION_REACHABILITY_REACHABLE = @"NOTIFICATION_REACHABILITY_REACHABLE";
+static __attribute__((unused)) NSString* NOTIFICATION_REACHABILITY_REACHABLE = @"NOTIFICATION_REACHABILITY_REACHABLE";
 
 typedef enum
 {
@@ -20,4 +20,4 @@ typedef enum
     REQUEST_NAMESPACE_APP = 4
 } REQUEST_NAMESPACE;
 
-static NSString* REQUEST_NAMESPACES[5] = {@"tokens",@"users",@"usernames",@"buckets",@"versioncheck"};
+static const __attribute__((unused)) NSString* REQUEST_NAMESPACES[5] = {@"tokens",@"users",@"usernames",@"buckets",@"versioncheck"};

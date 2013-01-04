@@ -24,7 +24,7 @@
 @interface SPBaseController()
 {
     NSMutableArray* tabs;
-    BASE_MODE baseMode_;
+    BASE_MODE _baseMode;
 }
 @property (retain) SPHelpOverlayViewController* helpOverlayController;
 -(SPTabController*)createTab;
@@ -48,13 +48,13 @@
 @end
 
 @implementation SPBaseController
-@synthesize baseMode;
+@dynamic baseMode;
 @synthesize helpOverlayController;//Private
 
 #pragma mark - Dynamic properties
 -(void)setBaseMode:(BASE_MODE)baseMode
 {
-    baseMode_ = baseMode;
+    _baseMode = baseMode;
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     if(baseMode == BLANK_BASE_MODE)
@@ -127,7 +127,7 @@
 }
 -(BASE_MODE)baseMode
 {
-    return baseMode_;
+    return _baseMode;
 }
 #pragma mark - View lifecycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -10,7 +10,7 @@
 #import "SPProfile.h"
 
 //Constants
-static const NSString* USER_ID_ME  = @"me";
+static const __attribute__((unused)) NSString* USER_ID_ME  = @"me";
 
 #pragma mark - Helper Functions for enum values
 static GENDER GENDER_FROM_NAME(NSString* genderName)

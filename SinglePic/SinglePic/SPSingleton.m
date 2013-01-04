@@ -107,7 +107,7 @@ static BOOL AddSingleton(id class, id instance)
     }
 }
 
-+(id)sharedInstance
++(instancetype)sharedInstance
 {
     id sharedInstance = nil;
     
@@ -160,7 +160,7 @@ static BOOL AddSingleton(id class, id instance)
     return (NSUIntegerMax);  // l'objet ne peut être libéré.
 }
 
--(void)release
+-(oneway void)release
 {
     // Do nothing.
 }

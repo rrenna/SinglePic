@@ -6,4 +6,4 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-static const NSString* ALERT_BUTTON_TITLE_REPORT = @"Report";
+static const __attribute__((unused)) NSString* ALERT_BUTTON_TITLE_REPORT = @"Report";

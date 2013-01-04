@@ -48,8 +48,6 @@
          NSData* responseData = (NSData*)responseObject;
          NSArray* messagesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
 
-         BOOL messagesRecieved = NO;
-         
          for(NSDictionary* transactionData in messagesData)
          {
              //

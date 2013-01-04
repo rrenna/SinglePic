@@ -26,8 +26,8 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString* NOTIFICATION_STACKPANEL_CONTENT_RESIZED = @"NOTIFICATION_STACKPANEL_CONTENT_RESIZED";
-static NSString* NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE = @"NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE";
+static __attribute__((unused)) NSString* NOTIFICATION_STACKPANEL_CONTENT_RESIZED = @"NOTIFICATION_STACKPANEL_CONTENT_RESIZED";
+static __attribute__((unused)) NSString* NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE = @"NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE";
 
 @class SPStackPanel;
 @protocol SPStackPanelDelegate<NSObject>
@@ -35,15 +35,6 @@ static NSString* NOTIFICATION_STACKPANEL_CONTENT_WILL_RESIZE = @"NOTIFICATION_ST
 - (void)stackPanel:(SPStackPanel*)aPanel didSelectView:(UIView*)aView;
 - (void)stackPanelWillBeginDragging:(SPStackPanel *)aPanel;
 @end
-
-//Not yet implemented
-/*
-@protocol SPStackPanelContentDelegate<NSObject>
-@optional
-- (void)stackPanelContent:(UIView*)content willResizeToHeight:(CGFloat)height;
-- (void)stackPanelContent:(UIView*)content didResizeToHeight:(CGFloat)height;
-@end
-*/
 
 @interface SPStackPanel : UIView <UITableViewDelegate, UITableViewDataSource/*, SPStackPanelContentDelegate*/>
 @property(nonatomic,assign) id<SPStackPanelDelegate> delegate;

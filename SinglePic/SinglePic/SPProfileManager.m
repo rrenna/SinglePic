@@ -258,9 +258,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     return annonymousPreference;
 }
 #pragma mark - Set Profile Methods
--(void)setMyImage:(UIImage*)_image
+-(void)setMyImage:(UIImage*)image_
 {
-    if (_image != nil)
+    if (image_ != nil)
     {
         _hasProfileImage = YES;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
@@ -268,44 +268,44 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent: 
                           [NSString stringWithString: [self myUserID] ] ];
-        NSData* data = UIImageJPEGRepresentation(_image,1.0);
+        NSData* data = UIImageJPEGRepresentation(image_,1.0);
         
         //Save image to disk
         [data writeToFile:path atomically:YES];
         
         //Save orientation to NSUserDefaults
-        [[NSUserDefaults standardUserDefaults] setInteger:_image.imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
+        [[NSUserDefaults standardUserDefaults] setInteger:image_.imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
         
-        self.image = _image;
+        self.image = image_;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
     }
 }
--(void)setMyIcebreaker:(NSString*)_icebreaker synchronize:(BOOL)synchronize
+-(void)setMyIcebreaker:(NSString*)icebreaker_ synchronize:(BOOL)synchronize
 {
-    self.icebreaker = _icebreaker;
+    self.icebreaker = icebreaker_;
     [[NSUserDefaults standardUserDefaults] setObject:self.icebreaker forKey:USER_DEFAULT_KEY_USER_ICEBREAKER];
     
     if(synchronize)[[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_ICEBREAKER_CHANGED object:nil];
 }
--(void)setMyEmail:(NSString*)_email synchronize:(BOOL)synchronize
+-(void)setMyEmail:(NSString*)email_ synchronize:(BOOL)synchronize
 {
-    self.email = _email;
+    self.email = email_;
     [[NSUserDefaults standardUserDefaults] setObject:self.email forKey:USER_DEFAULT_KEY_USER_EMAIL];
     
     if(synchronize)[[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_EMAIL_CHANGED object:nil];
 }
--(void)setMyGender:(GENDER)_gender synchronize:(BOOL)synchronize
+-(void)setMyGender:(GENDER)gender_ synchronize:(BOOL)synchronize
 {
-    if([self myGender] != _gender)
+    if([self myGender] != gender_)
     {
         //After a gender/preference has successfully been set, reset the profile stream
         [[SPProfileManager sharedInstance] restartProfiles];
         
-        self.gender = _gender;
+        self.gender = gender_;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.gender] forKey:USER_DEFAULT_KEY_USER_GENDER];
         
         if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
@@ -313,14 +313,14 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_GENDER_CHANGED object:nil];
     }
 }
--(void)setMyPreference:(GENDER)_preference synchronize:(BOOL)synchronize
+-(void)setMyPreference:(GENDER)preference_ synchronize:(BOOL)synchronize
 {
-    if([self myPreference] != _preference)
+    if([self myPreference] != preference_)
     {
         //After a gender/preference has successfully been set, reset the profile stream
         [[SPProfileManager sharedInstance] restartProfiles];
         
-        self.preference = _preference;
+        self.preference = preference_;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:self.preference] forKey:USER_DEFAULT_KEY_USER_PREFERENCE];
     
         if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
@@ -391,25 +391,25 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
 }
 #pragma mark - Annonymous Set methods
--(void)setMyAnnonymousBucket:(SPBucket*)_bucket synchronize:(BOOL)synchronize
+-(void)setMyAnnonymousBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronize
 {
-    NSData *encodedBucket = [NSKeyedArchiver archivedDataWithRootObject:_bucket];
+    NSData *encodedBucket = [NSKeyedArchiver archivedDataWithRootObject:bucket_];
     [[NSUserDefaults standardUserDefaults] setObject:encodedBucket forKey:USER_DEFAULT_KEY_ANNONYMOUS_BUCKET];
         
     if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
         
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_ANNONYMOUS_BUCKET_CHANGED object:nil];
 }
--(void)setMyAnnonymousGender:(GENDER)_gender
+-(void)setMyAnnonymousGender:(GENDER)gender_
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:_gender] forKey:USER_DEFAULT_KEY_ANNONYMOUS_GENDER];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:gender_] forKey:USER_DEFAULT_KEY_ANNONYMOUS_GENDER];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_ANNONYMOUS_GENDER_CHANGED object:nil];
 }
--(void)setMyAnnonymousPreference:(GENDER)_preference
+-(void)setMyAnnonymousPreference:(GENDER)preference_
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:_preference] forKey:USER_DEFAULT_KEY_ANNONYMOUS_PREFERENCE];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:preference_] forKey:USER_DEFAULT_KEY_ANNONYMOUS_PREFERENCE];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_ANNONYMOUS_PREFERENCE_CHANGED object:nil];
@@ -434,14 +434,14 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     }
 }
 #pragma mark - Save Methods
--(void)saveMyBucket:(SPBucket*)_bucket withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+-(void)saveMyBucket:(SPBucket*)bucket_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    NSString* parameter = [NSString stringWithFormat:@"%@",[_bucket identifier]];
+    NSString* parameter = [NSString stringWithFormat:@"%@",[bucket_ identifier]];
     
     __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
      {         
-         [weakSelf setMyBucket:_bucket synchronize:YES];
+         [weakSelf setMyBucket:bucket_ synchronize:YES];
          onCompletion(responseObject);
          
      } 
