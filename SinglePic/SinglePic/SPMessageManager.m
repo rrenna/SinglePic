@@ -194,7 +194,7 @@
         parameter = [NSString stringWithFormat:@"%@/msg/time/%lld",USER_ID_ME,unixTimeOfLastMessage];
     }
     
-    #ifndef RELEASE
+    #ifdef PRIVATE
     LogMessageCompat(@"Clear Messages with parameter : %@",parameter);
     #endif
     
@@ -235,7 +235,7 @@
         parameter = [NSString stringWithFormat:@"%@/msg/time/%lld",USER_ID_ME,unixTimeOfLastMessage];
     }
     
-    #ifndef RELEASE
+    #ifdef PRIVATE
     LogMessageCompat(@"Retieve Messages with parameter : %@",parameter);
     #endif
     
@@ -248,7 +248,7 @@
          //If there is no response data, messageData should be initialized as an empty array
          NSArray* messagesData = (responseData == nil) ? [NSArray array] : [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
          
-         #ifndef RELEASE
+         #ifdef PRIVATE
          LogMessageCompat(@"%@",messagesData);
          #endif
          
@@ -307,7 +307,7 @@
                       
                   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NEW_MESSAGES_RECIEVED object:nil];
                   
-                  #ifndef RELEASE
+                  #ifdef PRIVATE
                   LogMessageCompat(@"Syncronization complete");
                   #endif
                   
@@ -315,7 +315,7 @@
               }
               andErrorHandler:^
               {
-                  #ifndef RELEASE
+                  #ifdef PRIVATE
                   LogMessageCompat(@"Syncronization failure!!");
                   #endif
                   

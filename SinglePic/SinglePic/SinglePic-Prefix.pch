@@ -23,6 +23,7 @@
     #import "NSString+NSString_UUIDAddition.h"
     #import "UIImageView+Curled.h"
     #import "UIImage+Resize.h"
+    #import "SPMessageThread+Sorting.h"
     //
     #import "SPErrors.h"
     #import "SPRequests.h"
@@ -37,7 +38,6 @@
     #import "SPMessageManager.h"
     #import "SPBucketManager.h"
     #import "SPRequestManager.h"
-    #import "SPMessageThread+Sorting.h"
     #import "SPBaseController.h"
 
     #if defined (BETA)

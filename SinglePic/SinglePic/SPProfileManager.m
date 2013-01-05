@@ -575,7 +575,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
     __unsafe_unretained SPProfileManager* weakSelf = self;
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
-         #ifndef RELEASE
+         #ifdef PRIVATE
          LogMessageCompat(@"Updated Icebreaker/Gender/Preference with payload : %@",payload);
          #endif
          
@@ -596,7 +596,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
      } 
      andErrorHandler:^(SPWebServiceError *error) 
      {
-        #ifndef RELEASE
+        #ifdef PRIVATE
         LogMessageCompat(@"Failed to updated Icebreaker/Gender/Preference with payload : %@",payload);
         #endif
          
