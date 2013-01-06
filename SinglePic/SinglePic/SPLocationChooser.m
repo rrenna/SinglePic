@@ -6,6 +6,7 @@
 //
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "SPLocationChooser.h"
 #import "SPBucket.h"
 #import "SPCardView.h"
@@ -14,6 +15,7 @@
 {
     int __block bucketDisplayIndex;
     CLLocation* userLocation;
+    CLGeocoder* geocoder;
 }
 @property (strong) NSMutableArray* buckets;
 @property (strong,readwrite) SPBucket* chosenBucket;
@@ -45,6 +47,7 @@
     if (self)
     {
         [self _init];
+        [self retrieveLocation];
     }
     return self;
 }
@@ -57,6 +60,10 @@
     }
     return self;
 }
+-(void)awakeFromNib
+{
+    [self retrieveLocation];
+}
 #define STATUS_HEIGHT 42
 -(void)_init
 {
@@ -66,6 +73,7 @@
     self.buttonTitles = [NSMutableArray array];
     self.distanceLabels = [NSMutableArray array];
     self.buttonIcons = [NSMutableArray array];
+    geocoder = [CLGeocoder new];
     _bucketsToDisplay = 4;
     bucketDisplayIndex = 0;
     userLocation = nil;
@@ -97,8 +105,6 @@
     {
         [self displayCurrentBucket:currentBucket];
     }
-    
-    [self retrieveLocation];
 }
 #pragma mark - IBActions
 -(IBAction)locationSelected:(id)sender
@@ -136,7 +142,17 @@
     }
     else
     {
-        [self retrieveBuckets];
+        if(self.canAskForLocation)
+        {
+            //Ask the user for their location. This address will be geocoded.
+            UIAlertView* addressAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Location Services Disabled. Enter your location.",nil) message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Locate",nil), nil];
+            [addressAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [addressAlertView show];
+        }
+        else
+        {
+            [self retrieveBuckets];
+        }
     }
 }
 -(void)retrieveBuckets
@@ -411,5 +427,49 @@
             distanceLabel.alpha = 1.0;
         }
     }
+}
+#pragma mark - UIAlertView Delegate Methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UITextField* locationTextField = [alertView textFieldAtIndex:0];
+    locationTextField.enabled = NO;
+
+    //Display and fade in status
+    [self.activityIndicator startAnimating];
+    self.statusLabel.text = NSLocalizedString(@"Locating this address...",nil);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.activityIndicator.alpha = 1.0;
+        self.statusLabel.alpha = 1.0;
+    }];
+    
+    NSString* enteredAddress = locationTextField.text;
+    
+    __weak __typeof(&*self)weakSelf = self;
+    [geocoder geocodeAddressString:enteredAddress inRegion:nil completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        CLPlacemark* location = nil;
+        for(CLPlacemark* _location in placemarks)
+        {
+            location = _location; break;
+        }
+        
+        if(location)
+        {
+            userLocation = location.location;
+        }
+        
+        [weakSelf retrieveBuckets];
+    }];
+}
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    UITextField* locationTextField = [alertView textFieldAtIndex:0];
+    if([locationTextField.text length] > 0)
+    {
+        return  YES;
+    }
+    
+    return NO;
 }
 @end

@@ -24,6 +24,7 @@
 "Likes" = "喜欢";
 "Messages" = "讯息";
 "Register" = "注册";
+"Locate" = "发现";
 "Cancel" = "取消";
 "Back" = "返回";
 "Next" = "前头的";
@@ -69,6 +70,8 @@
 "Finding your location..." = "寻找你的位置...";
 "Finding nearby locations..." = "查找附近的位置...";
 "Location couldn't be retrieved" = "位置无法检索";
+"Locating this address..." = "定位地址...";
 
 //Errors
-"Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";
+"Sorry. There was an error uploading your photo. Please try again." = "抱歉。有错误上传您的照片。请再试一次。";
+"Location Services Disabled. Enter your location." = "定位服务”已禁用。请输入您所在的位置，以帮助我们找到你";

@@ -37,7 +37,9 @@
 }
 -(BOOL)locationAvaliable
 {
-    return [CLLocationManager locationServicesEnabled];
+    BOOL locationServicesEnabled = [CLLocationManager locationServicesEnabled];
+    BOOL authorizationNotDenied = ( [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied );
+    return locationServicesEnabled && authorizationNotDenied;
 }
 -(void)getLocation
 {

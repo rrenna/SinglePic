@@ -24,6 +24,7 @@
 "Likes" = "Likes";
 "Messages" = "Messages";
 "Register" = "Sign up with Email";
+"Locate" = "Locate";
 "Cancel" = "Cancel";
 "Back" = "Back";
 "Next" = "Next";
@@ -69,6 +70,8 @@
 "Finding your location..." = "Finding your location...";
 "Finding nearby locations..." = "Finding nearby locations...";
 "Location couldn't be retrieved" = "Location couldn't be retrieved";
+"Locating this address..." = "Locating this address...";
 
 //Errors
 "Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";
+"Location Services Disabled. Enter your location." = "Location Services Disabled. Please enter your location to help us locate you.";
