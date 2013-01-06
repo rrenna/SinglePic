@@ -40,6 +40,7 @@
 	<array>
 		<string>en</string>
 		<string>zh_CN</string>
+		<string>zh_TW</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
@@ -89,7 +90,7 @@
 				<key>Green</key>
 				<real>0.2088890799</real>
 				<key>Red</key>
-				<real>0.6057347829</real>
+				<real>0.60573478290000005</real>
 			</dict>
 			<key>Translucent</key>
 			<false/>
