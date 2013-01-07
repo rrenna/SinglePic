@@ -10,16 +10,16 @@
 
 @interface SPCameraController : SPTabContentViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
-    IBOutlet __weak UIView* cameraContainerView;
-    IBOutlet __weak UIImageView* cameraPreviewImageView;
-    IBOutlet __weak UIBarButtonItem* switchFlashModeButton;
-    IBOutlet __weak UIBarButtonItem* switchCameraBarButton;
-    IBOutlet __weak UIView *statusView;
-    IBOutlet __weak SPLabel *statusLabel;
-    IBOutlet __weak SPStyledButton *statusCancelButton;
-    IBOutlet __weak SPStyledButton *statusProceedButton;
-    IBOutlet __weak UIProgressView *uploadProgressBar;
-    IBOutlet __weak UIButton *takePictureButton;
+    IBOutlet UIView* cameraContainerView;
+    IBOutlet UIImageView* cameraPreviewImageView;
+    IBOutlet UIBarButtonItem* switchFlashModeButton;
+    IBOutlet UIBarButtonItem* switchCameraBarButton;
+    IBOutlet UIView *statusView;
+    IBOutlet SPLabel *statusLabel;
+    IBOutlet SPStyledButton *statusCancelButton;
+    IBOutlet SPStyledButton *statusProceedButton;
+    IBOutlet UIProgressView *uploadProgressBar;
+    IBOutlet UIButton *takePictureButton;
 }
 -(IBAction)cancel:(id)sender;
 -(IBAction)switchCameras:(id)sender;

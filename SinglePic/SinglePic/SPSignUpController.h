@@ -14,35 +14,35 @@
 
 @interface SPSignUpController : SPTabContentViewController <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SPLocationChooserDelegate>
 {
-    IBOutlet __weak UIView *contentView;
-    IBOutlet __weak SPLabel *titleLabel;
-    IBOutlet __weak SPStyledButton *backButton;
-    IBOutlet __weak SPStyledButton *nextButton;
-    IBOutlet __weak SPStyledView* signupHeaderView;
+    IBOutlet UIView *contentView;
+    IBOutlet SPLabel *titleLabel;
+    IBOutlet SPStyledButton *backButton;
+    IBOutlet SPStyledButton *nextButton;
+    IBOutlet SPStyledView* signupHeaderView;
     
     //Step 1
-    IBOutlet __weak UIView* stepOneView;
-    IBOutlet __weak UILabel *tagline1Label;
+    IBOutlet UIView* stepOneView;
+    IBOutlet UILabel *tagline1Label;
     //Step 2
-    IBOutlet __weak UIView* stepTwoView;
-    IBOutlet __weak SPLabel *tagline2Label;
+    IBOutlet UIView* stepTwoView;
+    IBOutlet SPLabel *tagline2Label;
     //Step 3
-    IBOutlet __weak UIView* stepThreeView;
-    IBOutlet __weak SPLabel *usernameLabel;
-    IBOutlet __weak UITextField* userNameField;
-    IBOutlet __weak SPLabel *emailLabel;
-    IBOutlet __weak UITextField* emailField;
-    IBOutlet __weak SPLabel *passwordLabel;
-    IBOutlet __weak UITextField* passwordField;
-    IBOutlet __weak SPLabel *confirmPasswordLabel;
-    IBOutlet __weak UITextField* confirmPasswordField;
-    IBOutlet __weak UILabel* userNameHintLabel;
-    IBOutlet __weak UILabel* emailHintLabel;
-    IBOutlet __weak UILabel* passwordHintLabel;
-    IBOutlet __weak UITableView *signupFormTable;
-    IBOutlet __weak UITableViewCell *firstNameTableViewCell;
-    IBOutlet __weak UITableViewCell *emailTableViewCell;
-    IBOutlet __weak UITableViewCell *passwordTableViewCell;
+    IBOutlet UIView* stepThreeView;
+    IBOutlet SPLabel *usernameLabel;
+    IBOutlet UITextField* userNameField;
+    IBOutlet SPLabel *emailLabel;
+    IBOutlet UITextField* emailField;
+    IBOutlet SPLabel *passwordLabel;
+    IBOutlet UITextField* passwordField;
+    IBOutlet SPLabel *confirmPasswordLabel;
+    IBOutlet UITextField* confirmPasswordField;
+    IBOutlet UILabel* userNameHintLabel;
+    IBOutlet UILabel* emailHintLabel;
+    IBOutlet UILabel* passwordHintLabel;
+    IBOutlet UITableView *signupFormTable;
+    IBOutlet UITableViewCell *firstNameTableViewCell;
+    IBOutlet UITableViewCell *emailTableViewCell;
+    IBOutlet UITableViewCell *passwordTableViewCell;
 }
 //IBActions
 -(IBAction)start:(id)sender;

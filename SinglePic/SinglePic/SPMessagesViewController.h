@@ -12,13 +12,13 @@
 
 @interface SPMessagesViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
-    IBOutlet __weak SPLabel *titleLabel;
-    IBOutlet __weak SPStyledView* insetView;
-    IBOutlet __weak SPStyledButton* refreshButton;
-    IBOutlet __weak SPStyledButton* editButton;
-    IBOutlet __weak SPStyledView* activityBackgroundView;
-    IBOutlet __weak UIActivityIndicatorView* activityView;
-    IBOutlet __weak UITableView* tableView;
+    IBOutlet SPLabel *titleLabel;
+    IBOutlet SPStyledView* insetView;
+    IBOutlet SPStyledButton* refreshButton;
+    IBOutlet SPStyledButton* editButton;
+    IBOutlet SPStyledView* activityBackgroundView;
+    IBOutlet UIActivityIndicatorView* activityView;
+    IBOutlet UITableView* tableView;
 }
 -(IBAction)refresh:(id)sender;
 -(IBAction)edit:(id)sender;

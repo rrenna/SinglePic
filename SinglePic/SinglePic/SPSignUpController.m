@@ -26,6 +26,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 -(void)transitionToStep:(int)step;
 -(void)stepOneInitialization;
 -(void)stepTwoInitialization;
+-(void)stepThreeInitialization;
 @end
 
 @implementation SPSignUpController
@@ -243,6 +244,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 }
 -(void)stepOneInitialization
 {
+        //Step 1 initialization steps
 }
 -(void)stepTwoInitialization
 {

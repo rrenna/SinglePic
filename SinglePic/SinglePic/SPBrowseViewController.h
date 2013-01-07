@@ -14,9 +14,9 @@
 
 @interface SPBrowseViewController : SPTabContentViewController <SPBlockViewDelegate,UIScrollViewDelegate>
 {
-    IBOutlet __weak UIScrollView* scrollView;
-    IBOutlet __weak UIView* canvasView; 
-    IBOutlet __weak UILabel* browseInstructionsLabel;
+    IBOutlet UIScrollView* scrollView;
+    IBOutlet UIView* canvasView;
+    IBOutlet UILabel* browseInstructionsLabel;
 }
 
 -(void)setup;

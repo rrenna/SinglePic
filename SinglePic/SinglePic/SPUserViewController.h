@@ -13,22 +13,22 @@
 
 @interface SPUserViewController : UIViewController <UIImagePickerControllerDelegate>
 {
-    IBOutlet __weak SPLabel *titleLabel;
-    IBOutlet __weak SPStyledView* insetView;
-    IBOutlet __weak SPStyledProgressView* progressView;
-    IBOutlet __weak SPStackPanel* userStackPanel;
+    IBOutlet SPLabel *titleLabel;
+    IBOutlet SPStyledView* insetView;
+    IBOutlet SPStyledProgressView* progressView;
+    IBOutlet SPStackPanel* userStackPanel;
     //User Profile
-    IBOutlet __weak UIView* userProfileView;
-    IBOutlet __weak UIImageView* avatarImageView;
-    IBOutlet __weak UILabel *usernameLabel;
-    IBOutlet __weak UILabel* icebreakerLabel;
-    IBOutlet __weak SPStyledButton* retakePhotoButton;
-    IBOutlet __weak SPStyledButton* editIcebreakerButton;
+    IBOutlet UIView* userProfileView;
+    IBOutlet UIImageView* avatarImageView;
+    IBOutlet UILabel *usernameLabel;
+    IBOutlet UILabel* icebreakerLabel;
+    IBOutlet SPStyledButton* retakePhotoButton;
+    IBOutlet SPStyledButton* editIcebreakerButton;
     //User Email
-    IBOutlet __weak UIView* userEmailView;
-    IBOutlet __weak UILabel *userEmailLabel;
+    IBOutlet UIView* userEmailView;
+    IBOutlet UILabel *userEmailLabel;
     //User Subscription
-    IBOutlet __weak UIView* userSubscriptionView;
+    IBOutlet UIView* userSubscriptionView;
 }
 -(IBAction)retakePic:(id)sender;
 -(IBAction)editPic:(id)sender;

@@ -10,11 +10,11 @@
 
 @interface SPConnectionsViewController : UIViewController
 {
-    IBOutlet __weak SPLabel *titleLabel;
-    IBOutlet __weak SPStyledView* insetView;
-    IBOutlet __weak SPStyledSegmentedControl* likeTypeSegmentedControl;
-    IBOutlet __weak SPStyledButton* editButton;
-    IBOutlet __weak UITableView* tableView;
+    IBOutlet SPLabel *titleLabel;
+    IBOutlet SPStyledView* insetView;
+    IBOutlet SPStyledSegmentedControl* likeTypeSegmentedControl;
+    IBOutlet SPStyledButton* editButton;
+    IBOutlet UITableView* tableView;
 }
 -(IBAction)edit:(id)sender;
 -(IBAction)likesTypeSwitched:(id)sender;

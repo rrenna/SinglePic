@@ -16,12 +16,12 @@
 
 @interface SPComposeViewController : SPPageContentViewController <UIGestureRecognizerDelegate,SPKeyboardDragTableViewDelegate,UITableViewDataSource,UIInputToolbarDelegate,UIExpandingTextViewDelegate>
 {
-    IBOutlet __weak SPStyledView* topBarView;
-    IBOutlet __weak SPStyledButton *closeButton;
-    IBOutlet __weak UIButton *viewProfileButton;
-    IBOutlet __weak UIImageView* imageView;
-    IBOutlet __weak UILabel *usernameLabel;
-    IBOutlet __weak UITableView *tableView;
+    IBOutlet SPStyledView* topBarView;
+    IBOutlet SPStyledButton *closeButton;
+    IBOutlet UIButton *viewProfileButton;
+    IBOutlet UIImageView* imageView;
+    IBOutlet UILabel *usernameLabel;
+    IBOutlet UITableView *tableView;
 }
 @property (assign) BOOL minimizeContainerOnClose;
 

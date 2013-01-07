@@ -25,21 +25,21 @@ typedef enum
 
 @interface SPBaseController : UIViewController <SPTabContainerDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate>
 {
-    IBOutlet __weak UIActivityIndicatorView* activityView;
-    IBOutlet __weak UIView* contentView;
-    IBOutlet __weak UIView* navigationView;
-    IBOutlet __weak UIImageView* backgroundImageView;
-    IBOutlet __weak UINavigationBar *navigationBar;
-    IBOutlet __weak UIImageView *newConnectionAlertImage;
-    IBOutlet __weak UIImageView *newMessageAlertImage;
-    IBOutlet __weak UILabel *newMessageCountLabel;
-    IBOutlet __weak UIImageView *miniAvatarImage;
-    IBOutlet __weak SPStyledProgressView *miniProgressView;
-    IBOutlet __weak UIView* registrationNavigationView;
+    IBOutlet UIActivityIndicatorView* activityView;
+    IBOutlet UIView* contentView;
+    IBOutlet UIView* navigationView;
+    IBOutlet UIImageView* backgroundImageView;
+    IBOutlet UINavigationBar *navigationBar;
+    IBOutlet UIImageView *newConnectionAlertImage;
+    IBOutlet UIImageView *newMessageAlertImage;
+    IBOutlet UILabel *newMessageCountLabel;
+    IBOutlet UIImageView *miniAvatarImage;
+    IBOutlet SPStyledProgressView *miniProgressView;
+    IBOutlet UIView* registrationNavigationView;
     //Navigation
-    IBOutlet __weak UIButton* connectionButton;
-    IBOutlet __weak UIButton* profileButton;
-    IBOutlet __weak UIButton* mailButton;
+    IBOutlet UIButton* connectionButton;
+    IBOutlet UIButton* profileButton;
+    IBOutlet UIButton* mailButton;
 }
 
 @property (assign) BASE_MODE baseMode;

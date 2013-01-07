@@ -17,9 +17,9 @@ typedef enum
 
 @interface SPSheetController : UIViewController <UIGestureRecognizerDelegate>
 {
-    IBOutlet __weak UIView* transparentInsetView;
-    IBOutlet __weak UIImageView *handleImageView;
-    IBOutlet __weak UIView* contentView;
+    IBOutlet UIView* transparentInsetView;
+    IBOutlet UIImageView *handleImageView;
+    IBOutlet UIView* contentView;
     @protected
     NSInteger dragStart_;
     NSInteger lastDragOffset_;
