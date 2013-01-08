@@ -89,7 +89,7 @@
 		<key>Alignment</key>
 		<string>Center</string>
 		<key>Text</key>
-		<string>SinglePic would not be possible without the following libraries and frameworks : AFNetworking, Box2D, MDAboutController, StackPanel, SVProgressHUD and TestFlight</string>
+		<string>SinglePic就不可能沒有以下的庫和框架： AFNetworking, Box2D, MDAboutController, StackPanel, SVProgressHUD and TestFlight</string>
 		<key>Type</key>
 		<string>Text</string>
 	</dict>
