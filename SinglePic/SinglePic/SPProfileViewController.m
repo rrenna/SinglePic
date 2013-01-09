@@ -149,7 +149,7 @@
     [self refreshLikeStatus];
     
     //Set image age
-    ageLabel.text = [NSString stringWithFormat:@"%@ old",[TimeHelper ageOfDate:[self.profile timestamp]]];
+    ageLabel.text = [NSString stringWithFormat:@"%@ %@",[TimeHelper ageOfDate:[self.profile timestamp]], NSLocalizedString(@"ago", nil)];
             
     [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
     {

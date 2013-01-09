@@ -6,6 +6,16 @@
 
 */
 
+"day" = "day";
+"days" = "days";
+"hour" = "hour";
+"hours" = "hours";
+"minute" = "minute";
+"minutes" = "minutes";
+"second" = "second";
+"seconds" = "seconds";
+"remaining" = "left";
+"ago" = "ago";
 "OK" = "OK";
 "Version" = "Version";
 "Login" = "Login";

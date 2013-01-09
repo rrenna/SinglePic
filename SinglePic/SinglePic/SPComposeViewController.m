@@ -471,7 +471,7 @@
     {
         SPLabel* timestampLabel = [[SPLabel alloc] initWithFrame:CGRectMake(0, 0, cell.contentView.frame.size.width, HEIGHT_OF_TIME_LABEL)];
         [timestampLabel setStyle:LABEL_STYLE_EXTRA_SMALL];
-        timestampLabel.text = [NSString  stringWithFormat:@"%@ ago", [TimeHelper ageOfDate:message.date] ];
+        timestampLabel.text = [NSString  stringWithFormat:@"%@ %@", [TimeHelper ageOfDate:message.date], NSLocalizedString(@"ago", nil) ];
         timestampLabel.backgroundColor = [UIColor clearColor];
         timestampLabel.textColor = [UIColor lightGrayColor];
         timestampLabel.shadowColor = [UIColor whiteColor];

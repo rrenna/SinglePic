@@ -66,12 +66,16 @@
     
     if(baseMode == BLANK_BASE_MODE)
     {
+        [Crashlytics setObjectValue:@"BLANK_BASE_MODE" forKey:@"base_controller_base_mode"];
+        
         backgroundImageView.image = [UIImage imageNamed:@"default-568h.png"];
         navigationView.hidden = YES;
         registrationNavigationView.hidden = YES;
     }
     else if(baseMode == REGISTRATION_BASE_MODE)
     {
+        [Crashlytics setObjectValue:@"REGISTRATION_BASE_MODE" forKey:@"base_controller_base_mode"];
+        
         if(!registrationController)
         {
             registrationController = [[SPRegistrationViewController alloc] init];
@@ -93,6 +97,8 @@
     }
     else
     {
+        [Crashlytics setObjectValue:@"NAVIGATION_BASE_MODE" forKey:@"base_controller_base_mode"];
+        
         if(registrationController)
         {
             [registrationController.view removeFromSuperview];

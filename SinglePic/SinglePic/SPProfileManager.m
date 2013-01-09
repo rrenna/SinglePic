@@ -331,6 +331,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 -(void)setMyBucket:(SPBucket*)bucket_ synchronize:(BOOL)synchronize
 {
     self.bucket = bucket_;
+    
+    [Crashlytics setObjectValue:bucket_ forKey:@"profile_bucket"];
+    
     NSData *encodedBucket = [NSKeyedArchiver archivedDataWithRootObject:bucket_];
     [[NSUserDefaults standardUserDefaults] setObject:encodedBucket forKey:USER_DEFAULT_KEY_USER_BUCKET];
     
@@ -341,6 +344,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 -(void)setMyUserID:(NSString*)userID_ synchronize:(BOOL)synchronize
 {
     self.userID = userID_;
+    
+    [Crashlytics setObjectValue:userID_ forKey:@"profile_userid"];
+    
     [[NSUserDefaults standardUserDefaults] setObject:userID_ forKey:USER_DEFAULT_KEY_USER_ID];
     
     if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];
@@ -350,6 +356,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 -(void)setMyUserName:(NSString*)userName_ synchronize:(BOOL)synchronize
 {
     self.userName = userName_;
+    
+     [Crashlytics setObjectValue:userName_ forKey:@"profile_username"];
+    
     [[NSUserDefaults standardUserDefaults] setObject:userName_ forKey:USER_DEFAULT_KEY_USER_NAME];
     
     if(synchronize) [[NSUserDefaults standardUserDefaults] synchronize];

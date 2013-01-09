@@ -60,9 +60,9 @@
     double minuteSeconds = hourSeconds - (numberOfHours * SECONDS_PER_HOUR);
     numberOfMinutes = minuteSeconds / SECONDS_PER_MINUTE;
     
-    NSString* dayPlurality = (numberOfDays < 1) ? @"day" : @"days";
-    NSString* hourPlurality = (numberOfHours < 1) ? @"hour" : @"hours";
-    NSString* minutePlurality = (numberOfMinutes > 1 || numberOfMinutes == 0) ? @"minutes" : @"minute";
+    NSString* dayPlurality = (numberOfDays < 1) ? NSLocalizedString(@"day",nil) : NSLocalizedString(@"days",nil);
+    NSString* hourPlurality = (numberOfHours < 1) ? NSLocalizedString(@"hour",nil) : NSLocalizedString(@"hour",nil);
+    NSString* minutePlurality = (numberOfMinutes > 1 || numberOfMinutes == 0) ? NSLocalizedString(@"minutes",nil) : NSLocalizedString(@"minute",nil);
     
     //If there are any days left, show days and hours
     if(numberOfDays > 0)

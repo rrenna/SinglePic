@@ -205,7 +205,7 @@
         else 
         {
             NSString* progressString = [TimeHelper countdownUntilDate:expiryDate];
-            progressView.progressStatus = [NSString stringWithFormat:@"%@ left",progressString];
+            progressView.progressStatus = [NSString stringWithFormat:@"%@ %@",progressString,NSLocalizedString(@"remaining",nil)];
         }
     }
 }

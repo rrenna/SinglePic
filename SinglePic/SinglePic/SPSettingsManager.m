@@ -15,9 +15,8 @@
 
 @interface SPSettingsManager()
 {
-    #ifndef RELEASE
     ENVIRONMENT _environment;
-    #endif
+
     #ifndef PUBLIC_BETA
     BOOL _imageRequiresFaceDetected;
     #endif
@@ -45,7 +44,11 @@
         ENVIRONMENT lastSelectedEnvironment = (ENVIRONMENT)[[NSUserDefaults standardUserDefaults] integerForKey:USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY];
         _environment = lastSelectedEnvironment;
         _imageRequiresFaceDetected = YES;
+        #else
+        _environment = ENVIRONMENT_PRODUCTION;
         #endif
+        
+        [Crashlytics setObjectValue:ENVIRONMENT_NAMES[_environment] forKey:@"settings_environment"];
     }
     return self;
 }
@@ -154,6 +157,8 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     
         _environment = environment;
+    
+        [Crashlytics setObjectValue:ENVIRONMENT_NAMES[_environment] forKey:@"settings_environment"];
     #endif
 }
 -(BOOL)displayVerboseErrorsEnabled

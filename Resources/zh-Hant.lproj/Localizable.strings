@@ -6,6 +6,16 @@
  
  */
 
+"day" = "天";
+"days" = "天";
+"hour" = "小時";
+"hours" = "小時";
+"minute" = "分";
+"minutes" = "分";
+"second" = "秒";
+"seconds" = "秒";
+"remaining" = "剩下";
+"ago" = "前";
 "OK" = "確定";
 "Version" = "版本";
 "Login" = "登錄";
