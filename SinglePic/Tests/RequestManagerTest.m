@@ -15,7 +15,6 @@
 {
     [super setUp];
     // Set-up code here.
-
     [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
 }
 - (void)tearDown
@@ -56,6 +55,27 @@
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                  beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
 }
-
-
+-(void)testMakeRequestBuckets
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:nil requiringToken:NO withCompletionHandler:^(id responseObject) {
+        
+        // Signal that block has completed
+        dispatch_semaphore_signal(semaphore);
+        
+        
+    } andErrorHandler:^(SPWebServiceError *error) {
+        
+        STFail(@"Couldn't successfully retrieve Buckets from server");
+            // Signal that block has completed
+        dispatch_semaphore_signal(semaphore);
+        
+    }];
+    
+    // Run loop
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+}
 @end

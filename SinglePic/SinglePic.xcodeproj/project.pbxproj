@@ -324,6 +324,10 @@
 		F0B9E8CA1611D91A006FB767 /* Nav-Messages-OFF@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C81611D91A006FB767 /* Nav-Messages-OFF@2x.png */; };
 		F0B9E8CB1611D91A006FB767 /* Nav-Messages-ON@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B9E8C91611D91A006FB767 /* Nav-Messages-ON@2x.png */; };
 		F0B9E8D81612821F006FB767 /* SPChatBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0B9E8D71612821F006FB767 /* SPChatBubbleView.m */; };
+		F0C06DEB169DACA600CE0C67 /* BucketManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C06DEA169DACA600CE0C67 /* BucketManagerTest.m */; };
+		F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C06DED169DACC500CE0C67 /* LocationManagerTest.m */; };
+		F0C06DF1169DAD4F00CE0C67 /* MessageManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C06DF0169DAD4F00CE0C67 /* MessageManagerTest.m */; };
+		F0C06DF4169DAD9800CE0C67 /* ErrorManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C06DF3169DAD9800CE0C67 /* ErrorManagerTest.m */; };
 		F0C0B36414F741DA007BEB13 /* UIImageView+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36314F7401C007BEB13 /* UIImageView+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C0B36514F741DC007BEB13 /* UIButton+Curled.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B36114F7401C007BEB13 /* UIButton+Curled.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C0B36614F741DE007BEB13 /* CurledViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C0B35F14F7401C007BEB13 /* CurledViewBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -834,6 +838,14 @@
 		F0B9E8D71612821F006FB767 /* SPChatBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPChatBubbleView.m; sourceTree = "<group>"; };
 		F0B9E8D916128BC1006FB767 /* MessageBubble-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-blue.png"; path = "../../Resources/MessageBubble-blue.png"; sourceTree = "<group>"; };
 		F0B9E8DA16128BC2006FB767 /* MessageBubble-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MessageBubble-white.png"; path = "../../Resources/MessageBubble-white.png"; sourceTree = "<group>"; };
+		F0C06DE9169DACA600CE0C67 /* BucketManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BucketManagerTest.h; sourceTree = "<group>"; };
+		F0C06DEA169DACA600CE0C67 /* BucketManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BucketManagerTest.m; sourceTree = "<group>"; };
+		F0C06DEC169DACC500CE0C67 /* LocationManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerTest.h; sourceTree = "<group>"; };
+		F0C06DED169DACC500CE0C67 /* LocationManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagerTest.m; sourceTree = "<group>"; };
+		F0C06DEF169DAD4F00CE0C67 /* MessageManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManagerTest.h; sourceTree = "<group>"; };
+		F0C06DF0169DAD4F00CE0C67 /* MessageManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManagerTest.m; sourceTree = "<group>"; };
+		F0C06DF2169DAD9800CE0C67 /* ErrorManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorManagerTest.h; sourceTree = "<group>"; };
+		F0C06DF3169DAD9800CE0C67 /* ErrorManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorManagerTest.m; sourceTree = "<group>"; };
 		F0C0B35E14F7401C007BEB13 /* CurledViewBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CurledViewBase.h; path = Libraries/CurledView/CurledViewBase.h; sourceTree = SOURCE_ROOT; };
 		F0C0B35F14F7401C007BEB13 /* CurledViewBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CurledViewBase.m; path = Libraries/CurledView/CurledViewBase.m; sourceTree = SOURCE_ROOT; };
 		F0C0B36014F7401C007BEB13 /* UIButton+Curled.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIButton+Curled.h"; path = "Libraries/CurledView/UIButton+Curled.h"; sourceTree = SOURCE_ROOT; };
@@ -1853,10 +1865,18 @@
 		F00394541697F98800FD5BD8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F00394551697F98800FD5BD8 /* Supporting Files */,
 				F00394851698023900FD5BD8 /* Mock */,
 				F00394631697FB6000FD5BD8 /* RequestManagerTest.h */,
 				F00394641697FB6000FD5BD8 /* RequestManagerTest.m */,
-				F00394551697F98800FD5BD8 /* Supporting Files */,
+				F0C06DE9169DACA600CE0C67 /* BucketManagerTest.h */,
+				F0C06DEA169DACA600CE0C67 /* BucketManagerTest.m */,
+				F0C06DEC169DACC500CE0C67 /* LocationManagerTest.h */,
+				F0C06DED169DACC500CE0C67 /* LocationManagerTest.m */,
+				F0C06DEF169DAD4F00CE0C67 /* MessageManagerTest.h */,
+				F0C06DF0169DAD4F00CE0C67 /* MessageManagerTest.m */,
+				F0C06DF2169DAD9800CE0C67 /* ErrorManagerTest.h */,
+				F0C06DF3169DAD9800CE0C67 /* ErrorManagerTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -3062,6 +3082,10 @@
 				F003949D1698040C00FD5BD8 /* LoggerClient.m in Sources */,
 				F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */,
 				F00394A31698047900FD5BD8 /* SPReachabilityPopupController.m in Sources */,
+				F0C06DEB169DACA600CE0C67 /* BucketManagerTest.m in Sources */,
+				F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */,
+				F0C06DF1169DAD4F00CE0C67 /* MessageManagerTest.m in Sources */,
+				F0C06DF4169DAD9800CE0C67 /* ErrorManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
