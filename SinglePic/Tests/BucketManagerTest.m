@@ -11,9 +11,9 @@
 @implementation BucketManagerTest
 - (void)setUp
 {
+    authenticationRequired = YES;
     [super setUp];
     // Set-up code here.
-
 }
 - (void)tearDown
 {

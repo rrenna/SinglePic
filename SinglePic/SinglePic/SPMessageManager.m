@@ -24,7 +24,9 @@
 @property (retain) SPMessageAccount* activeAccount;
 - (NSManagedObjectContext *) managedObjectContext;
 - (NSManagedObjectModel *)managedObjectModel;
+- (NSManagedObjectModel *)createManagedObjectModel;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+- (NSPersistentStoreCoordinator *)createPersistentStoreCoordinator;
 -(NSSet*)messageThreads;
 - (void)retrieveMessages;
 - (SPMessage*)saveMessage:(NSString*)messageBody toThread:(SPMessageThread*)thread isIncoming:(BOOL)incoming atTime:(NSDate*)time;
@@ -389,13 +391,18 @@
 }
 - (NSManagedObjectModel *)managedObjectModel {
     
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (managedObjectModel == nil)
+    {
+        managedObjectModel = [self createManagedObjectModel];
     }
+
+    return managedObjectModel;
+}
+- (NSManagedObjectModel *)createManagedObjectModel
+{
     NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"messageStorage" ofType:@"momd"];
     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-    managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return managedObjectModel;
+    return [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
 }
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
@@ -403,25 +410,35 @@
         return persistentStoreCoordinator;
     }
     
+    if(persistentStoreCoordinator == nil)
+    {
+        persistentStoreCoordinator = [self createPersistentStoreCoordinator];
+    }
+    
+    return persistentStoreCoordinator;
+}
+- (NSPersistentStoreCoordinator *)createPersistentStoreCoordinator
+{
     NSArray *thePathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSURL *storeUrl = [NSURL fileURLWithPath: [[thePathArray objectAtIndex:0]
                                                stringByAppendingPathComponent: @"MessageStorage.sqlite"]];
     
     NSError *error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+    NSPersistentStoreCoordinator* storeCoordinator = [[NSPersistentStoreCoordinator alloc]
                                   initWithManagedObjectModel:[self managedObjectModel]];
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+    if (![storeCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                   configuration:nil URL:storeUrl options:options error:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
-    return persistentStoreCoordinator;
+    return storeCoordinator;
+
 }
 #pragma mark - Complete Wipe
 -(void)clearDatabase

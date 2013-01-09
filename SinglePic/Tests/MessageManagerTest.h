@@ -6,8 +6,8 @@
 //
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "ManagerTest.h"
 
-@interface MessageManagerTest : SenTestCase
+@interface MessageManagerTest : ManagerTest
 
 @end

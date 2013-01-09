@@ -6,8 +6,8 @@
 //
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "ManagerTest.h"
 
-@interface BucketManagerTest : SenTestCase
+@interface BucketManagerTest : ManagerTest
 
 @end

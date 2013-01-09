@@ -15,7 +15,6 @@
 {
     [super setUp];
     // Set-up code here.
-    [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
 }
 - (void)tearDown
 {
@@ -69,6 +68,37 @@
         
         STFail(@"Couldn't successfully retrieve Buckets from server");
             // Signal that block has completed
+        dispatch_semaphore_signal(semaphore);
+        
+    }];
+    
+    // Run loop
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+}
+-(void)testMakeRequestUsersAnonymous
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    double currenTimeInterval = [[NSDate date] timeIntervalSince1970];
+    //Start Time (default = 7 days ago)
+    int intStartTime = (int)(currenTimeInterval - (SECONDS_PER_DAY * PHOTO_EXPIRY_DAYS));
+    //End Time (now)
+    int intCurrentTime = (int)currenTimeInterval;
+
+    NSString* parameter = [NSString stringWithFormat:@"undefined/gender/%@/lookingforgender/%@/starttime/%d000/endtime/%d000",GENDER_NAMES[GENDER_UNSPECIFIED],GENDER_NAMES[GENDER_UNSPECIFIED],intStartTime,intCurrentTime];
+    
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_BUCKETS withParameter:parameter requiringToken:NO withCompletionHandler:^(id responseObject) {
+        
+        // Signal that block has completed
+        dispatch_semaphore_signal(semaphore);
+        
+        
+    } andErrorHandler:^(SPWebServiceError *error) {
+        
+        STFail(@"Couldn't successfully retrieve Users from server");
+        // Signal that block has completed
         dispatch_semaphore_signal(semaphore);
         
     }];

@@ -173,6 +173,9 @@
 		75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */; };
 		75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */; };
 		75E7E02414B3C39B005C70B4 /* SPTabContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */; };
+		75F0E53D169DDE6700F38328 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */; };
+		75F0E541169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */; };
+		75F0E544169DE48D00F38328 /* ManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F0E543169DE48D00F38328 /* ManagerTest.m */; };
 		75F56329148FE8CA00E6A8F9 /* SPTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56327148FE8CA00E6A8F9 /* SPTabController.m */; };
 		75F5632A148FE8CA00E6A8F9 /* SPTabController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F56328148FE8CA00E6A8F9 /* SPTabController.xib */; };
 		F001A1CD1613C53F0011DBFC /* Nav-info.png in Resources */ = {isa = PBXBuildFile; fileRef = F001A1CB1613C53F0011DBFC /* Nav-info.png */; };
@@ -694,6 +697,10 @@
 		75E7E02114B3C24E005C70B4 /* SPTabContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabContentDelegate.h; sourceTree = "<group>"; };
 		75E7E02214B3C39B005C70B4 /* SPTabContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabContentViewController.h; sourceTree = "<group>"; };
 		75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTabContentViewController.m; sourceTree = "<group>"; };
+		75F0E53F169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPMessageManager+InMemoryDataStore.h"; sourceTree = "<group>"; };
+		75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPMessageManager+InMemoryDataStore.m"; sourceTree = "<group>"; };
+		75F0E542169DE48D00F38328 /* ManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTest.h; sourceTree = "<group>"; };
+		75F0E543169DE48D00F38328 /* ManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerTest.m; sourceTree = "<group>"; };
 		75F5099214DC4CF000458357 /* SPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessages.h; sourceTree = "<group>"; };
 		75F5099414DC4D7D00458357 /* SPRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRequests.h; sourceTree = "<group>"; };
 		75F5099514DC500F00458357 /* SPProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfiles.h; sourceTree = "<group>"; };
@@ -1774,6 +1781,15 @@
 			name = Sheets;
 			sourceTree = "<group>";
 		};
+		75F0E53E169DDF8C00F38328 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				75F0E53F169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.h */,
+				75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		75F5631F148FC74200E6A8F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1865,6 +1881,7 @@
 		F00394541697F98800FD5BD8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				75F0E53E169DDF8C00F38328 /* Categories */,
 				F00394551697F98800FD5BD8 /* Supporting Files */,
 				F00394851698023900FD5BD8 /* Mock */,
 				F00394631697FB6000FD5BD8 /* RequestManagerTest.h */,
@@ -1877,6 +1894,8 @@
 				F0C06DF0169DAD4F00CE0C67 /* MessageManagerTest.m */,
 				F0C06DF2169DAD9800CE0C67 /* ErrorManagerTest.h */,
 				F0C06DF3169DAD9800CE0C67 /* ErrorManagerTest.m */,
+				75F0E542169DE48D00F38328 /* ManagerTest.h */,
+				75F0E543169DE48D00F38328 /* ManagerTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -3086,6 +3105,9 @@
 				F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */,
 				F0C06DF1169DAD4F00CE0C67 /* MessageManagerTest.m in Sources */,
 				F0C06DF4169DAD9800CE0C67 /* ErrorManagerTest.m in Sources */,
+				75F0E53D169DDE6700F38328 /* messageStorage.xcdatamodeld in Sources */,
+				75F0E541169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m in Sources */,
+				75F0E544169DE48D00F38328 /* ManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

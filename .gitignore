@@ -322,3 +322,15 @@ SinglePic.xcworkspace/xcuserdata/rrenna360.xcuserdatad/xcdebugger/
 /SinglePic/Libraries/Crashlytics.framework/._Resources
 /SinglePic/Libraries/Crashlytics.framework/._Headers
 /SinglePic/Libraries/Crashlytics.framework/._Crashlytics
+/SinglePic/Tests/._SPMessageManager+InMemoryDataStore.m
+/SinglePic/Tests/._SPMessageManager+InMemoryDataStore.h
+/SinglePic/Tests/._RequestManagerTest.m
+/SinglePic/Tests/._RequestManagerTest.h
+/SinglePic/Tests/._MessageManagerTest.h
+/SinglePic/Tests/._ManagerTest.m
+/SinglePic/Tests/._ManagerTest.h
+/SinglePic/Tests/._LocationManagerTest.h
+/SinglePic/Tests/._ErrorManagerTest.h
+/SinglePic/Tests/._BucketManagerTest.m
+/SinglePic/Tests/._BucketManagerTest.h
+/SinglePic/SinglePic/zh-Hant.lproj/._Credits.plist

@@ -6,8 +6,8 @@
 //
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "ManagerTest.h"
 
-@interface LocationManagerTest : SenTestCase
+@interface LocationManagerTest : ManagerTest
 
 @end
