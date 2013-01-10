@@ -690,12 +690,16 @@ static NSURL* _thumbnailUploadURLCache = nil;
         //We now confirm this user has synced this device's push token with their user profile
         if(![weakSelf myPushTokenSynced])
         {
-                //If not, we attempt to sync the device's push token with the user's profile
+            //If not, we attempt to sync the device's push token with the user's profile
             [weakSelf registerDevicePushTokenWithCompletionHandler:^(id responseObject) {} andErrorHandler:^{}];
         }
         
         //After validation set this user as the active message account
         [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf myUserID]];
+        
+        //On successful validation - register for device push notifications
+        SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [delegate registerForPushNotifications];
         
         onCompletion(responseObject);
         
@@ -713,6 +717,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
             // remove token - any other stored information about this profile
         [weakSelf clearProfile];
+        
+        //On failed validation - deregister for device push notifications
+        SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [delegate unregisterForPushNotifications];
         
         if(onError)
         {
@@ -789,8 +797,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       {
                       } andErrorHandler:nil];
                       
-                      onCompletion(responseObject);
+                      //On successful login - register for device push notifications
+                      SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+                      [delegate registerForPushNotifications];
                       
+                      onCompletion(responseObject);
                       
                       //Notify application that the user type has changed
                       [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
@@ -854,7 +865,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
     [[NSUserDefaults standardUserDefaults] synchronize];
     // remove token - any other stored information about this profile
     [self clearProfile];
-
+    
+    SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate unregisterForPushNotifications];
+    
     //Notify application that the user type has changed
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
 }

@@ -19,5 +19,6 @@
 
 +(SPBaseController*)baseController;
 -(NSString*)deviceToken;
-
+-(void)registerForPushNotifications;
+-(void)unregisterForPushNotifications;
 @end

@@ -154,6 +154,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
         SPBucket* annonymousBucket = [[SPProfileManager sharedInstance] myAnnonymousBucket];
         
         //Disable to prevent multiple clicks
+        backButton.enabled = NO;
         nextButton.enabled = NO;
         
         [[SPProfileManager sharedInstance] registerWithEmail:chosenEmail andUserName:chosenUsername andPassword:chosenPassword andGender:annonymousGender andPreference:annonymousPreference andBucket:annonymousBucket andCompletionHandler:^(id responseObject)
@@ -171,6 +172,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
          {
              //This was an invalid email/password combination
              //The Error Manager will print out a human readable explanation depending on the error code returned
+             backButton.enabled = YES;
              nextButton.enabled = YES;
          }];
     }

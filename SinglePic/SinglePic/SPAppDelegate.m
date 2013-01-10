@@ -33,13 +33,6 @@
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     #endif
 
-    /* Device Push Notification Management */
-    UIRemoteNotificationType requiredNotificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
-    //We are not registered for all required notification types
-    //Placing the registration here allows us to handle the case where the user presses 'NO' for allowing push notifications, then with the app minimized, changes it in the settings.
-    // Let the device know we want to receive push notifications
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:requiredNotificationTypes];
-    
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.baseController = [[SPBaseController alloc] initWithNibName:@"SPBaseController" bundle:nil];
@@ -56,6 +49,20 @@
 {
     NSString* _deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:USER_DEFAULT_KEY_DEVICE_PUSH_TOKEN];
     return _deviceToken;
+}
+
+-(void)registerForPushNotifications
+{
+    /* Device Push Notification Management */
+    UIRemoteNotificationType requiredNotificationTypes = (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert);
+        //We are not registered for all required notification types
+        //Placing the registration here allows us to handle the case where the user presses 'NO' for allowing push notifications, then with the app minimized, changes it in the settings.
+        // Let the device know we want to receive push notifications
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:requiredNotificationTypes];
+}
+-(void)unregisterForPushNotifications
+{
+     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
 }
 -(void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {

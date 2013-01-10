@@ -90,6 +90,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
 {
     [Crashlytics setObjectValue:@"Clicked on the 'Login' button in the Login screen." forKey:@"last_UI_action"];
     
+    backButton.enabled = NO;
     loginButton.enabled = NO;
     
     [[SPProfileManager sharedInstance] loginWithEmail:emailTextField.text andPassword:passwordTextField.text andCompletionHandler:^(id responseObject)
@@ -102,6 +103,7 @@ static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED
      } andErrorHandler:^
      {
          //Re-enable the login button if the login fails for any reason
+         backButton.enabled = YES;
          loginButton.enabled = YES;
      }];
 }

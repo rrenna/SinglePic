@@ -83,5 +83,20 @@
 "Locating this address..." = "Locating this address...";
 
 //Errors
+"We're Sorry" = "We're Sorry";
 "Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";
 "Location Services Disabled. Enter your location." = "Location Services Disabled. Please enter your location to help us locate you.";
+"Registration couldn't be completed" = "Registration couldn't be completed";
+"There was a problem when we tried to create your account." = "There was a problem when we tried to create your account. If this problem persists please contact us.";
+"Registration information is invalid" = "Registration information is invalid";
+"This email is already taken. Please try again." = "This email is already taken. Please try again.";
+"This email appears to be invalid. Please try again." = "This email appears to be invalid. Please try again.";
+"Invalid Login/Password" = "Invalid Login/Password";
+"This doesn't appear to be a valid email and password combination." = "This doesn't appear to be a valid email and password combination.";
+"Login Expired" = "Login Expired";
+"Your login session has expired. You may have logged in on another device, please log in." = "Your login session has expired. You may have logged in on another device, please log in.";
+"Invalid Email" = "Invalid Email";
+"This doesn't appear to be a valid email address." = "This doesn't appear to be a valid email address.";
+"Cannot Access Image" = "Cannot Access Image";
+"We're sorry but there was a problem accessing an online image." = "We're sorry but there was a problem accessing an online image. Please try again and report this issue if it persists.";
+"We had a problem connecting to the SinglePic server. Please report this issue if it persists." = "We had a problem connecting to the SinglePic server. Please report this issue if it persists.";

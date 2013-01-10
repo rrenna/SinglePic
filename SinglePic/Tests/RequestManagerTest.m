@@ -108,4 +108,25 @@
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                  beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
 }
+-(void)testMakeRequestUsername
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [[SPRequestManager sharedInstance] getFromNamespace:REQUEST_NAMESPACE_USERNAMES withParameter:@"rrenna" requiringToken:NO withCompletionHandler:^(id responseObject)
+     {
+         // Signal that block has completed
+         dispatch_semaphore_signal(semaphore);
+     }
+     andErrorHandler:^(SPWebServiceError *error)
+     {
+         STFail(@"Couldn't successfully confirm username has been taken");
+         // Signal that block has completed
+         dispatch_semaphore_signal(semaphore);
+     }];
+    
+    // Run loop
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+}
 @end

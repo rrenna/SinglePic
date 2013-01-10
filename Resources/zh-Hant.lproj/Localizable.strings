@@ -83,5 +83,22 @@
 "Locating this address..." = "查找此地址。。。";
 
 //Errors
+"We're Sorry" = "我們很抱歉";
 "Sorry. There was an error uploading your photo. Please try again." = "抱歉。上傳您的照片時出錯。請再試一次。";
 "Location Services Disabled. Enter your location." = "定位服務被關閉。請輸入您所在的位置，以讓我們將您定位。";
+
+
+"Registration couldn't be completed" = "無法完成註冊";
+"There was a problem when we tried to create your account." = "有一個問題，當我們試圖創建您的帳戶。如果這個問題仍然存在，請與我們聯繫。";
+"Registration information is invalid" = "註冊信息無效";
+"This email is already taken. Please try again." = "該電子郵件地址已被使用。請再試一次。";
+"This email appears to be invalid. Please try again." = "此電子郵件是無效的。請再試一次。";
+"Invalid Login/Password" = "Invalid Login/Password";
+"This doesn't appear to be a valid email and password combination." = "這不似乎是一個有效的電子郵件和密碼組合。";
+"Login Expired" = "Login Expired";
+"Your login session has expired. You may have logged in on another device, please log in." = "您的登錄會話已過期。您可能已經在其他設備上登錄，請登錄。";
+"Invalid Email" = "Invalid Email";
+"This doesn't appear to be a valid email address." = "這不似乎是一個有效的電子郵件地址。";
+"Cannot Access Image" = "無法訪問圖片";
+"We're sorry but there was a problem accessing an online image." = "我們很抱歉，但有一個問題，訪問一個在線圖像。請重試，報告這個問題，如果它仍然存在。";
+"We had a problem connecting to the SinglePic server. Please report this issue if it persists." = "我們有一個問題，連接的SinglePic服務器。請將此問題報告，如果它仍然存在。";
