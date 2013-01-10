@@ -165,22 +165,20 @@
         self.statusLabel.alpha = 1.0;
     }];
 
-    __unsafe_unretained SPLocationChooser* weakSelf = self;
     [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
      {
-         [weakSelf.buckets addObjectsFromArray:buckets];
-         
-         [weakSelf sortAndFilterBuckets];
-         [weakSelf displayBuckets];
+         [[self buckets] addObjectsFromArray:buckets];
+         [self sortAndFilterBuckets];
+         [self displayBuckets];
          
      } andErrorHandler:^
      {
-         [weakSelf.activityIndicator stopAnimating];
+         [[self activityIndicator] stopAnimating];
      }];
 }
 -(void)displayCurrentBucket:(SPBucket*)currentBucket
 {
-    [self.buckets addObject:currentBucket];
+    [[self buckets] addObject:currentBucket];
     [self.bucketView addSubview: [self buttonForLocation:currentBucket atIndex:0]];
     [self displaySelectedAtIndex:0];
     bucketDisplayIndex++;

@@ -13,8 +13,7 @@
 @end
 
 @implementation SPBlockView
-@synthesize contentController = _contentController; //Private
-@synthesize delegate,data,column,joint;
+@synthesize contentController; //Private
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -24,20 +23,14 @@
 }
 -(void)layoutSubviews
 {
-    UIButton* blockSelectButton = [[[UIButton alloc] initWithFrame:self.bounds] autorelease];
+    UIButton* blockSelectButton = [[UIButton alloc] initWithFrame:self.bounds];
     [blockSelectButton addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:blockSelectButton];
-}
--(void)dealloc
-{
-    [_contentController release];
-    [data release];
-    [super dealloc];
 }
 #pragma mark - IBActions
 -(IBAction)select:(id)sender
 {
-    [delegate blockViewWasSelected:self];
+    [self.delegate blockViewWasSelected:self];
 }
 #pragma mark
 -(void)setController:(UIViewController*)viewController

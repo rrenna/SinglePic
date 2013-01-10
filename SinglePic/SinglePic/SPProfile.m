@@ -40,6 +40,7 @@
 -(NSString*)identifier
 {
     NSString* idObject = [_data objectForKey:PROFILE_IDENTIFIER_KEY];
+    NSAssert(idObject, @"Every profile retrieved by the server should contain an 'id'.");
     return idObject;
 }
 -(NSString*)username

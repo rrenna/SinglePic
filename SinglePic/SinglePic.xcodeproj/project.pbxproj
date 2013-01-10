@@ -444,7 +444,7 @@
 		F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490871613268C00091EC0 /* UIInputToolbar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8614CA8A4B00739ADB /* SPProfileIconController.m */; };
 		F0ECCB8914CA8A4B00739ADB /* SPProfileIconController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0ECCB8714CA8A4B00739ADB /* SPProfileIconController.xib */; };
-		F0ECCB8D14CA8D1E00739ADB /* SPBlockView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8C14CA8D1E00739ADB /* SPBlockView.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0ECCB8D14CA8D1E00739ADB /* SPBlockView.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8C14CA8D1E00739ADB /* SPBlockView.mm */; };
 		F0EE799114E35FB900439040 /* icon-block.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE798E14E35FB900439040 /* icon-block.png */; };
 		F0EE799214E35FB900439040 /* icon-like.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE798F14E35FB900439040 /* icon-like.png */; };
 		F0EE799314E35FB900439040 /* icon-message.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799014E35FB900439040 /* icon-message.png */; };

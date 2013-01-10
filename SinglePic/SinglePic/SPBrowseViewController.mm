@@ -71,7 +71,7 @@ static b2PrismaticJointDef shaftJoint;
 -(void)destroyBlockView:(SPBlockView*)blockView;
 -(void)addBodyForBoxView:(SPBlockView *)blockView;
 -(void)initializeBodyForBoxView:(SPBlockView *)blockView;
--(void)removeProfileByID:(NSString*)profileID;
+-(void)removeProfileWithNotification:(NSNotification*)notification;
 -(int)currentTickCount;
 -(int)tickCountWithOffset:(int)offset;
 -(void)increaseCurrentTickCount;
@@ -103,7 +103,7 @@ void increaseCurrentTickCount();
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_GENDER_CHANGED object:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_PREFERENCE_CHANGED object:nil];
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart:) name:NOTIFICATION_MY_BUCKET_CHANGED object:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeProfileByID:) name:NOTIFICATION_BLOCKED_PROFILE object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeProfileWithNotification:) name:NOTIFICATION_BLOCKED_PROFILE object:nil];
         }
     }
     return self;
@@ -630,21 +630,42 @@ void increaseCurrentTickCount()
         }
 	}
 }
--(void)removeProfileByID:(NSString*)profileID
+-(void)removeProfileWithNotification:(NSNotification*)notification
 {
-    /*
-     [UIView beginAnimations:nil context:context];
-     [UIView setAnimationTransition: UIViewAnimationTransitionFlipFromLeft forView:socialButton cache:NO];
-     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-     [UIView setAnimationDuration:duration];
-     [UIView commitAnimations];
-     */
-    /*
-     b2Body *body = (b2Body*)[boxView tag];
-     world->DestroyBody(body);
-     stackCount[boxView.column]--;
-     [boxView removeFromSuperview];
-     */
+    NSString* profileID = (NSString*)notification.object;
+    
+    SPBlockView* blockView = nil;
+    for(int columnIndex = 0; columnIndex < [self.stacks count]; columnIndex++)
+    {
+        NSMutableArray* stack = [self.stacks objectAtIndex:columnIndex];
+        for(SPBlockView* _blockView in stack)
+        {
+            id data = [_blockView data];
+            if([data isMemberOfClass:[SPProfile class]])
+            {
+                SPProfile* profile = (SPProfile*)data;
+                if([profile.identifier isEqualToString:profileID])
+                {
+                    blockView = _blockView;
+                    break;
+                }
+            }
+        }
+    }
+    
+    if(blockView)
+    {
+        __unsafe_unretained SPBrowseViewController* weakSelf = self;
+        [UIView animateWithDuration:0.5 delay:1.0 options:nil animations:^
+        {
+            blockView.alpha = 0.0;
+            
+        }
+        completion:^(BOOL finished)
+        {
+            [weakSelf destroyBlockView:blockView];
+        }];
+    }
 }
 -(void)drop:(NSTimer *)timer
 {
