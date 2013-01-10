@@ -1897,10 +1897,10 @@
 				F0C06DF0169DAD4F00CE0C67 /* MessageManagerTest.m */,
 				F0C06DF2169DAD9800CE0C67 /* ErrorManagerTest.h */,
 				F0C06DF3169DAD9800CE0C67 /* ErrorManagerTest.m */,
-				75F0E542169DE48D00F38328 /* ManagerTest.h */,
-				75F0E543169DE48D00F38328 /* ManagerTest.m */,
 				F0505C6B169E390400B55724 /* ProfileManagerTest.h */,
 				F0505C6C169E390400B55724 /* ProfileManagerTest.m */,
+				75F0E542169DE48D00F38328 /* ManagerTest.h */,
+				75F0E543169DE48D00F38328 /* ManagerTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";

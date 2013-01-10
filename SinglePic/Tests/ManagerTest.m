@@ -40,6 +40,7 @@
             
         } andErrorHandler:^{
             
+            STFail(@"Couldn't authenticate with the test@apple.com user");
             // Signal that block has completed
             dispatch_semaphore_signal(semaphore);
             

@@ -16,7 +16,10 @@
     [super setUp];
         // Set-up code here.
 }
-
+-(void)testProfileManagerSingletonExists
+{
+    STAssertNotNil([SPProfileManager sharedInstance], @"SPProfileManager cannot be created");
+}
 -(void)testRetrieveProfiles
 {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
@@ -38,9 +41,5 @@
     while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                  beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
-}
--(void)testProfileManagerSingletonExists
-{
-    STAssertNotNil([SPProfileManager sharedInstance], @"SPProfileManager cannot be created");
 }
 @end
