@@ -472,11 +472,13 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 -(void)saveMyPicture:(UIImage*)image_ withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
     __unsafe_unretained SPProfileManager* weakSelf = self;
+    
+    //imageAndThumbnailUploaded is performed after a successful image upload
     void (^imageAndThumbnailUploaded)(id completedResponseObject) = ^(id completedResponseObject)
     {
         //Confirm with the server that the images have been uploaded. This tells the server to set the current time as your upload time.
         NSString* parameter = [NSString stringWithFormat:@"%@/imageupdated",USER_ID_ME];
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:nil requiringToken:YES withCompletionHandler:^(id responseObject)
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"face_validated":@"false"} requiringToken:YES withCompletionHandler:^(id responseObject)
         {
             //If there has been an image set, store it in an historic state (for an undo operation)
             if(weakSelf.image)
