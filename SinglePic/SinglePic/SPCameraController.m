@@ -17,6 +17,7 @@
 @property (retain) UIImage* takenImage;
 -(void)validatePicture:(UIImage*)image;
 -(void)setMyPicture:(UIImage*)image;
+-(void)setMyPicture:(UIImage*)image isFaceDetected:(BOOL)faceDetected;
 -(void)setFlashIcon:(BOOL)flashEnabled;
 -(void)enableViewfinder;
 -(void)disableViewfinder;
@@ -236,7 +237,7 @@
         takePictureButton.enabled = YES;
     }];
     
-    [self setMyPicture:self.takenImage];
+    [self setMyPicture:self.takenImage isFaceDetected:NO];
     self.takenImage = nil;
 }
 - (IBAction)statusCancel:(id)sender
@@ -275,7 +276,7 @@
     
     if(containsFace)
     {        
-        [self setMyPicture:image];
+        [self setMyPicture:image isFaceDetected:YES];
     }
     else
     {
@@ -292,11 +293,17 @@
 }
 -(void)setMyPicture:(UIImage*)image
 {
+    [self setMyPicture:image isFaceDetected:YES];
+}
+-(void)setMyPicture:(UIImage*)image isFaceDetected:(BOOL)faceDetected
+{
     uploadProgressBar.progress = 0.0;
     uploadProgressBar.hidden = NO;
     takePictureButton.hidden = YES;
     
-    [[SPProfileManager sharedInstance] saveMyPicture:image  withCompletionHandler:^(id responseObject)
+    NSDictionary* imageProperties = (faceDetected) ? @{@"face_detected":@"true"} : @{@"face_detected":@"false"};
+    
+    [[SPProfileManager sharedInstance] saveMyPicture:image withProperties:imageProperties   andCompletionHandler:^(id responseObject)
      {
         #if defined (BETA)
         [TestFlight passCheckpoint:@"Saved new Image"];

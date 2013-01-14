@@ -465,11 +465,53 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 }
 -(void)saveMyIcebreaker:(NSString*)icebreaker_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
-    [self saveMyIcebreaker:icebreaker_ andGender:nil andPreference:nil withCompletionHandler:onCompletion andErrorHandler:onError];
+    [self saveMyIcebreaker:icebreaker_ andGender:GENDER_UNSPECIFIED andPreference:GENDER_UNSPECIFIED withCompletionHandler:onCompletion andErrorHandler:onError];
+}
+-(void)saveMyIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
+{
+    NSDictionary* payload = [self generateProfileDataWithIcebreaker:icebreaker_ andGender:gender_ andPreference:preference_];
+    
+    __unsafe_unretained SPProfileManager* weakSelf = self;
+    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject)
+     {
+#ifdef PRIVATE
+         LogMessageCompat(@"Updated Icebreaker/Gender/Preference with payload : %@",payload);
+#endif
+         
+         if(icebreaker_)
+         {
+             [weakSelf setMyIcebreaker:icebreaker_ synchronize:NO];
+         }
+         if(gender_)
+         {
+             [weakSelf setMyGender:gender_ synchronize:NO];
+         }
+         if(preference_)
+         {
+             [weakSelf setMyPreference:preference_ synchronize:YES];
+         }
+         onCompletion(responseObject);
+         
+     }
+                                       andErrorHandler:^(SPWebServiceError *error)
+     {
+#ifdef PRIVATE
+         LogMessageCompat(@"Failed to updated Icebreaker/Gender/Preference with payload : %@",payload);
+#endif
+         
+         if(onError)
+         {
+             onError();
+         }
+     }];
 }
 static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 -(void)saveMyPicture:(UIImage*)image_ withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
+{
+    [self saveMyPicture:image_ withProperties:nil andCompletionHandler:onCompletion andProgressHandler:onProgress andErrorHandler:onError];
+}
+-(void)saveMyPicture:(UIImage*)image_ withProperties:(NSDictionary*)properties andCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
     __unsafe_unretained SPProfileManager* weakSelf = self;
     
@@ -478,7 +520,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
     {
         //Confirm with the server that the images have been uploaded. This tells the server to set the current time as your upload time.
         NSString* parameter = [NSString stringWithFormat:@"%@/imageupdated",USER_ID_ME];
-        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:@{@"face_validated":@"false"} requiringToken:YES withCompletionHandler:^(id responseObject)
+        [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter andPayload:properties requiringToken:YES withCompletionHandler:^(id responseObject)
         {
             //If there has been an image set, store it in an historic state (for an undo operation)
             if(weakSelf.image)
@@ -578,44 +620,6 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
 -(void)saveMyGender:(GENDER)gender_ andPreference:(GENDER)preference_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     [self saveMyIcebreaker:nil andGender:gender_ andPreference:preference_ withCompletionHandler:onCompletion andErrorHandler:onError];
-}
--(void)saveMyIcebreaker:(NSString*)icebreaker_ andGender:(GENDER)gender_ andPreference:(GENDER)preference_ withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
-{
-    NSDictionary* payload = [self generateProfileDataWithIcebreaker:icebreaker_ andGender:gender_ andPreference:preference_];
-    
-    __unsafe_unretained SPProfileManager* weakSelf = self;
-    [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:USER_ID_ME andPayload:payload requiringToken:YES withCompletionHandler:^(id responseObject) 
-     {
-         #ifdef PRIVATE
-         LogMessageCompat(@"Updated Icebreaker/Gender/Preference with payload : %@",payload);
-         #endif
-         
-         if(icebreaker_)
-         {
-             [weakSelf setMyIcebreaker:icebreaker_ synchronize:NO];
-         }
-         if(gender_)
-         {
-             [weakSelf setMyGender:gender_ synchronize:NO];
-         }
-         if(preference_)
-         {
-             [weakSelf setMyPreference:preference_ synchronize:YES];
-         }
-         onCompletion(responseObject);
-         
-     } 
-     andErrorHandler:^(SPWebServiceError *error) 
-     {
-        #ifdef PRIVATE
-        LogMessageCompat(@"Failed to updated Icebreaker/Gender/Preference with payload : %@",payload);
-        #endif
-         
-        if(onError)
-        {
-            onError();
-        }
-     }];
 }
 #pragma mark - Additonal Save Methods
 //Not only is used to generate URL's to save images and thumbnails, but can be called in advance to cache the urls for an upcoming upload
@@ -1465,11 +1469,11 @@ static int profileCounter = 0;
     {
         [profileData setObject:icebreaker_ forKey:@"icebreaker"];
     }
-    if(gender_)
+    if(gender_ && gender_ != GENDER_UNSPECIFIED)
     {
         [profileData setObject:GENDER_NAMES[gender_] forKey:@"gender"];
     }
-    if(preference_)
+    if(preference_ && preference_ != GENDER_UNSPECIFIED)
     {
         [profileData setObject:GENDER_NAMES[preference_] forKey:@"lookingForGender"];
     }
