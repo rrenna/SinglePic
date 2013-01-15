@@ -439,7 +439,7 @@
 		F0DFAB8716686B6B00C23117 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0DFAB8916686B6B00C23117 /* Localizable.strings */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
-		F0E490881613268C00091EC0 /* UIExpandingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490831613268C00091EC0 /* UIExpandingTextView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0E490881613268C00091EC0 /* UIExpandingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490831613268C00091EC0 /* UIExpandingTextView.m */; };
 		F0E490891613268C00091EC0 /* UIExpandingTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490851613268C00091EC0 /* UIExpandingTextViewInternal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E490871613268C00091EC0 /* UIInputToolbar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0ECCB8614CA8A4B00739ADB /* SPProfileIconController.m */; };

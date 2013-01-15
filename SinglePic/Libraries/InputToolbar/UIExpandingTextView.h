@@ -48,27 +48,6 @@
 @end
 
 @interface UIExpandingTextView : UIView <UITextViewDelegate> 
-{
-    UIExpandingTextViewInternal *internalTextView;
-    UIImageView *textViewBackgroundImage;
-    int minimumHeight;
-	int maximumHeight;
-    int maximumNumberOfLines;
-	int minimumNumberOfLines;
-	BOOL animateHeightChange;
-	NSObject <UIExpandingTextViewDelegate> *delegate;
-	NSString *text;
-	UIFont *font;
-	UIColor *textColor;
-	UITextAlignment textAlignment; 
-	NSRange selectedRange;
-	BOOL editable;
-	UIDataDetectorTypes dataDetectorTypes;
-	UIReturnKeyType returnKeyType;
-    BOOL forceSizeUpdate;
-    NSString *placeholder;
-    UILabel *placeholderLabel;
-}
 
 @property (nonatomic, retain) UITextView *internalTextView;
 
