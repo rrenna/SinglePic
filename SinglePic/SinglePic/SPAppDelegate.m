@@ -9,6 +9,7 @@
 #import "SPAppDelegate.h"
 #import "SPBaseController.h"
 #import <objc/runtime.h>
+#import <SinglePicCommon/testClass.h>
 
 //--NSUserDefault Keys--
 //Device Keys
@@ -32,6 +33,8 @@
     #if defined (BETA)
     [TestFlight takeOff:@"632bedfea5ff8b9b87a78088cf860d27_NDAyNTMyMDExLTExLTExIDA4OjI0OjAyLjEyMDQ1OQ"];
     #endif
+    
+    [testClass helloWorld];
 
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
