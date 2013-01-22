@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SinglePicAdmin/SinglePicAdmin/SinglePicAdmin.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SinglePicCommon/SinglePicCommon/SinglePicCommon.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SinglePic/SinglePic.xcodeproj">
    </FileRef>
 </Workspace>
