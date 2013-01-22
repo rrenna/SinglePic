@@ -102,6 +102,7 @@
 		754FB7701607AD2D0072D53D /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 754FB7671607AD2D0072D53D /* UIImageView+AFNetworking.m */; };
 		755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */; };
 		755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */; };
+		755DDE7616AF069800AA8D29 /* libSinglePicCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */; };
 		7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */; };
 		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
 		7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */; };
@@ -599,6 +600,7 @@
 		754FB7671607AD2D0072D53D /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice@2x.png"; path = "../../Resources/Parchment-Right-9Slice@2x.png"; sourceTree = "<group>"; };
 		755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-Camera@2x.png"; path = "../../Resources/Parchment-Right-Camera@2x.png"; sourceTree = "<group>"; };
+		755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSinglePicCommon.a; path = "/Volumes/DATA/Development/SinglePic/SinglePicCommon/SinglePicCommon/build/Release-iphoneos/libSinglePicCommon.a"; sourceTree = "<absolute>"; };
 		7575EB1F15DABDB000D5707B /* SPHelpOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHelpOverlayViewController.h; sourceTree = "<group>"; };
 		7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHelpOverlayViewController.m; sourceTree = "<group>"; };
 		7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHelpOverlayViewController.xib; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755DDE7616AF069800AA8D29 /* libSinglePicCommon.a in Frameworks */,
 				F07ABC43169246E900219A25 /* CoreImage.framework in Frameworks */,
 				75071E8B16303DFB00935B0D /* AVFoundation.framework in Frameworks */,
 				75071E8916303DF000935B0D /* CoreVideo.framework in Frameworks */,
@@ -1646,6 +1649,7 @@
 		7599A93D148E980100A48435 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */,
 				F00394491697F66B00FD5BD8 /* SenTestingKit.framework */,
 				F07ABC42169246E900219A25 /* CoreImage.framework */,
 				75071E8A16303DFB00935B0D /* AVFoundation.framework */,
@@ -3251,6 +3255,7 @@
 					"\"$(SRCROOT)/Libraries\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode46-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
@@ -3371,6 +3376,7 @@
 					"\"$(SRCROOT)/Libraries\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode46-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
@@ -3408,6 +3414,7 @@
 					"\"$(SRCROOT)/Libraries\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode46-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
@@ -3580,6 +3587,7 @@
 					"\"$(SRCROOT)/Libraries\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode46-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SinglePic/SinglePic-Prefix.pch";
