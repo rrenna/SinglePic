@@ -33,11 +33,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
-    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
-     {
-        iconView.image = thumbnail;
-     }
-     andErrorHandler:nil];
+    
+    if([profile isValid])
+    {
+        [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:^(UIImage *thumbnail)
+         {
+             iconView.image = thumbnail;
+         }
+         andErrorHandler:nil];
+    }
+    
+
 }
 @end

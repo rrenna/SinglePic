@@ -137,35 +137,40 @@
 #pragma mark - Private methods
 //Do not enable any interaction with this user until it's profile has been loaded
 -(void)profileLoaded
-{
-    //Enable communication
-    communicateButton.enabled = YES;
-    
-    //Fill in profile details
-    usernameLabel.text = [self.profile username];
-    icebreakerLabel.text = [self.profile icebreaker];
-    
-    //Set the icon on the Like button
-    [self refreshLikeStatus];
-    
-    //Set image age
-    ageLabel.text = [NSString stringWithFormat:@"%@ %@",[TimeHelper ageOfDate:[self.profile timestamp]], NSLocalizedString(@"ago", nil)];
-            
-    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
+{    
+    if([self.profile isValid])
     {
-         //The Profile object should have a cached UIImage thumbnail at this point, but if not, it'll request it. If the request takes longer than the request for the fullsize image, the thumbnail could override the fullsize image permanently. For this reason we check that the imageView has not already had it's image set.
-         if(!imageView.image)
+        //Enable Interaction
+        likeButton.enabled = YES;
+        communicateButton.enabled = YES;
+        modeButton.enabled = YES;
+        
+        //Fill in profile details
+        usernameLabel.text = [self.profile username];
+        icebreakerLabel.text = [self.profile icebreaker];
+        
+        //Set the icon on the Like button
+        [self refreshLikeStatus];
+        
+        //Set image age
+        ageLabel.text = [NSString stringWithFormat:@"%@ %@",[TimeHelper ageOfDate:[self.profile timestamp]], NSLocalizedString(@"ago", nil)];
+        
+        [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
+        {
+             //The Profile object should have a cached UIImage thumbnail at this point, but if not, it'll request it. If the request takes longer than the request for the fullsize image, the thumbnail could override the fullsize image permanently. For this reason we check that the imageView has not already had it's image set.
+             if(!imageView.image)
+             {
+                 imageView.image = thumbnail;
+             }
+        }
+        andErrorHandler:nil];
+            
+        [[SPProfileManager sharedInstance] retrieveProfileImage:self.profile withCompletionHandler:^(UIImage *image)
          {
-             imageView.image = thumbnail;
+             imageView.image = image;
          }
+         andErrorHandler:nil];
     }
-    andErrorHandler:nil];
-    
-    [[SPProfileManager sharedInstance] retrieveProfileImage:self.profile withCompletionHandler:^(UIImage *image)
-     {
-         imageView.image = image;
-     }
-     andErrorHandler:nil];
 }
 -(void)refreshLikeStatus
 {

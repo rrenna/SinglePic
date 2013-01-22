@@ -729,7 +729,16 @@ void increaseCurrentTickCount()
                         [weakSelf resumeStack:columnIndex];
                     };
                     
-                    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_error];
+                    //Only attempt to retrieve the thumbnail if the profile is valid
+                    if([profile isValid])
+                    {
+                        [[SPProfileManager sharedInstance] retrieveProfileThumbnail:profile withCompletionHandler:block_proceed andErrorHandler:block_error];
+                    }
+                    else
+                    {
+                        dispatch_async(dispatch_get_main_queue(),block_error);
+                    }
+
                     
                 }
             }
