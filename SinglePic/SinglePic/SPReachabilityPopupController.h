@@ -7,7 +7,7 @@
 //
 
 #import "SPRequests.h"
-#import "AFHTTPClient.h"
+#import <SinglePicCommon/AFHTTPClient.h>
 
 @class SPReachabilityPopupController;
 

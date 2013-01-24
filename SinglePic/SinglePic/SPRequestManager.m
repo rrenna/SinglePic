@@ -7,9 +7,9 @@
 //
 
 #import "SPRequestManager.h"
-#import "AFNetworkActivityIndicatorManager.h"
-#import "AFImageRequestOperation.h"
-#import "AFJSONRequestOperation.h"
+#import <SinglePicCommon/AFNetworkActivityIndicatorManager.h>
+#import <SinglePicCommon/AFImageRequestOperation.h>
+#import <SinglePicCommon/AFJSONRequestOperation.h>
 #import "SPReachabilityPopupController.h"
 
 #define USER_DEFAULT_KEY_USER_TOKEN @"USER_DEFAULT_KEY_USER_TOKEN"

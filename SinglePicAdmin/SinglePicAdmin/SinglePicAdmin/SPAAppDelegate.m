@@ -7,14 +7,13 @@
 //
 
 #import "SPAAppDelegate.h"
-#import <SinglePicCommon/testClass.h>
 
 @implementation SPAAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
-    [testClass helloWorld];
+
+
 }
 
 @end

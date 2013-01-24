@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "755DDE3016AEFFF800AA8D29"
+               BlueprintIdentifier = "755DDE6616AF058E00AA8D29"
                BuildableName = "libSinglePicCommon.a"
-               BlueprintName = "SinglePicCommon.a"
+               BlueprintName = "SinglePicCommon"
                ReferencedContainer = "container:SinglePicCommon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

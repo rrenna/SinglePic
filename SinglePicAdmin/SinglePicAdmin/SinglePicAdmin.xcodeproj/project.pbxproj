@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		753F072E16B18FFF004C3351 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		755DDE0816AEF9B600AA8D29 /* SinglePicAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinglePicAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		755DDE0B16AEF9B600AA8D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		755DDE0E16AEF9B600AA8D29 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -66,21 +67,14 @@
 		755DDE0A16AEF9B600AA8D29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				753F072E16B18FFF004C3351 /* SystemConfiguration.framework */,
 				755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */,
-				755DDE0B16AEF9B600AA8D29 /* Cocoa.framework */,
-				755DDE0D16AEF9B600AA8D29 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		755DDE0D16AEF9B600AA8D29 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
 				755DDE0E16AEF9B600AA8D29 /* AppKit.framework */,
 				755DDE0F16AEF9B600AA8D29 /* CoreData.framework */,
 				755DDE1016AEF9B600AA8D29 /* Foundation.framework */,
+				755DDE0B16AEF9B600AA8D29 /* Cocoa.framework */,
 			);
-			name = "Other Frameworks";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		755DDE1116AEF9B600AA8D29 /* SinglePicAdmin */ = {
@@ -324,6 +318,7 @@
 				755DDE2716AEF9B600AA8D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

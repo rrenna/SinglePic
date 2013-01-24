@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AFHTTPClient.h"
+#import <SinglePicCommon/AFHTTPClient.h>
 #import "SPWebServiceError.h"
 
 @class SPWebServiceRequest;
