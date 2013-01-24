@@ -8,6 +8,13 @@
 
 @protocol SPBaseApplicationController <NSObject>
 
+//Push
+-(BOOL)canRegisterForPushNotifications;
+-(void)registerForPushNotifications;
+-(void)unregisterForPushNotifications;
+-(NSString*)deviceToken;
+
+//Communication
 -(BOOL)canSendMail;
 -(void)presentEmailWithRecipients:(NSArray*)recipients andSubject:(NSString*)subject andBody:(NSString*)body;
 @end

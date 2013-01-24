@@ -7,12 +7,13 @@
     //
 
 #import <CoreData/CoreData.h>
+#import <Crashlytics/Crashlytics.h>
 #import "SPMessageManager.h"
-#import <SinglePicCommon/SPRequestManager.h>
+#import "SPRequestManager.h"
 #import "SPMessageAccount.h"
 #import "SPMessageThread.h"
 #import "SPMessage.h"
-#import <Crashlytics/Crashlytics.h>
+
 
 @interface SPMessageManager()
 {

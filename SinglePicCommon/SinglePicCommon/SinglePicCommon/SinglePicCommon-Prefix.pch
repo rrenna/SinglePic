@@ -7,6 +7,10 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <CoreLocation/CoreLocation.h>
 
+    //Categories
+    #import "UIImage+Resize.h"
+    #import "SPMessageThread+Sorting.h"
+
     //Helpers
     #import <SinglePicCommon/TimeHelper.h>
     #import <SinglePicCommon/SPSoundHelper.h>
@@ -18,11 +22,17 @@
     #import "SPErrors.h"
     #import "SPSettings.h"
     #import "SPRequests.h"
+    #import "SPMessages.h"
+    #import "SPProfiles.h"
+    #import "SPLocations.h"
 
     //Managers
     #import "SPRequestManager.h"
     #import "SPSettingsManager.h"
     #import "SPErrorManager.h"
+    #import "SPProfileManager.h"
+    #import "SPMessageManager.h"
+    #import "SPLocationManager.h"
 
 #endif
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)

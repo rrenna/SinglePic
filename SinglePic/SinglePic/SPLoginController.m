@@ -7,7 +7,6 @@
 //
 
 #import "SPLoginController.h"
-#import "SPProfileManager.h"
 
 static const NSString* EMAIL_FIELD_LAST_USED_VALUE_KEY = @"EMAIL_FIELD_LAST_USED_VALUE_KEY";
 

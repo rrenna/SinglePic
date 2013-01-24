@@ -8,8 +8,8 @@
 
 #import "SPBaseController.h"
 #import "SPReachabilityPopupController.h"
-#import "SPLocationManager.h"
-#import "SPMessageManager.h"
+#import <SinglePicCommon/SPLocationManager.h>
+#import <SinglePicCommon/SPMessageManager.h>
 #import "SPTabController.h"
 #import "SPBrowseViewController.h"
 #import "SPSubscriptionsManager.h"
@@ -153,6 +153,7 @@
         
         //Sets itself as the base application controller
         [SPErrorManager sharedInstance].baseApplicationController = self;
+        [SPProfileManager sharedInstance].baseApplicationController = self;
         
         //Set the Reachability Reporter
         [SPRequestManager sharedInstance].reachabilityReporter = [SPReachabilityPopupController new];
@@ -554,6 +555,26 @@
     }
 }
 #pragma mark - SPBaseApplicationController methods
+
+-(BOOL)canRegisterForPushNotifications
+{
+    return YES;
+}
+-(void)registerForPushNotifications
+{
+    
+    SPAppDelegate *delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate registerForPushNotifications];
+}
+-(void)unregisterForPushNotifications
+{
+    SPAppDelegate *delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate unregisterForPushNotifications];
+}
+-(NSString*)deviceToken
+{
+    SPAppDelegate *delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];                                                                return [delegate deviceToken];
+}
 -(BOOL)canSendMail
 {
     return ([MFMailComposeViewController canSendMail]);

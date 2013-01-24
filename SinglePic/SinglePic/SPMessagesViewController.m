@@ -7,8 +7,8 @@
 //
 
 #import "SPMessagesViewController.h"
-#import "SPMessageThread.h"
-#import "SPMessage.h"
+#import <SinglePicCommon/SPMessageThread.h>
+#import <SinglePicCommon/SPMessage.h>
 #import "SPChatBubbleView.h"
 
 @interface SPMessagesViewController()

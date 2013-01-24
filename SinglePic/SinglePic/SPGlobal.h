@@ -9,9 +9,6 @@
 //Media
 static const __attribute__((unused)) NSString* DEFAULT_PORTRAIT_IMAGE = @"MyProfile-OBE-Pic";
 
-//Profiles
-static const __attribute__((unused)) NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
-
 #define DEFAULT_GENDER GENDER_FEMALE
 #define DEFAULT_PREFERENCE GENDER_MALE
 

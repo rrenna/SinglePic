@@ -13,6 +13,7 @@
 #import <SinglePicCommon/SPCaptureHelper.h>
 #import <SinglePicCommon/SPSoundHelper.h>
 
+
 @interface SPCameraController()
 @property (retain) SPCaptureHelper* captureHelper;
 @property (retain) UIImage* takenImage;

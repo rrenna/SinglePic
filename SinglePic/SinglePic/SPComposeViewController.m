@@ -9,8 +9,6 @@
 #import "SPComposeViewController.h"
 #import "SPProfileViewController.h"
 #import "SVProgressHUD.h"
-#import "SPMessageManager.h"
-#import "SPMessage.h"
 #import "SPStyledButton.h"
 #import "SPMessageView.h"
 #import "SPChatBubbleView.h"

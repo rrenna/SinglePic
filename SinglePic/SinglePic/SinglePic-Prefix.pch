@@ -18,32 +18,35 @@
     //Helpers
     #import <SinglePicCommon/TimeHelper.h>
     #import <SinglePicCommon/SPSoundHelper.h>
-    //Extensions
+    //Categories
     #import "UIView+SizesAndEdges.h"
     #import "UIDevice+IdentifierAddition.h"
     #import "NSString+NSString_UUIDAddition.h"
+    #import <SinglePicCommon/SPMessageThread+Sorting.h>
     #import "UIImageView+Curled.h"
-    #import "UIImage+Resize.h"
-    #import "SPMessageThread+Sorting.h"
-    //
+    #import <SinglePicCommon/UIImage+Resize.h>
 
     #import <SinglePicCommon/SPErrors.h>
     #import <SinglePicCommon/SPRequests.h>
     #import <SinglePicCommon/SPBuckets.h>
     #import <SinglePicCommon/SPProfiles.h>
-    #import "SPMessages.h"
+    #import <SinglePicCommon/SPMessages.h>
+    #import <SinglePicCommon/SPLocations.h>
 
     #import <SinglePicCommon/SPProfile.h>
     #import <SinglePicCommon/SPBucket.h>
+    #import <SinglePicCommon/SPMessage.h>
+    #import <SinglePicCommon/SPMessageThread.h>
     #import "SPAppDelegate.h"
 
     #import <SinglePicCommon/SPRequestManager.h>
     #import <SinglePicCommon/SPSettingsManager.h>
     #import <SinglePicCommon/SPErrorManager.h>
     #import <SinglePicCommon/SPBucketManager.h>
-    #import "SPLocationManager.h"
-    #import "SPProfileManager.h"
-    #import "SPMessageManager.h"
+    #import <SinglePicCommon/SPProfileManager.h>
+    #import <SinglePicCommon/SPMessageManager.h>
+    #import <SinglePicCommon/SPLocationManager.h>
+    #import <SinglePicCommon/SPLocationManager.h>
 
     #import "SPBaseController.h"
 

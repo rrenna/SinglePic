@@ -7,6 +7,7 @@
 //
 
 #import "SPProfileManager.h"
+#import "SPBucketManager.h"
 
 @interface SPProfileManager()
 {
@@ -551,6 +552,7 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         __block BOOL imageUploaded = NO;
         __block BOOL thumbnailUploaded = NO;
         
+        #if TARGET_OS_IPHONE
         //Upload the fullsized image
         //Never uploads the full quality image ( > 7mb on iPhone 4)
         UIImage *resizedImage = [image_ resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_IMAGE_SIZE interpolationQuality:kCGInterpolationHigh];
@@ -605,6 +607,10 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
                  onError();
              }
          }];
+        
+        #else
+        NSAssert(NO, @"Implement for OS X");
+        #endif
 
     } 
     andErrorHandler:^
@@ -703,8 +709,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [[SPMessageManager sharedInstance] setActiveMessageAccount:[weakSelf myUserID]];
         
         //On successful validation - register for device push notifications
-        SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
-        [delegate registerForPushNotifications];
+        
+        if([self.baseApplicationController canRegisterForPushNotifications])
+        {
+            [self.baseApplicationController registerForPushNotifications];
+        }
         
         onCompletion(responseObject);
         
@@ -724,9 +733,11 @@ static NSURL* _thumbnailUploadURLCache = nil;
         [weakSelf clearProfile];
         
         //On failed validation - deregister for device push notifications
-        SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
-        [delegate unregisterForPushNotifications];
-        
+        if([self.baseApplicationController canRegisterForPushNotifications])
+        {
+            [self.baseApplicationController unregisterForPushNotifications];
+        }
+
         if(onError)
         {
             onError();
@@ -803,8 +814,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
                       } andErrorHandler:nil];
                       
                       //On successful login - register for device push notifications
-                      SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
-                      [delegate registerForPushNotifications];
+                      if([self.baseApplicationController canRegisterForPushNotifications])
+                      {
+                          [self.baseApplicationController registerForPushNotifications];
+                      }
                       
                       onCompletion(responseObject);
                       
@@ -871,8 +884,10 @@ static NSURL* _thumbnailUploadURLCache = nil;
     // remove token - any other stored information about this profile
     [self clearProfile];
     
-    SPAppDelegate* delegate = (SPAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [delegate unregisterForPushNotifications];
+    if([self.baseApplicationController canRegisterForPushNotifications])
+    {
+        [self.baseApplicationController unregisterForPushNotifications];
+    }
     
     //Notify application that the user type has changed
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
@@ -970,8 +985,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
 -(void)registerDevicePushTokenWithCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError
 {
     //Register profile for future requests
-    SPAppDelegate* delegate = (SPAppDelegate*)[UIApplication sharedApplication].delegate;
-    NSString* deviceToken = [delegate deviceToken];
+    NSString* deviceToken = [self.baseApplicationController deviceToken];
 
     if(deviceToken)
     {        

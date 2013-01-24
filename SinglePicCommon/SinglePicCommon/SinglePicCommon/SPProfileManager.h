@@ -6,9 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <SinglePicCommon/SPBucket.h>
-#import <SinglePicCommon/SPProfiles.h>
-#import <SinglePicCommon/SPProfile.h>
+#import "SPBucket.h"
+#import "SPProfiles.h"
+#import "SPProfile.h"
+#import "SPBaseApplicationController.h"
 
 //Constants
 static __attribute__((unused)) NSString* USER_ID_ME  = @"me";
@@ -28,6 +29,8 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 }
 #pragma mark
 @interface SPProfileManager : NSObject
+
+@property (weak) id<SPBaseApplicationController> baseApplicationController;
 
 + (SPProfileManager *)sharedInstance;
 

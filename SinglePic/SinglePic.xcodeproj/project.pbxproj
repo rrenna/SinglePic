@@ -95,10 +95,6 @@
 		7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */; };
 		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
 		7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */; };
-		757616A315DE989A00706519 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A215DE989A00706519 /* SPMessageAccount.m */; };
-		757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616AE15DEE24C00706519 /* UIImage+Resize.m */; };
-		757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616B115DEE27C00706519 /* UIImage+RoundedCorner.m */; };
-		757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616B415DEE29B00706519 /* UIImage+Alpha.m */; };
 		7577B1AF15DD927000B15B15 /* icon_CameraGrid-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */; };
 		7577B1B015DD927000B15B15 /* icon_Close.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1A215DD927000B15B15 /* icon_Close.png */; };
 		7577B1B115DD927000B15B15 /* icon_Flash-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 7577B1A315DD927000B15B15 /* icon_Flash-off.png */; };
@@ -144,7 +140,6 @@
 		75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B8DF9C160BA38D00F8AC84 /* SPSheetController.m */; };
 		75CA32D314AE298300C63CD5 /* SPSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA32D114AE298300C63CD5 /* SPSignUpController.m */; };
 		75CA32D414AE298300C63CD5 /* SPSignupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CA32D214AE298300C63CD5 /* SPSignupController.xib */; };
-		75CA53B414CF4FBD00C36F35 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */; };
 		75CA53BA14CF538C00C36F35 /* card-ninepatch-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CA53B614CF538B00C36F35 /* card-ninepatch-white.png */; };
 		75CA53BB14CF538C00C36F35 /* card-ninepatch-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CA53B714CF538B00C36F35 /* card-ninepatch-white@2x.png */; };
 		75CA53BC14CF538C00C36F35 /* card-ninepatch-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CA53B814CF538B00C36F35 /* card-ninepatch-yellow.png */; };
@@ -152,7 +147,6 @@
 		75CA53CE14CF5FB900C36F35 /* SPComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53CC14CF5FB900C36F35 /* SPComposeViewController.m */; };
 		75CA53CF14CF5FB900C36F35 /* SPComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CA53CD14CF5FB900C36F35 /* SPComposeViewController.xib */; };
 		75CA53D214CF643900C36F35 /* SPPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53D114CF643900C36F35 /* SPPageContentViewController.m */; };
-		75CEB1CD14B644A100936001 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEB1CC14B644A100936001 /* SPLocationManager.m */; };
 		75CEB1D114B644F300936001 /* Logo-SinglePic-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEB1CE14B644F300936001 /* Logo-SinglePic-red.png */; };
 		75CEB1D214B644F300936001 /* Logo-SinglePic-white-vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEB1CF14B644F300936001 /* Logo-SinglePic-white-vertical.png */; };
 		75CEB1D314B644F300936001 /* Logo-SinglePic-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEB1D014B644F300936001 /* Logo-SinglePic-white.png */; };
@@ -177,13 +171,6 @@
 		F00394531697F98800FD5BD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A940148E980100A48435 /* Foundation.framework */; };
 		F00394591697F98800FD5BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F00394571697F98800FD5BD8 /* InfoPlist.strings */; };
 		F00394651697FB6000FD5BD8 /* RequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F00394641697FB6000FD5BD8 /* RequestManagerTest.m */; };
-		F00394701697FEB000FD5BD8 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
-		F00394741697FEBD00FD5BD8 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEB1CC14B644A100936001 /* SPLocationManager.m */; };
-		F00394751697FEC400FD5BD8 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC20015FD8C5E00852650 /* SPMessageThread.m */; };
-		F00394761697FEC400FD5BD8 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A215DE989A00706519 /* SPMessageAccount.m */; };
-		F00394771697FEC400FD5BD8 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F02ABE5B14D04EB8000FE283 /* SPMessage.m */; };
-		F00394781697FEC400FD5BD8 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */; };
-		F00394791697FEC400FD5BD8 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
 		F003947E1697FED400FD5BD8 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; };
 		F00394801697FF5D00FD5BD8 /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A94E148E980100A48435 /* SPAppDelegate.m */; };
 		F00394811697FFBE00FD5BD8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CA73C9161C57A600DAE2D1 /* Crashlytics.framework */; };
@@ -213,13 +200,11 @@
 		F003DB5014EC902100BD6309 /* blockBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4F14EC902100BD6309 /* blockBackground.png */; };
 		F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F003DB9C14ECBD2300BD6309 /* StoreKit.framework */; };
 		F013D89415DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */; };
-		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
 		F01FC1F815FD122900852650 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F215FD122900852650 /* arrow.png */; };
 		F01FC1F915FD122900852650 /* ColorBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F415FD122900852650 /* ColorBlock.m */; };
 		F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC1F615FD122900852650 /* ColorGrid.m */; };
 		F01FC1FB15FD122900852650 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = F01FC1F715FD122900852650 /* Colors.plist */; };
-		F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC20015FD8C5E00852650 /* SPMessageThread.m */; };
 		F02505BD15F02408000D4546 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F02505BC15F02407000D4546 /* libicucore.dylib */; };
 		F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */; };
 		F02642A214DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A014DF9F2100E8D649 /* SPIcebreakerComposeViewController.xib */; };
@@ -227,7 +212,6 @@
 		F02642A914DFA94E00E8D649 /* SPCameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A714DFA94E00E8D649 /* SPCameraController.xib */; };
 		F0265D1614BA49BF00CAE538 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = F0265D1514BA49BF00CAE538 /* Checkmark.png */; };
 		F0280B891639091A007B2BC8 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B861639091A007B2BC8 /* alert.wav */; };
-		F02ABE5C14D04EB8000FE283 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F02ABE5B14D04EB8000FE283 /* SPMessage.m */; };
 		F02FB3EC166D828C003B8151 /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = F02FB3EE166D828C003B8151 /* Credits.plist */; };
 		F02FB3F1166D92B4003B8151 /* Overlay_OOB_EXPIRY.png in Resources */ = {isa = PBXBuildFile; fileRef = F02FB3F3166D92B4003B8151 /* Overlay_OOB_EXPIRY.png */; };
 		F02FB3F5166D9480003B8151 /* Overlay_OOB_BROWSE.png in Resources */ = {isa = PBXBuildFile; fileRef = F02FB3F7166D9480003B8151 /* Overlay_OOB_BROWSE.png */; };
@@ -364,7 +348,6 @@
 		F0C178A51491C00E00F72809 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C1784F1491C00E00F72809 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178AD1491C04900F72809 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178AC1491C04800F72809 /* SystemConfiguration.framework */; };
 		F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178AF1491C0BE00F72809 /* SPSingleton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
 		F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178D21491C2AF00F72809 /* SPProfileViewController.m */; };
 		F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */; };
@@ -536,14 +519,6 @@
 		7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHelpOverlayViewController.m; sourceTree = "<group>"; };
 		7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHelpOverlayViewController.xib; sourceTree = "<group>"; };
 		7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white@2x.png"; path = "../../Resources/Logo-SinglePic-white@2x.png"; sourceTree = "<group>"; };
-		757616A115DE989A00706519 /* SPMessageAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageAccount.h; sourceTree = "<group>"; };
-		757616A215DE989A00706519 /* SPMessageAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageAccount.m; sourceTree = "<group>"; };
-		757616AD15DEE24C00706519 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		757616AE15DEE24C00706519 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
-		757616B015DEE27C00706519 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
-		757616B115DEE27C00706519 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		757616B315DEE29B00706519 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
-		757616B415DEE29B00706519 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		7577B1A115DD927000B15B15 /* icon_CameraGrid-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_CameraGrid-off.png"; path = "../../Resources/icon_CameraGrid-off.png"; sourceTree = "<group>"; };
 		7577B1A215DD927000B15B15 /* icon_Close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_Close.png; path = ../../Resources/icon_Close.png; sourceTree = "<group>"; };
 		7577B1A315DD927000B15B15 /* icon_Flash-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_Flash-off.png"; path = "../../Resources/icon_Flash-off.png"; sourceTree = "<group>"; };
@@ -601,8 +576,6 @@
 		75CA32D014AE298300C63CD5 /* SPSignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSignUpController.h; sourceTree = "<group>"; };
 		75CA32D114AE298300C63CD5 /* SPSignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSignUpController.m; sourceTree = "<group>"; };
 		75CA32D214AE298300C63CD5 /* SPSignupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSignupController.xib; sourceTree = "<group>"; };
-		75CA53B214CF4FBD00C36F35 /* SPMessageThread+Sorting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPMessageThread+Sorting.h"; sourceTree = "<group>"; };
-		75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPMessageThread+Sorting.m"; sourceTree = "<group>"; };
 		75CA53B614CF538B00C36F35 /* card-ninepatch-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-ninepatch-white.png"; path = "../../Resources/card-ninepatch-white.png"; sourceTree = "<group>"; };
 		75CA53B714CF538B00C36F35 /* card-ninepatch-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-ninepatch-white@2x.png"; path = "../../Resources/card-ninepatch-white@2x.png"; sourceTree = "<group>"; };
 		75CA53B814CF538B00C36F35 /* card-ninepatch-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-ninepatch-yellow.png"; path = "../../Resources/card-ninepatch-yellow.png"; sourceTree = "<group>"; };
@@ -613,8 +586,6 @@
 		75CA53CD14CF5FB900C36F35 /* SPComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPComposeViewController.xib; sourceTree = "<group>"; };
 		75CA53D014CF643900C36F35 /* SPPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContentViewController.h; sourceTree = "<group>"; };
 		75CA53D114CF643900C36F35 /* SPPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageContentViewController.m; sourceTree = "<group>"; };
-		75CEB1CB14B644A100936001 /* SPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocationManager.h; sourceTree = "<group>"; };
-		75CEB1CC14B644A100936001 /* SPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocationManager.m; sourceTree = "<group>"; };
 		75CEB1CE14B644F300936001 /* Logo-SinglePic-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-red.png"; path = "../../Resources/Logo-SinglePic-red.png"; sourceTree = "<group>"; };
 		75CEB1CF14B644F300936001 /* Logo-SinglePic-white-vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white-vertical.png"; path = "../../Resources/Logo-SinglePic-white-vertical.png"; sourceTree = "<group>"; };
 		75CEB1D014B644F300936001 /* Logo-SinglePic-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white.png"; path = "../../Resources/Logo-SinglePic-white.png"; sourceTree = "<group>"; };
@@ -634,7 +605,6 @@
 		75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPMessageManager+InMemoryDataStore.m"; sourceTree = "<group>"; };
 		75F0E542169DE48D00F38328 /* ManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTest.h; sourceTree = "<group>"; };
 		75F0E543169DE48D00F38328 /* ManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerTest.m; sourceTree = "<group>"; };
-		75F5099214DC4CF000458357 /* SPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessages.h; sourceTree = "<group>"; };
 		75F56326148FE8C900E6A8F9 /* SPTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabController.h; sourceTree = "<group>"; };
 		75F56327148FE8CA00E6A8F9 /* SPTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTabController.m; sourceTree = "<group>"; };
 		75F56328148FE8CA00E6A8F9 /* SPTabController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPTabController.xib; sourceTree = "<group>"; };
@@ -662,8 +632,6 @@
 		F003DB4F14EC902100BD6309 /* blockBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blockBackground.png; path = ../../Resources/blockBackground.png; sourceTree = "<group>"; };
 		F003DB9C14ECBD2300BD6309 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend@2x.png"; path = "../../Resources/BG-Linen-Red-Blend@2x.png"; sourceTree = "<group>"; };
-		F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageManager.h; sourceTree = "<group>"; };
-		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
 		F01C41F614C7CEFE0079EB18 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F01FC1F215FD122900852650 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		F01FC1F315FD122900852650 /* ColorBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBlock.h; sourceTree = "<group>"; };
@@ -671,9 +639,6 @@
 		F01FC1F515FD122900852650 /* ColorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGrid.h; sourceTree = "<group>"; };
 		F01FC1F615FD122900852650 /* ColorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGrid.m; sourceTree = "<group>"; };
 		F01FC1F715FD122900852650 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
-		F01FC1FD15FD8B4E00852650 /* SPLocations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLocations.h; sourceTree = "<group>"; };
-		F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
-		F01FC20015FD8C5E00852650 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
 		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F026429E14DF9F2100E8D649 /* SPIcebreakerComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPIcebreakerComposeViewController.h; sourceTree = "<group>"; };
 		F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPIcebreakerComposeViewController.m; sourceTree = "<group>"; };
@@ -683,8 +648,6 @@
 		F02642A714DFA94E00E8D649 /* SPCameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPCameraController.xib; sourceTree = "<group>"; };
 		F0265D1514BA49BF00CAE538 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = ../../Resources/Checkmark.png; sourceTree = "<group>"; };
 		F0280B861639091A007B2BC8 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = alert.wav; path = ../../Resources/alert.wav; sourceTree = "<group>"; };
-		F02ABE5A14D04EB8000FE283 /* SPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessage.h; sourceTree = "<group>"; };
-		F02ABE5B14D04EB8000FE283 /* SPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessage.m; sourceTree = "<group>"; };
 		F02FB3ED166D828C003B8151 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.plist"; sourceTree = "<group>"; };
 		F02FB3F0166D828F003B8151 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Credits.plist; sourceTree = "<group>"; };
 		F02FB3F2166D92B4003B8151 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/Overlay_OOB_EXPIRY.png; sourceTree = "<group>"; };
@@ -896,8 +859,6 @@
 		F0C178AC1491C04800F72809 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F0C178AF1491C0BE00F72809 /* SPSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSingleton.m; sourceTree = "<group>"; };
 		F0C178B01491C0BE00F72809 /* SPSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSingleton.h; sourceTree = "<group>"; };
-		F0C178B31491C14D00F72809 /* SPProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileManager.h; sourceTree = "<group>"; };
-		F0C178B41491C14D00F72809 /* SPProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileManager.m; sourceTree = "<group>"; };
 		F0C178CC1491C1ED00F72809 /* SPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGlobal.h; sourceTree = "<group>"; };
 		F0C178CE1491C24600F72809 /* SPBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBrowseViewController.h; sourceTree = "<group>"; };
 		F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SPBrowseViewController.mm; sourceTree = "<group>"; };
@@ -1427,19 +1388,6 @@
 			name = Help;
 			sourceTree = "<group>";
 		};
-		757616AB15DEE22A00706519 /* UIImage */ = {
-			isa = PBXGroup;
-			children = (
-				757616AD15DEE24C00706519 /* UIImage+Resize.h */,
-				757616AE15DEE24C00706519 /* UIImage+Resize.m */,
-				757616B015DEE27C00706519 /* UIImage+RoundedCorner.h */,
-				757616B115DEE27C00706519 /* UIImage+RoundedCorner.m */,
-				757616B315DEE29B00706519 /* UIImage+Alpha.h */,
-				757616B415DEE29B00706519 /* UIImage+Alpha.m */,
-			);
-			name = UIImage;
-			sourceTree = "<group>";
-		};
 		7577AD8C1523792100B30CB3 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1571,7 +1519,6 @@
 		7599A966148EA61700A48435 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				757616AB15DEE22A00706519 /* UIImage */,
 				7531B93414B4BDEB00ECEDB3 /* UIColor */,
 				F0C176911491B85600F72809 /* UIDevice */,
 				F0C176921491B86100F72809 /* NSString */,
@@ -1614,16 +1561,6 @@
 				75CA32D114AE298300C63CD5 /* SPSignUpController.m */,
 			);
 			name = "Sign up Screen";
-			sourceTree = "<group>";
-		};
-		75CEB1C914B6448700936001 /* Locations */ = {
-			isa = PBXGroup;
-			children = (
-				75CEB1CB14B644A100936001 /* SPLocationManager.h */,
-				75CEB1CC14B644A100936001 /* SPLocationManager.m */,
-				F01FC1FD15FD8B4E00852650 /* SPLocations.h */,
-			);
-			name = Locations;
 			sourceTree = "<group>";
 		};
 		75DB6B1614BF96B800338A7C /* Card View */ = {
@@ -1811,18 +1748,7 @@
 		F01C41EA14C7C8980079EB18 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				75F5099214DC4CF000458357 /* SPMessages.h */,
-				F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */,
-				F01FC20015FD8C5E00852650 /* SPMessageThread.m */,
-				757616A115DE989A00706519 /* SPMessageAccount.h */,
-				757616A215DE989A00706519 /* SPMessageAccount.m */,
 				F01C41EF14C7CB2F0079EB18 /* Storage */,
-				F02ABE5A14D04EB8000FE283 /* SPMessage.h */,
-				F02ABE5B14D04EB8000FE283 /* SPMessage.m */,
-				75CA53B214CF4FBD00C36F35 /* SPMessageThread+Sorting.h */,
-				75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */,
-				F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */,
-				F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */,
 			);
 			name = Messages;
 			sourceTree = "<group>";
@@ -2258,19 +2184,8 @@
 			children = (
 				F050FEEC14EDE0030069EB74 /* Subscriptions */,
 				F01C41EA14C7C8980079EB18 /* Messages */,
-				75CEB1C914B6448700936001 /* Locations */,
-				F0C178C31491C15F00F72809 /* Profiles */,
 			);
 			name = Managers;
-			sourceTree = "<group>";
-		};
-		F0C178C31491C15F00F72809 /* Profiles */ = {
-			isa = PBXGroup;
-			children = (
-				F0C178B31491C14D00F72809 /* SPProfileManager.h */,
-				F0C178B41491C14D00F72809 /* SPProfileManager.m */,
-			);
-			name = Profiles;
 			sourceTree = "<group>";
 		};
 		F0C178CD1491C22600F72809 /* Browse Screen */ = {
@@ -2738,7 +2653,6 @@
 				F0C178961491C00E00F72809 /* b2Rope.cpp in Sources */,
 				F0C178A51491C00E00F72809 /* SVProgressHUD.m in Sources */,
 				F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */,
-				F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */,
 				F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */,
 				F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */,
 				75A24A8814928ED800DC8D50 /* SPRegistrationViewController.m in Sources */,
@@ -2747,13 +2661,11 @@
 				7531B93714B4BE2700ECEDB3 /* UIColor+Expanded.m in Sources */,
 				7531B93A14B4BE6900ECEDB3 /* SPStyledButton.m in Sources */,
 				7531B93D14B4FF1A00ECEDB3 /* SPStyledView.m in Sources */,
-				75CEB1CD14B644A100936001 /* SPLocationManager.m in Sources */,
 				F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */,
 				752EF17E14BCE48D00F26C50 /* SPStyledProgressView.m in Sources */,
 				75DB6B1914BF96CF00338A7C /* SPCardView.m in Sources */,
 				750E482714C60EE400F7CCFC /* SPReachabilityPopupController.m in Sources */,
 				750E482C14C62FAA00F7CCFC /* SPMessagesViewController.m in Sources */,
-				F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */,
 				75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */,
 				F0ECCB8814CA8A4B00739ADB /* SPProfileIconController.m in Sources */,
 				F0ECCB8D14CA8D1E00739ADB /* SPBlockView.mm in Sources */,
@@ -2771,10 +2683,8 @@
 				7532118C14CDF63F00B7EFDA /* MDACWebViewController.m in Sources */,
 				7532118D14CDF63F00B7EFDA /* UIImage+DBMaskedImageAdditions.m in Sources */,
 				753211C714CDFA1800B7EFDA /* SPAboutStyle.m in Sources */,
-				75CA53B414CF4FBD00C36F35 /* SPMessageThread+Sorting.m in Sources */,
 				75CA53CE14CF5FB900C36F35 /* SPComposeViewController.m in Sources */,
 				75CA53D214CF643900C36F35 /* SPPageContentViewController.m in Sources */,
-				F02ABE5C14D04EB8000FE283 /* SPMessage.m in Sources */,
 				75089E9914D9BF1F0044FC63 /* SPStyles.m in Sources */,
 				F0B40D4114DA50D000C6719C /* SPMessageView.m in Sources */,
 				F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */,
@@ -2795,15 +2705,10 @@
 				75B4AA3115D44E5700745137 /* SPLocationChooser.m in Sources */,
 				F041881A15D73890000E958E /* SPSwitchLocationCardController.m in Sources */,
 				7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */,
-				757616A315DE989A00706519 /* SPMessageAccount.m in Sources */,
-				757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */,
-				757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */,
-				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
 				753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */,
 				75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */,
 				F01FC1F915FD122900852650 /* ColorBlock.m in Sources */,
 				F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */,
-				F01FC20115FD8C5E00852650 /* SPMessageThread.m in Sources */,
 				759295541603D14E008FCDC1 /* SPDialogBubbleView.m in Sources */,
 				758E0E1A160A3CCF0006D1F7 /* SPLabel.m in Sources */,
 				75B8DF9D160BA38E00F8AC84 /* SPSheetController.m in Sources */,
@@ -2823,13 +2728,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00394651697FB6000FD5BD8 /* RequestManagerTest.m in Sources */,
-				F00394701697FEB000FD5BD8 /* SPProfileManager.m in Sources */,
-				F00394741697FEBD00FD5BD8 /* SPLocationManager.m in Sources */,
-				F00394751697FEC400FD5BD8 /* SPMessageThread.m in Sources */,
-				F00394761697FEC400FD5BD8 /* SPMessageAccount.m in Sources */,
-				F00394771697FEC400FD5BD8 /* SPMessage.m in Sources */,
-				F00394781697FEC400FD5BD8 /* SPMessageThread+Sorting.m in Sources */,
-				F00394791697FEC400FD5BD8 /* SPMessageManager.m in Sources */,
 				F003947E1697FED400FD5BD8 /* SPSubscriptionsManager.m in Sources */,
 				F00394801697FF5D00FD5BD8 /* SPAppDelegate.m in Sources */,
 				F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */,

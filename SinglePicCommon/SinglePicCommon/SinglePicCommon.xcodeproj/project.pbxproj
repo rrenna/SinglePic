@@ -119,6 +119,50 @@
 		755307DD16B1D91C00536075 /* SPSoundHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307DA16B1D91C00536075 /* SPSoundHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307DE16B1D91C00536075 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307DB16B1D91C00536075 /* SPSoundHelper.m */; };
 		755307DF16B1D91C00536075 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307DB16B1D91C00536075 /* SPSoundHelper.m */; };
+		755307E216B1DDAC00536075 /* SPProfileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E016B1DDAC00536075 /* SPProfileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307E316B1DDAC00536075 /* SPProfileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E016B1DDAC00536075 /* SPProfileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307E416B1DDAC00536075 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E116B1DDAC00536075 /* SPProfileManager.m */; };
+		755307E516B1DDAC00536075 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E116B1DDAC00536075 /* SPProfileManager.m */; };
+		755307EE16B1DEAA00536075 /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E816B1DEAA00536075 /* UIImage+Alpha.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307EF16B1DEAA00536075 /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E816B1DEAA00536075 /* UIImage+Alpha.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307F016B1DEAA00536075 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E916B1DEAA00536075 /* UIImage+Alpha.m */; };
+		755307F116B1DEAA00536075 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E916B1DEAA00536075 /* UIImage+Alpha.m */; };
+		755307F216B1DEAA00536075 /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EA16B1DEAA00536075 /* UIImage+Resize.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307F316B1DEAA00536075 /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EA16B1DEAA00536075 /* UIImage+Resize.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307F416B1DEAA00536075 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307EB16B1DEAA00536075 /* UIImage+Resize.m */; };
+		755307F516B1DEAA00536075 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307EB16B1DEAA00536075 /* UIImage+Resize.m */; };
+		755307F616B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307F716B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		755307F816B1DEAA00536075 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307ED16B1DEAA00536075 /* UIImage+RoundedCorner.m */; };
+		755307F916B1DEAA00536075 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307ED16B1DEAA00536075 /* UIImage+RoundedCorner.m */; };
+		7553080716B1E10A00536075 /* SPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FC16B1E10A00536075 /* SPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553080816B1E10A00536075 /* SPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FC16B1E10A00536075 /* SPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553080916B1E10A00536075 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FD16B1E10A00536075 /* SPMessage.m */; };
+		7553080A16B1E10A00536075 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FD16B1E10A00536075 /* SPMessage.m */; };
+		7553080B16B1E10A00536075 /* SPMessageAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FE16B1E10A00536075 /* SPMessageAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553080C16B1E10A00536075 /* SPMessageAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FE16B1E10A00536075 /* SPMessageAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553080D16B1E10A00536075 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FF16B1E10A00536075 /* SPMessageAccount.m */; };
+		7553080E16B1E10A00536075 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FF16B1E10A00536075 /* SPMessageAccount.m */; };
+		7553080F16B1E10A00536075 /* SPMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080016B1E10A00536075 /* SPMessageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081016B1E10A00536075 /* SPMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080016B1E10A00536075 /* SPMessageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081116B1E10A00536075 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080116B1E10A00536075 /* SPMessageManager.m */; };
+		7553081216B1E10A00536075 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080116B1E10A00536075 /* SPMessageManager.m */; };
+		7553081316B1E10A00536075 /* SPMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080216B1E10A00536075 /* SPMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081416B1E10A00536075 /* SPMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080216B1E10A00536075 /* SPMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081516B1E10A00536075 /* SPMessageThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080316B1E10A00536075 /* SPMessageThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081616B1E10A00536075 /* SPMessageThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080316B1E10A00536075 /* SPMessageThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081716B1E10A00536075 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080416B1E10A00536075 /* SPMessageThread.m */; };
+		7553081816B1E10A00536075 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080416B1E10A00536075 /* SPMessageThread.m */; };
+		7553081916B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081A16B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553081B16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */; };
+		7553081C16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */; };
+		7553082116B1E38300536075 /* SPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553081E16B1E38300536075 /* SPLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553082216B1E38300536075 /* SPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553081E16B1E38300536075 /* SPLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553082316B1E38300536075 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553081F16B1E38300536075 /* SPLocationManager.m */; };
+		7553082416B1E38300536075 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553081F16B1E38300536075 /* SPLocationManager.m */; };
+		7553082516B1E38300536075 /* SPLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553082616B1E38300536075 /* SPLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755DDDD316AEF68F00AA8D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDDD216AEF68F00AA8D29 /* Cocoa.framework */; };
 		755DDDDD16AEF69000AA8D29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 755DDDDB16AEF69000AA8D29 /* InfoPlist.strings */; };
 		755DDDF916AEF85F00AA8D29 /* SinglePicCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 755DDDDF16AEF69000AA8D29 /* SinglePicCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -204,6 +248,28 @@
 		755307D516B1D90D00536075 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeHelper.m; sourceTree = "<group>"; };
 		755307DA16B1D91C00536075 /* SPSoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSoundHelper.h; sourceTree = "<group>"; };
 		755307DB16B1D91C00536075 /* SPSoundHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSoundHelper.m; sourceTree = "<group>"; };
+		755307E016B1DDAC00536075 /* SPProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileManager.h; sourceTree = "<group>"; };
+		755307E116B1DDAC00536075 /* SPProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileManager.m; sourceTree = "<group>"; };
+		755307E816B1DEAA00536075 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		755307E916B1DEAA00536075 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		755307EA16B1DEAA00536075 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		755307EB16B1DEAA00536075 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		755307ED16B1DEAA00536075 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		755307FC16B1E10A00536075 /* SPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessage.h; sourceTree = "<group>"; };
+		755307FD16B1E10A00536075 /* SPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessage.m; sourceTree = "<group>"; };
+		755307FE16B1E10A00536075 /* SPMessageAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageAccount.h; sourceTree = "<group>"; };
+		755307FF16B1E10A00536075 /* SPMessageAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageAccount.m; sourceTree = "<group>"; };
+		7553080016B1E10A00536075 /* SPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageManager.h; sourceTree = "<group>"; };
+		7553080116B1E10A00536075 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
+		7553080216B1E10A00536075 /* SPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessages.h; sourceTree = "<group>"; };
+		7553080316B1E10A00536075 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
+		7553080416B1E10A00536075 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
+		7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPMessageThread+Sorting.h"; sourceTree = "<group>"; };
+		7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPMessageThread+Sorting.m"; sourceTree = "<group>"; };
+		7553081E16B1E38300536075 /* SPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocationManager.h; sourceTree = "<group>"; };
+		7553081F16B1E38300536075 /* SPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocationManager.m; sourceTree = "<group>"; };
+		7553082016B1E38300536075 /* SPLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocations.h; sourceTree = "<group>"; };
 		755DDDCF16AEF68F00AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SinglePicCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		755DDDD216AEF68F00AA8D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		755DDDD516AEF68F00AA8D29 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -290,6 +356,8 @@
 		753F073516B19891004C3351 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7553081D16B1E36A00536075 /* Locations */,
+				755307FB16B1E09000536075 /* Messages */,
 				755307C916B1D85F00536075 /* Profiles */,
 				755307B016B1D2A600536075 /* Buckets */,
 				753F076016B199BE004C3351 /* Settings */,
@@ -367,6 +435,12 @@
 		755307C216B1D7AF00536075 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				755307FE16B1E10A00536075 /* SPMessageAccount.h */,
+				755307FF16B1E10A00536075 /* SPMessageAccount.m */,
+				755307FC16B1E10A00536075 /* SPMessage.h */,
+				755307FD16B1E10A00536075 /* SPMessage.m */,
+				7553080316B1E10A00536075 /* SPMessageThread.h */,
+				7553080416B1E10A00536075 /* SPMessageThread.m */,
 				755307C316B1D7E300536075 /* SPProfile.h */,
 				755307C416B1D7E300536075 /* SPProfile.m */,
 				755307B116B1D2CB00536075 /* SPBucket.h */,
@@ -378,6 +452,8 @@
 		755307C916B1D85F00536075 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
+				755307E016B1DDAC00536075 /* SPProfileManager.h */,
+				755307E116B1DDAC00536075 /* SPProfileManager.m */,
 				755307CA16B1D87300536075 /* SPProfiles.h */,
 			);
 			name = Profiles;
@@ -394,6 +470,49 @@
 				755307CF16B1D90000536075 /* SPCaptureHelper.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		755307E616B1DE6B00536075 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */,
+				7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */,
+				755307E716B1DE9B00536075 /* UIImage */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		755307E716B1DE9B00536075 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				755307E816B1DEAA00536075 /* UIImage+Alpha.h */,
+				755307E916B1DEAA00536075 /* UIImage+Alpha.m */,
+				755307EA16B1DEAA00536075 /* UIImage+Resize.h */,
+				755307EB16B1DEAA00536075 /* UIImage+Resize.m */,
+				755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */,
+				755307ED16B1DEAA00536075 /* UIImage+RoundedCorner.m */,
+			);
+			name = UIImage;
+			sourceTree = "<group>";
+		};
+		755307FB16B1E09000536075 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				7553080016B1E10A00536075 /* SPMessageManager.h */,
+				7553080116B1E10A00536075 /* SPMessageManager.m */,
+				7553080216B1E10A00536075 /* SPMessages.h */,
+			);
+			name = Messages;
+			sourceTree = "<group>";
+		};
+		7553081D16B1E36A00536075 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				7553081E16B1E38300536075 /* SPLocationManager.h */,
+				7553081F16B1E38300536075 /* SPLocationManager.m */,
+				7553082016B1E38300536075 /* SPLocations.h */,
+			);
+			name = Locations;
 			sourceTree = "<group>";
 		};
 		755DDDC516AEF68F00AA8D29 = {
@@ -435,6 +554,7 @@
 		755DDDD816AEF68F00AA8D29 /* SinglePicCommon */ = {
 			isa = PBXGroup;
 			children = (
+				755307E616B1DE6B00536075 /* Categories */,
 				755307CD16B1D8F000536075 /* Helpers */,
 				755307C216B1D7AF00536075 /* Models */,
 				75C5A04416B19FAA00CBAE31 /* Controllers */,
@@ -516,6 +636,18 @@
 				755307D116B1D90000536075 /* SPCaptureHelper.h in Headers */,
 				755307D716B1D90D00536075 /* TimeHelper.h in Headers */,
 				755307DD16B1D91C00536075 /* SPSoundHelper.h in Headers */,
+				755307E316B1DDAC00536075 /* SPProfileManager.h in Headers */,
+				755307EF16B1DEAA00536075 /* UIImage+Alpha.h in Headers */,
+				755307F316B1DEAA00536075 /* UIImage+Resize.h in Headers */,
+				755307F716B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */,
+				7553080816B1E10A00536075 /* SPMessage.h in Headers */,
+				7553080C16B1E10A00536075 /* SPMessageAccount.h in Headers */,
+				7553081016B1E10A00536075 /* SPMessageManager.h in Headers */,
+				7553081416B1E10A00536075 /* SPMessages.h in Headers */,
+				7553081616B1E10A00536075 /* SPMessageThread.h in Headers */,
+				7553081A16B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */,
+				7553082216B1E38300536075 /* SPLocationManager.h in Headers */,
+				7553082616B1E38300536075 /* SPLocations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +687,18 @@
 				755307D016B1D90000536075 /* SPCaptureHelper.h in Headers */,
 				755307D616B1D90D00536075 /* TimeHelper.h in Headers */,
 				755307DC16B1D91C00536075 /* SPSoundHelper.h in Headers */,
+				755307E216B1DDAC00536075 /* SPProfileManager.h in Headers */,
+				755307EE16B1DEAA00536075 /* UIImage+Alpha.h in Headers */,
+				755307F216B1DEAA00536075 /* UIImage+Resize.h in Headers */,
+				755307F616B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */,
+				7553080716B1E10A00536075 /* SPMessage.h in Headers */,
+				7553080B16B1E10A00536075 /* SPMessageAccount.h in Headers */,
+				7553080F16B1E10A00536075 /* SPMessageManager.h in Headers */,
+				7553081316B1E10A00536075 /* SPMessages.h in Headers */,
+				7553081516B1E10A00536075 /* SPMessageThread.h in Headers */,
+				7553081916B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */,
+				7553082116B1E38300536075 /* SPLocationManager.h in Headers */,
+				7553082516B1E38300536075 /* SPLocations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +809,16 @@
 				755307D216B1D90000536075 /* SPCaptureHelper.m in Sources */,
 				755307D816B1D90D00536075 /* TimeHelper.m in Sources */,
 				755307DE16B1D91C00536075 /* SPSoundHelper.m in Sources */,
+				755307E416B1DDAC00536075 /* SPProfileManager.m in Sources */,
+				755307F016B1DEAA00536075 /* UIImage+Alpha.m in Sources */,
+				755307F416B1DEAA00536075 /* UIImage+Resize.m in Sources */,
+				755307F816B1DEAA00536075 /* UIImage+RoundedCorner.m in Sources */,
+				7553080916B1E10A00536075 /* SPMessage.m in Sources */,
+				7553080D16B1E10A00536075 /* SPMessageAccount.m in Sources */,
+				7553081116B1E10A00536075 /* SPMessageManager.m in Sources */,
+				7553081716B1E10A00536075 /* SPMessageThread.m in Sources */,
+				7553081B16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */,
+				7553082316B1E38300536075 /* SPLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +849,16 @@
 				755307D316B1D90000536075 /* SPCaptureHelper.m in Sources */,
 				755307D916B1D90D00536075 /* TimeHelper.m in Sources */,
 				755307DF16B1D91C00536075 /* SPSoundHelper.m in Sources */,
+				755307E516B1DDAC00536075 /* SPProfileManager.m in Sources */,
+				755307F116B1DEAA00536075 /* UIImage+Alpha.m in Sources */,
+				755307F516B1DEAA00536075 /* UIImage+Resize.m in Sources */,
+				755307F916B1DEAA00536075 /* UIImage+RoundedCorner.m in Sources */,
+				7553080A16B1E10A00536075 /* SPMessage.m in Sources */,
+				7553080E16B1E10A00536075 /* SPMessageAccount.m in Sources */,
+				7553081216B1E10A00536075 /* SPMessageManager.m in Sources */,
+				7553081816B1E10A00536075 /* SPMessageThread.m in Sources */,
+				7553081C16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */,
+				7553082416B1E38300536075 /* SPLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +907,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SDKROOT = macosx;
 			};
@@ -776,6 +941,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SDKROOT = macosx;
 			};
@@ -907,6 +1073,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SDKROOT = macosx;
 			};
@@ -987,6 +1154,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SDKROOT = macosx;
 			};
