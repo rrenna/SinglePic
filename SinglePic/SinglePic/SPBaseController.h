@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <MessageUI/MessageUI.h>
+#import <SinglePicCommon/SPBaseApplicationController.h>
 #import "SPTabContainerDelegate.h"
 #import "SPRegistrationViewController.h"
 #import "SPUserViewController.h"
@@ -23,7 +25,7 @@ typedef enum
     NAVIGATION_BASE_MODE
 } BASE_MODE;
 
-@interface SPBaseController : UIViewController <SPTabContainerDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate>
+@interface SPBaseController : UIViewController <SPBaseApplicationController,SPTabContainerDelegate,UITextFieldDelegate,SPHelpOverlayViewControllerDelegate,MFMailComposeViewControllerDelegate>
 {
     IBOutlet UIActivityIndicatorView* activityView;
     IBOutlet UIView* contentView;

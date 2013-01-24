@@ -13,6 +13,7 @@
     #import <Foundation/Foundation.h>
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <Crashlytics/Crashlytics.h>
+    #import <SinglePicCommon/SinglePicCommon.h>
     #import "SPGlobal.h"
     //Helpers
     #import "TimeHelper.h"
@@ -25,22 +26,25 @@
     #import "UIImage+Resize.h"
     #import "SPMessageThread+Sorting.h"
     //
-    #import "SPErrors.h"
-    #import "SPRequests.h"
+
+    #import <SinglePicCommon/SPErrors.h>
+    #import <SinglePicCommon/SPRequests.h>
     #import "SPMessages.h"
     #import "SPBucket.h"
     #import "SPProfiles.h"
+
     #import "SPAppDelegate.h"
-    #import "SPSettingsManager.h"
-    #import "SPErrorManager.h"
+
+    #import <SinglePicCommon/SPRequestManager.h>
+    #import <SinglePicCommon/SPSettingsManager.h>
+    #import <SinglePicCommon/SPErrorManager.h>
     #import "SPLocationManager.h"
     #import "SPProfileManager.h"
     #import "SPMessageManager.h"
     #import "SPBucketManager.h"
-    #import "SPRequestManager.h"
     #import "SPBaseController.h"
 
     #if defined (BETA)
-    #import "TestFlight.h"  
+    #import <SinglePicCommon/TestFlight.h>
     #endif
 #endif

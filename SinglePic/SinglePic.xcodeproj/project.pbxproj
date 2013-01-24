@@ -24,7 +24,6 @@
 		751D2638149146B500617DD8 /* SPTouchPassThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2637149146B500617DD8 /* SPTouchPassThroughView.m */; };
 		751D263D14916D2B00617DD8 /* BG-Linen-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263A14916D2B00617DD8 /* BG-Linen-Red.png */; };
 		751D263F14916D2B00617DD8 /* Pic-Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 751D263C14916D2B00617DD8 /* Pic-Frame.png */; };
-		751EDDBE14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */; };
 		75246C7D14C0E46A00BD24B1 /* Parchment-Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 75246C7A14C0E46A00BD24B1 /* Parchment-Left.png */; };
 		752EF17E14BCE48D00F26C50 /* SPStyledProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 752EF17D14BCE48D00F26C50 /* SPStyledProgressView.m */; };
 		7531B93714B4BE2700ECEDB3 /* UIColor+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531B93614B4BE2700ECEDB3 /* UIColor+Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -180,7 +179,6 @@
 		F00394531697F98800FD5BD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A940148E980100A48435 /* Foundation.framework */; };
 		F00394591697F98800FD5BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F00394571697F98800FD5BD8 /* InfoPlist.strings */; };
 		F00394651697FB6000FD5BD8 /* RequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F00394641697FB6000FD5BD8 /* RequestManagerTest.m */; };
-		F00394661697FE6500FD5BD8 /* SPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178C61491C18E00F72809 /* SPRequestManager.m */; };
 		F00394701697FEB000FD5BD8 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
 		F00394711697FEB200FD5BD8 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B71491C14D00F72809 /* SPProfile.m */; };
 		F00394721697FEB900FD5BD8 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178BA1491C14D00F72809 /* SPBucketManager.m */; };
@@ -191,14 +189,9 @@
 		F00394771697FEC400FD5BD8 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F02ABE5B14D04EB8000FE283 /* SPMessage.m */; };
 		F00394781697FEC400FD5BD8 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CA53B314CF4FBD00C36F35 /* SPMessageThread+Sorting.m */; };
 		F00394791697FEC400FD5BD8 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
-		F003947B1697FED000FD5BD8 /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */; };
-		F003947C1697FED000FD5BD8 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */; };
-		F003947D1697FED000FD5BD8 /* SPErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F00994BD1673BE7C00719D08 /* SPErrorProfile.m */; };
 		F003947E1697FED400FD5BD8 /* SPSubscriptionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F06EF7DB14F01AFF008F9EF5 /* SPSubscriptionsManager.m */; };
-		F003947F1697FED800FD5BD8 /* SPSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */; };
 		F00394801697FF5D00FD5BD8 /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599A94E148E980100A48435 /* SPAppDelegate.m */; };
 		F00394811697FFBE00FD5BD8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CA73C9161C57A600DAE2D1 /* Crashlytics.framework */; };
-		F00394841698017C00FD5BD8 /* SPErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F00394831698017C00FD5BD8 /* SPErrorManager.m */; };
 		F00394861698035A00FD5BD8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C177991491BC0B00F72809 /* MapKit.framework */; };
 		F00394871698038300FD5BD8 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F07ABC42169246E900219A25 /* CoreImage.framework */; };
 		F00394881698038300FD5BD8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8A16303DFB00935B0D /* AVFoundation.framework */; };
@@ -222,12 +215,10 @@
 		F003949A1698038300FD5BD8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A942148E980100A48435 /* CoreGraphics.framework */; };
 		F003949B169803A700FD5BD8 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B93691510F62A00C354F2 /* TimeHelper.m */; };
 		F003949C169803A700FD5BD8 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */; };
-		F003949D1698040C00FD5BD8 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
 		F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F003949F1698044C00FD5BD8 /* SPBaseController.m */; };
 		F003DB4D14EC8DAB00BD6309 /* Pic-Frame-Blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4C14EC8DAA00BD6309 /* Pic-Frame-Blocks@2x.png */; };
 		F003DB5014EC902100BD6309 /* blockBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4F14EC902100BD6309 /* blockBackground.png */; };
 		F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F003DB9C14ECBD2300BD6309 /* StoreKit.framework */; };
-		F00994BE1673BE7C00719D08 /* SPErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F00994BD1673BE7C00719D08 /* SPErrorProfile.m */; };
 		F013D89415DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */; };
 		F01C41EE14C7C8AC0079EB18 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */; };
 		F01C41F714C7CEFE0079EB18 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01C41F614C7CEFE0079EB18 /* CoreData.framework */; };
@@ -297,7 +288,6 @@
 		F09DA06E14E21B56004E0646 /* SPConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F09DA06C14E21B56004E0646 /* SPConnectionsViewController.m */; };
 		F09DA06F14E21B56004E0646 /* SPConnectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */; };
 		F0A6A41D15D9722600F2253D /* BG-Linen-Red-Blend.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A6A41C15D9722500F2253D /* BG-Linen-Red-Blend.png */; };
-		F0A7924314ED404100296D7D /* SPErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A7924214ED404100296D7D /* SPErrorManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0A8EBAC14FC65CC003785AF /* icon-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A8EBAB14FC65CC003785AF /* icon-clock.png */; };
 		F0A8EBAF14FC7A7A003785AF /* icon-clock-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A8EBAE14FC7A7A003785AF /* icon-clock-white.png */; };
 		F0AA32B914F6795A0079575C /* SPStackPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AA32B714F677F60079575C /* SPStackPanel.m */; };
@@ -380,19 +370,16 @@
 		F0C178961491C00E00F72809 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C1782D1491C00E00F72809 /* b2Rope.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178A41491C00E00F72809 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0C1784D1491C00E00F72809 /* SVProgressHUD.bundle */; };
 		F0C178A51491C00E00F72809 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C1784F1491C00E00F72809 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F0C178A91491C00E00F72809 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178571491C00E00F72809 /* libTestFlight.a */; };
 		F0C178AD1491C04900F72809 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178AC1491C04800F72809 /* SystemConfiguration.framework */; };
 		F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178AF1491C0BE00F72809 /* SPSingleton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
 		F0C178BF1491C14D00F72809 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B71491C14D00F72809 /* SPProfile.m */; };
 		F0C178C01491C14D00F72809 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B91491C14D00F72809 /* SPBucket.m */; };
 		F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178BA1491C14D00F72809 /* SPBucketManager.m */; };
-		F0C178C71491C18E00F72809 /* SPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178C61491C18E00F72809 /* SPRequestManager.m */; };
 		F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178D21491C2AF00F72809 /* SPProfileViewController.m */; };
 		F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */; };
 		F0C178D81491C9C200F72809 /* SPProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D71491C9C200F72809 /* SPProfileViewController.xib */; };
-		F0C645F614E76B8600B6A0ED /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */; };
 		F0C6460B14E8892100B6A0ED /* SPSwitchOrientationCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C6460914E8892100B6A0ED /* SPSwitchOrientationCardController.m */; };
 		F0C6460C14E8892100B6A0ED /* SPSwitchOrientationCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */; };
 		F0C7851B1522E8DB00512232 /* SPSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C785191522E8DB00512232 /* SPSettingsViewController.xib */; };
@@ -418,7 +405,6 @@
 		F0DE63441604EE4C00785FF2 /* dialog-down.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63401604EE4B00785FF2 /* dialog-down.png */; };
 		F0DE63451604EE4C00785FF2 /* dialog-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */; };
 		F0DEC14D1639D15000BF2BEF /* tap.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0DEC14C1639D15000BF2BEF /* tap.wav */; };
-		F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0DFAB8716686B6B00C23117 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0DFAB8916686B6B00C23117 /* Localizable.strings */; };
 		F0E4521914BC082000CDC3D2 /* SPUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0E4521714BC082000CDC3D2 /* SPUserViewController.m */; };
 		F0E4521A14BC082000CDC3D2 /* SPUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E4521814BC082000CDC3D2 /* SPUserViewController.xib */; };
@@ -437,7 +423,6 @@
 		F0F040FE163F56BB00CF76F8 /* icon-Heart-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F040FD163F56BB00CF76F8 /* icon-Heart-white.png */; };
 		F0F58B44162CC543003DD1B3 /* Intro-Browse.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F58B43162CC543003DD1B3 /* Intro-Browse.png */; };
 		F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F80A0815F6A97E00201FF4 /* testingImage.png */; };
-		F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -465,8 +450,6 @@
 		751D2637149146B500617DD8 /* SPTouchPassThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTouchPassThroughView.m; sourceTree = "<group>"; };
 		751D263A14916D2B00617DD8 /* BG-Linen-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red.png"; path = "../../Resources/BG-Linen-Red.png"; sourceTree = "<group>"; };
 		751D263C14916D2B00617DD8 /* Pic-Frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame.png"; path = "../../Resources/Pic-Frame.png"; sourceTree = "<group>"; };
-		751EDDBC14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebServiceErrorProfile.h; sourceTree = "<group>"; };
-		751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebServiceErrorProfile.m; sourceTree = "<group>"; };
 		75246C7A14C0E46A00BD24B1 /* Parchment-Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Left.png"; path = "../../Resources/Parchment-Left.png"; sourceTree = "<group>"; };
 		752EF17C14BCE48D00F26C50 /* SPStyledProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStyledProgressView.h; sourceTree = "<group>"; };
 		752EF17D14BCE48D00F26C50 /* SPStyledProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyledProgressView.m; sourceTree = "<group>"; };
@@ -559,7 +542,6 @@
 		753211C614CDFA1800B7EFDA /* SPAboutStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAboutStyle.m; sourceTree = "<group>"; };
 		753ED26D15EE8E37000F64F1 /* SPKeyboardDragTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPKeyboardDragTableView.h; sourceTree = "<group>"; };
 		753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPKeyboardDragTableView.m; sourceTree = "<group>"; };
-		753F073016B19275004C3351 /* SPReachabilityReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPReachabilityReporter.h; sourceTree = "<group>"; };
 		754D1EDD14DB36EC00F90C19 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = ../../Resources/default.png; sourceTree = "<group>"; };
 		754D1EDE14DB36EC00F90C19 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x.png"; path = "../../Resources/default@2x.png"; sourceTree = "<group>"; };
 		755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice@2x.png"; path = "../../Resources/Parchment-Right-9Slice@2x.png"; sourceTree = "<group>"; };
@@ -652,7 +634,6 @@
 		75CEB1CF14B644F300936001 /* Logo-SinglePic-white-vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white-vertical.png"; path = "../../Resources/Logo-SinglePic-white-vertical.png"; sourceTree = "<group>"; };
 		75CEB1D014B644F300936001 /* Logo-SinglePic-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo-SinglePic-white.png"; path = "../../Resources/Logo-SinglePic-white.png"; sourceTree = "<group>"; };
 		75D196F414ED910000A23654 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		75D196F714ED92E200A23654 /* SPErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrors.h; sourceTree = "<group>"; };
 		75D726E016022792006059B8 /* Parchment-Right-9Slice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice.png"; path = "../../Resources/Parchment-Right-9Slice.png"; sourceTree = "<group>"; };
 		75DB6B1714BF96CF00338A7C /* SPCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCardView.h; sourceTree = "<group>"; };
 		75DB6B1814BF96CF00338A7C /* SPCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCardView.m; sourceTree = "<group>"; };
@@ -669,7 +650,6 @@
 		75F0E542169DE48D00F38328 /* ManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTest.h; sourceTree = "<group>"; };
 		75F0E543169DE48D00F38328 /* ManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerTest.m; sourceTree = "<group>"; };
 		75F5099214DC4CF000458357 /* SPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessages.h; sourceTree = "<group>"; };
-		75F5099414DC4D7D00458357 /* SPRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRequests.h; sourceTree = "<group>"; };
 		75F5099514DC500F00458357 /* SPProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfiles.h; sourceTree = "<group>"; };
 		75F5099614DC503200458357 /* SPBuckets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBuckets.h; sourceTree = "<group>"; };
 		75F56326148FE8C900E6A8F9 /* SPTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabController.h; sourceTree = "<group>"; };
@@ -686,8 +666,6 @@
 		F003945D1697F98800FD5BD8 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		F00394631697FB6000FD5BD8 /* RequestManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManagerTest.h; sourceTree = "<group>"; };
 		F00394641697FB6000FD5BD8 /* RequestManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManagerTest.m; sourceTree = "<group>"; };
-		F00394821698017C00FD5BD8 /* SPErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorManager.h; sourceTree = "<group>"; };
-		F00394831698017C00FD5BD8 /* SPErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorManager.m; sourceTree = "<group>"; };
 		F003949E1698044C00FD5BD8 /* SPBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseController.h; sourceTree = "<group>"; };
 		F003949F1698044C00FD5BD8 /* SPBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBaseController.m; sourceTree = "<group>"; };
 		F00394A41699142700FD5BD8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/Overlay_OOB_EXPIRY.png"; sourceTree = "<group>"; };
@@ -700,8 +678,6 @@
 		F003DB4C14EC8DAA00BD6309 /* Pic-Frame-Blocks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pic-Frame-Blocks@2x.png"; path = "../../Resources/Pic-Frame-Blocks@2x.png"; sourceTree = "<group>"; };
 		F003DB4F14EC902100BD6309 /* blockBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blockBackground.png; path = ../../Resources/blockBackground.png; sourceTree = "<group>"; };
 		F003DB9C14ECBD2300BD6309 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		F00994BC1673BE7C00719D08 /* SPErrorProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorProfile.h; sourceTree = "<group>"; };
-		F00994BD1673BE7C00719D08 /* SPErrorProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorProfile.m; sourceTree = "<group>"; };
 		F013D89315DB05EC0070B734 /* BG-Linen-Red-Blend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend@2x.png"; path = "../../Resources/BG-Linen-Red-Blend@2x.png"; sourceTree = "<group>"; };
 		F01C41EC14C7C8AC0079EB18 /* SPMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageManager.h; sourceTree = "<group>"; };
 		F01C41ED14C7C8AC0079EB18 /* SPMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageManager.m; sourceTree = "<group>"; };
@@ -713,7 +689,6 @@
 		F01FC1F615FD122900852650 /* ColorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGrid.m; sourceTree = "<group>"; };
 		F01FC1F715FD122900852650 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		F01FC1FD15FD8B4E00852650 /* SPLocations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPLocations.h; sourceTree = "<group>"; };
-		F01FC1FE15FD8BB700852650 /* SPSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettings.h; sourceTree = "<group>"; };
 		F01FC1FF15FD8C5E00852650 /* SPMessageThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessageThread.h; sourceTree = "<group>"; };
 		F01FC20015FD8C5E00852650 /* SPMessageThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessageThread.m; sourceTree = "<group>"; };
 		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -791,8 +766,6 @@
 		F09DA06C14E21B56004E0646 /* SPConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConnectionsViewController.m; sourceTree = "<group>"; };
 		F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPConnectionsViewController.xib; sourceTree = "<group>"; };
 		F0A6A41C15D9722500F2253D /* BG-Linen-Red-Blend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BG-Linen-Red-Blend.png"; path = "../../Resources/BG-Linen-Red-Blend.png"; sourceTree = "<group>"; };
-		F0A7924114ED404100296D7D /* SPErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorManager.h; sourceTree = "<group>"; };
-		F0A7924214ED404100296D7D /* SPErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorManager.m; sourceTree = "<group>"; };
 		F0A8EBAB14FC65CC003785AF /* icon-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-clock.png"; path = "../../Resources/icon-clock.png"; sourceTree = "<group>"; };
 		F0A8EBAE14FC7A7A003785AF /* icon-clock-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-clock-white.png"; path = "../../Resources/icon-clock-white.png"; sourceTree = "<group>"; };
 		F0AA32B714F677F60079575C /* SPStackPanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPStackPanel.m; sourceTree = "<group>"; };
@@ -939,8 +912,6 @@
 		F0C1784D1491C00E00F72809 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		F0C1784E1491C00E00F72809 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		F0C1784F1491C00E00F72809 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		F0C178571491C00E00F72809 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		F0C1785A1491C00E00F72809 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		F0C178AC1491C04800F72809 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F0C178AF1491C0BE00F72809 /* SPSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSingleton.m; sourceTree = "<group>"; };
 		F0C178B01491C0BE00F72809 /* SPSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSingleton.h; sourceTree = "<group>"; };
@@ -952,8 +923,6 @@
 		F0C178B91491C14D00F72809 /* SPBucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBucket.m; sourceTree = "<group>"; };
 		F0C178BA1491C14D00F72809 /* SPBucketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBucketManager.m; sourceTree = "<group>"; };
 		F0C178BB1491C14D00F72809 /* SPBucketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBucketManager.h; sourceTree = "<group>"; };
-		F0C178C51491C18E00F72809 /* SPRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRequestManager.h; sourceTree = "<group>"; };
-		F0C178C61491C18E00F72809 /* SPRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRequestManager.m; sourceTree = "<group>"; };
 		F0C178CC1491C1ED00F72809 /* SPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGlobal.h; sourceTree = "<group>"; };
 		F0C178CE1491C24600F72809 /* SPBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBrowseViewController.h; sourceTree = "<group>"; };
 		F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SPBrowseViewController.mm; sourceTree = "<group>"; };
@@ -961,8 +930,6 @@
 		F0C178D31491C2AF00F72809 /* SPProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileViewController.h; sourceTree = "<group>"; };
 		F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPBrowseViewController.xib; sourceTree = "<group>"; };
 		F0C178D71491C9C200F72809 /* SPProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPProfileViewController.xib; sourceTree = "<group>"; };
-		F0C645F414E76B8600B6A0ED /* SPWebServiceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebServiceError.h; sourceTree = "<group>"; };
-		F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebServiceError.m; sourceTree = "<group>"; };
 		F0C6460814E8892100B6A0ED /* SPSwitchOrientationCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSwitchOrientationCardController.h; sourceTree = "<group>"; };
 		F0C6460914E8892100B6A0ED /* SPSwitchOrientationCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSwitchOrientationCardController.m; sourceTree = "<group>"; };
 		F0C6460A14E8892100B6A0ED /* SPSwitchOrientationCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPSwitchOrientationCardController.xib; sourceTree = "<group>"; };
@@ -991,9 +958,6 @@
 		F0DE63401604EE4B00785FF2 /* dialog-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down.png"; path = "../../Resources/dialog-down.png"; sourceTree = "<group>"; };
 		F0DE63411604EE4B00785FF2 /* dialog-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dialog-down@2x.png"; path = "../../Resources/dialog-down@2x.png"; sourceTree = "<group>"; };
 		F0DEC14C1639D15000BF2BEF /* tap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = tap.wav; path = ../../Resources/tap.wav; sourceTree = "<group>"; };
-		F0DF78F415EDA35800EE492D /* LoggerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
-		F0DF78F515EDA35800EE492D /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
-		F0DF78F715EDA39400EE492D /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
 		F0DFAB8416686AF900C23117 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F0DFAB8816686B6B00C23117 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0DFAB8A16686B6E00C23117 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1022,8 +986,6 @@
 		F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContainerDelegate.h; sourceTree = "<group>"; };
 		F0F7CEA414C924D3009C7DF8 /* SPPageContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContentDelegate.h; sourceTree = "<group>"; };
 		F0F80A0815F6A97E00201FF4 /* testingImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testingImage.png; path = ../../Resources/testingImage.png; sourceTree = "<group>"; };
-		F0F80A0B15F6C69300201FF4 /* SPSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSettingsManager.h; sourceTree = "<group>"; };
-		F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSettingsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1056,7 +1018,6 @@
 				F0C1779A1491BC0B00F72809 /* MapKit.framework in Frameworks */,
 				7599A93F148E980100A48435 /* UIKit.framework in Frameworks */,
 				7599A941148E980100A48435 /* Foundation.framework in Frameworks */,
-				F0C178A91491C00E00F72809 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1249,19 +1210,6 @@
 				75A24A8714928ED800DC8D50 /* SPOOBEViewController.xib */,
 			);
 			name = "OOBE / Login / Sign up";
-			sourceTree = "<group>";
-		};
-		751EDDBF14EEF763007FBEC7 /* Custom Errors */ = {
-			isa = PBXGroup;
-			children = (
-				F0C645F414E76B8600B6A0ED /* SPWebServiceError.h */,
-				F0C645F514E76B8600B6A0ED /* SPWebServiceError.m */,
-				751EDDBC14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.h */,
-				751EDDBD14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m */,
-				F00994BC1673BE7C00719D08 /* SPErrorProfile.h */,
-				F00994BD1673BE7C00719D08 /* SPErrorProfile.m */,
-			);
-			name = "Custom Errors";
 			sourceTree = "<group>";
 		};
 		752EF17614BCD44400F26C50 /* Styled View */ = {
@@ -1824,8 +1772,8 @@
 		F00394541697F98800FD5BD8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				75F0E53E169DDF8C00F38328 /* Categories */,
 				F00394551697F98800FD5BD8 /* Supporting Files */,
+				75F0E53E169DDF8C00F38328 /* Categories */,
 				F00394851698023900FD5BD8 /* Mock */,
 				F00394631697FB6000FD5BD8 /* RequestManagerTest.h */,
 				F00394641697FB6000FD5BD8 /* RequestManagerTest.m */,
@@ -1858,8 +1806,6 @@
 		F00394851698023900FD5BD8 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				F00394821698017C00FD5BD8 /* SPErrorManager.h */,
-				F00394831698017C00FD5BD8 /* SPErrorManager.m */,
 				F003949E1698044C00FD5BD8 /* SPBaseController.h */,
 				F003949F1698044C00FD5BD8 /* SPBaseController.m */,
 			);
@@ -2071,17 +2017,6 @@
 			name = Help;
 			sourceTree = "<group>";
 		};
-		F0A7923F14ED3FDC00296D7D /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				75D196F714ED92E200A23654 /* SPErrors.h */,
-				751EDDBF14EEF763007FBEC7 /* Custom Errors */,
-				F0A7924114ED404100296D7D /* SPErrorManager.h */,
-				F0A7924214ED404100296D7D /* SPErrorManager.m */,
-			);
-			name = Errors;
-			sourceTree = "<group>";
-		};
 		F0AA32B614F677EC0079575C /* Stack Panel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2130,12 +2065,10 @@
 				F0795554161942E4004837AF /* GCPagedScrollView */,
 				F0E490811613268C00091EC0 /* InputToolbar */,
 				F01FC1F115FD122900852650 /* Pullwalla */,
-				F0DF78F315EDA35800EE492D /* NSLogger */,
 				F0C0B35C14F74013007BEB13 /* CurledView */,
 				7532113014CDF61300B7EFDA /* MDAboutController */,
 				F0C177CA1491C00E00F72809 /* Box2D */,
 				F0C1784C1491C00E00F72809 /* SVProgressHUD */,
-				F0C178561491C00E00F72809 /* TestFlight */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -2337,16 +2270,6 @@
 			path = Libraries/SVProgressHUD;
 			sourceTree = SOURCE_ROOT;
 		};
-		F0C178561491C00E00F72809 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				F0C178571491C00E00F72809 /* libTestFlight.a */,
-				F0C1785A1491C00E00F72809 /* TestFlight.h */,
-			);
-			name = TestFlight;
-			path = Libraries/TestFlight;
-			sourceTree = SOURCE_ROOT;
-		};
 		F0C178AE1491C07F00F72809 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
@@ -2359,12 +2282,9 @@
 		F0C178B21491C0E200F72809 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				F0F80A0A15F6B02600201FF4 /* Settings */,
 				F050FEEC14EDE0030069EB74 /* Subscriptions */,
-				F0A7923F14ED3FDC00296D7D /* Errors */,
 				F01C41EA14C7C8980079EB18 /* Messages */,
 				75CEB1C914B6448700936001 /* Locations */,
-				F0C178C41491C16C00F72809 /* Requests */,
 				F0C178C31491C15F00F72809 /* Profiles */,
 				F0C178C21491C15500F72809 /* Buckets */,
 			);
@@ -2393,17 +2313,6 @@
 				F0C178B71491C14D00F72809 /* SPProfile.m */,
 			);
 			name = Profiles;
-			sourceTree = "<group>";
-		};
-		F0C178C41491C16C00F72809 /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				75F5099414DC4D7D00458357 /* SPRequests.h */,
-				F0C178C51491C18E00F72809 /* SPRequestManager.h */,
-				F0C178C61491C18E00F72809 /* SPRequestManager.m */,
-				753F073016B19275004C3351 /* SPReachabilityReporter.h */,
-			);
-			name = Requests;
 			sourceTree = "<group>";
 		};
 		F0C178C81491C1A700F72809 /* Helpers */ = {
@@ -2468,17 +2377,6 @@
 			name = "Styled Segmented Control";
 			sourceTree = "<group>";
 		};
-		F0DF78F315EDA35800EE492D /* NSLogger */ = {
-			isa = PBXGroup;
-			children = (
-				F0DF78F715EDA39400EE492D /* LoggerCommon.h */,
-				F0DF78F415EDA35800EE492D /* LoggerClient.h */,
-				F0DF78F515EDA35800EE492D /* LoggerClient.m */,
-			);
-			name = NSLogger;
-			path = Libraries/NSLogger;
-			sourceTree = SOURCE_ROOT;
-		};
 		F0E490811613268C00091EC0 /* InputToolbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -2517,16 +2415,6 @@
 				F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */,
 			);
 			name = Pages;
-			sourceTree = "<group>";
-		};
-		F0F80A0A15F6B02600201FF4 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				F01FC1FE15FD8BB700852650 /* SPSettings.h */,
-				F0F80A0B15F6C69300201FF4 /* SPSettingsManager.h */,
-				F0F80A0C15F6C69300201FF4 /* SPSettingsManager.m */,
-			);
-			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2909,7 +2797,6 @@
 				F0C178BF1491C14D00F72809 /* SPProfile.m in Sources */,
 				F0C178C01491C14D00F72809 /* SPBucket.m in Sources */,
 				F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */,
-				F0C178C71491C18E00F72809 /* SPRequestManager.m in Sources */,
 				F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */,
 				F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */,
 				75A24A8814928ED800DC8D50 /* SPRegistrationViewController.m in Sources */,
@@ -2951,11 +2838,8 @@
 				F02642A114DF9F2100E8D649 /* SPIcebreakerComposeViewController.m in Sources */,
 				F02642A814DFA94E00E8D649 /* SPCameraController.m in Sources */,
 				F09DA06E14E21B56004E0646 /* SPConnectionsViewController.m in Sources */,
-				F0C645F614E76B8600B6A0ED /* SPWebServiceError.m in Sources */,
 				F0C6460B14E8892100B6A0ED /* SPSwitchOrientationCardController.m in Sources */,
 				F0D1512114EA329F006C1978 /* SPOrientationChooser.m in Sources */,
-				F0A7924314ED404100296D7D /* SPErrorManager.m in Sources */,
-				751EDDBE14EEF6DB007FBEC7 /* SPWebServiceErrorProfile.m in Sources */,
 				F06EF7DC14F01AFF008F9EF5 /* SPSubscriptionsManager.m in Sources */,
 				F0AA32B914F6795A0079575C /* SPStackPanel.m in Sources */,
 				F0C0B36414F741DA007BEB13 /* UIImageView+Curled.m in Sources */,
@@ -2974,9 +2858,7 @@
 				757616AF15DEE24C00706519 /* UIImage+Resize.m in Sources */,
 				757616B215DEE27C00706519 /* UIImage+RoundedCorner.m in Sources */,
 				757616B515DEE29B00706519 /* UIImage+Alpha.m in Sources */,
-				F0DF78F615EDA35800EE492D /* LoggerClient.m in Sources */,
 				753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */,
-				F0F80A0D15F6C69300201FF4 /* SPSettingsManager.m in Sources */,
 				75B1C4DA15FA6CBC001055A0 /* SPSettingsViewController.m in Sources */,
 				F01FC1F915FD122900852650 /* ColorBlock.m in Sources */,
 				F01FC1FA15FD122900852650 /* ColorGrid.m in Sources */,
@@ -2994,7 +2876,6 @@
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
 				F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */,
-				F00994BE1673BE7C00719D08 /* SPErrorProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3003,7 +2884,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00394651697FB6000FD5BD8 /* RequestManagerTest.m in Sources */,
-				F00394661697FE6500FD5BD8 /* SPRequestManager.m in Sources */,
 				F00394701697FEB000FD5BD8 /* SPProfileManager.m in Sources */,
 				F00394711697FEB200FD5BD8 /* SPProfile.m in Sources */,
 				F00394721697FEB900FD5BD8 /* SPBucketManager.m in Sources */,
@@ -3014,16 +2894,10 @@
 				F00394771697FEC400FD5BD8 /* SPMessage.m in Sources */,
 				F00394781697FEC400FD5BD8 /* SPMessageThread+Sorting.m in Sources */,
 				F00394791697FEC400FD5BD8 /* SPMessageManager.m in Sources */,
-				F003947B1697FED000FD5BD8 /* SPWebServiceError.m in Sources */,
-				F003947C1697FED000FD5BD8 /* SPWebServiceErrorProfile.m in Sources */,
-				F003947D1697FED000FD5BD8 /* SPErrorProfile.m in Sources */,
 				F003947E1697FED400FD5BD8 /* SPSubscriptionsManager.m in Sources */,
-				F003947F1697FED800FD5BD8 /* SPSettingsManager.m in Sources */,
 				F00394801697FF5D00FD5BD8 /* SPAppDelegate.m in Sources */,
-				F00394841698017C00FD5BD8 /* SPErrorManager.m in Sources */,
 				F003949B169803A700FD5BD8 /* TimeHelper.m in Sources */,
 				F003949C169803A700FD5BD8 /* SPSoundHelper.m in Sources */,
-				F003949D1698040C00FD5BD8 /* LoggerClient.m in Sources */,
 				F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */,
 				F0C06DEB169DACA600CE0C67 /* BucketManagerTest.m in Sources */,
 				F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */,

@@ -151,6 +151,9 @@
     {
         tabs = [NSMutableArray new];
         
+        //Sets itself as the base application controller
+        [SPErrorManager sharedInstance].baseApplicationController = self;
+        
         //Set the Reachability Reporter
         [SPRequestManager sharedInstance].reachabilityReporter = [SPReachabilityPopupController new];
         
@@ -549,6 +552,27 @@
     {
         [self registrationMode];
     }
+}
+#pragma mark - SPBaseApplicationController methods
+-(BOOL)canSendMail
+{
+    return ([MFMailComposeViewController canSendMail]);
+}
+-(void)presentEmailWithRecipients:(NSArray*)recipients andSubject:(NSString*)subject andBody:(NSString*)body
+{
+     MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
+     mailCompose.mailComposeDelegate = self;
+     [mailCompose setToRecipients:recipients];
+     [mailCompose setSubject:subject];
+     [mailCompose setMessageBody:body isHTML:YES];
+     
+     //Will modally present the mail compose controller over the root controller
+     [self presentModalViewController:mailCompose animated:YES];
+}
+#pragma mark - MFMailComposeViewControllerDelegate methods
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissModalViewControllerAnimated:YES];
 }
 #pragma mark - SPTabContainerDelegate methods
 -(void)removeTab:(SPTabController*)tab

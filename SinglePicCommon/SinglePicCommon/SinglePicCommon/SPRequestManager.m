@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <SinglePicCommon/AFNetworkActivityIndicatorManager.h>
+#import "AFNetworkActivityIndicatorManager.h"
 #import <SinglePicCommon/AFImageRequestOperation.h>
 #import <SinglePicCommon/AFJSONRequestOperation.h>
 #import "SPRequestManager.h"
@@ -49,7 +49,9 @@
     self = [super init];
     if(self)
     {
+        #if TARGET_OS_IPHONE
         [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+        #endif
     }
     return self;
 }
@@ -94,7 +96,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REACHABILITY_REACHABLE object:nil];
     }
 }
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)alertView:(id)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     [self refreshReachabilityAlert:self.httpClient.networkReachabilityStatus];
 }
@@ -271,6 +273,8 @@
     NSData* postData = nil;
     //UIImage representation
     #define COMPRESSION_QUALITY 0.75
+    
+    #if TARGET_OS_IPHONE
     if([payload isKindOfClass:[UIImage class]])
     {
         UIImage* image = (UIImage*)payload;
@@ -287,6 +291,9 @@
         //postData = UIImagePNGRepresentation(image);
         postData = UIImageJPEGRepresentation(image,COMPRESSION_QUALITY);
     }
+    #else
+    NSAssert(false, @"Implement for OSX");
+    #endif
 
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"PUT"];
@@ -314,7 +321,7 @@
     
     [self.httpClient enqueueHTTPRequestOperation:operation];
 }
--(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(UIImage* responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError
+-(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(id responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError
 {
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     
@@ -322,7 +329,14 @@
     [self.httpClient enqueueHTTPRequestOperation:
      [self.httpClient HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject)
       {
-          UIImage* image = [UIImage imageWithData:responseObject];
+        id image;
+          
+        #if TARGET_OS_IPHONE
+          image = [UIImage imageWithData:responseObject];
+        #else
+          NSAssert(false, @"Implement for OSX");
+        #endif
+
           onCompletion(image);
       }
       failure:^(AFHTTPRequestOperation *operation, NSError *error)

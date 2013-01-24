@@ -7,7 +7,6 @@
 //
 
 #import "RequestManagerTest.h"
-#import "SPRequestManager.h"
 
 @implementation RequestManagerTest
 

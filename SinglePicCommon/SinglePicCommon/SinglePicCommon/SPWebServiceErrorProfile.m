@@ -7,6 +7,7 @@
 //
 
 #import "SPWebServiceErrorProfile.h"
+#import "SPSettingsManager.h"
 
 @class SPWebServiceError;
 

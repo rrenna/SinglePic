@@ -52,7 +52,6 @@
 #import "MDACStyle.h"
 //
 #import "SPLabel.h"
-#import "TestFlight.h"
 
 #pragma mark Constants
 

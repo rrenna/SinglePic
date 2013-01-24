@@ -59,7 +59,7 @@
         }];
         //Login Erors
         SPWebServiceErrorProfile* loginInvalidProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens"  andServerError:@"authentication failed" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
-        {
+        {            
             [[SPErrorManager sharedInstance] alertWithTitle:NSLocalizedString(@"Invalid Login/Password",nil) Description:NSLocalizedString(@"This doesn't appear to be a valid email and password combination.",nil)];
         }];
         SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens" andServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^(NSError * error)
@@ -86,10 +86,14 @@
 #pragma mark
 -(void)alertWithTitle:(NSString*)title Description:(NSString*)description
 {
+    #if TARGET_OS_IPHONE
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-
+    
     [alert show];
     [alert release];
+    #else
+    NSAssert(NO,@"Implement for OS X");
+    #endif
 }
 -(void)logError:(NSError*)error alertUser:(BOOL)alertUser
 {
@@ -163,6 +167,7 @@
             alertBody = body;
         }
         
+        #if TARGET_OS_IPHONE
         UIAlertView* failureAlert;
         if(allowReporting)
         {
@@ -177,6 +182,9 @@
         failureAlert.delegate = self;
         [failureAlert show];
         [failureAlert release];
+        #else
+        NSAssert(NO,@"Implement for OS X");
+        #endif
     }
 }
 -(void)handleUnknownError:(NSError*)error alertUser:(BOOL)alertUser allowReporting:(BOOL)allowReporting
@@ -199,29 +207,29 @@
     NSString* testFlightReport = [NSString stringWithFormat:@"Error:%@ \n Description:%@ Method:%@ UserInfo:%@",failureReason,description,WEB_SERVICE_REQUEST_TYPE_NAMES[method],error.userInfo];
     [TestFlight submitFeedback:testFlightReport];
     #else
+    
     //If this is not a test product, attempt to compose an email for the user to send
-    if([MFMailComposeViewController canSendMail])
+    if([self.baseApplicationController canSendMail])
     {
-        NSString* systemVersion = [[UIDevice currentDevice] systemVersion];
-        NSString* model = [[UIDevice currentDevice] model];
+        NSString* systemVersion = @"";
+        NSString* model = @"";
+        
+        #if TARGET_OS_IPHONE
+        systemVersion = [[UIDevice currentDevice] systemVersion];
+        model = [[UIDevice currentDevice] model];
+        #endif
+        
         NSString* appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         
         NSString* emailSubject = [NSString stringWithFormat:@"[Bug Report : %@]",failureReason];
         NSString* emailBody = [NSString stringWithFormat:@"<html><body><br/><br/><br/><hr/><p>Please Add any details above this line.</p><p>System Version : <b>%@</b><br/>Model : <b>%@</b><br/>SinglePic Version : <b>%@</b><br/>Failure : <b>%@</b> </br>Description : <b>%@</b><br/>Method : <b>%@</b><br/>UserInfo<hr/><p><i>%@</i><p/> </p></body></html>",systemVersion,model,appVersion,failureReason,description,WEB_SERVICE_REQUEST_TYPE_NAMES[method],error.userInfo];
         
-        MFMailComposeViewController *mailCompose = [[[MFMailComposeViewController alloc] init] autorelease];
-        mailCompose.mailComposeDelegate = self;
-        [mailCompose setToRecipients:[NSArray arrayWithObject:CONTACT_SUPPORT_EMAIL]];
-        [mailCompose setSubject:emailSubject];
-        [mailCompose setMessageBody:emailBody isHTML:YES];
-        
-        //Will modally present the mail compose controller over the root controller
-        SPBaseController* base = [SPAppDelegate baseController];
-        [base presentModalViewController:mailCompose animated:YES];
+        [self.baseApplicationController presentEmailWithRecipients:[NSArray arrayWithObject:CONTACT_SUPPORT_EMAIL] andSubject:emailSubject andBody:emailBody];
     }
     #endif
  }
 #pragma mark - UIAlertViewDelegate methods
+#if TARGET_OS_IPHONE
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:ALERT_BUTTON_TITLE_REPORT])
@@ -234,9 +242,5 @@
 {
     [errorQueue removeLastObject];
 }
-#pragma mark - MFMailComposeViewControllerDelegate methods
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    [controller dismissModalViewControllerAnimated:YES];
-}
+#endif
 @end

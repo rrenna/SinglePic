@@ -7,6 +7,7 @@
 //
 
 #import "SPSettingsManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 #define USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY @"USER_DEFAULTS_LAST_SELECTED_ENVIRONMENT_KEY"
 #define USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY @"USER_DEFAULTS_SOUND_EFFECTS_ENABLED_KEY"
@@ -16,10 +17,7 @@
 @interface SPSettingsManager()
 {
     ENVIRONMENT _environment;
-
-    #ifndef PUBLIC_BETA
     BOOL _imageRequiresFaceDetected;
-    #endif
 }
 @property (retain) NSDictionary* serverSettings;
 @end
@@ -46,9 +44,12 @@
         _imageRequiresFaceDetected = YES;
         #else
         _environment = ENVIRONMENT_PRODUCTION;
+        _imageRequiresFaceDetected = NO;
         #endif
         
+        #if TARGET_OS_IPHONE
         [Crashlytics setObjectValue:ENVIRONMENT_NAMES[_environment] forKey:@"settings_environment"];
+        #endif
     }
     return self;
 }
@@ -78,7 +79,7 @@
     //This is used to enforce beta client expiry for Public beta testing
     //Expires on
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [[[NSDateComponents alloc] init] autorelease];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setYear:BETA_EXPIRY_YEAR];
     [components setMonth:BETA_EXPIRY_MONTH];
     [components setDay:BETA_EXPIRY_DAY];
@@ -158,7 +159,9 @@
     
         _environment = environment;
     
+        #if TARGET_OS_IPHONE
         [Crashlytics setObjectValue:ENVIRONMENT_NAMES[_environment] forKey:@"settings_environment"];
+        #endif
     #endif
 }
 -(BOOL)displayVerboseErrorsEnabled
@@ -236,23 +239,27 @@
         }
     #endif
 }
--(CGFloat)daysPicValid
+-(float)daysPicValid
 {
+    float _daysPicValid = 0;
+
     #ifdef DEBUG
-        return 0.25; //When debugging reduce time until expiry to 6 hours
+        _daysPicValid = 0.25; //When debugging reduce time until expiry to 6 hours
     #endif
         
     #ifdef PRIVATE_BETA
-        return PHOTO_EXPIRY_DAYS / 2; //During beta tests reduce time until expiry by 50%
+        _daysPicValid = PHOTO_EXPIRY_DAYS / 2; //During beta tests reduce time until expiry by 50%
     #endif
         
     #ifdef PUBLIC_BETA
-        return PHOTO_EXPIRY_DAYS - 5; //During beta tests reduce time until expiry by 5 days (currently 2 days)
+        _daysPicValid = PHOTO_EXPIRY_DAYS - 5; //During beta tests reduce time until expiry by 5 days (currently 2 days)
     #endif
         
     #ifdef PUBLIC_RELEASE
-        return PHOTO_EXPIRY_DAYS;
+        _daysPicValid = PHOTO_EXPIRY_DAYS;
     #endif
+    
+    return _daysPicValid;
 }
 -(BOOL)imageRequiresFaceDetected
 {

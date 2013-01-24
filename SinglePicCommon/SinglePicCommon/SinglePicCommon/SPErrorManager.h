@@ -6,9 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <MessageUI/MessageUI.h>
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
+#import "SPBaseApplicationController.h"
 
-@interface SPErrorManager : NSObject <UIAlertViewDelegate,MFMailComposeViewControllerDelegate>
+@interface SPErrorManager : NSObject
+
+@property (assign) id<SPBaseApplicationController> baseApplicationController;
 
 + (SPErrorManager *)sharedInstance;
 

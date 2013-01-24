@@ -5,7 +5,25 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <SystemConfiguration/SystemConfiguration.h>
+
+
+    //Protocols
+    #import "SPBaseApplicationController.h"
+
+    #import "SinglePicCommon.h"
+    #import "SPErrors.h"
+    #import "SPSettings.h"
+    #import "SPRequests.h"
+
+    //Managers
+    #import "SPRequestManager.h"
+    #import "SPSettingsManager.h"
+    #import "SPErrorManager.h"
+
 #endif
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+    #import <UIKit/UIKit.h>
     #import <MobileCoreServices/MobileCoreServices.h>
+    #import "TestFlight.h"
+    #import <Crashlytics/Crashlytics.h>
 #endif

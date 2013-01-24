@@ -9,8 +9,4 @@
 #import "SinglePicCommon.h"
 
 @implementation SinglePicCommon
-+(void)test
-{
-    NSLog(@"");
-}
 @end

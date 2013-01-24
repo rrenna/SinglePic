@@ -36,5 +36,5 @@
 -(void)postToNamespace:(REQUEST_NAMESPACE)name withParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError;
 //Image Methods
 -(void)putToURL:(NSURL*)url withPayload:(id)payload withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)(NSError* error))onError;
--(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(UIImage* responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError;
+-(void)getImageFromURL:(NSURL*)url withCompletionHandler:(void (^)(id responseImage))onCompletion andErrorHandler:(void(^)(NSError* error))onError;
 @end

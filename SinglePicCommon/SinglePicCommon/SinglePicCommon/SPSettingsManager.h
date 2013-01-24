@@ -39,6 +39,6 @@ static const NSString* ENVIRONMENT_NAMES[] = { @"ENVIRONMENT_TESTING",@"ENVIRONM
 -(void)setSaveToCameraRollEnabled:(BOOL)enabled;
 //App Settings (App/Server Controlled)
 -(NSString*)serverAddress;
--(CGFloat)daysPicValid;
+-(float)daysPicValid;
 -(BOOL)imageRequiresFaceDetected;
 @end

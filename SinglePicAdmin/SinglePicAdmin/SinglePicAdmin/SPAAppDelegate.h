@@ -7,8 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <SinglePicCommon/SPBaseApplicationController.h>
 
-@interface SPAAppDelegate : NSObject <NSApplicationDelegate>
+@interface SPAAppDelegate : NSObject <NSApplicationDelegate,SPBaseApplicationController>
 
 @property (assign) IBOutlet NSWindow *window;
 

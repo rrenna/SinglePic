@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "SPMessageManager.h"
-#import "SPRequestManager.h"
+#import <SinglePicCommon/SPRequestManager.h>
 #import "SPMessageAccount.h"
 #import "SPMessageThread.h"
 #import "SPMessage.h"

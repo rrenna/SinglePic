@@ -7,7 +7,7 @@
 //
 
 #import "SPReachabilityPopupController.h"
-#import "SPRequestManager.h"
+#import <SinglePicCommon/SPRequestManager.h>
 
 @interface SPReachabilityPopupController()
 {

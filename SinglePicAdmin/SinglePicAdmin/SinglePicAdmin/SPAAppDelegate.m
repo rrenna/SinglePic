@@ -8,6 +8,7 @@
 
 #import "SPAAppDelegate.h"
 
+
 @implementation SPAAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -15,5 +16,12 @@
 
 
 }
-
+-(BOOL)canSendMail
+{
+    return NO;
+}
+-(void)presentEmailWithRecipients:(NSArray*)recipients andSubject:(NSString*)subject andBody:(NSString*)body
+{
+    NSAssert(NO,@"Implement on OS X");
+}
 @end
