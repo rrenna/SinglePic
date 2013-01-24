@@ -16,8 +16,8 @@
     #import <SinglePicCommon/SinglePicCommon.h>
     #import "SPGlobal.h"
     //Helpers
-    #import "TimeHelper.h"
-    #import "SPSoundHelper.h"
+    #import <SinglePicCommon/TimeHelper.h>
+    #import <SinglePicCommon/SPSoundHelper.h>
     //Extensions
     #import "UIView+SizesAndEdges.h"
     #import "UIDevice+IdentifierAddition.h"
@@ -29,19 +29,22 @@
 
     #import <SinglePicCommon/SPErrors.h>
     #import <SinglePicCommon/SPRequests.h>
+    #import <SinglePicCommon/SPBuckets.h>
+    #import <SinglePicCommon/SPProfiles.h>
     #import "SPMessages.h"
-    #import "SPBucket.h"
-    #import "SPProfiles.h"
 
+    #import <SinglePicCommon/SPProfile.h>
+    #import <SinglePicCommon/SPBucket.h>
     #import "SPAppDelegate.h"
 
     #import <SinglePicCommon/SPRequestManager.h>
     #import <SinglePicCommon/SPSettingsManager.h>
     #import <SinglePicCommon/SPErrorManager.h>
+    #import <SinglePicCommon/SPBucketManager.h>
     #import "SPLocationManager.h"
     #import "SPProfileManager.h"
     #import "SPMessageManager.h"
-    #import "SPBucketManager.h"
+
     #import "SPBaseController.h"
 
     #if defined (BETA)

@@ -6,7 +6,6 @@
 //
 //
 
-#import "SPSingleton.h"
 #import <AVFoundation/AVFoundation.h>
 
 #define kImageCapturedSuccessfully @"imageCapturedSuccessfully"

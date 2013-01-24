@@ -34,7 +34,6 @@
     NSString* identifier = [[_data objectForKey:@"id"] description];
     return identifier;
 }
-#pragma mark - MKAnnotation methods
 -(NSString*)title
 {
     return [self name];

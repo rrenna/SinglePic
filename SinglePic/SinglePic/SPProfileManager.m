@@ -7,7 +7,6 @@
 //
 
 #import "SPProfileManager.h"
-#import "SPProfile.h"
 
 @interface SPProfileManager()
 {

@@ -8,7 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "SPLocationChooser.h"
-#import "SPBucket.h"
+#import <SinglePicCommon/SPBucket.h>
 #import "SPCardView.h"
 
 @interface SPLocationChooser()

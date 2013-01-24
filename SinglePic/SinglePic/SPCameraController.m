@@ -10,7 +10,8 @@
 #import <CoreImage/CoreImage.h>
 #import "SVProgressHUD.h"
 #import "SPCameraController.h"
-#import "SPCaptureHelper.h"
+#import <SinglePicCommon/SPCaptureHelper.h>
+#import <SinglePicCommon/SPSoundHelper.h>
 
 @interface SPCameraController()
 @property (retain) SPCaptureHelper* captureHelper;

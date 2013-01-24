@@ -6,17 +6,20 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @protocol MKAnnotation;
 
-@interface SPBucket : NSObject <MKAnnotation,NSCoding>
+@interface SPBucket : NSObject <NSCoding>
 {
 @private
     NSDictionary* _data;
 }
 -(id)initWithData:(NSDictionary*)data;
+
+-(CLLocationCoordinate2D)coordinate;
 -(NSString*)name;
+-(NSString*)title;
+-(NSString*)subtitle;
 -(NSString*)identifier;
 @end

@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75071E8216303C0100935B0D /* SPCaptureHelper.m */; };
 		75071E8516303DD500935B0D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8416303DD500935B0D /* ImageIO.framework */; };
 		75071E8716303DE700935B0D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8616303DE700935B0D /* CoreMedia.framework */; };
 		75071E8916303DF000935B0D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8816303DF000935B0D /* CoreVideo.framework */; };
 		75071E8B16303DFB00935B0D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75071E8A16303DFB00935B0D /* AVFoundation.framework */; };
 		75089E9914D9BF1F0044FC63 /* SPStyles.m in Sources */ = {isa = PBXBuildFile; fileRef = 75089E9814D9BF1F0044FC63 /* SPStyles.m */; };
 		750B93671510F03100C354F2 /* SPCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B93661510EBDD00C354F2 /* SPCircleView.m */; };
-		750B936A1510F62A00C354F2 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B93691510F62A00C354F2 /* TimeHelper.m */; };
 		750E482714C60EE400F7CCFC /* SPReachabilityPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750E482614C60EE400F7CCFC /* SPReachabilityPopupController.m */; };
 		750E482C14C62FAA00F7CCFC /* SPMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750E482A14C62FAA00F7CCFC /* SPMessagesViewController.m */; };
 		750E482D14C62FAA00F7CCFC /* SPMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750E482B14C62FAA00F7CCFC /* SPMessagesViewController.xib */; };
@@ -180,9 +178,6 @@
 		F00394591697F98800FD5BD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F00394571697F98800FD5BD8 /* InfoPlist.strings */; };
 		F00394651697FB6000FD5BD8 /* RequestManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F00394641697FB6000FD5BD8 /* RequestManagerTest.m */; };
 		F00394701697FEB000FD5BD8 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
-		F00394711697FEB200FD5BD8 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B71491C14D00F72809 /* SPProfile.m */; };
-		F00394721697FEB900FD5BD8 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178BA1491C14D00F72809 /* SPBucketManager.m */; };
-		F00394731697FEB900FD5BD8 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B91491C14D00F72809 /* SPBucket.m */; };
 		F00394741697FEBD00FD5BD8 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEB1CC14B644A100936001 /* SPLocationManager.m */; };
 		F00394751697FEC400FD5BD8 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = F01FC20015FD8C5E00852650 /* SPMessageThread.m */; };
 		F00394761697FEC400FD5BD8 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 757616A215DE989A00706519 /* SPMessageAccount.m */; };
@@ -213,8 +208,6 @@
 		F00394981698038300FD5BD8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C1779D1491BC1700F72809 /* QuartzCore.framework */; };
 		F00394991698038300FD5BD8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C1779B1491BC1000F72809 /* CoreLocation.framework */; };
 		F003949A1698038300FD5BD8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599A942148E980100A48435 /* CoreGraphics.framework */; };
-		F003949B169803A700FD5BD8 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 750B93691510F62A00C354F2 /* TimeHelper.m */; };
-		F003949C169803A700FD5BD8 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */; };
 		F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F003949F1698044C00FD5BD8 /* SPBaseController.m */; };
 		F003DB4D14EC8DAB00BD6309 /* Pic-Frame-Blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4C14EC8DAA00BD6309 /* Pic-Frame-Blocks@2x.png */; };
 		F003DB5014EC902100BD6309 /* blockBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4F14EC902100BD6309 /* blockBackground.png */; };
@@ -234,7 +227,6 @@
 		F02642A914DFA94E00E8D649 /* SPCameraController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02642A714DFA94E00E8D649 /* SPCameraController.xib */; };
 		F0265D1614BA49BF00CAE538 /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = F0265D1514BA49BF00CAE538 /* Checkmark.png */; };
 		F0280B891639091A007B2BC8 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0280B861639091A007B2BC8 /* alert.wav */; };
-		F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */; };
 		F02ABE5C14D04EB8000FE283 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F02ABE5B14D04EB8000FE283 /* SPMessage.m */; };
 		F02FB3EC166D828C003B8151 /* Credits.plist in Resources */ = {isa = PBXBuildFile; fileRef = F02FB3EE166D828C003B8151 /* Credits.plist */; };
 		F02FB3F1166D92B4003B8151 /* Overlay_OOB_EXPIRY.png in Resources */ = {isa = PBXBuildFile; fileRef = F02FB3F3166D92B4003B8151 /* Overlay_OOB_EXPIRY.png */; };
@@ -373,9 +365,6 @@
 		F0C178AD1491C04900F72809 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C178AC1491C04800F72809 /* SystemConfiguration.framework */; };
 		F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178AF1491C0BE00F72809 /* SPSingleton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B41491C14D00F72809 /* SPProfileManager.m */; };
-		F0C178BF1491C14D00F72809 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B71491C14D00F72809 /* SPProfile.m */; };
-		F0C178C01491C14D00F72809 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178B91491C14D00F72809 /* SPBucket.m */; };
-		F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178BA1491C14D00F72809 /* SPBucketManager.m */; };
 		F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C178D21491C2AF00F72809 /* SPProfileViewController.m */; };
 		F0C178D61491C45F00F72809 /* SPBrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C178D51491C45F00F72809 /* SPBrowseViewController.xib */; };
@@ -426,8 +415,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75071E8116303C0100935B0D /* SPCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCaptureHelper.h; sourceTree = "<group>"; };
-		75071E8216303C0100935B0D /* SPCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCaptureHelper.m; sourceTree = "<group>"; };
 		75071E8416303DD500935B0D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		75071E8616303DE700935B0D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		75071E8816303DF000935B0D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -435,8 +422,6 @@
 		75089E9814D9BF1F0044FC63 /* SPStyles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStyles.m; sourceTree = "<group>"; };
 		750B93651510EBDD00C354F2 /* SPCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCircleView.h; sourceTree = "<group>"; };
 		750B93661510EBDD00C354F2 /* SPCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPCircleView.m; sourceTree = "<group>"; };
-		750B93681510F62A00C354F2 /* TimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHelper.h; sourceTree = "<group>"; };
-		750B93691510F62A00C354F2 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeHelper.m; sourceTree = "<group>"; };
 		750E482514C60EE400F7CCFC /* SPReachabilityPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPReachabilityPopupController.h; sourceTree = "<group>"; };
 		750E482614C60EE400F7CCFC /* SPReachabilityPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPReachabilityPopupController.m; sourceTree = "<group>"; };
 		750E482914C62FAA00F7CCFC /* SPMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessagesViewController.h; sourceTree = "<group>"; };
@@ -650,8 +635,6 @@
 		75F0E542169DE48D00F38328 /* ManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTest.h; sourceTree = "<group>"; };
 		75F0E543169DE48D00F38328 /* ManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerTest.m; sourceTree = "<group>"; };
 		75F5099214DC4CF000458357 /* SPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessages.h; sourceTree = "<group>"; };
-		75F5099514DC500F00458357 /* SPProfiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfiles.h; sourceTree = "<group>"; };
-		75F5099614DC503200458357 /* SPBuckets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBuckets.h; sourceTree = "<group>"; };
 		75F56326148FE8C900E6A8F9 /* SPTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabController.h; sourceTree = "<group>"; };
 		75F56327148FE8CA00E6A8F9 /* SPTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTabController.m; sourceTree = "<group>"; };
 		75F56328148FE8CA00E6A8F9 /* SPTabController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPTabController.xib; sourceTree = "<group>"; };
@@ -700,8 +683,6 @@
 		F02642A714DFA94E00E8D649 /* SPCameraController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPCameraController.xib; sourceTree = "<group>"; };
 		F0265D1514BA49BF00CAE538 /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Checkmark.png; path = ../../Resources/Checkmark.png; sourceTree = "<group>"; };
 		F0280B861639091A007B2BC8 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = alert.wav; path = ../../Resources/alert.wav; sourceTree = "<group>"; };
-		F0280B8C16390B1D007B2BC8 /* SPSoundHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSoundHelper.h; sourceTree = "<group>"; };
-		F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSoundHelper.m; sourceTree = "<group>"; };
 		F02ABE5A14D04EB8000FE283 /* SPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMessage.h; sourceTree = "<group>"; };
 		F02ABE5B14D04EB8000FE283 /* SPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMessage.m; sourceTree = "<group>"; };
 		F02FB3ED166D828C003B8151 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.plist"; sourceTree = "<group>"; };
@@ -917,12 +898,6 @@
 		F0C178B01491C0BE00F72809 /* SPSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPSingleton.h; sourceTree = "<group>"; };
 		F0C178B31491C14D00F72809 /* SPProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfileManager.h; sourceTree = "<group>"; };
 		F0C178B41491C14D00F72809 /* SPProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfileManager.m; sourceTree = "<group>"; };
-		F0C178B61491C14D00F72809 /* SPProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPProfile.h; sourceTree = "<group>"; };
-		F0C178B71491C14D00F72809 /* SPProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPProfile.m; sourceTree = "<group>"; };
-		F0C178B81491C14D00F72809 /* SPBucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBucket.h; sourceTree = "<group>"; };
-		F0C178B91491C14D00F72809 /* SPBucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBucket.m; sourceTree = "<group>"; };
-		F0C178BA1491C14D00F72809 /* SPBucketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBucketManager.m; sourceTree = "<group>"; };
-		F0C178BB1491C14D00F72809 /* SPBucketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBucketManager.h; sourceTree = "<group>"; };
 		F0C178CC1491C1ED00F72809 /* SPGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGlobal.h; sourceTree = "<group>"; };
 		F0C178CE1491C24600F72809 /* SPBrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBrowseViewController.h; sourceTree = "<group>"; };
 		F0C178CF1491C24600F72809 /* SPBrowseViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SPBrowseViewController.mm; sourceTree = "<group>"; };
@@ -1567,7 +1542,6 @@
 			isa = PBXGroup;
 			children = (
 				75F5631F148FC74200E6A8F9 /* Resources */,
-				F0C178C81491C1A700F72809 /* Helpers */,
 				F0C176861491B80000F72809 /* Libraries */,
 				7599A966148EA61700A48435 /* Extensions */,
 				751D26351491463E00617DD8 /* Views */,
@@ -2286,46 +2260,17 @@
 				F01C41EA14C7C8980079EB18 /* Messages */,
 				75CEB1C914B6448700936001 /* Locations */,
 				F0C178C31491C15F00F72809 /* Profiles */,
-				F0C178C21491C15500F72809 /* Buckets */,
 			);
 			name = Managers;
-			sourceTree = "<group>";
-		};
-		F0C178C21491C15500F72809 /* Buckets */ = {
-			isa = PBXGroup;
-			children = (
-				75F5099614DC503200458357 /* SPBuckets.h */,
-				F0C178BA1491C14D00F72809 /* SPBucketManager.m */,
-				F0C178BB1491C14D00F72809 /* SPBucketManager.h */,
-				F0C178B81491C14D00F72809 /* SPBucket.h */,
-				F0C178B91491C14D00F72809 /* SPBucket.m */,
-			);
-			name = Buckets;
 			sourceTree = "<group>";
 		};
 		F0C178C31491C15F00F72809 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
-				75F5099514DC500F00458357 /* SPProfiles.h */,
 				F0C178B31491C14D00F72809 /* SPProfileManager.h */,
 				F0C178B41491C14D00F72809 /* SPProfileManager.m */,
-				F0C178B61491C14D00F72809 /* SPProfile.h */,
-				F0C178B71491C14D00F72809 /* SPProfile.m */,
 			);
 			name = Profiles;
-			sourceTree = "<group>";
-		};
-		F0C178C81491C1A700F72809 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				75071E8116303C0100935B0D /* SPCaptureHelper.h */,
-				75071E8216303C0100935B0D /* SPCaptureHelper.m */,
-				750B93681510F62A00C354F2 /* TimeHelper.h */,
-				750B93691510F62A00C354F2 /* TimeHelper.m */,
-				F0280B8C16390B1D007B2BC8 /* SPSoundHelper.h */,
-				F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */,
-			);
-			name = Helpers;
 			sourceTree = "<group>";
 		};
 		F0C178CD1491C22600F72809 /* Browse Screen */ = {
@@ -2794,9 +2739,6 @@
 				F0C178A51491C00E00F72809 /* SVProgressHUD.m in Sources */,
 				F0C178B11491C0BE00F72809 /* SPSingleton.m in Sources */,
 				F0C178BD1491C14D00F72809 /* SPProfileManager.m in Sources */,
-				F0C178BF1491C14D00F72809 /* SPProfile.m in Sources */,
-				F0C178C01491C14D00F72809 /* SPBucket.m in Sources */,
-				F0C178C11491C14D00F72809 /* SPBucketManager.m in Sources */,
 				F0C178D01491C24600F72809 /* SPBrowseViewController.mm in Sources */,
 				F0C178D41491C2AF00F72809 /* SPProfileViewController.m in Sources */,
 				75A24A8814928ED800DC8D50 /* SPRegistrationViewController.m in Sources */,
@@ -2848,7 +2790,6 @@
 				F0C0B36914F74E2E007BEB13 /* UIView+Curled.m in Sources */,
 				F0DB12D114FA9603008F81A0 /* SPStyledSegmentedControl.m in Sources */,
 				750B93671510F03100C354F2 /* SPCircleView.m in Sources */,
-				750B936A1510F62A00C354F2 /* TimeHelper.m in Sources */,
 				F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */,
 				F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */,
 				75B4AA3115D44E5700745137 /* SPLocationChooser.m in Sources */,
@@ -2871,8 +2812,6 @@
 				F0E490891613268C00091EC0 /* UIExpandingTextViewInternal.m in Sources */,
 				F0E4908A1613268C00091EC0 /* UIInputToolbar.m in Sources */,
 				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
-				75071E8316303C0100935B0D /* SPCaptureHelper.m in Sources */,
-				F0280B8E16390B1D007B2BC8 /* SPSoundHelper.m in Sources */,
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
 				F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */,
@@ -2885,9 +2824,6 @@
 			files = (
 				F00394651697FB6000FD5BD8 /* RequestManagerTest.m in Sources */,
 				F00394701697FEB000FD5BD8 /* SPProfileManager.m in Sources */,
-				F00394711697FEB200FD5BD8 /* SPProfile.m in Sources */,
-				F00394721697FEB900FD5BD8 /* SPBucketManager.m in Sources */,
-				F00394731697FEB900FD5BD8 /* SPBucket.m in Sources */,
 				F00394741697FEBD00FD5BD8 /* SPLocationManager.m in Sources */,
 				F00394751697FEC400FD5BD8 /* SPMessageThread.m in Sources */,
 				F00394761697FEC400FD5BD8 /* SPMessageAccount.m in Sources */,
@@ -2896,8 +2832,6 @@
 				F00394791697FEC400FD5BD8 /* SPMessageManager.m in Sources */,
 				F003947E1697FED400FD5BD8 /* SPSubscriptionsManager.m in Sources */,
 				F00394801697FF5D00FD5BD8 /* SPAppDelegate.m in Sources */,
-				F003949B169803A700FD5BD8 /* TimeHelper.m in Sources */,
-				F003949C169803A700FD5BD8 /* SPSoundHelper.m in Sources */,
 				F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */,
 				F0C06DEB169DACA600CE0C67 /* BucketManagerTest.m in Sources */,
 				F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */,

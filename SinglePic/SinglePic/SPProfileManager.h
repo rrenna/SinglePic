@@ -6,8 +6,9 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPBucket.h"
-#import "SPProfile.h"
+#import <SinglePicCommon/SPBucket.h>
+#import <SinglePicCommon/SPProfiles.h>
+#import <SinglePicCommon/SPProfile.h>
 
 //Constants
 static __attribute__((unused)) NSString* USER_ID_ME  = @"me";
