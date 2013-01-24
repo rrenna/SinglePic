@@ -89,6 +89,7 @@
 		753211BF14CDF63F00B7EFDA /* MDACTitleBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532118014CDF63F00B7EFDA /* MDACTitleBar@2x.png */; };
 		753211C714CDFA1800B7EFDA /* SPAboutStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753211C614CDFA1800B7EFDA /* SPAboutStyle.m */; };
 		753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		753F073316B19542004C3351 /* libSinglePicCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */; };
 		754D1EDF14DB36EC00F90C19 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EDD14DB36EC00F90C19 /* default.png */; };
 		754D1EE014DB36EC00F90C19 /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EDE14DB36EC00F90C19 /* default@2x.png */; };
 		755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */; };
@@ -223,7 +224,6 @@
 		F003949C169803A700FD5BD8 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0280B8D16390B1D007B2BC8 /* SPSoundHelper.m */; };
 		F003949D1698040C00FD5BD8 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DF78F515EDA35800EE492D /* LoggerClient.m */; };
 		F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F003949F1698044C00FD5BD8 /* SPBaseController.m */; };
-		F00394A31698047900FD5BD8 /* SPReachabilityPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00394A21698047900FD5BD8 /* SPReachabilityPopupController.m */; };
 		F003DB4D14EC8DAB00BD6309 /* Pic-Frame-Blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4C14EC8DAA00BD6309 /* Pic-Frame-Blocks@2x.png */; };
 		F003DB5014EC902100BD6309 /* blockBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = F003DB4F14EC902100BD6309 /* blockBackground.png */; };
 		F003DB9D14ECBD2300BD6309 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F003DB9C14ECBD2300BD6309 /* StoreKit.framework */; };
@@ -559,6 +559,7 @@
 		753211C614CDFA1800B7EFDA /* SPAboutStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAboutStyle.m; sourceTree = "<group>"; };
 		753ED26D15EE8E37000F64F1 /* SPKeyboardDragTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPKeyboardDragTableView.h; sourceTree = "<group>"; };
 		753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPKeyboardDragTableView.m; sourceTree = "<group>"; };
+		753F073016B19275004C3351 /* SPReachabilityReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPReachabilityReporter.h; sourceTree = "<group>"; };
 		754D1EDD14DB36EC00F90C19 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = ../../Resources/default.png; sourceTree = "<group>"; };
 		754D1EDE14DB36EC00F90C19 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x.png"; path = "../../Resources/default@2x.png"; sourceTree = "<group>"; };
 		755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice@2x.png"; path = "../../Resources/Parchment-Right-9Slice@2x.png"; sourceTree = "<group>"; };
@@ -689,8 +690,6 @@
 		F00394831698017C00FD5BD8 /* SPErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorManager.m; sourceTree = "<group>"; };
 		F003949E1698044C00FD5BD8 /* SPBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseController.h; sourceTree = "<group>"; };
 		F003949F1698044C00FD5BD8 /* SPBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPBaseController.m; sourceTree = "<group>"; };
-		F00394A11698047900FD5BD8 /* SPReachabilityPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPReachabilityPopupController.h; sourceTree = "<group>"; };
-		F00394A21698047900FD5BD8 /* SPReachabilityPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPReachabilityPopupController.m; sourceTree = "<group>"; };
 		F00394A41699142700FD5BD8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/Overlay_OOB_EXPIRY.png"; sourceTree = "<group>"; };
 		F00394A51699142700FD5BD8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/Overlay_OOB_BROWSE.png"; sourceTree = "<group>"; };
 		F00394A61699142700FD5BD8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/Overlay_OOB_LOGIN.png"; sourceTree = "<group>"; };
@@ -1065,6 +1064,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				753F073316B19542004C3351 /* libSinglePicCommon.a in Frameworks */,
 				F00394511697F98800FD5BD8 /* SenTestingKit.framework in Frameworks */,
 				F00394871698038300FD5BD8 /* CoreImage.framework in Frameworks */,
 				F00394881698038300FD5BD8 /* AVFoundation.framework in Frameworks */,
@@ -1862,8 +1862,6 @@
 				F00394831698017C00FD5BD8 /* SPErrorManager.m */,
 				F003949E1698044C00FD5BD8 /* SPBaseController.h */,
 				F003949F1698044C00FD5BD8 /* SPBaseController.m */,
-				F00394A11698047900FD5BD8 /* SPReachabilityPopupController.h */,
-				F00394A21698047900FD5BD8 /* SPReachabilityPopupController.m */,
 			);
 			name = Mock;
 			sourceTree = "<group>";
@@ -2403,6 +2401,7 @@
 				75F5099414DC4D7D00458357 /* SPRequests.h */,
 				F0C178C51491C18E00F72809 /* SPRequestManager.h */,
 				F0C178C61491C18E00F72809 /* SPRequestManager.m */,
+				753F073016B19275004C3351 /* SPReachabilityReporter.h */,
 			);
 			name = Requests;
 			sourceTree = "<group>";
@@ -3026,7 +3025,6 @@
 				F003949C169803A700FD5BD8 /* SPSoundHelper.m in Sources */,
 				F003949D1698040C00FD5BD8 /* LoggerClient.m in Sources */,
 				F00394A01698044C00FD5BD8 /* SPBaseController.m in Sources */,
-				F00394A31698047900FD5BD8 /* SPReachabilityPopupController.m in Sources */,
 				F0C06DEB169DACA600CE0C67 /* BucketManagerTest.m in Sources */,
 				F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */,
 				F0C06DF1169DAD4F00CE0C67 /* MessageManagerTest.m in Sources */,
@@ -3380,6 +3378,10 @@
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SinglePicCommon/SinglePicCommon/build/Release-iphoneos\"",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -3403,6 +3405,10 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SinglePicCommon/SinglePicCommon/build/Release-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -3425,6 +3431,10 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SinglePicCommon/SinglePicCommon/build/Release-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -3447,6 +3457,10 @@
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SinglePicCommon/SinglePicCommon/build/Release-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};

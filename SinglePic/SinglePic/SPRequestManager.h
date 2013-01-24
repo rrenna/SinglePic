@@ -6,13 +6,16 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <SinglePicCommon/AFHTTPClient.h>
+#import "SPRequests.h"
 #import "SPWebServiceError.h"
+#import <SinglePicCommon/AFHTTPClient.h>
+#import "SPReachabilityReporter.h"
 
 @class SPWebServiceRequest;
 
 @interface SPRequestManager : NSObject
 @property (readonly) NSString* userToken;
+@property (strong) id<SPReachabilityReporter> reachabilityReporter;
 
 + (SPRequestManager *)sharedInstance;
 

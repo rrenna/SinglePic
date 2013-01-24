@@ -7,6 +7,7 @@
 //
 
 #import "SPReachabilityPopupController.h"
+#import "SPRequestManager.h"
 
 @interface SPReachabilityPopupController()
 {
@@ -16,7 +17,7 @@
 
 @implementation SPReachabilityPopupController
 
--(SPReachabilityPopupController*)init
+-(id)init
 {
     self = [super init];
     

@@ -6,20 +6,19 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPRequestManager.h"
 #import <SinglePicCommon/AFNetworkActivityIndicatorManager.h>
 #import <SinglePicCommon/AFImageRequestOperation.h>
 #import <SinglePicCommon/AFJSONRequestOperation.h>
-#import "SPReachabilityPopupController.h"
+#import "SPRequestManager.h"
 
 #define USER_DEFAULT_KEY_USER_TOKEN @"USER_DEFAULT_KEY_USER_TOKEN"
 
 @interface SPRequestManager()
 {
-    SPReachabilityPopupController* reachabilityController;
     NSString* userToken; //Must be past into every request
 }
-@property (retain) AFHTTPClient* httpClient;
+
+@property (strong) AFHTTPClient* httpClient;
 -(void)requestToNamespace:(REQUEST_NAMESPACE)namespace withType:(WEB_SERVICE_REQUEST_TYPE)type andParameter:(NSString*)parameter andPayload:(id)payload requiringToken:(BOOL)requiresToken withRetryCount:(int)retryCount withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)(SPWebServiceError* error))onError;
 -(void)refreshReachabilityAlert:(AFNetworkReachabilityStatus)status;
 @end
@@ -50,7 +49,6 @@
     self = [super init];
     if(self)
     {
-        reachabilityController = [SPReachabilityPopupController new];
         [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     }
     return self;
@@ -81,7 +79,7 @@
             [self.httpClient.operationQueue setSuspended:YES];
         }
         
-        [reachabilityController show];
+        [self.reachabilityReporter show];
     }
     else if(status == AFNetworkReachabilityStatusReachableViaWiFi || status == AFNetworkReachabilityStatusReachableViaWWAN)
     {
@@ -90,7 +88,7 @@
             [self.httpClient.operationQueue setSuspended:NO];
         }
         
-        [reachabilityController hide];
+        [self.reachabilityReporter hide];
         
         //Post a notification informing the system that we've confirmed reachability
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REACHABILITY_REACHABLE object:nil];

@@ -37,6 +37,26 @@
                BlueprintName = "Tests"
                ReferencedContainer = "container:SinglePic.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "BucketManagerTest">
+               </Test>
+               <Test
+                  Identifier = "ErrorManagerTest">
+               </Test>
+               <Test
+                  Identifier = "LocationManagerTest">
+               </Test>
+               <Test
+                  Identifier = "ManagerTest">
+               </Test>
+               <Test
+                  Identifier = "MessageManagerTest">
+               </Test>
+               <Test
+                  Identifier = "ProfileManagerTest">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

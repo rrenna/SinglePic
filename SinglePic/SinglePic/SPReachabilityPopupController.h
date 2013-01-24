@@ -6,13 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SPRequests.h"
-#import <SinglePicCommon/AFHTTPClient.h>
+#import "SPReachabilityReporter.h"
 
 @class SPReachabilityPopupController;
 
-@interface SPReachabilityPopupController : NSObject <UIAlertViewDelegate>
--(SPReachabilityPopupController*)init;
+@interface SPReachabilityPopupController : NSObject <SPReachabilityReporter,UIAlertViewDelegate>
+
 -(void)show;
 -(void)hide;
 @end

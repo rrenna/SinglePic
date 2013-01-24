@@ -7,6 +7,7 @@
 //
 
 #import "SPBaseController.h"
+#import "SPReachabilityPopupController.h"
 #import "SPLocationManager.h"
 #import "SPMessageManager.h"
 #import "SPTabController.h"
@@ -149,6 +150,10 @@
     if (self) 
     {
         tabs = [NSMutableArray new];
+        
+        //Set the Reachability Reporter
+        [SPRequestManager sharedInstance].reachabilityReporter = [SPReachabilityPopupController new];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userTypeChangedWithNotification:) name:NOTIFICATION_MY_USER_TYPE_CHANGED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(browseScreenProfileSelected) name:NOTIFICATION_BROWSE_SCREEN_PROFILE_SELECTED object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateExpiry) name:NOTIFICATION_MY_EXPIRY_CHANGED object:nil];
