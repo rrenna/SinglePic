@@ -157,7 +157,6 @@
 		75DD4B5914C8B4EA007A8FF2 /* SPPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD4B5814C8B4EA007A8FF2 /* SPPageController.m */; };
 		75DD4B5B14C8BC00007A8FF2 /* SPPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DD4B5A14C8BC00007A8FF2 /* SPPageController.xib */; };
 		75E7E02414B3C39B005C70B4 /* SPTabContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */; };
-		75F0E53D169DDE6700F38328 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */; };
 		75F0E541169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */; };
 		75F0E544169DE48D00F38328 /* ManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F0E543169DE48D00F38328 /* ManagerTest.m */; };
 		75F56329148FE8CA00E6A8F9 /* SPTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56327148FE8CA00E6A8F9 /* SPTabController.m */; };
@@ -254,7 +253,6 @@
 		F07ABC43169246E900219A25 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F07ABC42169246E900219A25 /* CoreImage.framework */; };
 		F0818D5014C00DFD00649DFF /* location-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = F0818D4F14C00DFD00649DFF /* location-pin.png */; };
 		F08A15801608116000DDE5DB /* icon-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = F08A157F1608116000DDE5DB /* icon-Email.png */; };
-		F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */; };
 		F09B3AD915DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */; };
 		F09B3ADB15DC77FB009EF693 /* MDACDoneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117314CDF63F00B7EFDA /* MDACDoneButton.png */; };
 		F09B3ADC15DC77FE009EF693 /* MDACDoneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532117414CDF63F00B7EFDA /* MDACDoneButton@2x.png */; };
@@ -701,7 +699,6 @@
 		F07ABC42169246E900219A25 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		F0818D4F14C00DFD00649DFF /* location-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "location-pin.png"; path = "../../Resources/location-pin.png"; sourceTree = "<group>"; };
 		F08A157F1608116000DDE5DB /* icon-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Email.png"; path = "../../Resources/icon-Email.png"; sourceTree = "<group>"; };
-		F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F09B3AD715DC6D7F009EF693 /* Overlay_OOB_NAVIGATION.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Overlay_OOB_NAVIGATION.png; path = ../../Resources/Overlay_OOB_NAVIGATION.png; sourceTree = "<group>"; };
 		F09B3ADD15DC7AC1009EF693 /* TopFade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TopFade.png; path = ../../Resources/TopFade.png; sourceTree = "<group>"; };
 		F09B3AE315DCB43F009EF693 /* BTN-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-question.png"; path = "../../Resources/BTN-question.png"; sourceTree = "<group>"; };
@@ -1745,22 +1742,6 @@
 			name = "User Screen";
 			sourceTree = "<group>";
 		};
-		F01C41EA14C7C8980079EB18 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				F01C41EF14C7CB2F0079EB18 /* Storage */,
-			);
-			name = Messages;
-			sourceTree = "<group>";
-		};
-		F01C41EF14C7CB2F0079EB18 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */,
-			);
-			name = Storage;
-			sourceTree = "<group>";
-		};
 		F01FC1F115FD122900852650 /* Pullwalla */ = {
 			isa = PBXGroup;
 			children = (
@@ -2183,7 +2164,6 @@
 			isa = PBXGroup;
 			children = (
 				F050FEEC14EDE0030069EB74 /* Subscriptions */,
-				F01C41EA14C7C8980079EB18 /* Messages */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -2719,7 +2699,6 @@
 				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
-				F08B5045164AADA10087C4FA /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2735,7 +2714,6 @@
 				F0C06DEE169DACC500CE0C67 /* LocationManagerTest.m in Sources */,
 				F0C06DF1169DAD4F00CE0C67 /* MessageManagerTest.m in Sources */,
 				F0C06DF4169DAD9800CE0C67 /* ErrorManagerTest.m in Sources */,
-				75F0E53D169DDE6700F38328 /* messageStorage.xcdatamodeld in Sources */,
 				75F0E541169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m in Sources */,
 				75F0E544169DE48D00F38328 /* ManagerTest.m in Sources */,
 				F0505C6D169E390400B55724 /* ProfileManagerTest.m in Sources */,
@@ -3290,19 +3268,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		F08B5043164AADA10087C4FA /* messageStorage.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */,
-			);
-			currentVersion = F08B5044164AADA10087C4FA /* messageStorage 2.xcdatamodel */;
-			path = messageStorage.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 7599A931148E980100A48435 /* Project object */;
 }
