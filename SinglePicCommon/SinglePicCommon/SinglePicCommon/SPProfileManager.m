@@ -19,8 +19,8 @@
 @property (retain) NSMutableArray* profiles;
 @property (assign) USER_TYPE userType;
 @property (retain) SPBucket* bucket;
-@property (retain) UIImage* image;
-@property (retain) UIImage* lastImage;
+@property (retain) id image;
+@property (retain) id lastImage;
 @property (retain) NSString* userID;
 @property (retain) NSString* userName;
 @property (retain) NSDate* expiry;
@@ -31,7 +31,7 @@
 @property (assign) BOOL hasProfileImageSet;
 
 //Set Methods - sets the value(s) locally, optionally callinging syncronize when completed - should only be called from within the SPProfileManager
--(void)setMyImage:(UIImage*)_image;
+-(void)setMyImage:(id)_image;
 -(void)setMyIcebreaker:(NSString*)_icebreaker synchronize:(BOOL)synchronize;
 -(void)setMyEmail:(NSString*)_email synchronize:(BOOL)synchronize;
 -(void)setMyGender:(GENDER)_gender synchronize:(BOOL)synchronize;
@@ -151,7 +151,7 @@
     }
     return self.bucket;
 }
--(UIImage*)myImage
+-(id)myImage
 {
     if(!self.image)
     {
@@ -161,7 +161,12 @@
                                                              NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent:[self myUserID]];
+        
+        #if TARGET_OS_IPHONE
         self.image = [UIImage imageWithContentsOfFile:path];
+        #else
+        NSAssert(NO,@"Implement on OS X");
+        #endif
         
         if(!self.image)
         {
@@ -258,7 +263,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
     return annonymousPreference;
 }
 #pragma mark - Set Profile Methods
--(void)setMyImage:(UIImage*)image_
+-(void)setMyImage:(id)image_
 {
     if (image_ != nil)
     {
@@ -268,13 +273,27 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString* path = [documentsDirectory stringByAppendingPathComponent: 
                           [NSString stringWithString: [self myUserID] ] ];
-        NSData* data = UIImageJPEGRepresentation(image_,1.0);
+        
+        NSData* data;
+        #if TARGET_OS_IPHONE
+        data = UIImageJPEGRepresentation(image_,1.0);
+        #else
+        NSAssert(NO,@"Implement on OS X");
+        #endif
         
         //Save image to disk
         [data writeToFile:path atomically:YES];
         
         //Save orientation to NSUserDefaults
-        [[NSUserDefaults standardUserDefaults] setInteger:image_.imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
+        int imageOrientation;
+        #if TARGET_OS_IPHONE
+        imageOrientation = [(UIImage*)image_ imageOrientation];
+        #else
+        imageOrientation = 0;
+        NSAssert(NO,@"Ensure this is required for OS X");
+        #endif
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
         
         self.image = image_;
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_MY_IMAGE_CHANGED object:nil];
@@ -332,7 +351,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     self.bucket = bucket_;
     
+    #if TARGET_OS_IPHONE
     [Crashlytics setObjectValue:bucket_ forKey:@"profile_bucket"];
+    #endif
     
     NSData *encodedBucket = [NSKeyedArchiver archivedDataWithRootObject:bucket_];
     [[NSUserDefaults standardUserDefaults] setObject:encodedBucket forKey:USER_DEFAULT_KEY_USER_BUCKET];
@@ -345,7 +366,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     self.userID = userID_;
     
+    #if TARGET_OS_IPHONE
     [Crashlytics setObjectValue:userID_ forKey:@"profile_userid"];
+    #endif
     
     [[NSUserDefaults standardUserDefaults] setObject:userID_ forKey:USER_DEFAULT_KEY_USER_ID];
     
@@ -357,7 +380,9 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     self.userName = userName_;
     
-     [Crashlytics setObjectValue:userName_ forKey:@"profile_username"];
+    #if TARGET_OS_IPHONE
+    [Crashlytics setObjectValue:userName_ forKey:@"profile_username"];
+    #endif
     
     [[NSUserDefaults standardUserDefaults] setObject:userName_ forKey:USER_DEFAULT_KEY_USER_NAME];
     
@@ -369,6 +394,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 {
     self.expiry = expiry_;
     
+    #if TARGET_OS_IPHONE
     //Schedule local notification on expiry (and clear any currently scheduled ones)
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
@@ -378,7 +404,11 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         expiryNotification.fireDate = expiry_;
         expiryNotification.alertBody = NOTIFICATION_BODY_IMAGE_EXPIRY;
         [[UIApplication sharedApplication] scheduleLocalNotification:expiryNotification];
+
     }
+    #else
+    NSAssert(NO,@"Implement on OS X");
+    #endif
     
     [[NSUserDefaults standardUserDefaults] setObject:self.expiry forKey:USER_DEFAULT_KEY_EXPIRY];
     
@@ -507,11 +537,11 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
 }
 static CGSize MAXIMUM_IMAGE_SIZE = {275.0,275.0};
 static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
--(void)saveMyPicture:(UIImage*)image_ withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
+-(void)saveMyPicture:(id)image_ withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
     [self saveMyPicture:image_ withProperties:nil andCompletionHandler:onCompletion andProgressHandler:onProgress andErrorHandler:onError];
 }
--(void)saveMyPicture:(UIImage*)image_ withProperties:(NSDictionary*)properties andCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
+-(void)saveMyPicture:(id)image_ withProperties:(NSDictionary*)properties andCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError
 {
     __unsafe_unretained SPProfileManager* weakSelf = self;
     
@@ -772,7 +802,7 @@ static NSURL* _thumbnailUploadURLCache = nil;
          NSDate* lastUpdated = [TimeHelper dateWithServerTime:lastUpdatedServerTime_];
          NSDate* expiry = [lastUpdated dateByAddingTimeInterval:SECONDS_PER_DAY * [[SPSettingsManager sharedInstance] daysPicValid]];
          
-         void (^onImageRecieved)(UIImage*) = ^(UIImage* responseImage) {
+         void (^onImageRecieved)(id) = ^(id responseImage) {
          
              [[SPBucketManager sharedInstance] retrieveBucketsWithCompletionHandler:^(NSArray *buckets)
               {
@@ -1229,9 +1259,9 @@ static int profileCounter = 0;
     }
 }
 #pragma mark - Images
--(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError
+-(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(id thumbnail))onCompletion andErrorHandler:(void(^)())onError
 {
-    UIImage* thumbnail = [_thumbnails objectForKey:profile.identifier];
+    id thumbnail = [_thumbnails objectForKey:profile.identifier];
     
     if(thumbnail)
     {
@@ -1239,7 +1269,7 @@ static int profileCounter = 0;
     }
     else
     {
-        [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(UIImage* responseObject)
+        [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(id responseObject)
          {
             if(responseObject && profile.identifier)
             {
@@ -1257,10 +1287,10 @@ static int profileCounter = 0;
          }];
     }
 }
--(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* image))onCompletion andErrorHandler:(void(^)())onError
+-(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(id image))onCompletion andErrorHandler:(void(^)())onError
 {
     //Note: We do not cache full-size images
-    [[SPRequestManager sharedInstance] getImageFromURL:[profile pictureURL] withCompletionHandler:^(UIImage* responseObject)
+    [[SPRequestManager sharedInstance] getImageFromURL:[profile pictureURL] withCompletionHandler:^(id responseObject)
      {
          onCompletion(responseObject);
      }
@@ -1498,7 +1528,14 @@ static int profileCounter = 0;
 {
     [[SPRequestManager sharedInstance] removeUserToken];
     //Cancel any queued local notifications
+    
+    
+    #if TARGET_OS_IPHONE
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    #else
+    NSAssert(NO,@"Implement on OS X");
+    #endif
+    
     
     //Clear properties
     self.profiles = [NSMutableArray array];

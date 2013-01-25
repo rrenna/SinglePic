@@ -16,7 +16,7 @@
 {
     NSDictionary* _data;
 }
-@property (retain) UIImage* _thumbnail;
+@property (retain) id _thumbnail;
 -(BOOL)_checkIsValid:(NSDictionary*) data;
 @end
 

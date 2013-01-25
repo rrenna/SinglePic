@@ -7,6 +7,7 @@
 #import "UIImage+Alpha.h"
 
 // Private helper methods
+#if TARGET_OS_IPHONE
 @interface UIImage ()
 - (void)addRoundedRectToPath:(CGRect)rect context:(CGContextRef)context ovalWidth:(CGFloat)ovalWidth ovalHeight:(CGFloat)ovalHeight;
 @end
@@ -76,5 +77,5 @@
     CGContextClosePath(context);
     CGContextRestoreGState(context);
 }
-
 @end
+#endif

@@ -203,8 +203,10 @@
     
     [[SPRequestManager sharedInstance] deleteFromNamespace:REQUEST_NAMESPACE_USERS withParameter:parameter requiringToken:YES withCompletionHandler:^(id responseObject)
      {
-             //Reset Badge
+         #if TARGET_OS_IPHONE
+         //Reset Badge
          [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+         #endif
          
          onCompletion();
      }
@@ -300,8 +302,10 @@
                       [weakSelf saveMessage:message toThread:thread isIncoming:YES atTime:time];
                   }
                   
+                  #if TARGET_OS_IPHONE
                   //Reset Badge
                   [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+                  #endif
                   
                   [SPSoundHelper vibrate];
                       

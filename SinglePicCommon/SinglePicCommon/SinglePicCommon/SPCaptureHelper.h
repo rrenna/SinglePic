@@ -13,7 +13,7 @@
 @interface SPCaptureHelper : NSObject
 
 @property (retain) AVCaptureVideoPreviewLayer *previewLayer;
-@property (retain) UIImage *stillImage;
+@property (retain) id stillImage;
 @property (retain) AVCaptureSession *captureSession;
 
 - (void)addVideoPreviewLayer;
@@ -25,6 +25,6 @@
 - (BOOL)isFrontCamera;
 - (BOOL)canSwitchCamera;
 - (void)switchCamera;
-- (void)captureWithCompletion:(void (^)(UIImage* capturedImage))onCompletion;
+- (void)captureWithCompletion:(void (^)(id capturedImage))onCompletion;
 
 @end

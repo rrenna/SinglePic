@@ -8,8 +8,6 @@
 
 #import "SPBaseController.h"
 #import "SPReachabilityPopupController.h"
-#import <SinglePicCommon/SPLocationManager.h>
-#import <SinglePicCommon/SPMessageManager.h>
 #import "SPTabController.h"
 #import "SPBrowseViewController.h"
 #import "SPSubscriptionsManager.h"

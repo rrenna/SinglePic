@@ -175,6 +175,11 @@
 		75C5A05816B1B78700CBAE31 /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C5A05316B1B78700CBAE31 /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75C5A05A16B1B78700CBAE31 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C5A05416B1B78700CBAE31 /* libTestFlight.a */; };
 		75C5A05B16B1B78700CBAE31 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 75C5A05516B1B78700CBAE31 /* release_notes.md */; };
+		F05EFA3916B2BEB800AB0929 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA3816B2BEB700AB0929 /* ImageIO.framework */; };
+		F05EFA3C16B2BEDD00AB0929 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA3B16B2BEDD00AB0929 /* ImageIO.framework */; };
+		F05EFA4216B2BF9D00AB0929 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */; };
+		F05EFA4416B2BFC400AB0929 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4316B2BFC400AB0929 /* AudioToolbox.framework */; };
+		F05EFA4616B2BFEE00AB0929 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -287,6 +292,11 @@
 		75C5A05316B1B78700CBAE31 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		75C5A05416B1B78700CBAE31 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		75C5A05516B1B78700CBAE31 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		F05EFA3816B2BEB700AB0929 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		F05EFA3B16B2BEDD00AB0929 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F05EFA4316B2BFC400AB0929 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +304,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F05EFA4616B2BFEE00AB0929 /* CoreMedia.framework in Frameworks */,
+				F05EFA4416B2BFC400AB0929 /* AudioToolbox.framework in Frameworks */,
+				F05EFA4216B2BF9D00AB0929 /* AVFoundation.framework in Frameworks */,
+				F05EFA3916B2BEB800AB0929 /* ImageIO.framework in Frameworks */,
 				755307C116B1D58900536075 /* CoreLocation.framework in Frameworks */,
 				753F072D16B18ED1004C3351 /* SystemConfiguration.framework in Frameworks */,
 				753F072716B1878B004C3351 /* Foundation.framework in Frameworks */,
@@ -305,6 +319,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F05EFA3C16B2BEDD00AB0929 /* ImageIO.framework in Frameworks */,
 				755307AF16B1CBD700536075 /* Crashlytics.framework in Frameworks */,
 				753F077616B19AEE004C3351 /* UIKit.framework in Frameworks */,
 				753F072B16B1896D004C3351 /* SystemConfiguration.framework in Frameworks */,
@@ -536,6 +551,11 @@
 		755DDDD116AEF68F00AA8D29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */,
+				F05EFA4316B2BFC400AB0929 /* AudioToolbox.framework */,
+				F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */,
+				F05EFA3B16B2BEDD00AB0929 /* ImageIO.framework */,
+				F05EFA3816B2BEB700AB0929 /* ImageIO.framework */,
 				755307C016B1D58900536075 /* CoreLocation.framework */,
 				755307AE16B1CBD700536075 /* Crashlytics.framework */,
 				753F077516B19AEE004C3351 /* UIKit.framework */,

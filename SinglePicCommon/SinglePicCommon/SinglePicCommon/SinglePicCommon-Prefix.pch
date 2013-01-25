@@ -14,6 +14,7 @@
     //Helpers
     #import <SinglePicCommon/TimeHelper.h>
     #import <SinglePicCommon/SPSoundHelper.h>
+    #import <SinglePicCommon/SPCaptureHelper.h>
 
     //Protocols
     #import "SPBaseApplicationController.h"

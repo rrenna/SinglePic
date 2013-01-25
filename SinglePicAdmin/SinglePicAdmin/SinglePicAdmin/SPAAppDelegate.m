@@ -13,9 +13,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
-
 }
+#pragma mark -
 -(BOOL)canSendMail
 {
     return NO;
@@ -23,5 +22,14 @@
 -(void)presentEmailWithRecipients:(NSArray*)recipients andSubject:(NSString*)subject andBody:(NSString*)body
 {
     NSAssert(NO,@"Implement on OS X");
+}
+#pragma mark - 
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
+{
+    return 5;
+}
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+    return [NSView new];
 }
 @end

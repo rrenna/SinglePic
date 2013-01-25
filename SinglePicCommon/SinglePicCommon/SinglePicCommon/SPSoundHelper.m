@@ -55,7 +55,11 @@ static BOOL soundEffectsEnabledInApp; //Cache the setting to avoid extra message
 #pragma mark - Vibration methods
 +(void) vibrate
 {
+    #if TARGET_OS_IPHONE
     //Vibrate the device (NOTE: Does nothing on devices which do not support vibrations)
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    #else
+    AudioServicesPlaySystemSound(kSystemSoundID_UserPreferredAlert);
+    #endif
 }
 @end

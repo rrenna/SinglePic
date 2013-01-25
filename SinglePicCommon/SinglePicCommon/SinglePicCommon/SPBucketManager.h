@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "SPBuckets.h"
+
 @interface SPBucketManager : NSObject
 @property (retain) NSMutableArray* buckets;
 

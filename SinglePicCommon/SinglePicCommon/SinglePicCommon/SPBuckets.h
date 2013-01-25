@@ -7,3 +7,5 @@
 //
 
 //Used to place information about SinglePic buckets that other components may need to reference
+
+#import "SPBucket.h"

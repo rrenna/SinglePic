@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <SinglePicCommon/SPBaseApplicationController.h>
 
-@interface SPAAppDelegate : NSObject <NSApplicationDelegate,SPBaseApplicationController>
+@interface SPAAppDelegate : NSObject <NSApplicationDelegate,SPBaseApplicationController,NSTableViewDataSource,NSTableViewDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

@@ -18,6 +18,7 @@
         isFrontCamera = NO;
         isFlashMode = NO;
         
+        #if TARGET_OS_IPHONE
         NSArray *devices = [AVCaptureDevice devices];
         for (AVCaptureDevice *device in devices) {
             
@@ -26,6 +27,10 @@
                 isFlashMode = YES;
             }
         }
+        #else
+        //Flash is not avaliable on OS X
+        isFlashMode = NO;
+        #endif
 	}
 	return self;
 }
@@ -218,7 +223,7 @@
         }
     }
 }
--(void)captureWithCompletion:(void (^)(UIImage* capturedImage))onCompletion
+-(void)captureWithCompletion:(void (^)(id capturedImage))onCompletion
 {
     AVCaptureConnection *videoConnection = nil;
 	for (AVCaptureConnection *connection in [[self stillImageOutput] connections]) {
@@ -234,20 +239,29 @@
 	}
     __unsafe_unretained SPCaptureHelper *weakSelf = self;
     [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:videoConnection
-                                                         completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
-                                                             CFDictionaryRef exifAttachments = CMGetAttachment(imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
-                                                             if (exifAttachments) {
-                                                                 NSLog(@"attachements: %@", exifAttachments);
-                                                             } else {
-                                                                 NSLog(@"no attachments");
-                                                             }
-                                                             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-                                                             UIImage *image = [[UIImage alloc] initWithData:imageData];
-                                                             [weakSelf setStillImage:image];
-                                                             
-                                                             onCompletion(weakSelf.stillImage);
-                                                             
-                                                         }];
+                             completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
+                                 
+                                         CFDictionaryRef exifAttachments = CMGetAttachment(imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
+                                         if (exifAttachments) {
+                                             NSLog(@"attachements: %@", exifAttachments);
+                                         } else {
+                                             NSLog(@"no attachments");
+                                         }
+                                         
+                                         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+                                        
+                                         id image;
+                                         #if TARGET_OS_IPHONE
+                                            image = [[UIImage alloc] initWithData:imageData];
+                                         #else
+                                            NSAssert(NO,@"Implement on OS X");
+                                         #endif
+                                         
+                                         [weakSelf setStillImage:image];
+                                         
+                                         onCompletion(weakSelf.stillImage);
+                                         
+                                     }];
 }
 - (void)dealloc {
     

@@ -9,8 +9,6 @@
 #import "SPProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SPComposeViewController.h"
-#import <SinglePicCommon/SPProfile.h>
-#import <SinglePicCommon/SPMessage.h>
 #import "SPStyledView.h"
 #import "SPStyledButton.h"
 #import "SPCardView.h"

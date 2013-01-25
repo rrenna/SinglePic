@@ -7,7 +7,6 @@
 //
 
 #import "SPProfileIconController.h"
-#import <SinglePicCommon/SPProfile.h>
 
 @interface SPProfileIconController()
 {

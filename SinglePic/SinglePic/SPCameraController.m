@@ -11,8 +11,6 @@
 #import "SVProgressHUD.h"
 #import "SPCameraController.h"
 #import <SinglePicCommon/SPCaptureHelper.h>
-#import <SinglePicCommon/SPSoundHelper.h>
-
 
 @interface SPCameraController()
 @property (retain) SPCaptureHelper* captureHelper;

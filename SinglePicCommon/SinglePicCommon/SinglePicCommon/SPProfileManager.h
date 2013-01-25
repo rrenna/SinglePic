@@ -40,7 +40,7 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(NSString*)myUserID;
 -(NSString*)myUserName;
 -(NSDate*)myExpiry;
--(UIImage*)myImage;
+-(id)myImage;
 -(NSString*)myIcebreaker;
 -(NSString*)myEmail;
 -(GENDER)myGender;
@@ -70,8 +70,8 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 
 //Save Methods - sets the value(s) locally and saves the result
 -(void)saveMyBucket:(SPBucket*)_bucket withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
--(void)saveMyPicture:(UIImage*)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError;
--(void)saveMyPicture:(UIImage*)image_ withProperties:(NSDictionary*)properties andCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError;
+-(void)saveMyPicture:(id)_image withCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError;
+-(void)saveMyPicture:(id)image_ withProperties:(NSDictionary*)properties andCompletionHandler:(void (^)(id responseObject))onCompletion andProgressHandler:(void (^)(float progress))onProgress andErrorHandler:(void(^)())onError;
 -(void)saveMyIcebreaker:(NSString*)_icebreaker withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
 -(void)saveMyGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
 -(void)saveMyIcebreaker:(NSString*)_icebreaker andGender:(GENDER)_gender andPreference:(GENDER)_preference withCompletionHandler:(void (^)(id responseObject))onCompletion andErrorHandler:(void(^)())onError;
@@ -97,8 +97,8 @@ static GENDER GENDER_FROM_NAME(NSString* genderName)
 -(void)retrieveProfilesWithCompletionHandler:(void (^)(NSArray* profiles))onCompletion andErrorHandler:(void(^)())onError;
 
 //Images
--(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* thumbnail))onCompletion andErrorHandler:(void(^)())onError;
--(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(UIImage* image))onCompletion andErrorHandler:(void(^)())onError;
+-(void)retrieveProfileThumbnail:(SPProfile*)profile withCompletionHandler:(void (^)(id thumbnail))onCompletion andErrorHandler:(void(^)())onError;
+-(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(id image))onCompletion andErrorHandler:(void(^)())onError;
 
 //Blocking Users
 -(void)blockProfile:(SPProfile*)profile withCompletionHandler:(void (^)())onCompletion andErrorHandler:(void(^)())onError;

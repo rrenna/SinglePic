@@ -6,6 +6,7 @@
 #import "UIImage+Alpha.h"
 
 // Private helper methods
+#if TARGET_OS_IPHONE
 @interface UIImage ()
 - (CGImageRef)newBorderMask:(NSUInteger)borderSize size:(CGSize)size;
 @end
@@ -124,5 +125,5 @@
     
     return maskImageRef;
 }
-
 @end
+#endif

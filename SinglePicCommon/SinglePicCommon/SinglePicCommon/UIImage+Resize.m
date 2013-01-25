@@ -8,6 +8,7 @@
 #import "UIImage+Alpha.h"
 
 // Private helper methods
+#if TARGET_OS_IPHONE
 @interface UIImage ()
 - (UIImage *)resizedImage:(CGSize)newSize
                 transform:(CGAffineTransform)transform
@@ -186,6 +187,5 @@
     
     return transform;
 }
-
-
 @end
+#endif

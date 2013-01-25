@@ -7,7 +7,6 @@
 //
 
 #import "SPAppDelegate.h"
-#import <SinglePicCommon/SPProfileManager.h>
 #import "SPBaseController.h"
 #import <objc/runtime.h>
 
