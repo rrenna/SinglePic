@@ -21,10 +21,15 @@
 @property (weak) IBOutlet NSTextField *createNewUserErrorLabel;
 @property (weak) IBOutlet NSProgressIndicator *createNewUserProgressIndicator;
 @property (weak) IBOutlet NSTableView *accountsTableView;
+@property (weak) IBOutlet NSButton *connectToAccountButton;
+@property (weak) IBOutlet NSImageView *accountImageView;
+@property (weak) IBOutlet NSBox *accountBox;
+
 
 
 - (IBAction)openCreateNewUserPanel:(id)sender;
 - (IBAction)createNewUser:(id)sender;
 - (IBAction)createNewUserBucketPickerSelectionChanged:(id)sender;
+- (IBAction)connectToAccount:(id)sender;
 
 @end

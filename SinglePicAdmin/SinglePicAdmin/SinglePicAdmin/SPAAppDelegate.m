@@ -85,6 +85,35 @@
     NSMenuItem* item = [self.createNewUserBucketPicker selectedItem];
     [self.createNewUserBucketPicker setTitle:item.title];
 }
+
+- (IBAction)connectToAccount:(id)sender
+{
+    NSInteger selectedRow = [self.accountsTableView selectedRow];
+    NSString* username = [[self.accounts allKeys] objectAtIndex:selectedRow];
+    NSDictionary* accountDictionary = [self.accounts objectForKey:username];
+    NSString* email = [accountDictionary objectForKey:@"email"];
+    NSString* password = [accountDictionary objectForKey:@"password"];
+    
+    [[SPProfileManager sharedInstance] loginWithEmail:email andPassword:password andCompletionHandler:^(id responseObject)
+    {
+        //Disable interaction with the table
+        [self.accountsTableView setEnabled:NO];
+        
+        self.accountBox.title = username;
+        
+        NSImage* profileImage = [[SPProfileManager sharedInstance] myImage];
+        if(profileImage)
+        {
+            [self.accountImageView setImage:profileImage];
+        }
+        
+        [self.accountImageView setEnabled:YES];
+        
+    } andErrorHandler:^
+    {
+        //
+    }];
+}
 - (IBAction)openCreateNewUserPanel:(id)sender
 {
     [self.createNewUserBucketPicker removeAllItems];
@@ -192,5 +221,10 @@
     }
     
     return contentField;
+}
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
+{
+    [self.connectToAccountButton setEnabled:YES];
+    return YES;
 }
 @end

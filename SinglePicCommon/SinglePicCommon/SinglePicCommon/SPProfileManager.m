@@ -165,7 +165,7 @@
         #if TARGET_OS_IPHONE
         self.image = [UIImage imageWithContentsOfFile:path];
         #else
-        NSAssert(NO,@"Implement on OS X");
+        self.image = [[NSImage alloc] initWithContentsOfFile:path];
         #endif
         
         if(!self.image)
