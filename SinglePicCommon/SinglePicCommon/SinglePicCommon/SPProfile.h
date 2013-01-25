@@ -13,7 +13,10 @@
 -(BOOL)isValid;
 -(NSString*)identifier;
 -(NSString*)username;
+-(NSString*)bucketIdentifier;
 -(NSString*)icebreaker;
+-(GENDER)gender;
+-(GENDER)preference;
 -(NSDate*)timestamp;
 -(NSURL*)thumbnailURL;
 -(NSURL*)pictureURL;

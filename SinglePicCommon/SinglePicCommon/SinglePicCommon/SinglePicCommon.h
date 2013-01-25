@@ -24,9 +24,9 @@
 
 //Information
 #define CONTACT_SUPPORT_EMAIL @"support@singlepicdating.com"
-
-//Profiles
-static const __attribute__((unused)) NSString* GENDER_NAMES[3] = {@"undefined",@"male",@"female"};
+#define MINIMUM_USERNAME_LENGTH 6
+#define MINIMUM_PASSWORD_LENGTH 6
+#define MINIMUM_EMAIL_LENGTH 4
 
 @interface SinglePicCommon : NSObject
 @end

@@ -404,10 +404,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         expiryNotification.fireDate = expiry_;
         expiryNotification.alertBody = NOTIFICATION_BODY_IMAGE_EXPIRY;
         [[UIApplication sharedApplication] scheduleLocalNotification:expiryNotification];
-
     }
-    #else
-    NSAssert(NO,@"Implement on OS X");
     #endif
     
     [[NSUserDefaults standardUserDefaults] setObject:self.expiry forKey:USER_DEFAULT_KEY_EXPIRY];
@@ -1529,13 +1526,9 @@ static int profileCounter = 0;
     [[SPRequestManager sharedInstance] removeUserToken];
     //Cancel any queued local notifications
     
-    
     #if TARGET_OS_IPHONE
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    #else
-    NSAssert(NO,@"Implement on OS X");
     #endif
-    
     
     //Clear properties
     self.profiles = [NSMutableArray array];

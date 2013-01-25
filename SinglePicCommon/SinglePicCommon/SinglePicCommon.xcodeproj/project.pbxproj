@@ -163,6 +163,8 @@
 		7553082416B1E38300536075 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553081F16B1E38300536075 /* SPLocationManager.m */; };
 		7553082516B1E38300536075 /* SPLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553082616B1E38300536075 /* SPLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7553082B16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7553082916B30EF100536075 /* messageStorage.xcdatamodeld */; };
+		7553082C16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7553082916B30EF100536075 /* messageStorage.xcdatamodeld */; };
 		755DDDD316AEF68F00AA8D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDDD216AEF68F00AA8D29 /* Cocoa.framework */; };
 		755DDDDD16AEF69000AA8D29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 755DDDDB16AEF69000AA8D29 /* InfoPlist.strings */; };
 		755DDDF916AEF85F00AA8D29 /* SinglePicCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 755DDDDF16AEF69000AA8D29 /* SinglePicCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -275,6 +277,7 @@
 		7553081E16B1E38300536075 /* SPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocationManager.h; sourceTree = "<group>"; };
 		7553081F16B1E38300536075 /* SPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLocationManager.m; sourceTree = "<group>"; };
 		7553082016B1E38300536075 /* SPLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLocations.h; sourceTree = "<group>"; };
+		7553082A16B30EF100536075 /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		755DDDCF16AEF68F00AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SinglePicCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		755DDDD216AEF68F00AA8D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		755DDDD516AEF68F00AA8D29 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -490,8 +493,7 @@
 		755307E616B1DE6B00536075 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */,
-				7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */,
+				7553082716B2ECBD00536075 /* SPMessageThread */,
 				755307E716B1DE9B00536075 /* UIImage */,
 			);
 			name = Categories;
@@ -513,6 +515,7 @@
 		755307FB16B1E09000536075 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				7553082816B30E5300536075 /* Storage */,
 				7553080016B1E10A00536075 /* SPMessageManager.h */,
 				7553080116B1E10A00536075 /* SPMessageManager.m */,
 				7553080216B1E10A00536075 /* SPMessages.h */,
@@ -528,6 +531,23 @@
 				7553082016B1E38300536075 /* SPLocations.h */,
 			);
 			name = Locations;
+			sourceTree = "<group>";
+		};
+		7553082716B2ECBD00536075 /* SPMessageThread */ = {
+			isa = PBXGroup;
+			children = (
+				7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */,
+				7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */,
+			);
+			name = SPMessageThread;
+			sourceTree = "<group>";
+		};
+		7553082816B30E5300536075 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				7553082916B30EF100536075 /* messageStorage.xcdatamodeld */,
+			);
+			name = Storage;
 			sourceTree = "<group>";
 		};
 		755DDDC516AEF68F00AA8D29 = {
@@ -839,6 +859,7 @@
 				7553081716B1E10A00536075 /* SPMessageThread.m in Sources */,
 				7553081B16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */,
 				7553082316B1E38300536075 /* SPLocationManager.m in Sources */,
+				7553082B16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +900,7 @@
 				7553081816B1E10A00536075 /* SPMessageThread.m in Sources */,
 				7553081C16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */,
 				7553082416B1E38300536075 /* SPLocationManager.m in Sources */,
+				7553082C16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1287,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7553082916B30EF100536075 /* messageStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7553082A16B30EF100536075 /* messageStorage 2.xcdatamodel */,
+			);
+			currentVersion = 7553082A16B30EF100536075 /* messageStorage 2.xcdatamodel */;
+			path = messageStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 755DDDC616AEF68F00AA8D29 /* Project object */;
 }

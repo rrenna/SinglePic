@@ -14,6 +14,7 @@
 		755DDE1F16AEF9B600AA8D29 /* SPAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 755DDE1E16AEF9B600AA8D29 /* SPAAppDelegate.m */; };
 		755DDE2216AEF9B600AA8D29 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 755DDE2016AEF9B600AA8D29 /* MainMenu.xib */; };
 		755DDE5216AF047200AA8D29 /* SinglePicCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */; };
+		75BA3B1F16B3157C00CE1710 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA3B1D16B3157C00CE1710 /* messageStorage.xcdatamodeld */; };
 		F05EFA4A16B2C1E300AB0929 /* appicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = F05EFA4916B2C1E300AB0929 /* appicon114.png */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		755DDE1E16AEF9B600AA8D29 /* SPAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAAppDelegate.m; sourceTree = "<group>"; };
 		755DDE2116AEF9B600AA8D29 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SinglePicCommon.framework; path = "/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug/SinglePicCommon.framework"; sourceTree = "<absolute>"; };
+		75BA3B1E16B3157C00CE1710 /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F05EFA4916B2C1E300AB0929 /* appicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon114.png; path = ../appicon114.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 		F05EFA3316B2B89500AB0929 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				75BA3B1D16B3157C00CE1710 /* messageStorage.xcdatamodeld */,
 				F05EFA4916B2C1E300AB0929 /* appicon114.png */,
 				755DDE2016AEF9B600AA8D29 /* MainMenu.xib */,
 			);
@@ -177,6 +180,7 @@
 			files = (
 				755DDE1816AEF9B600AA8D29 /* main.m in Sources */,
 				755DDE1F16AEF9B600AA8D29 /* SPAAppDelegate.m in Sources */,
+				75BA3B1F16B3157C00CE1710 /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +336,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		75BA3B1D16B3157C00CE1710 /* messageStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				75BA3B1E16B3157C00CE1710 /* messageStorage 2.xcdatamodel */,
+			);
+			currentVersion = 75BA3B1E16B3157C00CE1710 /* messageStorage 2.xcdatamodel */;
+			name = messageStorage.xcdatamodeld;
+			path = ../../../SinglePicCommon/SinglePicCommon/SinglePicCommon/messageStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 755DDE0016AEF9B600AA8D29 /* Project object */;
 }

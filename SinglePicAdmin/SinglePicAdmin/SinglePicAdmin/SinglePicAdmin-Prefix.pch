@@ -4,4 +4,9 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <SinglePicCommon/SinglePicCommon.h>
+
+    #import <SinglePicCommon/SPRequestManager.h>
+    #import <SinglePicCommon/SPBucketManager.h>
+    #import <SinglePicCommon/SPProfileManager.h>
 #endif

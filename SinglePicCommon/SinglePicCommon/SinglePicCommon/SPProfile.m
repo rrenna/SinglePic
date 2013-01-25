@@ -10,11 +10,15 @@
 
 #define PROFILE_IDENTIFIER_KEY @"id"
 #define PROFILE_USERNAME_KEY @"userName"
+#define PROFILE_GENDER_KEY @"gender"
+#define PROFILE_PREFERENCE_KEY @"lookingForGender"
 #define PROFILE_ERROR_KEY @"error"
 
 @interface SPProfile()
 {
     NSDictionary* _data;
+    GENDER _gender;
+    GENDER _preference;
 }
 @property (retain) id _thumbnail;
 -(BOOL)_checkIsValid:(NSDictionary*) data;
@@ -29,6 +33,8 @@
     if(self)
     {
         _data = data;
+        _gender = GENDER_UNSPECIFIED;
+        _preference = GENDER_UNSPECIFIED;
     }
     return self;
 }
@@ -53,10 +59,36 @@
     }
     return usernameObject;
 }
+-(NSString*)bucketIdentifier
+{
+    NSAssert(NO, @"Not yet implemented");
+    return @"";
+}
 -(GENDER)gender
 {
-    //TODO: 
-    return GENDER_UNSPECIFIED;
+    if(_gender == GENDER_UNSPECIFIED)
+    {
+        NSString* genderObject = [_data objectForKey:PROFILE_GENDER_KEY];
+        if(![genderObject isMemberOfClass:[NSNull class]])
+        {
+            _gender = GENDER_FROM_NAME(genderObject);
+        }
+    }
+    
+    return _gender;
+}
+-(GENDER)preference
+{
+    if(_preference == GENDER_UNSPECIFIED)
+    {
+        NSString* preferenceObject = [_data objectForKey:PROFILE_PREFERENCE_KEY];
+        if(![preferenceObject isMemberOfClass:[NSNull class]])
+        {
+            _preference = GENDER_FROM_NAME(preferenceObject);
+        }
+    }
+    
+    return _preference;
 }
 -(NSDate*)timestamp
 {

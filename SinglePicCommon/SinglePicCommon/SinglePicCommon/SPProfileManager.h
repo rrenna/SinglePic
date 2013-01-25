@@ -14,19 +14,6 @@
 //Constants
 static __attribute__((unused)) NSString* USER_ID_ME  = @"me";
 
-#pragma mark - Helper Functions for enum values
-static GENDER GENDER_FROM_NAME(NSString* genderName)
-{
-    if([[genderName lowercaseString] isEqualToString:@"male"])
-    {
-        return GENDER_MALE;
-    }
-    else if([[genderName lowercaseString] isEqualToString:@"female"])
-    {
-        return GENDER_FEMALE;
-    }
-    return GENDER_UNSPECIFIED;//If neither
-}
 #pragma mark
 @interface SPProfileManager : NSObject
 

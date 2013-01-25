@@ -13,9 +13,6 @@ static const __attribute__((unused)) NSString* DEFAULT_PORTRAIT_IMAGE = @"MyProf
 #define DEFAULT_PREFERENCE GENDER_MALE
 
 #define ICEBREAKER_LENGTH_LIMIT 140
-#define MINIMUM_USERNAME_LENGTH 6
-#define MINIMUM_PASSWORD_LENGTH 6
-#define MINIMUM_EMAIL_LENGTH 4
 
 //Typography
 #define FONT_NAME_PRIMARY @"Avenir LT 65 Medium"

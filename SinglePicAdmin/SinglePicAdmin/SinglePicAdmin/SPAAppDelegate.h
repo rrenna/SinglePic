@@ -12,5 +12,19 @@
 @interface SPAAppDelegate : NSObject <NSApplicationDelegate,SPBaseApplicationController,NSTableViewDataSource,NSTableViewDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSButton *openCreateNewUserPanelButton;
+@property (weak) IBOutlet NSPanel *createNewUserPanel;
+@property (weak) IBOutlet NSTextField *createNewUserUsername;
+@property (weak) IBOutlet NSTextField *createNewUserEmail;
+@property (weak) IBOutlet NSTextField *createNewUserPassword;
+@property (weak) IBOutlet NSPopUpButton *createNewUserBucketPicker;
+@property (weak) IBOutlet NSTextField *createNewUserErrorLabel;
+@property (weak) IBOutlet NSProgressIndicator *createNewUserProgressIndicator;
+@property (weak) IBOutlet NSTableView *accountsTableView;
+
+
+- (IBAction)openCreateNewUserPanel:(id)sender;
+- (IBAction)createNewUser:(id)sender;
+- (IBAction)createNewUserBucketPickerSelectionChanged:(id)sender;
 
 @end
