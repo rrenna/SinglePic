@@ -182,6 +182,8 @@
 		F05EFA4216B2BF9D00AB0929 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */; };
 		F05EFA4416B2BFC400AB0929 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4316B2BFC400AB0929 /* AudioToolbox.framework */; };
 		F05EFA4616B2BFEE00AB0929 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */; };
+		F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */; };
+		F0F1586416B4168000E831B7 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -300,6 +302,8 @@
 		F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F05EFA4316B2BFC400AB0929 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+MGCropExtensions.h"; sourceTree = "<group>"; };
+		F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+MGCropExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -493,6 +497,7 @@
 		755307E616B1DE6B00536075 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				F0F1586016B4165E00E831B7 /* NSImage */,
 				7553082716B2ECBD00536075 /* SPMessageThread */,
 				755307E716B1DE9B00536075 /* UIImage */,
 			);
@@ -636,6 +641,15 @@
 			path = TestFlight;
 			sourceTree = "<group>";
 		};
+		F0F1586016B4165E00E831B7 /* NSImage */ = {
+			isa = PBXGroup;
+			children = (
+				F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */,
+				F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */,
+			);
+			name = NSImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -739,6 +753,7 @@
 				7553081916B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */,
 				7553082116B1E38300536075 /* SPLocationManager.h in Headers */,
 				7553082516B1E38300536075 /* SPLocations.h in Headers */,
+				F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,6 +875,7 @@
 				7553081B16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */,
 				7553082316B1E38300536075 /* SPLocationManager.m in Sources */,
 				7553082B16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */,
+				F0F1586416B4168000E831B7 /* NSImage+MGCropExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

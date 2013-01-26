@@ -278,7 +278,12 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         #if TARGET_OS_IPHONE
         data = UIImageJPEGRepresentation(image_,1.0);
         #else
-        NSAssert(NO,@"Implement on OS X");
+        
+        NSArray* representations = [(NSImage*)image_ representations];
+        data = [NSBitmapImageRep representationOfImageRepsInArray:representations
+                                                            usingType:NSJPEGFileType
+                                                           properties:[NSDictionary dictionaryWithObject:[NSDecimalNumber numberWithFloat:1.0]
+                                                                                                  forKey:NSImageCompressionFactor]];
         #endif
         
         //Save image to disk
@@ -290,7 +295,6 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
         imageOrientation = [(UIImage*)image_ imageOrientation];
         #else
         imageOrientation = 0;
-        NSAssert(NO,@"Ensure this is required for OS X");
         #endif
         
         [[NSUserDefaults standardUserDefaults] setInteger:imageOrientation forKey:USER_DEFAULT_KEY_USER_IMAGE_ORIENTATION];
@@ -579,13 +583,27 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         __block BOOL imageUploaded = NO;
         __block BOOL thumbnailUploaded = NO;
         
+        id resizedImage;
+        id resizedThumbnail;
         #if TARGET_OS_IPHONE
         //Upload the fullsized image
         //Never uploads the full quality image ( > 7mb on iPhone 4)
-        UIImage *resizedImage = [image_ resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_IMAGE_SIZE interpolationQuality:kCGInterpolationHigh];
+        resizedImage = [image_ resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_IMAGE_SIZE interpolationQuality:kCGInterpolationHigh];
+        resizedThumbnail = [resizedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_THUMBNAIL_SIZE interpolationQuality:kCGInterpolationHigh];        
+        #else
+        MGImageResizingMethod method = MGImageResizeCrop;
+        NSSize targetSize = NSMakeSize(128.0, 42.0);
+        
+        resizedImage = image_;
+        resizedThumbnail = image_;
+        
+            //resizedImage = [image_ imageToFitSize:targetSize method:method];
+        //resizedThumbnail = [resizedImage imageToFitSize:targetSize method:method];
+        #endif
+        
         
         //Upload the thumbnail image
-        UIImage *resizedThumbnail = [resizedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_THUMBNAIL_SIZE interpolationQuality:kCGInterpolationHigh];
+
         
         [[SPRequestManager sharedInstance] putToURL:imageUploadURL withPayload:resizedImage withCompletionHandler:^(id responseObject)
          {
@@ -634,10 +652,6 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
                  onError();
              }
          }];
-        
-        #else
-        NSAssert(NO, @"Implement for OS X");
-        #endif
 
     } 
     andErrorHandler:^

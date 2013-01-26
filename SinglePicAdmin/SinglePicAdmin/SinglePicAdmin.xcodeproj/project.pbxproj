@@ -16,6 +16,10 @@
 		755DDE5216AF047200AA8D29 /* SinglePicCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */; };
 		75BA3B1F16B3157C00CE1710 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA3B1D16B3157C00CE1710 /* messageStorage.xcdatamodeld */; };
 		F05EFA4A16B2C1E300AB0929 /* appicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = F05EFA4916B2C1E300AB0929 /* appicon114.png */; };
+		F0F1585C16B4055E00E831B7 /* Orientation-MsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585816B4055E00E831B7 /* Orientation-MsM-default.png */; };
+		F0F1585D16B4055E00E831B7 /* Orientation-FsF-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */; };
+		F0F1585E16B4055E00E831B7 /* Orientation-MsF-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */; };
+		F0F1585F16B4055E00E831B7 /* Orientation-FsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585B16B4055E00E831B7 /* Orientation-FsM-default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SinglePicCommon.framework; path = "/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug/SinglePicCommon.framework"; sourceTree = "<absolute>"; };
 		75BA3B1E16B3157C00CE1710 /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F05EFA4916B2C1E300AB0929 /* appicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon114.png; path = ../appicon114.png; sourceTree = "<group>"; };
+		F0F1585816B4055E00E831B7 /* Orientation-MsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-MsM-default.png"; sourceTree = "<group>"; };
+		F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-FsF-default.png"; sourceTree = "<group>"; };
+		F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-MsF-default.png"; sourceTree = "<group>"; };
+		F0F1585B16B4055E00E831B7 /* Orientation-FsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-FsM-default.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,10 @@
 		F05EFA3316B2B89500AB0929 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F0F1585816B4055E00E831B7 /* Orientation-MsM-default.png */,
+				F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */,
+				F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */,
+				F0F1585B16B4055E00E831B7 /* Orientation-FsM-default.png */,
 				75BA3B1D16B3157C00CE1710 /* messageStorage.xcdatamodeld */,
 				F05EFA4916B2C1E300AB0929 /* appicon114.png */,
 				755DDE2016AEF9B600AA8D29 /* MainMenu.xib */,
@@ -168,6 +180,10 @@
 				755DDE1C16AEF9B600AA8D29 /* Credits.rtf in Resources */,
 				755DDE2216AEF9B600AA8D29 /* MainMenu.xib in Resources */,
 				F05EFA4A16B2C1E300AB0929 /* appicon114.png in Resources */,
+				F0F1585C16B4055E00E831B7 /* Orientation-MsM-default.png in Resources */,
+				F0F1585D16B4055E00E831B7 /* Orientation-FsF-default.png in Resources */,
+				F0F1585E16B4055E00E831B7 /* Orientation-MsF-default.png in Resources */,
+				F0F1585F16B4055E00E831B7 /* Orientation-FsM-default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

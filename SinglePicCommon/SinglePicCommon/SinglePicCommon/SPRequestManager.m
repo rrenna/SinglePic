@@ -292,7 +292,25 @@
         postData = UIImageJPEGRepresentation(image,COMPRESSION_QUALITY);
     }
     #else
-    NSAssert(false, @"Implement for OSX");
+    if([payload isKindOfClass:[NSImage class]])
+    {
+        NSArray* representations = [(NSImage*)payload representations];
+        postData = [NSBitmapImageRep representationOfImageRepsInArray:representations
+                                                                  usingType:NSJPEGFileType
+                                                                 properties:[NSDictionary dictionaryWithObject:[NSDecimalNumber numberWithFloat:COMPRESSION_QUALITY]
+                                                                                                            forKey:NSImageCompressionFactor]];
+    }
+    else if([payload isKindOfClass:[NSString class]])
+    {
+        NSString* filePath = (NSString*)payload;
+        NSImage* image = [[NSImage alloc] initWithContentsOfFile:filePath];
+
+        NSArray* representations = [image representations];
+        postData = [NSBitmapImageRep representationOfImageRepsInArray:representations
+                                                            usingType:NSJPEGFileType
+                                                           properties:[NSDictionary dictionaryWithObject:[NSDecimalNumber numberWithFloat:COMPRESSION_QUALITY]
+                                                                                                  forKey:NSImageCompressionFactor]];
+    }
     #endif
 
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -334,7 +352,7 @@
         #if TARGET_OS_IPHONE
           image = [UIImage imageWithData:responseObject];
         #else
-          NSAssert(false, @"Implement for OSX");
+          image = [[NSImage alloc] initWithData:responseObject];
         #endif
 
           onCompletion(image);

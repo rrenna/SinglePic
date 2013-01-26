@@ -11,6 +11,12 @@
 @interface SPAAppDelegate()
 @property (strong) NSArray* buckets;
 @property (strong) NSMutableDictionary* accounts;
+
+-(void)retrieveAllBuckets;
+-(void)retrieveAccounts;
+-(void)logoutOfActiveAccount;
+-(void)saveAccounts;
+-(NSString*)randomStringOfLength:(int)length;
 @end
 
 @implementation SPAAppDelegate
@@ -22,14 +28,18 @@
     [self retrieveAllBuckets];
     [self retrieveAccounts];
 }
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 #pragma mark - IBActions
 - (IBAction)createNewUser:(id)sender
 {
     NSString* email = [self.createNewUserEmail stringValue];
     NSString* userName = [self.createNewUserUsername stringValue];
     NSString* password = [self.createNewUserPassword stringValue];
-    GENDER gender = GENDER_FEMALE;
-    GENDER preference = GENDER_MALE;
+    GENDER gender = ([self.createNewUserGenderPreferenceSegmentedControl selectedSegment] <= 1) ? GENDER_MALE : GENDER_FEMALE;
+    GENDER preference = ([self.createNewUserGenderPreferenceSegmentedControl selectedSegment] % 2 == 0) ? GENDER_MALE : GENDER_FEMALE;
     NSInteger bucketIndex = [self.createNewUserBucketPicker indexOfSelectedItem];
     SPBucket* bucket = [self.buckets objectAtIndex:bucketIndex];
     
@@ -60,7 +70,7 @@
         NSDictionary* accountDictionary = @{@"email":email,@"password":password,@"gender":GENDER_NAMES[gender],@"preference":GENDER_NAMES[preference],@"bucketID":bucket.identifier};
         
         [self.accounts setObject:accountDictionary forKey:userName];
-        [[NSUserDefaults standardUserDefaults] setObject:self.accounts forKey:@"accounts"];
+        [self saveAccounts];
         
         //Reset fields
         [self.createNewUserUsername setStringValue:@""];
@@ -72,6 +82,9 @@
         [self.createNewUserPanel orderOut:nil];
         //The profile manager will automatically login to a newly registered account, this functionality is not required for this application
         [[SPProfileManager sharedInstance] logout];
+        
+        //Reload tableView
+        [self.accountsTableView reloadData];
         
     } andErrorHandler:^{
         
@@ -88,31 +101,51 @@
 
 - (IBAction)connectToAccount:(id)sender
 {
+    //Login
+    if([[SPProfileManager sharedInstance] myUserType] == USER_TYPE_ANNONYMOUS)
+    {
+        NSInteger selectedRow = [self.accountsTableView selectedRow];
+        NSString* username = [[self.accounts allKeys] objectAtIndex:selectedRow];
+        NSDictionary* accountDictionary = [self.accounts objectForKey:username];
+        NSString* email = [accountDictionary objectForKey:@"email"];
+        NSString* password = [accountDictionary objectForKey:@"password"];
+        
+        [[SPProfileManager sharedInstance] loginWithEmail:email andPassword:password andCompletionHandler:^(id responseObject)
+         {
+             NSImage* profileImage = [[SPProfileManager sharedInstance] myImage];
+             if(profileImage)
+             {
+                 [self.accountImageView setImage:profileImage];
+             }
+             
+             //Disable interaction with the table
+             [self.accountsTableView setEnabled:NO];
+             self.accountBox.title = username;
+             [self.accountImageView setEnabled:YES];
+             [self.accountImageView setEditable:YES];
+             [self.connectToAccountButton setTitle:@"Disconnect"];
+             
+         } andErrorHandler:^
+         {
+                 //
+         }];
+    }
+    //Logout
+    else
+    {
+        [self logoutOfActiveAccount];
+
+    }
+
+}
+- (IBAction)removeAccount:(id)sender
+{
     NSInteger selectedRow = [self.accountsTableView selectedRow];
-    NSString* username = [[self.accounts allKeys] objectAtIndex:selectedRow];
-    NSDictionary* accountDictionary = [self.accounts objectForKey:username];
-    NSString* email = [accountDictionary objectForKey:@"email"];
-    NSString* password = [accountDictionary objectForKey:@"password"];
+    NSString* key = [[self.accounts allKeys] objectAtIndex:selectedRow];
+    [self.accounts removeObjectForKey:key];
     
-    [[SPProfileManager sharedInstance] loginWithEmail:email andPassword:password andCompletionHandler:^(id responseObject)
-    {
-        //Disable interaction with the table
-        [self.accountsTableView setEnabled:NO];
-        
-        self.accountBox.title = username;
-        
-        NSImage* profileImage = [[SPProfileManager sharedInstance] myImage];
-        if(profileImage)
-        {
-            [self.accountImageView setImage:profileImage];
-        }
-        
-        [self.accountImageView setEnabled:YES];
-        
-    } andErrorHandler:^
-    {
-        //
-    }];
+    [self saveAccounts];
+    [self.accountsTableView reloadData];
 }
 - (IBAction)openCreateNewUserPanel:(id)sender
 {
@@ -124,7 +157,37 @@
     }
     [self.createNewUserBucketPicker synchronizeTitleAndSelectedItem];
     
+    //Populate Password and Email with random characters
+    NSString* email = [NSString stringWithFormat:@"%@@%@.%@",[self randomStringOfLength:4],[self randomStringOfLength:4],[self randomStringOfLength:3]];
+    NSString* password = [self randomStringOfLength:MINIMUM_PASSWORD_LENGTH];
+    
+    [self.createNewUserEmail setStringValue:email];
+    [self.createNewUserPassword setStringValue:password];
+    
+    
     [self.createNewUserPanel makeKeyAndOrderFront:nil];
+}
+- (IBAction)imageViewInteracted:(id)sender {
+    
+    NSImage* newImage = [self.accountImageView image];
+    
+    [[SPProfileManager sharedInstance] saveMyPicture:newImage withCompletionHandler:^(id responseObject)
+    {
+        
+            NSLog(@"");
+        
+    } andProgressHandler:^(float progress)
+    {
+        
+            NSLog(@"");
+        
+    } andErrorHandler:^
+    {
+       
+            NSLog(@"");
+        
+    }];
+
 }
 #pragma mark - Private Methods
 -(void)retrieveAllBuckets
@@ -158,8 +221,33 @@
 }
 -(void)logoutOfActiveAccount
 {
+    [self.accountImageView setImage:nil];
+    [self.accountsTableView setEnabled:YES];
+    self.accountBox.title = @"";
+    [self.accountImageView setEnabled:NO];
+    [self.accountImageView setEditable:NO];
+    [self.connectToAccountButton setTitle:@"Connect"];
     //
     [[SPProfileManager sharedInstance] logout];
+}
+-(void)saveAccounts
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"accounts"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] setObject:self.accounts forKey:@"accounts"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+NSString *letters = @"abcdefghijklmnopqrstuvwxyz0123456789";
+-(NSString *) randomStringOfLength: (int) length {
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: length];
+    
+    for (int i=0; i < length; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+    }
+    
+    return randomString;
 }
 #pragma mark - SPBaseApplicationController methods
 -(BOOL)canRegisterForPushNotifications

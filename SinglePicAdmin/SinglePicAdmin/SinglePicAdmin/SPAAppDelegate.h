@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSTextField *createNewUserEmail;
 @property (weak) IBOutlet NSTextField *createNewUserPassword;
 @property (weak) IBOutlet NSPopUpButton *createNewUserBucketPicker;
+@property (weak) IBOutlet NSSegmentedControl *createNewUserGenderPreferenceSegmentedControl;
 @property (weak) IBOutlet NSTextField *createNewUserErrorLabel;
 @property (weak) IBOutlet NSProgressIndicator *createNewUserProgressIndicator;
 @property (weak) IBOutlet NSTableView *accountsTableView;
@@ -27,9 +28,12 @@
 
 
 
+
 - (IBAction)openCreateNewUserPanel:(id)sender;
 - (IBAction)createNewUser:(id)sender;
 - (IBAction)createNewUserBucketPickerSelectionChanged:(id)sender;
 - (IBAction)connectToAccount:(id)sender;
+- (IBAction)removeAccount:(id)sender;
+- (IBAction)imageViewInteracted:(id)sender;
 
 @end
