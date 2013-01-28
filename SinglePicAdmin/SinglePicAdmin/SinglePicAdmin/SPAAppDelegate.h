@@ -25,7 +25,9 @@
 @property (weak) IBOutlet NSButton *connectToAccountButton;
 @property (weak) IBOutlet NSImageView *accountImageView;
 @property (weak) IBOutlet NSTextField *accountIcebreakerTextField;
+@property (weak) IBOutlet NSSegmentedControl *accountGenderPreferenceSegmentedControl;
 @property (weak) IBOutlet NSBox *accountBox;
+
 
 - (IBAction)openCreateNewUserPanel:(id)sender;
 - (IBAction)createNewUser:(id)sender;
@@ -33,6 +35,6 @@
 - (IBAction)connectToAccount:(id)sender;
 - (IBAction)removeAccount:(id)sender;
 - (IBAction)imageViewInteracted:(id)sender;
-- (IBAction)saveIcebreaker:(id)sender;
+- (IBAction)saveDetails:(id)sender;
 
 @end

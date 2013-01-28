@@ -1530,9 +1530,9 @@ static int profileCounter = 0;
 -(void)clearProfile
 {
     [[SPRequestManager sharedInstance] removeUserToken];
-    //Cancel any queued local notifications
-    
+
     #if TARGET_OS_IPHONE
+    //Cancel any queued local notifications
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     #endif
     

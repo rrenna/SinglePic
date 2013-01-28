@@ -38,6 +38,9 @@
 #pragma mark - IBActions
 - (IBAction)createNewUser:(id)sender
 {
+    //Can not create new accounts if logged into another one
+    [self logoutOfActiveAccount];
+    
     NSString* email = [self.createNewUserEmail stringValue];
     NSString* userName = [self.createNewUserUsername stringValue];
     NSString* password = [self.createNewUserPassword stringValue];
@@ -61,9 +64,6 @@
         [self.createNewUserErrorLabel setStringValue:@"Email is too short"];
         return;
     }
-    
-    //Can not create new accounts if logged into another one
-    [self logoutOfActiveAccount];
     
     [self.createNewUserProgressIndicator startAnimation:nil];
     
@@ -117,6 +117,8 @@
          {
              NSImage* profileImage = [[SPProfileManager sharedInstance] myImage];
              NSString* icebreaker = [[SPProfileManager sharedInstance] myIcebreaker];
+             GENDER gender = [[SPProfileManager sharedInstance] myGender];
+             GENDER preference = [[SPProfileManager sharedInstance] myPreference];
              
              if(profileImage)
              {
@@ -125,11 +127,30 @@
              
              //Disable interaction with the table
              [self.accountsTableView setEnabled:NO];
+             //Switch "Connect" to a "Disconnect" button
+             [self.connectToAccountButton setTitle:@"Disconnect"];
+             //Populate values
              self.accountBox.title = username;
              [self.accountIcebreakerTextField setStringValue:icebreaker];
              [self.accountImageView setEnabled:YES];
              [self.accountImageView setEditable:YES];
-             [self.connectToAccountButton setTitle:@"Disconnect"];
+             [self.accountGenderPreferenceSegmentedControl setEnabled:YES];
+             if(gender == GENDER_MALE && preference == GENDER_MALE)
+             {
+                 [self.accountGenderPreferenceSegmentedControl setSelectedSegment:0];
+             }
+             else if(gender == GENDER_MALE && preference == GENDER_FEMALE)
+             {
+                 [self.accountGenderPreferenceSegmentedControl setSelectedSegment:1];
+             }
+             else if(gender == GENDER_FEMALE && preference == GENDER_MALE)
+             {
+                 [self.accountGenderPreferenceSegmentedControl setSelectedSegment:2];
+             }
+             else
+             {
+                [self.accountGenderPreferenceSegmentedControl setSelectedSegment:3];
+             }
              
          } andErrorHandler:^
          {
@@ -186,15 +207,14 @@
         [self.accountImageView setImage:nil];
     }];
 }
-- (IBAction)saveIcebreaker:(id)sender {
+- (IBAction)saveDetails:(id)sender {
     
-    [[SPProfileManager sharedInstance] saveMyIcebreaker:[self.accountIcebreakerTextField stringValue] withCompletionHandler:^(id responseObject)
-    {
+    GENDER gender = ([self.accountGenderPreferenceSegmentedControl selectedSegment] <= 1) ? GENDER_MALE : GENDER_FEMALE;
+    GENDER preference = ([self.accountGenderPreferenceSegmentedControl selectedSegment] % 2 == 0) ? GENDER_MALE : GENDER_FEMALE;
+    
+    [[SPProfileManager sharedInstance] saveMyIcebreaker:[self.accountIcebreakerTextField stringValue] andGender:gender andPreference:preference withCompletionHandler:^(id responseObject) {
         
-    }
-    andErrorHandler:^
-    {
-        
+    } andErrorHandler:^{
         
     }];
 }
@@ -236,6 +256,7 @@
     self.accountIcebreakerTextField.stringValue = @"";
     [self.accountImageView setEnabled:NO];
     [self.accountImageView setEditable:NO];
+    [self.accountGenderPreferenceSegmentedControl setEnabled:NO];
     [self.connectToAccountButton setTitle:@"Connect"];
     //
     [[SPProfileManager sharedInstance] logout];

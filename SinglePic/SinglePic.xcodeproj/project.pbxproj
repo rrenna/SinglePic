@@ -2882,7 +2882,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** ../../Headers/SinglePicCommon/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Public Beta";
@@ -3004,7 +3004,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** ../../Headers/SinglePicCommon/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3045,7 +3045,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** ../../Headers/SinglePicCommon/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3236,7 +3236,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** ../../Headers/SinglePicCommon/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Internal Beta";
