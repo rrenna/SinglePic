@@ -391,6 +391,7 @@
 		F0EE799A14E364E700439040 /* icon-like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0EE799914E364E700439040 /* icon-like@2x.png */; };
 		F0F040F8163E1E3D00CF76F8 /* icon-Chat.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F040F7163E1E3D00CF76F8 /* icon-Chat.png */; };
 		F0F040FE163F56BB00CF76F8 /* icon-Heart-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F040FD163F56BB00CF76F8 /* icon-Heart-white.png */; };
+		F0F1586D16B6BA8200E831B7 /* SPErrorNotifierController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F1586C16B6BA8200E831B7 /* SPErrorNotifierController.m */; };
 		F0F58B44162CC543003DD1B3 /* Intro-Browse.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F58B43162CC543003DD1B3 /* Intro-Browse.png */; };
 		F0F80A0915F6A97E00201FF4 /* testingImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F80A0815F6A97E00201FF4 /* testingImage.png */; };
 /* End PBXBuildFile section */
@@ -915,6 +916,8 @@
 		F0EE799914E364E700439040 /* icon-like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-like@2x.png"; path = "../../Resources/icon-like@2x.png"; sourceTree = "<group>"; };
 		F0F040F7163E1E3D00CF76F8 /* icon-Chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Chat.png"; path = "../../Resources/icon-Chat.png"; sourceTree = "<group>"; };
 		F0F040FD163F56BB00CF76F8 /* icon-Heart-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-Heart-white.png"; path = "../../Resources/icon-Heart-white.png"; sourceTree = "<group>"; };
+		F0F1586B16B6BA8200E831B7 /* SPErrorNotifierController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorNotifierController.h; sourceTree = "<group>"; };
+		F0F1586C16B6BA8200E831B7 /* SPErrorNotifierController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorNotifierController.m; sourceTree = "<group>"; };
 		F0F58B43162CC543003DD1B3 /* Intro-Browse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Intro-Browse.png"; path = "../../Resources/Intro-Browse.png"; sourceTree = "<group>"; };
 		F0F7CEA314C91FC6009C7DF8 /* SPPageContainerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContainerDelegate.h; sourceTree = "<group>"; };
 		F0F7CEA414C924D3009C7DF8 /* SPPageContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageContentDelegate.h; sourceTree = "<group>"; };
@@ -1635,6 +1638,8 @@
 				F0C178CD1491C22600F72809 /* Browse Screen */,
 				751D262F149121C800617DD8 /* SPBaseController.h */,
 				751D2630149121C800617DD8 /* SPBaseController.m */,
+				F0F1586B16B6BA8200E831B7 /* SPErrorNotifierController.h */,
+				F0F1586C16B6BA8200E831B7 /* SPErrorNotifierController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2699,6 +2704,7 @@
 				F0795557161942E4004837AF /* GCPagedScrollView.m in Sources */,
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
+				F0F1586D16B6BA8200E831B7 /* SPErrorNotifierController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

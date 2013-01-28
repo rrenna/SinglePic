@@ -27,9 +27,6 @@
 @property (weak) IBOutlet NSTextField *accountIcebreakerTextField;
 @property (weak) IBOutlet NSBox *accountBox;
 
-
-
-
 - (IBAction)openCreateNewUserPanel:(id)sender;
 - (IBAction)createNewUser:(id)sender;
 - (IBAction)createNewUserBucketPickerSelectionChanged:(id)sender;

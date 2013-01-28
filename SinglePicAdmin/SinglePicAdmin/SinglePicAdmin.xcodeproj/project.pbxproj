@@ -20,6 +20,7 @@
 		F0F1585D16B4055E00E831B7 /* Orientation-FsF-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */; };
 		F0F1585E16B4055E00E831B7 /* Orientation-MsF-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */; };
 		F0F1585F16B4055E00E831B7 /* Orientation-FsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585B16B4055E00E831B7 /* Orientation-FsM-default.png */; };
+		F0F1586A16B6B7BC00E831B7 /* SPErrorNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F1586916B6B7BC00E831B7 /* SPErrorNotifier.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-FsF-default.png"; sourceTree = "<group>"; };
 		F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-MsF-default.png"; sourceTree = "<group>"; };
 		F0F1585B16B4055E00E831B7 /* Orientation-FsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-FsM-default.png"; sourceTree = "<group>"; };
+		F0F1586816B6B7BC00E831B7 /* SPErrorNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorNotifier.h; sourceTree = "<group>"; };
+		F0F1586916B6B7BC00E831B7 /* SPErrorNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPErrorNotifier.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				755DDE1D16AEF9B600AA8D29 /* SPAAppDelegate.h */,
 				755DDE1E16AEF9B600AA8D29 /* SPAAppDelegate.m */,
 				755DDE1216AEF9B600AA8D29 /* Supporting Files */,
+				F0F1586816B6B7BC00E831B7 /* SPErrorNotifier.h */,
+				F0F1586916B6B7BC00E831B7 /* SPErrorNotifier.m */,
 			);
 			path = SinglePicAdmin;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				755DDE1816AEF9B600AA8D29 /* main.m in Sources */,
 				755DDE1F16AEF9B600AA8D29 /* SPAAppDelegate.m in Sources */,
 				75BA3B1F16B3157C00CE1710 /* messageStorage.xcdatamodeld in Sources */,
+				F0F1586A16B6B7BC00E831B7 /* SPErrorNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

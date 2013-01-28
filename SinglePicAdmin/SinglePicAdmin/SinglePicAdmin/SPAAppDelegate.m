@@ -7,6 +7,8 @@
 //
 
 #import "SPAAppDelegate.h"
+#import "SPErrorNotifier.h"
+
 
 @interface SPAAppDelegate()
 @property (strong) NSArray* buckets;
@@ -24,6 +26,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
+    [[SPErrorManager sharedInstance] setErrorNotifierController:[SPErrorNotifier new]];
     
     [self retrieveAllBuckets];
     [self retrieveAccounts];
@@ -180,7 +183,7 @@
 
     } andErrorHandler:^
     {
-        
+        [self.accountImageView setImage:nil];
     }];
 }
 - (IBAction)saveIcebreaker:(id)sender {

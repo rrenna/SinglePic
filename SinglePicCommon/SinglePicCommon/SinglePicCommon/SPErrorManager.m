@@ -86,14 +86,10 @@
 #pragma mark
 -(void)alertWithTitle:(NSString*)title Description:(NSString*)description
 {
-    #if TARGET_OS_IPHONE
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:description delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil];
-    
-    [alert show];
-    [alert release];
-    #else
-    NSAssert(NO,@"Implement for OS X");
-    #endif
+    if(self.errorNotifierController)
+    {
+        [self.errorNotifierController presentAnnonymousErrorWithTitle:title andBody:description];
+    }
 }
 -(void)logError:(NSError*)error alertUser:(BOOL)alertUser
 {
@@ -150,7 +146,7 @@
     //Store Error
     [errorQueue addObject:error];
     
-        //Alert user
+    //Alert user
     if(alertUser)
     {
         NSString* alertTitle;
@@ -243,4 +239,17 @@
     [errorQueue removeLastObject];
 }
 #endif
+#pragma mark - 
+-(NSError*)errorFromIdentifier:(int)identifier
+{
+    return nil;
+}
+-(void)errorIdentifiedBy:(int)identifier presentedToUserRequiringFeedback:(BOOL)requiresFeedback
+{
+    NSAssert(NO, @"Not yet implemented");
+}
+-(void)errorIdentifiedBy:(int)identifier gatheredFeedback:(NSDictionary*)feedbackDictionary
+{
+    NSAssert(NO, @"Not yet implemented");
+}
 @end

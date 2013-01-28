@@ -9,4 +9,6 @@
     #import <SinglePicCommon/SPRequestManager.h>
     #import <SinglePicCommon/SPBucketManager.h>
     #import <SinglePicCommon/SPProfileManager.h>
+    #import <SinglePicCommon/SPErrorManager.h>
+
 #endif

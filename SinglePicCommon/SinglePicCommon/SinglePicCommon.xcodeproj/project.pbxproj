@@ -184,6 +184,8 @@
 		F05EFA4616B2BFEE00AB0929 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */; };
 		F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */; };
 		F0F1586416B4168000E831B7 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F0F1586616B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0F1586716B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -304,6 +306,7 @@
 		F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+MGCropExtensions.h"; sourceTree = "<group>"; };
 		F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+MGCropExtensions.m"; sourceTree = "<group>"; };
+		F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPErrorNotifierController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -626,6 +629,7 @@
 			isa = PBXGroup;
 			children = (
 				75C5A04516B1A07A00CBAE31 /* SPBaseApplicationController.h */,
+				F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -702,6 +706,7 @@
 				7553081A16B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */,
 				7553082216B1E38300536075 /* SPLocationManager.h in Headers */,
 				7553082616B1E38300536075 /* SPLocations.h in Headers */,
+				F0F1586716B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +759,7 @@
 				7553082116B1E38300536075 /* SPLocationManager.h in Headers */,
 				7553082516B1E38300536075 /* SPLocations.h in Headers */,
 				F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */,
+				F0F1586616B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

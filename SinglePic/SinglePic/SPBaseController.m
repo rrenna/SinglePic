@@ -8,6 +8,7 @@
 
 #import "SPBaseController.h"
 #import "SPReachabilityPopupController.h"
+#import "SPErrorNotifierController.h"
 #import "SPTabController.h"
 #import "SPBrowseViewController.h"
 #import "SPSubscriptionsManager.h"
@@ -151,6 +152,7 @@
         
         //Sets itself as the base application controller
         [SPErrorManager sharedInstance].baseApplicationController = self;
+        [SPErrorManager sharedInstance].errorNotifierController = [SPErrorNotifierController new];
         [SPProfileManager sharedInstance].baseApplicationController = self;
         
         //Set the Reachability Reporter
