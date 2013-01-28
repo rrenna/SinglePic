@@ -2802,7 +2802,7 @@
 		755EF7B8162F2DC60084C28E /* Public Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2863,6 +2863,7 @@
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 					/usr/local/include,
+					"$(BUILT_PRODUCTS_DIR)/../../Headers",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2875,7 +2876,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Public Beta";
@@ -2883,7 +2884,7 @@
 		7599A956148E980100A48435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2925,7 +2926,7 @@
 		7599A957148E980100A48435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2985,6 +2986,7 @@
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 					/usr/local/include,
+					"$(BUILT_PRODUCTS_DIR)/../../Headers",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2996,7 +2998,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3024,6 +3026,7 @@
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 					/usr/local/include,
+					"$(BUILT_PRODUCTS_DIR)/../../Headers",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -3036,7 +3039,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3153,7 +3156,7 @@
 		F00CBD3814D904860032C1AA /* Internal Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -3214,6 +3217,7 @@
 					"${PROJECT_DIR}/Libraries/**",
 					"/usr/include/libxml2/**",
 					/usr/local/include,
+					"$(BUILT_PRODUCTS_DIR)/../../Headers",
 				);
 				INFOPLIST_FILE = "SinglePic/SinglePic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -3226,7 +3230,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/**";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Libraries/** $(TARGET_BUILD_DIR)/usr/local/include/** $(DSTROOT)/usr/local/include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Internal Beta";
