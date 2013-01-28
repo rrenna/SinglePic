@@ -24,6 +24,7 @@
 @property (weak) IBOutlet NSTableView *accountsTableView;
 @property (weak) IBOutlet NSButton *connectToAccountButton;
 @property (weak) IBOutlet NSImageView *accountImageView;
+@property (weak) IBOutlet NSTextField *accountIcebreakerTextField;
 @property (weak) IBOutlet NSBox *accountBox;
 
 
@@ -35,5 +36,6 @@
 - (IBAction)connectToAccount:(id)sender;
 - (IBAction)removeAccount:(id)sender;
 - (IBAction)imageViewInteracted:(id)sender;
+- (IBAction)saveIcebreaker:(id)sender;
 
 @end

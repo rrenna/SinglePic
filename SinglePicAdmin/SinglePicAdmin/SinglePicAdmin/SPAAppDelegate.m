@@ -113,6 +113,8 @@
         [[SPProfileManager sharedInstance] loginWithEmail:email andPassword:password andCompletionHandler:^(id responseObject)
          {
              NSImage* profileImage = [[SPProfileManager sharedInstance] myImage];
+             NSString* icebreaker = [[SPProfileManager sharedInstance] myIcebreaker];
+             
              if(profileImage)
              {
                  [self.accountImageView setImage:profileImage];
@@ -121,6 +123,7 @@
              //Disable interaction with the table
              [self.accountsTableView setEnabled:NO];
              self.accountBox.title = username;
+             [self.accountIcebreakerTextField setStringValue:icebreaker];
              [self.accountImageView setEnabled:YES];
              [self.accountImageView setEditable:YES];
              [self.connectToAccountButton setTitle:@"Disconnect"];
@@ -134,9 +137,7 @@
     else
     {
         [self logoutOfActiveAccount];
-
     }
-
 }
 - (IBAction)removeAccount:(id)sender
 {
@@ -146,6 +147,7 @@
     
     [self saveAccounts];
     [self.accountsTableView reloadData];
+    [self logoutOfActiveAccount];
 }
 - (IBAction)openCreateNewUserPanel:(id)sender
 {
@@ -164,7 +166,6 @@
     [self.createNewUserEmail setStringValue:email];
     [self.createNewUserPassword setStringValue:password];
     
-    
     [self.createNewUserPanel makeKeyAndOrderFront:nil];
 }
 - (IBAction)imageViewInteracted:(id)sender {
@@ -174,20 +175,25 @@
     [[SPProfileManager sharedInstance] saveMyPicture:newImage withCompletionHandler:^(id responseObject)
     {
         
-            NSLog(@"");
-        
     } andProgressHandler:^(float progress)
     {
-        
-            NSLog(@"");
-        
+
     } andErrorHandler:^
     {
-       
-            NSLog(@"");
         
     }];
-
+}
+- (IBAction)saveIcebreaker:(id)sender {
+    
+    [[SPProfileManager sharedInstance] saveMyIcebreaker:[self.accountIcebreakerTextField stringValue] withCompletionHandler:^(id responseObject)
+    {
+        
+    }
+    andErrorHandler:^
+    {
+        
+        
+    }];
 }
 #pragma mark - Private Methods
 -(void)retrieveAllBuckets
@@ -224,6 +230,7 @@
     [self.accountImageView setImage:nil];
     [self.accountsTableView setEnabled:YES];
     self.accountBox.title = @"";
+    self.accountIcebreakerTextField.stringValue = @"";
     [self.accountImageView setEnabled:NO];
     [self.accountImageView setEditable:NO];
     [self.connectToAccountButton setTitle:@"Connect"];

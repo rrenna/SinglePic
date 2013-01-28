@@ -524,7 +524,7 @@ static BOOL RETRIEVED_PREFERENCE_FROM_DEFAULTS = NO;
          onCompletion(responseObject);
          
      }
-                                       andErrorHandler:^(SPWebServiceError *error)
+     andErrorHandler:^(SPWebServiceError *error)
      {
 #ifdef PRIVATE
          LogMessageCompat(@"Failed to updated Icebreaker/Gender/Preference with payload : %@",payload);
@@ -591,20 +591,12 @@ static CGSize MAXIMUM_THUMBNAIL_SIZE = {146.0,146.0};
         resizedImage = [image_ resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_IMAGE_SIZE interpolationQuality:kCGInterpolationHigh];
         resizedThumbnail = [resizedImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:MAXIMUM_THUMBNAIL_SIZE interpolationQuality:kCGInterpolationHigh];        
         #else
-        MGImageResizingMethod method = MGImageResizeCrop;
-        NSSize targetSize = NSMakeSize(128.0, 42.0);
-        
-        resizedImage = image_;
-        resizedThumbnail = image_;
-        
-            //resizedImage = [image_ imageToFitSize:targetSize method:method];
-        //resizedThumbnail = [resizedImage imageToFitSize:targetSize method:method];
+        MGImageResizingMethod method = MGImageResizeScale;
+        resizedImage = [image_ imageToFitSize:MAXIMUM_IMAGE_SIZE method:method];
+        resizedThumbnail = [resizedImage imageToFitSize:MAXIMUM_THUMBNAIL_SIZE method:method];
         #endif
         
-        
         //Upload the thumbnail image
-
-        
         [[SPRequestManager sharedInstance] putToURL:imageUploadURL withPayload:resizedImage withCompletionHandler:^(id responseObject)
          {
              //Flag that the image has been uploaded, and if the thumbnail has been uploaded, we are done

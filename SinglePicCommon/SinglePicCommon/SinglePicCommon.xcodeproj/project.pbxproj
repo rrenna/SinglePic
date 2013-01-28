@@ -938,7 +938,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_64_BIT)",
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -966,7 +969,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-load_all";
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -975,7 +978,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_64_BIT)",
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1000,7 +1006,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-load_all";
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1058,6 +1064,10 @@
 		755DDE7116AF058E00AA8D29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1080,6 +1090,10 @@
 		755DDE7216AF058E00AA8D29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1104,7 +1118,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_64_BIT)",
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1132,7 +1149,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-load_all";
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
 			};
 			name = "Internal Beta";
@@ -1165,6 +1182,10 @@
 		75C5A04C16B1B52600CBAE31 /* Internal Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1188,7 +1209,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_64_BIT)",
+					armv7s,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1213,7 +1237,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "-load_all";
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
 			};
 			name = "Public Beta";
@@ -1246,6 +1270,10 @@
 		75C5A04F16B1B61300CBAE31 /* Public Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

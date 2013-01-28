@@ -294,22 +294,15 @@
     #else
     if([payload isKindOfClass:[NSImage class]])
     {
-        NSArray* representations = [(NSImage*)payload representations];
-        postData = [NSBitmapImageRep representationOfImageRepsInArray:representations
-                                                                  usingType:NSJPEGFileType
-                                                                 properties:[NSDictionary dictionaryWithObject:[NSDecimalNumber numberWithFloat:COMPRESSION_QUALITY]
-                                                                                                            forKey:NSImageCompressionFactor]];
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[(NSImage*)payload TIFFRepresentation]];
+        postData = [bitmapRep representationUsingType:NSJPEGFileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:COMPRESSION_QUALITY]}];
     }
     else if([payload isKindOfClass:[NSString class]])
     {
         NSString* filePath = (NSString*)payload;
         NSImage* image = [[NSImage alloc] initWithContentsOfFile:filePath];
-
-        NSArray* representations = [image representations];
-        postData = [NSBitmapImageRep representationOfImageRepsInArray:representations
-                                                            usingType:NSJPEGFileType
-                                                           properties:[NSDictionary dictionaryWithObject:[NSDecimalNumber numberWithFloat:COMPRESSION_QUALITY]
-                                                                                                  forKey:NSImageCompressionFactor]];
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
+        postData = [bitmapRep representationUsingType:NSJPEGFileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:COMPRESSION_QUALITY]}];
     }
     #endif
 
