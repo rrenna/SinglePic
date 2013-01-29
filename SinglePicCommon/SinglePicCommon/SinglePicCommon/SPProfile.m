@@ -10,6 +10,7 @@
 
 #define PROFILE_IDENTIFIER_KEY @"id"
 #define PROFILE_USERNAME_KEY @"userName"
+#define PROFILE_BUCKET_KEY @"bucket"
 #define PROFILE_GENDER_KEY @"gender"
 #define PROFILE_PREFERENCE_KEY @"lookingForGender"
 #define PROFILE_ERROR_KEY @"error"
@@ -61,8 +62,13 @@
 }
 -(NSString*)bucketIdentifier
 {
-    NSAssert(NO, @"Not yet implemented");
-    return @"";
+    NSString* bucketObject = [_data objectForKey:PROFILE_BUCKET_KEY];
+    if([bucketObject isMemberOfClass:[NSNull class]])
+    {
+        //Prevents a crash when no username is set
+        bucketObject = nil;
+    }
+    return bucketObject;
 }
 -(GENDER)gender
 {

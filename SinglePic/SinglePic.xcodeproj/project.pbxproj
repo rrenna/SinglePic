@@ -601,7 +601,7 @@
 		75E7E02114B3C24E005C70B4 /* SPTabContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabContentDelegate.h; sourceTree = "<group>"; };
 		75E7E02214B3C39B005C70B4 /* SPTabContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabContentViewController.h; sourceTree = "<group>"; };
 		75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTabContentViewController.m; sourceTree = "<group>"; };
-		75E7E79E16B83AA400FB8BA6 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSinglePicCommon.a; path = "/Volumes/DATA/Development/SinglePic/SinglePicCommon/SinglePicCommon/build/Release-iphoneos/libSinglePicCommon.a"; sourceTree = "<absolute>"; };
+		75E7E79E16B83AA400FB8BA6 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSinglePicCommon.a; path = "libSinglePicCommon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F0E53F169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPMessageManager+InMemoryDataStore.h"; sourceTree = "<group>"; };
 		75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPMessageManager+InMemoryDataStore.m"; sourceTree = "<group>"; };
 		75F0E542169DE48D00F38328 /* ManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTest.h; sourceTree = "<group>"; };

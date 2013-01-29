@@ -146,6 +146,7 @@
         //Fill in profile details
         usernameLabel.text = [self.profile username];
         icebreakerLabel.text = [self.profile icebreaker];
+        bucketNameLabel.text = [self.profile bucketIdentifier];
         
         //Set the icon on the Like button
         [self refreshLikeStatus];
@@ -245,5 +246,9 @@
     {
         //
     }
+}
+- (void)viewDidUnload {
+    bucketNameLabel = nil;
+    [super viewDidUnload];
 }
 @end

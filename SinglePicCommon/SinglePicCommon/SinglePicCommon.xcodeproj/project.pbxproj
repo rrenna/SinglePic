@@ -169,7 +169,6 @@
 		75E7E7C316B83C8300FB8BA6 /* SPBucketManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307B316B1D2CB00536075 /* SPBucketManager.h */; };
 		75E7E7C416B83C8300FB8BA6 /* SPBuckets.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307B516B1D2CB00536075 /* SPBuckets.h */; };
 		75E7E7C516B83C8300FB8BA6 /* SPSettings.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076116B199E0004C3351 /* SPSettings.h */; };
-		75E7E7C616B83C8300FB8BA6 /* SPSettingsManager.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076316B199E0004C3351 /* SPSettingsManager.m */; };
 		75E7E7C716B83C8300FB8BA6 /* SPErrorManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074516B1996E004C3351 /* SPErrorManager.h */; };
 		75E7E7C816B83C8300FB8BA6 /* SPErrors.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074916B1996E004C3351 /* SPErrors.h */; };
 		75E7E7C916B83C8300FB8BA6 /* SPErrorProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074716B1996E004C3351 /* SPErrorProfile.h */; };
@@ -185,7 +184,7 @@
 		F05EFA4216B2BF9D00AB0929 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */; };
 		F05EFA4416B2BFC400AB0929 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4316B2BFC400AB0929 /* AudioToolbox.framework */; };
 		F05EFA4616B2BFEE00AB0929 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4516B2BFEE00AB0929 /* CoreMedia.framework */; };
-		F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */; };
+		F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0F1586416B4168000E831B7 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0F1586616B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -236,7 +235,6 @@
 				75E7E7C316B83C8300FB8BA6 /* SPBucketManager.h in CopyFiles */,
 				75E7E7C416B83C8300FB8BA6 /* SPBuckets.h in CopyFiles */,
 				75E7E7C516B83C8300FB8BA6 /* SPSettings.h in CopyFiles */,
-				75E7E7C616B83C8300FB8BA6 /* SPSettingsManager.m in CopyFiles */,
 				75E7E7C716B83C8300FB8BA6 /* SPErrorManager.h in CopyFiles */,
 				75E7E7C816B83C8300FB8BA6 /* SPErrors.h in CopyFiles */,
 				75E7E7C916B83C8300FB8BA6 /* SPErrorProfile.h in CopyFiles */,
@@ -711,6 +709,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */,
 				755DDDF916AEF85F00AA8D29 /* SinglePicCommon.h in Headers */,
 				753F06FB16B183FF004C3351 /* AFHTTPClient.h in Headers */,
 				753F06FF16B183FF004C3351 /* AFHTTPRequestOperation.h in Headers */,
@@ -755,7 +754,6 @@
 				7553081916B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */,
 				7553082116B1E38300536075 /* SPLocationManager.h in Headers */,
 				7553082516B1E38300536075 /* SPLocations.h in Headers */,
-				F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */,
 				F0F1586616B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

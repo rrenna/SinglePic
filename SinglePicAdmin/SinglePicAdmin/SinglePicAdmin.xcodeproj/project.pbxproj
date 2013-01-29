@@ -37,7 +37,7 @@
 		755DDE1D16AEF9B600AA8D29 /* SPAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAAppDelegate.h; sourceTree = "<group>"; };
 		755DDE1E16AEF9B600AA8D29 /* SPAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAAppDelegate.m; sourceTree = "<group>"; };
 		755DDE2116AEF9B600AA8D29 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SinglePicCommon.framework; path = "/Users/rrenna/Library/Developer/Xcode/DerivedData/SinglePic-gyitplqcsppdtcbnfuqrmhpqpdsa/Build/Products/Debug/SinglePicCommon.framework"; sourceTree = "<absolute>"; };
+		755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinglePicCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BA3B1E16B3157C00CE1710 /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F05EFA4916B2C1E300AB0929 /* appicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon114.png; path = ../appicon114.png; sourceTree = "<group>"; };
 		F0F1585816B4055E00E831B7 /* Orientation-MsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-MsM-default.png"; sourceTree = "<group>"; };

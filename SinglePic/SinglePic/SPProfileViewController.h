@@ -19,6 +19,7 @@
     IBOutlet UILabel* ageLabel;
     IBOutlet UIImageView* imageView;
     IBOutlet UILabel *usernameLabel;
+    IBOutlet SPLabel *bucketNameLabel;
     IBOutlet UILabel* icebreakerLabel;
     IBOutlet SPStyledButton* likeButton;
     IBOutlet SPStyledButton* communicateButton;
