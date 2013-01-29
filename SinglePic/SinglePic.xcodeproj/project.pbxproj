@@ -86,12 +86,10 @@
 		753211BF14CDF63F00B7EFDA /* MDACTitleBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7532118014CDF63F00B7EFDA /* MDACTitleBar@2x.png */; };
 		753211C714CDFA1800B7EFDA /* SPAboutStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 753211C614CDFA1800B7EFDA /* SPAboutStyle.m */; };
 		753ED26F15EE8E37000F64F1 /* SPKeyboardDragTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753ED26E15EE8E37000F64F1 /* SPKeyboardDragTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		753F073316B19542004C3351 /* libSinglePicCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */; };
 		754D1EDF14DB36EC00F90C19 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EDD14DB36EC00F90C19 /* default.png */; };
 		754D1EE014DB36EC00F90C19 /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754D1EDE14DB36EC00F90C19 /* default@2x.png */; };
 		755A94C9160234840056A03C /* Parchment-Right-9Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */; };
 		755A94CB16023E130056A03C /* Parchment-Right-Camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */; };
-		755DDE7616AF069800AA8D29 /* libSinglePicCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */; };
 		7575EB2215DABDB000D5707B /* SPHelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */; };
 		7575EB2315DABDB000D5707B /* SPHelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */; };
 		7576169F15DE88EA00706519 /* Logo-SinglePic-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7576169E15DE88EA00706519 /* Logo-SinglePic-white@2x.png */; };
@@ -259,6 +257,9 @@
 		F09B3ADE15DC7AC1009EF693 /* TopFade.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3ADD15DC7AC1009EF693 /* TopFade.png */; };
 		F09B3AE515DCB441009EF693 /* BTN-question.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AE315DCB43F009EF693 /* BTN-question.png */; };
 		F09B3AE615DCB441009EF693 /* BTN-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F09B3AE415DCB440009EF693 /* BTN-question@2x.png */; };
+		F09CEF4F16B80C510065AF98 /* libSinglePicCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F09CEF4E16B80C510065AF98 /* libSinglePicCommon.a */; };
+		F09CEF5216B80E550065AF98 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F09CEF5016B80E550065AF98 /* messageStorage.xcdatamodeld */; };
+		F09CEF5316B80E550065AF98 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F09CEF5016B80E550065AF98 /* messageStorage.xcdatamodeld */; };
 		F09DA06E14E21B56004E0646 /* SPConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F09DA06C14E21B56004E0646 /* SPConnectionsViewController.m */; };
 		F09DA06F14E21B56004E0646 /* SPConnectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */; };
 		F0A6A41D15D9722600F2253D /* BG-Linen-Red-Blend.png in Resources */ = {isa = PBXBuildFile; fileRef = F0A6A41C15D9722500F2253D /* BG-Linen-Red-Blend.png */; };
@@ -513,7 +514,6 @@
 		754D1EDE14DB36EC00F90C19 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "default@2x.png"; path = "../../Resources/default@2x.png"; sourceTree = "<group>"; };
 		755A94C8160234840056A03C /* Parchment-Right-9Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-9Slice@2x.png"; path = "../../Resources/Parchment-Right-9Slice@2x.png"; sourceTree = "<group>"; };
 		755A94CA16023E130056A03C /* Parchment-Right-Camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Parchment-Right-Camera@2x.png"; path = "../../Resources/Parchment-Right-Camera@2x.png"; sourceTree = "<group>"; };
-		755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSinglePicCommon.a; path = "/Volumes/DATA/Development/SinglePic/SinglePicCommon/SinglePicCommon/build/Release-iphoneos/libSinglePicCommon.a"; sourceTree = "<absolute>"; };
 		7575EB1F15DABDB000D5707B /* SPHelpOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHelpOverlayViewController.h; sourceTree = "<group>"; };
 		7575EB2015DABDB000D5707B /* SPHelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHelpOverlayViewController.m; sourceTree = "<group>"; };
 		7575EB2115DABDB000D5707B /* SPHelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPHelpOverlayViewController.xib; sourceTree = "<group>"; };
@@ -704,6 +704,8 @@
 		F09B3ADD15DC7AC1009EF693 /* TopFade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TopFade.png; path = ../../Resources/TopFade.png; sourceTree = "<group>"; };
 		F09B3AE315DCB43F009EF693 /* BTN-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-question.png"; path = "../../Resources/BTN-question.png"; sourceTree = "<group>"; };
 		F09B3AE415DCB440009EF693 /* BTN-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BTN-question@2x.png"; path = "../../Resources/BTN-question@2x.png"; sourceTree = "<group>"; };
+		F09CEF4E16B80C510065AF98 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSinglePicCommon.a; path = "/Users/rrenna360/Documents/Development/SinglePic/SinglePicCommon/SinglePicCommon/build/Release-iphoneos/libSinglePicCommon.a"; sourceTree = "<absolute>"; };
+		F09CEF5116B80E550065AF98 /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F09DA06B14E21B56004E0646 /* SPConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPConnectionsViewController.h; sourceTree = "<group>"; };
 		F09DA06C14E21B56004E0646 /* SPConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConnectionsViewController.m; sourceTree = "<group>"; };
 		F09DA06D14E21B56004E0646 /* SPConnectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPConnectionsViewController.xib; sourceTree = "<group>"; };
@@ -929,7 +931,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				755DDE7616AF069800AA8D29 /* libSinglePicCommon.a in Frameworks */,
+				F09CEF4F16B80C510065AF98 /* libSinglePicCommon.a in Frameworks */,
 				F0C177A41491BC3000F72809 /* MobileCoreServices.framework in Frameworks */,
 				F07ABC43169246E900219A25 /* CoreImage.framework in Frameworks */,
 				75071E8B16303DFB00935B0D /* AVFoundation.framework in Frameworks */,
@@ -961,7 +963,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				753F073316B19542004C3351 /* libSinglePicCommon.a in Frameworks */,
 				F00394511697F98800FD5BD8 /* SenTestingKit.framework in Frameworks */,
 				F00394871698038300FD5BD8 /* CoreImage.framework in Frameworks */,
 				F00394881698038300FD5BD8 /* AVFoundation.framework in Frameworks */,
@@ -1456,7 +1457,7 @@
 		7599A93D148E980100A48435 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				755DDE7516AF069800AA8D29 /* libSinglePicCommon.a */,
+				F09CEF4E16B80C510065AF98 /* libSinglePicCommon.a */,
 				F00394491697F66B00FD5BD8 /* SenTestingKit.framework */,
 				F07ABC42169246E900219A25 /* CoreImage.framework */,
 				75071E8A16303DFB00935B0D /* AVFoundation.framework */,
@@ -1595,6 +1596,7 @@
 		75F5631F148FC74200E6A8F9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F09CEF5016B80E550065AF98 /* messageStorage.xcdatamodeld */,
 				F0280B8416390911007B2BC8 /* Sounds */,
 				758E0DFF160A3B070006D1F7 /* Fonts */,
 				751D263914916CB500617DD8 /* Images */,
@@ -2705,6 +2707,7 @@
 				75DD4340163B24550084C61A /* SPOptionCredit.m in Sources */,
 				F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */,
 				F0F1586D16B6BA8200E831B7 /* SPErrorNotifierController.m in Sources */,
+				F09CEF5216B80E550065AF98 /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2723,6 +2726,7 @@
 				75F0E541169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m in Sources */,
 				75F0E544169DE48D00F38328 /* ManagerTest.m in Sources */,
 				F0505C6D169E390400B55724 /* ProfileManagerTest.m in Sources */,
+				F09CEF5316B80E550065AF98 /* messageStorage.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3278,6 +3282,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F09CEF5016B80E550065AF98 /* messageStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F09CEF5116B80E550065AF98 /* messageStorage 2.xcdatamodel */,
+			);
+			currentVersion = F09CEF5116B80E550065AF98 /* messageStorage 2.xcdatamodel */;
+			name = messageStorage.xcdatamodeld;
+			path = ../../SinglePicCommon/SinglePicCommon/SinglePicCommon/messageStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7599A931148E980100A48435 /* Project object */;
 }

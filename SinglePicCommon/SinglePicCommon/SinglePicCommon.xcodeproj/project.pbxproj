@@ -973,7 +973,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
@@ -1011,6 +1011,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
@@ -1070,10 +1071,7 @@
 		755DDE7116AF058E00AA8D29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1096,10 +1094,7 @@
 		755DDE7216AF058E00AA8D29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1153,7 +1148,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
@@ -1188,10 +1183,7 @@
 		75C5A04C16B1B52600CBAE31 /* Internal Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1242,6 +1234,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-load_all";
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/SinglePicCommon;
 				SDKROOT = macosx;
@@ -1276,10 +1269,7 @@
 		75C5A04F16B1B61300CBAE31 /* Public Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DSTROOT = /tmp/SinglePicCommon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
