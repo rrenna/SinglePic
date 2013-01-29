@@ -14,4 +14,6 @@
 +(SPBucketManager *)sharedInstance;
 
 -(void)retrieveBucketsWithCompletionHandler:(void (^)(NSArray* buckets))onCompletion andErrorHandler:(void(^)())onError;
+//Used to identify the name of a bucket based on a bucket identifier (will retrieve the entire list of buckets if missing entries)
+-(void)retrieveBucketNameForIdentifier:(NSString*)identifier withCompletionHandler:(void (^)(NSString* bucketName))onCompletion andErrorHandler:(void(^)())onError;
 @end

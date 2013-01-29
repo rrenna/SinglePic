@@ -146,7 +146,14 @@
         //Fill in profile details
         usernameLabel.text = [self.profile username];
         icebreakerLabel.text = [self.profile icebreaker];
-        bucketNameLabel.text = [self.profile bucketIdentifier];
+        
+        [[SPBucketManager sharedInstance] retrieveBucketNameForIdentifier:[self.profile bucketIdentifier] withCompletionHandler:^(NSString *bucketName) {
+            
+            bucketNameLabel.text = bucketName;
+            
+        } andErrorHandler:^{
+            
+        }];
         
         //Set the icon on the Like button
         [self refreshLikeStatus];
