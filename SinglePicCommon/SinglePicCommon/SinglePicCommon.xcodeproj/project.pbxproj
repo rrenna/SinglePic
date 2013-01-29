@@ -7,43 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		753F06E416B18393004C3351 /* SinglePicCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 755DDDDF16AEF69000AA8D29 /* SinglePicCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F06FB16B183FF004C3351 /* AFHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06E816B183FF004C3351 /* AFHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F06FC16B183FF004C3351 /* AFHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06E816B183FF004C3351 /* AFHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F06FD16B183FF004C3351 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06E916B183FF004C3351 /* AFHTTPClient.m */; };
 		753F06FE16B183FF004C3351 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06E916B183FF004C3351 /* AFHTTPClient.m */; };
 		753F06FF16B183FF004C3351 /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06EA16B183FF004C3351 /* AFHTTPRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F070016B183FF004C3351 /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06EA16B183FF004C3351 /* AFHTTPRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F070116B183FF004C3351 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06EB16B183FF004C3351 /* AFHTTPRequestOperation.m */; };
 		753F070216B183FF004C3351 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06EB16B183FF004C3351 /* AFHTTPRequestOperation.m */; };
 		753F070316B183FF004C3351 /* AFImageRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06EC16B183FF004C3351 /* AFImageRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F070416B183FF004C3351 /* AFImageRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06EC16B183FF004C3351 /* AFImageRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F070516B183FF004C3351 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06ED16B183FF004C3351 /* AFImageRequestOperation.m */; };
 		753F070616B183FF004C3351 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06ED16B183FF004C3351 /* AFImageRequestOperation.m */; };
 		753F070716B183FF004C3351 /* AFJSONRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06EE16B183FF004C3351 /* AFJSONRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F070816B183FF004C3351 /* AFJSONRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06EE16B183FF004C3351 /* AFJSONRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F070916B183FF004C3351 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06EF16B183FF004C3351 /* AFJSONRequestOperation.m */; };
 		753F070A16B183FF004C3351 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06EF16B183FF004C3351 /* AFJSONRequestOperation.m */; };
 		753F070B16B183FF004C3351 /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F016B183FF004C3351 /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F070C16B183FF004C3351 /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F016B183FF004C3351 /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F070D16B183FF004C3351 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F116B183FF004C3351 /* AFNetworkActivityIndicatorManager.m */; };
 		753F070E16B183FF004C3351 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F116B183FF004C3351 /* AFNetworkActivityIndicatorManager.m */; };
 		753F070F16B183FF004C3351 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F216B183FF004C3351 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F071016B183FF004C3351 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F216B183FF004C3351 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F071116B183FF004C3351 /* AFPropertyListRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F316B183FF004C3351 /* AFPropertyListRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F071216B183FF004C3351 /* AFPropertyListRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F316B183FF004C3351 /* AFPropertyListRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F071316B183FF004C3351 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F416B183FF004C3351 /* AFPropertyListRequestOperation.m */; };
 		753F071416B183FF004C3351 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F416B183FF004C3351 /* AFPropertyListRequestOperation.m */; };
 		753F071516B183FF004C3351 /* AFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F516B183FF004C3351 /* AFURLConnectionOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F071616B183FF004C3351 /* AFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F516B183FF004C3351 /* AFURLConnectionOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F071716B183FF004C3351 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F616B183FF004C3351 /* AFURLConnectionOperation.m */; };
 		753F071816B183FF004C3351 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F616B183FF004C3351 /* AFURLConnectionOperation.m */; };
 		753F071916B183FF004C3351 /* AFXMLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F716B183FF004C3351 /* AFXMLRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F071A16B183FF004C3351 /* AFXMLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F716B183FF004C3351 /* AFXMLRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F071B16B183FF004C3351 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F816B183FF004C3351 /* AFXMLRequestOperation.m */; };
 		753F071C16B183FF004C3351 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06F816B183FF004C3351 /* AFXMLRequestOperation.m */; };
 		753F071D16B183FF004C3351 /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F916B183FF004C3351 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F071E16B183FF004C3351 /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F06F916B183FF004C3351 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F071F16B183FF004C3351 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06FA16B183FF004C3351 /* UIImageView+AFNetworking.m */; };
 		753F072016B183FF004C3351 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F06FA16B183FF004C3351 /* UIImageView+AFNetworking.m */; };
 		753F072716B1878B004C3351 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDDD716AEF68F00AA8D29 /* Foundation.framework */; };
@@ -51,118 +40,86 @@
 		753F072B16B1896D004C3351 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753F072A16B1896D004C3351 /* SystemConfiguration.framework */; };
 		753F072D16B18ED1004C3351 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753F072C16B18ED1004C3351 /* SystemConfiguration.framework */; };
 		753F073B16B198F0004C3351 /* SPReachabilityReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F073716B198F0004C3351 /* SPReachabilityReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F073C16B198F0004C3351 /* SPReachabilityReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F073716B198F0004C3351 /* SPReachabilityReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F073D16B198F0004C3351 /* SPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F073816B198F0004C3351 /* SPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F073E16B198F0004C3351 /* SPRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F073816B198F0004C3351 /* SPRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F073F16B198F0004C3351 /* SPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F073916B198F0004C3351 /* SPRequestManager.m */; };
 		753F074016B198F0004C3351 /* SPRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F073916B198F0004C3351 /* SPRequestManager.m */; };
 		753F074116B198F0004C3351 /* SPRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F073A16B198F0004C3351 /* SPRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F074216B198F0004C3351 /* SPRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F073A16B198F0004C3351 /* SPRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F074E16B1996E004C3351 /* SPErrorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074516B1996E004C3351 /* SPErrorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F074F16B1996E004C3351 /* SPErrorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074516B1996E004C3351 /* SPErrorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F075016B1996E004C3351 /* SPErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074616B1996E004C3351 /* SPErrorManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		753F075116B1996E004C3351 /* SPErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074616B1996E004C3351 /* SPErrorManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		753F075216B1996E004C3351 /* SPErrorProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074716B1996E004C3351 /* SPErrorProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F075316B1996E004C3351 /* SPErrorProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074716B1996E004C3351 /* SPErrorProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F075416B1996E004C3351 /* SPErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074816B1996E004C3351 /* SPErrorProfile.m */; };
 		753F075516B1996E004C3351 /* SPErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074816B1996E004C3351 /* SPErrorProfile.m */; };
 		753F075616B1996E004C3351 /* SPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074916B1996E004C3351 /* SPErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F075716B1996E004C3351 /* SPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074916B1996E004C3351 /* SPErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F075816B1996E004C3351 /* SPWebServiceError.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074A16B1996E004C3351 /* SPWebServiceError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F075916B1996E004C3351 /* SPWebServiceError.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074A16B1996E004C3351 /* SPWebServiceError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F075A16B1996E004C3351 /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074B16B1996E004C3351 /* SPWebServiceError.m */; };
 		753F075B16B1996E004C3351 /* SPWebServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074B16B1996E004C3351 /* SPWebServiceError.m */; };
 		753F075C16B1996E004C3351 /* SPWebServiceErrorProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074C16B1996E004C3351 /* SPWebServiceErrorProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F075D16B1996E004C3351 /* SPWebServiceErrorProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F074C16B1996E004C3351 /* SPWebServiceErrorProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F075E16B1996E004C3351 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074D16B1996E004C3351 /* SPWebServiceErrorProfile.m */; };
 		753F075F16B1996E004C3351 /* SPWebServiceErrorProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F074D16B1996E004C3351 /* SPWebServiceErrorProfile.m */; };
 		753F076416B199E0004C3351 /* SPSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076116B199E0004C3351 /* SPSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F076516B199E0004C3351 /* SPSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076116B199E0004C3351 /* SPSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F076616B199E0004C3351 /* SPSettingsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076216B199E0004C3351 /* SPSettingsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F076716B199E0004C3351 /* SPSettingsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076216B199E0004C3351 /* SPSettingsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F076816B199E0004C3351 /* SPSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F076316B199E0004C3351 /* SPSettingsManager.m */; };
 		753F076916B199E0004C3351 /* SPSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F076316B199E0004C3351 /* SPSettingsManager.m */; };
 		753F076F16B19AA7004C3351 /* LoggerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076C16B19AA7004C3351 /* LoggerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F077016B19AA7004C3351 /* LoggerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076C16B19AA7004C3351 /* LoggerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F077116B19AA7004C3351 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F076D16B19AA7004C3351 /* LoggerClient.m */; };
 		753F077216B19AA7004C3351 /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 753F076D16B19AA7004C3351 /* LoggerClient.m */; };
 		753F077316B19AA7004C3351 /* LoggerCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076E16B19AA7004C3351 /* LoggerCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753F077416B19AA7004C3351 /* LoggerCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 753F076E16B19AA7004C3351 /* LoggerCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		753F077616B19AEE004C3351 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753F077516B19AEE004C3351 /* UIKit.framework */; };
 		755307AF16B1CBD700536075 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755307AE16B1CBD700536075 /* Crashlytics.framework */; };
 		755307B616B1D2CB00536075 /* SPBucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307B116B1D2CB00536075 /* SPBucket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307B716B1D2CB00536075 /* SPBucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307B116B1D2CB00536075 /* SPBucket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307B816B1D2CB00536075 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307B216B1D2CB00536075 /* SPBucket.m */; };
 		755307B916B1D2CB00536075 /* SPBucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307B216B1D2CB00536075 /* SPBucket.m */; };
 		755307BA16B1D2CB00536075 /* SPBucketManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307B316B1D2CB00536075 /* SPBucketManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307BB16B1D2CB00536075 /* SPBucketManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307B316B1D2CB00536075 /* SPBucketManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307BC16B1D2CB00536075 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307B416B1D2CB00536075 /* SPBucketManager.m */; };
 		755307BD16B1D2CB00536075 /* SPBucketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307B416B1D2CB00536075 /* SPBucketManager.m */; };
 		755307BE16B1D2CB00536075 /* SPBuckets.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307B516B1D2CB00536075 /* SPBuckets.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307BF16B1D2CB00536075 /* SPBuckets.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307B516B1D2CB00536075 /* SPBuckets.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307C116B1D58900536075 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755307C016B1D58900536075 /* CoreLocation.framework */; };
 		755307C516B1D7E300536075 /* SPProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307C316B1D7E300536075 /* SPProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307C616B1D7E300536075 /* SPProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307C316B1D7E300536075 /* SPProfile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307C716B1D7E300536075 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307C416B1D7E300536075 /* SPProfile.m */; };
 		755307C816B1D7E300536075 /* SPProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307C416B1D7E300536075 /* SPProfile.m */; };
 		755307CB16B1D87300536075 /* SPProfiles.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307CA16B1D87300536075 /* SPProfiles.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307CC16B1D87300536075 /* SPProfiles.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307CA16B1D87300536075 /* SPProfiles.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307D016B1D90000536075 /* SPCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307CE16B1D90000536075 /* SPCaptureHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307D116B1D90000536075 /* SPCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307CE16B1D90000536075 /* SPCaptureHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307D216B1D90000536075 /* SPCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307CF16B1D90000536075 /* SPCaptureHelper.m */; };
 		755307D316B1D90000536075 /* SPCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307CF16B1D90000536075 /* SPCaptureHelper.m */; };
 		755307D616B1D90D00536075 /* TimeHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307D416B1D90D00536075 /* TimeHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307D716B1D90D00536075 /* TimeHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307D416B1D90D00536075 /* TimeHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307D816B1D90D00536075 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307D516B1D90D00536075 /* TimeHelper.m */; };
 		755307D916B1D90D00536075 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307D516B1D90D00536075 /* TimeHelper.m */; };
 		755307DC16B1D91C00536075 /* SPSoundHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307DA16B1D91C00536075 /* SPSoundHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307DD16B1D91C00536075 /* SPSoundHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307DA16B1D91C00536075 /* SPSoundHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307DE16B1D91C00536075 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307DB16B1D91C00536075 /* SPSoundHelper.m */; };
 		755307DF16B1D91C00536075 /* SPSoundHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307DB16B1D91C00536075 /* SPSoundHelper.m */; };
 		755307E216B1DDAC00536075 /* SPProfileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E016B1DDAC00536075 /* SPProfileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307E316B1DDAC00536075 /* SPProfileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E016B1DDAC00536075 /* SPProfileManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307E416B1DDAC00536075 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E116B1DDAC00536075 /* SPProfileManager.m */; };
 		755307E516B1DDAC00536075 /* SPProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E116B1DDAC00536075 /* SPProfileManager.m */; };
 		755307EE16B1DEAA00536075 /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E816B1DEAA00536075 /* UIImage+Alpha.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307EF16B1DEAA00536075 /* UIImage+Alpha.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307E816B1DEAA00536075 /* UIImage+Alpha.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307F016B1DEAA00536075 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E916B1DEAA00536075 /* UIImage+Alpha.m */; };
 		755307F116B1DEAA00536075 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307E916B1DEAA00536075 /* UIImage+Alpha.m */; };
 		755307F216B1DEAA00536075 /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EA16B1DEAA00536075 /* UIImage+Resize.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307F316B1DEAA00536075 /* UIImage+Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EA16B1DEAA00536075 /* UIImage+Resize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307F416B1DEAA00536075 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307EB16B1DEAA00536075 /* UIImage+Resize.m */; };
 		755307F516B1DEAA00536075 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307EB16B1DEAA00536075 /* UIImage+Resize.m */; };
 		755307F616B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		755307F716B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		755307F816B1DEAA00536075 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307ED16B1DEAA00536075 /* UIImage+RoundedCorner.m */; };
 		755307F916B1DEAA00536075 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307ED16B1DEAA00536075 /* UIImage+RoundedCorner.m */; };
 		7553080716B1E10A00536075 /* SPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FC16B1E10A00536075 /* SPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553080816B1E10A00536075 /* SPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FC16B1E10A00536075 /* SPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553080916B1E10A00536075 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FD16B1E10A00536075 /* SPMessage.m */; };
 		7553080A16B1E10A00536075 /* SPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FD16B1E10A00536075 /* SPMessage.m */; };
 		7553080B16B1E10A00536075 /* SPMessageAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FE16B1E10A00536075 /* SPMessageAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553080C16B1E10A00536075 /* SPMessageAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 755307FE16B1E10A00536075 /* SPMessageAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553080D16B1E10A00536075 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FF16B1E10A00536075 /* SPMessageAccount.m */; };
 		7553080E16B1E10A00536075 /* SPMessageAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 755307FF16B1E10A00536075 /* SPMessageAccount.m */; };
 		7553080F16B1E10A00536075 /* SPMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080016B1E10A00536075 /* SPMessageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553081016B1E10A00536075 /* SPMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080016B1E10A00536075 /* SPMessageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553081116B1E10A00536075 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080116B1E10A00536075 /* SPMessageManager.m */; };
 		7553081216B1E10A00536075 /* SPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080116B1E10A00536075 /* SPMessageManager.m */; };
 		7553081316B1E10A00536075 /* SPMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080216B1E10A00536075 /* SPMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553081416B1E10A00536075 /* SPMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080216B1E10A00536075 /* SPMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553081516B1E10A00536075 /* SPMessageThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080316B1E10A00536075 /* SPMessageThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553081616B1E10A00536075 /* SPMessageThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080316B1E10A00536075 /* SPMessageThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553081716B1E10A00536075 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080416B1E10A00536075 /* SPMessageThread.m */; };
 		7553081816B1E10A00536075 /* SPMessageThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080416B1E10A00536075 /* SPMessageThread.m */; };
 		7553081916B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553081A16B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553081B16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */; };
 		7553081C16B1E10A00536075 /* SPMessageThread+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553080616B1E10A00536075 /* SPMessageThread+Sorting.m */; };
 		7553082116B1E38300536075 /* SPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553081E16B1E38300536075 /* SPLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553082216B1E38300536075 /* SPLocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553081E16B1E38300536075 /* SPLocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553082316B1E38300536075 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553081F16B1E38300536075 /* SPLocationManager.m */; };
 		7553082416B1E38300536075 /* SPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553081F16B1E38300536075 /* SPLocationManager.m */; };
 		7553082516B1E38300536075 /* SPLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7553082616B1E38300536075 /* SPLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7553082B16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7553082916B30EF100536075 /* messageStorage.xcdatamodeld */; };
 		7553082C16B30EF100536075 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7553082916B30EF100536075 /* messageStorage.xcdatamodeld */; };
 		755DDDD316AEF68F00AA8D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDDD216AEF68F00AA8D29 /* Cocoa.framework */; };
@@ -172,11 +129,57 @@
 		755DDE6F16AF058E00AA8D29 /* SinglePicCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 755DDE6E16AF058E00AA8D29 /* SinglePicCommon.m */; };
 		755DDE7316AF068000AA8D29 /* SinglePicCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 755DDE6E16AF058E00AA8D29 /* SinglePicCommon.m */; };
 		75C5A04616B1A07A00CBAE31 /* SPBaseApplicationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C5A04516B1A07A00CBAE31 /* SPBaseApplicationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75C5A04716B1A07A00CBAE31 /* SPBaseApplicationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C5A04516B1A07A00CBAE31 /* SPBaseApplicationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75C5A05616B1B78700CBAE31 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 75C5A05216B1B78700CBAE31 /* README.md */; };
-		75C5A05816B1B78700CBAE31 /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 75C5A05316B1B78700CBAE31 /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75C5A05A16B1B78700CBAE31 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C5A05416B1B78700CBAE31 /* libTestFlight.a */; };
 		75C5A05B16B1B78700CBAE31 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 75C5A05516B1B78700CBAE31 /* release_notes.md */; };
+		75E7E7A116B83C8300FB8BA6 /* NSImage+MGCropExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */; };
+		75E7E7A216B83C8300FB8BA6 /* SPMessageThread+Sorting.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7553080516B1E10A00536075 /* SPMessageThread+Sorting.h */; };
+		75E7E7A316B83C8300FB8BA6 /* UIImage+Alpha.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307E816B1DEAA00536075 /* UIImage+Alpha.h */; };
+		75E7E7A416B83C8300FB8BA6 /* UIImage+Resize.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307EA16B1DEAA00536075 /* UIImage+Resize.h */; };
+		75E7E7A516B83C8300FB8BA6 /* UIImage+RoundedCorner.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307EC16B1DEAA00536075 /* UIImage+RoundedCorner.h */; };
+		75E7E7A616B83C8300FB8BA6 /* SPSoundHelper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307DA16B1D91C00536075 /* SPSoundHelper.h */; };
+		75E7E7A716B83C8300FB8BA6 /* TimeHelper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307D416B1D90D00536075 /* TimeHelper.h */; };
+		75E7E7A816B83C8300FB8BA6 /* SPCaptureHelper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307CE16B1D90000536075 /* SPCaptureHelper.h */; };
+		75E7E7A916B83C8300FB8BA6 /* SPMessageAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307FE16B1E10A00536075 /* SPMessageAccount.h */; };
+		75E7E7AA16B83C8300FB8BA6 /* SPMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307FC16B1E10A00536075 /* SPMessage.h */; };
+		75E7E7AB16B83C8300FB8BA6 /* SPMessageThread.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7553080316B1E10A00536075 /* SPMessageThread.h */; };
+		75E7E7AC16B83C8300FB8BA6 /* SPProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307C316B1D7E300536075 /* SPProfile.h */; };
+		75E7E7AD16B83C8300FB8BA6 /* SPBucket.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307B116B1D2CB00536075 /* SPBucket.h */; };
+		75E7E7AE16B83C8300FB8BA6 /* SPBaseApplicationController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75C5A04516B1A07A00CBAE31 /* SPBaseApplicationController.h */; };
+		75E7E7AF16B83C8300FB8BA6 /* SPErrorNotifierController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */; };
+		75E7E7B016B83C8300FB8BA6 /* TestFlight.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 75C5A05316B1B78700CBAE31 /* TestFlight.h */; };
+		75E7E7B116B83C8300FB8BA6 /* LoggerClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076C16B19AA7004C3351 /* LoggerClient.h */; };
+		75E7E7B216B83C8300FB8BA6 /* LoggerCommon.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076E16B19AA7004C3351 /* LoggerCommon.h */; };
+		75E7E7B316B83C8300FB8BA6 /* AFHTTPClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06E816B183FF004C3351 /* AFHTTPClient.h */; };
+		75E7E7B416B83C8300FB8BA6 /* AFHTTPRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06EA16B183FF004C3351 /* AFHTTPRequestOperation.h */; };
+		75E7E7B516B83C8300FB8BA6 /* AFImageRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06EC16B183FF004C3351 /* AFImageRequestOperation.h */; };
+		75E7E7B616B83C8300FB8BA6 /* AFJSONRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06EE16B183FF004C3351 /* AFJSONRequestOperation.h */; };
+		75E7E7B716B83C8300FB8BA6 /* AFNetworkActivityIndicatorManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06F016B183FF004C3351 /* AFNetworkActivityIndicatorManager.h */; };
+		75E7E7B816B83C8300FB8BA6 /* AFNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06F216B183FF004C3351 /* AFNetworking.h */; };
+		75E7E7B916B83C8300FB8BA6 /* AFPropertyListRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06F316B183FF004C3351 /* AFPropertyListRequestOperation.h */; };
+		75E7E7BA16B83C8300FB8BA6 /* AFURLConnectionOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06F516B183FF004C3351 /* AFURLConnectionOperation.h */; };
+		75E7E7BB16B83C8300FB8BA6 /* AFXMLRequestOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06F716B183FF004C3351 /* AFXMLRequestOperation.h */; };
+		75E7E7BC16B83C8300FB8BA6 /* UIImageView+AFNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F06F916B183FF004C3351 /* UIImageView+AFNetworking.h */; };
+		75E7E7BD16B83C8300FB8BA6 /* SPLocationManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7553081E16B1E38300536075 /* SPLocationManager.h */; };
+		75E7E7BE16B83C8300FB8BA6 /* SPLocations.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7553082016B1E38300536075 /* SPLocations.h */; };
+		75E7E7BF16B83C8300FB8BA6 /* SPMessageManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7553080016B1E10A00536075 /* SPMessageManager.h */; };
+		75E7E7C016B83C8300FB8BA6 /* SPMessages.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7553080216B1E10A00536075 /* SPMessages.h */; };
+		75E7E7C116B83C8300FB8BA6 /* SPProfileManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307E016B1DDAC00536075 /* SPProfileManager.h */; };
+		75E7E7C216B83C8300FB8BA6 /* SPProfiles.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307CA16B1D87300536075 /* SPProfiles.h */; };
+		75E7E7C316B83C8300FB8BA6 /* SPBucketManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307B316B1D2CB00536075 /* SPBucketManager.h */; };
+		75E7E7C416B83C8300FB8BA6 /* SPBuckets.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755307B516B1D2CB00536075 /* SPBuckets.h */; };
+		75E7E7C516B83C8300FB8BA6 /* SPSettings.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076116B199E0004C3351 /* SPSettings.h */; };
+		75E7E7C616B83C8300FB8BA6 /* SPSettingsManager.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076316B199E0004C3351 /* SPSettingsManager.m */; };
+		75E7E7C716B83C8300FB8BA6 /* SPErrorManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074516B1996E004C3351 /* SPErrorManager.h */; };
+		75E7E7C816B83C8300FB8BA6 /* SPErrors.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074916B1996E004C3351 /* SPErrors.h */; };
+		75E7E7C916B83C8300FB8BA6 /* SPErrorProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074716B1996E004C3351 /* SPErrorProfile.h */; };
+		75E7E7CA16B83C8300FB8BA6 /* SPWebServiceErrorProfile.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074C16B1996E004C3351 /* SPWebServiceErrorProfile.h */; };
+		75E7E7CB16B83C8300FB8BA6 /* SPWebServiceError.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F074A16B1996E004C3351 /* SPWebServiceError.h */; };
+		75E7E7CC16B83C8300FB8BA6 /* SPReachabilityReporter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F073716B198F0004C3351 /* SPReachabilityReporter.h */; };
+		75E7E7CD16B83C8300FB8BA6 /* SPRequestManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F073816B198F0004C3351 /* SPRequestManager.h */; };
+		75E7E7CE16B83C8300FB8BA6 /* SinglePicCommon.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 755DDDDF16AEF69000AA8D29 /* SinglePicCommon.h */; };
+		75E7E7CF16B83CA900FB8BA6 /* SPSettingsManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F076216B199E0004C3351 /* SPSettingsManager.h */; };
+		75E7E7D016B83CA900FB8BA6 /* SPRequests.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 753F073A16B198F0004C3351 /* SPRequests.h */; };
 		F05EFA3916B2BEB800AB0929 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA3816B2BEB700AB0929 /* ImageIO.framework */; };
 		F05EFA3C16B2BEDD00AB0929 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA3B16B2BEDD00AB0929 /* ImageIO.framework */; };
 		F05EFA4216B2BF9D00AB0929 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05EFA4116B2BF9D00AB0929 /* AVFoundation.framework */; };
@@ -185,7 +188,6 @@
 		F0F1586316B4168000E831B7 /* NSImage+MGCropExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586116B4168000E831B7 /* NSImage+MGCropExtensions.h */; };
 		F0F1586416B4168000E831B7 /* NSImage+MGCropExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F1586216B4168000E831B7 /* NSImage+MGCropExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0F1586616B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F0F1586716B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */ = {isa = PBXBuildFile; fileRef = F0F1586516B6B54D00E831B7 /* SPErrorNotifierController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -195,6 +197,54 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				75E7E7CF16B83CA900FB8BA6 /* SPSettingsManager.h in CopyFiles */,
+				75E7E7D016B83CA900FB8BA6 /* SPRequests.h in CopyFiles */,
+				75E7E7A116B83C8300FB8BA6 /* NSImage+MGCropExtensions.h in CopyFiles */,
+				75E7E7A216B83C8300FB8BA6 /* SPMessageThread+Sorting.h in CopyFiles */,
+				75E7E7A316B83C8300FB8BA6 /* UIImage+Alpha.h in CopyFiles */,
+				75E7E7A416B83C8300FB8BA6 /* UIImage+Resize.h in CopyFiles */,
+				75E7E7A516B83C8300FB8BA6 /* UIImage+RoundedCorner.h in CopyFiles */,
+				75E7E7A616B83C8300FB8BA6 /* SPSoundHelper.h in CopyFiles */,
+				75E7E7A716B83C8300FB8BA6 /* TimeHelper.h in CopyFiles */,
+				75E7E7A816B83C8300FB8BA6 /* SPCaptureHelper.h in CopyFiles */,
+				75E7E7A916B83C8300FB8BA6 /* SPMessageAccount.h in CopyFiles */,
+				75E7E7AA16B83C8300FB8BA6 /* SPMessage.h in CopyFiles */,
+				75E7E7AB16B83C8300FB8BA6 /* SPMessageThread.h in CopyFiles */,
+				75E7E7AC16B83C8300FB8BA6 /* SPProfile.h in CopyFiles */,
+				75E7E7AD16B83C8300FB8BA6 /* SPBucket.h in CopyFiles */,
+				75E7E7AE16B83C8300FB8BA6 /* SPBaseApplicationController.h in CopyFiles */,
+				75E7E7AF16B83C8300FB8BA6 /* SPErrorNotifierController.h in CopyFiles */,
+				75E7E7B016B83C8300FB8BA6 /* TestFlight.h in CopyFiles */,
+				75E7E7B116B83C8300FB8BA6 /* LoggerClient.h in CopyFiles */,
+				75E7E7B216B83C8300FB8BA6 /* LoggerCommon.h in CopyFiles */,
+				75E7E7B316B83C8300FB8BA6 /* AFHTTPClient.h in CopyFiles */,
+				75E7E7B416B83C8300FB8BA6 /* AFHTTPRequestOperation.h in CopyFiles */,
+				75E7E7B516B83C8300FB8BA6 /* AFImageRequestOperation.h in CopyFiles */,
+				75E7E7B616B83C8300FB8BA6 /* AFJSONRequestOperation.h in CopyFiles */,
+				75E7E7B716B83C8300FB8BA6 /* AFNetworkActivityIndicatorManager.h in CopyFiles */,
+				75E7E7B816B83C8300FB8BA6 /* AFNetworking.h in CopyFiles */,
+				75E7E7B916B83C8300FB8BA6 /* AFPropertyListRequestOperation.h in CopyFiles */,
+				75E7E7BA16B83C8300FB8BA6 /* AFURLConnectionOperation.h in CopyFiles */,
+				75E7E7BB16B83C8300FB8BA6 /* AFXMLRequestOperation.h in CopyFiles */,
+				75E7E7BC16B83C8300FB8BA6 /* UIImageView+AFNetworking.h in CopyFiles */,
+				75E7E7BD16B83C8300FB8BA6 /* SPLocationManager.h in CopyFiles */,
+				75E7E7BE16B83C8300FB8BA6 /* SPLocations.h in CopyFiles */,
+				75E7E7BF16B83C8300FB8BA6 /* SPMessageManager.h in CopyFiles */,
+				75E7E7C016B83C8300FB8BA6 /* SPMessages.h in CopyFiles */,
+				75E7E7C116B83C8300FB8BA6 /* SPProfileManager.h in CopyFiles */,
+				75E7E7C216B83C8300FB8BA6 /* SPProfiles.h in CopyFiles */,
+				75E7E7C316B83C8300FB8BA6 /* SPBucketManager.h in CopyFiles */,
+				75E7E7C416B83C8300FB8BA6 /* SPBuckets.h in CopyFiles */,
+				75E7E7C516B83C8300FB8BA6 /* SPSettings.h in CopyFiles */,
+				75E7E7C616B83C8300FB8BA6 /* SPSettingsManager.m in CopyFiles */,
+				75E7E7C716B83C8300FB8BA6 /* SPErrorManager.h in CopyFiles */,
+				75E7E7C816B83C8300FB8BA6 /* SPErrors.h in CopyFiles */,
+				75E7E7C916B83C8300FB8BA6 /* SPErrorProfile.h in CopyFiles */,
+				75E7E7CA16B83C8300FB8BA6 /* SPWebServiceErrorProfile.h in CopyFiles */,
+				75E7E7CB16B83C8300FB8BA6 /* SPWebServiceError.h in CopyFiles */,
+				75E7E7CC16B83C8300FB8BA6 /* SPReachabilityReporter.h in CopyFiles */,
+				75E7E7CD16B83C8300FB8BA6 /* SPRequestManager.h in CopyFiles */,
+				75E7E7CE16B83C8300FB8BA6 /* SinglePicCommon.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,59 +707,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		753F06E316B1837E004C3351 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				753F06E416B18393004C3351 /* SinglePicCommon.h in Headers */,
-				753F06FC16B183FF004C3351 /* AFHTTPClient.h in Headers */,
-				753F070016B183FF004C3351 /* AFHTTPRequestOperation.h in Headers */,
-				753F070416B183FF004C3351 /* AFImageRequestOperation.h in Headers */,
-				753F070816B183FF004C3351 /* AFJSONRequestOperation.h in Headers */,
-				753F070C16B183FF004C3351 /* AFNetworkActivityIndicatorManager.h in Headers */,
-				753F071016B183FF004C3351 /* AFNetworking.h in Headers */,
-				753F071216B183FF004C3351 /* AFPropertyListRequestOperation.h in Headers */,
-				753F071616B183FF004C3351 /* AFURLConnectionOperation.h in Headers */,
-				753F071A16B183FF004C3351 /* AFXMLRequestOperation.h in Headers */,
-				753F071E16B183FF004C3351 /* UIImageView+AFNetworking.h in Headers */,
-				753F073C16B198F0004C3351 /* SPReachabilityReporter.h in Headers */,
-				753F073E16B198F0004C3351 /* SPRequestManager.h in Headers */,
-				753F074216B198F0004C3351 /* SPRequests.h in Headers */,
-				753F074F16B1996E004C3351 /* SPErrorManager.h in Headers */,
-				753F075316B1996E004C3351 /* SPErrorProfile.h in Headers */,
-				753F075716B1996E004C3351 /* SPErrors.h in Headers */,
-				753F075916B1996E004C3351 /* SPWebServiceError.h in Headers */,
-				753F075D16B1996E004C3351 /* SPWebServiceErrorProfile.h in Headers */,
-				753F076516B199E0004C3351 /* SPSettings.h in Headers */,
-				753F077016B19AA7004C3351 /* LoggerClient.h in Headers */,
-				753F077416B19AA7004C3351 /* LoggerCommon.h in Headers */,
-				753F076716B199E0004C3351 /* SPSettingsManager.h in Headers */,
-				75C5A04716B1A07A00CBAE31 /* SPBaseApplicationController.h in Headers */,
-				75C5A05816B1B78700CBAE31 /* TestFlight.h in Headers */,
-				755307B716B1D2CB00536075 /* SPBucket.h in Headers */,
-				755307BB16B1D2CB00536075 /* SPBucketManager.h in Headers */,
-				755307BF16B1D2CB00536075 /* SPBuckets.h in Headers */,
-				755307C616B1D7E300536075 /* SPProfile.h in Headers */,
-				755307CC16B1D87300536075 /* SPProfiles.h in Headers */,
-				755307D116B1D90000536075 /* SPCaptureHelper.h in Headers */,
-				755307D716B1D90D00536075 /* TimeHelper.h in Headers */,
-				755307DD16B1D91C00536075 /* SPSoundHelper.h in Headers */,
-				755307E316B1DDAC00536075 /* SPProfileManager.h in Headers */,
-				755307EF16B1DEAA00536075 /* UIImage+Alpha.h in Headers */,
-				755307F316B1DEAA00536075 /* UIImage+Resize.h in Headers */,
-				755307F716B1DEAA00536075 /* UIImage+RoundedCorner.h in Headers */,
-				7553080816B1E10A00536075 /* SPMessage.h in Headers */,
-				7553080C16B1E10A00536075 /* SPMessageAccount.h in Headers */,
-				7553081016B1E10A00536075 /* SPMessageManager.h in Headers */,
-				7553081416B1E10A00536075 /* SPMessages.h in Headers */,
-				7553081616B1E10A00536075 /* SPMessageThread.h in Headers */,
-				7553081A16B1E10A00536075 /* SPMessageThread+Sorting.h in Headers */,
-				7553082216B1E38300536075 /* SPLocationManager.h in Headers */,
-				7553082616B1E38300536075 /* SPLocations.h in Headers */,
-				F0F1586716B6B54D00E831B7 /* SPErrorNotifierController.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		755DDDCC16AEF68F00AA8D29 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -791,7 +788,6 @@
 				755DDE6316AF058E00AA8D29 /* Sources */,
 				755DDE6416AF058E00AA8D29 /* Frameworks */,
 				755DDE6516AF058E00AA8D29 /* CopyFiles */,
-				753F06E316B1837E004C3351 /* Headers */,
 			);
 			buildRules = (
 			);
