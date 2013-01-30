@@ -601,7 +601,7 @@
 		75E7E02114B3C24E005C70B4 /* SPTabContentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabContentDelegate.h; sourceTree = "<group>"; };
 		75E7E02214B3C39B005C70B4 /* SPTabContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTabContentViewController.h; sourceTree = "<group>"; };
 		75E7E02314B3C39B005C70B4 /* SPTabContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTabContentViewController.m; sourceTree = "<group>"; };
-		75E7E79E16B83AA400FB8BA6 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSinglePicCommon.a; path = "libSinglePicCommon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75E7E79E16B83AA400FB8BA6 /* libSinglePicCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSinglePicCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75F0E53F169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPMessageManager+InMemoryDataStore.h"; sourceTree = "<group>"; };
 		75F0E540169DDFB300F38328 /* SPMessageManager+InMemoryDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPMessageManager+InMemoryDataStore.m"; sourceTree = "<group>"; };
 		75F0E542169DE48D00F38328 /* ManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTest.h; sourceTree = "<group>"; };
@@ -640,6 +640,13 @@
 		F01FC1F515FD122900852650 /* ColorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGrid.h; sourceTree = "<group>"; };
 		F01FC1F615FD122900852650 /* ColorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGrid.m; sourceTree = "<group>"; };
 		F01FC1F715FD122900852650 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		F0246C8E16B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/Overlay_OOB_EXPIRY.png; sourceTree = "<group>"; };
+		F0246C8F16B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/Overlay_OOB_BROWSE.png; sourceTree = "<group>"; };
+		F0246C9016B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pt; path = pt.lproj/Overlay_OOB_LOGIN.png; sourceTree = "<group>"; };
+		F0246C9116B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F0246C9216B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pt; path = pt.lproj/Credits.plist; sourceTree = "<group>"; };
+		F0246C9316B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F0246C9416B946A600A712BE /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F02505BC15F02407000D4546 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		F026429E14DF9F2100E8D649 /* SPIcebreakerComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPIcebreakerComposeViewController.h; sourceTree = "<group>"; };
 		F026429F14DF9F2100E8D649 /* SPIcebreakerComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPIcebreakerComposeViewController.m; sourceTree = "<group>"; };
@@ -2321,6 +2328,7 @@
 				en,
 				"zh-Hans",
 				"zh-Hant",
+				pt,
 			);
 			mainGroup = 7599A92F148E980100A48435;
 			productRefGroup = 7599A93B148E980100A48435 /* Products */;
@@ -2741,6 +2749,7 @@
 				7599A948148E980100A48435 /* en */,
 				F0DFAB8416686AF900C23117 /* zh-Hans */,
 				F00394A91699142800FD5BD8 /* zh-Hant */,
+				F0246C9316B946A600A712BE /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2750,6 +2759,7 @@
 			children = (
 				F00394581697F98800FD5BD8 /* en */,
 				F00394AA1699142800FD5BD8 /* zh-Hant */,
+				F0246C9416B946A600A712BE /* pt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2760,6 +2770,7 @@
 				F02FB3ED166D828C003B8151 /* zh-Hans */,
 				F02FB3F0166D828F003B8151 /* en */,
 				F00394A81699142800FD5BD8 /* zh-Hant */,
+				F0246C9216B946A600A712BE /* pt */,
 			);
 			name = Credits.plist;
 			sourceTree = "<group>";
@@ -2770,6 +2781,7 @@
 				F02FB3F2166D92B4003B8151 /* en */,
 				F02FB3F4166D92B7003B8151 /* zh-Hans */,
 				F00394A41699142700FD5BD8 /* zh-Hant */,
+				F0246C8E16B946A600A712BE /* pt */,
 			);
 			name = Overlay_OOB_EXPIRY.png;
 			path = ../../Resources;
@@ -2781,6 +2793,7 @@
 				F02FB3F6166D9480003B8151 /* en */,
 				F02FB3F8166D9484003B8151 /* zh-Hans */,
 				F00394A51699142700FD5BD8 /* zh-Hant */,
+				F0246C8F16B946A600A712BE /* pt */,
 			);
 			name = Overlay_OOB_BROWSE.png;
 			path = ../../Resources;
@@ -2792,6 +2805,7 @@
 				F02FB3FA166D94EE003B8151 /* en */,
 				F02FB3FC166D94F1003B8151 /* zh-Hans */,
 				F00394A61699142700FD5BD8 /* zh-Hant */,
+				F0246C9016B946A600A712BE /* pt */,
 			);
 			name = Overlay_OOB_LOGIN.png;
 			path = ../../Resources;
@@ -2803,6 +2817,7 @@
 				F0DFAB8816686B6B00C23117 /* en */,
 				F0DFAB8A16686B6E00C23117 /* zh-Hans */,
 				F00394A71699142700FD5BD8 /* zh-Hant */,
+				F0246C9116B946A600A712BE /* pt */,
 			);
 			name = Localizable.strings;
 			path = ../../Resources;
@@ -2855,10 +2870,7 @@
 		755EF7B9162F2DC60084C28E /* Public Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Renna";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ryan Renna";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2979,10 +2991,7 @@
 		7599A959148E980100A48435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ryan Renna";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3018,10 +3027,7 @@
 		7599A95A148E980100A48435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Renna";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ryan Renna";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3213,10 +3219,7 @@
 		F00CBD3914D904860032C1AA /* Internal Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Renna";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ryan Renna";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -1,0 +1,103 @@
+/* 
+  Localizable.strings
+  SinglePic
+
+  Created by Ryan Renna on 2012-11-29.
+
+*/
+
+"day" = "dia";
+"days" = "dias";
+"hour" = "hora";
+"hours" = "horas";
+"minute" = "minuto";
+"minutes" = "minutos";
+"second" = "segundo";
+"seconds" = "segundo";
+"remaining" = "restantes";
+"ago" = "atrás";
+
+"OK" =  "Aprovar";   //"approvar"  if it is used as verb
+"Version" ="Versão";
+"Login"= "Entrar";
+"Logout" ="Sair";
+"Username"  ="Username";
+"Email" ="E-mail";
+"Password"  = "Senha";
+"Repeat Password" = "Repita Senha"; // “Repita Senha” if you use “Repeat Password”
+"Required" ="Exigido";
+"Registration" = "Registo";
+"About" ="Sobre";
+"Browse"  ="Procurar";
+"Sign Up" ="Inscrição";
+"About Me" ="Sobre Mim";
+"My Profile" ="Meu Perfil";
+"Likes" = "Gosta De";
+"Messages" ="Mensagens";
+"Register" ="Inscrição com e-mail";
+"Locate" ="Localize";
+"Cancel" ="Cancelar";
+"Back" ="Voltar";
+"Next" ="Próxima";
+"Save" ="Guardar";
+"Proceed"="Prosseguir";
+"Yes"  ="Sim";
+"No" ="Não";
+"Edit"="Editar";
+"I Like" = "Eu Gosto"; //If  it is "I like" then in Portuguese it is "Eu gosto" if you use "Likes" then it is "Gosta de"
+"Likes Me" ="Gosta De Mim";
+"Unlike" ="Ao contrário";
+"Send"="Enviar";
+"Sound Effects" = "Efeitos Sonoros";
+"Save to Camera Roll" = "Guardar ao rolo da câmera";
+"I live in" ="Eu moro em";
+"I'm a male seeking a female"="Eu sou um macho procura uma fêmea";
+"I'm a female seeking a female" ="Eu sou uma fêmea buscando uma fêmea";
+"I'm a female seeking a male" ="Eu sou uma fêmea buscando um macho";
+"I'm a male seeking a male" ="Eu sou uma macho buscando um macho";
+"Enter a Message" ="Digite uma mensagem";
+"Upload your first image!" = "Carregar sua primeira imagem! :)";
+"Upload a new Pic!" ="Carregar um novo  Pic! :)";
+"Enter an Icebreaker" ="Digite um quebra-gelo  :)";
+"Pull down for more..." ="Puxe para baixo para mais...";
+"Look for singles in your area." ="Olhe para os solteiros na sua área.";
+"SinglePic is out of date" = "SinglePic está desatualizado";
+"This version of SinglePic is too old." = " Esta versão do SinglePic é muito antiga.Você deve baixar a versão mais recente na App Store antes de continuar.";
+"You must have a Pic set to send a message"="Você deve ter um Pic definido para enviar uma mensagem";
+"You must update your expired Pic to send a message" ="Você deve atualizar seu expirado Pic para enviar uma mensagem";
+"Chat" = "Bate-papo";
+"Say hello. Start a conversation and see where it leads." = "Dizer Olá. Iniciar uma conversa e ver onde ele leva.";
+"Real People. Real Pics." = "Reais Pessoas. Reais Fotos.";
+"New profile pics are taken every seven days - no more fake or outdated photos." ="Novas fotos de perfil são tomadas a cada sete dias - não há mais fotos falsas ou desatualizadas.";
+"A Fun Way To Meet Singles" = "Uma forma divertida para encontrar Solteiros";
+"Sign up or log in." = "Inscrição ou Iniciar sessão.";
+"Where are you?" ="Onde você está?";
+"A face cannot be validated in this photo. Proceed?" ="Um cara não pode ser validado nesta foto. Prosseguir?";
+"Block User" ="Bloquear Usuário";
+"Are you sure you would like to block this person?" ="Tem certeza que deseja bloquear esta pessoa?";
+"Are you sure you would like to unlike this person?" ="Tem certeza que deseja ao contrário essa pessoa?";
+
+//Loading Messages
+"Finding your location..." ="Encontrar a sua localização...";
+"Finding nearby locations..." ="Encontrar locais próximos...";
+"Location couldn't be retrieved"  ="Localização não podia ser recuperada";
+"Locating this address..." ="Localizando este endereço...";
+
+//Errors
+"We're Sorry" = "Pedimos Desculpas";
+"Sorry. There was an error uploading your photo. Please try again." = "Desculpe.Houve um erro de upload de sua foto.Por favor, tente novamente.";
+"Location Services Disabled. Enter your location." = "Localização Serviços Deficientes. Por favor digite seu local para nos ajudar a localizá-lo.";
+"Registration couldn't be completed" = "Registration couldn't be completed";
+"There was a problem when we tried to create your account." = "There was a problem when we tried to create your account. If this problem persists please contact us.";
+"Registration information is invalid" = "Registration information is invalid";
+"This email is already taken. Please try again." = "This email is already taken. Please try again.";
+"This email appears to be invalid. Please try again." = "This email appears to be invalid. Please try again.";
+"Invalid Login/Password" = "Invalid Login/Password";
+"This doesn't appear to be a valid email and password combination." = "This doesn't appear to be a valid email and password combination.";
+"Login Expired" = "Login Expired";
+"Your login session has expired. You may have logged in on another device, please log in." = "Your login session has expired. You may have logged in on another device, please log in.";
+"Invalid Email" = "Invalid Email";
+"This doesn't appear to be a valid email address." = "This doesn't appear to be a valid email address.";
+"Cannot Access Image" = "Cannot Access Image";
+"We're sorry but there was a problem accessing an online image." = "We're sorry but there was a problem accessing an online image. Please try again and report this issue if it persists.";
+"We had a problem connecting to the SinglePic server. Please report this issue if it persists." = "We had a problem connecting to the SinglePic server. Please report this issue if it persists.";
