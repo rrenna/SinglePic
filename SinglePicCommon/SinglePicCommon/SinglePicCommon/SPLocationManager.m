@@ -10,6 +10,7 @@
 
 @interface SPLocationManager()
 {
+    CLLocationManager* locationManager;
 }
 @property (copy) void(^waitOnLocationCompleteBlock)(CLLocation*);
 @property (copy) void(^waitOnLocationErrorBlock)();

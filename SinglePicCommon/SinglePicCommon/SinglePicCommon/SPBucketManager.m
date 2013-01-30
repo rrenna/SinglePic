@@ -10,11 +10,11 @@
 #import "SPBucket.h"
 
 @interface SPBucketManager()
+@property (strong) NSMutableArray* buckets;
 @property (strong)NSMutableDictionary* bucketNames;
 @end
 
 @implementation SPBucketManager
-@synthesize buckets;
 
 + (SPBucketManager *)sharedInstance
 {

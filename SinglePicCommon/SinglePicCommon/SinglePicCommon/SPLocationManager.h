@@ -10,10 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface SPLocationManager : NSObject <CLLocationManagerDelegate>
-{
-@private
-    CLLocationManager* locationManager;
-}
 
 + (SPLocationManager *)sharedInstance;
 

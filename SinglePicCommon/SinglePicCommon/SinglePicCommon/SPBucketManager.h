@@ -9,7 +9,6 @@
 #import "SPBuckets.h"
 
 @interface SPBucketManager : NSObject
-@property (retain) NSMutableArray* buckets;
 
 +(SPBucketManager *)sharedInstance;
 
