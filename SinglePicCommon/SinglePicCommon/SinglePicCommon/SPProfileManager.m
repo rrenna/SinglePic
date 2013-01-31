@@ -1283,6 +1283,14 @@ static int profileCounter = 0;
     }
     else
     {
+        //If profile has no thumbnail URL set, do not attempt to request the thumbnail, this user hasn't set an image yet
+        // Instead set the default placeholder image
+        if([[[profile thumbnailURL] absoluteString] isEqualToString:@""])
+        {
+            UIImage* noImage = [UIImage imageNamed:NO_IMAGE_AVATAR_FILENAME];
+            onCompletion(noImage);
+        }
+        
         [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(id responseObject)
          {
             if(responseObject && profile.identifier)

@@ -28,5 +28,8 @@
 #define MINIMUM_PASSWORD_LENGTH 6
 #define MINIMUM_EMAIL_LENGTH 4
 
+//Resources
+#define NO_IMAGE_AVATAR_FILENAME @"MyProfile-OBE-Pic.png"
+
 @interface SinglePicCommon : NSObject
 @end
