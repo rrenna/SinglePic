@@ -42,6 +42,7 @@
 		<string>zh_CN</string>
 		<string>zh_TW</string>
 		<string>Portuguese</string>
+		<string>fr</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>

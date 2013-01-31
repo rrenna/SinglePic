@@ -62,6 +62,10 @@
         {            
             [[SPErrorManager sharedInstance] alertWithTitle:NSLocalizedString(@"Invalid Login/Password",nil) Description:NSLocalizedString(@"This doesn't appear to be a valid email and password combination.",nil)];
         }];
+        SPWebServiceErrorProfile* suspendedUserProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens"  andServerError:@"suspended" andRequestType:WEB_SERVICE_POST_REQUEST andErrorHandler:^(NSError * error)
+        {
+            [[SPErrorManager sharedInstance] alertWithTitle:NSLocalizedString(@"Suspended User",nil) Description:NSLocalizedString(@"This account has been suspended.",nil)];
+        }];
         SPWebServiceErrorProfile* validateFailedProfile = [SPWebServiceErrorProfile profileWithURLString:@"tokens" andServerError:@"token not found" andRequestType:WEB_SERVICE_GET_REQUEST andErrorHandler:^(NSError * error)
         {
             [[SPErrorManager sharedInstance] alertWithTitle:NSLocalizedString(@"Login Expired",nil) Description:NSLocalizedString(@"Your login session has expired. You may have logged in on another device, please log in.",nil)];
@@ -79,7 +83,7 @@
         }];
         
         errorQueue = [NSMutableArray new];
-        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,validateFailedProfile,emailEmailProfile,downloadPhotoProfile,nil];
+        knownErrors = [[NSArray alloc] initWithObjects:bucketInvalidProfile,emailTakenProfile,emailInvalidProfile,usernameTakenProfile,loginInvalidProfile,suspendedUserProfile,validateFailedProfile,emailEmailProfile,downloadPhotoProfile,nil];
     }
     return self;
 }

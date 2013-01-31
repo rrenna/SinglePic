@@ -84,6 +84,10 @@
 
 //Errors
 "We're Sorry" = "我們很抱歉";
+"Suspended User" = "用戶暫停";
+
+"This account has been suspended." = "This account has been suspended. Please contact us if you would like to request we reactivate your account.";
+
 "Sorry. There was an error uploading your photo. Please try again." = "抱歉。上傳您的照片時出錯。請再試一次。";
 "Location Services Disabled. Enter your location." = "定位服務被關閉。請輸入您所在的位置，以讓我們將您定位。";
 "Registration couldn't be completed" = "無法完成註冊";

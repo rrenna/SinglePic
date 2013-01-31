@@ -55,6 +55,7 @@
 {
     return (state_ == SHEET_STATE_FULLSCREEN);
 }
+
 #pragma mark - View lifecycle
 -(id)initWithState:(SHEET_STATE)state
 {
@@ -133,6 +134,18 @@
 {
     SPPageController* page = [self createPage];
     [page setContent:view];
+}
+#pragma marl - IBActions
+- (IBAction)toggleTabState:(id)sender
+{
+    if(state_ == SHEET_STATE_MINIMIZED)
+    {
+        [self maximize];
+    }
+    else if(state_ == SHEET_STATE_MAXIMIZED)
+    {
+        [self minimize];
+    }
 }
 #pragma mark - Private methods
 - (void) removeObservationFromContentController
@@ -357,8 +370,6 @@
      completion:^(BOOL finished) 
      {
      }];
-    
-
     
     return page;
 }

@@ -15,8 +15,8 @@
 
 //Beta
 #define BETA_EXPIRY_YEAR 2013
-#define BETA_EXPIRY_MONTH 01
-#define BETA_EXPIRY_DAY 30
+#define BETA_EXPIRY_MONTH 03
+#define BETA_EXPIRY_DAY 1
 
 //Servers
 #define PRODUCTION_ADDRESS @"https://singlepicdating.herokuapp.com/"

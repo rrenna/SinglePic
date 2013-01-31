@@ -243,6 +243,7 @@
 		F0505C6D169E390400B55724 /* ProfileManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0505C6C169E390400B55724 /* ProfileManagerTest.m */; };
 		F054E29615730ED300ECCDE7 /* SPLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F054E29415730ED300ECCDE7 /* SPLoginController.m */; };
 		F054E29715730ED300ECCDE7 /* SPLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F054E29515730ED300ECCDE7 /* SPLoginController.xib */; };
+		F05959D716BA0CCD00D74515 /* grabber.png in Resources */ = {isa = PBXBuildFile; fileRef = F05959D616BA0CCD00D74515 /* grabber.png */; };
 		F060534C163B5C5200969DA6 /* SPOptionCreditItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */; };
 		F0605353163D050E00969DA6 /* arrow-squiggle.png in Resources */ = {isa = PBXBuildFile; fileRef = F0605352163D050E00969DA6 /* arrow-squiggle.png */; };
 		F0620D0C1524B9B8008D334C /* SPSubscriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0620D0A1524B9B8008D334C /* SPSubscriptionViewController.m */; };
@@ -695,6 +696,14 @@
 		F054E29315730ED300ECCDE7 /* SPLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLoginController.h; sourceTree = "<group>"; };
 		F054E29415730ED300ECCDE7 /* SPLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLoginController.m; sourceTree = "<group>"; };
 		F054E29515730ED300ECCDE7 /* SPLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPLoginController.xib; sourceTree = "<group>"; };
+		F05959CF16BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = fr.lproj/Overlay_OOB_EXPIRY.png; sourceTree = "<group>"; };
+		F05959D016BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = fr.lproj/Overlay_OOB_BROWSE.png; sourceTree = "<group>"; };
+		F05959D116BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = fr.lproj/Overlay_OOB_LOGIN.png; sourceTree = "<group>"; };
+		F05959D216BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F05959D316BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = fr; path = fr.lproj/Credits.plist; sourceTree = "<group>"; };
+		F05959D416BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F05959D516BA05B400D74515 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F05959D616BA0CCD00D74515 /* grabber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grabber.png; path = ../../Resources/grabber.png; sourceTree = "<group>"; };
 		F060534A163B5C5100969DA6 /* SPOptionCreditItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPOptionCreditItem.h; sourceTree = "<group>"; };
 		F060534B163B5C5100969DA6 /* SPOptionCreditItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPOptionCreditItem.m; sourceTree = "<group>"; };
 		F0605352163D050E00969DA6 /* arrow-squiggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-squiggle.png"; path = "../../Resources/arrow-squiggle.png"; sourceTree = "<group>"; };
@@ -1666,6 +1675,7 @@
 		F002E03216096D8900B451BD /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				F05959D616BA0CCD00D74515 /* grabber.png */,
 				F001A1CB1613C53F0011DBFC /* Nav-info.png */,
 				F001A1CC1613C53F0011DBFC /* Nav-info@2x.png */,
 				F04C36471615640500462CBB /* icon-Refresh@2x.png */,
@@ -2329,6 +2339,7 @@
 				"zh-Hans",
 				"zh-Hant",
 				pt,
+				fr,
 			);
 			mainGroup = 7599A92F148E980100A48435;
 			productRefGroup = 7599A93B148E980100A48435 /* Products */;
@@ -2547,6 +2558,7 @@
 				7593A244168E1094003532D5 /* favourites.png in Resources */,
 				7593A245168E1094003532D5 /* mail.png in Resources */,
 				7593A246168E1094003532D5 /* earth.png in Resources */,
+				F05959D716BA0CCD00D74515 /* grabber.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2750,6 +2762,7 @@
 				F0DFAB8416686AF900C23117 /* zh-Hans */,
 				F00394A91699142800FD5BD8 /* zh-Hant */,
 				F0246C9316B946A600A712BE /* pt */,
+				F05959D416BA05B400D74515 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2760,6 +2773,7 @@
 				F00394581697F98800FD5BD8 /* en */,
 				F00394AA1699142800FD5BD8 /* zh-Hant */,
 				F0246C9416B946A600A712BE /* pt */,
+				F05959D516BA05B400D74515 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2771,6 +2785,7 @@
 				F02FB3F0166D828F003B8151 /* en */,
 				F00394A81699142800FD5BD8 /* zh-Hant */,
 				F0246C9216B946A600A712BE /* pt */,
+				F05959D316BA05B400D74515 /* fr */,
 			);
 			name = Credits.plist;
 			sourceTree = "<group>";
@@ -2782,6 +2797,7 @@
 				F02FB3F4166D92B7003B8151 /* zh-Hans */,
 				F00394A41699142700FD5BD8 /* zh-Hant */,
 				F0246C8E16B946A600A712BE /* pt */,
+				F05959CF16BA05B400D74515 /* fr */,
 			);
 			name = Overlay_OOB_EXPIRY.png;
 			path = ../../Resources;
@@ -2794,6 +2810,7 @@
 				F02FB3F8166D9484003B8151 /* zh-Hans */,
 				F00394A51699142700FD5BD8 /* zh-Hant */,
 				F0246C8F16B946A600A712BE /* pt */,
+				F05959D016BA05B400D74515 /* fr */,
 			);
 			name = Overlay_OOB_BROWSE.png;
 			path = ../../Resources;
@@ -2806,6 +2823,7 @@
 				F02FB3FC166D94F1003B8151 /* zh-Hans */,
 				F00394A61699142700FD5BD8 /* zh-Hant */,
 				F0246C9016B946A600A712BE /* pt */,
+				F05959D116BA05B400D74515 /* fr */,
 			);
 			name = Overlay_OOB_LOGIN.png;
 			path = ../../Resources;
@@ -2818,6 +2836,7 @@
 				F0DFAB8A16686B6E00C23117 /* zh-Hans */,
 				F00394A71699142700FD5BD8 /* zh-Hant */,
 				F0246C9116B946A600A712BE /* pt */,
+				F05959D216BA05B400D74515 /* fr */,
 			);
 			name = Localizable.strings;
 			path = ../../Resources;

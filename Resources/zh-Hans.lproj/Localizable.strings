@@ -84,6 +84,10 @@
 
 //Errors
 "We're Sorry" = "我们很抱歉";
+
+"Suspended User" = "用户暂停";
+"This account has been suspended." = "This account has been suspended. Please contact us if you would like to request we reactivate your account.";
+
 "Sorry. There was an error uploading your photo. Please try again." = "抱歉。有错误上传您的照片。请再试一次。";
 "Location Services Disabled. Enter your location." = "定位服务”已禁用。请输入您所在的位置，以帮助我们找到你";
 

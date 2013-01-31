@@ -20,6 +20,8 @@
 @property (assign) id <SPTabContainerDelegate> containerDelegate;
 @property (assign) BOOL fullscreen;
 
+- (IBAction)toggleTabState:(id)sender;
+
 -(void)maximize;
 -(void)maximizeIsFullscreen:(BOOL)fullscreen;
 //Push Sub-Content

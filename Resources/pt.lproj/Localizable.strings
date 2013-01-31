@@ -85,6 +85,8 @@
 
 //Errors
 "We're Sorry" = "Pedimos Desculpas";
+"Suspended User" = "Usuário Suspenso";
+"This account has been suspended." = "This account has been suspended. Please contact us if you would like to request we reactivate your account.";
 "Sorry. There was an error uploading your photo. Please try again." = "Desculpe.Houve um erro de upload de sua foto.Por favor, tente novamente.";
 "Location Services Disabled. Enter your location." = "Localização Serviços Deficientes. Por favor digite seu local para nos ajudar a localizá-lo.";
 "Registration couldn't be completed" = "Registration couldn't be completed";
