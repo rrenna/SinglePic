@@ -1124,24 +1124,35 @@ static int profileCounter = 0;
 {
     [[SPRequestManager sharedInstance] postToNamespace:REQUEST_NAMESPACE_USERS withParameter:nil andPayload:profileIDArray requiringToken:YES withCompletionHandler:^(id responseObject) 
      {
-         NSMutableArray* _pickedProfiles = [NSMutableArray array];
-         NSError *theError = nil;
-         
          NSData* responseData = (NSData*)responseObject;
-         NSDictionary* profilesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
-
-         @autoreleasepool {
-             
-             for(NSDictionary* userData in profilesData)
-             {
-                 SPProfile* profile = [[SPProfile alloc] initWithData:userData];
-                 [_pickedProfiles addObject:profile];
-             }
-         }
-
-         //Return the retrieved profiles
-         onCompletion(_pickedProfiles);
+         NSError *theError = nil;
+         NSArray* profilesData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&theError];
          
+        //User profiles may not exist, a user can be deleted. In this case the server will return an error message which must be caught at this point
+        if([profilesData count] == 1  &&
+           [[profilesData objectAtIndex:0] isKindOfClass:[NSDictionary class]] &&
+           [[profilesData objectAtIndex:0] objectForKey:@"error"])
+        {
+            //The server has returned invalid data, most likely an error message
+            NSLog(@"The server has returned an error : %@",[(NSArray*)profilesData objectAtIndex:0]);
+                              onError();
+        }
+         //No error value detected
+         else
+         {
+             NSMutableArray* _pickedProfiles = [NSMutableArray array];
+             @autoreleasepool {
+                 
+                 for(NSDictionary* userData in profilesData)
+                 {
+                     SPProfile* profile = [[SPProfile alloc] initWithData:userData];
+                     [_pickedProfiles addObject:profile];
+                 }
+             }
+
+             //Return the retrieved profiles
+             onCompletion(_pickedProfiles);
+         }
      } 
      andErrorHandler:^(NSError* error)
      {
