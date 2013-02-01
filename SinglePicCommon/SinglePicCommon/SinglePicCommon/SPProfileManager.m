@@ -1287,26 +1287,33 @@ static int profileCounter = 0;
         // Instead set the default placeholder image
         if([[[profile thumbnailURL] absoluteString] isEqualToString:@""])
         {
-            UIImage* noImage = [UIImage imageNamed:NO_IMAGE_AVATAR_FILENAME];
+            id noImage;
+            #if TARGET_OS_IPHONE
+            noImage = [UIImage imageNamed:NO_IMAGE_AVATAR_FILENAME];
+            #else
+            noImage = [NSImage imageNamed:NO_IMAGE_AVATAR_FILENAME];
+            #endif
             onCompletion(noImage);
         }
-        
-        [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(id responseObject)
-         {
-            if(responseObject && profile.identifier)
-            {
-                [_thumbnails setObject:responseObject forKey:profile.identifier];
-            }
-
-             onCompletion(responseObject);
-         }
-         andErrorHandler:^(NSError* error)
-         {
-             if(onError)
+        else
+        {
+            [[SPRequestManager sharedInstance] getImageFromURL:[profile thumbnailURL] withCompletionHandler:^(id responseObject)
              {
-                onError();
+                 if(responseObject && profile.identifier)
+                 {
+                     [_thumbnails setObject:responseObject forKey:profile.identifier];
+                 }
+                 
+                 onCompletion(responseObject);
              }
-         }];
+             andErrorHandler:^(NSError* error)
+             {
+                 if(onError)
+                 {
+                     onError();
+                 }
+             }];
+        }
     }
 }
 -(void)retrieveProfileImage:(SPProfile*)profile withCompletionHandler:(void (^)(id image))onCompletion andErrorHandler:(void(^)())onError

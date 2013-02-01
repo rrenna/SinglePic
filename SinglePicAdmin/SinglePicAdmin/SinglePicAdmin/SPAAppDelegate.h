@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <SinglePicCommon/SPBaseApplicationController.h>
+#import "MapKit.h"
 
 @interface SPAAppDelegate : NSObject <NSApplicationDelegate,SPBaseApplicationController,NSTableViewDataSource,NSTableViewDelegate>
 
@@ -27,7 +28,7 @@
 @property (weak) IBOutlet NSTextField *accountIcebreakerTextField;
 @property (weak) IBOutlet NSSegmentedControl *accountGenderPreferenceSegmentedControl;
 @property (weak) IBOutlet NSBox *accountBox;
-
+@property (weak) IBOutlet MKMapView *bucketMapView;
 
 - (IBAction)openCreateNewUserPanel:(id)sender;
 - (IBAction)createNewUser:(id)sender;
@@ -36,5 +37,6 @@
 - (IBAction)removeAccount:(id)sender;
 - (IBAction)imageViewInteracted:(id)sender;
 - (IBAction)saveDetails:(id)sender;
+- (IBAction)displayBuckets:(id)sender;
 
 @end

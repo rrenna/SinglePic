@@ -8,8 +8,6 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-@protocol MKAnnotation;
-
 @interface SPBucket : NSObject <NSCoding>
 {
 @private
