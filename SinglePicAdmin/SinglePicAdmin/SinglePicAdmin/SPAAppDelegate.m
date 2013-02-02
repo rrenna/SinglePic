@@ -8,7 +8,7 @@
 
 #import "SPAAppDelegate.h"
 #import "SPErrorNotifier.h"
-
+#import "SPABucketAnnotation.h"
 
 @interface SPAAppDelegate()
 @property (strong) NSArray* buckets;
@@ -27,6 +27,8 @@
 {
     [[SPRequestManager sharedInstance] EnableRealtimeReachabilityMonitoring];
     [[SPErrorManager sharedInstance] setErrorNotifierController:[SPErrorNotifier new]];
+    
+    self.bucketMapView.delegate = self;
     
     [self retrieveAllBuckets];
     [self retrieveAccounts];
@@ -225,10 +227,12 @@
         
         self.buckets = buckets;
         [self.createNewUserBucketPicker selectItemAtIndex:0];
-        
         self.openCreateNewUserPanelButton.enabled = YES;
         
-    } andErrorHandler:^{
+        [self populateBucketMap];
+        
+    }
+    andErrorHandler:^{
        
         NSAlert* bucketErrorAlert = [NSAlert new];
         bucketErrorAlert.messageText = @"Couldn't retrieve buckets";
@@ -247,6 +251,16 @@
     }
     
     [self.accountsTableView reloadData];
+}
+-(void)populateBucketMap
+{
+    for(SPBucket* bucket in self.buckets)
+    {
+        
+        SPABucketAnnotation* annontation = [[SPABucketAnnotation alloc] initWithBucket:bucket];
+        [self.bucketMapView addAnnotation:annontation];
+        
+    }
 }
 -(void)logoutOfActiveAccount
 {
@@ -345,5 +359,11 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyz0123456789";
 {
     [self.connectToAccountButton setEnabled:YES];
     return YES;
+}
+#pragma mark - MapKit delegate methods
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@""];
+    return annotationView;
 }
 @end
