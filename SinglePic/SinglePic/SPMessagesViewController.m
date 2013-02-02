@@ -182,8 +182,8 @@
     
     if(editingStyle == UITableViewCellEditingStyleDelete)
     {
-        NSArray* messageThreads = [[SPMessageManager sharedInstance] activeMessageThreads];
-        SPMessageThread* messageThread = [messageThreads objectAtIndex:indexPath.row];
+        NSArray* messageThreadsSorted = [[SPMessageManager sharedInstance] activeMessageThreadsSorted];
+        SPMessageThread* messageThread = [messageThreadsSorted objectAtIndex:indexPath.row];
         [[SPMessageManager sharedInstance] deleteMessageThread:messageThread];
 
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];           

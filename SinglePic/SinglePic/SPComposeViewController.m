@@ -25,6 +25,7 @@
 
 -(void) _init;
 -(void) profileLoaded;
+-(void) profileInvalidWithIdentifier:(NSString*)identifier;
 -(void) reload;
 -(void) messageSent;
 -(void) messageRecieved;
@@ -55,7 +56,7 @@
              
          } andErrorHandler:^
          {
-             
+             [self profileInvalidWithIdentifier:identifier];
          }];
     }
     return self;
@@ -259,6 +260,17 @@
     
     [self reload];
     [self scrollToBottomAnimated:NO];
+}
+// Interaction remains inactive, unread count of thread is set to zero, user is warned that this user probably doesn't exist
+-(void) profileInvalidWithIdentifier:(NSString*)identifier
+{
+    //Profile is invalid
+    [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Profile" Description:@"This user no longer exists. The account may have been deleted."];
+    //Reset unread count
+    self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:identifier];
+    [[SPMessageManager sharedInstance] readMessageThread:self.thread];
+    //Disable interaction with the textview
+    _toolbar.textView.editable = NO;
 }
 -(void)reload
 {

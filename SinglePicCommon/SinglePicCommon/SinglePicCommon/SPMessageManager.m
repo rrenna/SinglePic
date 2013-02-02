@@ -140,6 +140,7 @@
     for(SPMessageThread* thread in [self activeMessageThreads])
     {
         unreadCount+=  [thread.unreadMessagesCount intValue];
+        NSLog(@"%@",thread);
     }
     
     return unreadCount;
