@@ -84,8 +84,9 @@
 
 //Errors
 "We're Sorry" = "We're Sorry";
-
+"Invalid Profile" = "Invalid Profile";
 "Suspended User" = "Suspended User";
+"This user no longer exists." = "This user no longer exists. The account may have been deleted.";
 "This account has been suspended." = "This account has been suspended. Please contact us if you would like to request we reactivate your account.";
 
 "Sorry. There was an error uploading your photo. Please try again." = "Sorry. There was an error uploading your photo. Please try again.";

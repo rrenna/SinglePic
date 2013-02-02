@@ -84,8 +84,10 @@
 
 //Errors
 "We're Sorry" = "我们很抱歉";
-
+"Invalid Profile" = "Invalid Profile";
 "Suspended User" = "用户暂停";
+
+"This user no longer exists." = "This user no longer exists. The account may have been deleted.";
 "This account has been suspended." = "This account has been suspended. Please contact us if you would like to request we reactivate your account.";
 
 "Sorry. There was an error uploading your photo. Please try again." = "抱歉。有错误上传您的照片。请再试一次。";

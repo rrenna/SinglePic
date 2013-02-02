@@ -242,30 +242,34 @@
     if(![_profile isValid])
     {
         //Profile is invalid
-        [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Profile" Description:@"This user no longer exists. The account may have been deleted."];
+        [[SPErrorManager sharedInstance] alertWithTitle:NSLocalizedString(@"Invalid Profile",nil) Description:NSLocalizedString(@"This user no longer exists.", nil)];
     }
-    [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
+    else
     {
-        imageView.image = thumbnail;
+        [[SPProfileManager sharedInstance] retrieveProfileThumbnail:self.profile withCompletionHandler:^(UIImage *thumbnail)
+         {
+             imageView.image = thumbnail;
+         }
+                                                    andErrorHandler:nil];
+        
+            //Enable the view profile button
+        viewProfileButton.enabled = YES;
+        
+        usernameLabel.text = self.profile.username;
+        
+        self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
+        [[SPMessageManager sharedInstance] readMessageThread:self.thread];
+        
+        [self reload];
+        [self scrollToBottomAnimated:NO];
     }
-    andErrorHandler:nil];
-    
-    //Enable the view profile button
-    viewProfileButton.enabled = YES;
-    
-    usernameLabel.text = self.profile.username;
-    
-    self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:self.profile.identifier];
-    [[SPMessageManager sharedInstance] readMessageThread:self.thread];
-    
-    [self reload];
-    [self scrollToBottomAnimated:NO];
 }
 // Interaction remains inactive, unread count of thread is set to zero, user is warned that this user probably doesn't exist
 -(void) profileInvalidWithIdentifier:(NSString*)identifier
 {
     //Profile is invalid
-    [[SPErrorManager sharedInstance] alertWithTitle:@"Invalid Profile" Description:@"This user no longer exists. The account may have been deleted."];
+    [[SPErrorManager sharedInstance] alertWithTitle:NSLocalizedString(@"Invalid Profile",nil) Description:NSLocalizedString(@"This user no longer exists.", nil)];
+    
     //Reset unread count
     self.thread = [[SPMessageManager sharedInstance] getMessageThreadByUserID:identifier];
     [[SPMessageManager sharedInstance] readMessageThread:self.thread];
