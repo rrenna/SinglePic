@@ -387,8 +387,8 @@
     WebScriptObject *annotationScriptObject = [annotationView overlayScriptObjectFromMapScriptObject:webScriptObject];
     if (![annotationScriptObject isKindOfClass:[WebScriptObject class]])
     {
-	NSLog(@"Error creating internal representation of annotation view for annotation: %@", annotation);
-	return;
+        NSLog(@"Error creating internal representation of annotation view for annotation: %@", annotation);
+        return;
     }
     
     [annotations addObject:annotation];

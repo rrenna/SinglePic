@@ -229,8 +229,6 @@
         [self.createNewUserBucketPicker selectItemAtIndex:0];
         self.openCreateNewUserPanelButton.enabled = YES;
         
-        [self populateBucketMap];
-        
     }
     andErrorHandler:^{
        
@@ -365,5 +363,9 @@ NSString *letters = @"abcdefghijklmnopqrstuvwxyz0123456789";
 {
     MKPinAnnotationView* annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@""];
     return annotationView;
+}
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
+{
+    [self populateBucketMap];
 }
 @end

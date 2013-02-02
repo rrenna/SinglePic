@@ -37,6 +37,5 @@
 - (IBAction)removeAccount:(id)sender;
 - (IBAction)imageViewInteracted:(id)sender;
 - (IBAction)saveDetails:(id)sender;
-- (IBAction)displayBuckets:(id)sender;
 
 @end

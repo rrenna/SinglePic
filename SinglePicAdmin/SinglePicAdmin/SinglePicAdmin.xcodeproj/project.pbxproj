@@ -50,7 +50,6 @@
 		750C12AE16BC57440089C621 /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 750C128216BC57440089C621 /* Stylesheet.css */; };
 		750C12AF16BC57440089C621 /* TransparentPixel.png in Resources */ = {isa = PBXBuildFile; fileRef = 750C128316BC57440089C621 /* TransparentPixel.png */; };
 		750C12B116BC5DDB0089C621 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750C12B016BC5DD90089C621 /* CoreLocation.framework */; };
-		750C12B316BC5DE00089C621 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750C12B216BC5DDF0089C621 /* WebKit.framework */; };
 		750C12B616BC68580089C621 /* SPABucketAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 750C12B516BC68580089C621 /* SPABucketAnnotation.m */; };
 		755DDE0C16AEF9B600AA8D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE0B16AEF9B600AA8D29 /* Cocoa.framework */; };
 		755DDE1616AEF9B600AA8D29 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 755DDE1416AEF9B600AA8D29 /* InfoPlist.strings */; };
@@ -61,6 +60,7 @@
 		755DDE5216AF047200AA8D29 /* SinglePicCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */; };
 		75BA3B1F16B3157C00CE1710 /* messageStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75BA3B1D16B3157C00CE1710 /* messageStorage.xcdatamodeld */; };
 		F05EFA4A16B2C1E300AB0929 /* appicon114.png in Resources */ = {isa = PBXBuildFile; fileRef = F05EFA4916B2C1E300AB0929 /* appicon114.png */; };
+		F0AC302616BD5A3B0031535F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0AC302516BD5A3B0031535F /* WebKit.framework */; };
 		F0F1585C16B4055E00E831B7 /* Orientation-MsM-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585816B4055E00E831B7 /* Orientation-MsM-default.png */; };
 		F0F1585D16B4055E00E831B7 /* Orientation-FsF-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */; };
 		F0F1585E16B4055E00E831B7 /* Orientation-MsF-default.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */; };
@@ -151,7 +151,6 @@
 		750C128216BC57440089C621 /* Stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Stylesheet.css; sourceTree = "<group>"; };
 		750C128316BC57440089C621 /* TransparentPixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TransparentPixel.png; sourceTree = "<group>"; };
 		750C12B016BC5DD90089C621 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		750C12B216BC5DDF0089C621 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		750C12B416BC68580089C621 /* SPABucketAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPABucketAnnotation.h; sourceTree = "<group>"; };
 		750C12B516BC68580089C621 /* SPABucketAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPABucketAnnotation.m; sourceTree = "<group>"; };
 		755DDE0816AEF9B600AA8D29 /* SinglePicAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinglePicAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +169,7 @@
 		755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinglePicCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75BA3B1E16B3157C00CE1710 /* messageStorage 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "messageStorage 2.xcdatamodel"; sourceTree = "<group>"; };
 		F05EFA4916B2C1E300AB0929 /* appicon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon114.png; path = ../appicon114.png; sourceTree = "<group>"; };
+		F0AC302516BD5A3B0031535F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F0F1585816B4055E00E831B7 /* Orientation-MsM-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-MsM-default.png"; sourceTree = "<group>"; };
 		F0F1585916B4055E00E831B7 /* Orientation-FsF-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-FsF-default.png"; sourceTree = "<group>"; };
 		F0F1585A16B4055E00E831B7 /* Orientation-MsF-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orientation-MsF-default.png"; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				750C12B316BC5DE00089C621 /* WebKit.framework in Frameworks */,
+				F0AC302616BD5A3B0031535F /* WebKit.framework in Frameworks */,
 				750C12B116BC5DDB0089C621 /* CoreLocation.framework in Frameworks */,
 				755DDE5216AF047200AA8D29 /* SinglePicCommon.framework in Frameworks */,
 				755DDE0C16AEF9B600AA8D29 /* Cocoa.framework in Frameworks */,
@@ -343,7 +343,7 @@
 		755DDE0A16AEF9B600AA8D29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				750C12B216BC5DDF0089C621 /* WebKit.framework */,
+				F0AC302516BD5A3B0031535F /* WebKit.framework */,
 				750C12B016BC5DD90089C621 /* CoreLocation.framework */,
 				755DDE2816AEF9E800AA8D29 /* SinglePicCommon.framework */,
 				755DDE0E16AEF9B600AA8D29 /* AppKit.framework */,
